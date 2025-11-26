@@ -62,6 +62,7 @@ export default function Header() {
             <a href="#services" className="hover:text-secondary transition-colors">Services</a>
             <a href="#pricing" className="hover:text-secondary transition-colors">Pricing</a>
             <a href="#process" className="hover:text-secondary transition-colors">Our Process</a>
+            <Link href="/blog" className="hover:text-secondary transition-colors">Blog</Link>
             <a href="#about" className="hover:text-secondary transition-colors">About Us</a>
             <Button 
               variant="default" 
@@ -88,6 +89,7 @@ export default function Header() {
             <a href="#services" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Services</a>
             <a href="#pricing" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
             <a href="#process" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Our Process</a>
+            <Link href="/blog" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
             <a href="#about" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>About Us</a>
             <Button 
               variant="default" 

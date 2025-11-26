@@ -51,6 +51,9 @@ export default function Footer() {
                 <a href="#process" className="hover:text-secondary transition-colors">Our Process</a>
               </li>
               <li>
+                <a href="/blog" className="hover:text-secondary transition-colors">Blog</a>
+              </li>
+              <li>
                 <a href="#about" className="hover:text-secondary transition-colors">About Us</a>
               </li>
               <li>
