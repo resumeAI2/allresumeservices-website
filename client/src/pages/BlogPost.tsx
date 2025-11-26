@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Calendar, ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { blogPosts } from "@/data/blogPosts";
+import SocialShare from "@/components/SocialShare";
+import SEOHead from "@/components/SEOHead";
 
 export default function BlogPost() {
   const params = useParams();
@@ -36,8 +38,20 @@ export default function BlogPost() {
     );
   }
 
+  const currentUrl = `/blog/${post.slug}`;
+  const fullUrl = `${window.location.origin}${currentUrl}`;
+
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title={post.title}
+        description={post.excerpt}
+        image={post.image}
+        url={currentUrl}
+        type="article"
+        publishedTime={new Date(post.date).toISOString()}
+        keywords={`${post.category}, resume writing, career advice, job search`}
+      />
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
@@ -54,13 +68,20 @@ export default function BlogPost() {
                 {post.category}
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
-              <div className="flex items-center gap-4 text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>{post.date}</span>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="flex items-center gap-4 text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4" />
+                    <span>{post.date}</span>
+                  </div>
+                  <span>•</span>
+                  <span>{post.readTime}</span>
                 </div>
-                <span>•</span>
-                <span>{post.readTime}</span>
+                <SocialShare 
+                  url={fullUrl}
+                  title={post.title}
+                  description={post.excerpt}
+                />
               </div>
             </div>
           </div>

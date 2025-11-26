@@ -46,3 +46,23 @@ export const orders = mysqlTable("orders", {
 
 export type Order = typeof orders.$inferSelect;
 export type InsertOrder = typeof orders.$inferInsert;
+
+/**
+ * Blog posts table for managing blog content
+ */
+export const blog_posts = mysqlTable("blog_posts", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  content: text("content").notNull(),
+  excerpt: text("excerpt").notNull(),
+  category: varchar("category", { length: 100 }).notNull(),
+  image: varchar("image", { length: 500 }),
+  readTime: varchar("readTime", { length: 50 }),
+  published: int("published").default(0).notNull(), // 0 = draft, 1 = published
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BlogPost = typeof blog_posts.$inferSelect;
+export type InsertBlogPost = typeof blog_posts.$inferInsert;

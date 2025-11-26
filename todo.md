@@ -183,3 +183,33 @@
 - [x] Add related posts section to BlogPost component
 - [x] Test category filtering
 - [x] Test related posts display
+
+## Blog Management Dashboard
+- [x] Create database schema for blog posts (title, slug, content, excerpt, category, image, date, published)
+- [x] Run database migration to create blog_posts table
+- [ ] Create admin dashboard page layout
+- [ ] Add blog post list view with edit/delete actions
+- [ ] Create blog post editor form with rich text editor
+- [ ] Implement create new blog post functionality
+- [ ] Implement edit existing blog post functionality
+- [ ] Implement delete blog post functionality
+- [ ] Add image upload for blog post featured images
+- [ ] Add publish/draft status toggle
+- [ ] Update Blog.tsx to fetch posts from database
+- [ ] Update BlogPost.tsx to fetch post from database
+- [ ] Test all CRUD operations
+- [ ] Test rich text editor
+- [ ] Test image upload
+
+## Social Sharing & SEO
+- [x] Create social sharing component with LinkedIn, Facebook, Twitter buttons
+- [x] Add social sharing buttons to BlogPost page
+- [x] Implement dynamic meta tags for each blog post
+- [x] Add Open Graph tags for social media previews
+- [x] Add Twitter Card tags
+- [x] Implement JSON-LD schema markup for blog posts
+- [x] Update Header social media links with correct URLs
+- [x] Update Footer social media links with correct URLs
+- [x] Add Instagram to social media links
+- [x] Test social sharing functionality
+- [x] Test SEO metadata rendering
