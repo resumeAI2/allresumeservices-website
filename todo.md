@@ -156,3 +156,8 @@
 ## Update Navigation Text
 - [x] Change "Blog" to "Career Advice Blog" in Header navigation
 - [x] Change "Blog" to "Career Advice Blog" in Footer navigation
+
+## Migrate Existing Blog Posts
+- [x] Extract blog posts from https://www.allresumeservices.com.au/blogs/
+- [x] Update Blog.tsx with real blog post data
+- [x] Preserve original content, titles, and metadata

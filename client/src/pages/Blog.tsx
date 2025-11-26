@@ -8,67 +8,97 @@ export default function Blog() {
   const blogPosts = [
     {
       id: 1,
-      title: "10 Resume Mistakes That Cost You Job Interviews",
-      excerpt: "Learn about the most common resume errors that hiring managers notice immediately and how to avoid them to increase your chances of landing interviews.",
+      title: "Transform Your Resume with Powerful Action Verbs",
+      excerpt: "Transform your resume into a powerful tool with action verbs that capture attention. Elevate your language and stand out in the job market today!",
       category: "Resume Tips",
-      date: "November 20, 2024",
+      date: "November 19, 2025",
       readTime: "5 min read",
-      slug: "resume-mistakes-cost-interviews",
+      slug: "transform-resume-action-verbs",
       image: "/api/placeholder/800/400"
     },
     {
       id: 2,
-      title: "How to Beat Applicant Tracking Systems (ATS) in 2024",
-      excerpt: "Discover proven strategies to optimize your resume for ATS software and ensure your application reaches human recruiters.",
-      category: "ATS Optimization",
-      date: "November 15, 2024",
-      readTime: "7 min read",
-      slug: "beat-ats-systems-2024",
+      title: "Stand Out with Top-notch Senior Management Resume Services",
+      excerpt: "Revamp your career with our senior management resume services. Create a standout leadership resume that showcases your executive skills and achievements.",
+      category: "Resume Writing",
+      date: "November 19, 2025",
+      readTime: "6 min read",
+      slug: "senior-management-resume-services",
       image: "/api/placeholder/800/400"
     },
     {
       id: 3,
-      title: "The Perfect Cover Letter Formula for Australian Jobs",
-      excerpt: "Master the art of writing compelling cover letters that grab attention and showcase your value to Australian employers.",
-      category: "Cover Letters",
-      date: "November 10, 2024",
-      readTime: "6 min read",
-      slug: "perfect-cover-letter-formula",
+      title: "Elevate Your Career with Expert Resume Services",
+      excerpt: "Boost your career prospects with expert resume services. Craft a powerful resume that highlights your strengths and sets you apart from the competition.",
+      category: "Resume Services",
+      date: "November 17, 2025",
+      readTime: "5 min read",
+      slug: "expert-resume-services",
       image: "/api/placeholder/800/400"
     },
     {
       id: 4,
-      title: "LinkedIn Profile Optimization: A Complete Guide",
-      excerpt: "Transform your LinkedIn profile into a powerful career tool with these expert tips for Australian professionals.",
-      category: "LinkedIn",
-      date: "November 5, 2024",
-      readTime: "8 min read",
-      slug: "linkedin-profile-optimization-guide",
+      title: "Unlock Opportunities with Expert Mid-Career Resume Help",
+      excerpt: "Unlock new job opportunities with our expert mid-career resume help. Tailored drafts enhance your experienced or professional resume for impactful applications.",
+      category: "Career Advice",
+      date: "November 12, 2025",
+      readTime: "6 min read",
+      slug: "mid-career-resume-help",
       image: "/api/placeholder/800/400"
     },
     {
       id: 5,
-      title: "Career Change Resume: How to Pivot Successfully",
-      excerpt: "Transitioning to a new industry? Learn how to position your transferable skills and experience for a successful career change.",
-      category: "Career Change",
-      date: "October 30, 2024",
-      readTime: "6 min read",
-      slug: "career-change-resume-guide",
+      title: "Affordable Basic Resume Writing – Stand Out in Your Job Hunt",
+      excerpt: "Stand out in your job hunt with an affordable basic resume. Master entry-level applications and impress employers without breaking the bank. Get started now!",
+      category: "Resume Writing",
+      date: "November 12, 2025",
+      readTime: "5 min read",
+      slug: "affordable-basic-resume-writing",
       image: "/api/placeholder/800/400"
     },
     {
       id: 6,
-      title: "Selection Criteria Responses That Get You Shortlisted",
-      excerpt: "Master the STAR method and learn how to write compelling selection criteria responses for government and corporate roles.",
+      title: "Write Winning Selection Criteria for Government Roles Today!",
+      excerpt: "Craft persuasive selection criteria for government roles to stand out. Enhance your public service applications with our expert tips and strategies for success.",
       category: "Selection Criteria",
-      date: "October 25, 2024",
+      date: "November 10, 2025",
       readTime: "7 min read",
-      slug: "selection-criteria-responses-guide",
+      slug: "winning-selection-criteria-government",
+      image: "/api/placeholder/800/400"
+    },
+    {
+      id: 7,
+      title: "Effective CV Writing Strategies for Career Success",
+      excerpt: "Unlock your career potential with effective CV writing strategies. Learn how to craft a standout CV that impresses employers and secures interviews.",
+      category: "CV Writing",
+      date: "October 6, 2025",
+      readTime: "6 min read",
+      slug: "effective-cv-writing-strategies",
+      image: "/api/placeholder/800/400"
+    },
+    {
+      id: 8,
+      title: "Expert CV Help for Crafting Winning Resumes Effortlessly",
+      excerpt: "Unlock the secrets to crafting a winning resume effortlessly. Get expert CV help and transform your job applications into interview opportunities.",
+      category: "CV Writing",
+      date: "September 26, 2025",
+      readTime: "6 min read",
+      slug: "expert-cv-help-winning-resumes",
+      image: "/api/placeholder/800/400"
+    },
+    {
+      id: 9,
+      title: "Why do you need CV services",
+      excerpt: "Introduction: Turning Job Search Blues into a Beacon of Success. Ever felt like you're chasing your tail in the job search process?",
+      category: "CV Services",
+      date: "December 12, 2024",
+      readTime: "5 min read",
+      slug: "why-need-cv-services",
       image: "/api/placeholder/800/400"
     }
   ];
 
-  const categories = ["All", "Resume Tips", "ATS Optimization", "Cover Letters", "LinkedIn", "Career Change", "Selection Criteria"];
+  const categories = ["All", "Resume Tips", "Resume Writing", "Resume Services", "Career Advice", "Selection Criteria", "CV Writing", "CV Services"];
 
   return (
     <div className="min-h-screen">
