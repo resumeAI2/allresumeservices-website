@@ -63,11 +63,21 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Our Services</h3>
             <ul className="space-y-2 text-sm">
-              <li>Resume Writing</li>
-              <li>Cover Letters</li>
-              <li>LinkedIn Optimization</li>
-              <li>Selection Criteria</li>
-              <li>Career Consultation</li>
+              <li>
+                <a href="/services/resume-writing" className="hover:text-secondary transition-colors">Resume Writing</a>
+              </li>
+              <li>
+                <a href="/services/cover-letters" className="hover:text-secondary transition-colors">Cover Letters</a>
+              </li>
+              <li>
+                <a href="/services/linkedin-optimization" className="hover:text-secondary transition-colors">LinkedIn Optimization</a>
+              </li>
+              <li>
+                <a href="/services/selection-criteria" className="hover:text-secondary transition-colors">Selection Criteria</a>
+              </li>
+              <li>
+                <a href="/services/career-consultation" className="hover:text-secondary transition-colors">Career Consultation</a>
+              </li>
             </ul>
           </div>
         </div>

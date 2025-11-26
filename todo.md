@@ -99,3 +99,13 @@
 - [x] Update Hero section turnaround time to 2-3 days
 - [x] Update Stats section turnaround time to 2-3 days
 - [x] Update Pricing section turnaround times (2-3 days standard, 1 day express)
+
+## Service Pages
+- [x] Create Resume Writing service page
+- [x] Create Cover Letters service page
+- [x] Create LinkedIn Optimization service page
+- [x] Create Selection Criteria service page
+- [x] Create Career Consultation service page
+- [x] Set up routing for all service pages
+- [x] Update footer links to point to service pages
+- [x] Test all service page navigation
