@@ -10,8 +10,11 @@ import CoverLetters from "./pages/CoverLetters";
 import LinkedInOptimization from "./pages/LinkedInOptimization";
 import SelectionCriteria from "./pages/SelectionCriteria";
 import CareerConsultation from "./pages/CareerConsultation";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCancel from "./pages/PaymentCancel";
 
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
@@ -20,6 +23,8 @@ function Router() {
       <Route path={"/services/linkedin-optimization"} component={LinkedInOptimization} />
       <Route path={"/services/selection-criteria"} component={SelectionCriteria} />
       <Route path={"/services/career-consultation"} component={CareerConsultation} />
+      <Route path={"/payment/success"} component={PaymentSuccess} />
+      <Route path={"/payment/cancel"} component={PaymentCancel} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

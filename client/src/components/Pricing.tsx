@@ -1,7 +1,36 @@
 import { Button } from "@/components/ui/button";
-import { Check, Star } from "lucide-react";
+import { Check, Star, Loader2 } from "lucide-react";
+import { trpc } from "@/lib/trpc";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Pricing() {
+  const [loadingPackage, setLoadingPackage] = useState<string | null>(null);
+  const createOrderMutation = trpc.payment.createOrder.useMutation();
+
+  const handleChoosePackage = async (pkg: typeof packages[0]) => {
+    setLoadingPackage(pkg.name);
+
+    try {
+      const result = await createOrderMutation.mutateAsync({
+        packageName: pkg.name,
+        amount: pkg.price.replace("$", ""),
+      });
+
+      if (result.approvalUrl) {
+        // Redirect to PayPal for payment
+        window.location.href = result.approvalUrl;
+      } else {
+        toast.error("Failed to create payment. Please try again.");
+        setLoadingPackage(null);
+      }
+    } catch (error) {
+      console.error("Payment error:", error);
+      toast.error("Failed to initiate payment. Please try again.");
+      setLoadingPackage(null);
+    }
+  };
+
   const packages = [
     {
       name: "Basic Package",
@@ -76,7 +105,7 @@ export default function Pricing() {
                 </h3>
                 
                 <div className="mb-6">
-                  <span className="text-5xl font-bold text-primary">${pkg.price}</span>
+                  <span className="text-5xl font-bold text-primary">{pkg.price}</span>
                   <span className="text-muted-foreground ml-2">AUD</span>
                 </div>
 
@@ -91,18 +120,24 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                <Button 
+                 <Button 
                   className={`w-full ${
                     pkg.popular 
                       ? 'bg-secondary text-secondary-foreground hover:bg-secondary/90' 
                       : 'bg-primary text-primary-foreground hover:bg-primary/90'
                   }`}
                   size="lg"
-                  onClick={() => {
-                    window.open('mailto:admin@allresumeservices.com.au?subject=Package Inquiry: ' + pkg.name, '_blank');
-                  }}
+                  onClick={() => handleChoosePackage(pkg)}
+                  disabled={loadingPackage !== null}
                 >
-                  Choose Package
+                  {loadingPackage === pkg.name ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Processing...
+                    </>
+                  ) : (
+                    "Choose Package"
+                  )}
                 </Button>
               </div>
             </div>
