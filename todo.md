@@ -109,3 +109,8 @@
 - [x] Set up routing for all service pages
 - [x] Update footer links to point to service pages
 - [x] Test all service page navigation
+
+## Pricing Updates
+- [x] Update Basic Resume to Basic Package with $125 fee
+- [x] Update Standard Package fee to $185
+- [x] Update Premium Package fee to $255

@@ -4,8 +4,8 @@ import { Check, Star } from "lucide-react";
 export default function Pricing() {
   const packages = [
     {
-      name: "Basic Resume",
-      price: 95,
+      name: "Basic Package",
+      price: "$125",
       popular: false,
       features: [
         "Professionally written résumé tailored to your career goals",
@@ -17,7 +17,7 @@ export default function Pricing() {
     },
     {
       name: "Standard Package",
-      price: 145,
+      price: "$185",
       popular: true,
       features: [
         "Professionally written résumé",
@@ -31,7 +31,7 @@ export default function Pricing() {
     },
     {
       name: "Premium Package",
-      price: 205,
+      price: "$255",
       popular: false,
       features: [
         "Professionally written résumé",
