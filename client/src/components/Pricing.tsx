@@ -12,7 +12,7 @@ export default function Pricing() {
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
         "Unlimited revisions until you're satisfied",
-        "3-5 day turnaround"
+        "2-3 day turnaround"
       ]
     },
     {
@@ -25,7 +25,7 @@ export default function Pricing() {
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
         "Unlimited revisions until you're satisfied",
-        "3-5 day turnaround",
+        "2-3 day turnaround",
         "Priority support"
       ]
     },
@@ -40,7 +40,7 @@ export default function Pricing() {
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
         "Unlimited revisions until you're satisfied",
-        "2-3 day express turnaround",
+        "1 day express turnaround",
         "Priority support"
       ]
     }

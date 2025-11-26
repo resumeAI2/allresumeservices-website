@@ -94,3 +94,8 @@
 - [x] Add form submission handling with email notification
 - [x] Add success/error messages
 - [x] Test form functionality
+
+## Turnaround Time Updates
+- [x] Update Hero section turnaround time to 2-3 days
+- [x] Update Stats section turnaround time to 2-3 days
+- [x] Update Pricing section turnaround times (2-3 days standard, 1 day express)

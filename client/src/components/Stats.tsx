@@ -18,9 +18,9 @@ export default function Stats() {
     },
     {
       icon: Clock,
-      value: "3-5 Days",
+      value: "2-3 Days",
       label: "Average Turnaround",
-      description: "Fast delivery without compromising quality. Express options available",
+      description: "Fast delivery without compromising quality. 1-day express option available",
       image: "/team-work.webp"
     }
   ];

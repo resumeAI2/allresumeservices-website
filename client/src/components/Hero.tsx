@@ -60,7 +60,7 @@ export default function Hero() {
               </div>
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
-                <span>3-5 Day Delivery</span>
+                <span>2-3 Day Delivery</span>
               </div>
             </div>
           </div>
