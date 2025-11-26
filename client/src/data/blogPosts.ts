@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     date: "November 19, 2025",
     readTime: "5 min read",
     slug: "transform-resume-action-verbs",
-    image: "/api/placeholder/800/400",
+    image: "/blog/resume-writing.jpg",
     content: `<p>Transform Your Resume with Powerful Action Verbs</p>
 <p>Action Verbs: Your Secret Weapon for a Standout Resume</p>
 <p>A sharp set of action verbs can transform a simple list of duties into a compelling story that recruiters and Applicant Tracking Systems (ATS) instantly recognise as achievement-driven and relevant. This guide will show you how to pick, perfect, and weave action verbs into every part of your resume, ensuring your WorkExperience, SummaryStatement, and SkillsSection shout about your accomplishments and career growth. Many job seekers stick to passive descriptions or generic verbs that dilute their impact, so we’ll share proven methods for rewriting, handy templates for quantifying results, and Australian-specific phrasing to get you more interview invites. You’ll find clear explanations, categories of resume verbs, how to match verbs to your career stage, before-and-after examples, and step-by-step advice for optimising your resume for ATS. Practical lists, three essential tables, and sample bullet points will help you inject dynamism into your resume, from entry-level roles to executive positions. Plus, we’ll touch on how professional help, like All Resume Services’ Resume Writing Service, can polish your language for better job placements. Read on to master powerful resume words, sidestep common blunders, and tailor your CV for the Australian job market.</p>
@@ -166,7 +166,7 @@ Youtube</p>
     date: "November 19, 2025",
     readTime: "6 min read",
     slug: "senior-management-resume-services",
-    image: "/api/placeholder/800/400",
+    image: "/blog/interview-success.jpg",
     content: `<p>Stand Out with Top-notch Senior Management Resume Services</p>
 <p>Expert Executive Resume Writing Services Australia: Secure Your Next Leadership Role</p>
 <p>Partnering with a specialist executive resume writer transforms how senior leadership candidates are perceived by hiring managers and executive search firms. We shift the focus from mere duties to compelling commercial narratives that actively attract interviews and board-level discussions. This guide details the value of professional executive resume writing services, how ATS-optimised executive CVs enhance visibility in Australia’s competitive 2025 leadership market, and the critical importance of personal branding for C-suite and board appointments. Many senior professionals find it challenging to distill strategic achievements into impactful, concise documents. Expert executive CV development resolves this by spotlighting measurable results, stakeholder impact, and governance expertise. You’ll discover the distinctions between executive and standard CVs, the meticulous process employed by our expert writers, the comprehensive suite of documents provided (including cover letters, selection criteria responses, and LinkedIn optimisation), industry-specific priorities, author credentials, and package options. We also address common executive resume FAQs and guide you on requesting a complimentary executive resume assessment, empowering you to pursue interviews and placements with unwavering confidence.</p>
@@ -296,7 +296,7 @@ Youtube</p>
     date: "November 17, 2025",
     readTime: "5 min read",
     slug: "expert-resume-services",
-    image: "/api/placeholder/800/400",
+    image: "/blog/job-interview.jpg",
     content: `<h1>Elevate Your Career with Expert Resume Services</h1>
 <h2>Expert Resume Writing Services in Australia – Land Your Dream Job</h2>
 <p>For Australian job seekers, a standout resume is your most powerful tool for securing interviews in today’s competitive landscape. With unemployment rates around 4.1 percent and a staggering 75% of resumes failing ATS scans, many talented individuals struggle to get noticed. This guide reveals how professional resume services can transform your application into an ATS-optimised, recruiter-ready document. We’ll explore why expert writing makes a difference, the services we offer, essential career documents, support for unique situations, 2025 trends, package details, and clear pricing—all designed to boost your interview success and accelerate your path to your ideal role.</p>
@@ -353,7 +353,7 @@ Youtube</p>
     date: "November 12, 2025",
     readTime: "6 min read",
     slug: "mid-career-resume-help",
-    image: "/api/placeholder/800/400",
+    image: "/blog/cv-writing.jpg",
     content: `<h1>Unlock Opportunities with Expert Mid-Career Resume Help</h1>
 <h2>Expert Resume Writing for Mid-Career Professionals in Australia – Get Noticed and Advance Your Career</h2>
 <p>Crafting a standout resume for mid-career professionals means showcasing five to fifteen years of experience as a compelling, promotion-ready narrative that captures the attention of both Applicant Tracking Systems (ATS) and hiring managers. This guide delves into what defines a mid-career resume, why it’s distinct from entry-level CVs, and how strategic keyword optimisation and achievement-driven storytelling boost your visibility and interview rates. You’ll discover practical, ATS-aware formatting techniques, a step-by-step professional writing process, and strategies for navigating career pivots by highlighting transferable skills for new roles. We also cover essential complementary support—LinkedIn profile optimisation, cover letters, and ATS checks—and compare our package options to help you select the service that best aligns with your career aspirations. Expect clear examples, helpful checklists, and tables illustrating how resume elements connect with ATS requirements and how our Standard and Premium packages map to each stage of your journey.</p>
@@ -483,7 +483,7 @@ Youtube</p>
     date: "November 12, 2025",
     readTime: "5 min read",
     slug: "affordable-basic-resume-writing",
-    image: "/api/placeholder/800/400",
+    image: "/blog/resume-writing.jpg",
     content: `<h1>Affordable Basic Resume Writing – Stand Out in Your Job Hunt</h1>
 <h2>Budget-Friendly Resume Writing Services Australia: Expert Help to Land Your Dream Job Faster</h2>
 <p>Securing an interview-winning resume without overspending is a common hurdle for Australian job seekers, particularly recent graduates, those switching careers, or busy professionals. This guide unpacks how cost-effective, professional resume writing services operate, what makes them effective, and which options best suit different career phases. <strong>Budget-Friendly Resume Writing Services Australia: Expert Help to Land Your Dream Job Faster</strong> delves into proven strategies—ATS optimisation, achievement-driven language, and clear formatting—that boost interview rates while maintaining transparent pricing. Readers will discover why professional writers improve recruiter engagement, the typical costs of various packages in Australia, how ATS compatibility works in 2025, and complementary services that amplify job search success. The guide also covers industry-specific considerations for mining, IT, and healthcare roles, outlines the simple ordering process, and provides practical checklists to help you confidently select the ideal affordable package. Throughout, key terms like cheap resume, entry-level resume, ATS-friendly resume, and professional CV writing Australia are integrated to guide job seekers towards effective, value-driven solutions.</p>
@@ -609,7 +609,7 @@ Youtube</p>
     date: "November 10, 2025",
     readTime: "7 min read",
     slug: "winning-selection-criteria-government",
-    image: "/api/placeholder/800/400",
+    image: "/blog/selection-criteria.jpg",
     content: `<h1>Write Winning Selection Criteria for Government Roles Today!</h1>
 <h2>Nail Your Public Service Application: Expert Selection Criteria Writing in Australia</h2>
 <p>Selection criteria are your golden ticket to proving you’ve got what it takes for a government role. They’re the evidence-based statements that showcase your skills, experience, and behaviours against the job’s requirements. Mastering them is absolutely crucial if you want to get to the interview stage for Australian public service positions. This guide breaks down what selection criteria (including Key Selection Criteria and Statements of Claims) are, why they’re the backbone of fair recruitment, and how smart approaches like the STAR method and APS capability frameworks turn your experience into points your application can score. You’ll discover practical steps for drafting, learn about tailoring your responses for different states and levels (from entry-level all the way up to Senior Executive Service), pinpoint common blunders to steer clear of, and figure out how to present your application so it’s both ATS-friendly and utterly convincing to selection panels. We’ll also show you how capability frameworks shape your wording and provide real-life STAR examples, comparison tables, and templates to make drafting a breeze. Finally, get a quick rundown on how professional Selection Criteria Writing support from All Resume Services can fast-track your application with bespoke, ATS-smart responses crafted by Australian writers who know HR and public administration inside out.</p>
@@ -752,7 +752,7 @@ Youtube</p>
     date: "October 6, 2025",
     readTime: "6 min read",
     slug: "effective-cv-writing-strategies",
-    image: "/api/placeholder/800/400",
+    image: "/blog/cv-writing.jpg",
     content: `<h1>Effective CV Writing for Australian Career Success</h1>
 <p>Expert CV Writing Services Australia: Master Your Career Ascent</p>
 <p>A meticulously crafted CV transforms a standard employment history into a powerful career tool that captures recruiter attention and secures interview invitations. By mastering proven strategies—including understanding Australian CV norms, optimising for applicant tracking systems (ATS), and developing compelling summaries—you can significantly enhance your job application success and fast-track your career progression. This comprehensive guide will delve into:</p>
@@ -909,7 +909,7 @@ Youtube</p>
     date: "September 26, 2025",
     readTime: "6 min read",
     slug: "expert-cv-help-winning-resumes",
-    image: "/api/placeholder/800/400",
+    image: "/blog/cover-letter.jpg",
     content: `<h1>Expert CV Help: Crafting Winning Resumes in Australia (2025)</h1>
 <h2>Your Expert Edge in Australian CV Writing: Land More Interviews</h2>
 <p>To truly stand out in Australia’s bustling job market, you need more than just experience – you need a CV that speaks directly to hiring managers and gets past those crucial Applicant Tracking Systems (ATS). With a consistent flow of job openings and a competitive candidate pool, making a memorable impression is key. This guide to professional CV assistance will equip you with the knowledge to craft a winning Australian CV, master ATS optimisation, highlight your most valuable skills, prepare essential supporting documents, and tailor your application for every career stage. We’ll provide clear, actionable steps, practical examples, and insights into why our expert resume writing service is your best bet for turning applications into interview invitations.</p>
@@ -1047,7 +1047,7 @@ Youtube</p>
     date: "December 12, 2024",
     readTime: "5 min read",
     slug: "why-need-cv-services",
-    image: "/api/placeholder/800/400",
+    image: "/blog/linkedin-optimization.jpg",
     content: `<h1>Why Use CV Services? Improve Your Career Prospects in 2025</h1>
 <p>A CV, or curriculum vitae, is one of the most important documents you will ever create. It is a record of your academic and professional achievements that is used to apply for jobs, scholarships, and internships. While you may have a general idea of what a CV should include, it can be difficult to know how to format it and what information to include. That’s where CV services come in. CV services can help you create a well-written, well-designed CV that will make you stand out from the competition. Here are just a few reasons why you should consider using a CV service:</p>
 <h2>What is a CV?</h2>

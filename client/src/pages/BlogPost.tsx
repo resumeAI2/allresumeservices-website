@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, ArrowLeft } from "lucide-react";
+import { Calendar, ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { blogPosts } from "@/data/blogPosts";
 
@@ -10,6 +10,13 @@ export default function BlogPost() {
   const slug = params.slug;
   
   const post = blogPosts.find(p => p.slug === slug);
+
+  // Get related posts from the same category
+  const relatedPosts = post 
+    ? blogPosts
+        .filter(p => p.category === post.category && p.id !== post.id)
+        .slice(0, 3)
+    : [];
 
   if (!post) {
     return (
@@ -86,6 +93,68 @@ export default function BlogPost() {
             </div>
           </div>
         </section>
+
+        {/* Related Posts Section */}
+        {relatedPosts.length > 0 && (
+          <section className="py-16 bg-accent">
+            <div className="container">
+              <h2 className="text-3xl font-bold mb-8">Related Articles</h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {relatedPosts.map((relatedPost) => (
+                  <article
+                    key={relatedPost.id}
+                    className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow group"
+                  >
+                    <div className="aspect-video bg-accent relative overflow-hidden">
+                      <img 
+                        src={relatedPost.image} 
+                        alt={relatedPost.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    
+                    <div className="p-6">
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                        <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-medium">
+                          {relatedPost.category}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          {relatedPost.date}
+                        </span>
+                      </div>
+
+                      <h3 className="text-lg font-bold text-card-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                        {relatedPost.title}
+                      </h3>
+
+                      <p className="text-muted-foreground mb-4 line-clamp-2 text-sm">
+                        {relatedPost.excerpt}
+                      </p>
+
+                      <div className="flex items-center justify-between">
+                        <span className="flex items-center gap-1 text-sm text-muted-foreground">
+                          <Clock className="h-3 w-3" />
+                          {relatedPost.readTime}
+                        </span>
+                        <Link href={`/blog/${relatedPost.slug}`}>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="text-primary hover:text-primary/80 group/btn"
+                          >
+                            Read More
+                            <ArrowRight className="ml-1 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
       </main>
       <Footer />
     </div>

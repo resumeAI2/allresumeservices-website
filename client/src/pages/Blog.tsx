@@ -4,9 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { blogPosts } from "@/data/blogPosts";
+import { useState } from "react";
 
 export default function Blog() {
+  const [activeCategory, setActiveCategory] = useState("All");
   const categories = ["All", "Resume Tips", "Resume Writing", "Resume Services", "Career Advice", "Selection Criteria", "CV Writing", "CV Services"];
+  
+  const filteredPosts = activeCategory === "All" 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === activeCategory);
 
   return (
     <div className="min-h-screen">
@@ -33,9 +39,10 @@ export default function Blog() {
             {categories.map((category) => (
               <Button
                 key={category}
-                variant={category === "All" ? "default" : "outline"}
+                variant={category === activeCategory ? "default" : "outline"}
                 size="sm"
-                className={category === "All" ? "" : "bg-background"}
+                className={category === activeCategory ? "" : "bg-background"}
+                onClick={() => setActiveCategory(category)}
               >
                 {category}
               </Button>
@@ -48,14 +55,16 @@ export default function Blog() {
       <section className="py-16">
         <div className="container">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map((post) => (          <article
+              {filteredPosts.map((post) => (          <article
                 key={post.id}
                 className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow group"
               >
                 <div className="aspect-video bg-accent relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                    <span className="text-6xl opacity-20">📝</span>
-                  </div>
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 
                 <div className="p-6">

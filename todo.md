@@ -173,3 +173,13 @@
 - [x] Debug why Read More links are not working
 - [x] Fix link routing in Blog.tsx
 - [x] Test all Read More buttons navigate correctly
+
+## Blog Enhancements
+- [x] Search and download professional images for blog posts
+- [x] Add images to blog posts data
+- [x] Implement category filtering functionality
+- [x] Add state management for active category
+- [x] Filter blog posts based on selected category
+- [x] Add related posts section to BlogPost component
+- [x] Test category filtering
+- [x] Test related posts display
