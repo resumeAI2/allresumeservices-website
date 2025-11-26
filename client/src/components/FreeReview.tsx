@@ -1,7 +1,106 @@
 import { Button } from "@/components/ui/button";
-import { Upload, CheckCircle2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { CheckCircle2, Upload, Loader2 } from "lucide-react";
+import { useState, FormEvent } from "react";
+import { toast } from "sonner";
 
 export default function FreeReview() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    file: null as File | null
+  });
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      const maxSize = 5 * 1024 * 1024; // 5MB
+
+      if (!validTypes.includes(file.type)) {
+        toast.error('Please upload a PDF, DOC, or DOCX file');
+        e.target.value = '';
+        return;
+      }
+
+      if (file.size > maxSize) {
+        toast.error('File size must be less than 5MB');
+        e.target.value = '';
+        return;
+      }
+
+      setFormData(prev => ({ ...prev, file }));
+    }
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Validate required fields
+      if (!formData.name || !formData.email || !formData.file) {
+        toast.error('Please fill in all required fields and upload your resume');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        toast.error('Please enter a valid email address');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Create FormData for file upload
+      const submitData = new FormData();
+      submitData.append('name', formData.name);
+      submitData.append('email', formData.email);
+      submitData.append('phone', formData.phone);
+      submitData.append('message', formData.message);
+      if (formData.file) {
+        submitData.append('resume', formData.file);
+      }
+
+      // For now, we'll use Formspree (user will need to set up their account)
+      // Alternative: mailto link with form data
+      const mailtoLink = `mailto:admin@allresumeservices.com.au?subject=Free Resume Review Request from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\nNote: Resume file attached separately.`
+      )}`;
+
+      // Open mailto link
+      window.location.href = mailtoLink;
+
+      // Show success message
+      toast.success('Thank you! Your request has been prepared. Please attach your resume to the email and send.');
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+        file: null
+      });
+
+      // Reset file input
+      const fileInput = document.getElementById('resume-upload') as HTMLInputElement;
+      if (fileInput) fileInput.value = '';
+
+    } catch (error) {
+      toast.error('Something went wrong. Please try again or email us directly.');
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const benefits = [
     {
       title: "Expert Resume Assessment",
@@ -43,28 +142,126 @@ export default function FreeReview() {
           <p className="text-lg opacity-90 mb-8">
             Not sure if your resume is getting the attention it deserves? Send it to us for a free review! Our professional resume writers will assess its effectiveness, ensuring it showcases your career history, relevant skills, and achievements in a way that stands out in today's competitive job market.
           </p>
+        </div>
+
+        {/* Contact Form */}
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 max-w-3xl mx-auto border border-white/20 mb-12">
+          <h3 className="text-2xl font-bold mb-6 text-center">
+            Submit Your Resume for Free Review
+          </h3>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-primary-foreground">
+                  Full Name <span className="text-secondary">*</span>
+                </Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="John Smith"
+                  value={formData.name}
+                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  required
+                  className="bg-white/20 border-white/30 text-primary-foreground placeholder:text-primary-foreground/50"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-primary-foreground">
+                  Email Address <span className="text-secondary">*</span>
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  required
+                  className="bg-white/20 border-white/30 text-primary-foreground placeholder:text-primary-foreground/50"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="phone" className="text-primary-foreground">
+                Phone Number (Optional)
+              </Label>
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="0410 934 371"
+                value={formData.phone}
+                onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                className="bg-white/20 border-white/30 text-primary-foreground placeholder:text-primary-foreground/50"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="message" className="text-primary-foreground">
+                Additional Information (Optional)
+              </Label>
+              <Textarea
+                id="message"
+                placeholder="Tell us about your career goals, target roles, or any specific concerns..."
+                value={formData.message}
+                onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                rows={4}
+                className="bg-white/20 border-white/30 text-primary-foreground placeholder:text-primary-foreground/50"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="resume-upload" className="text-primary-foreground">
+                Upload Your Resume <span className="text-secondary">*</span>
+              </Label>
+              <div className="relative">
+                <Input
+                  id="resume-upload"
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  onChange={handleFileChange}
+                  required
+                  className="bg-white/20 border-white/30 text-primary-foreground file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-secondary file:text-secondary-foreground file:font-semibold hover:file:bg-secondary/90 cursor-pointer"
+                />
+              </div>
+              <p className="text-xs opacity-75 mt-1">
+                Accepted formats: PDF, DOC, DOCX (Max 5MB)
+              </p>
+              {formData.file && (
+                <p className="text-sm text-secondary mt-2 flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4" />
+                  File selected: {formData.file.name}
+                </p>
+              )}
+            </div>
+
             <Button 
+              type="submit"
               size="lg" 
-              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all"
-              onClick={() => window.open('mailto:admin@allresumeservices.com.au?subject=Free Resume Review Request', '_blank')}
+              disabled={isSubmitting}
+              className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg py-6 shadow-xl"
             >
-              <Upload className="mr-2 h-5 w-5" />
-              Send Resume for Free Review
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  Processing...
+                </>
+              ) : (
+                <>
+                  <Upload className="mr-2 h-5 w-5" />
+                  Submit for Free Review
+                </>
+              )}
             </Button>
-            
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-8 py-6"
-              onClick={() => window.open('tel:0410934371')}
-            >
-              Call Us: 0410 934 371
-            </Button>
+          </form>
+
+          <div className="mt-6 text-center text-sm opacity-80">
+            <p>Or call us directly: <a href="tel:0410934371" className="text-secondary font-semibold hover:underline">0410 934 371</a></p>
           </div>
         </div>
 
+        {/* Benefits Section */}
         <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 max-w-5xl mx-auto border border-white/20">
           <h3 className="text-2xl font-bold mb-8 text-center">
             What's Included in Your Free Review?
