@@ -152,3 +152,7 @@
 - [x] Add blog post categories/tags
 - [x] Link blog page in header navigation
 - [x] Link blog page in footer navigation
+
+## Update Navigation Text
+- [x] Change "Blog" to "Career Advice Blog" in Header navigation
+- [x] Change "Blog" to "Career Advice Blog" in Footer navigation
