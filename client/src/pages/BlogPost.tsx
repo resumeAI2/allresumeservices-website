@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { Link, useParams } from "wouter";
-import { blogPosts } from "@/data/blogPosts";
+import { trpc } from "@/lib/trpc";
 import SocialShare from "@/components/SocialShare";
 import SEOHead from "@/components/SEOHead";
 
@@ -11,14 +11,27 @@ export default function BlogPost() {
   const params = useParams();
   const slug = params.slug;
   
-  const post = blogPosts.find(p => p.slug === slug);
-
+  const { data: post, isLoading } = trpc.blog.getBySlug.useQuery({ slug: slug! });
+  const { data: allPosts } = trpc.blog.getAll.useQuery({ publishedOnly: true });
+  
   // Get related posts from the same category
-  const relatedPosts = post 
-    ? blogPosts
+  const relatedPosts = post && allPosts
+    ? allPosts
         .filter(p => p.category === post.category && p.id !== post.id)
         .slice(0, 3)
     : [];
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1 container py-20 flex items-center justify-center">
+          <p className="text-muted-foreground">Loading...</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!post) {
     return (
@@ -46,10 +59,10 @@ export default function BlogPost() {
       <SEOHead
         title={post.title}
         description={post.excerpt}
-        image={post.image}
+        image={post.image || undefined}
         url={currentUrl}
         type="article"
-        publishedTime={new Date(post.date).toISOString()}
+        publishedTime={new Date(post.createdAt).toISOString()}
         keywords={`${post.category}, resume writing, career advice, job search`}
       />
       <Header />
@@ -72,10 +85,10 @@ export default function BlogPost() {
                 <div className="flex items-center gap-4 text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
-                    <span>{post.date}</span>
+                    <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                   </div>
                   <span>•</span>
-                  <span>{post.readTime}</span>
+                  <span>{post.readTime || '5 min read'}</span>
                 </div>
                 <SocialShare 
                   url={fullUrl}
@@ -128,7 +141,7 @@ export default function BlogPost() {
                   >
                     <div className="aspect-video bg-accent relative overflow-hidden">
                       <img 
-                        src={relatedPost.image} 
+                        src={relatedPost.image || '/blog/default.jpg'} 
                         alt={relatedPost.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
@@ -141,7 +154,7 @@ export default function BlogPost() {
                         </span>
                         <span className="flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
-                          {relatedPost.date}
+                          {new Date(relatedPost.createdAt).toLocaleDateString()}
                         </span>
                       </div>
 
@@ -156,7 +169,7 @@ export default function BlogPost() {
                       <div className="flex items-center justify-between">
                         <span className="flex items-center gap-1 text-sm text-muted-foreground">
                           <Clock className="h-3 w-3" />
-                          {relatedPost.readTime}
+                          {relatedPost.readTime || '5 min read'}
                         </span>
                         <Link href={`/blog/${relatedPost.slug}`}>
                           <Button

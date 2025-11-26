@@ -3,16 +3,18 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
-import { blogPosts } from "@/data/blogPosts";
+import { trpc } from "@/lib/trpc";
 import { useState } from "react";
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
   const categories = ["All", "Resume Tips", "Resume Writing", "Resume Services", "Career Advice", "Selection Criteria", "CV Writing", "CV Services"];
   
+  const { data: allPosts, isLoading } = trpc.blog.getAll.useQuery({ publishedOnly: true });
+  
   const filteredPosts = activeCategory === "All" 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === activeCategory);
+    ? (allPosts || []) 
+    : (allPosts || []).filter(post => post.category === activeCategory);
 
   return (
     <div className="min-h-screen">
@@ -61,7 +63,7 @@ export default function Blog() {
               >
                 <div className="aspect-video bg-accent relative overflow-hidden">
                   <img 
-                    src={post.image} 
+                    src={post.image || '/blog/default.jpg'} 
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -74,7 +76,7 @@ export default function Blog() {
                     </span>
                     <span className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
-                      {post.date}
+                      {new Date(post.createdAt).toLocaleDateString()}
                     </span>
                   </div>
 
@@ -89,7 +91,7 @@ export default function Blog() {
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1 text-sm text-muted-foreground">
                       <Clock className="h-3 w-3" />
-                      {post.readTime}
+                      {post.readTime || '5 min read'}
                     </span>
                     <Link href={`/blog/${post.slug}`}>
                       <Button

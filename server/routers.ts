@@ -3,6 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
+import * as blogService from './blog';
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -107,6 +108,57 @@ export const appRouter = router({
       .query(async ({ input }) => {
         const { getOrderById } = await import("./orders");
         return await getOrderById(input.orderId);
+      }),
+  }),
+
+  blog: router({
+    getAll: publicProcedure
+      .input(z.object({ publishedOnly: z.boolean().optional().default(true) }))
+      .query(async ({ input }) => {
+        return await blogService.getAllBlogPosts(input.publishedOnly);
+      }),
+    getBySlug: publicProcedure
+      .input(z.object({ slug: z.string() }))
+      .query(async ({ input }) => {
+        return await blogService.getBlogPostBySlug(input.slug);
+      }),
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        return await blogService.getBlogPostById(input.id);
+      }),
+    create: publicProcedure
+      .input(z.object({
+        title: z.string(),
+        slug: z.string(),
+        excerpt: z.string(),
+        content: z.string(),
+        category: z.string(),
+        image: z.string(),
+        published: z.number().min(0).max(1),
+      }))
+      .mutation(async ({ input }) => {
+        return await blogService.createBlogPost(input);
+      }),
+    update: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        title: z.string().optional(),
+        slug: z.string().optional(),
+        excerpt: z.string().optional(),
+        content: z.string().optional(),
+        category: z.string().optional(),
+        image: z.string().optional(),
+        published: z.number().min(0).max(1).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        return await blogService.updateBlogPost(id, data);
+      }),
+    delete: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        return await blogService.deleteBlogPost(input.id);
       }),
   }),
 });
