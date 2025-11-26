@@ -3,101 +3,9 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import { blogPosts } from "@/data/blogPosts";
 
 export default function Blog() {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Transform Your Resume with Powerful Action Verbs",
-      excerpt: "Transform your resume into a powerful tool with action verbs that capture attention. Elevate your language and stand out in the job market today!",
-      category: "Resume Tips",
-      date: "November 19, 2025",
-      readTime: "5 min read",
-      slug: "transform-resume-action-verbs",
-      image: "/api/placeholder/800/400"
-    },
-    {
-      id: 2,
-      title: "Stand Out with Top-notch Senior Management Resume Services",
-      excerpt: "Revamp your career with our senior management resume services. Create a standout leadership resume that showcases your executive skills and achievements.",
-      category: "Resume Writing",
-      date: "November 19, 2025",
-      readTime: "6 min read",
-      slug: "senior-management-resume-services",
-      image: "/api/placeholder/800/400"
-    },
-    {
-      id: 3,
-      title: "Elevate Your Career with Expert Resume Services",
-      excerpt: "Boost your career prospects with expert resume services. Craft a powerful resume that highlights your strengths and sets you apart from the competition.",
-      category: "Resume Services",
-      date: "November 17, 2025",
-      readTime: "5 min read",
-      slug: "expert-resume-services",
-      image: "/api/placeholder/800/400"
-    },
-    {
-      id: 4,
-      title: "Unlock Opportunities with Expert Mid-Career Resume Help",
-      excerpt: "Unlock new job opportunities with our expert mid-career resume help. Tailored drafts enhance your experienced or professional resume for impactful applications.",
-      category: "Career Advice",
-      date: "November 12, 2025",
-      readTime: "6 min read",
-      slug: "mid-career-resume-help",
-      image: "/api/placeholder/800/400"
-    },
-    {
-      id: 5,
-      title: "Affordable Basic Resume Writing – Stand Out in Your Job Hunt",
-      excerpt: "Stand out in your job hunt with an affordable basic resume. Master entry-level applications and impress employers without breaking the bank. Get started now!",
-      category: "Resume Writing",
-      date: "November 12, 2025",
-      readTime: "5 min read",
-      slug: "affordable-basic-resume-writing",
-      image: "/api/placeholder/800/400"
-    },
-    {
-      id: 6,
-      title: "Write Winning Selection Criteria for Government Roles Today!",
-      excerpt: "Craft persuasive selection criteria for government roles to stand out. Enhance your public service applications with our expert tips and strategies for success.",
-      category: "Selection Criteria",
-      date: "November 10, 2025",
-      readTime: "7 min read",
-      slug: "winning-selection-criteria-government",
-      image: "/api/placeholder/800/400"
-    },
-    {
-      id: 7,
-      title: "Effective CV Writing Strategies for Career Success",
-      excerpt: "Unlock your career potential with effective CV writing strategies. Learn how to craft a standout CV that impresses employers and secures interviews.",
-      category: "CV Writing",
-      date: "October 6, 2025",
-      readTime: "6 min read",
-      slug: "effective-cv-writing-strategies",
-      image: "/api/placeholder/800/400"
-    },
-    {
-      id: 8,
-      title: "Expert CV Help for Crafting Winning Resumes Effortlessly",
-      excerpt: "Unlock the secrets to crafting a winning resume effortlessly. Get expert CV help and transform your job applications into interview opportunities.",
-      category: "CV Writing",
-      date: "September 26, 2025",
-      readTime: "6 min read",
-      slug: "expert-cv-help-winning-resumes",
-      image: "/api/placeholder/800/400"
-    },
-    {
-      id: 9,
-      title: "Why do you need CV services",
-      excerpt: "Introduction: Turning Job Search Blues into a Beacon of Success. Ever felt like you're chasing your tail in the job search process?",
-      category: "CV Services",
-      date: "December 12, 2024",
-      readTime: "5 min read",
-      slug: "why-need-cv-services",
-      image: "/api/placeholder/800/400"
-    }
-  ];
-
   const categories = ["All", "Resume Tips", "Resume Writing", "Resume Services", "Career Advice", "Selection Criteria", "CV Writing", "CV Services"];
 
   return (
@@ -140,8 +48,7 @@ export default function Blog() {
       <section className="py-16">
         <div className="container">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <article
+              {blogPosts.map((post) => (          <article
                 key={post.id}
                 className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow group"
               >

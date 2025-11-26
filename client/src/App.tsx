@@ -13,6 +13,7 @@ import CareerConsultation from "./pages/CareerConsultation";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentCancel from "./pages/PaymentCancel";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -27,6 +28,7 @@ function Router() {
       <Route path={"/payment/success"} component={PaymentSuccess} />
       <Route path={"/payment/cancel"} component={PaymentCancel} />
       <Route path={"/blog"} component={Blog} />
+      <Route path={"/blog/:slug"} component={BlogPost} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

@@ -161,3 +161,10 @@
 - [x] Extract blog posts from https://www.allresumeservices.com.au/blogs/
 - [x] Update Blog.tsx with real blog post data
 - [x] Preserve original content, titles, and metadata
+
+## Individual Blog Post Pages
+- [x] Extract full content from each blog post on old website
+- [x] Create BlogPost detail page component
+- [x] Set up dynamic routing for blog posts
+- [x] Link Read More buttons to individual post pages
+- [x] Test all blog post links
