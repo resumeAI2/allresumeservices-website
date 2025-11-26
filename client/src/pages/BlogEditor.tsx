@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, Save, Eye } from "lucide-react";
+import { ArrowLeft, Save, Eye, Upload, Loader2 } from "lucide-react";
 import { Link } from "wouter";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -28,6 +28,7 @@ export default function BlogEditor() {
   const [category, setCategory] = useState("Resume Tips");
   const [image, setImage] = useState("");
   const [published, setPublished] = useState(0);
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   // Fetch existing post if editing
   const { data: existingPost, isLoading } = trpc.blog.getById.useQuery(
@@ -46,6 +47,8 @@ export default function BlogEditor() {
       setPublished(existingPost.published);
     }
   }, [existingPost]);
+
+  const uploadImageMutation = trpc.blog.uploadImage.useMutation();
 
   const createMutation = trpc.blog.create.useMutation({
     onSuccess: () => {
@@ -80,6 +83,50 @@ export default function BlogEditor() {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please select an image file');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Image size must be less than 5MB');
+      return;
+    }
+
+    setUploadingImage(true);
+
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      
+      reader.onload = async () => {
+        const base64Data = (reader.result as string).split(',')[1];
+        
+        const result = await uploadImageMutation.mutateAsync({
+          filename: file.name,
+          contentType: file.type,
+          base64Data,
+        });
+
+        setImage(result.url);
+        toast.success('Image uploaded successfully!');
+        setUploadingImage(false);
+      };
+
+      reader.onerror = () => {
+        toast.error('Failed to read image file');
+        setUploadingImage(false);
+      };
+    } catch (error: any) {
+      toast.error(`Failed to upload image: ${error.message}`);
+      setUploadingImage(false);
+    }
   };
 
   const handleSave = (isDraft: boolean) => {
@@ -208,14 +255,54 @@ export default function BlogEditor() {
               </div>
 
               <div>
-                <Label htmlFor="image">Featured Image URL</Label>
-                <Input
-                  id="image"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                  placeholder="/blog/image.jpg"
-                  className="mt-2"
-                />
+                <Label htmlFor="image">Featured Image</Label>
+                <div className="space-y-3 mt-2">
+                  <div className="flex gap-3">
+                    <Input
+                      id="image"
+                      value={image}
+                      onChange={(e) => setImage(e.target.value)}
+                      placeholder="Image URL or upload below"
+                      className="flex-1"
+                    />
+                    <label className="cursor-pointer">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="hidden"
+                        disabled={uploadingImage}
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        disabled={uploadingImage}
+                        asChild
+                      >
+                        <span>
+                          {uploadingImage ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <Upload className="h-4 w-4" />
+                          )}
+                          <span className="ml-2">{uploadingImage ? 'Uploading...' : 'Upload'}</span>
+                        </span>
+                      </Button>
+                    </label>
+                  </div>
+                  {image && (
+                    <div className="border rounded-lg p-2">
+                      <img
+                        src={image}
+                        alt="Preview"
+                        className="max-h-40 object-contain mx-auto"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div>

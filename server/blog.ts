@@ -67,6 +67,26 @@ export async function updateBlogPost(id: number, post: Partial<Omit<BlogPost, 'i
   return result;
 }
 
+export async function uploadImage(filename: string, contentType: string, base64Data: string) {
+  const { storagePut } = await import('./storage');
+  
+  // Convert base64 to buffer
+  const buffer = Buffer.from(base64Data, 'base64');
+  
+  // Generate unique filename
+  const timestamp = Date.now();
+  const ext = filename.split('.').pop();
+  const uniqueFilename = `blog/${timestamp}-${Math.random().toString(36).substring(7)}.${ext}`;
+  
+  // Upload to S3
+  const result = await storagePut(uniqueFilename, buffer, contentType);
+  
+  return {
+    url: result.url,
+    key: result.key
+  };
+}
+
 export async function deleteBlogPost(id: number) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');

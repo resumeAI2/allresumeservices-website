@@ -112,6 +112,15 @@ export const appRouter = router({
   }),
 
   blog: router({
+    uploadImage: publicProcedure
+      .input(z.object({
+        filename: z.string(),
+        contentType: z.string(),
+        base64Data: z.string()
+      }))
+      .mutation(async ({ input }) => {
+        return await blogService.uploadImage(input.filename, input.contentType, input.base64Data);
+      }),
     getAll: publicProcedure
       .input(z.object({ publishedOnly: z.boolean().optional().default(true) }))
       .query(async ({ input }) => {

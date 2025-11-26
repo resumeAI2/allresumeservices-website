@@ -216,3 +216,11 @@
 - [x] Add Instagram to social media links
 - [x] Test social sharing functionality
 - [x] Test SEO metadata rendering
+
+## Blog Image Upload Feature
+- [x] Create S3 image upload API endpoint
+- [x] Add image upload button to blog editor
+- [x] Implement image preview after upload
+- [x] Add ability to insert uploaded images into blog content
+- [x] Test image upload functionality
+- [x] Test image display in published blog posts
