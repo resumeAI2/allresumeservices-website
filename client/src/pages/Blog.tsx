@@ -82,14 +82,16 @@ export default function Blog() {
                       <Clock className="h-3 w-3" />
                       {post.readTime}
                     </span>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-primary hover:text-primary/80 group/btn"
-                    >
-                      Read More
-                      <ArrowRight className="ml-1 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
+                    <Link href={`/blog/${post.slug}`}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-primary hover:text-primary/80 group/btn"
+                      >
+                        Read More
+                        <ArrowRight className="ml-1 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </article>

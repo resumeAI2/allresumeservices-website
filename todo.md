@@ -168,3 +168,8 @@
 - [x] Set up dynamic routing for blog posts
 - [x] Link Read More buttons to individual post pages
 - [x] Test all blog post links
+
+## Fix Blog Read More Links
+- [x] Debug why Read More links are not working
+- [x] Fix link routing in Blog.tsx
+- [x] Test all Read More buttons navigate correctly
