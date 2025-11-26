@@ -23,7 +23,7 @@ export default function Testimonials() {
     {
       name: "Michael K.",
       role: "Project Manager",
-      content: "The unlimited revisions policy gave me peace of mind. We worked together until every detail was perfect. The LinkedIn profile optimization was a bonus that really boosted my visibility.",
+      content: "Working with All Résumé Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimization was a bonus that really boosted my visibility.",
       rating: 5
     },
     {

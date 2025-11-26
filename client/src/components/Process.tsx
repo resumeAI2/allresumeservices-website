@@ -20,7 +20,7 @@ export default function Process() {
     {
       icon: PenTool,
       title: "Writing & Review",
-      description: "We craft your documents and provide a draft for your feedback. Unlimited revisions ensure you're completely satisfied."
+      description: "We craft your documents and provide a draft for your feedback. We work together to refine until you're satisfied."
     },
     {
       icon: CheckCircle,

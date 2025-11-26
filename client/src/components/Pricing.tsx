@@ -11,7 +11,6 @@ export default function Pricing() {
         "Professionally written résumé tailored to your career goals",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
-        "Unlimited revisions until you're satisfied",
         "2-3 day turnaround"
       ]
     },
@@ -24,7 +23,6 @@ export default function Pricing() {
         "Cover letter tailored to applications",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
-        "Unlimited revisions until you're satisfied",
         "2-3 day turnaround",
         "Priority support"
       ]
@@ -39,7 +37,6 @@ export default function Pricing() {
         "LinkedIn profile professionally written and optimised",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
-        "Unlimited revisions until you're satisfied",
         "1 day express turnaround",
         "Priority support"
       ]

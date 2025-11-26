@@ -11,7 +11,7 @@ export default function ResumeWriting() {
     "Tailored to your target role and industry",
     "Clear, concise, and impactful language",
     "Delivered in both Word and PDF formats",
-    "Unlimited revisions until you're completely satisfied",
+
     "2-3 day standard turnaround (1-day express available)"
   ];
 
@@ -154,7 +154,7 @@ export default function ResumeWriting() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Review & Revisions</h4>
-                    <p className="text-muted-foreground">You review the draft and request unlimited revisions until it's perfect.</p>
+                    <p className="text-muted-foreground">You review the draft and we work together to refine it until it's perfect.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">

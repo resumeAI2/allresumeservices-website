@@ -11,7 +11,7 @@ export default function LinkedInOptimization() {
     "Professional tone appropriate for your industry",
     "Strategic use of LinkedIn's features and sections",
     "Guidance on profile photo and banner selection",
-    "Unlimited revisions until perfect"
+
   ];
 
   const features = [

@@ -11,7 +11,7 @@ export default function SelectionCriteria() {
     "Alignment with position requirements",
     "Professional language and tone",
     "Delivered in Word and PDF formats",
-    "Unlimited revisions included"
+
   ];
 
   const features = [

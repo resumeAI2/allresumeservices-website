@@ -63,19 +63,7 @@ export default function Services() {
           })}
         </div>
 
-        <div className="mt-16 bg-primary text-primary-foreground rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
-          <div className="text-center">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Unlimited Revisions Until You Hit <span className="text-secondary">APPLY!</span>
-            </h3>
-            <p className="text-lg mb-6 opacity-90">
-              We offer unlimited revisions until you are 100% confident to apply for the job. With a professional resume writer by your side, we'll collaborate to ensure your experience shines on paper, from highlighting achievements to crafting ATS keywords that recruiters are searching for right now!
-            </p>
-            <p className="text-base opacity-80">
-              It doesn't matter if this is your first time applying for a job or if it has been years since your last interview—we have the expertise you need to ensure your application is ready to go out into the world!
-            </p>
-          </div>
-        </div>
+
       </div>
     </section>
   );

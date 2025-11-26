@@ -11,7 +11,7 @@ export default function CoverLetters() {
     "Professional tone tailored to your industry",
     "ATS-friendly formatting",
     "Delivered in Word and PDF formats",
-    "Unlimited revisions included"
+
   ];
 
   const features = [
