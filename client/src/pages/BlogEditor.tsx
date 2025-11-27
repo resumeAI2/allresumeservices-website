@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import ImageGalleryModal from "@/components/ImageGalleryModal";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ArrowLeft, Save, Eye, Upload, Loader2 } from "lucide-react";
@@ -29,6 +30,7 @@ export default function BlogEditor() {
   const [image, setImage] = useState("");
   const [published, setPublished] = useState(0);
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [showGalleryModal, setShowGalleryModal] = useState(false);
 
   // Fetch existing post if editing
   const { data: existingPost, isLoading } = trpc.blog.getById.useQuery(
@@ -328,7 +330,7 @@ export default function BlogEditor() {
               <div>
                 <Label htmlFor="image">Featured Image</Label>
                 <div className="space-y-3 mt-2">
-                  <div className="flex gap-3">
+                  <div className="flex gap-2">
                     <Input
                       id="image"
                       value={image}
@@ -336,6 +338,13 @@ export default function BlogEditor() {
                       placeholder="Image URL or upload below"
                       className="flex-1"
                     />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setShowGalleryModal(true)}
+                    >
+                      Choose from Library
+                    </Button>
                     <label className="cursor-pointer">
                       <input
                         type="file"
@@ -460,6 +469,12 @@ export default function BlogEditor() {
           </Card>
         </div>
       </main>
+
+      <ImageGalleryModal
+        open={showGalleryModal}
+        onClose={() => setShowGalleryModal(false)}
+        onSelect={(url) => setImage(url)}
+      />
 
       <Footer />
     </div>

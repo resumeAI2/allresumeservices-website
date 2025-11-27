@@ -233,3 +233,16 @@
 - [x] Test drag-and-drop image upload
 - [x] Test multiple image uploads
 - [x] Test paste image functionality
+
+## Image Gallery / Media Library
+- [x] Create database schema for uploaded_images table
+- [x] Run database migration for uploaded_images
+- [x] Update image upload to save metadata to database
+- [x] Create MediaLibrary admin page component
+- [x] Add image grid layout with thumbnails
+- [x] Implement search/filter functionality
+- [x] Add link to Media Library from Blog Dashboard
+- [x] Add image selection modal in blog editor
+- [x] Allow inserting selected images from gallery
+- [x] Test image gallery browsing
+- [x] Test image reuse across multiple posts

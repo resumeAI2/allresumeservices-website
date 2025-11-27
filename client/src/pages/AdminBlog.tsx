@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Plus, Edit, Trash2, Eye, EyeOff } from "lucide-react";
+import { Plus, Edit, Trash2, Eye, EyeOff, Image } from "lucide-react";
 import { toast } from "sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -59,6 +59,12 @@ export default function AdminBlog() {
                   </>
                 )}
               </Button>
+              <Link href="/admin/media">
+                <Button variant="outline">
+                  <Image className="h-4 w-4 mr-2" />
+                  Media Library
+                </Button>
+              </Link>
               <Link href="/admin/blog/new">
                 <Button>
                   <Plus className="h-4 w-4 mr-2" />

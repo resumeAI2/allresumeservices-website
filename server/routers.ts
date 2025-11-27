@@ -169,6 +169,10 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await blogService.deleteBlogPost(input.id);
       }),
+    getAllImages: publicProcedure
+      .query(async () => {
+        return await blogService.getAllUploadedImages();
+      }),
   }),
 });
 

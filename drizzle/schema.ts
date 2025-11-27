@@ -66,3 +66,19 @@ export const blog_posts = mysqlTable("blog_posts", {
 
 export type BlogPost = typeof blog_posts.$inferSelect;
 export type InsertBlogPost = typeof blog_posts.$inferInsert;
+
+/**
+ * Uploaded images table for media library
+ */
+export const uploaded_images = mysqlTable("uploaded_images", {
+  id: int("id").autoincrement().primaryKey(),
+  filename: varchar("filename", { length: 255 }).notNull(),
+  url: text("url").notNull(),
+  key: varchar("key", { length: 500 }).notNull(),
+  contentType: varchar("contentType", { length: 100 }).notNull(),
+  size: int("size"),
+  uploadedAt: timestamp("uploadedAt").defaultNow().notNull(),
+});
+
+export type UploadedImage = typeof uploaded_images.$inferSelect;
+export type InsertUploadedImage = typeof uploaded_images.$inferInsert;

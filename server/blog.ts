@@ -1,5 +1,5 @@
 import { getDb } from './db';
-import { blog_posts } from '../drizzle/schema';
+import { blog_posts, uploaded_images } from '../drizzle/schema';
 import { eq, desc } from 'drizzle-orm';
 
 export interface BlogPost {
@@ -68,6 +68,9 @@ export async function updateBlogPost(id: number, post: Partial<Omit<BlogPost, 'i
 }
 
 export async function uploadImage(filename: string, contentType: string, base64Data: string) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  
   const { storagePut } = await import('./storage');
   
   // Convert base64 to buffer
@@ -81,10 +84,26 @@ export async function uploadImage(filename: string, contentType: string, base64D
   // Upload to S3
   const result = await storagePut(uniqueFilename, buffer, contentType);
   
+  // Save image metadata to database
+  await db.insert(uploaded_images).values({
+    filename,
+    url: result.url,
+    key: result.key,
+    contentType,
+    size: buffer.length,
+  });
+  
   return {
     url: result.url,
     key: result.key
   };
+}
+
+export async function getAllUploadedImages() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(uploaded_images).orderBy(desc(uploaded_images.uploadedAt));
 }
 
 export async function deleteBlogPost(id: number) {
