@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Search, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 interface FAQItem {
   question: string;
@@ -100,12 +101,24 @@ const faqData: FAQItem[] = [
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const categories = ["All", ...Array.from(new Set(faqData.map(item => item.category)))];
   
-  const filteredFAQs = activeCategory === "All" 
+  // Filter by category first
+  let filteredFAQs = activeCategory === "All" 
     ? faqData 
     : faqData.filter(item => item.category === activeCategory);
+  
+  // Then filter by search query
+  if (searchQuery.trim()) {
+    const query = searchQuery.toLowerCase();
+    filteredFAQs = filteredFAQs.filter(item => 
+      item.question.toLowerCase().includes(query) || 
+      item.answer.toLowerCase().includes(query) ||
+      item.category.toLowerCase().includes(query)
+    );
+  }
 
   // Generate JSON-LD schema for FAQ
   useEffect(() => {
@@ -138,6 +151,22 @@ export default function FAQ() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const clearSearch = () => {
+    setSearchQuery("");
+  };
+
+  // Highlight search terms in text
+  const highlightText = (text: string, query: string) => {
+    if (!query.trim()) return text;
+    
+    const parts = text.split(new RegExp(`(${query})`, 'gi'));
+    return parts.map((part, index) => 
+      part.toLowerCase() === query.toLowerCase() 
+        ? `<mark class="bg-yellow-200 dark:bg-yellow-800">${part}</mark>`
+        : part
+    ).join('');
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -160,6 +189,34 @@ export default function FAQ() {
         {/* FAQ Content */}
         <section className="py-16">
           <div className="container max-w-4xl">
+            {/* Search Bar */}
+            <div className="mb-8">
+              <div className="relative max-w-2xl mx-auto">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Search FAQs by keyword..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 pr-12 py-6 text-lg"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={clearSearch}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    aria-label="Clear search"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                )}
+              </div>
+              {searchQuery && (
+                <p className="text-center text-sm text-muted-foreground mt-3">
+                  Found {filteredFAQs.length} result{filteredFAQs.length !== 1 ? 's' : ''} for "{searchQuery}"
+                </p>
+              )}
+            </div>
+
             {/* Category Filter */}
             <div className="flex flex-wrap gap-3 mb-12 justify-center">
               {categories.map(category => (
@@ -181,7 +238,26 @@ export default function FAQ() {
             </div>
 
             {/* FAQ Accordion */}
-            <div className="space-y-4">
+            {filteredFAQs.length === 0 ? (
+              <div className="text-center py-16">
+                <Search className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2">No results found</h3>
+                <p className="text-muted-foreground mb-6">
+                  {searchQuery 
+                    ? `No FAQs match "${searchQuery}". Try different keywords or browse by category.`
+                    : "No FAQs available in this category."}
+                </p>
+                {searchQuery && (
+                  <button
+                    onClick={clearSearch}
+                    className="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                  >
+                    Clear Search
+                  </button>
+                )}
+              </div>
+            ) : (
+              <div className="space-y-4">
               {filteredFAQs.map((faq, index) => (
                 <div
                   key={index}
@@ -215,7 +291,8 @@ export default function FAQ() {
                   )}
                 </div>
               ))}
-            </div>
+              </div>
+            )}
 
             {/* Still Have Questions CTA */}
             <div className="mt-16 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-8 md:p-12 text-center">
