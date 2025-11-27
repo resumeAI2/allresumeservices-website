@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useLocation, useParams, useRouter } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
@@ -164,16 +164,87 @@ export default function BlogEditor() {
     }
   };
 
+  const quillRef = React.useRef<ReactQuill>(null);
+
+  // Fix toolbar handlers dependency
+  const imageHandlerCallback = React.useCallback(() => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (file) {
+        await handleImageInsert(file);
+      }
+    };
+  }, [uploadImageMutation]);
+
+  const handleImageInsert = async (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please select an image file');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Image size must be less than 5MB');
+      return;
+    }
+
+    setUploadingImage(true);
+
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      
+      reader.onload = async () => {
+        const base64Data = (reader.result as string).split(',')[1];
+        
+        const result = await uploadImageMutation.mutateAsync({
+          filename: file.name,
+          contentType: file.type,
+          base64Data,
+        });
+
+        // Insert image into editor at cursor position
+        const quill = quillRef.current?.getEditor();
+        if (quill) {
+          const range = quill.getSelection();
+          const position = range ? range.index : quill.getLength();
+          quill.insertEmbed(position, 'image', result.url);
+          quill.setSelection(position + 1, 0);
+        }
+
+        toast.success('Image inserted successfully!');
+        setUploadingImage(false);
+      };
+
+      reader.onerror = () => {
+        toast.error('Failed to read image file');
+        setUploadingImage(false);
+      };
+    } catch (error: any) {
+      toast.error(`Failed to upload image: ${error.message}`);
+      setUploadingImage(false);
+    }
+  };
+
   const quillModules = useMemo(() => ({
-    toolbar: [
-      [{ 'header': [1, 2, 3, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'indent': '-1'}, { 'indent': '+1' }],
-      ['link', 'image'],
-      ['clean']
-    ],
-  }), []);
+    toolbar: {
+      container: [
+        [{ 'header': [1, 2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        ['link', 'image'],
+        ['clean']
+      ],
+      handlers: {
+        image: imageHandlerCallback
+      }
+    },
+  }), [imageHandlerCallback]);
 
   const quillFormats = [
     'header',
@@ -318,8 +389,34 @@ export default function BlogEditor() {
 
               <div>
                 <Label htmlFor="content">Content *</Label>
-                <div className="mt-2 border rounded-md">
+                <div 
+                  className="mt-2 border rounded-md"
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    const file = e.dataTransfer.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                      handleImageInsert(file);
+                    }
+                  }}
+                  onDragOver={(e) => e.preventDefault()}
+                  onPaste={(e) => {
+                    const items = e.clipboardData?.items;
+                    if (items) {
+                      for (let i = 0; i < items.length; i++) {
+                        if (items[i].type.startsWith('image/')) {
+                          const file = items[i].getAsFile();
+                          if (file) {
+                            e.preventDefault();
+                            handleImageInsert(file);
+                            break;
+                          }
+                        }
+                      }
+                    }
+                  }}
+                >
                   <ReactQuill
+                    ref={quillRef}
                     theme="snow"
                     value={content}
                     onChange={setContent}
@@ -328,6 +425,9 @@ export default function BlogEditor() {
                     className="min-h-[400px]"
                   />
                 </div>
+                <p className="text-sm text-muted-foreground mt-2">
+                  💡 Tip: You can drag & drop or paste images directly into the editor
+                </p>
               </div>
 
               <div className="flex gap-4 pt-6">

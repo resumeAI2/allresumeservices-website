@@ -224,3 +224,12 @@
 - [x] Add ability to insert uploaded images into blog content
 - [x] Test image upload functionality
 - [x] Test image display in published blog posts
+
+## Drag-and-Drop Image Upload to Rich Text Editor
+- [x] Configure React Quill custom image handler
+- [x] Implement drag-and-drop event handlers
+- [x] Add image upload on paste functionality
+- [x] Add visual feedback during image upload
+- [x] Test drag-and-drop image upload
+- [x] Test multiple image uploads
+- [x] Test paste image functionality
