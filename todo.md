@@ -401,3 +401,38 @@
 - [x] Display upcoming scheduled posts with countdown timers
 - [x] Add quick actions to edit or publish scheduled posts
 - [x] Test scheduled posts widget display
+
+## Blog Post Preview Mode
+- [x] Create preview modal component
+- [x] Add preview button to blog editor toolbar
+- [x] Render blog post content with proper styling in preview
+- [x] Show featured image in preview
+- [x] Display category and tags in preview
+- [ ] Test preview mode with various content types
+
+## About Us Page
+- [x] Browse reference site for About Us content
+- [ ] Create About Us page component
+- [ ] Add company story and mission
+- [ ] Add team/expertise section
+- [ ] Add About Us link to header navigation
+- [ ] Add About Us link to footer
+- [ ] Test About Us page
+
+## Shopping Cart System
+- [x] Create database schema for services, cart items, orders, promo codes
+- [x] Define individual services (Resume, Cover Letter, LinkedIn, Selection Criteria)
+- [x] Define service tiers (Entry Level, Professional, Executive)
+- [x] Define add-ons (Rush Delivery, Extra Revisions, Phone Consultation)
+- [ ] Create services catalog page
+- [ ] Implement cart context/state management
+- [ ] Create cart icon in header with item count
+- [ ] Build cart page with item list, quantities, remove functionality
+- [ ] Implement add to cart functionality
+- [ ] Calculate bundle discounts (10% off when buying 2+ services)
+- [ ] Create promo code system
+- [ ] Build checkout page with order summary
+- [ ] Integrate PayPal payment
+- [ ] Create order confirmation page
+- [ ] Add order management to admin dashboard
+- [ ] Test complete purchase flow

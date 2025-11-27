@@ -34,6 +34,7 @@ export default function BlogEditor() {
   const [scheduledPublishDate, setScheduledPublishDate] = useState<string>("");
   const [uploadingImage, setUploadingImage] = useState(false);
   const [showGalleryModal, setShowGalleryModal] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
 
   // Fetch categories and tags
   const { data: categories = [] } = trpc.blog.getAllCategories.useQuery();
@@ -472,6 +473,15 @@ export default function BlogEditor() {
 
               <div className="flex gap-4 pt-6">
                 <Button
+                  variant="outline"
+                  onClick={() => setShowPreview(true)}
+                  className="flex items-center gap-2"
+                  type="button"
+                >
+                  <Eye className="h-4 w-4" />
+                  Preview
+                </Button>
+                <Button
                   onClick={() => handleSave(false)}
                   disabled={createMutation.isPending || updateMutation.isPending}
                   className="flex-1"
@@ -506,6 +516,68 @@ export default function BlogEditor() {
         onClose={() => setShowGalleryModal(false)}
         onSelect={(url) => setImage(url)}
       />
+
+      {/* Preview Modal */}
+      {showPreview && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+          <div className="bg-background rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-background border-b p-4 flex items-center justify-between">
+              <h2 className="text-xl font-bold">Preview</h2>
+              <Button variant="outline" onClick={() => setShowPreview(false)}>
+                Close
+              </Button>
+            </div>
+            <div className="p-8">
+              {/* Featured Image */}
+              {image && (
+                <img
+                  src={image}
+                  alt={imageAltText || title}
+                  className="w-full h-64 object-cover rounded-lg mb-6"
+                />
+              )}
+
+              {/* Title */}
+              <h1 className="text-4xl font-bold mb-4">{title || 'Untitled Post'}</h1>
+
+              {/* Meta Information */}
+              <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
+                <span>{new Date().toLocaleDateString()}</span>
+                {categoryId && (
+                  <span className="px-2 py-1 bg-primary/10 text-primary rounded">
+                    {categories.find((c: any) => c.id === categoryId)?.name || category}
+                  </span>
+                )}
+              </div>
+
+              {/* Tags */}
+              {selectedTagIds.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {selectedTagIds.map(tagId => {
+                    const tag = tags.find((t: any) => t.id === tagId);
+                    return tag ? (
+                      <span key={tagId} className="px-3 py-1 bg-muted text-sm rounded-full">
+                        #{tag.name}
+                      </span>
+                    ) : null;
+                  })}
+                </div>
+              )}
+
+              {/* Excerpt */}
+              {excerpt && (
+                <p className="text-lg text-muted-foreground italic mb-6">{excerpt}</p>
+              )}
+
+              {/* Content */}
+              <div 
+                className="prose prose-lg max-w-none"
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

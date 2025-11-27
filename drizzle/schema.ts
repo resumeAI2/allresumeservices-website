@@ -184,3 +184,77 @@ export const blog_post_tags = mysqlTable("blog_post_tags", {
 
 export type BlogPostTag = typeof blog_post_tags.$inferSelect;
 export type InsertBlogPostTag = typeof blog_post_tags.$inferInsert;
+/**
+ * Services table for individual resume services and packages
+ */
+export const services = mysqlTable("services", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  type: mysqlEnum("type", ["individual", "package", "addon"]).notNull(),
+  category: varchar("category", { length: 100 }), // e.g., "Resume", "Cover Letter", "LinkedIn"
+  tier: varchar("tier", { length: 50 }), // e.g., "Entry Level", "Professional", "Executive"
+  price: varchar("price", { length: 20 }).notNull(),
+  originalPrice: varchar("originalPrice", { length: 20 }), // For showing discounts
+  features: text("features"), // JSON string of features array
+  active: int("active").default(1).notNull(),
+  sortOrder: int("sortOrder").default(0),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Service = typeof services.$inferSelect;
+export type InsertService = typeof services.$inferInsert;
+
+/**
+ * Cart items table for user shopping carts
+ */
+export const cart_items = mysqlTable("cart_items", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId"),
+  sessionId: varchar("sessionId", { length: 255 }), // For guest users
+  serviceId: int("serviceId").notNull(),
+  quantity: int("quantity").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CartItem = typeof cart_items.$inferSelect;
+export type InsertCartItem = typeof cart_items.$inferInsert;
+
+/**
+ * Order items table for tracking individual items in orders
+ */
+export const order_items = mysqlTable("order_items", {
+  id: int("id").autoincrement().primaryKey(),
+  orderId: int("orderId").notNull(),
+  serviceId: int("serviceId").notNull(),
+  serviceName: varchar("serviceName", { length: 255 }).notNull(),
+  quantity: int("quantity").default(1).notNull(),
+  price: varchar("price", { length: 20 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type OrderItem = typeof order_items.$inferSelect;
+export type InsertOrderItem = typeof order_items.$inferInsert;
+
+/**
+ * Promo codes table for discount codes
+ */
+export const promo_codes = mysqlTable("promo_codes", {
+  id: int("id").autoincrement().primaryKey(),
+  code: varchar("code", { length: 50 }).notNull().unique(),
+  description: text("description"),
+  discountType: mysqlEnum("discountType", ["percentage", "fixed"]).notNull(),
+  discountValue: varchar("discountValue", { length: 20 }).notNull(), // Percentage (e.g., "10") or fixed amount (e.g., "50")
+  minPurchase: varchar("minPurchase", { length: 20 }), // Minimum purchase amount to use code
+  maxUses: int("maxUses"), // Maximum number of times code can be used
+  usedCount: int("usedCount").default(0).notNull(),
+  active: int("active").default(1).notNull(),
+  expiresAt: timestamp("expiresAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type PromoCode = typeof promo_codes.$inferSelect;
+export type InsertPromoCode = typeof promo_codes.$inferInsert;
