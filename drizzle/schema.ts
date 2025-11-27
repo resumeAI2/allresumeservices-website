@@ -73,11 +73,16 @@ export type InsertBlogPost = typeof blog_posts.$inferInsert;
 export const uploaded_images = mysqlTable("uploaded_images", {
   id: int("id").autoincrement().primaryKey(),
   filename: varchar("filename", { length: 255 }).notNull(),
-  url: text("url").notNull(),
+  url: text("url").notNull(), // Original image URL
   key: varchar("key", { length: 500 }).notNull(),
   contentType: varchar("contentType", { length: 100 }).notNull(),
   size: int("size"),
   altText: text("altText"),
+  // Optimized image variants
+  thumbnailUrl: text("thumbnailUrl"),
+  smallUrl: text("smallUrl"),
+  mediumUrl: text("mediumUrl"),
+  largeUrl: text("largeUrl"),
   uploadedAt: timestamp("uploadedAt").defaultNow().notNull(),
 });
 

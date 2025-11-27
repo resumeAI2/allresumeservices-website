@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Search, Copy, Check, Edit2, Save, X } from "lucide-react";
+import { getOptimizedImageUrl } from "@/lib/imageUtils";
 import { toast } from "sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -122,8 +123,8 @@ export default function MediaLibrary() {
                 <Card key={image.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="aspect-video bg-muted relative overflow-hidden">
                     <img
-                      src={image.url}
-                      alt={image.filename}
+                      src={getOptimizedImageUrl(image, 'thumbnail')}
+                      alt={image.altText || image.filename}
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />

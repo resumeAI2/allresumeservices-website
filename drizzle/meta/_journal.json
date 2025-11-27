@@ -36,6 +36,13 @@
       "when": 1764203468615,
       "tag": "0004_clear_ronan",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1764211215332,
+      "tag": "0005_brief_the_captain",
+      "breakpoints": true
     }
   ]
 }

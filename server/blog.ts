@@ -71,32 +71,43 @@ export async function uploadImage(filename: string, contentType: string, base64D
   const db = await getDb();
   if (!db) throw new Error('Database not available');
   
-  const { storagePut } = await import('./storage');
+  const { optimizeBase64Image } = await import('./imageOptimization');
   
-  // Convert base64 to buffer
+  // Generate optimized image variants
+  const optimizedImages = await optimizeBase64Image(base64Data, filename, 'blog');
+  
+  // Find specific size URLs
+  const originalImage = optimizedImages.find(img => img.size === 'original');
+  const thumbnailImage = optimizedImages.find(img => img.size === 'thumbnail');
+  const smallImage = optimizedImages.find(img => img.size === 'small');
+  const mediumImage = optimizedImages.find(img => img.size === 'medium');
+  const largeImage = optimizedImages.find(img => img.size === 'large');
+  
+  if (!originalImage) {
+    throw new Error('Failed to upload original image');
+  }
+  
+  // Calculate original buffer size
   const buffer = Buffer.from(base64Data, 'base64');
   
-  // Generate unique filename
-  const timestamp = Date.now();
-  const ext = filename.split('.').pop();
-  const uniqueFilename = `blog/${timestamp}-${Math.random().toString(36).substring(7)}.${ext}`;
-  
-  // Upload to S3
-  const result = await storagePut(uniqueFilename, buffer, contentType);
-  
-  // Save image metadata to database
+  // Save image metadata to database with all variants
   await db.insert(uploaded_images).values({
     filename,
-    url: result.url,
-    key: result.key,
+    url: originalImage.url,
+    key: `blog/${filename}`, // Keep original key format for compatibility
     contentType,
     size: buffer.length,
     altText: altText || null,
+    thumbnailUrl: thumbnailImage?.url || null,
+    smallUrl: smallImage?.url || null,
+    mediumUrl: mediumImage?.url || null,
+    largeUrl: largeImage?.url || null,
   });
   
   return {
-    url: result.url,
-    key: result.key
+    url: mediumImage?.url || originalImage.url, // Return medium size for editor by default
+    key: `blog/${filename}`,
+    variants: optimizedImages,
   };
 }
 

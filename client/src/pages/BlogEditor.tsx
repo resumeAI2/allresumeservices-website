@@ -12,8 +12,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ArrowLeft, Save, Eye, Upload, Loader2 } from "lucide-react";
 import { Link } from "wouter";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import TiptapEditor from '@/components/TiptapEditor';
 
 export default function BlogEditor() {
   const params = useParams();
@@ -169,23 +168,6 @@ export default function BlogEditor() {
     }
   };
 
-  const quillRef = React.useRef<ReactQuill>(null);
-
-  // Fix toolbar handlers dependency
-  const imageHandlerCallback = React.useCallback(() => {
-    const input = document.createElement('input');
-    input.setAttribute('type', 'file');
-    input.setAttribute('accept', 'image/*');
-    input.click();
-
-    input.onchange = async () => {
-      const file = input.files?.[0];
-      if (file) {
-        await handleImageInsert(file);
-      }
-    };
-  }, [uploadImageMutation]);
-
   const handleImageInsert = async (file: File) => {
     if (!file.type.startsWith('image/')) {
       toast.error('Please select an image file');
@@ -213,14 +195,9 @@ export default function BlogEditor() {
           altText: imageAltText || undefined,
         });
 
-        // Insert image into editor at cursor position
-        const quill = quillRef.current?.getEditor();
-        if (quill) {
-          const range = quill.getSelection();
-          const position = range ? range.index : quill.getLength();
-          quill.insertEmbed(position, 'image', result.url);
-          quill.setSelection(position + 1, 0);
-        }
+        // Insert image into editor content
+        const imgTag = `<img src="${result.url}" alt="${imageAltText || ''}" class="max-w-full h-auto rounded-lg" />`;
+        setContent(prev => prev + imgTag);
 
         toast.success('Image inserted successfully!');
         setUploadingImage(false);
@@ -236,28 +213,7 @@ export default function BlogEditor() {
     }
   };
 
-  const quillModules = useMemo(() => ({
-    toolbar: {
-      container: [
-        [{ 'header': [1, 2, 3, false] }],
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'indent': '-1'}, { 'indent': '+1' }],
-        ['link', 'image'],
-        ['clean']
-      ],
-      handlers: {
-        image: imageHandlerCallback
-      }
-    },
-  }), [imageHandlerCallback]);
-
-  const quillFormats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike',
-    'list', 'bullet', 'indent',
-    'link', 'image'
-  ];
+  // Tiptap handles toolbar and formatting internally
 
   if (isEditMode && isLoading) {
     return (
@@ -411,40 +367,11 @@ export default function BlogEditor() {
 
               <div>
                 <Label htmlFor="content">Content *</Label>
-                <div 
-                  className="mt-2 border rounded-md"
-                  onDrop={(e) => {
-                    e.preventDefault();
-                    const file = e.dataTransfer.files[0];
-                    if (file && file.type.startsWith('image/')) {
-                      handleImageInsert(file);
-                    }
-                  }}
-                  onDragOver={(e) => e.preventDefault()}
-                  onPaste={(e) => {
-                    const items = e.clipboardData?.items;
-                    if (items) {
-                      for (let i = 0; i < items.length; i++) {
-                        if (items[i].type.startsWith('image/')) {
-                          const file = items[i].getAsFile();
-                          if (file) {
-                            e.preventDefault();
-                            handleImageInsert(file);
-                            break;
-                          }
-                        }
-                      }
-                    }
-                  }}
-                >
-                  <ReactQuill
-                    ref={quillRef}
-                    theme="snow"
+                <div className="mt-2">
+                  <TiptapEditor
                     value={content}
                     onChange={setContent}
-                    modules={quillModules}
-                    formats={quillFormats}
-                    className="min-h-[400px]"
+                    onImageInsert={() => setShowGalleryModal(true)}
                   />
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">

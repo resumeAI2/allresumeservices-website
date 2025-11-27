@@ -6,6 +6,7 @@ import { Link, useParams } from "wouter";
 import { trpc } from "@/lib/trpc";
 import SocialShare from "@/components/SocialShare";
 import SEOHead from "@/components/SEOHead";
+import { getImageUrl } from "@/lib/imageUtils";
 
 export default function BlogPost() {
   const params = useParams();
@@ -100,6 +101,24 @@ export default function BlogPost() {
           </div>
         </section>
 
+        {/* Featured Image */}
+        {post.image && (
+          <section className="py-8">
+            <div className="container">
+              <div className="max-w-4xl mx-auto">
+                <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
+                  <img
+                    src={getImageUrl(post.image, 'large')}
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Content Section */}
         <section className="py-16">
           <div className="container">
@@ -141,9 +160,10 @@ export default function BlogPost() {
                   >
                     <div className="aspect-video bg-accent relative overflow-hidden">
                       <img 
-                        src={relatedPost.image || '/blog/default.jpg'} 
+                        src={getImageUrl(relatedPost.image, 'small')} 
                         alt={relatedPost.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
                       />
                     </div>
                     

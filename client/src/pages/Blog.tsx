@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import { getImageUrl } from "@/lib/imageUtils";
 import { trpc } from "@/lib/trpc";
 import { useState } from "react";
 
@@ -63,9 +64,10 @@ export default function Blog() {
               >
                 <div className="aspect-video bg-accent relative overflow-hidden">
                   <img 
-                    src={post.image || '/blog/default.jpg'} 
+                    src={getImageUrl(post.image, 'small')} 
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                 </div>
                 

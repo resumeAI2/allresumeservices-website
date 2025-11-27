@@ -10,6 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Search, Check } from "lucide-react";
+import { getOptimizedImageUrl } from "@/lib/imageUtils";
 
 interface ImageGalleryModalProps {
   open: boolean;
@@ -85,10 +86,11 @@ export default function ImageGalleryModal({ open, onClose, onSelect }: ImageGall
                   onClick={() => setSelectedImage(image.url)}
                 >
                   <img
-                    src={image.url}
+                    src={getOptimizedImageUrl(image, 'thumbnail')}
                     alt={image.altText || image.filename}
                     className="w-full h-full object-cover"
                     title={image.altText || image.filename}
+                    loading="lazy"
                   />
                   {selectedImage === image.url && (
                     <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
