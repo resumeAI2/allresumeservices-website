@@ -50,6 +50,27 @@
       "when": 1764216463595,
       "tag": "0006_volatile_valeria_richards",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1764217525450,
+      "tag": "0007_jittery_iron_patriot",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1764217671110,
+      "tag": "0008_brown_overlord",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1764217827943,
+      "tag": "0009_shocking_wild_child",
+      "breakpoints": true
     }
   ]
 }

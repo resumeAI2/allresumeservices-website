@@ -29,6 +29,7 @@ export default function BlogEditor() {
   const [image, setImage] = useState("");
   const [imageAltText, setImageAltText] = useState("");
   const [published, setPublished] = useState(0);
+  const [scheduledPublishDate, setScheduledPublishDate] = useState<string>("");
   const [uploadingImage, setUploadingImage] = useState(false);
   const [showGalleryModal, setShowGalleryModal] = useState(false);
 
@@ -48,6 +49,7 @@ export default function BlogEditor() {
       setImage(existingPost.image || "");
       setImageAltText(""); // Alt text not stored in blog_posts table yet
       setPublished(existingPost.published);
+      setScheduledPublishDate(existingPost.scheduledPublishDate ? new Date(existingPost.scheduledPublishDate).toISOString().slice(0, 16) : "");
     }
   }, [existingPost]);
 
@@ -159,6 +161,7 @@ export default function BlogEditor() {
       category,
       image: image || "/blog/default.jpg",
       published: isDraft ? 0 : 1,
+      scheduledPublishDate: scheduledPublishDate ? new Date(scheduledPublishDate).toISOString() : null,
     };
 
     if (isEditMode) {
@@ -376,6 +379,20 @@ export default function BlogEditor() {
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">
                   💡 Tip: You can drag & drop or paste images directly into the editor
+                </p>
+              </div>
+
+              <div>
+                <Label htmlFor="scheduledPublishDate">Scheduled Publish Date (Optional)</Label>
+                <Input
+                  id="scheduledPublishDate"
+                  type="datetime-local"
+                  value={scheduledPublishDate}
+                  onChange={(e) => setScheduledPublishDate(e.target.value)}
+                  className="mt-2"
+                />
+                <p className="text-sm text-muted-foreground mt-1">
+                  Leave empty to publish immediately, or set a future date/time to schedule publication
                 </p>
               </div>
 

@@ -1,36 +1,49 @@
 import { Star, Quote } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
 export default function Testimonials() {
-  const testimonials = [
+  // Fetch testimonials from database (featured and approved only)
+  const { data: dbTestimonials } = trpc.testimonials.getAll.useQuery({
+    approvedOnly: true,
+    featuredOnly: true,
+  });
+
+  // Fallback testimonials if none in database
+  const fallbackTestimonials = [
     {
       name: "Sarah M.",
       role: "Marketing Manager",
       content: "I was struggling to get interviews despite having 10+ years of experience. After working with All Résumé Services, I received 3 interview invitations within 2 weeks! The ATS optimization made all the difference.",
-      rating: 5
+      rating: 5,
+      photo: undefined,
     },
     {
       name: "James T.",
       role: "Software Engineer",
       content: "The team understood exactly what tech recruiters look for. My new resume highlights my achievements perfectly, and I landed my dream role at a top tech company. Worth every dollar!",
-      rating: 5
+      rating: 5,
+      photo: undefined,
     },
     {
       name: "Emily R.",
       role: "HR Professional",
       content: "As someone who reviews resumes daily, I can confidently say the quality of work from All Résumé Services is exceptional. Professional, polished, and results-driven. Highly recommend!",
-      rating: 5
+      rating: 5,
+      photo: undefined,
     },
     {
       name: "Michael K.",
       role: "Project Manager",
       content: "Working with All Résumé Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimization was a bonus that really boosted my visibility.",
-      rating: 5
+      rating: 5,
+      photo: undefined,
     },
     {
       name: "Lisa W.",
       role: "Career Changer",
       content: "Transitioning careers felt overwhelming, but the team helped me reframe my experience beautifully. I got my first interview in my new field within a month. Thank you!",
-      rating: 5
+      rating: 5,
+      photo: undefined,
     },
     {
       name: "David P.",
@@ -39,6 +52,17 @@ export default function Testimonials() {
       rating: 5
     }
   ];
+
+  // Use database testimonials if available, otherwise use fallback
+  const testimonials = dbTestimonials && dbTestimonials.length > 0 
+    ? dbTestimonials.map(t => ({
+        name: t.clientName,
+        role: t.clientTitle || "Satisfied Client",
+        content: t.testimonialText,
+        rating: t.rating,
+        photo: t.clientPhoto,
+      }))
+    : fallbackTestimonials;
 
   return (
     <section className="py-20 bg-background">
@@ -70,9 +94,18 @@ export default function Testimonials() {
                 "{testimonial.content}"
               </p>
 
-              <div className="border-t border-border pt-4">
-                <p className="font-semibold text-card-foreground">{testimonial.name}</p>
-                <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+              <div className="border-t border-border pt-4 flex items-center gap-3">
+                {testimonial.photo && (
+                  <img
+                    src={testimonial.photo}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                )}
+                <div>
+                  <p className="font-semibold text-card-foreground">{testimonial.name}</p>
+                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                </div>
               </div>
             </div>
           ))}

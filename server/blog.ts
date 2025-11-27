@@ -1,6 +1,6 @@
 import { getDb } from './db';
 import { blog_posts, uploaded_images } from '../drizzle/schema';
-import { eq, desc } from 'drizzle-orm';
+import { eq, desc, and, or, lte, isNull, sql } from 'drizzle-orm';
 
 export interface BlogPost {
   id: number;
@@ -19,8 +19,18 @@ export async function getAllBlogPosts(publishedOnly: boolean = true) {
   const db = await getDb();
   if (!db) return [];
   
+  const now = new Date();
+  
   const query = publishedOnly
-    ? db.select().from(blog_posts).where(eq(blog_posts.published, 1)).orderBy(desc(blog_posts.createdAt))
+    ? db.select().from(blog_posts).where(
+        and(
+          eq(blog_posts.published, 1),
+          or(
+            isNull(blog_posts.scheduledPublishDate),
+            lte(blog_posts.scheduledPublishDate, now)
+          )
+        )
+      ).orderBy(desc(blog_posts.createdAt))
     : db.select().from(blog_posts).orderBy(desc(blog_posts.createdAt));
   
   return await query;

@@ -298,3 +298,29 @@
 - [x] Display top search queries and search trends
 - [x] Show queries with no results to identify content gaps
 - [x] Test analytics tracking functionality
+
+## Blog Post Scheduling
+- [x] Add scheduledPublishDate field to blog_posts schema
+- [x] Run database migration for scheduling field
+- [x] Update blog editor to include date/time picker for scheduling
+- [x] Create scheduled post checker service
+- [x] Update blog queries to respect scheduled dates
+- [x] Test blog post scheduling functionality
+
+## Contact Form with Lead Capture
+- [x] Create contact_submissions database table
+- [x] Add contact form API endpoint
+- [x] Create Contact page component with form
+- [x] Add form validation and error handling
+- [ ] Integrate email notification service
+- [x] Add contact link to navigation
+- [x] Test contact form submission and email delivery
+
+## Testimonials Management System
+- [x] Create testimonials database table
+- [x] Add testimonials CRUD API endpoints
+- [x] Create admin testimonials management page
+- [x] Create testimonials display component for homepage
+- [x] Add image upload for testimonial photos
+- [x] Add star rating system
+- [x] Test testimonials management and display

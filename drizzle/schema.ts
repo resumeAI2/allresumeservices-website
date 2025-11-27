@@ -60,6 +60,7 @@ export const blog_posts = mysqlTable("blog_posts", {
   image: varchar("image", { length: 500 }),
   readTime: varchar("readTime", { length: 50 }),
   published: int("published").default(0).notNull(), // 0 = draft, 1 = published
+  scheduledPublishDate: timestamp("scheduledPublishDate"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
@@ -103,3 +104,39 @@ export const faq_search_analytics = mysqlTable("faq_search_analytics", {
 
 export type FaqSearchAnalytics = typeof faq_search_analytics.$inferSelect;
 export type InsertFaqSearchAnalytics = typeof faq_search_analytics.$inferInsert;
+
+/**
+ * Contact form submissions table
+ */
+export const contact_submissions = mysqlTable("contact_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 50 }),
+  serviceInterest: varchar("serviceInterest", { length: 100 }),
+  message: text("message").notNull(),
+  status: mysqlEnum("status", ["new", "contacted", "converted", "archived"]).default("new").notNull(),
+  submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+});
+
+export type ContactSubmission = typeof contact_submissions.$inferSelect;
+export type InsertContactSubmission = typeof contact_submissions.$inferInsert;
+
+/**
+ * Testimonials table for client success stories
+ */
+export const testimonials = mysqlTable("testimonials", {
+  id: int("id").autoincrement().primaryKey(),
+  clientName: varchar("clientName", { length: 255 }).notNull(),
+  clientTitle: varchar("clientTitle", { length: 255 }),
+  clientPhoto: varchar("clientPhoto", { length: 500 }),
+  rating: int("rating").notNull(), // 1-5 stars
+  testimonialText: text("testimonialText").notNull(),
+  serviceUsed: varchar("serviceUsed", { length: 100 }),
+  featured: int("featured").default(0).notNull(), // 0 = not featured, 1 = featured on homepage
+  approved: int("approved").default(1).notNull(), // 0 = pending, 1 = approved
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Testimonial = typeof testimonials.$inferSelect;
+export type InsertTestimonial = typeof testimonials.$inferInsert;

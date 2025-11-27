@@ -19,6 +19,8 @@ import BlogEditor from "./pages/BlogEditor";
 import MediaLibrary from "./pages/MediaLibrary";
 import FAQ from "./pages/FAQ";
 import FaqAnalytics from "./pages/FaqAnalytics";
+import Contact from "./pages/Contact";
+import AdminTestimonials from "./pages/AdminTestimonials";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -35,11 +37,13 @@ function Router() {
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogPost} />
       <Route path={"/faq"} component={FAQ} />
+      <Route path={"/contact"} component={Contact} />
       <Route path={"/admin/blog"} component={AdminBlog} />
       <Route path={"/admin/blog/new"} component={BlogEditor} />
       <Route path={"/admin/blog/edit/:id"} component={BlogEditor} />
       <Route path={"/admin/media"} component={MediaLibrary} />
       <Route path={"/admin/faq-analytics"} component={FaqAnalytics} />
+      <Route path={"/admin/testimonials"} component={AdminTestimonials} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

@@ -111,6 +111,91 @@ export const appRouter = router({
       }),
   }),
 
+  contact: router({
+    submit: publicProcedure
+      .input(z.object({
+        name: z.string().min(1),
+        email: z.string().email(),
+        phone: z.string().optional(),
+        serviceInterest: z.string().optional(),
+        message: z.string().min(10),
+      }))
+      .mutation(async ({ input }) => {
+        const { createContactSubmission } = await import("./contact");
+        return await createContactSubmission(input);
+      }),
+    getAll: publicProcedure
+      .query(async () => {
+        const { getAllContactSubmissions } = await import("./contact");
+        return await getAllContactSubmissions();
+      }),
+    updateStatus: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        status: z.enum(["new", "contacted", "converted", "archived"]),
+      }))
+      .mutation(async ({ input }) => {
+        const { updateContactSubmissionStatus } = await import("./contact");
+        return await updateContactSubmissionStatus(input.id, input.status);
+      }),
+  }),
+
+  testimonials: router({
+    create: publicProcedure
+      .input(z.object({
+        clientName: z.string().min(1),
+        clientTitle: z.string().optional(),
+        clientPhoto: z.string().optional(),
+        rating: z.number().min(1).max(5),
+        testimonialText: z.string().min(10),
+        serviceUsed: z.string().optional(),
+        featured: z.number().optional(),
+        approved: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { createTestimonial } = await import("./testimonials");
+        return await createTestimonial(input);
+      }),
+    getAll: publicProcedure
+      .input(z.object({
+        approvedOnly: z.boolean().optional(),
+        featuredOnly: z.boolean().optional(),
+      }).optional())
+      .query(async ({ input }) => {
+        const { getAllTestimonials } = await import("./testimonials");
+        return await getAllTestimonials(input?.approvedOnly, input?.featuredOnly);
+      }),
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const { getTestimonialById } = await import("./testimonials");
+        return await getTestimonialById(input.id);
+      }),
+    update: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        clientName: z.string().optional(),
+        clientTitle: z.string().optional(),
+        clientPhoto: z.string().optional(),
+        rating: z.number().min(1).max(5).optional(),
+        testimonialText: z.string().optional(),
+        serviceUsed: z.string().optional(),
+        featured: z.number().optional(),
+        approved: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        const { updateTestimonial } = await import("./testimonials");
+        return await updateTestimonial(id, data);
+      }),
+    delete: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        const { deleteTestimonial } = await import("./testimonials");
+        return await deleteTestimonial(input.id);
+      }),
+  }),
+
   faq: router({
     logSearch: publicProcedure
       .input(z.object({
@@ -184,6 +269,7 @@ export const appRouter = router({
         category: z.string(),
         image: z.string(),
         published: z.number().min(0).max(1),
+        scheduledPublishDate: z.string().nullable().optional(),
       }))
       .mutation(async ({ input }) => {
         return await blogService.createBlogPost(input);
@@ -198,6 +284,7 @@ export const appRouter = router({
         category: z.string().optional(),
         image: z.string().optional(),
         published: z.number().min(0).max(1).optional(),
+        scheduledPublishDate: z.string().nullable().optional(),
       }))
       .mutation(async ({ input }) => {
         const { id, ...data } = input;
