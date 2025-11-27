@@ -9,12 +9,28 @@ interface ContactSubmissionInput {
   phone?: string;
   serviceInterest?: string;
   message: string;
+  honeypot?: string;
+  submissionTime?: number;
 }
 
 /**
  * Create a new contact form submission
  */
 export async function createContactSubmission(input: ContactSubmissionInput) {
+  // Spam protection: check honeypot field
+  if (input.honeypot && input.honeypot.trim() !== '') {
+    throw new Error("Invalid submission detected");
+  }
+
+  // Spam protection: check submission time (min 3 seconds from form mount)
+  if (input.submissionTime) {
+    const currentTime = Date.now();
+    const timeDiff = (currentTime - input.submissionTime) / 1000;
+    if (timeDiff < 3) {
+      throw new Error("Submission too fast - please take your time");
+    }
+  }
+
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 

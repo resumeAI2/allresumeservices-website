@@ -17,6 +17,7 @@ export default function AdminDashboard() {
   const { data: recentContacts = [] } = trpc.dashboard.getRecentContacts.useQuery({ limit: 5 });
   const { data: recentPosts = [] } = trpc.dashboard.getRecentPosts.useQuery({ limit: 5 });
   const { data: popularPosts = [] } = trpc.blog.getPopularPosts.useQuery({ limit: 5 });
+  const { data: scheduledPosts = [] } = trpc.dashboard.getScheduledPosts.useQuery({ limit: 5 });
 
   if (isLoading) {
     return (
@@ -246,6 +247,49 @@ export default function AdminDashboard() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Scheduled Posts */}
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>Scheduled Posts</CardTitle>
+          <CardDescription>Upcoming blog posts ready to publish</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {scheduledPosts.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No scheduled posts</p>
+          ) : (
+            <div className="space-y-4">
+              {scheduledPosts.map((post: any) => {
+                const scheduledDate = new Date(post.scheduledPublishDate);
+                const now = new Date();
+                const hoursUntil = Math.floor((scheduledDate.getTime() - now.getTime()) / (1000 * 60 * 60));
+                const daysUntil = Math.floor(hoursUntil / 24);
+                
+                return (
+                  <div key={post.id} className="flex items-start justify-between border-b pb-4 last:border-0">
+                    <div className="flex-1">
+                      <Link href={`/admin/blog/edit/${post.id}`}>
+                        <a className="font-medium hover:underline">{post.title}</a>
+                      </Link>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Scheduled: {scheduledDate.toLocaleString()}
+                      </p>
+                      <p className="text-xs text-blue-600 mt-1">
+                        {daysUntil > 0 ? `${daysUntil} days` : `${hoursUntil} hours`} until publish
+                      </p>
+                    </div>
+                    <Link href={`/admin/blog/edit/${post.id}`}>
+                      <Button variant="outline" size="sm">
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Performance Insights */}
       <Card className="mt-6">

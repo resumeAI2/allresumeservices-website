@@ -18,7 +18,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useState, useMemo } from 'react';
-import { Mail, Phone, Calendar, MessageSquare, Search, Filter } from 'lucide-react';
+import { Mail, Phone, Calendar, MessageSquare, Search, Filter, Download } from 'lucide-react';
 
 type ContactStatus = 'new' | 'contacted' | 'converted' | 'archived';
 
@@ -100,13 +100,65 @@ export default function AdminContacts() {
     }
   };
 
+  // Export contacts to CSV
+  const exportToCSV = () => {
+    if (filteredContacts.length === 0) {
+      alert('No contacts to export');
+      return;
+    }
+
+    // CSV headers
+    const headers = ['Name', 'Email', 'Phone', 'Service Interest', 'Message', 'Status', 'Notes', 'Submitted Date'];
+    
+    // CSV rows
+    const rows = filteredContacts.map(contact => [
+      contact.name,
+      contact.email,
+      contact.phone || '',
+      contact.serviceInterest || '',
+      contact.message.replace(/\n/g, ' ').replace(/,/g, ';'), // Remove newlines and commas
+      contact.status,
+      (contact.notes || '').replace(/\n/g, ' ').replace(/,/g, ';'),
+      new Date(contact.submittedAt).toLocaleString(),
+    ]);
+
+    // Combine headers and rows
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    // Create download link
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `contacts_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="container mx-auto py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">Contact Submissions</h1>
-        <p className="text-muted-foreground mt-2">
-          Manage and respond to customer inquiries
-        </p>
+        <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold">Contact Submissions</h1>
+          <p className="text-muted-foreground mt-2">
+            Manage and respond to customer inquiries
+          </p>
+        </div>
+        <Button
+          onClick={exportToCSV}
+          variant="outline"
+          className="flex items-center gap-2"
+        >
+          <Download className="h-4 w-4" />
+          Export CSV
+        </Button>
+        </div>
       </div>
 
       {/* Status Summary */}

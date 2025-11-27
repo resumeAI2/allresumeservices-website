@@ -16,6 +16,8 @@ export default function Contact() {
   const [phone, setPhone] = useState("");
   const [serviceInterest, setServiceInterest] = useState("");
   const [message, setMessage] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  const [formMountTime] = useState(() => Date.now());
 
   const submitMutation = trpc.contact.submit.useMutation({
     onSuccess: () => {
@@ -34,6 +36,20 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Spam protection: check honeypot
+    if (honeypot) {
+      toast.error("Invalid submission detected");
+      return;
+    }
+
+    // Spam protection: check submission time (min 3 seconds)
+    const submissionTime = Date.now();
+    const timeDiff = (submissionTime - formMountTime) / 1000;
+    if (timeDiff < 3) {
+      toast.error("Please take your time to fill out the form");
+      return;
+    }
 
     if (!name.trim()) {
       toast.error("Please enter your name");
@@ -54,6 +70,8 @@ export default function Contact() {
       phone: phone.trim() || undefined,
       serviceInterest: serviceInterest || undefined,
       message: message.trim(),
+      honeypot: honeypot,
+      submissionTime: formMountTime,
     });
   };
 
@@ -107,6 +125,17 @@ export default function Contact() {
           <Card className="p-8 md:p-12">
             <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Honeypot field - hidden from users, bots will fill it */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <Label htmlFor="name">Full Name *</Label>

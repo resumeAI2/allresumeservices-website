@@ -121,6 +121,8 @@ export const appRouter = router({
         phone: z.string().optional(),
         serviceInterest: z.string().optional(),
         message: z.string().min(10),
+        honeypot: z.string().optional(),
+        submissionTime: z.number().optional(),
       }))
       .mutation(async ({ input }) => {
         const { createContactSubmission } = await import("./contact");
@@ -415,6 +417,11 @@ export const appRouter = router({
       .input(z.object({ limit: z.number().optional() }))
       .query(async ({ input }) => {
         return await dashboardService.getRecentBlogPosts(input.limit);
+      }),
+    getScheduledPosts: publicProcedure
+      .input(z.object({ limit: z.number().optional() }))
+      .query(async ({ input }) => {
+        return await dashboardService.getScheduledBlogPosts(input.limit);
       }),
   }),
 });

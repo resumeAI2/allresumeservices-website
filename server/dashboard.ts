@@ -105,3 +105,28 @@ export async function getRecentBlogPosts(limit: number = 5) {
 
   return posts;
 }
+
+/**
+ * Get scheduled blog posts (future publish dates)
+ */
+export async function getScheduledBlogPosts(limit: number = 5) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const now = new Date();
+  
+  const posts = await db
+    .select({
+      id: blog_posts.id,
+      title: blog_posts.title,
+      slug: blog_posts.slug,
+      scheduledPublishDate: blog_posts.scheduledPublishDate,
+      createdAt: blog_posts.createdAt,
+    })
+    .from(blog_posts)
+    .where(sql`${blog_posts.scheduledPublishDate} > ${now.toISOString()}`)
+    .orderBy(blog_posts.scheduledPublishDate)
+    .limit(limit);
+
+  return posts;
+}

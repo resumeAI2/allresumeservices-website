@@ -381,3 +381,23 @@
 - [x] Add detailed view modal for each contact
 - [x] Add route for admin contacts page
 - [x] Test contact management functionality
+
+## Spam Protection (Honeypot + Time-based Validation)
+- [x] Add hidden honeypot field to contact form
+- [x] Add timestamp tracking on form mount
+- [x] Implement backend validation for honeypot field
+- [x] Implement backend time-based validation (min 3 seconds)
+- [x] Test spam protection with quick submissions
+
+## Contact Export Functionality
+- [x] Add CSV export button to AdminContacts page
+- [x] Create export function to generate CSV from contacts
+- [x] Include all contact fields in export (name, email, phone, service, message, status, notes, date)
+- [x] Test CSV export and verify data format
+
+## Scheduled Posts Dashboard Widget
+- [x] Create getScheduledPosts endpoint in dashboard service
+- [x] Add scheduled posts card to AdminDashboard
+- [x] Display upcoming scheduled posts with countdown timers
+- [x] Add quick actions to edit or publish scheduled posts
+- [x] Test scheduled posts widget display
