@@ -88,3 +88,18 @@ export const uploaded_images = mysqlTable("uploaded_images", {
 
 export type UploadedImage = typeof uploaded_images.$inferSelect;
 export type InsertUploadedImage = typeof uploaded_images.$inferInsert;
+
+/**
+ * FAQ search analytics table for tracking user search queries
+ */
+export const faq_search_analytics = mysqlTable("faq_search_analytics", {
+  id: int("id").autoincrement().primaryKey(),
+  query: varchar("query", { length: 255 }).notNull(),
+  resultsCount: int("resultsCount").notNull(),
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+  userAgent: text("userAgent"),
+  ipAddress: varchar("ipAddress", { length: 45 }), // IPv6 compatible
+});
+
+export type FaqSearchAnalytics = typeof faq_search_analytics.$inferSelect;
+export type InsertFaqSearchAnalytics = typeof faq_search_analytics.$inferInsert;

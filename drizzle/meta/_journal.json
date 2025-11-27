@@ -43,6 +43,13 @@
       "when": 1764211215332,
       "tag": "0005_brief_the_captain",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1764216463595,
+      "tag": "0006_volatile_valeria_richards",
+      "breakpoints": true
     }
   ]
 }

@@ -111,6 +111,44 @@ export const appRouter = router({
       }),
   }),
 
+  faq: router({
+    logSearch: publicProcedure
+      .input(z.object({
+        query: z.string(),
+        resultsCount: z.number(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const { logFaqSearch } = await import("./faqAnalytics");
+        return await logFaqSearch({
+          query: input.query,
+          resultsCount: input.resultsCount,
+          userAgent: ctx.req.headers['user-agent'],
+          ipAddress: ctx.req.ip || ctx.req.socket.remoteAddress,
+        });
+      }),
+    getSearchAnalytics: publicProcedure
+      .input(z.object({
+        limit: z.number().optional().default(50),
+      }))
+      .query(async ({ input }) => {
+        const { getSearchAnalytics } = await import("./faqAnalytics");
+        return await getSearchAnalytics(input.limit);
+      }),
+    getTopSearches: publicProcedure
+      .input(z.object({
+        limit: z.number().optional().default(10),
+      }))
+      .query(async ({ input }) => {
+        const { getTopSearches } = await import("./faqAnalytics");
+        return await getTopSearches(input.limit);
+      }),
+    getNoResultSearches: publicProcedure
+      .query(async () => {
+        const { getNoResultSearches } = await import("./faqAnalytics");
+        return await getNoResultSearches();
+      }),
+  }),
+
   blog: router({
     uploadImage: publicProcedure
       .input(z.object({

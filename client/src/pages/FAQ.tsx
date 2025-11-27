@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { trpc } from "@/lib/trpc";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ChevronDown, Search, X } from "lucide-react";
@@ -102,6 +103,8 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const logSearchMutation = trpc.faq.logSearch.useMutation();
 
   const categories = ["All", ...Array.from(new Set(faqData.map(item => item.category)))];
   
@@ -154,6 +157,32 @@ export default function FAQ() {
   const clearSearch = () => {
     setSearchQuery("");
   };
+
+  // Track search queries with debouncing
+  useEffect(() => {
+    // Clear existing timeout
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
+
+    // Only log if there's a search query
+    if (searchQuery.trim()) {
+      // Debounce for 1.5 seconds to avoid logging every keystroke
+      searchTimeoutRef.current = setTimeout(() => {
+        logSearchMutation.mutate({
+          query: searchQuery.trim(),
+          resultsCount: filteredFAQs.length,
+        });
+      }, 1500);
+    }
+
+    // Cleanup timeout on unmount
+    return () => {
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+      }
+    };
+  }, [searchQuery, filteredFAQs.length]);
 
   // Highlight search terms in text
   const highlightText = (text: string, query: string) => {
