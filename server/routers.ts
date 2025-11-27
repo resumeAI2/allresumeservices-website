@@ -4,6 +4,8 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import * as blogService from './blog';
+import * as categoriesAndTagsService from './categoriesAndTags';
+import * as dashboardService from './dashboard';
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -306,6 +308,94 @@ export const appRouter = router({
       }))
       .mutation(async ({ input }) => {
         return await blogService.updateImageAltText(input.id, input.altText);
+      }),
+    // Categories
+    getAllCategories: publicProcedure
+      .query(async () => {
+        return await categoriesAndTagsService.getAllCategories();
+      }),
+    createCategory: publicProcedure
+      .input(z.object({
+        name: z.string(),
+        slug: z.string(),
+        description: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        return await categoriesAndTagsService.createCategory(input.name, input.slug, input.description);
+      }),
+    updateCategory: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        name: z.string().optional(),
+        slug: z.string().optional(),
+        description: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        return await categoriesAndTagsService.updateCategory(id, data);
+      }),
+    deleteCategory: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        return await categoriesAndTagsService.deleteCategory(input.id);
+      }),
+    // Tags
+    getAllTags: publicProcedure
+      .query(async () => {
+        return await categoriesAndTagsService.getAllTags();
+      }),
+    createTag: publicProcedure
+      .input(z.object({
+        name: z.string(),
+        slug: z.string(),
+      }))
+      .mutation(async ({ input }) => {
+        return await categoriesAndTagsService.createTag(input.name, input.slug);
+      }),
+    updateTag: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        name: z.string().optional(),
+        slug: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        return await categoriesAndTagsService.updateTag(id, data);
+      }),
+    deleteTag: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        return await categoriesAndTagsService.deleteTag(input.id);
+      }),
+    // Post-Tag relationships
+    getTagsForPost: publicProcedure
+      .input(z.object({ postId: z.number() }))
+      .query(async ({ input }) => {
+        return await categoriesAndTagsService.getTagsForPost(input.postId);
+      }),
+    setPostTags: publicProcedure
+      .input(z.object({
+        postId: z.number(),
+        tagIds: z.array(z.number()),
+      }))
+      .mutation(async ({ input }) => {
+        return await categoriesAndTagsService.setPostTags(input.postId, input.tagIds);
+      }),
+  }),
+  dashboard: router({
+    getMetrics: publicProcedure
+      .query(async () => {
+        return await dashboardService.getDashboardMetrics();
+      }),
+    getRecentContacts: publicProcedure
+      .input(z.object({ limit: z.number().optional() }))
+      .query(async ({ input }) => {
+        return await dashboardService.getRecentContactSubmissions(input.limit);
+      }),
+    getRecentPosts: publicProcedure
+      .input(z.object({ limit: z.number().optional() }))
+      .query(async ({ input }) => {
+        return await dashboardService.getRecentBlogPosts(input.limit);
       }),
   }),
 });

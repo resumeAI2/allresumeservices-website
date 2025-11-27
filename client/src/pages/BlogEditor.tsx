@@ -26,6 +26,8 @@ export default function BlogEditor() {
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("Resume Tips");
+  const [categoryId, setCategoryId] = useState<number | null>(null);
+  const [selectedTagIds, setSelectedTagIds] = useState<number[]>([]);
   const [image, setImage] = useState("");
   const [imageAltText, setImageAltText] = useState("");
   const [published, setPublished] = useState(0);
@@ -33,10 +35,20 @@ export default function BlogEditor() {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [showGalleryModal, setShowGalleryModal] = useState(false);
 
+  // Fetch categories and tags
+  const { data: categories = [] } = trpc.blog.getAllCategories.useQuery();
+  const { data: tags = [] } = trpc.blog.getAllTags.useQuery();
+
   // Fetch existing post if editing
   const { data: existingPost, isLoading } = trpc.blog.getById.useQuery(
     { id: postId! },
     { enabled: isEditMode }
+  );
+
+  // Fetch existing tags for post if editing
+  const { data: existingTags = [] } = trpc.blog.getTagsForPost.useQuery(
+    { postId: postId! },
+    { enabled: isEditMode && postId !== null }
   );
 
   useEffect(() => {
@@ -46,6 +58,7 @@ export default function BlogEditor() {
       setExcerpt(existingPost.excerpt);
       setContent(existingPost.content);
       setCategory(existingPost.category);
+      setCategoryId(existingPost.categoryId || null);
       setImage(existingPost.image || "");
       setImageAltText(""); // Alt text not stored in blog_posts table yet
       setPublished(existingPost.published);
@@ -53,7 +66,14 @@ export default function BlogEditor() {
     }
   }, [existingPost]);
 
+  useEffect(() => {
+    if (existingTags && existingTags.length > 0) {
+      setSelectedTagIds(existingTags.map((tag: any) => tag.id));
+    }
+  }, [existingTags]);
+
   const uploadImageMutation = trpc.blog.uploadImage.useMutation();
+  const setPostTagsMutation = trpc.blog.setPostTags.useMutation();
 
   const createMutation = trpc.blog.create.useMutation({
     onSuccess: () => {
@@ -159,6 +179,7 @@ export default function BlogEditor() {
       excerpt,
       content,
       category,
+      categoryId: categoryId || undefined,
       image: image || "/blog/default.jpg",
       published: isDraft ? 0 : 1,
       scheduledPublishDate: scheduledPublishDate ? new Date(scheduledPublishDate).toISOString() : null,
@@ -166,8 +187,17 @@ export default function BlogEditor() {
 
     if (isEditMode) {
       updateMutation.mutate({ id: postId!, ...postData });
+      // Update tags for existing post
+      setPostTagsMutation.mutate({ postId: postId!, tagIds: selectedTagIds });
     } else {
-      createMutation.mutate(postData);
+      // For new posts, we need to save tags after the post is created
+      createMutation.mutate(postData, {
+        onSuccess: (data: any) => {
+          if (data.id && selectedTagIds.length > 0) {
+            setPostTagsMutation.mutate({ postId: data.id, tagIds: selectedTagIds });
+          }
+        },
+      });
     }
   };
 
@@ -274,20 +304,64 @@ export default function BlogEditor() {
 
               <div>
                 <Label htmlFor="category">Category *</Label>
-                <Select value={category} onValueChange={setCategory}>
+                <Select 
+                  value={categoryId?.toString() || ""} 
+                  onValueChange={(value) => {
+                    const id = parseInt(value);
+                    setCategoryId(id);
+                    const cat = categories.find((c: any) => c.id === id);
+                    if (cat) setCategory(cat.name);
+                  }}
+                >
                   <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select category" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Resume Tips">Resume Tips</SelectItem>
-                    <SelectItem value="Cover Letters">Cover Letters</SelectItem>
-                    <SelectItem value="LinkedIn">LinkedIn</SelectItem>
-                    <SelectItem value="CV Writing">CV Writing</SelectItem>
-                    <SelectItem value="Selection Criteria">Selection Criteria</SelectItem>
-                    <SelectItem value="Interview Tips">Interview Tips</SelectItem>
-                    <SelectItem value="Career Advice">Career Advice</SelectItem>
+                    {categories.map((cat: any) => (
+                      <SelectItem key={cat.id} value={cat.id.toString()}>
+                        {cat.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
+                {categories.length === 0 && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    No categories available. <a href="/admin/categories" className="underline">Create one</a>
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <Label>Tags</Label>
+                <div className="mt-2 space-y-2">
+                  <div className="flex flex-wrap gap-2">
+                    {tags.map((tag: any) => {
+                      const isSelected = selectedTagIds.includes(tag.id);
+                      return (
+                        <Button
+                          key={tag.id}
+                          type="button"
+                          variant={isSelected ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => {
+                            if (isSelected) {
+                              setSelectedTagIds(selectedTagIds.filter(id => id !== tag.id));
+                            } else {
+                              setSelectedTagIds([...selectedTagIds, tag.id]);
+                            }
+                          }}
+                        >
+                          {tag.name}
+                        </Button>
+                      );
+                    })}
+                  </div>
+                  {tags.length === 0 && (
+                    <p className="text-xs text-muted-foreground">
+                      No tags available. <a href="/admin/tags" className="underline">Create some</a>
+                    </p>
+                  )}
+                </div>
               </div>
 
               <div>

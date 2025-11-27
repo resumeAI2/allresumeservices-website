@@ -1,6 +1,7 @@
 import { getDb } from './db';
 import { contact_submissions } from '../drizzle/schema';
 import { desc, eq } from 'drizzle-orm';
+import { sendContactFormNotification } from './emailService';
 
 interface ContactSubmissionInput {
   name: string;
@@ -24,6 +25,17 @@ export async function createContactSubmission(input: ContactSubmissionInput) {
     serviceInterest: input.serviceInterest || null,
     message: input.message,
     status: "new",
+  });
+
+  // Send email notification (non-blocking)
+  sendContactFormNotification({
+    name: input.name,
+    email: input.email,
+    phone: input.phone,
+    serviceInterest: input.serviceInterest,
+    message: input.message,
+  }).catch(error => {
+    console.error('Failed to send contact form notification:', error);
   });
 
   return { success: true, id: result.insertId };

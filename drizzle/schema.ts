@@ -56,7 +56,8 @@ export const blog_posts = mysqlTable("blog_posts", {
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   content: text("content").notNull(),
   excerpt: text("excerpt").notNull(),
-  category: varchar("category", { length: 100 }).notNull(),
+  category: varchar("category", { length: 100 }).notNull(), // Legacy field, will use categoryId
+  categoryId: int("categoryId"),
   image: varchar("image", { length: 500 }),
   readTime: varchar("readTime", { length: 50 }),
   published: int("published").default(0).notNull(), // 0 = draft, 1 = published
@@ -140,3 +141,43 @@ export const testimonials = mysqlTable("testimonials", {
 
 export type Testimonial = typeof testimonials.$inferSelect;
 export type InsertTestimonial = typeof testimonials.$inferInsert;
+
+/**
+ * Blog categories table
+ */
+export const blog_categories = mysqlTable("blog_categories", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 100 }).notNull().unique(),
+  slug: varchar("slug", { length: 100 }).notNull().unique(),
+  description: text("description"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BlogCategory = typeof blog_categories.$inferSelect;
+export type InsertBlogCategory = typeof blog_categories.$inferInsert;
+
+/**
+ * Blog tags table
+ */
+export const blog_tags = mysqlTable("blog_tags", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 50 }).notNull().unique(),
+  slug: varchar("slug", { length: 50 }).notNull().unique(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BlogTag = typeof blog_tags.$inferSelect;
+export type InsertBlogTag = typeof blog_tags.$inferInsert;
+
+/**
+ * Junction table for blog posts and tags (many-to-many)
+ */
+export const blog_post_tags = mysqlTable("blog_post_tags", {
+  id: int("id").autoincrement().primaryKey(),
+  postId: int("postId").notNull(),
+  tagId: int("tagId").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BlogPostTag = typeof blog_post_tags.$inferSelect;
+export type InsertBlogPostTag = typeof blog_post_tags.$inferInsert;

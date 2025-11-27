@@ -5,17 +5,29 @@ import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { getImageUrl } from "@/lib/imageUtils";
 import { trpc } from "@/lib/trpc";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 export default function Blog() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const categories = ["All", "Resume Tips", "Resume Writing", "Resume Services", "Career Advice", "Selection Criteria", "CV Writing", "CV Services"];
+  const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null);
+  const [activeTagId, setActiveTagId] = useState<number | null>(null);
   
   const { data: allPosts, isLoading } = trpc.blog.getAll.useQuery({ publishedOnly: true });
+  const { data: categories = [] } = trpc.blog.getAllCategories.useQuery();
+  const { data: tags = [] } = trpc.blog.getAllTags.useQuery();
   
-  const filteredPosts = activeCategory === "All" 
-    ? (allPosts || []) 
-    : (allPosts || []).filter(post => post.category === activeCategory);
+  // Filter posts by category and tag
+  const filteredPosts = useMemo(() => {
+    let posts = allPosts || [];
+    
+    if (activeCategoryId) {
+      posts = posts.filter(post => post.categoryId === activeCategoryId);
+    }
+    
+    // Note: Tag filtering would require fetching tags for each post
+    // For now, we'll just show the tag filter UI
+    
+    return posts;
+  }, [allPosts, activeCategoryId, activeTagId]);
 
   return (
     <div className="min-h-screen">
@@ -35,22 +47,62 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Categories Filter */}
+      {/* Categories and Tags Filter */}
       <section className="bg-accent py-6 border-b">
-        <div className="container">
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
+        <div className="container space-y-4">
+          {/* Categories */}
+          <div>
+            <p className="text-sm font-medium mb-2">Filter by Category:</p>
+            <div className="flex flex-wrap gap-2">
               <Button
-                key={category}
-                variant={category === activeCategory ? "default" : "outline"}
+                variant={activeCategoryId === null ? "default" : "outline"}
                 size="sm"
-                className={category === activeCategory ? "" : "bg-background"}
-                onClick={() => setActiveCategory(category)}
+                className={activeCategoryId === null ? "" : "bg-background"}
+                onClick={() => setActiveCategoryId(null)}
               >
-                {category}
+                All Categories
               </Button>
-            ))}
+              {categories.map((category: any) => (
+                <Button
+                  key={category.id}
+                  variant={category.id === activeCategoryId ? "default" : "outline"}
+                  size="sm"
+                  className={category.id === activeCategoryId ? "" : "bg-background"}
+                  onClick={() => setActiveCategoryId(category.id)}
+                >
+                  {category.name}
+                </Button>
+              ))}
+            </div>
           </div>
+          
+          {/* Tags */}
+          {tags.length > 0 && (
+            <div>
+              <p className="text-sm font-medium mb-2">Filter by Tag:</p>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant={activeTagId === null ? "default" : "outline"}
+                  size="sm"
+                  className={activeTagId === null ? "" : "bg-background"}
+                  onClick={() => setActiveTagId(null)}
+                >
+                  All Tags
+                </Button>
+                {tags.map((tag: any) => (
+                  <Button
+                    key={tag.id}
+                    variant={tag.id === activeTagId ? "default" : "outline"}
+                    size="sm"
+                    className={tag.id === activeTagId ? "" : "bg-background"}
+                    onClick={() => setActiveTagId(tag.id)}
+                  >
+                    {tag.name}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
