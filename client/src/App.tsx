@@ -24,6 +24,7 @@ import AdminTestimonials from "./pages/AdminTestimonials";
 import AdminCategories from "./pages/AdminCategories";
 import AdminTags from "./pages/AdminTags";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminContacts from "./pages/AdminContacts";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -48,6 +49,7 @@ function Router() {
       <Route path={"/admin/media"} component={MediaLibrary} />
       <Route path={"/admin/faq-analytics"} component={FaqAnalytics} />
       <Route path={"/admin/testimonials"} component={AdminTestimonials} />
+      <Route path={"/admin/contacts"} component={AdminContacts} />
       <Route path={"/admin/categories"} component={AdminCategories} />
       <Route path={"/admin/tags"} component={AdminTags} />
       <Route path={"/404"} component={NotFound} />

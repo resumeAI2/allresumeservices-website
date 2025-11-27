@@ -146,3 +146,40 @@ export async function deleteBlogPost(id: number) {
   const result = await db.delete(blog_posts).where(eq(blog_posts.id, id));
   return result;
 }
+
+/**
+ * Increment view count for a blog post
+ */
+export async function incrementBlogPostViewCount(slug: string) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  
+  await db.update(blog_posts)
+    .set({ viewCount: sql`${blog_posts.viewCount} + 1` })
+    .where(eq(blog_posts.slug, slug));
+  
+  return { success: true };
+}
+
+/**
+ * Get most popular blog posts by view count
+ */
+export async function getPopularBlogPosts(limit: number = 5) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  const posts = await db
+    .select({
+      id: blog_posts.id,
+      title: blog_posts.title,
+      slug: blog_posts.slug,
+      viewCount: blog_posts.viewCount,
+      published: blog_posts.published,
+    })
+    .from(blog_posts)
+    .where(eq(blog_posts.published, 1))
+    .orderBy(desc(blog_posts.viewCount))
+    .limit(limit);
+  
+  return posts;
+}

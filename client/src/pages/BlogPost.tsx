@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { trpc } from "@/lib/trpc";
+import { useEffect } from "react";
 import SocialShare from "@/components/SocialShare";
 import SEOHead from "@/components/SEOHead";
 import { getImageUrl } from "@/lib/imageUtils";
@@ -14,6 +15,14 @@ export default function BlogPost() {
   
   const { data: post, isLoading } = trpc.blog.getBySlug.useQuery({ slug: slug! });
   const { data: allPosts } = trpc.blog.getAll.useQuery({ publishedOnly: true });
+  const incrementViewMutation = trpc.blog.incrementViewCount.useMutation();
+
+  // Track page view
+  useEffect(() => {
+    if (post && slug) {
+      incrementViewMutation.mutate({ slug });
+    }
+  }, [post?.id]);
   
   // Get related posts from the same category
   const relatedPosts = post && allPosts

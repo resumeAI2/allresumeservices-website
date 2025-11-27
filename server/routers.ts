@@ -140,6 +140,15 @@ export const appRouter = router({
         const { updateContactSubmissionStatus } = await import("./contact");
         return await updateContactSubmissionStatus(input.id, input.status);
       }),
+    updateNotes: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        notes: z.string(),
+      }))
+      .mutation(async ({ input }) => {
+        const { updateContactSubmissionNotes } = await import("./contact");
+        return await updateContactSubmissionNotes(input.id, input.notes);
+      }),
   }),
 
   testimonials: router({
@@ -308,6 +317,16 @@ export const appRouter = router({
       }))
       .mutation(async ({ input }) => {
         return await blogService.updateImageAltText(input.id, input.altText);
+      }),
+    incrementViewCount: publicProcedure
+      .input(z.object({ slug: z.string() }))
+      .mutation(async ({ input }) => {
+        return await blogService.incrementBlogPostViewCount(input.slug);
+      }),
+    getPopularPosts: publicProcedure
+      .input(z.object({ limit: z.number().optional() }))
+      .query(async ({ input }) => {
+        return await blogService.getPopularBlogPosts(input.limit);
       }),
     // Categories
     getAllCategories: publicProcedure

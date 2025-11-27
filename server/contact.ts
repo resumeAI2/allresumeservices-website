@@ -70,3 +70,33 @@ export async function updateContactSubmissionStatus(id: number, status: "new" | 
 
   return { success: true };
 }
+
+/**
+ * Update contact submission notes
+ */
+export async function updateContactSubmissionNotes(id: number, notes: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db
+    .update(contact_submissions)
+    .set({ notes })
+    .where(eq(contact_submissions.id, id));
+
+  return { success: true };
+}
+
+/**
+ * Get contact submission by ID
+ */
+export async function getContactSubmissionById(id: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const [submission] = await db
+    .select()
+    .from(contact_submissions)
+    .where(eq(contact_submissions.id, id));
+
+  return submission || null;
+}

@@ -356,3 +356,28 @@
 - [x] Add charts or visualizations for trends
 - [x] Add quick action buttons to navigate to management pages
 - [x] Test dashboard metrics and navigation
+
+## Email Configuration
+- [ ] Request SMTP credentials via webdev_request_secrets (deferred - user will do later)
+- [ ] Update email service to use environment variables (deferred)
+- [ ] Test email delivery with real SMTP credentials (deferred)
+
+## Blog Post Analytics Tracking
+- [x] Add viewCount field to blog_posts schema
+- [x] Create analytics tracking endpoint
+- [x] Add view tracking to BlogPost page
+- [x] Update dashboard to show popular posts by views
+- [x] Test view count tracking
+
+## Admin Contact Management Page
+- [x] Add notes field to contact_submissions schema
+- [x] Update contact service with status update and notes functions
+- [x] Create AdminContacts page component
+- [x] Add filtering by status (new, contacted, converted)
+- [x] Add search functionality for name/email
+- [x] Display contact submissions in table/card format
+- [x] Add status update dropdown for each contact
+- [x] Add notes/comments functionality
+- [x] Add detailed view modal for each contact
+- [x] Add route for admin contacts page
+- [x] Test contact management functionality

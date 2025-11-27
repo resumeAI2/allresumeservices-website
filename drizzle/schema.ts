@@ -62,6 +62,7 @@ export const blog_posts = mysqlTable("blog_posts", {
   readTime: varchar("readTime", { length: 50 }),
   published: int("published").default(0).notNull(), // 0 = draft, 1 = published
   scheduledPublishDate: timestamp("scheduledPublishDate"),
+  viewCount: int("viewCount").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
@@ -117,7 +118,9 @@ export const contact_submissions = mysqlTable("contact_submissions", {
   serviceInterest: varchar("serviceInterest", { length: 100 }),
   message: text("message").notNull(),
   status: mysqlEnum("status", ["new", "contacted", "converted", "archived"]).default("new").notNull(),
+  notes: text("notes"),
   submittedAt: timestamp("submittedAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 
 export type ContactSubmission = typeof contact_submissions.$inferSelect;

@@ -16,6 +16,7 @@ export default function AdminDashboard() {
   const { data: metrics, isLoading } = trpc.dashboard.getMetrics.useQuery();
   const { data: recentContacts = [] } = trpc.dashboard.getRecentContacts.useQuery({ limit: 5 });
   const { data: recentPosts = [] } = trpc.dashboard.getRecentPosts.useQuery({ limit: 5 });
+  const { data: popularPosts = [] } = trpc.blog.getPopularPosts.useQuery({ limit: 5 });
 
   if (isLoading) {
     return (
@@ -135,6 +136,44 @@ export default function AdminDashboard() {
               </Button>
             </Link>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Popular Blog Posts */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <TrendingUp className="h-5 w-5" />
+            Most Popular Blog Posts
+          </CardTitle>
+          <CardDescription>Posts ranked by view count</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {popularPosts.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No blog posts with views yet</p>
+          ) : (
+            <div className="space-y-4">
+              {popularPosts.map((post: any, index: number) => (
+                <div key={post.id} className="flex items-center justify-between border-b pb-3 last:border-0">
+                  <div className="flex items-center gap-3 flex-1">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                      {index + 1}
+                    </div>
+                    <div className="flex-1">
+                      <Link href={`/blog/${post.slug}`}>
+                        <p className="font-medium hover:underline">{post.title}</p>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <TrendingUp className="h-4 w-4" />
+                    <span className="font-semibold">{post.viewCount}</span>
+                    <span>views</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </CardContent>
       </Card>
 
