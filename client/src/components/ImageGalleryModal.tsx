@@ -86,8 +86,9 @@ export default function ImageGalleryModal({ open, onClose, onSelect }: ImageGall
                 >
                   <img
                     src={image.url}
-                    alt={image.filename}
+                    alt={image.altText || image.filename}
                     className="w-full h-full object-cover"
+                    title={image.altText || image.filename}
                   />
                   {selectedImage === image.url && (
                     <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
@@ -96,8 +97,13 @@ export default function ImageGalleryModal({ open, onClose, onSelect }: ImageGall
                       </div>
                     </div>
                   )}
-                  <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs p-2 truncate">
-                    {image.filename}
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs p-2">
+                    <div className="truncate font-medium">{image.filename}</div>
+                    {image.altText && (
+                      <div className="truncate text-gray-300 mt-0.5" title={image.altText}>
+                        Alt: {image.altText}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

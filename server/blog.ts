@@ -67,7 +67,7 @@ export async function updateBlogPost(id: number, post: Partial<Omit<BlogPost, 'i
   return result;
 }
 
-export async function uploadImage(filename: string, contentType: string, base64Data: string) {
+export async function uploadImage(filename: string, contentType: string, base64Data: string, altText?: string) {
   const db = await getDb();
   if (!db) throw new Error('Database not available');
   
@@ -91,6 +91,7 @@ export async function uploadImage(filename: string, contentType: string, base64D
     key: result.key,
     contentType,
     size: buffer.length,
+    altText: altText || null,
   });
   
   return {
@@ -104,6 +105,17 @@ export async function getAllUploadedImages() {
   if (!db) return [];
   
   return await db.select().from(uploaded_images).orderBy(desc(uploaded_images.uploadedAt));
+}
+
+export async function updateImageAltText(id: number, altText: string) {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  
+  const result = await db.update(uploaded_images)
+    .set({ altText })
+    .where(eq(uploaded_images.id, id));
+  
+  return result;
 }
 
 export async function deleteBlogPost(id: number) {

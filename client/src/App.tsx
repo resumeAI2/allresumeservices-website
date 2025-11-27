@@ -33,8 +33,9 @@ function Router() {
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogPost} />
       <Route path={"/admin/blog"} component={AdminBlog} />
-      <Route path={"/admin/blog/new"} component={BlogEditor} />      <Route path={" /admin/blog/edit/:id"} component={BlogEditor} />
-      <Route path={" /admin/media"} component={MediaLibrary} />
+      <Route path={"/admin/blog/new"} component={BlogEditor} />
+      <Route path={"/admin/blog/edit/:id"} component={BlogEditor} />
+      <Route path={"/admin/media"} component={MediaLibrary} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

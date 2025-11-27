@@ -4,7 +4,7 @@ import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Search, Copy, Check } from "lucide-react";
+import { ArrowLeft, Search, Copy, Check, Edit2, Save, X } from "lucide-react";
 import { toast } from "sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,8 +12,21 @@ import Footer from "@/components/Footer";
 export default function MediaLibrary() {
   const [searchQuery, setSearchQuery] = useState("");
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
+  const [editingImageId, setEditingImageId] = useState<number | null>(null);
+  const [editAltText, setEditAltText] = useState("");
   
   const { data: images = [], isLoading } = trpc.blog.getAllImages.useQuery();
+  const updateImageMutation = trpc.blog.updateImageAltText.useMutation({
+    onSuccess: () => {
+      toast.success("Alt text updated successfully!");
+      setEditingImageId(null);
+      setEditAltText("");
+    },
+    onError: (error: any) => {
+      toast.error("Failed to update alt text: " + error.message);
+    },
+  });
+  const utils = trpc.useUtils();
 
   const filteredImages = images.filter(img =>
     img.filename.toLowerCase().includes(searchQuery.toLowerCase())
@@ -24,6 +37,21 @@ export default function MediaLibrary() {
     setCopiedUrl(url);
     toast.success("Image URL copied to clipboard!");
     setTimeout(() => setCopiedUrl(null), 2000);
+  };
+
+  const startEditingAltText = (imageId: number, currentAltText: string | null) => {
+    setEditingImageId(imageId);
+    setEditAltText(currentAltText || "");
+  };
+
+  const saveAltText = async (imageId: number) => {
+    await updateImageMutation.mutateAsync({ id: imageId, altText: editAltText });
+    await utils.blog.getAllImages.invalidate();
+  };
+
+  const cancelEditingAltText = () => {
+    setEditingImageId(null);
+    setEditAltText("");
   };
 
   const formatFileSize = (bytes: number | null) => {
@@ -113,6 +141,56 @@ export default function MediaLibrary() {
                         Type: {image.contentType}
                       </p>
                     </div>
+
+                    {editingImageId === image.id ? (
+                      <div className="mb-3 space-y-2">
+                        <Input
+                          value={editAltText}
+                          onChange={(e) => setEditAltText(e.target.value)}
+                          placeholder="Enter alt text"
+                          className="text-xs"
+                        />
+                        <div className="flex gap-2">
+                          <Button
+                            variant="default"
+                            size="sm"
+                            className="flex-1"
+                            onClick={() => saveAltText(image.id)}
+                            disabled={updateImageMutation.isPending}
+                          >
+                            <Save className="mr-1 h-3 w-3" />
+                            Save
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={cancelEditingAltText}
+                            disabled={updateImageMutation.isPending}
+                          >
+                            <X className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="mb-3">
+                        <div className="flex items-start justify-between gap-2 mb-2">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-medium text-muted-foreground mb-1">Alt Text:</p>
+                            <p className="text-xs text-foreground break-words">
+                              {image.altText || <span className="italic text-muted-foreground">Not set</span>}
+                            </p>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 w-6 p-0 flex-shrink-0"
+                            onClick={() => startEditingAltText(image.id, image.altText)}
+                          >
+                            <Edit2 className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      </div>
+                    )}
                     
                     <Button
                       variant="outline"

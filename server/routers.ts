@@ -116,10 +116,11 @@ export const appRouter = router({
       .input(z.object({
         filename: z.string(),
         contentType: z.string(),
-        base64Data: z.string()
+        base64Data: z.string(),
+        altText: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
-        return await blogService.uploadImage(input.filename, input.contentType, input.base64Data);
+        return await blogService.uploadImage(input.filename, input.contentType, input.base64Data, input.altText);
       }),
     getAll: publicProcedure
       .input(z.object({ publishedOnly: z.boolean().optional().default(true) }))
@@ -172,6 +173,14 @@ export const appRouter = router({
     getAllImages: publicProcedure
       .query(async () => {
         return await blogService.getAllUploadedImages();
+      }),
+    updateImageAltText: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        altText: z.string(),
+      }))
+      .mutation(async ({ input }) => {
+        return await blogService.updateImageAltText(input.id, input.altText);
       }),
   }),
 });

@@ -77,6 +77,7 @@ export const uploaded_images = mysqlTable("uploaded_images", {
   key: varchar("key", { length: 500 }).notNull(),
   contentType: varchar("contentType", { length: 100 }).notNull(),
   size: int("size"),
+  altText: text("altText"),
   uploadedAt: timestamp("uploadedAt").defaultNow().notNull(),
 });
 

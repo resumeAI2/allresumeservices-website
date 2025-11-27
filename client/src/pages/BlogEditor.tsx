@@ -28,6 +28,7 @@ export default function BlogEditor() {
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("Resume Tips");
   const [image, setImage] = useState("");
+  const [imageAltText, setImageAltText] = useState("");
   const [published, setPublished] = useState(0);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [showGalleryModal, setShowGalleryModal] = useState(false);
@@ -46,6 +47,7 @@ export default function BlogEditor() {
       setContent(existingPost.content);
       setCategory(existingPost.category);
       setImage(existingPost.image || "");
+      setImageAltText(""); // Alt text not stored in blog_posts table yet
       setPublished(existingPost.published);
     }
   }, [existingPost]);
@@ -114,6 +116,7 @@ export default function BlogEditor() {
           filename: file.name,
           contentType: file.type,
           base64Data,
+          altText: imageAltText || undefined,
         });
 
         setImage(result.url);
@@ -207,6 +210,7 @@ export default function BlogEditor() {
           filename: file.name,
           contentType: file.type,
           base64Data,
+          altText: imageAltText || undefined,
         });
 
         // Insert image into editor at cursor position
@@ -330,22 +334,23 @@ export default function BlogEditor() {
               <div>
                 <Label htmlFor="image">Featured Image</Label>
                 <div className="space-y-3 mt-2">
-                  <div className="flex gap-2">
-                    <Input
-                      id="image"
-                      value={image}
-                      onChange={(e) => setImage(e.target.value)}
-                      placeholder="Image URL or upload below"
-                      className="flex-1"
-                    />
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => setShowGalleryModal(true)}
-                    >
-                      Choose from Library
-                    </Button>
-                    <label className="cursor-pointer">
+                  <div className="space-y-2">
+                    <div className="flex gap-2">
+                      <Input
+                        id="image"
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
+                        placeholder="Image URL or upload below"
+                        className="flex-1"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => setShowGalleryModal(true)}
+                      >
+                        Choose from Library
+                      </Button>
+                      <label className="cursor-pointer">
                       <input
                         type="file"
                         accept="image/*"
@@ -369,6 +374,14 @@ export default function BlogEditor() {
                         </span>
                       </Button>
                     </label>
+                  </div>
+                  <Input
+                    id="imageAltText"
+                    value={imageAltText}
+                    onChange={(e) => setImageAltText(e.target.value)}
+                    placeholder="Alt text for image (improves SEO and accessibility)"
+                    className="w-full"
+                  />
                   </div>
                   {image && (
                     <div className="border rounded-lg p-2">

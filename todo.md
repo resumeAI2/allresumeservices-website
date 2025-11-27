@@ -246,3 +246,14 @@
 - [x] Allow inserting selected images from gallery
 - [x] Test image gallery browsing
 - [x] Test image reuse across multiple posts
+
+## Image Alt Text for SEO and Accessibility
+- [x] Add alt_text column to uploaded_images table
+- [x] Run database migration for alt_text column
+- [x] Update image upload API to accept and save alt text
+- [x] Add alt text input field to image upload UI in blog editor
+- [x] Add alt text display and edit in media library
+- [x] Update ImageGalleryModal to show and allow editing alt text
+- [x] Update blog post rendering to use alt text for images
+- [x] Test alt text functionality
+- [x] Verify alt text appears in rendered HTML
