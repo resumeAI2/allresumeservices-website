@@ -1,6 +1,6 @@
 import { eq, and, sql } from 'drizzle-orm';
 import { getDb } from './db';
-import { services, cart_items, type Service, type CartItem, type InsertCartItem } from '../drizzle/schema';
+import { services, cart_items, testimonials, type Service, type CartItem, type InsertCartItem } from '../drizzle/schema';
 
 /**
  * Get all active services
@@ -207,4 +207,85 @@ export async function mergeGuestCartWithUserCart(userId: number, sessionId: stri
  */
 export async function saveCartToUser(userId: number, sessionId: string): Promise<void> {
   await mergeGuestCartWithUserCart(userId, sessionId);
+}
+
+
+// ============================================================================
+// Testimonials Service
+// ============================================================================
+
+/**
+ * Get featured testimonials for display on About Us page
+ */
+export async function getFeaturedTestimonials() {
+  const db = await getDb();
+  const { desc } = await import('drizzle-orm');
+  const results = await db!.select()
+    .from(testimonials)
+    .where(and(eq(testimonials.featured, 1), eq(testimonials.approved, 1)))
+    .orderBy(desc(testimonials.createdAt))
+    .limit(10);
+  
+  return results;
+}
+
+/**
+ * Get all testimonials (for admin)
+ */
+export async function getAllTestimonials() {
+  const db = await getDb();
+  const { desc } = await import('drizzle-orm');
+  const results = await db!.select()
+    .from(testimonials)
+    .orderBy(desc(testimonials.createdAt));
+  
+  return results;
+}
+
+/**
+ * Add a new testimonial
+ */
+export async function addTestimonial(data: {
+  clientName: string;
+  clientTitle?: string | null;
+  rating: number;
+  testimonialText: string;
+  serviceUsed?: string | null;
+  featured?: number;
+  approved?: number;
+}) {
+  const db = await getDb();
+  const result = await db!.insert(testimonials).values(data);
+  return { id: Number(result[0].insertId) };
+}
+
+/**
+ * Update testimonial
+ */
+export async function updateTestimonial(id: number, data: Partial<{
+  clientName: string;
+  clientTitle: string | null;
+  rating: number;
+  testimonialText: string;
+  serviceUsed: string | null;
+  featured: number;
+  approved: number;
+}>) {
+  const db = await getDb();
+  await db!.update(testimonials)
+    .set(data)
+    .where(eq(testimonials.id, id));
+  
+  return { success: true };
+}
+
+/**
+ * Delete testimonial
+ */
+export async function deleteTestimonial(id: number) {
+  const db = await getDb();
+  await db!.delete(testimonials)
+    .where(eq(testimonials.id, id));
+  
+  return { success: true };
 }
