@@ -458,3 +458,13 @@
 - [x] Update CartContext to handle user authentication state
 - [x] Add "Save Cart" notification for logged-in users
 - [x] Test cart persistence across login/logout
+
+## About Us Page
+- [x] Create About Us page component
+- [x] Add company mission and values section
+- [x] Add team profiles section (Sonia Lynch, Steven Jason, Jenna Atkinson)
+- [x] Add company history/background
+- [x] Add route for About Us page
+- [x] Update header navigation to include About Us link
+- [x] Update footer navigation to include About Us link
+- [x] Test About Us page layout and responsiveness

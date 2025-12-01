@@ -29,6 +29,7 @@ import AdminContacts from "./pages/AdminContacts";
 import Services from "./pages/Services";
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import AboutUs from './pages/AboutUs';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -44,7 +45,8 @@ function Router() {
       <Route path={"/payment/cancel"} component={PaymentCancel} />
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogPost} />
-      <Route path={"/faq"} component={FAQ} />
+      <Route path="/faq" component={FAQ} />
+        <Route path="/about" component={AboutUs} />
         <Route path="/contact" component={Contact} />
         <Route path="/services" component={Services} />
         <Route path="/cart" component={Cart} />
