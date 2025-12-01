@@ -429,9 +429,9 @@
 - [x] Build cart context for state management
 - [ ] Implement cart context/state management
 - [x] Create cart icon in header with item count
-- [ ] Build cart page with item list, quantities, remove functionality
+- [x] Build cart page with item list, quantities, remove functionality
 - [ ] Implement add to cart functionality
-- [ ] Calculate bundle discounts (10% off when buying 2+ services)
+- [x] Calculate bundle discounts (10% off when buying 2+ services)
 - [ ] Create promo code system
 - [ ] Build checkout page with order summary
 - [ ] Integrate PayPal payment

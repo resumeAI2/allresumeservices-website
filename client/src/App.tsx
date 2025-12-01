@@ -27,6 +27,7 @@ import AdminTags from "./pages/AdminTags";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminContacts from "./pages/AdminContacts";
 import Services from "./pages/Services";
+import Cart from "./pages/Cart";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -45,6 +46,7 @@ function Router() {
       <Route path={"/faq"} component={FAQ} />
         <Route path="/contact" component={Contact} />
         <Route path="/services" component={Services} />
+        <Route path="/cart" component={Cart} />
       <Route path={"/admin"} component={AdminDashboard} />
       <Route path={"/admin/blog"} component={AdminBlog} />
       <Route path={"/admin/blog/new"} component={BlogEditor} />
