@@ -60,6 +60,9 @@ export default function Footer() {
                 <a href="/about" className="hover:text-secondary transition-colors">About Us</a>
               </li>
               <li>
+                <a href="/testimonials" className="hover:text-secondary transition-colors">Testimonials</a>
+              </li>
+              <li>
                 <a href="#free-review" className="hover:text-secondary transition-colors">Free Review</a>
               </li>
             </ul>
