@@ -15,7 +15,8 @@ export default function AboutUs() {
     role: t.clientTitle || '',
     company: '',
     text: t.testimonialText,
-    rating: t.rating
+    rating: t.rating,
+    photo: t.clientPhoto || undefined
   })) || [];
   const teamMembers = [
     {
