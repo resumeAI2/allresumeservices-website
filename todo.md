@@ -433,8 +433,10 @@
 - [ ] Implement add to cart functionality
 - [x] Calculate bundle discounts (10% off when buying 2+ services)
 - [ ] Create promo code system
-- [ ] Build checkout page with order summary
-- [ ] Integrate PayPal payment
-- [ ] Create order confirmation page
+- [x] Build checkout page with order summary
+- [x] Create customer details form (name, email, phone)
+- [x] Create orders service and API endpoints (using existing payment router)
+- [x] Integrate PayPal payment
+- [x] Create order confirmation page (updated PaymentSuccess to clear cart)
 - [ ] Add order management to admin dashboard
-- [ ] Test complete purchase flow
+- [x] Test complete purchase flow

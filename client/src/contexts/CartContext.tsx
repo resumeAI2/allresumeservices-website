@@ -25,6 +25,7 @@ interface CartContextType {
   addToCart: (serviceId: number, quantity?: number) => Promise<void>;
   updateQuantity: (itemId: number, quantity: number) => Promise<void>;
   removeItem: (itemId: number) => Promise<void>;
+  clearCart: () => Promise<void>;
   refreshCart: () => Promise<void>;
   getTotal: () => number;
 }
@@ -95,6 +96,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     await removeItemMutation.mutateAsync(itemId);
   };
 
+  const clearCart = async () => {
+    // Remove all items from cart
+    for (const item of cartItems) {
+      await removeItemMutation.mutateAsync(item.id);
+    }
+    await refreshCart();
+  };
+
   const refreshCart = async () => {
     await refetch();
     await refetchCount();
@@ -116,6 +125,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         addToCart,
         updateQuantity,
         removeItem,
+        clearCart,
         refreshCart,
         getTotal,
       }}

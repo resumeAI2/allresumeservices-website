@@ -3,6 +3,7 @@ import { CheckCircle, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
+import { useCart } from "@/contexts/CartContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -10,6 +11,7 @@ export default function PaymentSuccess() {
   const [, setLocation] = useLocation();
   const [processing, setProcessing] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { clearCart } = useCart();
   const captureOrderMutation = trpc.payment.captureOrder.useMutation();
 
   useEffect(() => {
@@ -30,6 +32,8 @@ export default function PaymentSuccess() {
         paypalOrderId: token,
       })
       .then(() => {
+        // Clear cart after successful payment
+        clearCart();
         setProcessing(false);
       })
       .catch((err) => {
