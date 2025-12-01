@@ -216,10 +216,27 @@ export default function Testimonials() {
 
                     {/* Client Info */}
                     <div className="border-t pt-4">
-                      <div className="font-semibold text-foreground">{testimonial.clientName}</div>
-                      {testimonial.clientTitle && (
-                        <div className="text-sm text-muted-foreground">{testimonial.clientTitle}</div>
-                      )}
+                      <div className="flex items-center gap-3 mb-2">
+                        {testimonial.clientPhoto ? (
+                          <img
+                            src={testimonial.clientPhoto}
+                            alt={testimonial.clientName}
+                            className="w-12 h-12 rounded-full object-cover border-2 border-primary/20"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border-2 border-primary/20">
+                            <span className="text-primary font-bold text-sm">
+                              {testimonial.clientName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
+                        <div>
+                          <div className="font-semibold text-foreground">{testimonial.clientName}</div>
+                          {testimonial.clientTitle && (
+                            <div className="text-sm text-muted-foreground">{testimonial.clientTitle}</div>
+                          )}
+                        </div>
+                      </div>
                       {testimonial.serviceUsed && (
                         <div className="mt-2">
                           <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">

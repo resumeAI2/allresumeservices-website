@@ -8,6 +8,7 @@ interface Testimonial {
   company?: string;
   text: string;
   rating: number;
+  photo?: string;
 }
 
 interface TestimonialsCarouselProps {
@@ -82,7 +83,21 @@ export default function TestimonialsCarousel({
           </blockquote>
 
           {/* Author Info */}
-          <div className="text-center">
+          <div className="flex flex-col items-center">
+            {/* Client Photo or Initial Avatar */}
+            {currentTestimonial.photo ? (
+              <img
+                src={currentTestimonial.photo}
+                alt={currentTestimonial.name}
+                className="w-16 h-16 rounded-full object-cover mb-3 border-2 border-[#d4af37]/30"
+              />
+            ) : (
+              <div className="w-16 h-16 rounded-full bg-[#d4af37]/20 flex items-center justify-center mb-3 border-2 border-[#d4af37]/30">
+                <span className="text-[#d4af37] font-bold text-xl">
+                  {currentTestimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+                </span>
+              </div>
+            )}
             <p className="font-bold text-[#1e3a5f] text-lg">{currentTestimonial.name}</p>
             <p className="text-gray-600">
               {currentTestimonial.role}
