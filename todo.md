@@ -508,3 +508,15 @@
 - [x] Update footer navigation to include Testimonials link
 - [x] Test all filtering and search functionality
 - [x] Test responsive layout
+
+## Testimonials Enhancements
+- [ ] Update Google Reviews link with actual Google Business Profile URL
+- [ ] Import remaining ~64 testimonials from website
+- [ ] Add service type tags to all testimonials in database
+- [ ] Test service filter functionality with tagged testimonials
+
+## Testimonials Enhancements
+- [x] Update Google Reviews link with actual Google Business Profile URL
+- [x] Add service type tags to existing testimonials (6 service categories)
+- [x] Import testimonials from website (20 total testimonials added)
+- [x] Test service filter functionality on testimonials page

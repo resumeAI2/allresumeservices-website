@@ -397,7 +397,7 @@ export default function AboutUs() {
                   </div>
                 </div>
                 <a 
-                  href="https://www.google.com/search?q=all+resume+services+australia" 
+                  href="https://www.google.com/search?q=All+Resume+Services+Australia+Google+Reviews&lqi=CixBbGwgUmVzdW1lIFNlcnZpY2VzIEF1c3RyYWxpYSBHb29nbGUgUmV2aWV3cyIFOAGIAQFI34WhsdqtgIAIWisQABABEAIYABgBGAIiHWFsbCByZXN1bWUgc2VydmljZXMgYXVzdHJhbGlhkgEOcmVzdW1lX3NlcnZpY2WaASRDaGREU1VoTk1HOW5TMFZKUTBGblNVUTVjR1ZoVDIxM1JSQUL6AQUI4AEQMg#lkt=LocalPoiReviews&rlimm=8323594543034302132" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors"
