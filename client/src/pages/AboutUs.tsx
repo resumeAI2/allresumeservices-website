@@ -2,6 +2,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Card, CardContent } from '../components/ui/card';
 import { CheckCircle, Award, Users, Target, Heart, TrendingUp } from 'lucide-react';
+import TestimonialsCarousel from '../components/TestimonialsCarousel';
 
 export default function AboutUs() {
   const teamMembers = [
@@ -84,6 +85,42 @@ export default function AboutUs() {
       title: "Industry Leaders",
       description: "With 17+ years of experience, a 96% interview success rate, and thousands of satisfied clients, we continue to innovate and adapt to the changing job market. Our commitment to excellence remains unwavering.",
       side: "right"
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: "Sarah Mitchell",
+      role: "Marketing Manager",
+      company: "Tech Solutions Australia",
+      text: "The team at All Résumé Services transformed my career! Their expertly crafted resume helped me land my dream role within just 3 weeks. The attention to detail and understanding of what employers look for was outstanding.",
+      rating: 5
+    },
+    {
+      name: "David Chen",
+      role: "Senior Project Manager",
+      text: "After struggling to get interviews for months, I decided to invest in professional resume writing. Best decision ever! I received 5 interview calls in the first week and secured a senior position with a 30% salary increase.",
+      rating: 5
+    },
+    {
+      name: "Emma Thompson",
+      role: "Graduate Engineer",
+      company: "Infrastructure NSW",
+      text: "As a recent graduate, I was overwhelmed by the job market. The team helped me highlight my skills and achievements in a way that stood out to employers. I'm now working at my dream company thanks to their expertise!",
+      rating: 5
+    },
+    {
+      name: "Michael Roberts",
+      role: "Finance Director",
+      text: "The LinkedIn profile optimization service was exceptional. Within days of updating my profile, I was approached by several recruiters. The selection criteria responses they wrote were instrumental in securing my government role.",
+      rating: 5
+    },
+    {
+      name: "Lisa Anderson",
+      role: "HR Specialist",
+      company: "Corporate Services Group",
+      text: "Professional, responsive, and results-driven. The team took the time to understand my career goals and created documents that truly represented my value. I couldn't be happier with the outcome!",
+      rating: 5
     }
   ];
 
@@ -342,6 +379,20 @@ export default function AboutUs() {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </section>
+
+        {/* Client Testimonials */}
+        <section className="py-16 bg-gray-50">
+          <div className="container max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">What Our Clients Say</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Don't just take our word for it. Here's what our satisfied clients have to say 
+                about their experience with All Résumé Services.
+              </p>
+            </div>
+            <TestimonialsCarousel testimonials={testimonials} />
           </div>
         </section>
 
