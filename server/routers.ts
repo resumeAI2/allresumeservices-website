@@ -6,6 +6,7 @@ import { z } from "zod";
 import * as blogService from './blog';
 import * as categoriesAndTagsService from './categoriesAndTags';
 import * as dashboardService from './dashboard';
+import * as servicesService from './services';
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -110,6 +111,63 @@ export const appRouter = router({
       .query(async ({ input }) => {
         const { getOrderById } = await import("./orders");
         return await getOrderById(input.orderId);
+      }),
+  }),
+
+  services: router({ getAllServices: publicProcedure
+      .query(async () => {
+        return await servicesService.getAllServices();
+      }),
+    getServicesByType: publicProcedure
+      .input(z.enum(['individual', 'package', 'addon']))
+      .query(async ({ input }) => {
+        return await servicesService.getServicesByType(input);
+      }),
+    getServicesByCategory: publicProcedure
+      .input(z.string())
+      .query(async ({ input }) => {
+        return await servicesService.getServicesByCategory(input);
+      }),
+    addToCart: publicProcedure
+      .input(z.object({
+        serviceId: z.number(),
+        quantity: z.number().default(1),
+        userId: z.number().optional(),
+        sessionId: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        return await servicesService.addToCart(input);
+      }),
+    getCartItems: publicProcedure
+      .input(z.object({
+        userId: z.number().optional(),
+        sessionId: z.string().optional(),
+      }))
+      .query(async ({ input }) => {
+        return await servicesService.getCartItems(input.userId, input.sessionId);
+      }),
+    updateCartItemQuantity: publicProcedure
+      .input(z.object({
+        itemId: z.number(),
+        quantity: z.number(),
+      }))
+      .mutation(async ({ input }) => {
+        await servicesService.updateCartItemQuantity(input.itemId, input.quantity);
+        return { success: true };
+      }),
+    removeFromCart: publicProcedure
+      .input(z.number())
+      .mutation(async ({ input }) => {
+        await servicesService.removeFromCart(input);
+        return { success: true };
+      }),
+    getCartItemCount: publicProcedure
+      .input(z.object({
+        userId: z.number().optional(),
+        sessionId: z.string().optional(),
+      }))
+      .query(async ({ input }) => {
+        return await servicesService.getCartItemCount(input.userId, input.sessionId);
       }),
   }),
 

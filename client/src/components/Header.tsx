@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, Phone, Mail, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
+import { useCart } from "../contexts/CartContext";
+import { Badge } from "./ui/badge";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { cartCount } = useCart();
 
   return (
     <header className="sticky top-0 z-50 bg-primary text-primary-foreground shadow-md">
@@ -64,13 +67,21 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#services" className="hover:text-secondary transition-colors">Services</a>
+            <Link href="/services" className="hover:text-secondary transition-colors">Services</Link>
             <a href="#pricing" className="hover:text-secondary transition-colors">Pricing</a>
             <a href="#process" className="hover:text-secondary transition-colors">Our Process</a>
             <Link href="/blog" className="hover:text-secondary transition-colors">Career Advice Blog</Link>
             <Link href="/faq" className="hover:text-secondary transition-colors">FAQ</Link>
             <Link href="/contact" className="hover:text-secondary transition-colors">Contact</Link>
             <a href="#about" className="hover:text-secondary transition-colors">About Us</a>
+            <Link href="/cart" className="relative hover:text-secondary transition-colors">
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs">
+                  {cartCount}
+                </Badge>
+              )}
+            </Link>
             <Button 
               variant="default" 
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90"

@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { CartProvider } from "./contexts/CartContext";
 import Home from "./pages/Home";
 import ResumeWriting from "./pages/ResumeWriting";
 import CoverLetters from "./pages/CoverLetters";
@@ -25,6 +26,7 @@ import AdminCategories from "./pages/AdminCategories";
 import AdminTags from "./pages/AdminTags";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminContacts from "./pages/AdminContacts";
+import Services from "./pages/Services";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -41,7 +43,8 @@ function Router() {
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogPost} />
       <Route path={"/faq"} component={FAQ} />
-      <Route path={"/contact"} component={Contact} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/services" component={Services} />
       <Route path={"/admin"} component={AdminDashboard} />
       <Route path={"/admin/blog"} component={AdminBlog} />
       <Route path={"/admin/blog/new"} component={BlogEditor} />
@@ -71,10 +74,12 @@ function App() {
         defaultTheme="light"
         // switchable
       >
-        <TooltipProvider>
+        <CartProvider>
+          <TooltipProvider>
           <Toaster />
           <Router />
-        </TooltipProvider>
+          </TooltipProvider>
+        </CartProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

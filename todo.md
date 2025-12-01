@@ -424,9 +424,11 @@
 - [x] Define individual services (Resume, Cover Letter, LinkedIn, Selection Criteria)
 - [x] Define service tiers (Entry Level, Professional, Executive)
 - [x] Define add-ons (Rush Delivery, Extra Revisions, Phone Consultation)
-- [ ] Create services catalog page
+- [x] Create services catalog page
+- [x] Create services API endpoints
+- [x] Build cart context for state management
 - [ ] Implement cart context/state management
-- [ ] Create cart icon in header with item count
+- [x] Create cart icon in header with item count
 - [ ] Build cart page with item list, quantities, remove functionality
 - [ ] Implement add to cart functionality
 - [ ] Calculate bundle discounts (10% off when buying 2+ services)
