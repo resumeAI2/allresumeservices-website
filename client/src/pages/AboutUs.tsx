@@ -7,21 +7,21 @@ export default function AboutUs() {
   const teamMembers = [
     {
       name: "Sonia Lynch",
-      title: "Senior Resume Writer & Career Consultant",
-      bio: "With over 15 years of experience in professional resume writing and career consulting, Sonia specializes in helping mid to senior-level professionals transition into executive roles. Her expertise in ATS optimization and personal branding has helped hundreds of clients secure interviews at top Australian companies.",
-      expertise: ["Executive Resumes", "Career Transitions", "LinkedIn Optimization", "Personal Branding"]
+      title: "Founder & CEO - 15+ years in industry",
+      bio: "As the Founder and CEO of All Résumé Services, Sonia is a dynamic and results-driven professional with expertise in Résumé Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths. Her holistic approach ensures clients are well-equipped for their job market journey, presenting as standout candidates in their respective fields.",
+      expertise: ["Résumé Writing", "Personal Branding", "Selection Criteria", "Career Coaching"]
     },
     {
       name: "Steven Jason",
-      title: "Lead Resume Writer & Selection Criteria Specialist",
-      bio: "Steven brings 12+ years of expertise in government and corporate recruitment. As a former HR manager, he understands exactly what hiring managers look for. He specializes in crafting compelling selection criteria responses and resumes that stand out in competitive application processes.",
-      expertise: ["Selection Criteria", "Government Applications", "Cover Letters", "ATS Compliance"]
+      title: "Professional Résumé Writer",
+      bio: "For over five years, Steven has been dedicated to enhancing the career prospects of job seekers through expertly crafted application documents. He has honed his ability to create résumés that capture the attention of employers and cover letters that effectively convey personal narratives. Steven specialises in optimising LinkedIn profiles and skilfully employs the STAR method when addressing selection criteria to highlight applicants' strengths and achievements with clarity and impact.",
+      expertise: ["Résumé Writing", "Cover Letters", "LinkedIn Optimization", "STAR Method"]
     },
     {
       name: "Jenna Atkinson",
-      title: "Resume Writer & Entry-Level Career Specialist",
-      bio: "Jenna focuses on helping recent graduates and career changers make their first impression count. With a background in recruitment and career counseling, she excels at highlighting transferable skills and creating compelling narratives for professionals at the start of their career journey.",
-      expertise: ["Entry-Level Resumes", "Career Change", "Graduate Applications", "Skills Translation"]
+      title: "Expert Résumé Writer",
+      bio: "Jenna has been a key member of the All Resume Services team for several years, bringing a wealth of experience and a keen eye for detail to her role as a professional résumé writer. She excels in creating persuasive cover letters and enhancing LinkedIn profiles. Jenna is particularly adept at responding to selection criteria using the CAR (Context, Action, Result) format, showcasing clients' skills and achievements in a clear and impactful way. Her professionalism, creativity, and thorough approach have earned her a reputation as a trusted member of the team.",
+      expertise: ["Résumé Writing", "Cover Letters", "LinkedIn Profiles", "CAR Method"]
     }
   ];
 
