@@ -48,6 +48,45 @@ export default function AboutUs() {
     }
   ];
 
+  const milestones = [
+    {
+      year: "2007",
+      title: "Founded in Australia",
+      description: "All Résumé Services was established with a vision to help Australian job seekers stand out in an increasingly competitive market. Started as a small operation with a focus on personalized, quality service.",
+      side: "left"
+    },
+    {
+      year: "2010",
+      title: "Expanded Service Offerings",
+      description: "Introduced LinkedIn profile optimization and selection criteria writing services to meet evolving client needs. Built a team of specialized writers with expertise across various industries.",
+      side: "right"
+    },
+    {
+      year: "2015",
+      title: "ATS Optimization Pioneer",
+      description: "Became early adopters of ATS (Applicant Tracking System) optimization techniques, ensuring our clients' resumes passed automated screening systems. Achieved 90%+ interview success rate.",
+      side: "left"
+    },
+    {
+      year: "2018",
+      title: "1,000+ Success Stories",
+      description: "Celebrated helping over 1,000 Australians secure their dream jobs. Expanded our team to include senior career consultants and industry-specific resume writers.",
+      side: "right"
+    },
+    {
+      year: "2020",
+      title: "Digital Transformation",
+      description: "Launched fully digital service delivery with enhanced online consultation capabilities. Supported thousands of Australians navigating career transitions during challenging times.",
+      side: "left"
+    },
+    {
+      year: "Today",
+      title: "Industry Leaders",
+      description: "With 17+ years of experience, a 96% interview success rate, and thousands of satisfied clients, we continue to innovate and adapt to the changing job market. Our commitment to excellence remains unwavering.",
+      side: "right"
+    }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -153,8 +192,66 @@ export default function AboutUs() {
           </div>
         </section>
 
-        {/* Meet Our Team */}
+        {/* Company History & Milestones */}
         <section className="py-16 bg-white">
+          <div className="container max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">Our Journey</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                From humble beginnings to becoming one of Australia's most trusted resume writing 
+                services, our journey has been driven by a passion for helping people achieve their career goals.
+              </p>
+            </div>
+            
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-[#d4af37]" />
+              
+              <div className="space-y-12">
+                {milestones.map((milestone, index) => (
+                  <div key={index} className="relative flex flex-col md:flex-row items-center gap-8">
+                    {milestone.side === "left" ? (
+                      <>
+                        <div className="md:w-1/2 md:text-right">
+                          <Card className="inline-block">
+                            <CardContent className="p-6">
+                              <div className="text-3xl font-bold text-[#d4af37] mb-2">{milestone.year}</div>
+                              <h3 className="text-xl font-bold mb-2 text-[#1e3a5f]">{milestone.title}</h3>
+                              <p className="text-gray-600">{milestone.description}</p>
+                            </CardContent>
+                          </Card>
+                        </div>
+                        <div className="hidden md:flex w-12 h-12 rounded-full bg-[#d4af37] items-center justify-center z-10 flex-shrink-0">
+                          <div className="w-6 h-6 rounded-full bg-white" />
+                        </div>
+                        <div className="md:w-1/2" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="md:w-1/2" />
+                        <div className="hidden md:flex w-12 h-12 rounded-full bg-[#d4af37] items-center justify-center z-10 flex-shrink-0">
+                          <div className="w-6 h-6 rounded-full bg-white" />
+                        </div>
+                        <div className="md:w-1/2">
+                          <Card className="inline-block">
+                            <CardContent className="p-6">
+                              <div className="text-3xl font-bold text-[#d4af37] mb-2">{milestone.year}</div>
+                              <h3 className="text-xl font-bold mb-2 text-[#1e3a5f]">{milestone.title}</h3>
+                              <p className="text-gray-600">{milestone.description}</p>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Meet Our Team */}
+        <section className="py-16 bg-gray-50">
           <div className="container max-w-6xl">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 mb-4">
@@ -204,7 +301,7 @@ export default function AboutUs() {
         </section>
 
         {/* Our Approach */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-white">
           <div className="container max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">Our Approach</h2>
