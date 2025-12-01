@@ -46,11 +46,11 @@ function Router() {
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogPost} />
       <Route path="/faq" component={FAQ} />
-        <Route path="/about" component={AboutUs} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/services" component={Services} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/checkout" component={Checkout} />
+      <Route path="/about" component={AboutUs} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/services" component={Services} />
+      <Route path="/cart" component={Cart} />
+      <Route path="/checkout" component={Checkout} />
       <Route path={"/admin"} component={AdminDashboard} />
       <Route path={"/admin/blog"} component={AdminBlog} />
       <Route path={"/admin/blog/new"} component={BlogEditor} />

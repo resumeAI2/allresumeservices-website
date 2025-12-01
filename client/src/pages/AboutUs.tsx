@@ -3,8 +3,20 @@ import Footer from '../components/Footer';
 import { Card, CardContent } from '../components/ui/card';
 import { CheckCircle, Award, Users, Target, Heart, TrendingUp } from 'lucide-react';
 import TestimonialsCarousel from '../components/TestimonialsCarousel';
+import { trpc } from '../lib/trpc';
 
 export default function AboutUs() {
+  // Fetch testimonials from database
+  const { data: dbTestimonials, isLoading } = trpc.services.getFeaturedTestimonials.useQuery();
+  
+  // Transform database testimonials to match carousel format
+  const testimonials = dbTestimonials?.map(t => ({
+    name: t.clientName,
+    role: t.clientTitle || '',
+    company: '',
+    text: t.testimonialText,
+    rating: t.rating
+  })) || [];
   const teamMembers = [
     {
       name: "Sonia Lynch",
@@ -88,41 +100,7 @@ export default function AboutUs() {
     }
   ];
 
-  const testimonials = [
-    {
-      name: "Sarah Mitchell",
-      role: "Marketing Manager",
-      company: "Tech Solutions Australia",
-      text: "The team at All Résumé Services transformed my career! Their expertly crafted resume helped me land my dream role within just 3 weeks. The attention to detail and understanding of what employers look for was outstanding.",
-      rating: 5
-    },
-    {
-      name: "David Chen",
-      role: "Senior Project Manager",
-      text: "After struggling to get interviews for months, I decided to invest in professional resume writing. Best decision ever! I received 5 interview calls in the first week and secured a senior position with a 30% salary increase.",
-      rating: 5
-    },
-    {
-      name: "Emma Thompson",
-      role: "Graduate Engineer",
-      company: "Infrastructure NSW",
-      text: "As a recent graduate, I was overwhelmed by the job market. The team helped me highlight my skills and achievements in a way that stood out to employers. I'm now working at my dream company thanks to their expertise!",
-      rating: 5
-    },
-    {
-      name: "Michael Roberts",
-      role: "Finance Director",
-      text: "The LinkedIn profile optimization service was exceptional. Within days of updating my profile, I was approached by several recruiters. The selection criteria responses they wrote were instrumental in securing my government role.",
-      rating: 5
-    },
-    {
-      name: "Lisa Anderson",
-      role: "HR Specialist",
-      company: "Corporate Services Group",
-      text: "Professional, responsive, and results-driven. The team took the time to understand my career goals and created documents that truly represented my value. I couldn't be happier with the outcome!",
-      rating: 5
-    }
-  ];
+
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -393,6 +371,41 @@ export default function AboutUs() {
               </p>
             </div>
             <TestimonialsCarousel testimonials={testimonials} />
+            
+            {/* Google Reviews Badge */}
+            <div className="mt-12 text-center">
+              <div className="inline-flex flex-col items-center gap-4 p-6 bg-white rounded-lg shadow-md border border-gray-200">
+                <div className="flex items-center gap-3">
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                  </svg>
+                  <div className="text-left">
+                    <div className="font-semibold text-gray-900">Google Reviews</div>
+                    <div className="flex items-center gap-1">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                          </svg>
+                        ))}
+                      </div>
+                      <span className="text-sm text-gray-600 ml-1">5.0</span>
+                    </div>
+                  </div>
+                </div>
+                <a 
+                  href="https://www.google.com/search?q=all+resume+services+australia" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                >
+                  Read our Google Reviews →
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 

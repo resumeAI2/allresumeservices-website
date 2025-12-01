@@ -178,6 +178,48 @@ export const appRouter = router({
         await servicesService.mergeGuestCartWithUserCart(input.userId, input.sessionId);
         return { success: true };
       }),
+    getFeaturedTestimonials: publicProcedure
+      .query(async () => {
+        return await servicesService.getFeaturedTestimonials();
+      }),
+    getAllTestimonials: publicProcedure
+      .query(async () => {
+        return await servicesService.getAllTestimonials();
+      }),
+    addTestimonial: publicProcedure
+      .input(z.object({
+        clientName: z.string(),
+        clientTitle: z.string().optional(),
+        rating: z.number().min(1).max(5),
+        testimonialText: z.string(),
+        serviceUsed: z.string().optional(),
+        featured: z.number().optional(),
+        approved: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        return await servicesService.addTestimonial(input);
+      }),
+    updateTestimonial: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        data: z.object({
+          clientName: z.string().optional(),
+          clientTitle: z.string().optional(),
+          rating: z.number().min(1).max(5).optional(),
+          testimonialText: z.string().optional(),
+          serviceUsed: z.string().optional(),
+          featured: z.number().optional(),
+          approved: z.number().optional(),
+        }),
+      }))
+      .mutation(async ({ input }) => {
+        return await servicesService.updateTestimonial(input.id, input.data);
+      }),
+    deleteTestimonial: publicProcedure
+      .input(z.number())
+      .mutation(async ({ input }) => {
+        return await servicesService.deleteTestimonial(input);
+      }),
   }),
 
   contact: router({
