@@ -440,3 +440,21 @@
 - [x] Create order confirmation page (updated PaymentSuccess to clear cart)
 - [ ] Add order management to admin dashboard
 - [x] Test complete purchase flow
+
+## Save Cart for Later Feature
+- [ ] Update cart_items schema to add userId field
+- [ ] Add migration for userId field in cart_items
+- [ ] Update cart service to associate cart with user on login
+- [ ] Add merge cart functionality (guest cart + saved cart)
+- [ ] Update CartContext to handle user authentication state
+- [ ] Add "Save Cart" notification for logged-in users
+- [ ] Test cart persistence across login/logout
+
+## Save Cart for Later Feature
+- [x] Update cart_items schema to add userId field
+- [x] Add migration for userId field in cart_items
+- [x] Update cart service to associate cart with user on login
+- [x] Add merge cart functionality (guest cart + saved cart)
+- [x] Update CartContext to handle user authentication state
+- [x] Add "Save Cart" notification for logged-in users
+- [x] Test cart persistence across login/logout

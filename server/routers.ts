@@ -169,6 +169,15 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await servicesService.getCartItemCount(input.userId, input.sessionId);
       }),
+    mergeGuestCart: publicProcedure
+      .input(z.object({
+        userId: z.number(),
+        sessionId: z.string(),
+      }))
+      .mutation(async ({ input }) => {
+        await servicesService.mergeGuestCartWithUserCart(input.userId, input.sessionId);
+        return { success: true };
+      }),
   }),
 
   contact: router({

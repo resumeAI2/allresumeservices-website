@@ -4,11 +4,15 @@ import Footer from '../components/Footer';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Separator } from '../components/ui/separator';
-import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
+import { Minus, Plus, Trash2, ShoppingBag, Save, LogIn } from 'lucide-react';
 import { Link } from 'wouter';
+import { useAuth } from '../_core/hooks/useAuth';
+import { getLoginUrl } from '../const';
+import { Alert, AlertDescription } from '../components/ui/alert';
 
 export default function Cart() {
   const { cartItems, cartCount, isLoading, updateQuantity, removeItem, getTotal } = useCart();
+  const { user, isAuthenticated } = useAuth();
 
   const subtotal = getTotal();
   
@@ -62,6 +66,35 @@ export default function Cart() {
       <main className="flex-1 py-12">
         <div className="container max-w-6xl">
           <h1 className="text-4xl font-bold mb-8">Shopping Cart</h1>
+          
+          {/* Save for Later Banner */}
+          {!isAuthenticated && cartCount > 0 && (
+            <Alert className="mb-6 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
+              <Save className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <AlertDescription className="text-blue-800 dark:text-blue-200">
+                <div className="flex items-center justify-between">
+                  <span>
+                    <strong>Save your cart for later!</strong> Sign in to save your cart and access it from any device.
+                  </span>
+                  <a href={getLoginUrl()}>
+                    <Button variant="outline" size="sm" className="ml-4">
+                      <LogIn className="h-4 w-4 mr-2" />
+                      Sign In
+                    </Button>
+                  </a>
+                </div>
+              </AlertDescription>
+            </Alert>
+          )}
+          
+          {isAuthenticated && cartCount > 0 && (
+            <Alert className="mb-6 bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800">
+              <Save className="h-4 w-4 text-green-600 dark:text-green-400" />
+              <AlertDescription className="text-green-800 dark:text-green-200">
+                <strong>Your cart is automatically saved!</strong> You can access it anytime from any device.
+              </AlertDescription>
+            </Alert>
+          )}
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Cart Items */}

@@ -66,7 +66,11 @@ export async function addToCart(data: InsertCartItem): Promise<CartItem> {
   } else {
     // Insert new item
     const result = await db!.insert(cart_items).values(data) as any;
-    const inserted = await db!.select().from(cart_items).where(eq(cart_items.id, Number(result.insertId))).limit(1);
+    const insertId = result.insertId || result[0]?.insertId;
+    if (!insertId) {
+      throw new Error('Failed to get insert ID');
+    }
+    const inserted = await db!.select().from(cart_items).where(eq(cart_items.id, Number(insertId))).limit(1);
     return inserted[0];
   }
 }
@@ -143,5 +147,64 @@ export async function getCartItemCount(userId?: number, sessionId?: string): Pro
     .from(cart_items)
     .where(whereClause);
   
-  return result[0]?.count || 0;
+  return Number(result[0]?.count) || 0;
+}
+
+/**
+ * Merge guest cart with user cart on login
+ * This function transfers items from a session-based cart to a user-based cart
+ */
+export async function mergeGuestCartWithUserCart(userId: number, sessionId: string): Promise<void> {
+  const db = await getDb();
+  
+  // Get guest cart items
+  const guestItems = await db!.select().from(cart_items)
+    .where(eq(cart_items.sessionId, sessionId));
+  
+  if (guestItems.length === 0) {
+    return; // No guest items to merge
+  }
+  
+  // Get existing user cart items
+  const userItems = await db!.select().from(cart_items)
+    .where(eq(cart_items.userId, userId));
+  
+  // Merge items
+  for (const guestItem of guestItems) {
+    // Check if user already has this service in cart
+    const existingUserItem = userItems.find(item => item.serviceId === guestItem.serviceId);
+    
+    if (existingUserItem) {
+      // Update quantity - add guest quantity to user quantity
+      await db!.update(cart_items)
+        .set({ 
+          quantity: existingUserItem.quantity + guestItem.quantity,
+          updatedAt: new Date()
+        })
+        .where(eq(cart_items.id, existingUserItem.id));
+    } else {
+      // Transfer guest item to user cart
+      await db!.update(cart_items)
+        .set({ 
+          userId,
+          sessionId: null,
+          updatedAt: new Date()
+        })
+        .where(eq(cart_items.id, guestItem.id));
+    }
+  }
+  
+  // Clean up any remaining guest items (those that were merged into existing user items)
+  await db!.delete(cart_items)
+    .where(and(
+      eq(cart_items.sessionId, sessionId),
+      sql`${cart_items.userId} IS NULL`
+    ));
+}
+
+/**
+ * Save current session cart to user account
+ */
+export async function saveCartToUser(userId: number, sessionId: string): Promise<void> {
+  await mergeGuestCartWithUserCart(userId, sessionId);
 }

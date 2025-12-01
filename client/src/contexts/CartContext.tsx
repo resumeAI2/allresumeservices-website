@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { trpc } from '../lib/trpc';
+import { useAuth } from '../_core/hooks/useAuth';
 
 interface CartItem {
   id: number;
@@ -34,6 +35,8 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [sessionId, setSessionId] = useState<string>('');
+  const [cartMerged, setCartMerged] = useState<boolean>(false);
+  const { user, isAuthenticated } = useAuth();
   
   // Generate or retrieve session ID for guest users
   useEffect(() => {
@@ -45,14 +48,51 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setSessionId(sid);
   }, []);
 
+  // Merge guest cart with user cart when user logs in
+  const mergeCartMutation = trpc.services.mergeGuestCart.useMutation();
+
+  useEffect(() => {
+    const mergeCart = async () => {
+      if (isAuthenticated && user && sessionId && !cartMerged) {
+        try {
+          await mergeCartMutation.mutateAsync({
+            userId: user.id,
+            sessionId,
+          });
+          setCartMerged(true);
+          // Refresh cart after merge
+          await refetch();
+          await refetchCount();
+        } catch (error) {
+          console.error('Failed to merge cart:', error);
+        }
+      }
+    };
+
+    mergeCart();
+  }, [isAuthenticated, user, sessionId, cartMerged]);
+
+  // Reset cart merge flag when user logs out
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setCartMerged(false);
+    }
+  }, [isAuthenticated]);
+
   const { data: cartItems = [], refetch, isLoading } = trpc.services.getCartItems.useQuery(
-    { sessionId },
-    { enabled: !!sessionId }
+    { 
+      userId: isAuthenticated && user ? user.id : undefined,
+      sessionId: !isAuthenticated ? sessionId : undefined,
+    },
+    { enabled: !!sessionId || (!!isAuthenticated && !!user) }
   );
 
   const { data: cartCount = 0, refetch: refetchCount } = trpc.services.getCartItemCount.useQuery(
-    { sessionId },
-    { enabled: !!sessionId }
+    { 
+      userId: isAuthenticated && user ? user.id : undefined,
+      sessionId: !isAuthenticated ? sessionId : undefined,
+    },
+    { enabled: !!sessionId || (!!isAuthenticated && !!user) }
   );
 
   const addToCartMutation = trpc.services.addToCart.useMutation({
@@ -80,7 +120,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     await addToCartMutation.mutateAsync({
       serviceId,
       quantity,
-      sessionId,
+      userId: isAuthenticated && user ? user.id : undefined,
+      sessionId: !isAuthenticated ? sessionId : undefined,
     });
   };
 
