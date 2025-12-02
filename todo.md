@@ -534,3 +534,13 @@
 - [x] Update testimonials carousel to display client photos with fallback to initials
 - [x] Update testimonials page cards to display client photos with fallback to initials
 - [x] Test photo display functionality (shows initials when no photo, displays photo when uploaded)
+
+## Fix Blog Load More Button
+- [ ] Investigate Load More button issue on Career Advice Blog page
+- [ ] Fix Load More button functionality
+- [ ] Test Load More button with different blog post counts
+
+## Fix Blog Load More Button
+- [x] Investigate Load More button issue on Career Advice Blog page
+- [x] Fix Load More button functionality (added pagination state and onClick handler)
+- [x] Test Load More button with different blog post counts (shows 6 initially, loads 6 more on click)
