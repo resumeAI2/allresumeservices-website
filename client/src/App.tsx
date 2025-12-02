@@ -31,6 +31,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import AboutUs from './pages/AboutUs';
 import Testimonials from './pages/Testimonials';
+import SeoSetup from './pages/SeoSetup';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -51,6 +52,7 @@ function Router() {
       <Route path={"/testimonials"} component={Testimonials} />
       <Route path="/contact" component={Contact} />
       <Route path="/services" component={Services} />
+      <Route path="/seo-setup" component={SeoSetup} />
       <Route path="/cart" component={Cart} />
       <Route path="/checkout" component={Checkout} />
       <Route path={"/admin"} component={AdminDashboard} />

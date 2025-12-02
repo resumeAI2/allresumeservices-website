@@ -35,6 +35,12 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
+  
+  // SEO routes - sitemap and robots.txt
+  const sitemapRoute = await import('../routes/sitemap.xml.js');
+  const robotsRoute = await import('../routes/robots.txt.js');
+  app.get('/sitemap.xml', sitemapRoute.GET);
+  app.get('/robots.txt', robotsRoute.GET);
   // tRPC API
   app.use(
     "/api/trpc",

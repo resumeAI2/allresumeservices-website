@@ -558,3 +558,36 @@
 - [x] Compare and identify missing blog posts (11 missing from pages 1-2)
 - [x] Add missing blog posts to database (20 total posts now)
 - [x] Test blog page display
+
+## Import Remaining Blog Posts from Website Pages 3-8
+- [x] Scrape blog posts from page 3 of allresumeservices.com.au/blogs
+- [x] Scrape blog posts from page 4 of allresumeservices.com.au/blogs
+- [x] Scrape blog posts from page 5 of allresumeservices.com.au/blogs
+- [x] Scrape blog posts from page 6 of allresumeservices.com.au/blogs
+- [x] Scrape blog posts from page 7 of allresumeservices.com.au/blogs
+- [x] Scrape blog posts from page 8 of allresumeservices.com.au/blogs
+- [x] Import all scraped blog posts to database (49 new posts imported)
+- [x] Verify all imported posts display correctly on blog page
+
+## Enhance Newly Added Blog Posts with Full Content
+- [ ] Extract full content for "Stand out in the Crowd" blog post
+- [ ] Extract full content for "Turn Your Dead-on-Arrival Resume" blog post
+- [ ] Extract full content for "LinkedIn and Online Brand" blog post
+- [ ] Extract full content for "Why do you need CV services" blog post
+- [ ] Extract full content for "Home Truths About Job Hunting" blog post
+- [ ] Extract full content for "Using Cheap Resume Writing Services" blog post
+- [ ] Extract full content for "Writing a Professional Selection Criteria Response" blog post
+- [ ] Extract full content for "Gifting Resumes in Australia" blog post
+- [ ] Extract full content for "Resume Writing 101" blog post
+- [ ] Extract full content for "Scannable Resume importance" blog post
+- [ ] Extract full content for "All Resume Services overview" blog post
+- [ ] Update all 11 blog posts in database with full content
+
+## Google Search Console Integration
+- [x] Create XML sitemap generator for blog posts and pages
+- [x] Add sitemap route to serve XML sitemap
+- [x] Add robots.txt file with sitemap reference
+- [x] Create Google Search Console setup instructions page
+- [x] Add sitemap submission guide for user
+- [ ] Add Google Analytics integration (optional)
+- [x] Test sitemap generation and accessibility

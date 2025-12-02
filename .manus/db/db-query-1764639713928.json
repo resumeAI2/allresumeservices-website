@@ -1,0 +1,130 @@
+{
+  "query": "SELECT id, title, slug, content FROM blog_posts WHERE content LIKE '%This is a placeholder%' LIMIT 20",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug, content FROM blog_posts WHERE content LIKE '%This is a placeholder%' LIMIT 20",
+  "rows": [
+    {
+      "id": "60001",
+      "title": "Home Truths About Job Hunting",
+      "slug": "home-truths-about-job-hunting",
+      "content": "<p>Introduction: Navigating the Australian Job Market In the land of opportunity, job hunting can be an adventure as challenging as...</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60003",
+      "title": "The Role of ATS in the Australian Job Market",
+      "slug": "role-of-ats-australian-job-market",
+      "content": "<p>In Australia, the use of ATS has become a standard practice across various industries, from bustling Sydney corporations to niche</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60004",
+      "title": "Overlooked to Overhire: The Power of a Professionally Written Resume",
+      "slug": "overlooked-to-overhire-power-professionally-written-resume",
+      "content": "<p>Unlocking Opportunities with a Scannable Resume In the highly competitive Australian job market, the difference between securing an interview or</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60005",
+      "title": "Crafting the Perfect Job Application Letter: An Australian Perspective by All Resume Services",
+      "slug": "crafting-perfect-job-application-letter-australian-perspective",
+      "content": "<p>Your First Impression Counts The job application letter is a crucial component of your job-seeking journey in the Australian market.</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60006",
+      "title": "Are You Looking to Improve Your Resume and Increase Your Chances of Getting Hired in Australia?",
+      "slug": "improve-resume-increase-chances-getting-hired-australia",
+      "content": "<p>Crafting Your Competitive Edge In the bustling Australian job market, standing out is about presenting a resume that's not just</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60007",
+      "title": "10 Pointers for Writing an Outstanding Resume",
+      "slug": "10-pointers-writing-outstanding-resume",
+      "content": "<p>In many cases, your Résumé is your first opportunity to make a good impression on a potential employer. Your dream</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60008",
+      "title": "From Résumé to Job Offer: How Professional Services Can Help You Land Your Dream Job in Australia In 2023",
+      "slug": "resume-to-job-offer-professional-services-australia-2023",
+      "content": "<p>In today's job market, competition is fierce and the job search process can be overwhelming. A well-written Résumé is essential</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60009",
+      "title": "Overlooked to Overhire: The Power of a Professionally-Written Résumé",
+      "slug": "overlooked-to-overhire-power-professionally-written-resume-2",
+      "content": "<p>Are you tired of sending out countless Résumés and never hearing back? Are you feeling overlooked by potential employers despite</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60010",
+      "title": "Gift a Résumé Writing Service for Your Loved Ones",
+      "slug": "gift-resume-writing-service-loved-ones",
+      "content": "<p>Giving a Résumé writing service as a gift can be a thoughtful and practical present for a loved one who</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60011",
+      "title": "How to write your First Résumé",
+      "slug": "how-to-write-your-first-resume",
+      "content": "<p>Writing your first Résumé can be a daunting task, but it's an important step in your job search. A Résumé</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60012",
+      "title": "Job Search in Australia in 2022",
+      "slug": "job-search-australia-2022",
+      "content": "<p>Job search in Australia can be a challenging process, especially for those who are new to the country or are</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60013",
+      "title": "How to Create a Professional Mining Resume",
+      "slug": "how-to-create-professional-mining-resume",
+      "content": "<p>Are you looking to make a career in mining? A well-written mining resume can help you stand out from the</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60014",
+      "title": "Are you looking to improve your resume and increase your chances of getting hired in Australia",
+      "slug": "improve-resume-increase-chances-hired-australia",
+      "content": "<p>Are you looking to improve your resume and increase your chances of getting hired in Australia? Look no further! Our</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60015",
+      "title": "Are Resume Writing Services Worth It?",
+      "slug": "are-resume-writing-services-worth-it",
+      "content": "<p>Introduction: Navigating the Job Search Maze The job search process can be a maze of uncertainty. You're not alone if</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60016",
+      "title": "Approach to a Winning Selection Criteria Response",
+      "slug": "approach-winning-selection-criteria-response",
+      "content": "<p>Unlocking the Secrets of Selection Criteria Navigating the job market can be as challenging as traversing the Australian bush –</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60017",
+      "title": "5 Things to Consider When Selecting a Résumé Writer",
+      "slug": "5-things-consider-selecting-resume-writer",
+      "content": "<p>Selecting the right résumé writer is crucial for crafting a document that not only showcases your skills and experiences but</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60018",
+      "title": "Winning Tips for Writing a Powerful Resume",
+      "slug": "winning-tips-writing-powerful-resume",
+      "content": "<p>Crafting a Resume That Commands Attention The journey towards a dream job begins with the first step—presenting a resume that</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60019",
+      "title": "How to Write a Desirable Selection Criteria?",
+      "slug": "how-to-write-desirable-selection-criteria",
+      "content": "<p>When it comes to writing Desirable criteria, you want to make sure that you are creating something that is both</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60020",
+      "title": "Create a Selection Criteria response that will make employers want to Interview You!!",
+      "slug": "create-selection-criteria-response-employers-want-interview",
+      "content": "<p>When employers ask for a Selection Criteria response, they are looking for more than just a list of your qualifications.</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    },
+    {
+      "id": "60021",
+      "title": "What are the 5 benefits of having a Strong LinkedIn profile?",
+      "slug": "5-benefits-strong-linkedin-profile",
+      "content": "<p>Most people know that LinkedIn is a powerful platform for networking and building relationships with other professionals. However, what some</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\tcontent\n60001\tHome Truths About Job Hunting\thome-truths-about-job-hunting\t<p>Introduction: Navigating the Australian Job Market In the land of opportunity, job hunting can be an adventure as challenging as...</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60003\tThe Role of ATS in the Australian Job Market\trole-of-ats-australian-job-market\t<p>In Australia, the use of ATS has become a standard practice across various industries, from bustling Sydney corporations to niche</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60004\tOverlooked to Overhire: The Power of a Professionally Written Resume\toverlooked-to-overhire-power-professionally-written-resume\t<p>Unlocking Opportunities with a Scannable Resume In the highly competitive Australian job market, the difference between securing an interview or</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60005\tCrafting the Perfect Job Application Letter: An Australian Perspective by All Resume Services\tcrafting-perfect-job-application-letter-australian-perspective\t<p>Your First Impression Counts The job application letter is a crucial component of your job-seeking journey in the Australian market.</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60006\tAre You Looking to Improve Your Resume and Increase Your Chances of Getting Hired in Australia?\timprove-resume-increase-chances-getting-hired-australia\t<p>Crafting Your Competitive Edge In the bustling Australian job market, standing out is about presenting a resume that's not just</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60007\t10 Pointers for Writing an Outstanding Resume\t10-pointers-writing-outstanding-resume\t<p>In many cases, your Résumé is your first opportunity to make a good impression on a potential employer. Your dream</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60008\tFrom Résumé to Job Offer: How Professional Services Can Help You Land Your Dream Job in Australia In 2023\tresume-to-job-offer-professional-services-australia-2023\t<p>In today's job market, competition is fierce and the job search process can be overwhelming. A well-written Résumé is essential</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60009\tOverlooked to Overhire: The Power of a Professionally-Written Résumé\toverlooked-to-overhire-power-professionally-written-resume-2\t<p>Are you tired of sending out countless Résumés and never hearing back? Are you feeling overlooked by potential employers despite</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60010\tGift a Résumé Writing Service for Your Loved Ones\tgift-resume-writing-service-loved-ones\t<p>Giving a Résumé writing service as a gift can be a thoughtful and practical present for a loved one who</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60011\tHow to write your First Résumé\thow-to-write-your-first-resume\t<p>Writing your first Résumé can be a daunting task, but it's an important step in your job search. A Résumé</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60012\tJob Search in Australia in 2022\tjob-search-australia-2022\t<p>Job search in Australia can be a challenging process, especially for those who are new to the country or are</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60013\tHow to Create a Professional Mining Resume\thow-to-create-professional-mining-resume\t<p>Are you looking to make a career in mining? A well-written mining resume can help you stand out from the</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60014\tAre you looking to improve your resume and increase your chances of getting hired in Australia\timprove-resume-increase-chances-hired-australia\t<p>Are you looking to improve your resume and increase your chances of getting hired in Australia? Look no further! Our</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60015\tAre Resume Writing Services Worth It?\tare-resume-writing-services-worth-it\t<p>Introduction: Navigating the Job Search Maze The job search process can be a maze of uncertainty. You're not alone if</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60016\tApproach to a Winning Selection Criteria Response\tapproach-winning-selection-criteria-response\t<p>Unlocking the Secrets of Selection Criteria Navigating the job market can be as challenging as traversing the Australian bush –</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60017\t5 Things to Consider When Selecting a Résumé Writer\t5-things-consider-selecting-resume-writer\t<p>Selecting the right résumé writer is crucial for crafting a document that not only showcases your skills and experiences but</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60018\tWinning Tips for Writing a Powerful Resume\twinning-tips-writing-powerful-resume\t<p>Crafting a Resume That Commands Attention The journey towards a dream job begins with the first step—presenting a resume that</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60019\tHow to Write a Desirable Selection Criteria?\thow-to-write-desirable-selection-criteria\t<p>When it comes to writing Desirable criteria, you want to make sure that you are creating something that is both</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60020\tCreate a Selection Criteria response that will make employers want to Interview You!!\tcreate-selection-criteria-response-employers-want-interview\t<p>When employers ask for a Selection Criteria response, they are looking for more than just a list of your qualifications.</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n60021\tWhat are the 5 benefits of having a Strong LinkedIn profile?\t5-benefits-strong-linkedin-profile\t<p>Most people know that LinkedIn is a powerful platform for networking and building relationships with other professionals. However, what some</p><p>This is a placeholder for the full blog post content. The content will be enhanced with detailed information from the original website.</p>\n",
+  "stderr": "",
+  "execution_time_ms": 2537
+}
