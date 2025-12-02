@@ -118,6 +118,7 @@ export const contact_submissions = mysqlTable("contact_submissions", {
   phone: varchar("phone", { length: 50 }),
   serviceInterest: varchar("serviceInterest", { length: 100 }),
   message: text("message").notNull(),
+  resumeFileUrl: text("resumeFileUrl"),
   status: mysqlEnum("status", ["new", "contacted", "converted", "archived"]).default("new").notNull(),
   notes: text("notes"),
   submittedAt: timestamp("submittedAt").defaultNow().notNull(),

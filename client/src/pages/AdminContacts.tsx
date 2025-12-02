@@ -287,6 +287,19 @@ export default function AdminContacts() {
                     <span className="text-sm text-muted-foreground">{contact.serviceInterest}</span>
                   </div>
                 )}
+                {contact.resumeFileUrl && (
+                  <div className="mb-3">
+                    <a 
+                      href={contact.resumeFileUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                    >
+                      <Download className="h-4 w-4" />
+                      View Uploaded Resume
+                    </a>
+                  </div>
+                )}
                 <div className="mb-4">
                   <p className="text-sm font-medium mb-1">Message:</p>
                   <p className="text-sm text-muted-foreground whitespace-pre-wrap">{contact.message}</p>

@@ -9,6 +9,7 @@ interface ContactSubmissionInput {
   phone?: string;
   serviceInterest?: string;
   message: string;
+  resumeFileUrl?: string;
   honeypot?: string;
   submissionTime?: number;
 }
@@ -40,6 +41,7 @@ export async function createContactSubmission(input: ContactSubmissionInput) {
     phone: input.phone || null,
     serviceInterest: input.serviceInterest || null,
     message: input.message,
+    resumeFileUrl: input.resumeFileUrl || null,
     status: "new",
   });
 

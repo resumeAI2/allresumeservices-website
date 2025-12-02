@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, Upload, FileText } from "lucide-react";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -16,6 +16,7 @@ export default function Contact() {
   const [phone, setPhone] = useState("");
   const [serviceInterest, setServiceInterest] = useState("");
   const [message, setMessage] = useState("");
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [honeypot, setHoneypot] = useState("");
   const [formMountTime] = useState(() => Date.now());
 
@@ -28,13 +29,14 @@ export default function Contact() {
       setPhone("");
       setServiceInterest("");
       setMessage("");
+      setResumeFile(null);
     },
     onError: (error) => {
       toast.error(`Failed to submit: ${error.message}`);
     },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Spam protection: check honeypot
@@ -64,12 +66,37 @@ export default function Contact() {
       return;
     }
 
+    // Upload resume file if provided
+    let resumeFileUrl: string | undefined;
+    if (resumeFile) {
+      try {
+        const formData = new FormData();
+        formData.append('file', resumeFile);
+        
+        const uploadResponse = await fetch('/api/upload-image', {
+          method: 'POST',
+          body: formData,
+        });
+        
+        if (!uploadResponse.ok) {
+          throw new Error('Failed to upload resume');
+        }
+        
+        const uploadData = await uploadResponse.json();
+        resumeFileUrl = uploadData.url;
+      } catch (error) {
+        toast.error('Failed to upload resume file. Please try again.');
+        return;
+      }
+    }
+
     submitMutation.mutate({
       name: name.trim(),
       email: email.trim(),
       phone: phone.trim() || undefined,
       serviceInterest: serviceInterest || undefined,
       message: message.trim(),
+      resumeFileUrl: resumeFileUrl,
       honeypot: honeypot,
       submissionTime: formMountTime,
     });
@@ -192,6 +219,57 @@ export default function Contact() {
                       <SelectItem value="other">Other / Not Sure</SelectItem>
                     </SelectContent>
                   </Select>
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="resume">Upload Your Resume (Optional)</Label>
+                <div className="mt-2">
+                  <input
+                    id="resume"
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        // Validate file size (max 5MB)
+                        if (file.size > 5 * 1024 * 1024) {
+                          toast.error("File size must be less than 5MB");
+                          e.target.value = "";
+                          return;
+                        }
+                        // Validate file type
+                        const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                        if (!validTypes.includes(file.type)) {
+                          toast.error("Please upload a PDF, DOC, or DOCX file");
+                          e.target.value = "";
+                          return;
+                        }
+                        setResumeFile(file);
+                      }
+                    }}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor="resume"
+                    className="flex items-center justify-center gap-2 px-4 py-8 border-2 border-dashed border-input rounded-md cursor-pointer hover:border-primary hover:bg-primary/5 transition-colors"
+                  >
+                    {resumeFile ? (
+                      <>
+                        <FileText className="w-5 h-5 text-primary" />
+                        <span className="text-sm font-medium">{resumeFile.name}</span>
+                        <span className="text-xs text-muted-foreground">({(resumeFile.size / 1024).toFixed(0)} KB)</span>
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="w-5 h-5 text-muted-foreground" />
+                        <span className="text-sm text-muted-foreground">Click to upload or drag and drop</span>
+                      </>
+                    )}
+                  </label>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Supported formats: PDF, DOC, DOCX (Max 5MB)
+                  </p>
                 </div>
               </div>
 
