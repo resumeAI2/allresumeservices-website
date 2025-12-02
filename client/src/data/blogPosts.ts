@@ -1047,7 +1047,7 @@ Youtube</p>
     date: "December 12, 2024",
     readTime: "5 min read",
     slug: "why-need-cv-services",
-    image: "/blog/linkedin-optimization.jpg",
+    image: "/blog/linkedin-optimisation.jpg",
     content: `<h1>Why Use CV Services? Improve Your Career Prospects in 2025</h1>
 <p>A CV, or curriculum vitae, is one of the most important documents you will ever create. It is a record of your academic and professional achievements that is used to apply for jobs, scholarships, and internships. While you may have a general idea of what a CV should include, it can be difficult to know how to format it and what information to include. That’s where CV services come in. CV services can help you create a well-written, well-designed CV that will make you stand out from the competition. Here are just a few reasons why you should consider using a CV service:</p>
 <h2>What is a CV?</h2>
@@ -1058,7 +1058,7 @@ Youtube</p>
 <p>Most CV writing companies offer a range of services to help you improve your CV and increase your chances of landing a job. These services can include:</p>
 <p>1. Reviewing your existing CV and providing feedback
 2. Editing and rewriting your CV to make it more engaging and effective
-3. Creating a customized CV specifically for the job you’re applying for
+3. Creating a customised CV specifically for the job you’re applying for
 4. Providing advice on how to best present yourself in a job interview
 5. Helping you identify your key strengths and highlight them in your CV
 6. Brainstorming with you to come up with innovative ways to market yourself

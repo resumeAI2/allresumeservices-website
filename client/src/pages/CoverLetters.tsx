@@ -28,7 +28,7 @@ export default function CoverLetters() {
     {
       icon: TrendingUp,
       title: "Value Demonstration",
-      description: "We clearly articulate how you'll contribute to the organization's success from day one."
+      description: "We clearly articulate how you'll contribute to the organisation's success from day one."
     },
     {
       icon: Mail,

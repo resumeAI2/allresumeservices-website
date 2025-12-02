@@ -72,13 +72,13 @@ export default function AboutUs() {
     {
       year: "2010",
       title: "Expanded Service Offerings",
-      description: "Introduced LinkedIn profile optimization and selection criteria writing services to meet evolving client needs. Built a team of specialized writers with expertise across various industries.",
+      description: "Introduced LinkedIn profile optimisation and selection criteria writing services to meet evolving client needs. Built a team of specialised writers with expertise across various industries.",
       side: "right"
     },
     {
       year: "2015",
       title: "ATS Optimization Pioneer",
-      description: "Became early adopters of ATS (Applicant Tracking System) optimization techniques, ensuring our clients' resumes passed automated screening systems. Achieved 90%+ interview success rate.",
+      description: "Became early adopters of ATS (Applicant Tracking System) optimisation techniques, ensuring our clients' resumes passed automated screening systems. Achieved 90%+ interview success rate.",
       side: "left"
     },
     {
@@ -136,7 +136,7 @@ export default function AboutUs() {
                   value and opens doors to new opportunities.
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  We're committed to delivering high-quality, ATS-optimized documents that not only 
+                  We're committed to delivering high-quality, ATS-optimised documents that not only 
                   pass automated screening systems but also resonate with human recruiters and hiring managers.
                 </p>
               </div>
@@ -164,7 +164,7 @@ export default function AboutUs() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-6 w-6 text-[#d4af37] flex-shrink-0 mt-1" />
                     <span className="text-gray-700">
-                      <strong>ATS-optimized documents</strong> that pass automated screening systems
+                      <strong>ATS-optimised documents</strong> that pass automated screening systems
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
@@ -352,7 +352,7 @@ export default function AboutUs() {
                   <div className="text-4xl font-bold text-[#d4af37] mb-3">03</div>
                   <h3 className="text-xl font-bold mb-3 text-[#1e3a5f]">Optimization & Polish</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    We ensure your documents are ATS-compliant, keyword-optimized, and formatted 
+                    We ensure your documents are ATS-compliant, keyword-optimised, and formatted 
                     to professional standards that impress both systems and humans.
                   </p>
                 </CardContent>

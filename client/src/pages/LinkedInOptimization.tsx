@@ -6,7 +6,7 @@ import { CheckCircle2, Linkedin, Users, Search, TrendingUp } from "lucide-react"
 export default function LinkedInOptimization() {
   const benefits = [
     "Compelling headline that captures attention",
-    "Keyword-optimized summary and experience sections",
+    "Keyword-optimised summary and experience sections",
     "Achievement-focused content that demonstrates value",
     "Professional tone appropriate for your industry",
     "Strategic use of LinkedIn's features and sections",
@@ -23,7 +23,7 @@ export default function LinkedInOptimization() {
     {
       icon: Users,
       title: "Network Building",
-      description: "An optimized profile attracts connections, opportunities, and engagement from your professional network."
+      description: "An optimised profile attracts connections, opportunities, and engagement from your professional network."
     },
     {
       icon: TrendingUp,
@@ -33,7 +33,7 @@ export default function LinkedInOptimization() {
     {
       icon: Linkedin,
       title: "Complete Profile",
-      description: "We optimize every section of your LinkedIn profile to maximize visibility and credibility."
+      description: "We optimise every section of your LinkedIn profile to maximize visibility and credibility."
     }
   ];
 
@@ -81,10 +81,10 @@ export default function LinkedInOptimization() {
             </h2>
             <div className="prose prose-lg max-w-none mb-12">
               <p className="text-muted-foreground leading-relaxed">
-                LinkedIn isn't just a digital resume—it's your professional storefront, networking hub, and personal brand all in one. With over 900 million users and recruiters actively searching for candidates daily, an optimized LinkedIn profile can dramatically increase your visibility and career opportunities.
+                LinkedIn isn't just a digital resume—it's your professional storefront, networking hub, and personal brand all in one. With over 900 million users and recruiters actively searching for candidates daily, an optimised LinkedIn profile can dramatically increase your visibility and career opportunities.
               </p>
               <p className="text-muted-foreground leading-relaxed mt-4">
-                However, most professionals struggle to present themselves effectively on LinkedIn. Generic headlines, keyword-poor summaries, and incomplete profiles mean missed opportunities. Our LinkedIn optimization service ensures your profile stands out, ranks high in recruiter searches, and compellingly communicates your professional value.
+                However, most professionals struggle to present themselves effectively on LinkedIn. Generic headlines, keyword-poor summaries, and incomplete profiles mean missed opportunities. Our LinkedIn optimisation service ensures your profile stands out, ranks high in recruiter searches, and compellingly communicates your professional value.
               </p>
             </div>
 
@@ -159,7 +159,7 @@ export default function LinkedInOptimization() {
                 </div>
                 <div>
                   <div className="text-4xl font-bold text-secondary mb-2">3x</div>
-                  <p className="text-muted-foreground">more profile views with professional optimization</p>
+                  <p className="text-muted-foreground">more profile views with professional optimisation</p>
                 </div>
               </div>
             </div>

@@ -704,3 +704,15 @@
 - [x] Show success message after successful submission
 - [x] Auto-clear form fields after successful submission
 - [x] Test loading animation and success message flow
+
+## Australian Localisation
+- [x] Update all date formats to DD/MM/YYYY or "2nd December 2025" format
+- [x] Find and replace "optimize" with "optimise"
+- [x] Find and replace "organization" with "organisation"
+- [x] Find and replace "color" with "colour" (none found)
+- [x] Find and replace "analyze" with "analyse" (none found)
+- [x] Find and replace "recognize" with "recognise" (none found)
+- [x] Find and replace "customize" with "customise"
+- [x] Review all content for other US English spelling variations (specialise updated)
+- [x] Update date formatting in blog posts, case studies, and admin panels
+- [x] Test date display across all pages

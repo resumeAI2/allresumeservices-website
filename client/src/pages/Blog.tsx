@@ -144,7 +144,7 @@ export default function Blog() {
                     </span>
                     <span className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
-                      {new Date(post.createdAt).toLocaleDateString()}
+                      {new Date(post.createdAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
                     </span>
                   </div>
 

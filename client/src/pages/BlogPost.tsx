@@ -91,7 +91,7 @@ export default function BlogPost() {
                 <div className="flex items-center gap-4 text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
-                    <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+                    <span>{new Date(post.createdAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                   </div>
                   <span>•</span>
                   <span>{post.readTime || '5 min read'}</span>
@@ -179,7 +179,7 @@ export default function BlogPost() {
                         </span>
                         <span className="flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
-                          {new Date(relatedPost.createdAt).toLocaleDateString()}
+                          {new Date(relatedPost.createdAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
                         </span>
                       </div>
 

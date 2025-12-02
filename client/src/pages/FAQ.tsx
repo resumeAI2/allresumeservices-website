@@ -15,7 +15,7 @@ const faqData: FAQItem[] = [
   {
     category: "Services",
     question: "What resume writing services do you offer?",
-    answer: "We offer comprehensive resume writing services including professional resume writing, cover letter writing, LinkedIn profile optimization, selection criteria responses, and career consultation. Each service is tailored to your industry, experience level, and career goals to maximize your chances of landing interviews."
+    answer: "We offer comprehensive resume writing services including professional resume writing, cover letter writing, LinkedIn profile optimisation, selection criteria responses, and career consultation. Each service is tailored to your industry, experience level, and career goals to maximize your chances of landing interviews."
   },
   {
     category: "Services",
@@ -30,7 +30,7 @@ const faqData: FAQItem[] = [
   {
     category: "Pricing",
     question: "How much do your services cost?",
-    answer: "We offer three packages: Basic Package at $125 (professional resume writing), Standard Package at $185 (resume + cover letter + LinkedIn optimization), and Premium Package at $255 (everything in Standard plus selection criteria and career consultation). All packages include unlimited revisions within 7 days."
+    answer: "We offer three packages: Basic Package at $125 (professional resume writing), Standard Package at $185 (resume + cover letter + LinkedIn optimisation), and Premium Package at $255 (everything in Standard plus selection criteria and career consultation). All packages include unlimited revisions within 7 days."
   },
   {
     category: "Pricing",
@@ -70,12 +70,12 @@ const faqData: FAQItem[] = [
   {
     category: "Results",
     question: "Do you guarantee interview results?",
-    answer: "While we cannot guarantee specific interview outcomes (as hiring decisions depend on many factors), we have a 96% interview success rate among our clients. We guarantee that your resume will be professionally written, ATS-optimized, and tailored to your target role. If you're not satisfied with our work, we'll revise it until you are."
+    answer: "While we cannot guarantee specific interview outcomes (as hiring decisions depend on many factors), we have a 96% interview success rate among our clients. We guarantee that your resume will be professionally written, ATS-optimised, and tailored to your target role. If you're not satisfied with our work, we'll revise it until you are."
   },
   {
     category: "Results",
     question: "Are your resumes ATS-friendly?",
-    answer: "Yes, all our resumes are optimized for Applicant Tracking Systems (ATS). We use proper formatting, relevant keywords, and industry-standard section headings to ensure your resume passes ATS screening and reaches human recruiters. We avoid graphics, tables, and formatting that can confuse ATS software."
+    answer: "Yes, all our resumes are optimised for Applicant Tracking Systems (ATS). We use proper formatting, relevant keywords, and industry-standard section headings to ensure your resume passes ATS screening and reaches human recruiters. We avoid graphics, tables, and formatting that can confuse ATS software."
   },
   {
     category: "Results",
@@ -85,7 +85,7 @@ const faqData: FAQItem[] = [
   {
     category: "General",
     question: "Do you work with clients outside Australia?",
-    answer: "Yes, while we're based in Australia and specialize in Australian resume formats, we work with clients worldwide. We're familiar with international resume standards including US, UK, Canadian, and European formats. Let us know your target country during consultation."
+    answer: "Yes, while we're based in Australia and specialise in Australian resume formats, we work with clients worldwide. We're familiar with international resume standards including US, UK, Canadian, and European formats. Let us know your target country during consultation."
   },
   {
     category: "General",

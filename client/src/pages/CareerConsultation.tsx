@@ -126,7 +126,7 @@ export default function CareerConsultation() {
                 </div>
                 <div className="bg-card rounded-lg p-6">
                   <h4 className="font-semibold text-card-foreground mb-2">Job Seekers</h4>
-                  <p className="text-muted-foreground">Struggling with your job search? We'll develop a targeted strategy, optimize your approach, and help you stand out to employers.</p>
+                  <p className="text-muted-foreground">Struggling with your job search? We'll develop a targeted strategy, optimise your approach, and help you stand out to employers.</p>
                 </div>
                 <div className="bg-card rounded-lg p-6">
                   <h4 className="font-semibold text-card-foreground mb-2">Career Advancers</h4>
@@ -160,7 +160,7 @@ export default function CareerConsultation() {
                   </li>
                   <li className="flex gap-2">
                     <CheckCircle2 className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground">Resume and LinkedIn optimization</span>
+                    <span className="text-foreground">Resume and LinkedIn optimisation</span>
                   </li>
                   <li className="flex gap-2">
                     <CheckCircle2 className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />

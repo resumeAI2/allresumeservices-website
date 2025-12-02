@@ -134,7 +134,7 @@ export default function AdminCategories() {
                   required
                 />
                 <p className="text-xs text-muted-foreground mt-1">
-                  Auto-generated from name, but you can customize it
+                  Auto-generated from name, but you can customise it
                 </p>
               </div>
               <div>
