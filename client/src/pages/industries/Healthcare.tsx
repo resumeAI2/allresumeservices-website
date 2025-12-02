@@ -18,7 +18,7 @@ export default function Healthcare() {
         'Specialty certifications and continuing education showcased',
         'Cover letter emphasising compassionate care',
         'LinkedIn profile optimisation',
-        'Unlimited revisions for 7 days'
+        'Professional revisions included'
       ]
     },
     {
@@ -33,7 +33,7 @@ export default function Healthcare() {
         'Research, publications, and presentations featured',
         'Selection criteria responses (for public hospital roles)',
         'LinkedIn executive profile optimisation',
-        'Unlimited revisions for 14 days'
+        'Professional revisions included'
       ],
       popular: true
     }

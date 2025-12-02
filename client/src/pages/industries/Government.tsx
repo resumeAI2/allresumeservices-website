@@ -18,7 +18,7 @@ export default function Government() {
         'Government-specific keywords and terminology',
         'Cover letter for public sector applications',
         'LinkedIn profile optimisation',
-        'Unlimited revisions for 7 days'
+        'Professional revisions included'
       ]
     },
     {
@@ -33,7 +33,7 @@ export default function Government() {
         'Stakeholder management and change leadership showcased',
         'Cover letter for executive applications',
         'LinkedIn executive profile optimisation',
-        'Unlimited revisions for 14 days'
+        'Professional revisions included'
       ],
       popular: true
     }

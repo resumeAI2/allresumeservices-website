@@ -18,7 +18,7 @@ export default function ITTechnology() {
         'GitHub/portfolio links integrated',
         'Cover letter showcasing technical skills',
         'LinkedIn profile optimisation',
-        'Unlimited revisions for 7 days'
+        'Professional revisions included'
       ]
     },
     {
@@ -33,7 +33,7 @@ export default function ITTechnology() {
         'Open source contributions and technical publications featured',
         'Selection criteria responses (for government IT roles)',
         'LinkedIn executive profile optimisation',
-        'Unlimited revisions for 14 days'
+        'Professional revisions included'
       ],
       popular: true
     }
