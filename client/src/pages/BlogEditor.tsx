@@ -24,6 +24,7 @@ export default function BlogEditor() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [excerpt, setExcerpt] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("Resume Tips");
   const [categoryId, setCategoryId] = useState<number | null>(null);
@@ -57,6 +58,7 @@ export default function BlogEditor() {
       setTitle(existingPost.title);
       setSlug(existingPost.slug);
       setExcerpt(existingPost.excerpt);
+      setMetaDescription(existingPost.metaDescription || "");
       setContent(existingPost.content);
       setCategory(existingPost.category);
       setCategoryId(existingPost.categoryId || null);
@@ -178,6 +180,7 @@ export default function BlogEditor() {
       title,
       slug,
       excerpt,
+      metaDescription: metaDescription || undefined,
       content,
       category,
       categoryId: categoryId || undefined,
@@ -441,6 +444,21 @@ export default function BlogEditor() {
                   placeholder="Brief summary of the post (1-2 sentences)"
                   className="mt-2 w-full min-h-[100px] px-3 py-2 border border-input rounded-md"
                 />
+              </div>
+
+              <div>
+                <Label htmlFor="metaDescription">Meta Description (SEO)</Label>
+                <textarea
+                  id="metaDescription"
+                  value={metaDescription}
+                  onChange={(e) => setMetaDescription(e.target.value)}
+                  placeholder="SEO meta description (150-160 characters recommended)"
+                  className="mt-2 w-full min-h-[80px] px-3 py-2 border border-input rounded-md"
+                  maxLength={160}
+                />
+                <p className="text-sm text-muted-foreground mt-1">
+                  {metaDescription.length}/160 characters
+                </p>
               </div>
 
               <div>
