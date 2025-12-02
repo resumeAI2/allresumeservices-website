@@ -544,3 +544,17 @@
 - [x] Investigate Load More button issue on Career Advice Blog page
 - [x] Fix Load More button functionality (added pagination state and onClick handler)
 - [x] Test Load More button with different blog post counts (shows 6 initially, loads 6 more on click)
+
+## Verify and Import All Blog Posts from Website
+- [ ] Check current blog posts count in database
+- [ ] Scrape all blog posts from https://www.allresumeservices.com.au/blogs/
+- [ ] Compare existing posts with website posts
+- [ ] Identify and add missing blog posts to database
+- [ ] Test blog page displays all posts correctly
+
+## Verify and Import All Blog Posts
+- [x] Check current blog posts in database (9 posts initially)
+- [x] Scrape blog posts from actual website (8 pages total found)
+- [x] Compare and identify missing blog posts (11 missing from pages 1-2)
+- [x] Add missing blog posts to database (20 total posts now)
+- [x] Test blog page display
