@@ -439,6 +439,12 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await blogService.getPopularBlogPosts(input.limit);
       }),
+    getSmartRelatedPosts: publicProcedure
+      .input(z.object({ postId: z.number(), limit: z.number().optional().default(3) }))
+      .query(async ({ input }) => {
+        const { getSmartRelatedPosts } = await import("./smartRelatedPosts");
+        return await getSmartRelatedPosts(input.postId, input.limit);
+      }),
     // Categories
     getAllCategories: publicProcedure
       .query(async () => {

@@ -14,7 +14,10 @@ export default function BlogPost() {
   const slug = params.slug;
   
   const { data: post, isLoading } = trpc.blog.getBySlug.useQuery({ slug: slug! });
-  const { data: allPosts } = trpc.blog.getAll.useQuery({ publishedOnly: true });
+  const { data: relatedPosts = [] } = trpc.blog.getSmartRelatedPosts.useQuery(
+    { postId: post?.id || 0, limit: 3 },
+    { enabled: !!post?.id }
+  );
   const incrementViewMutation = trpc.blog.incrementViewCount.useMutation();
 
   // Track page view
@@ -23,13 +26,6 @@ export default function BlogPost() {
       incrementViewMutation.mutate({ slug });
     }
   }, [post?.id]);
-  
-  // Get related posts from the same category
-  const relatedPosts = post && allPosts
-    ? allPosts
-        .filter(p => p.category === post.category && p.id !== post.id)
-        .slice(0, 3)
-    : [];
 
   if (isLoading) {
     return (
