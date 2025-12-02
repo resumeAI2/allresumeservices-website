@@ -68,7 +68,7 @@ export default function BlogPost() {
     <div className="min-h-screen flex flex-col">
       <SEOHead
         title={post.title}
-        description={post.excerpt}
+        description={post.metaDescription || post.excerpt}
         image={post.image || undefined}
         url={currentUrl}
         type="article"
