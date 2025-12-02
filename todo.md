@@ -605,3 +605,31 @@
 - [x] Add "All Categories" option to show all posts (already implemented)
 - [x] Style category filters to match website design (already implemented)
 - [x] Test category filtering with existing blog posts
+
+## Blog Post Scheduling Calendar UI
+- [x] Create BlogSchedule page component with calendar view
+- [x] Add calendar library (react-big-calendar or similar)
+- [x] Fetch scheduled posts and display on calendar
+- [x] Add click handlers to view/edit posts from calendar
+- [x] Add route for /admin/blog/schedule
+- [x] Style calendar to match website design
+- [x] Add filters for published/draft/scheduled posts
+
+## Smart Related Posts Algorithm
+- [x] Create new TRPC procedure for smart related posts
+- [x] Implement algorithm using tags, keywords, and category
+- [x] Add scoring system for relevance (tag matches, keyword similarity)
+- [x] Update BlogPost page to use new smart algorithm
+- [x] Test related posts recommendations
+- [x] Add fallback to category-only matching if no tag matches
+
+## Blog Analytics Dashboard
+- [x] Create BlogAnalytics page component
+- [x] Add analytics schema to track post performance (using existing viewCount)
+- [x] Create TRPC procedures for analytics data
+- [x] Implement top posts by views widget
+- [x] Add popular categories chart
+- [x] Add recent search terms from FAQ analytics
+- [x] Create date range filter for analytics
+- [x] Add route for /admin/blog/analytics
+- [x] Style dashboard with charts and metrics cards

@@ -175,6 +175,8 @@ export async function getPopularBlogPosts(limit: number = 5) {
       slug: blog_posts.slug,
       viewCount: blog_posts.viewCount,
       published: blog_posts.published,
+      category: blog_posts.category,
+      createdAt: blog_posts.createdAt,
     })
     .from(blog_posts)
     .where(eq(blog_posts.published, 1))

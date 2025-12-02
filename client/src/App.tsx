@@ -24,6 +24,8 @@ import Contact from "./pages/Contact";
 import AdminTestimonials from "./pages/AdminTestimonials";
 import AdminCategories from "./pages/AdminCategories";
 import AdminTags from "./pages/AdminTags";
+import BlogSchedule from "./pages/BlogSchedule";
+import BlogAnalytics from "./pages/BlogAnalytics";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminContacts from "./pages/AdminContacts";
 import Services from "./pages/Services";
@@ -59,6 +61,8 @@ function Router() {
       <Route path={"/admin/blog"} component={AdminBlog} />
       <Route path={"/admin/blog/new"} component={BlogEditor} />
       <Route path={"/admin/blog/edit/:id"} component={BlogEditor} />
+      <Route path={"/admin/blog/schedule"} component={BlogSchedule} />
+      <Route path={"/admin/blog/analytics"} component={BlogAnalytics} />
       <Route path={"/admin/media"} component={MediaLibrary} />
       <Route path={"/admin/faq-analytics"} component={FaqAnalytics} />
       <Route path={"/admin/testimonials"} component={AdminTestimonials} />
