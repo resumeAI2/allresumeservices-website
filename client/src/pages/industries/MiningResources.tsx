@@ -18,7 +18,7 @@ export default function MiningResources() {
         'FIFO/DIDO roster experience showcased',
         'Cover letter tailored to mining operations',
         'LinkedIn profile optimisation',
-        'Professional revisions included'
+        'We work with you until you\'re 100% satisfied'
       ]
     },
     {
@@ -33,7 +33,7 @@ export default function MiningResources() {
         'Strategic planning and operational excellence',
         'Selection criteria responses (for government mining)',
         'LinkedIn executive profile optimisation',
-        'Professional revisions included'
+        'We work with you until you\'re 100% satisfied'
       ],
       popular: true
     }
@@ -94,7 +94,7 @@ export default function MiningResources() {
                 <Link href="/contact">Get Your Free Quote</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900">
-                <Link href="/pricing">View Pricing</Link>
+                <Link href="/services">View Services & Pricing</Link>
               </Button>
             </div>
           </div>

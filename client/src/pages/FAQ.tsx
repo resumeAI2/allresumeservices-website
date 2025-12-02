@@ -25,12 +25,12 @@ const faqData: FAQItem[] = [
   {
     category: "Services",
     question: "What makes your resume writing service different?",
-    answer: "Our service stands out with a 96% interview success rate, 17+ years of industry experience, and personalized one-on-one consultations. We don't use templates—every resume is custom-written to highlight your unique strengths and achievements. We provide professional revisions to ensure your complete satisfaction."
+    answer: "Our service stands out with a 96% interview success rate, 17+ years of industry experience, and personalized one-on-one consultations. We don't use templates—every resume is custom-written to highlight your unique strengths and achievements. We work with you until you're 100% satisfied with your documents."
   },
   {
     category: "Pricing",
     question: "How much do your services cost?",
-    answer: "We offer three packages: Basic Package at $125 (professional resume writing), Standard Package at $185 (resume + cover letter + LinkedIn optimisation), and Premium Package at $255 (everything in Standard plus selection criteria and career consultation). All packages include professional revisions."
+    answer: "We offer three packages: Basic Package at $125 (professional resume writing), Standard Package at $185 (resume + cover letter + LinkedIn optimisation), and Premium Package at $255 (everything in Standard plus selection criteria and career consultation). We work with you until you're 100% satisfied."
   },
   {
     category: "Pricing",
@@ -59,8 +59,8 @@ const faqData: FAQItem[] = [
   },
   {
     category: "Process",
-    question: "How many revisions are included?",
-    answer: "We include professional revisions to ensure your resume meets your expectations. We're committed to your satisfaction and will work with you to refine your documents. If errors are our fault, we'll correct them at no charge. Additional substantial revisions beyond the initial scope may incur a small fee."
+    question: "How does the revision process work?",
+    answer: "After we complete your first draft, we email it to you for review. This gives you the opportunity to provide all your feedback and requested changes at once. We then refine your documents based on your input. We work with you until you're 100% satisfied with the final result."
   },
   {
     category: "Process",
@@ -95,7 +95,7 @@ const faqData: FAQItem[] = [
   {
     category: "General",
     question: "What if I'm not satisfied with my resume?",
-    answer: "Your satisfaction is our priority. We work with you to refine your resume based on your feedback. If errors are our fault, we'll correct them at no charge. If you're not satisfied, we'll work with you to understand your concerns and make it right. We stand behind the quality of our work."
+    answer: "Your satisfaction is our priority. We work with you until you're 100% satisfied with your documents. After receiving your first draft, you can provide all your feedback at once, and we'll refine everything accordingly. We stand behind the quality of our work and are committed to delivering documents you're proud to submit."
   }
 ];
 

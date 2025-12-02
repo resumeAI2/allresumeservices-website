@@ -18,7 +18,7 @@ export default function ITTechnology() {
         'GitHub/portfolio links integrated',
         'Cover letter showcasing technical skills',
         'LinkedIn profile optimisation',
-        'Professional revisions included'
+        'We work with you until you\'re 100% satisfied'
       ]
     },
     {
@@ -33,7 +33,7 @@ export default function ITTechnology() {
         'Open source contributions and technical publications featured',
         'Selection criteria responses (for government IT roles)',
         'LinkedIn executive profile optimisation',
-        'Professional revisions included'
+        'We work with you until you\'re 100% satisfied'
       ],
       popular: true
     }
@@ -95,7 +95,7 @@ export default function ITTechnology() {
                 <Link href="/contact">Get Your Free Quote</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-purple-900">
-                <Link href="/pricing">View Pricing</Link>
+                <Link href="/services">View Services &amp; Pricing</Link>
               </Button>
             </div>
           </div>

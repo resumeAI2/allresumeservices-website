@@ -68,7 +68,6 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/services" className="hover:text-secondary transition-colors">Services</Link>
-            <a href="#pricing" className="hover:text-secondary transition-colors">Pricing</a>
             <a href="#process" className="hover:text-secondary transition-colors">Our Process</a>
             <Link href="/blog" className="hover:text-secondary transition-colors">Career Advice Blog</Link>
             <Link href="/faq" className="hover:text-secondary transition-colors">FAQ</Link>
@@ -115,8 +114,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <nav className="md:hidden mt-4 flex flex-col gap-3 pb-4">
-            <a href="#services" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Services</a>
-            <a href="#pricing" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
+            <Link href="/services" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Services</Link>
             <a href="#process" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Our Process</a>
             <Link href="/blog" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Career Advice Blog</Link>
             <Link href="/faq" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>FAQ</Link>

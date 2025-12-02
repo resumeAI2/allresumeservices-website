@@ -18,7 +18,7 @@ export default function Government() {
         'Government-specific keywords and terminology',
         'Cover letter for public sector applications',
         'LinkedIn profile optimisation',
-        'Professional revisions included'
+        'We work with you until you\'re 100% satisfied'
       ]
     },
     {
@@ -33,7 +33,7 @@ export default function Government() {
         'Stakeholder management and change leadership showcased',
         'Cover letter for executive applications',
         'LinkedIn executive profile optimisation',
-        'Professional revisions included'
+        'We work with you until you\'re 100% satisfied'
       ],
       popular: true
     }
@@ -95,7 +95,7 @@ export default function Government() {
                 <Link href="/contact">Get Your Free Quote</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-emerald-900">
-                <Link href="/pricing">View Pricing</Link>
+                <Link href="/services">View Services &amp; Pricing</Link>
               </Button>
             </div>
           </div>

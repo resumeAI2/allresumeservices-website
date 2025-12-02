@@ -771,3 +771,16 @@
 - [x] Update FAQ page with accurate revision policy
 - [x] Verify no mentions remain in any component or page
 - [x] Test all updated pages
+
+## Update Revision Messaging to Customer Satisfaction Focus
+- [x] Remove specific revision counts from industry landing pages (Mining, Healthcare, Government, IT)
+- [x] Update Services page database entries to remove revision count mentions
+- [x] Update FAQ "How many revisions are included?" to emphasize working until 100% satisfied
+- [x] Update FAQ answers to reflect first draft review process
+- [x] Ensure messaging focuses on customer satisfaction rather than revision limits
+- [x] Test all updated pages
+
+## Remove Duplicate Pricing Link from Navigation
+- [x] Remove "Pricing" link from Header navigation (keep only "Services")
+- [x] Update any internal links that point to /pricing to point to /services instead
+- [x] Verify navigation is clean and no 404 errors
