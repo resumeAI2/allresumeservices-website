@@ -259,3 +259,47 @@ export const promo_codes = mysqlTable("promo_codes", {
 
 export type PromoCode = typeof promo_codes.$inferSelect;
 export type InsertPromoCode = typeof promo_codes.$inferInsert;
+
+/**
+ * Case studies table for client success stories
+ */
+export const case_studies = mysqlTable("case_studies", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  category: varchar("category", { length: 100 }).notNull(), // e.g., "Career Change Success", "Executive Promotion"
+  clientName: varchar("clientName", { length: 255 }).notNull(),
+  challenge: text("challenge").notNull(), // The problem/situation the client faced
+  solution: text("solution").notNull(), // What we did to help
+  result: text("result").notNull(), // The outcome/success achieved
+  testimonialQuote: text("testimonialQuote"), // Optional client testimonial
+  image: varchar("image", { length: 500 }), // Featured image for the case study
+  published: int("published").default(0).notNull(), // 0 = draft, 1 = published
+  featured: int("featured").default(0).notNull(), // 0 = not featured, 1 = featured on homepage
+  viewCount: int("viewCount").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CaseStudy = typeof case_studies.$inferSelect;
+export type InsertCaseStudy = typeof case_studies.$inferInsert;
+
+/**
+ * Social media posts table for tracking auto-posted content
+ */
+export const social_media_posts = mysqlTable("social_media_posts", {
+  id: int("id").autoincrement().primaryKey(),
+  blogPostId: int("blogPostId"), // Reference to blog_posts table
+  caseStudyId: int("caseStudyId"), // Reference to case_studies table
+  platform: varchar("platform", { length: 50 }).notNull(), // e.g., "linkedin", "facebook", "twitter"
+  postText: text("postText").notNull(),
+  postUrl: varchar("postUrl", { length: 500 }), // URL to the social media post
+  status: mysqlEnum("status", ["pending", "posted", "failed"]).default("pending").notNull(),
+  scheduledFor: timestamp("scheduledFor"),
+  postedAt: timestamp("postedAt"),
+  errorMessage: text("errorMessage"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type SocialMediaPost = typeof social_media_posts.$inferSelect;
+export type InsertSocialMediaPost = typeof social_media_posts.$inferInsert;

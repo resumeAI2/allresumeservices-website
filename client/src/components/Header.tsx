@@ -75,6 +75,7 @@ export default function Header() {
             <Link href="/contact" className="hover:text-secondary transition-colors">Contact</Link>
             <Link href="/about" className="hover:text-secondary transition-colors">About Us</Link>
             <Link href="/testimonials" className="hover:text-secondary transition-colors">Testimonials</Link>
+            <Link href="/case-studies" className="hover:text-secondary transition-colors">Case Studies</Link>
             <Link href="/cart" className="relative hover:text-secondary transition-colors">
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (
@@ -113,6 +114,7 @@ export default function Header() {
             <Link href="/contact" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             <Link href="/about" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
             <Link href="/testimonials" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Testimonials</Link>
+            <Link href="/case-studies" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
             <Button 
               variant="default" 
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90 w-full"
