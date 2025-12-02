@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { HelmetProvider } from 'react-helmet-async';
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -38,6 +39,10 @@ import CaseStudies from './pages/CaseStudies';
 import CaseStudy from './pages/CaseStudy';
 import AdminCaseStudies from './pages/AdminCaseStudies';
 import CaseStudyEditor from './pages/CaseStudyEditor';
+import MiningResources from './pages/industries/MiningResources';
+import Healthcare from './pages/industries/Healthcare';
+import Government from './pages/industries/Government';
+import ITTechnology from './pages/industries/ITTechnology';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -58,6 +63,10 @@ function Router() {
       <Route path={"/testimonials"} component={Testimonials} />
       <Route path={"/case-studies"} component={CaseStudies} />
       <Route path={"/case-studies/:slug"} component={CaseStudy} />
+      <Route path={"/industries/mining-resources"} component={MiningResources} />
+      <Route path={"/industries/healthcare"} component={Healthcare} />
+      <Route path={"/industries/government"} component={Government} />
+      <Route path={"/industries/it-technology"} component={ITTechnology} />
       <Route path="/contact" component={Contact} />
       <Route path="/services" component={Services} />
       <Route path="/seo-setup" component={SeoSetup} />
@@ -99,8 +108,10 @@ function App() {
       >
         <CartProvider>
           <TooltipProvider>
-          <Toaster />
-          <Router />
+            <HelmetProvider>
+              <Toaster />
+              <Router />
+            </HelmetProvider>
           </TooltipProvider>
         </CartProvider>
       </ThemeProvider>

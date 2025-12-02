@@ -716,3 +716,23 @@
 - [x] Review all content for other US English spelling variations (specialise updated)
 - [x] Update date formatting in blog posts, case studies, and admin panels
 - [x] Test date display across all pages
+
+## Industry-Specific Landing Pages
+- [x] Create Mining & Resources industry landing page
+- [x] Create Healthcare industry landing page
+- [x] Create Government & Public Sector industry landing page
+- [x] Create IT & Technology industry landing page
+- [x] Add industry-specific keywords and SEO content
+- [x] Include sector-specific resume examples and case studies
+- [x] Add targeted CTAs for each industry
+- [x] Create navigation menu for industry pages
+- [x] Add routes for all industry pages
+- [x] Test all industry landing pages
+
+## Tawk.to Live Chat Integration
+- [x] Receive Tawk.to embed code from user
+- [x] Add Tawk.to script to website
+- [x] Configure chat widget settings
+- [x] Test live chat functionality
+- [x] Ensure chat widget displays on all pages
+- [x] Verify chat works during Australian business hours (Tawk.to loaded successfully)
