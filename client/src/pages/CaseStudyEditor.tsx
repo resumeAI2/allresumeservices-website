@@ -25,6 +25,8 @@ export default function CaseStudyEditor() {
   const [result, setResult] = useState("");
   const [testimonialQuote, setTestimonialQuote] = useState("");
   const [image, setImage] = useState("");
+  const [beforeResumeImage, setBeforeResumeImage] = useState("");
+  const [afterResumeImage, setAfterResumeImage] = useState("");
   const [published, setPublished] = useState(0);
   const [featured, setFeatured] = useState(0);
 
@@ -45,6 +47,8 @@ export default function CaseStudyEditor() {
       setResult(existingStudy.result);
       setTestimonialQuote(existingStudy.testimonialQuote || "");
       setImage(existingStudy.image || "");
+      setBeforeResumeImage(existingStudy.beforeResumeImage || "");
+      setAfterResumeImage(existingStudy.afterResumeImage || "");
       setPublished(existingStudy.published);
       setFeatured(existingStudy.featured);
     }
@@ -97,6 +101,8 @@ export default function CaseStudyEditor() {
       result,
       testimonialQuote: testimonialQuote || undefined,
       image: image || undefined,
+      beforeResumeImage: beforeResumeImage || undefined,
+      afterResumeImage: afterResumeImage || undefined,
       published: publishNow ? 1 : published,
       featured,
     };
@@ -243,6 +249,34 @@ export default function CaseStudyEditor() {
                   onChange={(e) => setImage(e.target.value)}
                   placeholder="https://example.com/image.jpg"
                 />
+              </div>
+
+              {/* Before Resume Image */}
+              <div>
+                <Label htmlFor="beforeResumeImage">Before Resume Image URL (Optional)</Label>
+                <Input
+                  id="beforeResumeImage"
+                  value={beforeResumeImage}
+                  onChange={(e) => setBeforeResumeImage(e.target.value)}
+                  placeholder="https://example.com/before-resume.jpg"
+                />
+                <p className="text-sm text-muted-foreground mt-1">
+                  Upload the client's original resume screenshot to show the transformation
+                </p>
+              </div>
+
+              {/* After Resume Image */}
+              <div>
+                <Label htmlFor="afterResumeImage">After Resume Image URL (Optional)</Label>
+                <Input
+                  id="afterResumeImage"
+                  value={afterResumeImage}
+                  onChange={(e) => setAfterResumeImage(e.target.value)}
+                  placeholder="https://example.com/after-resume.jpg"
+                />
+                <p className="text-sm text-muted-foreground mt-1">
+                  Upload the improved resume screenshot to demonstrate the results
+                </p>
               </div>
 
               {/* Featured Checkbox */}

@@ -274,6 +274,8 @@ export const case_studies = mysqlTable("case_studies", {
   result: text("result").notNull(), // The outcome/success achieved
   testimonialQuote: text("testimonialQuote"), // Optional client testimonial
   image: varchar("image", { length: 500 }), // Featured image for the case study
+  beforeResumeImage: varchar("beforeResumeImage", { length: 500 }), // Before resume screenshot/image
+  afterResumeImage: varchar("afterResumeImage", { length: 500 }), // After resume screenshot/image
   published: int("published").default(0).notNull(), // 0 = draft, 1 = published
   featured: int("featured").default(0).notNull(), // 0 = not featured, 1 = featured on homepage
   viewCount: int("viewCount").default(0).notNull(),
@@ -303,3 +305,19 @@ export const social_media_posts = mysqlTable("social_media_posts", {
 
 export type SocialMediaPost = typeof social_media_posts.$inferSelect;
 export type InsertSocialMediaPost = typeof social_media_posts.$inferInsert;
+
+/**
+ * Email subscribers table for lead capture
+ */
+export const email_subscribers = mysqlTable("email_subscribers", {
+  id: int("id").autoincrement().primaryKey(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  name: varchar("name", { length: 255 }),
+  source: varchar("source", { length: 100 }), // e.g., "case_study_download", "newsletter_signup"
+  caseStudyId: int("caseStudyId"), // Reference to case study if downloaded from case study page
+  subscribed: int("subscribed").default(1).notNull(), // 0 = unsubscribed, 1 = subscribed
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type EmailSubscriber = typeof email_subscribers.$inferSelect;
+export type InsertEmailSubscriber = typeof email_subscribers.$inferInsert;

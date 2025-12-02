@@ -1,15 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Quote, Eye, Calendar } from "lucide-react";
+import { ArrowLeft, Quote, Eye, Calendar, Download } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import EmailCaptureModal from "@/components/EmailCaptureModal";
 
 export default function CaseStudy() {
   const params = useParams();
   const slug = params.slug;
+  const [showEmailModal, setShowEmailModal] = useState(false);
   
   const { data: study, isLoading } = trpc.caseStudies.getBySlug.useQuery({ slug: slug! });
   const { data: relatedStudies = [] } = trpc.caseStudies.getAll.useQuery({ publishedOnly: true });
@@ -156,6 +158,44 @@ export default function CaseStudy() {
                 </div>
               </Card>
 
+              {/* Before/After Resume Comparison */}
+              {(study.beforeResumeImage || study.afterResumeImage) && (
+                <Card className="p-8 mb-12 bg-gradient-to-br from-purple-50/50 to-background dark:from-purple-950/20 border-purple-200 dark:border-purple-900">
+                  <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                    <span className="text-purple-600 dark:text-purple-400">The Transformation</span>
+                  </h2>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {study.beforeResumeImage && (
+                      <div>
+                        <h3 className="text-lg font-semibold mb-3 text-red-600 dark:text-red-400">Before</h3>
+                        <div className="border-2 border-red-200 dark:border-red-900 rounded-lg overflow-hidden">
+                          <img 
+                            src={study.beforeResumeImage} 
+                            alt="Before resume" 
+                            className="w-full h-auto"
+                          />
+                        </div>
+                      </div>
+                    )}
+                    {study.afterResumeImage && (
+                      <div>
+                        <h3 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400">After</h3>
+                        <div className="border-2 border-green-200 dark:border-green-900 rounded-lg overflow-hidden">
+                          <img 
+                            src={study.afterResumeImage} 
+                            alt="After resume" 
+                            className="w-full h-auto"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-4 text-center">
+                    See the dramatic improvement in layout, content, and professional presentation
+                  </p>
+                </Card>
+              )}
+
               {/* Testimonial Quote */}
               {study.testimonialQuote && (
                 <Card className="p-8 mb-12 bg-gradient-to-br from-primary/5 to-background border-primary/20">
@@ -166,6 +206,18 @@ export default function CaseStudy() {
                   <p className="text-muted-foreground font-medium">— {study.clientName}</p>
                 </Card>
               )}
+            </div>
+
+            {/* Download PDF CTA */}
+            <div className="mt-12 p-6 bg-gradient-to-br from-blue-50 to-background dark:from-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-900 text-center">
+              <h3 className="text-xl font-bold mb-3">Want the Full Case Study?</h3>
+              <p className="text-muted-foreground mb-4">
+                Download this complete case study as a PDF to share with your team or save for later.
+              </p>
+              <Button onClick={() => setShowEmailModal(true)} size="lg" variant="outline">
+                <Download className="h-4 w-4 mr-2" />
+                Download PDF
+              </Button>
             </div>
 
             {/* CTA */}
@@ -213,6 +265,16 @@ export default function CaseStudy() {
       </main>
       
       <Footer />
+      
+      {/* Email Capture Modal */}
+      {study && (
+        <EmailCaptureModal
+          isOpen={showEmailModal}
+          onClose={() => setShowEmailModal(false)}
+          caseStudyId={study.id}
+          caseStudyTitle={study.title}
+        />
+      )}
     </div>
   );
 }
