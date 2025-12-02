@@ -18,7 +18,7 @@ export default function MiningResources() {
         'FIFO/DIDO roster experience showcased',
         'Cover letter tailored to mining operations',
         'LinkedIn profile optimisation',
-        'Unlimited revisions for 7 days'
+        'Professional revisions included'
       ]
     },
     {
@@ -33,7 +33,7 @@ export default function MiningResources() {
         'Strategic planning and operational excellence',
         'Selection criteria responses (for government mining)',
         'LinkedIn executive profile optimisation',
-        'Unlimited revisions for 14 days'
+        'Professional revisions included'
       ],
       popular: true
     }

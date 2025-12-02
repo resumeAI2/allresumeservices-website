@@ -760,3 +760,14 @@
 - [x] Add entry-level vs senior role comparison to IT & Technology page- [x] Include pricing, turnaround time, and features for each level
 - [x] Style tables to match website design
 - [x] Test responsive layout on mobile devices
+
+## Remove Unlimited Revisions Policy Update
+- [x] Search for all occurrences of "unlimited revisions" across website
+- [x] Remove "unlimited revisions" from Mining & Resources industry page pricing table
+- [x] Remove "unlimited revisions" from Healthcare industry page pricing table
+- [x] Remove "unlimited revisions" from Government industry page pricing table
+- [x] Remove "unlimited revisions" from IT & Technology industry page pricing table
+- [x] Update revision policy language to reflect 1-2 revisions standard
+- [x] Update FAQ page with accurate revision policy
+- [x] Verify no mentions remain in any component or page
+- [x] Test all updated pages

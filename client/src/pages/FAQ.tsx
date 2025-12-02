@@ -25,12 +25,12 @@ const faqData: FAQItem[] = [
   {
     category: "Services",
     question: "What makes your resume writing service different?",
-    answer: "Our service stands out with a 96% interview success rate, 17+ years of industry experience, and personalized one-on-one consultations. We don't use templates—every resume is custom-written to highlight your unique strengths and achievements. We also provide unlimited revisions within 7 days to ensure your complete satisfaction."
+    answer: "Our service stands out with a 96% interview success rate, 17+ years of industry experience, and personalized one-on-one consultations. We don't use templates—every resume is custom-written to highlight your unique strengths and achievements. We provide professional revisions to ensure your complete satisfaction."
   },
   {
     category: "Pricing",
     question: "How much do your services cost?",
-    answer: "We offer three packages: Basic Package at $125 (professional resume writing), Standard Package at $185 (resume + cover letter + LinkedIn optimisation), and Premium Package at $255 (everything in Standard plus selection criteria and career consultation). All packages include unlimited revisions within 7 days."
+    answer: "We offer three packages: Basic Package at $125 (professional resume writing), Standard Package at $185 (resume + cover letter + LinkedIn optimisation), and Premium Package at $255 (everything in Standard plus selection criteria and career consultation). All packages include professional revisions."
   },
   {
     category: "Pricing",
@@ -45,7 +45,7 @@ const faqData: FAQItem[] = [
   {
     category: "Process",
     question: "How does the resume writing process work?",
-    answer: "Our 5-step process begins with a free assessment where we review your current resume. After you choose a package and make payment, we conduct a detailed consultation to understand your goals. Our expert writers then create your custom resume, which we deliver for your review. Finally, we offer unlimited revisions within 7 days to perfect your documents."
+    answer: "Our 5-step process begins with a free assessment where we review your current resume. After you choose a package and make payment, we conduct a detailed consultation to understand your goals. Our expert writers then create your custom resume, which we deliver for your review. We then work with you to refine your documents based on your feedback."
   },
   {
     category: "Process",
@@ -60,7 +60,7 @@ const faqData: FAQItem[] = [
   {
     category: "Process",
     question: "How many revisions are included?",
-    answer: "We include unlimited revisions within 7 days of delivering your first draft. We're committed to your satisfaction and will work with you until you're completely happy with your resume. After the 7-day period, additional revisions can be made for a small fee."
+    answer: "We include professional revisions to ensure your resume meets your expectations. We're committed to your satisfaction and will work with you to refine your documents. If errors are our fault, we'll correct them at no charge. Additional substantial revisions beyond the initial scope may incur a small fee."
   },
   {
     category: "Process",
@@ -95,7 +95,7 @@ const faqData: FAQItem[] = [
   {
     category: "General",
     question: "What if I'm not satisfied with my resume?",
-    answer: "Your satisfaction is our priority. We offer unlimited revisions within 7 days to ensure you're completely happy with your resume. If you're still not satisfied after revisions, we'll work with you to understand your concerns and make it right. We stand behind the quality of our work."
+    answer: "Your satisfaction is our priority. We work with you to refine your resume based on your feedback. If errors are our fault, we'll correct them at no charge. If you're not satisfied, we'll work with you to understand your concerns and make it right. We stand behind the quality of our work."
   }
 ];
 
