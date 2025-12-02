@@ -10,6 +10,7 @@ import { useState, useMemo } from "react";
 export default function Blog() {
   const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null);
   const [activeTagId, setActiveTagId] = useState<number | null>(null);
+  const [postsToShow, setPostsToShow] = useState(6);
   
   const { data: allPosts, isLoading } = trpc.blog.getAll.useQuery({ publishedOnly: true });
   const { data: categories = [] } = trpc.blog.getAllCategories.useQuery();
@@ -28,6 +29,19 @@ export default function Blog() {
     
     return posts;
   }, [allPosts, activeCategoryId, activeTagId]);
+  
+  // Get posts to display based on postsToShow limit
+  const displayedPosts = useMemo(() => {
+    return filteredPosts.slice(0, postsToShow);
+  }, [filteredPosts, postsToShow]);
+  
+  // Check if there are more posts to load
+  const hasMorePosts = filteredPosts.length > postsToShow;
+  
+  // Load more handler
+  const handleLoadMore = () => {
+    setPostsToShow(prev => prev + 6);
+  };
 
   return (
     <div className="min-h-screen">
@@ -110,7 +124,7 @@ export default function Blog() {
       <section className="py-16">
         <div className="container">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post) => (          <article
+              {displayedPosts.map((post) => (          <article
                 key={post.id}
                 className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow group"
               >
@@ -164,11 +178,13 @@ export default function Blog() {
           </div>
 
           {/* Load More Button */}
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline">
-              Load More Articles
-            </Button>
-          </div>
+          {hasMorePosts && (
+            <div className="text-center mt-12">
+              <Button size="lg" variant="outline" onClick={handleLoadMore}>
+                Load More Articles
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 
