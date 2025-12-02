@@ -784,3 +784,8 @@
 - [x] Remove "Pricing" link from Header navigation (keep only "Services")
 - [x] Update any internal links that point to /pricing to point to /services instead
 - [x] Verify navigation is clean and no 404 errors
+
+## Correct Australian English Spelling in Mark's Case Study
+- [x] Find Mark's case study testimonial
+- [x] Change "realized" to "realised" (Australian English)
+- [x] Verify all other Australian English spelling throughout the site
