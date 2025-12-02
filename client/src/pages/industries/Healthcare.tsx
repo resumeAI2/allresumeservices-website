@@ -18,7 +18,7 @@ export default function Healthcare() {
         'Specialty certifications and continuing education showcased',
         'Cover letter emphasising compassionate care',
         'LinkedIn profile optimisation',
-        'Professional revisions included'
+        'We work with you until you\'re 100% satisfied'
       ]
     },
     {
@@ -33,7 +33,7 @@ export default function Healthcare() {
         'Research, publications, and presentations featured',
         'Selection criteria responses (for public hospital roles)',
         'LinkedIn executive profile optimisation',
-        'Professional revisions included'
+        'We work with you until you\'re 100% satisfied'
       ],
       popular: true
     }
@@ -95,7 +95,7 @@ export default function Healthcare() {
                 <Link href="/contact">Get Your Free Quote</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900">
-                <Link href="/pricing">View Pricing</Link>
+                <Link href="/services">View Services &amp; Pricing</Link>
               </Button>
             </div>
           </div>

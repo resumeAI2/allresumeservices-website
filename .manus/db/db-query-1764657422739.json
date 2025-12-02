@@ -1,0 +1,70 @@
+{
+  "query": "SELECT id, name, features FROM services WHERE features LIKE '%revision%' LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, name, features FROM services WHERE features LIKE '%revision%' LIMIT 20;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Entry Level Resume",
+      "features": "[\"ATS-optimized format\",\"1-2 pages\",\"Professional summary\",\"Skills section\",\"2 revisions included\",\"3-5 business days delivery\"]"
+    },
+    {
+      "id": "2",
+      "name": "Professional Resume",
+      "features": "[\"ATS-optimized format\",\"2-3 pages\",\"Executive summary\",\"Achievement-focused content\",\"Skills & certifications\",\"3 revisions included\",\"3-5 business days delivery\"]"
+    },
+    {
+      "id": "3",
+      "name": "Executive Resume",
+      "features": "[\"ATS-optimized format\",\"2-3 pages\",\"Executive branding\",\"Leadership achievements\",\"Board experience highlight\",\"Unlimited revisions\",\"2-3 business days delivery\"]"
+    },
+    {
+      "id": "4",
+      "name": "Entry Level Cover Letter",
+      "features": "[\"Tailored to job description\",\"1 page\",\"Professional tone\",\"2 revisions included\",\"2-3 business days delivery\"]"
+    },
+    {
+      "id": "5",
+      "name": "Professional Cover Letter",
+      "features": "[\"Customized to role\",\"1 page\",\"Achievement highlights\",\"3 revisions included\",\"2-3 business days delivery\"]"
+    },
+    {
+      "id": "6",
+      "name": "Executive Cover Letter",
+      "features": "[\"Executive positioning\",\"1 page\",\"Leadership narrative\",\"Unlimited revisions\",\"1-2 business days delivery\"]"
+    },
+    {
+      "id": "7",
+      "name": "LinkedIn Profile Optimization",
+      "features": "[\"Keyword-optimized headline\",\"Compelling summary\",\"Experience section rewrite\",\"Skills optimization\",\"3 revisions included\",\"3-5 business days delivery\"]"
+    },
+    {
+      "id": "8",
+      "name": "Selection Criteria Response",
+      "features": "[\"STAR/CAR method\",\"Up to 5 criteria\",\"Evidence-based responses\",\"3 revisions included\",\"3-5 business days delivery\"]"
+    },
+    {
+      "id": "9",
+      "name": "Basic Package",
+      "features": "[\"Entry Level Resume\",\"Entry Level Cover Letter\",\"ATS-optimized\",\"2 revisions per document\",\"3-5 business days delivery\",\"Save $23\"]"
+    },
+    {
+      "id": "10",
+      "name": "Standard Package",
+      "features": "[\"Professional Resume\",\"Professional Cover Letter\",\"LinkedIn Profile Optimization\",\"3 revisions per document\",\"3-5 business days delivery\",\"Save $39\"]"
+    },
+    {
+      "id": "11",
+      "name": "Premium Package",
+      "features": "[\"Executive Resume\",\"Executive Cover Letter\",\"LinkedIn Profile Optimization\",\"Unlimited revisions\",\"2-3 business days delivery\",\"Save $69\"]"
+    },
+    {
+      "id": "13",
+      "name": "Additional Revisions (3 extra)",
+      "features": "[\"3 extra revision rounds\",\"Perfect for detailed customization\",\"Per document\"]"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tfeatures\n1\tEntry Level Resume\t[\"ATS-optimized format\",\"1-2 pages\",\"Professional summary\",\"Skills section\",\"2 revisions included\",\"3-5 business days delivery\"]\n2\tProfessional Resume\t[\"ATS-optimized format\",\"2-3 pages\",\"Executive summary\",\"Achievement-focused content\",\"Skills & certifications\",\"3 revisions included\",\"3-5 business days delivery\"]\n3\tExecutive Resume\t[\"ATS-optimized format\",\"2-3 pages\",\"Executive branding\",\"Leadership achievements\",\"Board experience highlight\",\"Unlimited revisions\",\"2-3 business days delivery\"]\n4\tEntry Level Cover Letter\t[\"Tailored to job description\",\"1 page\",\"Professional tone\",\"2 revisions included\",\"2-3 business days delivery\"]\n5\tProfessional Cover Letter\t[\"Customized to role\",\"1 page\",\"Achievement highlights\",\"3 revisions included\",\"2-3 business days delivery\"]\n6\tExecutive Cover Letter\t[\"Executive positioning\",\"1 page\",\"Leadership narrative\",\"Unlimited revisions\",\"1-2 business days delivery\"]\n7\tLinkedIn Profile Optimization\t[\"Keyword-optimized headline\",\"Compelling summary\",\"Experience section rewrite\",\"Skills optimization\",\"3 revisions included\",\"3-5 business days delivery\"]\n8\tSelection Criteria Response\t[\"STAR/CAR method\",\"Up to 5 criteria\",\"Evidence-based responses\",\"3 revisions included\",\"3-5 business days delivery\"]\n9\tBasic Package\t[\"Entry Level Resume\",\"Entry Level Cover Letter\",\"ATS-optimized\",\"2 revisions per document\",\"3-5 business days delivery\",\"Save $23\"]\n10\tStandard Package\t[\"Professional Resume\",\"Professional Cover Letter\",\"LinkedIn Profile Optimization\",\"3 revisions per document\",\"3-5 business days delivery\",\"Save $39\"]\n11\tPremium Package\t[\"Executive Resume\",\"Executive Cover Letter\",\"LinkedIn Profile Optimization\",\"Unlimited revisions\",\"2-3 business days delivery\",\"Save $69\"]\n13\tAdditional Revisions (3 extra)\t[\"3 extra revision rounds\",\"Perfect for detailed customization\",\"Per document\"]\n",
+  "stderr": "",
+  "execution_time_ms": 1852
+}

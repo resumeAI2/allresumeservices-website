@@ -42,10 +42,7 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#services" className="hover:text-secondary transition-colors">Services</a>
-              </li>
-              <li>
-                <a href="#pricing" className="hover:text-secondary transition-colors">Pricing</a>
+                <a href="/services" className="hover:text-secondary transition-colors">Services & Pricing</a>
               </li>
               <li>
                 <a href="#process" className="hover:text-secondary transition-colors">Our Process</a>
