@@ -682,3 +682,15 @@
 - [x] Add "View All Case Studies" CTA button
 - [x] Style section to match homepage design
 - [x] Test featured case studies display and links
+
+## Contact Page Resume Upload Feature
+- [x] Add resumeFile field to contact_submissions schema
+- [x] Run database migration for resume file field
+- [x] Add file upload input to Contact form
+- [x] Add file validation (PDF, DOC, DOCX, max 5MB)
+- [x] Update contact API to handle file uploads
+- [x] Upload resume files to S3 storage
+- [x] Store resume file URL in database
+- [x] Update admin contacts page to show resume download link
+- [x] Test resume upload functionality
+- [x] Test file validation and error handling

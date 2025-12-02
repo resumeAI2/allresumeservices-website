@@ -233,6 +233,7 @@ export const appRouter = router({
         phone: z.string().optional(),
         serviceInterest: z.string().optional(),
         message: z.string().min(10),
+        resumeFileUrl: z.string().optional(),
         honeypot: z.string().optional(),
         submissionTime: z.number().optional(),
       }))
