@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, title, image FROM blog_posts LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, image FROM blog_posts LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "image": "/blog/resume-action-verbs.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Stand Out with Top-notch Senior Management Resume Services",
+      "image": "/blog/senior-management.jpg"
+    },
+    {
+      "id": "3",
+      "title": "Write Winning Selection Criteria for Government Roles Today!",
+      "image": "/blog/selection-criteria.jpg"
+    },
+    {
+      "id": "4",
+      "title": "Ace Your Next Interview with Expert Preparation Tips",
+      "image": "/blog/interview-prep.jpg"
+    },
+    {
+      "id": "5",
+      "title": "LinkedIn Profile Optimization: Your Digital First Impression",
+      "image": "/blog/linkedin-optimization.jpg"
+    },
+    {
+      "id": "6",
+      "title": "Cover Letter Mistakes That Cost You Job Interviews",
+      "image": "/blog/cover-letter-mistakes.jpg"
+    },
+    {
+      "id": "7",
+      "title": "ATS-Friendly Resume Formatting: Beat the Bots",
+      "image": "/blog/ats-formatting.jpg"
+    },
+    {
+      "id": "8",
+      "title": "Career Change Resume: Successfully Pivot Your Professional Path",
+      "image": "/blog/career-change.jpg"
+    },
+    {
+      "id": "9",
+      "title": "Resume Length: How Long Should Your Resume Really Be?",
+      "image": "/blog/resume-length.jpg"
+    },
+    {
+      "id": "30001",
+      "title": "Stand out in the Crowd with Professionally Prepared Resume Services",
+      "image": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\timage\n1\tTransform Your Resume with Powerful Action Verbs\t/blog/resume-action-verbs.jpg\n2\tStand Out with Top-notch Senior Management Resume Services\t/blog/senior-management.jpg\n3\tWrite Winning Selection Criteria for Government Roles Today!\t/blog/selection-criteria.jpg\n4\tAce Your Next Interview with Expert Preparation Tips\t/blog/interview-prep.jpg\n5\tLinkedIn Profile Optimization: Your Digital First Impression\t/blog/linkedin-optimization.jpg\n6\tCover Letter Mistakes That Cost You Job Interviews\t/blog/cover-letter-mistakes.jpg\n7\tATS-Friendly Resume Formatting: Beat the Bots\t/blog/ats-formatting.jpg\n8\tCareer Change Resume: Successfully Pivot Your Professional Path\t/blog/career-change.jpg\n9\tResume Length: How Long Should Your Resume Really Be?\t/blog/resume-length.jpg\n30001\tStand out in the Crowd with Professionally Prepared Resume Services\thttps://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800\n",
+  "stderr": "",
+  "execution_time_ms": 1587
+}
