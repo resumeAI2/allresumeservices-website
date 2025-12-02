@@ -3,8 +3,42 @@ import { Link } from 'wouter';
 import { CheckCircle2, Building2, FileText, Award, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import IndustryPricingTable from '@/components/IndustryPricingTable';
 
 export default function Government() {
+  const pricingTiers = [
+    {
+      level: 'Entry to Mid-Level (APS 1-6)',
+      price: '$215',
+      turnaround: '5-7 business days',
+      features: [
+        'APS 1-6 or state government equivalent roles',
+        'Resume aligned with capability frameworks',
+        'Up to 3 selection criteria responses using STAR method',
+        'Government-specific keywords and terminology',
+        'Cover letter for public sector applications',
+        'LinkedIn profile optimisation',
+        'Unlimited revisions for 7 days'
+      ]
+    },
+    {
+      level: 'Executive Level (EL1-SES)',
+      price: '$315',
+      turnaround: '7-10 business days',
+      features: [
+        'EL1, EL2, SES, or senior state government roles',
+        'Executive-level resume with strategic achievements',
+        'Up to 5 selection criteria responses with detailed STAR examples',
+        'Leadership capability and policy impact highlighted',
+        'Stakeholder management and change leadership showcased',
+        'Cover letter for executive applications',
+        'LinkedIn executive profile optimisation',
+        'Unlimited revisions for 14 days'
+      ],
+      popular: true
+    }
+  ];
+
   const benefits = [
     {
       icon: Building2,
@@ -213,6 +247,59 @@ export default function Government() {
                 </ul>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Comparison */}
+      <section className="py-16 bg-white">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Pricing for Government & Public Sector Professionals</h2>
+              <p className="text-lg text-muted-foreground">Choose the package that matches your career level</p>
+            </div>
+            <IndustryPricingTable tiers={pricingTiers} />
+            <div className="mt-8 text-center">
+              <Button asChild size="lg">
+                <Link href="/contact">Get Your Free Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Case Study */}
+      <section className="py-16 bg-slate-50">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Success Story: Government & Public Sector</h2>
+              <p className="text-lg text-muted-foreground">See how we helped an APS officer advance to executive level</p>
+            </div>
+            <Card className="p-8">
+              <div className="mb-6">
+                <span className="inline-block px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium mb-4">
+                  Government Application Success
+                </span>
+                <h3 className="text-2xl font-bold mb-4">APS Officer Promoted to Executive Level 1 in Federal Government</h3>
+                <p className="text-muted-foreground mb-4">
+                  Michael had been an APS6 policy officer for 6 years but his EL1 applications were consistently unsuccessful. His selection criteria responses were too generic and didn't use the STAR method effectively.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  We completely rewrote Michael's selection criteria using the STAR method with specific, measurable examples. We aligned his resume with the APS Integrated Leadership System capability framework. He was shortlisted for two EL1 positions and secured his preferred role with a $135,000 salary—a $25,000 increase.
+                </p>
+                <blockquote className="border-l-4 border-secondary pl-4 italic text-lg mb-6">
+                  "After years of unsuccessful EL1 applications, I finally understood what selection panels were looking for. The STAR method examples and capability framework alignment made all the difference."
+                  <footer className="text-sm text-muted-foreground mt-2">— Michael, Executive Level 1 Officer</footer>
+                </blockquote>
+                <Button asChild>
+                  <Link href="/case-studies/aps-officer-executive-level-promotion">
+                    Read Full Success Story <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </Card>
           </div>
         </div>
       </section>

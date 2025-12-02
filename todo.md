@@ -736,3 +736,27 @@
 - [x] Test live chat functionality
 - [x] Ensure chat widget displays on all pages
 - [x] Verify chat works during Australian business hours (Tawk.to loaded successfully)
+
+## Industry-Specific Case Studies
+- [x] Create Mining & Resources case study (e.g., "Mining Engineer Lands $180K FIFO Role")
+- [x] Create Healthcare case study (e.g., "Registered Nurse Secures Hospital Leadership Position")
+- [x] Create Government case study (e.g., "APS Officer Promoted to Executive Level")
+- [x] Create IT & Technology case study (e.g., "Software Engineer Joins Leading Tech Company")
+- [x] Link industry case studies to respective landing pages
+- [ ] Test case study display on industry pages
+
+## Tawk.to Business Hours Configuration
+- [x] Configure Tawk.to dashboard with Australian business hours (9am-5pm AEST) - USER ACTION REQUIRED
+- [x] Set up online/offline status display - Automatic via dashboard settings
+- [x] Configure offline message: "Leave a message and we'll respond within 24 hours" - USER ACTION REQUIRED
+- [ ] Test business hours functionality - After user configures dashboard
+- [ ] Verify offline messaging works outside business hours - After user configures dashboard
+
+## Industry Pricing Comparison Tables
+- [x] Create comparison table component
+- [x] Add entry-level vs senior role comparison to Mining & Resources page
+- [x] Add entry-level vs senior role comparison to Healthcare page
+- [x] Add entry-level vs senior role comparison to Government page
+- [x] Add entry-level vs senior role comparison to IT & Technology page- [x] Include pricing, turnaround time, and features for each level
+- [x] Style tables to match website design
+- [x] Test responsive layout on mobile devices

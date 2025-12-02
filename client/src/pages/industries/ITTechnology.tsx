@@ -3,8 +3,42 @@ import { Link } from 'wouter';
 import { CheckCircle2, Code, Cloud, Database, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import IndustryPricingTable from '@/components/IndustryPricingTable';
 
 export default function ITTechnology() {
+  const pricingTiers = [
+    {
+      level: 'Entry to Mid-Level',
+      price: '$185',
+      turnaround: '3-5 business days',
+      features: [
+        'Junior to mid-level developer, analyst, or support roles',
+        'Tech stack and programming languages prominently featured',
+        'Projects and technical achievements highlighted',
+        'GitHub/portfolio links integrated',
+        'Cover letter showcasing technical skills',
+        'LinkedIn profile optimisation',
+        'Unlimited revisions for 7 days'
+      ]
+    },
+    {
+      level: 'Senior & Leadership',
+      price: '$255',
+      turnaround: '5-7 business days',
+      features: [
+        'Senior engineer, architect, tech lead, or manager roles',
+        'Executive-level resume with technical leadership achievements',
+        'System architecture and scalability projects highlighted',
+        'Team leadership and mentoring experience showcased',
+        'Open source contributions and technical publications featured',
+        'Selection criteria responses (for government IT roles)',
+        'LinkedIn executive profile optimisation',
+        'Unlimited revisions for 14 days'
+      ],
+      popular: true
+    }
+  ];
+
   const benefits = [
     {
       icon: Code,
@@ -213,6 +247,59 @@ export default function ITTechnology() {
                 </ul>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Comparison */}
+      <section className="py-16 bg-white">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Pricing for IT & Technology Professionals</h2>
+              <p className="text-lg text-muted-foreground">Choose the package that matches your career level</p>
+            </div>
+            <IndustryPricingTable tiers={pricingTiers} />
+            <div className="mt-8 text-center">
+              <Button asChild size="lg">
+                <Link href="/contact">Get Your Free Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Case Study */}
+      <section className="py-16 bg-slate-50">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Success Story: IT & Technology</h2>
+              <p className="text-lg text-muted-foreground">See how we helped a software engineer join a leading tech company</p>
+            </div>
+            <Card className="p-8">
+              <div className="mb-6">
+                <span className="inline-block px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium mb-4">
+                  IT & Technology Success
+                </span>
+                <h3 className="text-2xl font-bold mb-4">Software Engineer Joins Leading Tech Company with 40% Salary Increase</h3>
+                <p className="text-muted-foreground mb-4">
+                  James was a mid-level software engineer with 5 years of experience but wasn't getting past initial screening stages at top tech companies. His resume focused on responsibilities rather than technical achievements and didn't effectively showcase his modern tech stack experience.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  We restructured James's resume to highlight technical achievements (architected microservices platform reducing deployment time by 70%, optimised queries improving performance 3x). We prominently featured his tech stack, GitHub contributions, and modern development practices. Within three weeks, he received four interview requests and accepted a Senior Software Engineer role with a $160,000 package—a 40% salary increase.
+                </p>
+                <blockquote className="border-l-4 border-secondary pl-4 italic text-lg mb-6">
+                  "I was undervaluing myself and not presenting my technical skills effectively. All Resume Services helped me showcase my achievements in a way that resonated with tech recruiters. The salary increase alone paid for their service 50 times over."
+                  <footer className="text-sm text-muted-foreground mt-2">— James, Senior Software Engineer</footer>
+                </blockquote>
+                <Button asChild>
+                  <Link href="/case-studies/software-engineer-tech-company-salary-increase">
+                    Read Full Success Story <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </Card>
           </div>
         </div>
       </section>

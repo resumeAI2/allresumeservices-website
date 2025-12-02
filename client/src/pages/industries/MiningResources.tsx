@@ -3,8 +3,42 @@ import { Link } from 'wouter';
 import { CheckCircle2, Briefcase, TrendingUp, Award, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import IndustryPricingTable from '@/components/IndustryPricingTable';
 
 export default function MiningResources() {
+  const pricingTiers = [
+    {
+      level: 'Entry to Mid-Level',
+      price: '$185',
+      turnaround: '3-5 business days',
+      features: [
+        'Operator, technician, or trades roles',
+        'ATS-optimised resume highlighting tickets & certifications',
+        'Safety record and compliance experience emphasised',
+        'FIFO/DIDO roster experience showcased',
+        'Cover letter tailored to mining operations',
+        'LinkedIn profile optimisation',
+        'Unlimited revisions for 7 days'
+      ]
+    },
+    {
+      level: 'Senior & Leadership',
+      price: '$255',
+      turnaround: '5-7 business days',
+      features: [
+        'Supervisor, manager, engineer, or specialist roles',
+        'Executive-level resume with leadership achievements',
+        'Production metrics and cost savings highlighted',
+        'Project management and team leadership showcased',
+        'Strategic planning and operational excellence',
+        'Selection criteria responses (for government mining)',
+        'LinkedIn executive profile optimisation',
+        'Unlimited revisions for 14 days'
+      ],
+      popular: true
+    }
+  ];
+
   const benefits = [
     {
       icon: Briefcase,
@@ -212,6 +246,59 @@ export default function MiningResources() {
                 </ul>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Comparison */}
+      <section className="py-16 bg-white">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Pricing for Mining & Resources Professionals</h2>
+              <p className="text-lg text-muted-foreground">Choose the package that matches your career level</p>
+            </div>
+            <IndustryPricingTable tiers={pricingTiers} />
+            <div className="mt-8 text-center">
+              <Button asChild size="lg">
+                <Link href="/contact">Get Your Free Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Case Study */}
+      <section className="py-16 bg-slate-50">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Success Story: Mining & Resources</h2>
+              <p className="text-lg text-muted-foreground">See how we helped a mining professional land their dream FIFO role</p>
+            </div>
+            <Card className="p-8">
+              <div className="mb-6">
+                <span className="inline-block px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium mb-4">
+                  Mining & Resources Success
+                </span>
+                <h3 className="text-2xl font-bold mb-4">Mining Engineer Lands $180K FIFO Role at Major Iron Ore Operation</h3>
+                <p className="text-muted-foreground mb-4">
+                  David had 8 years of underground coal mining experience but struggled to transition to lucrative iron ore FIFO roles. His resume wasn't highlighting transferable skills or his clean safety record effectively.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  We restructured his resume to target iron ore operations, prominently featured his safety statistics (zero LTIs over 8 years), and optimised it for major mining company ATS systems. Within three weeks, David received interview invitations from three major iron ore operators and accepted a Production Supervisor role with a $180,000 package—a 35% salary increase.
+                </p>
+                <blockquote className="border-l-4 border-secondary pl-4 italic text-lg mb-6">
+                  "The team at All Resume Services completely transformed how I presented my mining experience. Within weeks I had multiple FIFO offers, and I'm now earning significantly more while working fewer days per year."
+                  <footer className="text-sm text-muted-foreground mt-2">— David, Production Supervisor</footer>
+                </blockquote>
+                <Button asChild>
+                  <Link href="/case-studies/mining-engineer-180k-fifo-role">
+                    Read Full Success Story <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
