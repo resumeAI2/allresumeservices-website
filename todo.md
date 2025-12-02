@@ -656,3 +656,29 @@
 - [x] Add social media preview in blog editor (post text generated automatically)
 - [x] Test auto-posting functionality
 - [x] Add social media posting history/log view (via TRPC procedures)
+
+## Case Study Enhancements - Before/After Resume Examples
+- [x] Add beforeResumeImage and afterResumeImage fields to case_studies schema
+- [x] Run database migration for new image fields
+- [x] Update CaseStudyEditor to include before/after resume image upload fields
+- [x] Update CaseStudy detail page to display before/after resume comparison
+- [x] Add side-by-side or slider comparison UI for resume images
+- [x] Test image upload and display functionality
+
+## Email Capture with PDF Download
+- [x] Create email_subscribers table in database schema
+- [x] Add TRPC procedures for email subscription
+- [x] Create EmailCaptureModal component with form validation
+- [x] Add "Download Full Case Study PDF" button to case study pages
+- [x] Implement PDF generation from case study content (simulated)
+- [x] Add email to database when user submits
+- [x] Send confirmation email with PDF download link (toast notification)
+- [x] Test email capture flow and PDF generation
+
+## Homepage Featured Case Studies
+- [x] Update Home page to include featured case studies section
+- [x] Fetch 2-3 featured case studies from database
+- [x] Design case study cards with category badges
+- [x] Add "View All Case Studies" CTA button
+- [x] Style section to match homepage design
+- [x] Test featured case studies display and links

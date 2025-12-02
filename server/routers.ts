@@ -9,6 +9,7 @@ import * as dashboardService from './dashboard';
 import * as servicesService from './services';
 import * as caseStudiesService from './caseStudies';
 import * as socialMediaService from './socialMedia';
+import * as emailSubscribersService from './emailSubscribers';
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -664,6 +665,37 @@ export const appRouter = router({
       .input(z.object({ blogPostId: z.number() }))
       .mutation(async ({ input }) => {
         return await socialMediaService.deleteSocialMediaPostsForBlog(input.blogPostId);
+      }),
+  }),
+  emailSubscribers: router({
+    subscribe: publicProcedure
+      .input(z.object({
+        email: z.string().email(),
+        name: z.string().optional(),
+        source: z.string().optional(),
+        caseStudyId: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        return await emailSubscribersService.subscribeEmail(
+          input.email,
+          input.name,
+          input.source,
+          input.caseStudyId
+        );
+      }),
+    unsubscribe: publicProcedure
+      .input(z.object({ email: z.string().email() }))
+      .mutation(async ({ input }) => {
+        return await emailSubscribersService.unsubscribeEmail(input.email);
+      }),
+    getAll: publicProcedure
+      .input(z.object({ subscribedOnly: z.boolean().optional().default(true) }))
+      .query(async ({ input }) => {
+        return await emailSubscribersService.getAllSubscribers(input.subscribedOnly);
+      }),
+    getCount: publicProcedure
+      .query(async () => {
+        return await emailSubscribersService.getSubscriberCount();
       }),
   }),
 });
