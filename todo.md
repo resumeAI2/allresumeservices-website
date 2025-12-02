@@ -789,3 +789,10 @@
 - [x] Find Mark's case study testimonial
 - [x] Change "realized" to "realised" (Australian English)
 - [x] Verify all other Australian English spelling throughout the site
+
+## Fix Blog Post Images Not Displaying
+- [x] Investigate why blog images are not showing
+- [x] Check image paths in database
+- [x] Downloaded and added 8 professional stock images
+- [x] Fix broken image references in database
+- [x] Test all blog posts to ensure images display correctly
