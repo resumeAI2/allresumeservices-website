@@ -7,6 +7,8 @@ import * as blogService from './blog';
 import * as categoriesAndTagsService from './categoriesAndTags';
 import * as dashboardService from './dashboard';
 import * as servicesService from './services';
+import * as caseStudiesService from './caseStudies';
+import * as socialMediaService from './socialMedia';
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -537,6 +539,131 @@ export const appRouter = router({
       .input(z.object({ limit: z.number().optional() }))
       .query(async ({ input }) => {
         return await dashboardService.getScheduledBlogPosts(input.limit);
+      }),
+  }),
+  caseStudies: router({
+    getAll: publicProcedure
+      .input(z.object({ publishedOnly: z.boolean().optional().default(true) }))
+      .query(async ({ input }) => {
+        return await caseStudiesService.getAllCaseStudies(input.publishedOnly);
+      }),
+    getBySlug: publicProcedure
+      .input(z.object({ slug: z.string() }))
+      .query(async ({ input }) => {
+        return await caseStudiesService.getCaseStudyBySlug(input.slug);
+      }),
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        return await caseStudiesService.getCaseStudyById(input.id);
+      }),
+    getFeatured: publicProcedure
+      .input(z.object({ limit: z.number().optional().default(3) }))
+      .query(async ({ input }) => {
+        return await caseStudiesService.getFeaturedCaseStudies(input.limit);
+      }),
+    create: publicProcedure
+      .input(z.object({
+        title: z.string(),
+        slug: z.string(),
+        category: z.string(),
+        clientName: z.string(),
+        challenge: z.string(),
+        solution: z.string(),
+        result: z.string(),
+        testimonialQuote: z.string().optional(),
+        image: z.string().optional(),
+        published: z.number().optional().default(0),
+        featured: z.number().optional().default(0),
+      }))
+      .mutation(async ({ input }) => {
+        return await caseStudiesService.createCaseStudy({
+          ...input,
+          testimonialQuote: input.testimonialQuote || null,
+          image: input.image || null,
+          published: input.published || 0,
+          featured: input.featured || 0,
+          viewCount: 0,
+        });
+      }),
+    update: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        title: z.string().optional(),
+        slug: z.string().optional(),
+        category: z.string().optional(),
+        clientName: z.string().optional(),
+        challenge: z.string().optional(),
+        solution: z.string().optional(),
+        result: z.string().optional(),
+        testimonialQuote: z.string().optional(),
+        image: z.string().optional(),
+        published: z.number().optional(),
+        featured: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        return await caseStudiesService.updateCaseStudy(id, data);
+      }),
+    delete: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        return await caseStudiesService.deleteCaseStudy(input.id);
+      }),
+    incrementViewCount: publicProcedure
+      .input(z.object({ slug: z.string() }))
+      .mutation(async ({ input }) => {
+        return await caseStudiesService.incrementCaseStudyViewCount(input.slug);
+      }),
+  }),
+  socialMedia: router({
+    createPostsForBlog: publicProcedure
+      .input(z.object({
+        blogPostId: z.number(),
+        blogPostTitle: z.string(),
+        blogPostSlug: z.string(),
+      }))
+      .mutation(async ({ input }) => {
+        return await socialMediaService.createSocialMediaPostsForBlog(
+          input.blogPostId,
+          input.blogPostTitle,
+          input.blogPostSlug
+        );
+      }),
+    getPostsForBlog: publicProcedure
+      .input(z.object({ blogPostId: z.number() }))
+      .query(async ({ input }) => {
+        return await socialMediaService.getSocialMediaPostsForBlog(input.blogPostId);
+      }),
+    getPendingPosts: publicProcedure
+      .query(async () => {
+        return await socialMediaService.getPendingSocialMediaPosts();
+      }),
+    getPostingHistory: publicProcedure
+      .input(z.object({ limit: z.number().optional().default(50) }))
+      .query(async ({ input }) => {
+        return await socialMediaService.getSocialMediaPostingHistory(input.limit);
+      }),
+    markAsPosted: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        postUrl: z.string(),
+      }))
+      .mutation(async ({ input }) => {
+        return await socialMediaService.markSocialMediaPostAsPosted(input.id, input.postUrl);
+      }),
+    markAsFailed: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        errorMessage: z.string(),
+      }))
+      .mutation(async ({ input }) => {
+        return await socialMediaService.markSocialMediaPostAsFailed(input.id, input.errorMessage);
+      }),
+    deletePostsForBlog: publicProcedure
+      .input(z.object({ blogPostId: z.number() }))
+      .mutation(async ({ input }) => {
+        return await socialMediaService.deleteSocialMediaPostsForBlog(input.blogPostId);
       }),
   }),
 });

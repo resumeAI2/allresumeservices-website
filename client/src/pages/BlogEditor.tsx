@@ -36,6 +36,7 @@ export default function BlogEditor() {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [showGalleryModal, setShowGalleryModal] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [autoPostToSocial, setAutoPostToSocial] = useState(true);
 
   // Fetch categories and tags
   const { data: categories = [] } = trpc.blog.getAllCategories.useQuery();
@@ -77,10 +78,23 @@ export default function BlogEditor() {
 
   const uploadImageMutation = trpc.blog.uploadImage.useMutation();
   const setPostTagsMutation = trpc.blog.setPostTags.useMutation();
+  const createSocialMediaPostsMutation = trpc.socialMedia.createPostsForBlog.useMutation();
 
   const createMutation = trpc.blog.create.useMutation({
-    onSuccess: () => {
+    onSuccess: (data: any) => {
       toast.success("Blog post created successfully");
+      // Auto-post to social media if enabled and published
+      if (autoPostToSocial && data.id && data.published === 1) {
+        createSocialMediaPostsMutation.mutate({
+          blogPostId: data.id,
+          blogPostTitle: data.title,
+          blogPostSlug: data.slug,
+        }, {
+          onSuccess: () => {
+            toast.success("Scheduled for social media posting");
+          },
+        });
+      }
       navigate("/admin/blog");
     },
     onError: (error) => {
@@ -89,8 +103,20 @@ export default function BlogEditor() {
   });
 
   const updateMutation = trpc.blog.update.useMutation({
-    onSuccess: () => {
+    onSuccess: (data: any) => {
       toast.success("Blog post updated successfully");
+      // Auto-post to social media if enabled, published, and wasn't published before
+      if (autoPostToSocial && postId && published === 0 && data.published === 1) {
+        createSocialMediaPostsMutation.mutate({
+          blogPostId: postId,
+          blogPostTitle: title,
+          blogPostSlug: slug,
+        }, {
+          onSuccess: () => {
+            toast.success("Scheduled for social media posting");
+          },
+        });
+      }
       navigate("/admin/blog");
     },
     onError: (error) => {
@@ -487,6 +513,20 @@ export default function BlogEditor() {
                 <p className="text-sm text-muted-foreground mt-1">
                   Leave empty to publish immediately, or set a future date/time to schedule publication
                 </p>
+              </div>
+
+              {/* Auto-post to social media */}
+              <div className="flex items-center gap-2 pt-4 border-t">
+                <input
+                  type="checkbox"
+                  id="autoPostToSocial"
+                  checked={autoPostToSocial}
+                  onChange={(e) => setAutoPostToSocial(e.target.checked)}
+                  className="h-4 w-4"
+                />
+                <Label htmlFor="autoPostToSocial" className="cursor-pointer text-sm">
+                  Automatically share to social media (LinkedIn, Facebook, Twitter) when published
+                </Label>
               </div>
 
               <div className="flex gap-4 pt-6">

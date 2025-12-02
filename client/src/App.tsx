@@ -34,6 +34,10 @@ import Checkout from './pages/Checkout';
 import AboutUs from './pages/AboutUs';
 import Testimonials from './pages/Testimonials';
 import SeoSetup from './pages/SeoSetup';
+import CaseStudies from './pages/CaseStudies';
+import CaseStudy from './pages/CaseStudy';
+import AdminCaseStudies from './pages/AdminCaseStudies';
+import CaseStudyEditor from './pages/CaseStudyEditor';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -52,6 +56,8 @@ function Router() {
       <Route path="/faq" component={FAQ} />
       <Route path={"/about"} component={AboutUs} />
       <Route path={"/testimonials"} component={Testimonials} />
+      <Route path={"/case-studies"} component={CaseStudies} />
+      <Route path={"/case-studies/:slug"} component={CaseStudy} />
       <Route path="/contact" component={Contact} />
       <Route path="/services" component={Services} />
       <Route path="/seo-setup" component={SeoSetup} />
@@ -69,6 +75,9 @@ function Router() {
       <Route path={"/admin/contacts"} component={AdminContacts} />
       <Route path={"/admin/categories"} component={AdminCategories} />
       <Route path={"/admin/tags"} component={AdminTags} />
+      <Route path={"/admin/case-studies"} component={AdminCaseStudies} />
+      <Route path={"/admin/case-studies/new"} component={CaseStudyEditor} />
+      <Route path={"/admin/case-studies/edit/:id"} component={CaseStudyEditor} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

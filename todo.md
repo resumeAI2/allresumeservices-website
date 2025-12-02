@@ -633,3 +633,26 @@
 - [x] Create date range filter for analytics
 - [x] Add route for /admin/blog/analytics
 - [x] Style dashboard with charts and metrics cards
+
+## Case Studies System
+- [x] Create case_studies table in database schema
+- [x] Add fields: title, category, clientName, challenge, solution, result, testimonialQuote, image, published, createdAt
+- [x] Run database migration for case studies table
+- [x] Create TRPC procedures for case studies (getAll, getBySlug, create, update, delete)
+- [x] Build AdminCaseStudies page for managing case studies
+- [x] Create CaseStudyEditor component with rich text fields
+- [x] Build public CaseStudies listing page at /case-studies
+- [x] Create individual CaseStudy detail page at /case-studies/:slug
+- [x] Add case studies navigation link to header
+- [x] Style case studies pages with narrative-focused layout
+- [x] Import the 3 example case studies provided by user
+
+## Social Media Auto-Posting
+- [x] Create social_media_posts table to track posted content
+- [x] Add social media configuration to settings (via auto-post checkbox)
+- [x] Create service for Buffer/Hootsuite-style posting
+- [x] Add webhook/trigger when blog post is published
+- [x] Create UI in blog editor to enable/disable auto-posting per post
+- [x] Add social media preview in blog editor (post text generated automatically)
+- [x] Test auto-posting functionality
+- [x] Add social media posting history/log view (via TRPC procedures)
