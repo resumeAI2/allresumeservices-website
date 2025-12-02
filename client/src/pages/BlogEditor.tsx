@@ -600,7 +600,7 @@ export default function BlogEditor() {
 
               {/* Meta Information */}
               <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-                <span>{new Date().toLocaleDateString()}</span>
+                <span>{new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                 {categoryId && (
                   <span className="px-2 py-1 bg-primary/10 text-primary rounded">
                     {categories.find((c: any) => c.id === categoryId)?.name || category}

@@ -46,7 +46,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/services/resume-writing"} component={ResumeWriting} />
       <Route path={"/services/cover-letters"} component={CoverLetters} />
-      <Route path={"/services/linkedin-optimization"} component={LinkedInOptimization} />
+      <Route path={"/services/linkedin-optimisation"} component={LinkedInOptimization} />
       <Route path={"/services/selection-criteria"} component={SelectionCriteria} />
       <Route path={"/services/career-consultation"} component={CareerConsultation} />
       <Route path={"/payment/success"} component={PaymentSuccess} />

@@ -13,7 +13,7 @@ export default function Testimonials() {
     {
       name: "Sarah M.",
       role: "Marketing Manager",
-      content: "I was struggling to get interviews despite having 10+ years of experience. After working with All Résumé Services, I received 3 interview invitations within 2 weeks! The ATS optimization made all the difference.",
+      content: "I was struggling to get interviews despite having 10+ years of experience. After working with All Résumé Services, I received 3 interview invitations within 2 weeks! The ATS optimisation made all the difference.",
       rating: 5,
       photo: undefined,
     },
@@ -34,7 +34,7 @@ export default function Testimonials() {
     {
       name: "Michael K.",
       role: "Project Manager",
-      content: "Working with All Résumé Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimization was a bonus that really boosted my visibility.",
+      content: "Working with All Résumé Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimisation was a bonus that really boosted my visibility.",
       rating: 5,
       photo: undefined,
     },

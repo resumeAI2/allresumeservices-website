@@ -111,8 +111,8 @@ export default function AdminBlog() {
                       </div>
                       <p className="text-muted-foreground mb-3">{post.excerpt}</p>
                       <p className="text-sm text-muted-foreground">
-                        Created: {new Date(post.createdAt).toLocaleDateString()} | 
-                        Updated: {new Date(post.updatedAt).toLocaleDateString()}
+                        Created: {new Date(post.createdAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })} | 
+                        Updated: {new Date(post.updatedAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })}
                       </p>
                     </div>
                     <div className="flex gap-2 ml-4">

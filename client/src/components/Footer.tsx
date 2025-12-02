@@ -79,7 +79,7 @@ export default function Footer() {
                 <a href="/services/cover-letters" className="hover:text-secondary transition-colors">Cover Letters</a>
               </li>
               <li>
-                <a href="/services/linkedin-optimization" className="hover:text-secondary transition-colors">LinkedIn Optimization</a>
+                <a href="/services/linkedin-optimisation" className="hover:text-secondary transition-colors">LinkedIn Optimization</a>
               </li>
               <li>
                 <a href="/services/selection-criteria" className="hover:text-secondary transition-colors">Selection Criteria</a>

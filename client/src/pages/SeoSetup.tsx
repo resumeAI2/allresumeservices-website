@@ -149,7 +149,7 @@ export default function SeoSetup() {
                 <div>
                   <h3 className="font-semibold mb-2">Monitor Your Performance</h3>
                   <p className="text-muted-foreground">
-                    Check back regularly to see how your pages are performing in search results, fix any errors, and optimize your content.
+                    Check back regularly to see how your pages are performing in search results, fix any errors, and optimise your content.
                   </p>
                 </div>
               </div>

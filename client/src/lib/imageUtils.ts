@@ -1,6 +1,6 @@
 /**
  * Get the appropriate image URL based on size requirement
- * Falls back to original image if optimized variants are not available
+ * Falls back to original image if optimised variants are not available
  */
 export function getImageUrl(
   imageUrl: string | null | undefined,
@@ -16,7 +16,7 @@ export function getImageUrl(
 }
 
 /**
- * Get optimized image URL from uploaded image object
+ * Get optimised image URL from uploaded image object
  */
 export function getOptimizedImageUrl(
   image: {

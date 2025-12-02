@@ -7,7 +7,7 @@ import { Link } from "wouter";
 export default function ResumeWriting() {
   const benefits = [
     "Professionally written to highlight your strengths and achievements",
-    "ATS-optimized formatting to pass applicant tracking systems",
+    "ATS-optimised formatting to pass applicant tracking systems",
     "Tailored to your target role and industry",
     "Clear, concise, and impactful language",
     "Delivered in both Word and PDF formats",
