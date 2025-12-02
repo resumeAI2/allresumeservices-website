@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Mail, Phone, MapPin, Clock, Send, Upload, FileText } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, Upload, FileText, Loader2 } from "lucide-react";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -19,10 +19,22 @@ export default function Contact() {
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [honeypot, setHoneypot] = useState("");
   const [formMountTime] = useState(() => Date.now());
+  const [isUploading, setIsUploading] = useState(false);
 
   const submitMutation = trpc.contact.submit.useMutation({
     onSuccess: () => {
-      toast.success("Thank you! We'll get back to you within 24 hours.");
+      setIsUploading(false);
+      
+      // Show detailed success message
+      const hasResume = resumeFile !== null;
+      const successMessage = hasResume 
+        ? "✓ Message sent successfully! Your resume has been uploaded. We'll review it and get back to you within 24 hours with a personalized quote."
+        : "✓ Message sent successfully! We'll get back to you within 24 hours.";
+      
+      toast.success(successMessage, {
+        duration: 6000,
+      });
+      
       // Reset form
       setName("");
       setEmail("");
@@ -32,6 +44,7 @@ export default function Contact() {
       setResumeFile(null);
     },
     onError: (error) => {
+      setIsUploading(false);
       toast.error(`Failed to submit: ${error.message}`);
     },
   });
@@ -66,10 +79,14 @@ export default function Contact() {
       return;
     }
 
+    // Set loading state
+    setIsUploading(true);
+
     // Upload resume file if provided
     let resumeFileUrl: string | undefined;
     if (resumeFile) {
       try {
+        toast.info('Uploading your resume...');
         const formData = new FormData();
         formData.append('file', resumeFile);
         
@@ -84,12 +101,15 @@ export default function Contact() {
         
         const uploadData = await uploadResponse.json();
         resumeFileUrl = uploadData.url;
+        toast.success('Resume uploaded successfully!');
       } catch (error) {
         toast.error('Failed to upload resume file. Please try again.');
+        setIsUploading(false);
         return;
       }
     }
 
+    toast.info('Submitting your message...');
     submitMutation.mutate({
       name: name.trim(),
       email: email.trim(),
@@ -291,11 +311,15 @@ export default function Contact() {
               <Button
                 type="submit"
                 size="lg"
-                disabled={submitMutation.isPending}
+                disabled={isUploading || submitMutation.isPending}
                 className="w-full md:w-auto"
               >
-                <Send className="w-4 h-4 mr-2" />
-                {submitMutation.isPending ? "Sending..." : "Send Message"}
+                {isUploading || submitMutation.isPending ? (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4 mr-2" />
+                )}
+                {isUploading ? "Uploading Resume..." : submitMutation.isPending ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </Card>
