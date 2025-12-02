@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import SocialShare from "@/components/SocialShare";
 import SEOHead from "@/components/SEOHead";
 import { getImageUrl } from "@/lib/imageUtils";
+import { BlogAuthor } from "@/components/BlogAuthor";
 
 export default function BlogPost() {
   const params = useParams();
@@ -132,6 +133,17 @@ export default function BlogPost() {
                 className="prose prose-lg max-w-none prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 prose-p:mb-6 prose-ul:mb-6 prose-li:mb-2"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
+
+              {/* Author Bio */}
+              <div className="mt-12">
+                <BlogAuthor
+                  name="Sonia Lynch"
+                  title="Founder & CEO - 15+ years in industry"
+                  bio="As the Founder and CEO of All Résumé Services, Sonia is a dynamic and results-driven professional with expertise in Résumé Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths."
+                  photo="/team/sonia-lynch.png"
+                  expertise={["Résumé Writing", "Personal Branding", "Selection Criteria", "Career Coaching"]}
+                />
+              </div>
 
               {/* CTA Section */}
               <div className="mt-16 p-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">

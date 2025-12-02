@@ -23,19 +23,22 @@ export default function AboutUs() {
       name: "Sonia Lynch",
       title: "Founder & CEO - 15+ years in industry",
       bio: "As the Founder and CEO of All Résumé Services, Sonia is a dynamic and results-driven professional with expertise in Résumé Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths. Her holistic approach ensures clients are well-equipped for their job market journey, presenting as standout candidates in their respective fields.",
-      expertise: ["Résumé Writing", "Personal Branding", "Selection Criteria", "Career Coaching"]
+      expertise: ["Résumé Writing", "Personal Branding", "Selection Criteria", "Career Coaching"],
+      photo: "/team/sonia-lynch.png"
     },
     {
       name: "Steven Jason",
       title: "Professional Résumé Writer",
       bio: "For over five years, Steven has been dedicated to enhancing the career prospects of job seekers through expertly crafted application documents. He has honed his ability to create résumés that capture the attention of employers and cover letters that effectively convey personal narratives. Steven specialises in optimising LinkedIn profiles and skilfully employs the STAR method when addressing selection criteria to highlight applicants' strengths and achievements with clarity and impact.",
-      expertise: ["Résumé Writing", "Cover Letters", "LinkedIn Optimization", "STAR Method"]
+      expertise: ["Résumé Writing", "Cover Letters", "LinkedIn Optimization", "STAR Method"],
+      photo: "/team/steven-jason.png"
     },
     {
       name: "Jenna Atkinson",
       title: "Expert Résumé Writer",
       bio: "Jenna has been a key member of the All Resume Services team for several years, bringing a wealth of experience and a keen eye for detail to her role as a professional résumé writer. She excels in creating persuasive cover letters and enhancing LinkedIn profiles. Jenna is particularly adept at responding to selection criteria using the CAR (Context, Action, Result) format, showcasing clients' skills and achievements in a clear and impactful way. Her professionalism, creativity, and thorough approach have earned her a reputation as a trusted member of the team.",
-      expertise: ["Résumé Writing", "Cover Letters", "LinkedIn Profiles", "CAR Method"]
+      expertise: ["Résumé Writing", "Cover Letters", "LinkedIn Profiles", "CAR Method"],
+      photo: "/team/jenna-atkinson.png"
     }
   ];
 
@@ -286,9 +289,17 @@ export default function AboutUs() {
                   <CardContent className="p-8">
                     <div className="flex flex-col md:flex-row gap-6">
                       <div className="flex-shrink-0">
-                        <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] flex items-center justify-center text-white text-4xl font-bold">
-                          {member.name.split(' ').map(n => n[0]).join('')}
-                        </div>
+                        {member.photo ? (
+                          <img
+                            src={member.photo}
+                            alt={member.name}
+                            className="w-32 h-32 rounded-full object-cover border-4 border-[#d4af37]/20"
+                          />
+                        ) : (
+                          <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] flex items-center justify-center text-white text-4xl font-bold">
+                            {member.name.split(' ').map(n => n[0]).join('')}
+                          </div>
+                        )}
                       </div>
                       <div className="flex-1">
                         <h3 className="text-2xl font-bold text-[#1e3a5f] mb-1">{member.name}</h3>
