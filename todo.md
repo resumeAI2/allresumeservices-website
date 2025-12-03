@@ -879,3 +879,10 @@
 - [x] Store PDF in public directory for download
 - [x] Auto-download PDF after email submission
 - [x] Test exit-intent trigger and email capture
+
+## Remove Grey Checkered Background from Logo
+- [x] Regenerate logo with proper transparent background
+- [x] Update colors to match website (only navy blue #1e3a5f and gold #d4af37)
+- [x] Remove teal and purple from original design
+- [x] Test logo appearance on website header
+- [x] Verify no background artifacts remain
