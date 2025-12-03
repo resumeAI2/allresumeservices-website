@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { Link, useParams } from "wouter";
@@ -73,6 +74,14 @@ export default function BlogPost() {
         keywords={`${post.category}, resume writing, career advice, job search`}
       />
       <Header />
+      
+      <div className="container pt-4">
+        <Breadcrumb items={[
+          { label: 'Blog', href: '/blog' },
+          { label: post.title }
+        ]} />
+      </div>
+      
       <main className="flex-1">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary/10 via-background to-accent/10 py-20">

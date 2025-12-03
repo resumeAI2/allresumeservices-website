@@ -118,6 +118,24 @@ export default function AllIndustries() {
         </div>
       </section>
 
+      {/* Compare Industries CTA */}
+      <section className="py-12 bg-gradient-to-r from-secondary/10 to-primary/10">
+        <div className="container">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Compare Our Industry Approaches</h2>
+            <p className="text-lg text-muted-foreground mb-6">
+              See how we tailor our resume writing approach across different sectors. Understand the unique strategies we use for Mining, Healthcare, Government, and IT professionals.
+            </p>
+            <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
+              <Link href="/industries/compare">
+                View Industry Comparison
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Industries */}
       <section className="py-16 bg-muted/30">
         <div className="container">
