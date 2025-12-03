@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
+import GoogleReviews from "@/components/GoogleReviews";
 
 export default function Testimonials() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -119,6 +120,9 @@ export default function Testimonials() {
           </div>
         </div>
       </section>
+
+      {/* Google Reviews Section */}
+      <GoogleReviews />
 
       {/* Filters Section */}
       <section className="py-8 border-b">
