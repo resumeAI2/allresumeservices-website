@@ -836,3 +836,9 @@
 - [x] Style reviews display to match website design
 - [x] Add trust indicators (100% 5-star, 17+ years, 96% success rate)
 - [x] Test reviews widget functionality
+
+## Regenerate Logo with Circular Crop
+- [x] Regenerate logo with canvas tightly cropped around circular design
+- [x] Remove excess transparent space to eliminate square appearance
+- [x] Increase logo size in header (h-16 to h-20)
+- [x] Test logo appearance without square edges
