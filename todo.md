@@ -899,3 +899,23 @@
 - [x] Update cover letter services in database to 1 day delivery
 - [x] Search for cover letter delivery mentions in static pages (none found - delivery times are in database)
 - [x] Verify all cover letter services show 1 day delivery
+
+## Reorganize Navigation - Consolidate FAQ and Contact
+- [ ] Move FAQ content into Our Process page (add FAQ section at bottom)
+- [ ] Move Contact content into About Us page (add Contact section at bottom)
+- [ ] Update Header navigation to remove FAQ and Contact links
+- [ ] Update Footer navigation to remove FAQ and Contact links
+- [ ] Update App.tsx routing to redirect /faq to /process and /contact to /about
+- [ ] Test all navigation links and redirects
+
+## Navigation Reorganization
+- [x] Create dedicated Our Process page with process content from homepage
+- [x] Add FAQ section to Our Process page
+- [x] Move Contact form and information into About Us page
+- [x] Update Header navigation to link to /process instead of #process
+- [x] Remove FAQ link from Header navigation
+- [x] Remove Contact link from Header navigation
+- [ ] Update Footer navigation links
+- [x] Add routing for /process page
+- [x] Test all navigation changes
+- [x] Verify responsive mobile navigation

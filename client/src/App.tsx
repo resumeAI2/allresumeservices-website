@@ -20,6 +20,7 @@ import AdminBlog from "./pages/AdminBlog";
 import BlogEditor from "./pages/BlogEditor";
 import MediaLibrary from "./pages/MediaLibrary";
 import FAQ from "./pages/FAQ";
+import OurProcess from "./pages/OurProcess";
 import FaqAnalytics from "./pages/FaqAnalytics";
 import Contact from "./pages/Contact";
 import AdminTestimonials from "./pages/AdminTestimonials";
@@ -60,6 +61,7 @@ function Router() {
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogPost} />
       <Route path="/faq" component={FAQ} />
+      <Route path="/process" component={OurProcess} />
       <Route path={"/about"} component={AboutUs} />
       <Route path={"/testimonials"} component={Testimonials} />
       <Route path={"/case-studies"} component={CaseStudies} />
