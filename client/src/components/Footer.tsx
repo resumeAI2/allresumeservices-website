@@ -76,6 +76,19 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Resources */}
+          <div>
+            <h3 className="font-semibold mb-4">Resources</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="/resume-transformation" className="hover:text-secondary transition-colors">Resume Transformation</a>
+              </li>
+              <li>
+                <a href="/blog" className="hover:text-secondary transition-colors">Career Advice Blog</a>
+              </li>
+            </ul>
+          </div>
+
           {/* Services */}
           <div>
             <h3 className="font-semibold mb-4">Our Services</h3>
