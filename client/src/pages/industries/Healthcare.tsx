@@ -1,4 +1,7 @@
 import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Link } from 'wouter';
 import { CheckCircle2, Heart, Users, Shield, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -79,6 +82,14 @@ export default function Healthcare() {
         <title>Healthcare Resume Writing | All Résumé Services</title>
         <meta name="description" content="Professional resume writing for healthcare professionals. Nurses, allied health, and medical staff. AHPRA-registered specialists across Australia." />
       </Helmet>
+      <Header />
+      
+      <div className="container">
+        <Breadcrumb items={[
+          { label: 'Industries', href: '/industries' },
+          { label: 'Healthcare' }
+        ]} />
+      </div>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
