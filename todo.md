@@ -1049,3 +1049,8 @@
 - [x] Restore logo image to Header component
 - [x] Update Header layout with logo
 - [x] Test header display on desktop and mobile
+
+## Add Favicon to Browser Tab
+- [x] Copy logo file as favicon
+- [x] Add favicon link to HTML head
+- [x] Test favicon display in browser tab
