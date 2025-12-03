@@ -58,7 +58,7 @@ export default function Header() {
               <img 
                 src="/logo.png" 
                 alt="All Resume Services Logo" 
-                className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+                className="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
               />
               <div className="flex flex-col">
                 <span className="font-bold text-lg leading-tight">All Résumé Services</span>
