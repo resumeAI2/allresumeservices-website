@@ -8,10 +8,12 @@ import Testimonials from "@/components/Testimonials";
 import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
 import FreeReview from "@/components/FreeReview";
 import Footer from "@/components/Footer";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <SchemaMarkup type="homepage" />
       <Header />
       <Hero />
       <Stats />

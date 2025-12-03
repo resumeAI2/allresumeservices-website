@@ -842,3 +842,17 @@
 - [x] Remove excess transparent space to eliminate square appearance
 - [x] Increase logo size in header (h-16 to h-20)
 - [x] Test logo appearance without square edges
+
+## Schema Markup for Local Business SEO
+- [x] Create JSON-LD structured data for LocalBusiness
+- [x] Add business details (name, address, phone, email)
+- [x] Include opening hours and service areas
+- [x] Add aggregate rating from testimonials
+- [x] Implement on homepage
+
+## A/B Testing Framework for CTAs
+- [x] Create A/B testing utility for CTA buttons (useABTest hook)
+- [x] Implement variant tracking system with localStorage persistence
+- [x] Test different button text variations (3 variants on hero CTA)
+- [x] Add analytics tracking for conversion rates (console logging, ready for production analytics)
+- [ ] Extend A/B testing to other CTAs across the site (optional future enhancement)
