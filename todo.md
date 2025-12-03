@@ -990,3 +990,11 @@
 - [x] Design visually appealing layout with cards or carousel
 - [x] Position testimonials section strategically on Services page
 - [x] Test responsiveness on mobile and desktop
+
+## Redesign Why Choose Section on Homepage
+- [x] Add visual hierarchy with icons and color accents
+- [x] Prominently display statistics (17+ years, 96% success rate, 5,000+ clients)
+- [x] Implement two-column or grid layout for better scanability
+- [x] Add accent backgrounds and visual elements
+- [x] Strengthen headlines and copy
+- [x] Test responsiveness on mobile and desktop
