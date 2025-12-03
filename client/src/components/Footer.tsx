@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container py-12">
-        <div className="grid md:grid-cols-5 gap-8">
+        <div className="grid md:grid-cols-6 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
@@ -53,8 +53,15 @@ export default function Footer() {
               <li>
                 <a href="/about" className="hover:text-secondary transition-colors">About Us</a>
               </li>
+            </ul>
+          </div>
+
+          {/* Success Stories */}
+          <div>
+            <h3 className="font-semibold mb-4">Success Stories</h3>
+            <ul className="space-y-2 text-sm">
               <li>
-                <a href="/testimonials" className="hover:text-secondary transition-colors">Testimonials</a>
+                <a href="/testimonials" className="hover:text-secondary transition-colors">Client Reviews</a>
               </li>
               <li>
                 <a href="/case-studies" className="hover:text-secondary transition-colors">Case Studies</a>
