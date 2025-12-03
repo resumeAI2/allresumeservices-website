@@ -54,9 +54,16 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/">
-            <div className="flex flex-col cursor-pointer group">
-              <span className="font-bold text-xl leading-tight transition-colors group-hover:text-secondary">All Résumé Services</span>
-              <span className="text-xs text-secondary">Expert Resume Writing</span>
+            <div className="flex items-center gap-3 cursor-pointer group">
+              <img 
+                src="/logo.a7f3c2e1.png" 
+                alt="All Resume Services Logo" 
+                className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="flex flex-col">
+                <span className="font-bold text-lg leading-tight">All Résumé Services</span>
+                <span className="text-xs text-secondary">Expert Resume Writing</span>
+              </div>
             </div>
           </Link>
 
