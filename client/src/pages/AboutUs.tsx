@@ -237,6 +237,42 @@ export default function AboutUs() {
           </div>
         </section>
 
+        {/* Trust Badges */}
+        <section className="py-12 bg-secondary/5 border-y border-secondary/20">
+          <div className="container max-w-6xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-3">
+                  <Award className="h-8 w-8 text-secondary" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-1">17+</div>
+                <div className="text-sm text-muted-foreground">Years Experience</div>
+              </div>
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-3">
+                  <TrendingUp className="h-8 w-8 text-secondary" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-1">96%</div>
+                <div className="text-sm text-muted-foreground">Interview Success Rate</div>
+              </div>
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-3">
+                  <Users className="h-8 w-8 text-secondary" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-1">5,000+</div>
+                <div className="text-sm text-muted-foreground">Clients Served</div>
+              </div>
+              <div className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-3">
+                  <CheckCircle className="h-8 w-8 text-secondary" />
+                </div>
+                <div className="text-3xl font-bold text-foreground mb-1">100%</div>
+                <div className="text-sm text-muted-foreground">Satisfaction Guarantee</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Mission & Vision */}
         <section className="py-16 bg-white">
           <div className="container max-w-6xl">
@@ -289,6 +325,88 @@ export default function AboutUs() {
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Comparison */}
+        <section className="py-16 bg-white">
+          <div className="container max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">Why Choose All Résumé Services?</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Not all resume services are created equal. See how we compare to DIY approaches and generic resume writers.
+              </p>
+            </div>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-gray-50">
+                    <th className="p-4 text-left font-semibold text-gray-700 border-b-2 border-gray-200">Feature</th>
+                    <th className="p-4 text-center font-semibold text-gray-700 border-b-2 border-gray-200">DIY Resume</th>
+                    <th className="p-4 text-center font-semibold text-gray-700 border-b-2 border-gray-200">Generic Resume Writer</th>
+                    <th className="p-4 text-center font-semibold text-secondary border-b-2 border-secondary bg-secondary/5">All Résumé Services</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-200">
+                    <td className="p-4 font-medium text-gray-700">ATS Optimization</td>
+                    <td className="p-4 text-center text-gray-500">❌ Limited</td>
+                    <td className="p-4 text-center text-gray-500">✓ Basic</td>
+                    <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold">✓✓ Advanced</span></td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="p-4 font-medium text-gray-700">Industry Expertise</td>
+                    <td className="p-4 text-center text-gray-500">❌ None</td>
+                    <td className="p-4 text-center text-gray-500">✓ General</td>
+                    <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold">✓✓ All Industries</span></td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="p-4 font-medium text-gray-700">Personalized Consultation</td>
+                    <td className="p-4 text-center text-gray-500">❌ Self-guided</td>
+                    <td className="p-4 text-center text-gray-500">✓ Limited</td>
+                    <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold">✓✓ One-on-One</span></td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="p-4 font-medium text-gray-700">Achievement-Focused Writing</td>
+                    <td className="p-4 text-center text-gray-500">❌ Task-based</td>
+                    <td className="p-4 text-center text-gray-500">✓ Mixed</td>
+                    <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold">✓✓ Results-Driven</span></td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="p-4 font-medium text-gray-700">Unlimited Revisions</td>
+                    <td className="p-4 text-center text-gray-500">✓ Self-edit</td>
+                    <td className="p-4 text-center text-gray-500">❌ 1-2 rounds</td>
+                    <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold">✓✓ Until Satisfied</span></td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="p-4 font-medium text-gray-700">Interview Success Rate</td>
+                    <td className="p-4 text-center text-gray-500">~40-50%</td>
+                    <td className="p-4 text-center text-gray-500">~70-75%</td>
+                    <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold text-lg">96%</span></td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="p-4 font-medium text-gray-700">Experience</td>
+                    <td className="p-4 text-center text-gray-500">Varies</td>
+                    <td className="p-4 text-center text-gray-500">1-5 years</td>
+                    <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold">17+ years</span></td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium text-gray-700">Turnaround Time</td>
+                    <td className="p-4 text-center text-gray-500">Days-Weeks</td>
+                    <td className="p-4 text-center text-gray-500">5-7 days</td>
+                    <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold">2-3 days</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div className="mt-8 text-center">
+              <p className="text-gray-600 mb-6">Ready to experience the All Résumé Services difference?</p>
+              <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90">
+                <a href="#contact">Get Your Free Quote</a>
+              </Button>
             </div>
           </div>
         </section>
