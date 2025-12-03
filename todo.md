@@ -886,3 +886,10 @@
 - [x] Remove teal and purple from original design
 - [x] Test logo appearance on website header
 - [x] Verify no background artifacts remain
+
+## Fix Logo Square Background Visibility
+- [x] Verify current logo file has embedded background (found png:bKGD chunk with white/grey matte)
+- [x] Remove background metadata from PNG file
+- [x] Strip all metadata and ensure clean transparent PNG
+- [x] Test logo appearance on navy blue header
+- [x] Confirm background blends seamlessly with header
