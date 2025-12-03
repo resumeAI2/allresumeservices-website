@@ -219,6 +219,38 @@ export default function ResumeTransformation() {
           </div>
         </section>
 
+        {/* Client Testimonial */}
+        <section className="py-16 bg-gradient-to-br from-secondary/5 to-secondary/10">
+          <div className="container max-w-4xl">
+            <div className="bg-white rounded-lg shadow-lg p-8 md:p-12 border-l-4 border-secondary">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-secondary">L.S.</span>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-[#d4af37] fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <blockquote className="text-lg text-gray-700 leading-relaxed mb-4 italic">
+                    "After struggling to get interviews for months with my old resume, I decided to invest in professional help. The transformation was incredible—within two weeks of using my new resume, I secured three interviews and ultimately landed my dream role in mining technology. The team didn't just rewrite my resume; they repositioned my entire career story. Worth every dollar."
+                  </blockquote>
+                  <div>
+                    <p className="font-semibold text-gray-900">L.S.</p>
+                    <p className="text-sm text-gray-600">Technology Operations Supervisor, Mining Sector</p>
+                    <p className="text-sm text-secondary mt-1">Resume Writing + Cover Letter Package</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Privacy Notice */}
         <section className="py-8 bg-gray-50 border-t border-gray-200">
           <div className="container max-w-6xl">
