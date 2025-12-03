@@ -893,3 +893,9 @@
 - [x] Strip all metadata and ensure clean transparent PNG
 - [x] Test logo appearance on navy blue header
 - [x] Confirm background blends seamlessly with header
+
+## Update Cover Letter Delivery Time to 1 Day
+- [x] Search for all cover letter delivery time mentions in database
+- [x] Update cover letter services in database to 1 day delivery
+- [x] Search for cover letter delivery mentions in static pages (none found - delivery times are in database)
+- [x] Verify all cover letter services show 1 day delivery
