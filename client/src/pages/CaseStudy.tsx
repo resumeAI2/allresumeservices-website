@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { ArrowLeft, Quote, Eye, Calendar, Download } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 import EmailCaptureModal from "@/components/EmailCaptureModal";
 
 export default function CaseStudy() {
@@ -67,6 +68,13 @@ export default function CaseStudy() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
+      
+      <div className="container pt-4">
+        <Breadcrumb items={[
+          { label: 'Case Studies', href: '/case-studies' },
+          { label: study.title }
+        ]} />
+      </div>
       
       <main className="flex-1">
         {/* Hero Section */}
