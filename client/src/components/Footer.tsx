@@ -50,9 +50,6 @@ export default function Footer() {
               <li>
                 <a href="/blog" className="hover:text-secondary transition-colors">Career Advice Blog</a>
               </li>
-              <li>
-                <a href="/about" className="hover:text-secondary transition-colors">About Us</a>
-              </li>
             </ul>
           </div>
 
@@ -65,6 +62,16 @@ export default function Footer() {
               </li>
               <li>
                 <a href="/case-studies" className="hover:text-secondary transition-colors">Case Studies</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* About */}
+          <div>
+            <h3 className="font-semibold mb-4">Company</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="/about" className="hover:text-secondary transition-colors">About Us</a>
               </li>
             </ul>
           </div>

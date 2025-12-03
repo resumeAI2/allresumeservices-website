@@ -943,3 +943,9 @@
 - [x] Update Footer Success Stories section
 - [x] Test all dropdowns on desktop and mobile
 - [x] Test all redirects work correctly
+
+## Reorder Navigation - About Us to Last
+- [x] Reorder Header desktop navigation: Services | Our Process | Blog | Success Stories | About Us
+- [x] Reorder Header mobile navigation to match
+- [x] Reorder Footer Quick Links to match new order
+- [x] Test navigation order on desktop and mobile
