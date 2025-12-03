@@ -75,15 +75,6 @@ export default function Header() {
             <Link href="/about" className="hover:text-secondary transition-colors">About Us</Link>
             <Link href="/testimonials" className="hover:text-secondary transition-colors">Testimonials</Link>
             <Link href="/case-studies" className="hover:text-secondary transition-colors">Case Studies</Link>
-            <div className="relative group">
-              <button className="hover:text-secondary transition-colors">Industries</button>
-              <div className="absolute left-0 mt-2 w-56 bg-primary border border-secondary/20 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <Link href="/industries/mining-resources" className="block px-4 py-2 hover:bg-secondary/10 transition-colors">Mining & Resources</Link>
-                <Link href="/industries/healthcare" className="block px-4 py-2 hover:bg-secondary/10 transition-colors">Healthcare</Link>
-                <Link href="/industries/government" className="block px-4 py-2 hover:bg-secondary/10 transition-colors">Government & Public Sector</Link>
-                <Link href="/industries/it-technology" className="block px-4 py-2 hover:bg-secondary/10 transition-colors">IT & Technology</Link>
-              </div>
-            </div>
             <Link href="/cart" className="relative hover:text-secondary transition-colors">
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (
@@ -120,13 +111,6 @@ export default function Header() {
             <Link href="/about" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
             <Link href="/testimonials" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Testimonials</Link>
             <Link href="/case-studies" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
-            <div className="pl-4 flex flex-col gap-2">
-              <span className="text-secondary font-semibold">Industries:</span>
-              <Link href="/industries/mining-resources" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Mining & Resources</Link>
-              <Link href="/industries/healthcare" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Healthcare</Link>
-              <Link href="/industries/government" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Government & Public Sector</Link>
-              <Link href="/industries/it-technology" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>IT & Technology</Link>
-            </div>
             <Button 
               variant="default" 
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90 w-full"

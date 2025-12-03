@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
@@ -45,13 +45,10 @@ export default function Footer() {
                 <a href="/services" className="hover:text-secondary transition-colors">Services & Pricing</a>
               </li>
               <li>
-                <a href="#process" className="hover:text-secondary transition-colors">Our Process</a>
+                <a href="/process" className="hover:text-secondary transition-colors">Our Process</a>
               </li>
               <li>
                 <a href="/blog" className="hover:text-secondary transition-colors">Career Advice Blog</a>
-              </li>
-              <li>
-                <a href="/faq" className="hover:text-secondary transition-colors">FAQ</a>
               </li>
               <li>
                 <a href="/about" className="hover:text-secondary transition-colors">About Us</a>
@@ -60,7 +57,7 @@ export default function Footer() {
                 <a href="/testimonials" className="hover:text-secondary transition-colors">Testimonials</a>
               </li>
               <li>
-                <a href="#free-review" className="hover:text-secondary transition-colors">Free Review</a>
+                <a href="/case-studies" className="hover:text-secondary transition-colors">Case Studies</a>
               </li>
             </ul>
           </div>
@@ -85,6 +82,26 @@ export default function Footer() {
                 <a href="/services/career-consultation" className="hover:text-secondary transition-colors">Career Consultation</a>
               </li>
             </ul>
+          </div>
+
+          {/* Industry Expertise */}
+          <div>
+            <h3 className="font-semibold mb-4">Industry Expertise</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="/industries/mining-resources" className="hover:text-secondary transition-colors">Mining & Resources</a>
+              </li>
+              <li>
+                <a href="/industries/healthcare" className="hover:text-secondary transition-colors">Healthcare</a>
+              </li>
+              <li>
+                <a href="/industries/government" className="hover:text-secondary transition-colors">Government & Public Sector</a>
+              </li>
+              <li>
+                <a href="/industries/it-technology" className="hover:text-secondary transition-colors">IT & Technology</a>
+              </li>
+            </ul>
+            <p className="text-xs opacity-75 mt-3 italic">+ All industries & career levels</p>
           </div>
         </div>
 

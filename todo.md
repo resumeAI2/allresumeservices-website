@@ -919,3 +919,11 @@
 - [x] Add routing for /process page
 - [x] Test all navigation changes
 - [x] Verify responsive mobile navigation
+
+## Move Industries to Footer
+- [x] Remove Industries dropdown from Header navigation (desktop)
+- [x] Remove Industries section from Header mobile menu
+- [x] Add "Industry Expertise" section to Footer
+- [x] Add links to 4 industry pages in Footer
+- [x] Test footer layout on desktop and mobile
+- [x] Verify all industry page links work correctly
