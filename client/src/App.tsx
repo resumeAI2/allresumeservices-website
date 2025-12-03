@@ -20,9 +20,11 @@ import AdminBlog from "./pages/AdminBlog";
 import BlogEditor from "./pages/BlogEditor";
 import MediaLibrary from "./pages/MediaLibrary";
 import FAQ from "./pages/FAQ";
+import FaqRedirect from "./pages/FaqRedirect";
 import OurProcess from "./pages/OurProcess";
 import FaqAnalytics from "./pages/FaqAnalytics";
 import Contact from "./pages/Contact";
+import ContactRedirect from "./pages/ContactRedirect";
 import AdminTestimonials from "./pages/AdminTestimonials";
 import AdminCategories from "./pages/AdminCategories";
 import AdminTags from "./pages/AdminTags";
@@ -44,6 +46,7 @@ import MiningResources from './pages/industries/MiningResources';
 import Healthcare from './pages/industries/Healthcare';
 import Government from './pages/industries/Government';
 import ITTechnology from './pages/industries/ITTechnology';
+import AllIndustries from './pages/AllIndustries';
 import ExitIntentPopup from './components/ExitIntentPopup';
 
 function Router() {
@@ -60,7 +63,7 @@ function Router() {
       <Route path={"/payment/cancel"} component={PaymentCancel} />
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogPost} />
-      <Route path="/faq" component={FAQ} />
+      <Route path="/faq" component={FaqRedirect} />
       <Route path="/process" component={OurProcess} />
       <Route path={"/about"} component={AboutUs} />
       <Route path={"/testimonials"} component={Testimonials} />
@@ -69,7 +72,8 @@ function Router() {
       <Route path={"/industries/mining-resources"} component={MiningResources} />
       <Route path={"/industries/healthcare"} component={Healthcare} />
       <Route path={"/industries/government"} component={Government} />
-      <Route path={"/industries/it-technology"} component={ITTechnology} />
+      <Route path="/industries/it-technology" component={ITTechnology} />
+      <Route path="/industries" component={AllIndustries} />
       <Route path="/contact" component={Contact} />
       <Route path="/services" component={Services} />
       <Route path="/seo-setup" component={SeoSetup} />

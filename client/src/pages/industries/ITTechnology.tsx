@@ -102,6 +102,17 @@ export default function ITTechnology() {
         </div>
       </section>
 
+      {/* Industry Disclaimer */}
+      <section className="py-8 bg-secondary/5 border-y border-secondary/20">
+        <div className="container">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-sm text-muted-foreground">
+              <strong className="text-foreground">Serving All Industries:</strong> While we have deep expertise in IT & Technology, we successfully serve professionals across all sectors and career levels. Our proven resume writing process delivers results regardless of your industry.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us */}
       <section className="py-16 bg-background">
         <div className="container">
