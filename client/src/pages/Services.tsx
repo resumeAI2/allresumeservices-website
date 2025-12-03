@@ -54,15 +54,74 @@ export default function Services() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-primary/10 to-background py-20">
-          <div className="container">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Professional Resume Services & Packages
+        <section className="relative bg-gradient-to-br from-[#1e3a5f] via-[#2d5a8f] to-[#1e3a5f] text-white py-20 overflow-hidden">
+          {/* Decorative Elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-10 w-72 h-72 bg-secondary rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="container relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-block mb-6">
+                <Badge className="bg-secondary/20 text-white border-secondary/30 px-4 py-2 text-sm font-semibold">
+                  <Check className="w-4 h-4 mr-2 inline" />
+                  96% Interview Success Rate
+                </Badge>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Professional Resume Services <span className="text-secondary">&</span> Packages
               </h1>
-              <p className="text-xl text-muted-foreground">
-                Choose from individual services or complete packages tailored to your career level
+              <p className="text-xl text-blue-100 leading-relaxed mb-8">
+                Choose from individual services or complete packages tailored to your career level. 
+                Every resume is crafted by experienced writers with 17+ years in the industry.
               </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white">
+                  <a href="#services">Browse Services</a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+                  <a href="/resume-transformation">See Real Results</a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works Section */}
+        <section className="py-16 bg-white">
+          <div className="container max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">How It Works</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Our proven 5-step process ensures you get a resume that opens doors
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-5 gap-6">
+              {[
+                { step: '1', title: 'Choose Service', description: 'Select the package that fits your career goals', icon: '🎯' },
+                { step: '2', title: 'Consultation', description: 'Share your career history and target roles', icon: '💬' },
+                { step: '3', title: 'Expert Writing', description: 'Our writers craft your ATS-optimized resume', icon: '✍️' },
+                { step: '4', title: 'Review & Refine', description: 'Unlimited revisions until you\'re satisfied', icon: '🔄' },
+                { step: '5', title: 'Land Interviews', description: 'Start applying with confidence', icon: '🎉' }
+              ].map((item, index) => (
+                <div key={index} className="relative">
+                  <div className="text-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-4 text-3xl">
+                      {item.icon}
+                    </div>
+                    <div className="absolute top-8 left-1/2 w-full h-0.5 bg-secondary/20 -z-10 hidden md:block" style={{ display: index === 4 ? 'none' : 'block' }}></div>
+                    <div className="mb-2">
+                      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-white text-sm font-bold">
+                        {item.step}
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-lg mb-2 text-[#1e3a5f]">{item.title}</h3>
+                    <p className="text-sm text-gray-600">{item.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
