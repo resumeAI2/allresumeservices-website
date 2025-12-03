@@ -976,3 +976,9 @@
 - [x] Add "How It Works" section to Services page (after hero, before pricing)
 - [x] Add "See Real Results" CTA button to Services page
 - [x] Test visual improvements on desktop and mobile
+
+## Logo Replacement
+- [x] Copy new logo file to client/public directory
+- [x] Update APP_LOGO constant in client/src/const.ts
+- [x] Test logo display in Header across all pages
+- [x] Verify logo sizing and responsiveness
