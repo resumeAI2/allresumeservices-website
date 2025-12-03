@@ -268,6 +268,114 @@ export default function Services() {
           </div>
         </section>
 
+        {/* Client Testimonials Section */}
+        <section className="py-20 bg-white">
+          <div className="container max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">What Our Clients Say</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Real success stories from professionals who transformed their careers with our services
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Testimonial 1 */}
+              <Card className="border-2 hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-xl font-bold text-secondary">S.M.</span>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1 mb-1">
+                        {[...Array(5)].map((_, i) => (
+                          <svg key={i} className="w-4 h-4 text-[#d4af37] fill-current" viewBox="0 0 20 20">
+                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="text-sm font-semibold text-gray-900">Sarah M.</p>
+                      <p className="text-xs text-gray-600">Marketing Manager</p>
+                    </div>
+                  </div>
+                  <blockquote className="text-gray-700 leading-relaxed mb-4 italic">
+                    "I was stuck in the same role for 5 years. After using their Executive Package, I received 4 interview requests in 3 weeks and landed a senior position with a 35% salary increase. The investment paid for itself many times over!"
+                  </blockquote>
+                  <div className="pt-4 border-t border-gray-100">
+                    <p className="text-xs text-secondary font-semibold">Executive Resume Package</p>
+                    <p className="text-xs text-gray-500 mt-1">Healthcare Industry</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Testimonial 2 */}
+              <Card className="border-2 hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-xl font-bold text-secondary">J.K.</span>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1 mb-1">
+                        {[...Array(5)].map((_, i) => (
+                          <svg key={i} className="w-4 h-4 text-[#d4af37] fill-current" viewBox="0 0 20 20">
+                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="text-sm font-semibold text-gray-900">James K.</p>
+                      <p className="text-xs text-gray-600">IT Project Manager</p>
+                    </div>
+                  </div>
+                  <blockquote className="text-gray-700 leading-relaxed mb-4 italic">
+                    "As a career changer moving from engineering to IT management, I needed a resume that highlighted transferable skills. The team nailed it! I secured my dream role at a Fortune 500 company within 6 weeks."
+                  </blockquote>
+                  <div className="pt-4 border-t border-gray-100">
+                    <p className="text-xs text-secondary font-semibold">Career Change Package</p>
+                    <p className="text-xs text-gray-500 mt-1">IT & Technology</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Testimonial 3 */}
+              <Card className="border-2 hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-xl font-bold text-secondary">L.S.</span>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1 mb-1">
+                        {[...Array(5)].map((_, i) => (
+                          <svg key={i} className="w-4 h-4 text-[#d4af37] fill-current" viewBox="0 0 20 20">
+                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="text-sm font-semibold text-gray-900">Lisa T.</p>
+                      <p className="text-xs text-gray-600">Operations Supervisor</p>
+                    </div>
+                  </div>
+                  <blockquote className="text-gray-700 leading-relaxed mb-4 italic">
+                    "After struggling to get interviews for months with my old resume, I decided to invest in professional help. Within two weeks, I secured three interviews and ultimately landed my dream role in mining technology. Worth every dollar!"
+                  </blockquote>
+                  <div className="pt-4 border-t border-gray-100">
+                    <p className="text-xs text-secondary font-semibold">Resume + Cover Letter Package</p>
+                    <p className="text-xs text-gray-500 mt-1">Mining & Resources</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* View More Link */}
+            <div className="text-center mt-12">
+              <Button asChild variant="outline" size="lg">
+                <a href="/testimonials">View All Success Stories</a>
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-16 bg-primary/5">
           <div className="container">
