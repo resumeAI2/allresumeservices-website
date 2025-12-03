@@ -1039,3 +1039,8 @@
 - [x] Add visual elements and animations
 - [x] Position strategically on homepage
 - [x] Test responsiveness and animations
+
+## Remove Logo from Header
+- [x] Remove logo image from Header component
+- [x] Update Header layout without logo
+- [x] Test header display on desktop and mobile
