@@ -957,3 +957,14 @@
 - [x] Add comparison section to About Us or Homepage
 - [x] Test trust badges layout on mobile and desktop
 - [x] Test comparison table responsiveness
+
+## Before/After Resume Showcase
+- [x] Create /resume-transformation page with protected content
+- [x] Extract and anonymize 3-4 key transformation snippets
+- [x] Add transformation metrics (7 pages to 4, etc.)
+- [x] Add visual comparison sections
+- [x] Add CTA for free consultation
+- [x] Add Resources section to footer
+- [x] Link showcase page from footer Resources
+- [x] Add routing for /resume-transformation
+- [x] Test showcase page layout and responsiveness
