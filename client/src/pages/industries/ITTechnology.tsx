@@ -1,4 +1,7 @@
 import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Link } from 'wouter';
 import { CheckCircle2, Code, Cloud, Database, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -79,6 +82,14 @@ export default function ITTechnology() {
         <title>IT & Technology Resume Writing | All Résumé Services</title>
         <meta name="description" content="Professional resume writing for IT and technology professionals. Software engineers, developers, DevOps, cloud architects, and IT specialists." />
       </Helmet>
+      <Header />
+      
+      <div className="container">
+        <Breadcrumb items={[
+          { label: 'Industries', href: '/industries' },
+          { label: 'IT & Technology' }
+        ]} />
+      </div>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 text-white py-20">

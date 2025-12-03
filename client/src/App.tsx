@@ -47,6 +47,7 @@ import Healthcare from './pages/industries/Healthcare';
 import Government from './pages/industries/Government';
 import ITTechnology from './pages/industries/ITTechnology';
 import AllIndustries from './pages/AllIndustries';
+import IndustryComparison from './pages/IndustryComparison';
 import ResumeTransformation from './pages/ResumeTransformation';
 import ExitIntentPopup from './components/ExitIntentPopup';
 
@@ -75,6 +76,7 @@ function Router() {
       <Route path={"/industries/government"} component={Government} />
       <Route path="/industries/it-technology" component={ITTechnology} />
       <Route path="/industries" component={AllIndustries} />
+      <Route path="/industries/compare" component={IndustryComparison} />
       <Route path="/resume-transformation" component={ResumeTransformation} />
       <Route path="/contact" component={Contact} />
       <Route path="/services" component={Services} />

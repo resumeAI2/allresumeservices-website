@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Award, CheckCircle2, Users, Shield } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -132,8 +132,61 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Social Media & Copyright */}
+        {/* Certification Badges */}
         <div className="mt-12 pt-8 border-t border-primary-foreground/20">
+          <div className="text-center">
+            <h3 className="font-semibold mb-6 text-lg">Trusted & Certified</h3>
+            <div className="flex flex-wrap justify-center items-center gap-8">
+              {/* 17+ Years Badge */}
+              <div className="flex flex-col items-center">
+                <div className="h-16 w-16 rounded-full bg-secondary/20 flex items-center justify-center mb-2">
+                  <Award className="h-8 w-8 text-secondary" />
+                </div>
+                <p className="text-xs font-medium">17+ Years</p>
+                <p className="text-xs opacity-75">Experience</p>
+              </div>
+
+              {/* 96% Success Rate Badge */}
+              <div className="flex flex-col items-center">
+                <div className="h-16 w-16 rounded-full bg-secondary/20 flex items-center justify-center mb-2">
+                  <CheckCircle2 className="h-8 w-8 text-secondary" />
+                </div>
+                <p className="text-xs font-medium">96% Success</p>
+                <p className="text-xs opacity-75">Interview Rate</p>
+              </div>
+
+              {/* 5000+ Clients Badge */}
+              <div className="flex flex-col items-center">
+                <div className="h-16 w-16 rounded-full bg-secondary/20 flex items-center justify-center mb-2">
+                  <Users className="h-8 w-8 text-secondary" />
+                </div>
+                <p className="text-xs font-medium">5,000+</p>
+                <p className="text-xs opacity-75">Clients Served</p>
+              </div>
+
+              {/* Australian Owned Badge */}
+              <div className="flex flex-col items-center">
+                <div className="h-16 w-16 rounded-full bg-secondary/20 flex items-center justify-center mb-2">
+                  <MapPin className="h-8 w-8 text-secondary" />
+                </div>
+                <p className="text-xs font-medium">Australian</p>
+                <p className="text-xs opacity-75">Owned & Operated</p>
+              </div>
+
+              {/* 100% Satisfaction Badge */}
+              <div className="flex flex-col items-center">
+                <div className="h-16 w-16 rounded-full bg-secondary/20 flex items-center justify-center mb-2">
+                  <Shield className="h-8 w-8 text-secondary" />
+                </div>
+                <p className="text-xs font-medium">100%</p>
+                <p className="text-xs opacity-75">Satisfaction</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Social Media & Copyright */}
+        <div className="mt-8 pt-8 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm opacity-80">
               © {currentYear} All Résumé Services. All rights reserved.

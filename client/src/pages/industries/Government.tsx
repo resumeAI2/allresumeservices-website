@@ -1,4 +1,7 @@
 import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Link } from 'wouter';
 import { CheckCircle2, Building2, FileText, Award, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -79,6 +82,14 @@ export default function Government() {
         <title>Government & Public Sector Resume Writing | All Résumé Services</title>
         <meta name="description" content="Specialist resume and selection criteria writing for government and public sector roles. APS, state government, and local council applications." />
       </Helmet>
+      <Header />
+      
+      <div className="container">
+        <Breadcrumb items={[
+          { label: 'Industries', href: '/industries' },
+          { label: 'Government & Public Sector' }
+        ]} />
+      </div>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 text-white py-20">

@@ -1,4 +1,7 @@
 import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Link } from 'wouter';
 import { CheckCircle2, Briefcase, TrendingUp, Award, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -78,6 +81,14 @@ export default function MiningResources() {
         <title>Mining & Resources Resume Writing | All Résumé Services</title>
         <meta name="description" content="Specialist resume writing for mining and resources professionals. FIFO, DIDO, operators, engineers, and supervisors. ATS-optimised for major mining companies." />
       </Helmet>
+      <Header />
+      
+      <div className="container">
+        <Breadcrumb items={[
+          { label: 'Industries', href: '/industries' },
+          { label: 'Mining & Resources' }
+        ]} />
+      </div>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20">
