@@ -43,6 +43,7 @@ import MiningResources from './pages/industries/MiningResources';
 import Healthcare from './pages/industries/Healthcare';
 import Government from './pages/industries/Government';
 import ITTechnology from './pages/industries/ITTechnology';
+import ExitIntentPopup from './components/ExitIntentPopup';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -110,6 +111,7 @@ function App() {
           <TooltipProvider>
             <HelmetProvider>
               <Toaster />
+              <ExitIntentPopup />
               <Router />
             </HelmetProvider>
           </TooltipProvider>

@@ -868,3 +868,14 @@
 - [x] Keep navy blue and gold design elements only
 - [x] Trim excess transparent space
 - [x] Update website with transparent logo
+
+## Exit-Intent Popup with Lead Magnet
+- [x] Create 10-Point Resume Checklist PDF content (comprehensive 10-point guide)
+- [x] Design and generate PDF file (professional formatting with branding)
+- [x] Build exit-intent popup component with email capture form
+- [x] Implement exit-intent detection (mouse movement tracking, triggers on top exit)
+- [x] Add popup state management (show once per session, dismissible)
+- [x] Integrate with email collection system (ready for backend integration)
+- [x] Store PDF in public directory for download
+- [x] Auto-download PDF after email submission
+- [x] Test exit-intent trigger and email capture
