@@ -70,7 +70,7 @@ export default function Services() {
                 </Badge>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Professional Resume Services <span className="text-secondary">&</span> Packages
+                Professional <span className="text-secondary">Resume</span> Services <span className="text-secondary">&</span> Packages
               </h1>
               <p className="text-xl text-blue-100 leading-relaxed mb-8">
                 Choose from individual services or complete packages tailored to your career level. 
