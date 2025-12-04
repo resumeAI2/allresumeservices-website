@@ -1138,3 +1138,9 @@
 - [x] Confirm logo design with white center circle is intentional
 - [x] Test logo appearance on navigation bar
 - [x] Verify logo looks correct in both header and footer
+
+## Fix Logo Caching Issue
+- [x] Copy new logo with versioned filename to bust browser cache
+- [x] Update Header component with new logo path
+- [x] Update Footer component with new logo path
+- [x] Verify new gold-text logo displays correctly

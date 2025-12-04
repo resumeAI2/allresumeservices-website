@@ -56,7 +56,7 @@ export default function Header() {
           <Link href="/">
             <div className="flex items-center gap-3 cursor-pointer group">
               <img 
-                src="/logo.svg" 
+                src="/logo-v2.svg" 
                 alt="All Resume Services Logo" 
                 className="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-lg"
               />
