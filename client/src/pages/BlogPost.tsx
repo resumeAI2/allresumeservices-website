@@ -10,6 +10,7 @@ import SocialShare from "@/components/SocialShare";
 import SEOHead from "@/components/SEOHead";
 import { getImageUrl } from "@/lib/imageUtils";
 import { BlogAuthor } from "@/components/BlogAuthor";
+import { LeadMagnetForm } from "@/components/LeadMagnetForm";
 
 export default function BlogPost() {
   const params = useParams();
@@ -142,6 +143,15 @@ export default function BlogPost() {
                 className="prose prose-lg max-w-none prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 prose-p:mb-6 prose-ul:mb-6 prose-li:mb-2"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
+
+              {/* Lead Magnet - Resume Template Download */}
+              <div className="my-12">
+                <LeadMagnetForm
+                  templateName="ATS-Friendly-Resume-Template.pdf"
+                  templateUrl="/ATS-Friendly-Resume-Template.pdf"
+                  sourcePost={post.slug}
+                />
+              </div>
 
               {/* Author Bio */}
               <div className="mt-12">

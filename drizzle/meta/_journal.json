@@ -134,6 +134,13 @@
       "when": 1764646545111,
       "tag": "0018_pretty_gateway",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "5",
+      "when": 1764887465346,
+      "tag": "0019_simple_pepper_potts",
+      "breakpoints": true
     }
   ]
 }

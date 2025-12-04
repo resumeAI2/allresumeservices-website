@@ -1,0 +1,80 @@
+{
+  "query": "SELECT id, title, slug, viewCount, readTime \nFROM blog_posts \nWHERE published = 1 \nORDER BY viewCount DESC \nLIMIT 10",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug, viewCount, readTime \nFROM blog_posts \nWHERE published = 1 \nORDER BY viewCount DESC \nLIMIT 10",
+  "rows": [
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool",
+      "viewCount": "0",
+      "readTime": "18 min read"
+    },
+    {
+      "id": "120002",
+      "title": "Professional Resume Services: Stand Out in Australia (2025)",
+      "slug": "stand-out-in-the-crowd-with-professionally-prepared-resume-services",
+      "viewCount": "0",
+      "readTime": "4 min read"
+    },
+    {
+      "id": "120003",
+      "title": "ATS Resume Help: All Resume Services Boosts Your Job Search",
+      "slug": "scanning-software-scans-your-resume-navigating-ats-in-job-hunting",
+      "viewCount": "0",
+      "readTime": "4 min read"
+    },
+    {
+      "id": "120004",
+      "title": "Resume Optimization: All Resume Services' Expert Tips",
+      "slug": "dont-sell-short-diy-resume",
+      "viewCount": "0",
+      "readTime": "4 min read"
+    },
+    {
+      "id": "120005",
+      "title": "All Resume Services: Expert Scannable Resume Writing",
+      "slug": "the-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services",
+      "viewCount": "0",
+      "readTime": "13 min read"
+    },
+    {
+      "id": "120006",
+      "title": "Wow Hiring Managers: Expert Resume Writing Tips 2023",
+      "slug": "resume-writing-101-how-to-showcase-your-accomplishments-and-wow-hiring-managers-in-2023",
+      "viewCount": "0",
+      "readTime": "5 min read"
+    },
+    {
+      "id": "120007",
+      "title": "Gifting Resumes in Australia",
+      "slug": "gifting-resumes-in-australia",
+      "viewCount": "0",
+      "readTime": "3 min read"
+    },
+    {
+      "id": "120008",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide",
+      "slug": "writing-a-professional-selection-criteria-response",
+      "viewCount": "0",
+      "readTime": "3 min read"
+    },
+    {
+      "id": "120009",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia",
+      "slug": "using-cheap-resume-writing-services",
+      "viewCount": "0",
+      "readTime": "3 min read"
+    },
+    {
+      "id": "90001",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "slug": "transform-your-resume-with-powerful-action-verbs",
+      "viewCount": "0",
+      "readTime": "8 min read"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\tviewCount\treadTime\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool\t0\t18 min read\n120002\tProfessional Resume Services: Stand Out in Australia (2025)\tstand-out-in-the-crowd-with-professionally-prepared-resume-services\t0\t4 min read\n120003\tATS Resume Help: All Resume Services Boosts Your Job Search\tscanning-software-scans-your-resume-navigating-ats-in-job-hunting\t0\t4 min read\n120004\tResume Optimization: All Resume Services' Expert Tips\tdont-sell-short-diy-resume\t0\t4 min read\n120005\tAll Resume Services: Expert Scannable Resume Writing\tthe-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services\t0\t13 min read\n120006\tWow Hiring Managers: Expert Resume Writing Tips 2023\tresume-writing-101-how-to-showcase-your-accomplishments-and-wow-hiring-managers-in-2023\t0\t5 min read\n120007\tGifting Resumes in Australia\tgifting-resumes-in-australia\t0\t3 min read\n120008\tSelection Criteria Help: All Resume Services' Expert Guide\twriting-a-professional-selection-criteria-response\t0\t3 min read\n120009\tAvoid Cheap Resume Services: Get Expert Help in Australia\tusing-cheap-resume-writing-services\t0\t3 min read\n90001\tTransform Your Resume with Powerful Action Verbs\ttransform-your-resume-with-powerful-action-verbs\t0\t8 min read\n",
+  "stderr": "",
+  "execution_time_ms": 1581
+}
