@@ -322,3 +322,18 @@ export const email_subscribers = mysqlTable("email_subscribers", {
 
 export type EmailSubscriber = typeof email_subscribers.$inferSelect;
 export type InsertEmailSubscriber = typeof email_subscribers.$inferInsert;
+
+/**
+ * Lead magnet subscribers table for tracking resume template downloads
+ */
+export const leadMagnetSubscribers = mysqlTable("lead_magnet_subscribers", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  downloadedTemplate: varchar("downloadedTemplate", { length: 255 }).notNull(),
+  sourcePost: varchar("sourcePost", { length: 500 }), // Which blog post they downloaded from
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type LeadMagnetSubscriber = typeof leadMagnetSubscribers.$inferSelect;
+export type InsertLeadMagnetSubscriber = typeof leadMagnetSubscribers.$inferInsert;

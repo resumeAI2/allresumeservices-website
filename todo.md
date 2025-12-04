@@ -1150,3 +1150,23 @@
 - [x] Import all blog posts into database with SEO optimization
 - [x] Verify blog posts display correctly on website
 - [x] Deliver migration report to user
+
+## Lead Magnet - Downloadable Resume Template
+- [ ] Identify most popular blog posts for lead magnet placement
+- [ ] Create professional resume template (PDF format)
+- [ ] Design email capture form component
+- [ ] Create database table for lead magnet subscribers
+- [ ] Build API endpoint for lead capture
+- [ ] Integrate lead magnet into top blog posts
+- [ ] Test email capture and download functionality
+- [ ] Verify lead data is being saved to database
+
+## Lead Magnet - Downloadable Resume Template
+- [x] Identify most popular blog posts for lead magnet placement
+- [x] Create professional ATS-friendly resume template PDF
+- [x] Design email capture form component with gold branding
+- [x] Create database table for lead magnet subscribers
+- [x] Build TRPC API endpoint for lead capture
+- [x] Integrate lead magnet form into all blog posts
+- [x] Test lead magnet functionality and email collection
+- [x] Verify PDF download triggers after form submission

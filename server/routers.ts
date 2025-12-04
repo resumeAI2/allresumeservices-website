@@ -10,6 +10,7 @@ import * as servicesService from './services';
 import * as caseStudiesService from './caseStudies';
 import * as socialMediaService from './socialMedia';
 import * as emailSubscribersService from './emailSubscribers';
+import * as leadMagnetService from './leadMagnet';
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -222,6 +223,23 @@ export const appRouter = router({
       .input(z.number())
       .mutation(async ({ input }) => {
         return await servicesService.deleteTestimonial(input);
+      }),
+  }),
+
+  leadMagnet: router({
+    capture: publicProcedure
+      .input(z.object({
+        name: z.string().min(1),
+        email: z.string().email(),
+        downloadedTemplate: z.string(),
+        sourcePost: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        return await leadMagnetService.captureLeadMagnetEmail(input);
+      }),
+    getAll: publicProcedure
+      .query(async () => {
+        return await leadMagnetService.getAllLeadMagnetSubscribers();
       }),
   }),
 
