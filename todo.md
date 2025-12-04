@@ -1085,3 +1085,6 @@
 - [x] Keep Cover Letter services at "1 business day delivery" (no change)
 - [x] Fix Professional Resume missing satisfaction guarantee line
 - [x] Verify all changes on Services page
+
+## Services Page Heading Styling
+- [x] Update "Professional Resume Services & Packages" heading to make "Resume" appear in gold color to match "&" symbol
