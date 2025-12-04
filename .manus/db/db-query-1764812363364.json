@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE services SET features = JSON_REMOVE(features, '$[6]') WHERE name = 'Professional Resume';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute UPDATE services SET features = JSON_REMOVE(features, '$[6]') WHERE name = 'Professional Resume';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1659
+}

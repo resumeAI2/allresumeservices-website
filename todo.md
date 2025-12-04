@@ -1071,3 +1071,17 @@
 - [x] Delete all 69 placeholder blog posts from database
 - [x] Verify blog page shows empty/no posts state
 - [x] Prepare for migrating real content from old website
+
+## Update Service Delivery Times
+- [ ] Change delivery times to 2-5 business days for resume services
+- [ ] Keep existing delivery times for Cover Letters and LinkedIn Profile
+- [ ] Test Services page display
+
+## Delivery Time Updates (December 2025)
+- [x] Update all Resume services to "2 to 5 business days delivery"
+- [x] Update LinkedIn Profile Optimization to "2 to 5 business days delivery"
+- [x] Update Selection Criteria Response to "2 to 5 business days delivery"
+- [x] Update all Package Deals to "2 to 5 business days delivery"
+- [x] Keep Cover Letter services at "1 business day delivery" (no change)
+- [x] Fix Professional Resume missing satisfaction guarantee line
+- [x] Verify all changes on Services page

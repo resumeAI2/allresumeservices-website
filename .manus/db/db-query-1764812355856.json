@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, name, features FROM services WHERE name = 'Professional Resume';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, name, features FROM services WHERE name = 'Professional Resume';",
+  "rows": [
+    {
+      "id": "2",
+      "name": "Professional Resume",
+      "features": "[\"ATS-optimized format\", \"2-3 pages\", \"Executive summary\", \"Achievement-focused content\", \"Skills & certifications\", \"2 to 5 business days delivery\", \"3-5 business days delivery\"]"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tfeatures\n2\tProfessional Resume\t[\"ATS-optimized format\", \"2-3 pages\", \"Executive summary\", \"Achievement-focused content\", \"Skills & certifications\", \"2 to 5 business days delivery\", \"3-5 business days delivery\"]\n",
+  "stderr": "",
+  "execution_time_ms": 1607
+}
