@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
 import GoogleReviews from "@/components/GoogleReviews";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function Testimonials() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -89,7 +91,9 @@ export default function Testimonials() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <Header />
+      <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-16">
         <div className="container">
@@ -289,5 +293,7 @@ export default function Testimonials() {
         </div>
       </section>
     </div>
+    <Footer />
+    </>
   );
 }
