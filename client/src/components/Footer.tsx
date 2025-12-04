@@ -9,12 +9,13 @@ export default function Footer() {
         <div className="grid md:grid-cols-6 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center">
-                <span className="text-primary font-bold text-lg">AR</span>
-              </div>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src="/logo.svg" 
+                alt="All Resume Services Logo" 
+                className="h-16 w-auto object-contain"
+              />
               <div className="flex flex-col">
-                <span className="font-bold text-lg leading-tight">All Résumé Services</span>
                 <span className="text-xs text-secondary">Expert Resume Writing</span>
               </div>
             </div>
