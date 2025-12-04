@@ -133,22 +133,22 @@ export default function AboutUs() {
     {
       name: "Sonia Lynch",
       title: "Founder & CEO - 15+ years in industry",
-      bio: "As the Founder and CEO of All Résumé Services, Sonia is a dynamic and results-driven professional with expertise in Résumé Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths. Her holistic approach ensures clients are well-equipped for their job market journey, presenting as standout candidates in their respective fields.",
-      expertise: ["Résumé Writing", "Personal Branding", "Selection Criteria", "Career Coaching"],
+      bio: "As the Founder and CEO of All Resume Services, Sonia is a dynamic and results-driven professional with expertise in Resume Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths. Her holistic approach ensures clients are well-equipped for their job market journey, presenting as standout candidates in their respective fields.",
+      expertise: ["Resume Writing", "Personal Branding", "Selection Criteria", "Career Coaching"],
       photo: "/team/sonia-lynch.png"
     },
     {
       name: "Steven Jason",
-      title: "Professional Résumé Writer",
-      bio: "For over five years, Steven has been dedicated to enhancing the career prospects of job seekers through expertly crafted application documents. He has honed his ability to create résumés that capture the attention of employers and cover letters that effectively convey personal narratives. Steven specialises in optimising LinkedIn profiles and skilfully employs the STAR method when addressing selection criteria to highlight applicants' strengths and achievements with clarity and impact.",
-      expertise: ["Résumé Writing", "Cover Letters", "LinkedIn Optimization", "STAR Method"],
+      title: "Professional Resume Writer",
+      bio: "For over five years, Steven has been dedicated to enhancing the career prospects of job seekers through expertly crafted application documents. He has honed his ability to create resumes that capture the attention of employers and cover letters that effectively convey personal narratives. Steven specialises in optimising LinkedIn profiles and skilfully employs the STAR method when addressing selection criteria to highlight applicants' strengths and achievements with clarity and impact.",
+      expertise: ["Resume Writing", "Cover Letters", "LinkedIn Optimization", "STAR Method"],
       photo: "/team/steven-jason.png"
     },
     {
       name: "Jenna Atkinson",
-      title: "Expert Résumé Writer",
-      bio: "Jenna has been a key member of the All Resume Services team for several years, bringing a wealth of experience and a keen eye for detail to her role as a professional résumé writer. She excels in creating persuasive cover letters and enhancing LinkedIn profiles. Jenna is particularly adept at responding to selection criteria using the CAR (Context, Action, Result) format, showcasing clients' skills and achievements in a clear and impactful way. Her professionalism, creativity, and thorough approach have earned her a reputation as a trusted member of the team.",
-      expertise: ["Résumé Writing", "Cover Letters", "LinkedIn Profiles", "CAR Method"],
+      title: "Expert Resume Writer",
+      bio: "Jenna has been a key member of the All Resume Services team for several years, bringing a wealth of experience and a keen eye for detail to her role as a professional resume writer. She excels in creating persuasive cover letters and enhancing LinkedIn profiles. Jenna is particularly adept at responding to selection criteria using the CAR (Context, Action, Result) format, showcasing clients' skills and achievements in a clear and impactful way. Her professionalism, creativity, and thorough approach have earned her a reputation as a trusted member of the team.",
+      expertise: ["Resume Writing", "Cover Letters", "LinkedIn Profiles", "CAR Method"],
       photo: "/team/jenna-atkinson.png"
     }
   ];
@@ -180,7 +180,7 @@ export default function AboutUs() {
     {
       year: "2007",
       title: "Founded in Australia",
-      description: "All Résumé Services was established with a vision to help Australian job seekers stand out in an increasingly competitive market. Started as a small operation with a focus on personalized, quality service.",
+      description: "All Resume Services was established with a vision to help Australian job seekers stand out in an increasingly competitive market. Started as a small operation with a focus on personalized, quality service.",
       side: "left"
     },
     {
@@ -226,7 +226,7 @@ export default function AboutUs() {
         <section className="bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] text-white py-20">
           <div className="container max-w-6xl">
             <div className="max-w-3xl">
-              <h1 className="text-5xl font-bold mb-6">About All Résumé Services</h1>
+              <h1 className="text-5xl font-bold mb-6">About All Resume Services</h1>
               <p className="text-xl text-blue-100 leading-relaxed">
                 For over 17 years, we've been helping Australians land their dream jobs through 
                 professionally crafted resumes, cover letters, and career documents. Our mission 
@@ -333,7 +333,7 @@ export default function AboutUs() {
         <section className="py-16 bg-white">
           <div className="container max-w-6xl">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">Why Choose All Résumé Services?</h2>
+              <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">Why Choose All Resume Services?</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Not all resume services are created equal. See how we compare to DIY approaches and generic resume writers.
               </p>
@@ -346,7 +346,7 @@ export default function AboutUs() {
                     <th className="p-4 text-left font-semibold text-gray-700 border-b-2 border-gray-200">Feature</th>
                     <th className="p-4 text-center font-semibold text-gray-700 border-b-2 border-gray-200">DIY Resume</th>
                     <th className="p-4 text-center font-semibold text-gray-700 border-b-2 border-gray-200">Generic Resume Writer</th>
-                    <th className="p-4 text-center font-semibold text-secondary border-b-2 border-secondary bg-secondary/5">All Résumé Services</th>
+                    <th className="p-4 text-center font-semibold text-secondary border-b-2 border-secondary bg-secondary/5">All Resume Services</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -403,7 +403,7 @@ export default function AboutUs() {
             </div>
             
             <div className="mt-8 text-center">
-              <p className="text-gray-600 mb-6">Ready to experience the All Résumé Services difference?</p>
+              <p className="text-gray-600 mb-6">Ready to experience the All Resume Services difference?</p>
               <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90">
                 <a href="#contact">Get Your Free Quote</a>
               </Button>
@@ -608,7 +608,7 @@ export default function AboutUs() {
               <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">What Our Clients Say</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Don't just take our word for it. Here's what our satisfied clients have to say 
-                about their experience with All Résumé Services.
+                about their experience with All Resume Services.
               </p>
             </div>
             <TestimonialsCarousel testimonials={testimonials} />

@@ -148,9 +148,9 @@ export default function BlogPost() {
                 <BlogAuthor
                   name="Sonia Lynch"
                   title="Founder & CEO - 15+ years in industry"
-                  bio="As the Founder and CEO of All Résumé Services, Sonia is a dynamic and results-driven professional with expertise in Résumé Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths."
+                  bio="As the Founder and CEO of All Resume Services, Sonia is a dynamic and results-driven professional with expertise in Resume Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths."
                   photo="/team/sonia-lynch.png"
-                  expertise={["Résumé Writing", "Personal Branding", "Selection Criteria", "Career Coaching"]}
+                  expertise={["Resume Writing", "Personal Branding", "Selection Criteria", "Career Coaching"]}
                 />
               </div>
 

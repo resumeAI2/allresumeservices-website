@@ -78,7 +78,7 @@ export default function MiningResources() {
   return (
     <>
       <Helmet>
-        <title>Mining & Resources Resume Writing | All Résumé Services</title>
+        <title>Mining & Resources Resume Writing | All Resume Services</title>
         <meta name="description" content="Specialist resume writing for mining and resources professionals. FIFO, DIDO, operators, engineers, and supervisors. ATS-optimised for major mining companies." />
       </Helmet>
       <Header />

@@ -12,7 +12,7 @@ export default function Services() {
     {
       icon: Award,
       title: "Extensive Expertise",
-      description: "Over 17 years' experience writing résumés, cover letters, LinkedIn profiles and selection criteria responses for clients at all career stages across diverse industries."
+      description: "Over 17 years' experience writing resumes, cover letters, LinkedIn profiles and selection criteria responses for clients at all career stages across diverse industries."
     },
     {
       icon: MapPin,
@@ -22,17 +22,17 @@ export default function Services() {
     {
       icon: Users,
       title: "Personalised Service",
-      description: "Every résumé is built from a detailed briefing and comprehensive questionnaire, capturing your unique skills, achievements and career goals."
+      description: "Every resume is built from a detailed briefing and comprehensive questionnaire, capturing your unique skills, achievements and career goals."
     },
     {
       icon: FileCheck,
       title: "ATS-Friendly Formatting",
-      description: "Our résumés are optimised for Applicant Tracking Systems (ATS) to ensure your application is seen by decision-makers, not filtered out by software."
+      description: "Our resumes are optimised for Applicant Tracking Systems (ATS) to ensure your application is seen by decision-makers, not filtered out by software."
     },
     {
       icon: Briefcase,
       title: "Range of Documents",
-      description: "Résumés, cover letters, expressions of interest, professional portfolios and LinkedIn makeovers—all in one place for a cohesive professional brand."
+      description: "Resumes, cover letters, expressions of interest, professional portfolios and LinkedIn makeovers—all in one place for a cohesive professional brand."
     }
   ];
 
@@ -53,10 +53,10 @@ export default function Services() {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Why Choose <span className="text-secondary">All Résumé Services</span>?
+            Why Choose <span className="text-secondary">All Resume Services</span>?
           </h2>
           <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-            Are you ready to stand out in a crowded job market? With decades of experience crafting professional résumés and application documents, we help Australians land interviews and secure roles across industries. Our tailored approach ensures your strengths are highlighted, your accomplishments shine, and your application aligns with the expectations of recruiters and Applicant Tracking Systems (ATS).
+            Are you ready to stand out in a crowded job market? With decades of experience crafting professional resumes and application documents, we help Australians land interviews and secure roles across industries. Our tailored approach ensures your strengths are highlighted, your accomplishments shine, and your application aligns with the expectations of recruiters and Applicant Tracking Systems (ATS).
           </p>
         </div>
 

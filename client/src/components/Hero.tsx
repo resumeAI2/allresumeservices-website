@@ -37,11 +37,11 @@ export default function Hero() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Get Noticed,<br />
               Get Hired with<br />
-              <span className="text-secondary">All Résumé Services</span>
+              <span className="text-secondary">All Resume Services</span>
             </h1>
             
             <p className="text-lg md:text-xl text-primary-foreground/90 max-w-xl">
-              Expert ATS-Optimized Résumés & Cover Letters that help Australians land interviews and secure their dream jobs. 96% Interview Success Rate.
+              Expert ATS-Optimized Resumes & Cover Letters that help Australians land interviews and secure their dream jobs. 96% Interview Success Rate.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -93,7 +93,7 @@ export default function Hero() {
                 />
                 <div className="mt-6 text-center">
                   <p className="text-lg font-semibold italic">
-                    "The key to landing the interview is having a Résumé that Stands Out"
+                    "The key to landing the interview is having a Resume that Stands Out"
                   </p>
                   <p className="text-sm mt-2 text-primary-foreground/80">
                     ...and that's exactly what we can do for you!

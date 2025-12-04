@@ -79,7 +79,7 @@ export default function Government() {
   return (
     <>
       <Helmet>
-        <title>Government & Public Sector Resume Writing | All Résumé Services</title>
+        <title>Government & Public Sector Resume Writing | All Resume Services</title>
         <meta name="description" content="Specialist resume and selection criteria writing for government and public sector roles. APS, state government, and local council applications." />
       </Helmet>
       <Header />

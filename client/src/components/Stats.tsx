@@ -6,7 +6,7 @@ export default function Stats() {
       icon: Award,
       value: "17+ Years",
       label: "Professional Experience",
-      description: "Crafting résumés, cover letters, and LinkedIn profiles for clients at all career stages",
+      description: "Crafting resumes, cover letters, and LinkedIn profiles for clients at all career stages",
       image: "/consultation.jpg"
     },
     {
@@ -33,7 +33,7 @@ export default function Stats() {
             Proven Results That Speak for Themselves
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We don't just write résumés—we create career-changing documents that get you noticed by hiring managers and recruiters.
+            We don't just write resumes—we create career-changing documents that get you noticed by hiring managers and recruiters.
           </p>
         </div>
 

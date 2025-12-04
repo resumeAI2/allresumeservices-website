@@ -37,7 +37,7 @@ export default function Pricing() {
       price: "$125",
       popular: false,
       features: [
-        "Professionally written résumé tailored to your career goals",
+        "Professionally written resume tailored to your career goals",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
         "2-3 day turnaround"
@@ -48,7 +48,7 @@ export default function Pricing() {
       price: "$185",
       popular: true,
       features: [
-        "Professionally written résumé",
+        "Professionally written resume",
         "Cover letter tailored to applications",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
@@ -61,7 +61,7 @@ export default function Pricing() {
       price: "$255",
       popular: false,
       features: [
-        "Professionally written résumé",
+        "Professionally written resume",
         "Cover letter tailored to applications",
         "LinkedIn profile professionally written and optimised",
         "ATS-friendly formatting",

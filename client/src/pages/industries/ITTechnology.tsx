@@ -79,7 +79,7 @@ export default function ITTechnology() {
   return (
     <>
       <Helmet>
-        <title>IT & Technology Resume Writing | All Résumé Services</title>
+        <title>IT & Technology Resume Writing | All Resume Services</title>
         <meta name="description" content="Professional resume writing for IT and technology professionals. Software engineers, developers, DevOps, cloud architects, and IT specialists." />
       </Helmet>
       <Header />

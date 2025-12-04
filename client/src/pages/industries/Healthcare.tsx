@@ -79,7 +79,7 @@ export default function Healthcare() {
   return (
     <>
       <Helmet>
-        <title>Healthcare Resume Writing | All Résumé Services</title>
+        <title>Healthcare Resume Writing | All Resume Services</title>
         <meta name="description" content="Professional resume writing for healthcare professionals. Nurses, allied health, and medical staff. AHPRA-registered specialists across Australia." />
       </Helmet>
       <Header />

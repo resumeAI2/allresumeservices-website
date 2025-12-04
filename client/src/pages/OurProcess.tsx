@@ -110,7 +110,7 @@ export default function OurProcess() {
     {
       icon: FileSearch,
       title: "Free Assessment",
-      description: "Send us your current résumé for a complimentary evaluation. We'll assess its effectiveness and identify areas for improvement."
+      description: "Send us your current resume for a complimentary evaluation. We'll assess its effectiveness and identify areas for improvement."
     },
     {
       icon: DollarSign,
