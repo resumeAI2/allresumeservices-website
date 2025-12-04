@@ -1,0 +1,562 @@
+{
+  "query": "SELECT \n  id,\n  title, \n  slug,\n  CASE \n    WHEN content LIKE '%This is a placeholder for the full blog post content%' THEN 'PLACEHOLDER'\n    ELSE 'REAL CONTENT'\n  END as content_type,\n  LENGTH(content) as content_length,\n  createdAt\nFROM blog_posts \nWHERE published = 1 \nORDER BY createdAt DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT \n  id,\n  title, \n  slug,\n  CASE \n    WHEN content LIKE '%This is a placeholder for the full blog post content%' THEN 'PLACEHOLDER'\n    ELSE 'REAL CONTENT'\n  END as content_type,\n  LENGTH(content) as content_length,\n  createdAt\nFROM blog_posts \nWHERE published = 1 \nORDER BY createdAt DESC;",
+  "rows": [
+    {
+      "id": "60051",
+      "title": "Expert Resume Writing: Maximize Your Job Prospects in 2025",
+      "slug": "expert-resume-writing-maximize-job-prospects-2025",
+      "content_type": "PLACEHOLDER",
+      "content_length": "276",
+      "createdAt": "2025-12-02 01:25:38"
+    },
+    {
+      "id": "60050",
+      "title": "THE IMPORTANCE OF HAVING A PROFESSIONALLY WRITTEN SCANNABLE RESUME",
+      "slug": "importance-professionally-written-scannable-resume",
+      "content_type": "PLACEHOLDER",
+      "content_length": "287",
+      "createdAt": "2025-12-02 01:25:38"
+    },
+    {
+      "id": "60049",
+      "title": "TURN YOUR DEAD-ON-ARRIVAL RESUME INTO A POWERFUL MARKETING TOOL! YOU NEED A RESUME THAT SELLS YOU!",
+      "slug": "turn-dead-on-arrival-resume-powerful-marketing-tool",
+      "content_type": "PLACEHOLDER",
+      "content_length": "257",
+      "createdAt": "2025-12-02 01:25:38"
+    },
+    {
+      "id": "60048",
+      "title": "HOW A RESUME TEMPLATE WILL RARELY WIN YOU THE JOB",
+      "slug": "how-resume-template-rarely-win-job",
+      "content_type": "PLACEHOLDER",
+      "content_length": "259",
+      "createdAt": "2025-12-02 01:25:37"
+    },
+    {
+      "id": "60047",
+      "title": "A GUIDE TO JOB INTERVIEW QUESTIONS AND ANSWERS",
+      "slug": "guide-job-interview-questions-answers",
+      "content_type": "PLACEHOLDER",
+      "content_length": "276",
+      "createdAt": "2025-12-02 01:25:37"
+    },
+    {
+      "id": "60046",
+      "title": "WHY THEY ARE VITAL TO YOUR RESUME",
+      "slug": "why-they-are-vital-to-your-resume",
+      "content_type": "PLACEHOLDER",
+      "content_length": "265",
+      "createdAt": "2025-12-02 01:25:37"
+    },
+    {
+      "id": "60045",
+      "title": "WHY AREN'T I WINNING THE JOB WHEN I AM THE PERFECT CANDIDATE?",
+      "slug": "why-arent-winning-job-perfect-candidate",
+      "content_type": "PLACEHOLDER",
+      "content_length": "261",
+      "createdAt": "2025-12-02 01:25:37"
+    },
+    {
+      "id": "60044",
+      "title": "DON'T SELL YOURSELF SHORT WITH A DIY RESUME",
+      "slug": "dont-sell-yourself-short-diy-resume",
+      "content_type": "PLACEHOLDER",
+      "content_length": "256",
+      "createdAt": "2025-12-02 01:25:37"
+    },
+    {
+      "id": "60040",
+      "title": "ESSENTIAL AND DESIRABLE SELECTION CRITERIA. DO I REALLY NEED TO ADDRESS EACH ONE?",
+      "slug": "essential-desirable-selection-criteria-address-each-one",
+      "content_type": "PLACEHOLDER",
+      "content_length": "252",
+      "createdAt": "2025-12-02 01:25:36"
+    },
+    {
+      "id": "60043",
+      "title": "WHY A PROFESSIONAL COVER LETTER IS ESSENTIAL WHEN APPLYING FOR JOBS.",
+      "slug": "why-professional-cover-letter-essential-applying-jobs",
+      "content_type": "PLACEHOLDER",
+      "content_length": "266",
+      "createdAt": "2025-12-02 01:25:36"
+    },
+    {
+      "id": "60042",
+      "title": "RÉSUMÉ WRITING-BEST LEFT TO CERTIFIED PROFESSIONALS!",
+      "slug": "resume-writing-best-left-certified-professionals",
+      "content_type": "PLACEHOLDER",
+      "content_length": "252",
+      "createdAt": "2025-12-02 01:25:36"
+    },
+    {
+      "id": "60041",
+      "title": "SAMPLE RÉSUMÉS – WHY THE ONE SIZE FITS ALL APPROACH DOESN'T WORK.",
+      "slug": "sample-resumes-one-size-fits-all-doesnt-work",
+      "content_type": "PLACEHOLDER",
+      "content_length": "270",
+      "createdAt": "2025-12-02 01:25:36"
+    },
+    {
+      "id": "60036",
+      "title": "Best Resume Writing Service Nominee 2019",
+      "slug": "best-resume-writing-service-nominee-2019",
+      "content_type": "PLACEHOLDER",
+      "content_length": "267",
+      "createdAt": "2025-12-02 01:25:35"
+    },
+    {
+      "id": "60038",
+      "title": "LOOKING TO CHANGE CAREERS? PUT YOUR BEST FOOT FORWARD WITH A PROFESSIONALLY WRITTEN RESUME",
+      "slug": "change-careers-best-foot-forward-professionally-written-resume",
+      "content_type": "PLACEHOLDER",
+      "content_length": "262",
+      "createdAt": "2025-12-02 01:25:35"
+    },
+    {
+      "id": "60037",
+      "title": "STAND OUT FROM THE CROWD WITH A PROFESSIONALLY PREPARED RESUME",
+      "slug": "stand-out-crowd-professionally-prepared-resume",
+      "content_type": "PLACEHOLDER",
+      "content_length": "283",
+      "createdAt": "2025-12-02 01:25:35"
+    },
+    {
+      "id": "60039",
+      "title": "CAN YOUR RESUME MAKE IT PAST THE DREADED APPLICANT TRACKING SOFTWARE (ATS)?",
+      "slug": "can-resume-make-it-past-dreaded-ats",
+      "content_type": "PLACEHOLDER",
+      "content_length": "306",
+      "createdAt": "2025-12-02 01:25:35"
+    },
+    {
+      "id": "60035",
+      "title": "A GUIDE TO ADDRESSING SELECTION CRITERIA",
+      "slug": "guide-addressing-selection-criteria",
+      "content_type": "PLACEHOLDER",
+      "content_length": "277",
+      "createdAt": "2025-12-02 01:25:35"
+    },
+    {
+      "id": "60031",
+      "title": "Premium Résumé Writing Services By Top Résumé Writers",
+      "slug": "premium-resume-writing-services-top-resume-writers",
+      "content_type": "PLACEHOLDER",
+      "content_length": "259",
+      "createdAt": "2025-12-02 01:25:34"
+    },
+    {
+      "id": "60034",
+      "title": "Ace Your Next Interview",
+      "slug": "ace-your-next-interview",
+      "content_type": "PLACEHOLDER",
+      "content_length": "271",
+      "createdAt": "2025-12-02 01:25:34"
+    },
+    {
+      "id": "60033",
+      "title": "Why Use A Résumé Writing Service",
+      "slug": "why-use-resume-writing-service",
+      "content_type": "PLACEHOLDER",
+      "content_length": "257",
+      "createdAt": "2025-12-02 01:25:34"
+    },
+    {
+      "id": "60032",
+      "title": "Benefits of using a Professional Résumé Writer",
+      "slug": "benefits-using-professional-resume-writer",
+      "content_type": "PLACEHOLDER",
+      "content_length": "259",
+      "createdAt": "2025-12-02 01:25:34"
+    },
+    {
+      "id": "60028",
+      "title": "Benefits of APPLICANT TRACKING SOFTWARE (ATS) FOR RESUME SCRUTINY",
+      "slug": "benefits-applicant-tracking-software-ats-resume-scrutiny",
+      "content_type": "PLACEHOLDER",
+      "content_length": "288",
+      "createdAt": "2025-12-02 01:25:33"
+    },
+    {
+      "id": "60030",
+      "title": "8 Reasons Why Your CV Needs To Be Updated",
+      "slug": "8-reasons-cv-needs-updated",
+      "content_type": "PLACEHOLDER",
+      "content_length": "280",
+      "createdAt": "2025-12-02 01:25:33"
+    },
+    {
+      "id": "60027",
+      "title": "Why you need a professional Mining Resume",
+      "slug": "why-need-professional-mining-resume",
+      "content_type": "PLACEHOLDER",
+      "content_length": "264",
+      "createdAt": "2025-12-02 01:25:33"
+    },
+    {
+      "id": "60026",
+      "title": "Why you should hire Professional Resume Writer",
+      "slug": "why-hire-professional-resume-writer",
+      "content_type": "PLACEHOLDER",
+      "content_length": "264",
+      "createdAt": "2025-12-02 01:25:33"
+    },
+    {
+      "id": "60025",
+      "title": "If you are a fresher with No Experience then You Need a Professional Resume Writer",
+      "slug": "fresher-no-experience-need-professional-resume-writer",
+      "content_type": "PLACEHOLDER",
+      "content_length": "250",
+      "createdAt": "2025-12-02 01:25:32"
+    },
+    {
+      "id": "60024",
+      "title": "If you are fresher then You should hire a Professional Resume Writer",
+      "slug": "fresher-should-hire-professional-resume-writer",
+      "content_type": "PLACEHOLDER",
+      "content_length": "257",
+      "createdAt": "2025-12-02 01:25:32"
+    },
+    {
+      "id": "60023",
+      "title": "Get Hired In The Mining Industry with help of Professional Resume Writers",
+      "slug": "get-hired-mining-industry-professional-resume-writers",
+      "content_type": "PLACEHOLDER",
+      "content_length": "248",
+      "createdAt": "2025-12-02 01:25:32"
+    },
+    {
+      "id": "60022",
+      "title": "Give Your Resume a Boost by Hiring a Professional Resume Writer",
+      "slug": "give-resume-boost-hiring-professional-resume-writer",
+      "content_type": "PLACEHOLDER",
+      "content_length": "274",
+      "createdAt": "2025-12-02 01:25:32"
+    },
+    {
+      "id": "60017",
+      "title": "5 Things to Consider When Selecting a Résumé Writer",
+      "slug": "5-things-consider-selecting-resume-writer",
+      "content_type": "PLACEHOLDER",
+      "content_length": "275",
+      "createdAt": "2025-12-02 01:25:31"
+    },
+    {
+      "id": "60021",
+      "title": "What are the 5 benefits of having a Strong LinkedIn profile?",
+      "slug": "5-benefits-strong-linkedin-profile",
+      "content_type": "PLACEHOLDER",
+      "content_length": "289",
+      "createdAt": "2025-12-02 01:25:31"
+    },
+    {
+      "id": "60020",
+      "title": "Create a Selection Criteria response that will make employers want to Interview You!!",
+      "slug": "create-selection-criteria-response-employers-want-interview",
+      "content_type": "PLACEHOLDER",
+      "content_length": "269",
+      "createdAt": "2025-12-02 01:25:31"
+    },
+    {
+      "id": "60019",
+      "title": "How to Write a Desirable Selection Criteria?",
+      "slug": "how-to-write-desirable-selection-criteria",
+      "content_type": "PLACEHOLDER",
+      "content_length": "260",
+      "createdAt": "2025-12-02 01:25:31"
+    },
+    {
+      "id": "60018",
+      "title": "Winning Tips for Writing a Powerful Resume",
+      "slug": "winning-tips-writing-powerful-resume",
+      "content_type": "PLACEHOLDER",
+      "content_length": "276",
+      "createdAt": "2025-12-02 01:25:31"
+    },
+    {
+      "id": "60015",
+      "title": "Are Resume Writing Services Worth It?",
+      "slug": "are-resume-writing-services-worth-it",
+      "content_type": "REAL CONTENT",
+      "content_length": "4215",
+      "createdAt": "2025-12-02 01:25:30"
+    },
+    {
+      "id": "60012",
+      "title": "Job Search in Australia in 2022",
+      "slug": "job-search-australia-2022",
+      "content_type": "PLACEHOLDER",
+      "content_length": "257",
+      "createdAt": "2025-12-02 01:25:30"
+    },
+    {
+      "id": "60016",
+      "title": "Approach to a Winning Selection Criteria Response",
+      "slug": "approach-winning-selection-criteria-response",
+      "content_type": "PLACEHOLDER",
+      "content_length": "278",
+      "createdAt": "2025-12-02 01:25:30"
+    },
+    {
+      "id": "60014",
+      "title": "Are you looking to improve your resume and increase your chances of getting hired in Australia",
+      "slug": "improve-resume-increase-chances-hired-australia",
+      "content_type": "PLACEHOLDER",
+      "content_length": "265",
+      "createdAt": "2025-12-02 01:25:30"
+    },
+    {
+      "id": "60013",
+      "title": "How to Create a Professional Mining Resume",
+      "slug": "how-to-create-professional-mining-resume",
+      "content_type": "PLACEHOLDER",
+      "content_length": "253",
+      "createdAt": "2025-12-02 01:25:30"
+    },
+    {
+      "id": "60010",
+      "title": "Gift a Résumé Writing Service for Your Loved Ones",
+      "slug": "gift-resume-writing-service-loved-ones",
+      "content_type": "PLACEHOLDER",
+      "content_length": "254",
+      "createdAt": "2025-12-02 01:25:29"
+    },
+    {
+      "id": "60011",
+      "title": "How to write your First Résumé",
+      "slug": "how-to-write-your-first-resume",
+      "content_type": "REAL CONTENT",
+      "content_length": "2731",
+      "createdAt": "2025-12-02 01:25:29"
+    },
+    {
+      "id": "60009",
+      "title": "Overlooked to Overhire: The Power of a Professionally-Written Résumé",
+      "slug": "overlooked-to-overhire-power-professionally-written-resume-2",
+      "content_type": "PLACEHOLDER",
+      "content_length": "279",
+      "createdAt": "2025-12-02 01:25:29"
+    },
+    {
+      "id": "60008",
+      "title": "From Résumé to Job Offer: How Professional Services Can Help You Land Your Dream Job in Australia In 2023",
+      "slug": "resume-to-job-offer-professional-services-australia-2023",
+      "content_type": "PLACEHOLDER",
+      "content_length": "278",
+      "createdAt": "2025-12-02 01:25:29"
+    },
+    {
+      "id": "60007",
+      "title": "10 Pointers for Writing an Outstanding Resume",
+      "slug": "10-pointers-writing-outstanding-resume",
+      "content_type": "PLACEHOLDER",
+      "content_length": "265",
+      "createdAt": "2025-12-02 01:25:28"
+    },
+    {
+      "id": "60006",
+      "title": "Are You Looking to Improve Your Resume and Increase Your Chances of Getting Hired in Australia?",
+      "slug": "improve-resume-increase-chances-getting-hired-australia",
+      "content_type": "PLACEHOLDER",
+      "content_length": "276",
+      "createdAt": "2025-12-02 01:25:28"
+    },
+    {
+      "id": "60005",
+      "title": "Crafting the Perfect Job Application Letter: An Australian Perspective by All Resume Services",
+      "slug": "crafting-perfect-job-application-letter-australian-perspective",
+      "content_type": "PLACEHOLDER",
+      "content_length": "281",
+      "createdAt": "2025-12-02 01:25:28"
+    },
+    {
+      "id": "60004",
+      "title": "Overlooked to Overhire: The Power of a Professionally Written Resume",
+      "slug": "overlooked-to-overhire-power-professionally-written-resume",
+      "content_type": "PLACEHOLDER",
+      "content_length": "293",
+      "createdAt": "2025-12-02 01:25:28"
+    },
+    {
+      "id": "60003",
+      "title": "The Role of ATS in the Australian Job Market",
+      "slug": "role-of-ats-australian-job-market",
+      "content_type": "PLACEHOLDER",
+      "content_length": "278",
+      "createdAt": "2025-12-02 01:25:28"
+    },
+    {
+      "id": "60001",
+      "title": "Home Truths About Job Hunting",
+      "slug": "home-truths-about-job-hunting",
+      "content_type": "REAL CONTENT",
+      "content_length": "3830",
+      "createdAt": "2025-12-02 01:25:27"
+    },
+    {
+      "id": "30010",
+      "title": "The Importance of Having a Scannable Resume Professionally Written by All Resume Services",
+      "slug": "importance-scannable-resume-professionally-written",
+      "content_type": "REAL CONTENT",
+      "content_length": "206",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "30003",
+      "title": "LinkedIn and an Online Brand is Your Job Search Future",
+      "slug": "linkedin-online-brand-job-search-future",
+      "content_type": "REAL CONTENT",
+      "content_length": "244",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "30001",
+      "title": "Stand out in the Crowd with Professionally Prepared Resume Services",
+      "slug": "stand-out-crowd-professionally-prepared-resume-services",
+      "content_type": "REAL CONTENT",
+      "content_length": "202",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "30009",
+      "title": "Resume Writing 101: How to Showcase Your Accomplishments and Wow Hiring Managers in 2023",
+      "slug": "resume-writing-101-showcase-accomplishments-wow-hiring-managers-2023",
+      "content_type": "REAL CONTENT",
+      "content_length": "224",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "30008",
+      "title": "Gifting Resumes in Australia",
+      "slug": "gifting-resumes-australia",
+      "content_type": "REAL CONTENT",
+      "content_length": "240",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "30007",
+      "title": "Writing a Professional Selection Criteria Response",
+      "slug": "writing-professional-selection-criteria-response",
+      "content_type": "REAL CONTENT",
+      "content_length": "240",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "30006",
+      "title": "Using Cheap Resume Writing Services",
+      "slug": "using-cheap-resume-writing-services",
+      "content_type": "REAL CONTENT",
+      "content_length": "246",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "30005",
+      "title": "Home Truths About Job Hunting",
+      "slug": "home-truths-job-hunting",
+      "content_type": "REAL CONTENT",
+      "content_length": "225",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "30004",
+      "title": "Why do you need CV services",
+      "slug": "why-need-cv-services",
+      "content_type": "REAL CONTENT",
+      "content_length": "232",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "30011",
+      "title": "All Resume Services: Expert Resume Writing for Job Seekers",
+      "slug": "all-resume-services-expert-resume-writing-job-seekers",
+      "content_type": "REAL CONTENT",
+      "content_length": "229",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "30002",
+      "title": "Turn Your Dead-on-Arrival Resume into a Powerful Marketing Tool",
+      "slug": "turn-dead-arrival-resume-powerful-marketing-tool",
+      "content_type": "REAL CONTENT",
+      "content_length": "217",
+      "createdAt": "2024-12-12 00:00:00"
+    },
+    {
+      "id": "9",
+      "title": "Resume Length: How Long Should Your Resume Really Be?",
+      "slug": "resume-length-how-long-should-it-be",
+      "content_type": "REAL CONTENT",
+      "content_length": "125",
+      "createdAt": "2024-03-05 00:00:00"
+    },
+    {
+      "id": "8",
+      "title": "Career Change Resume: Successfully Pivot Your Professional Path",
+      "slug": "career-change-resume-successfully-pivot",
+      "content_type": "REAL CONTENT",
+      "content_length": "154",
+      "createdAt": "2024-03-01 00:00:00"
+    },
+    {
+      "id": "7",
+      "title": "ATS-Friendly Resume Formatting: Beat the Bots",
+      "slug": "ats-friendly-resume-formatting-beat-the-bots",
+      "content_type": "REAL CONTENT",
+      "content_length": "138",
+      "createdAt": "2024-02-25 00:00:00"
+    },
+    {
+      "id": "6",
+      "title": "Cover Letter Mistakes That Cost You Job Interviews",
+      "slug": "cover-letter-mistakes-cost-job-interviews",
+      "content_type": "REAL CONTENT",
+      "content_length": "139",
+      "createdAt": "2024-02-20 00:00:00"
+    },
+    {
+      "id": "5",
+      "title": "LinkedIn Profile Optimization: Your Digital First Impression",
+      "slug": "linkedin-profile-optimization-digital-first-impression",
+      "content_type": "REAL CONTENT",
+      "content_length": "124",
+      "createdAt": "2024-02-15 00:00:00"
+    },
+    {
+      "id": "4",
+      "title": "Ace Your Next Interview with Expert Preparation Tips",
+      "slug": "ace-your-next-interview-with-expert-preparation-tips",
+      "content_type": "REAL CONTENT",
+      "content_length": "133",
+      "createdAt": "2024-02-10 00:00:00"
+    },
+    {
+      "id": "3",
+      "title": "Write Winning Selection Criteria for Government Roles Today!",
+      "slug": "write-winning-selection-criteria-for-government-roles",
+      "content_type": "REAL CONTENT",
+      "content_length": "178",
+      "createdAt": "2024-02-01 00:00:00"
+    },
+    {
+      "id": "2",
+      "title": "Stand Out with Top-notch Senior Management Resume Services",
+      "slug": "stand-out-with-top-notch-senior-management-resume-services",
+      "content_type": "REAL CONTENT",
+      "content_length": "131",
+      "createdAt": "2024-01-20 00:00:00"
+    },
+    {
+      "id": "1",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "slug": "transform-your-resume-with-powerful-action-verbs",
+      "content_type": "REAL CONTENT",
+      "content_length": "236",
+      "createdAt": "2024-01-15 00:00:00"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\tcontent_type\tcontent_length\tcreatedAt\n60051\tExpert Resume Writing: Maximize Your Job Prospects in 2025\texpert-resume-writing-maximize-job-prospects-2025\tPLACEHOLDER\t276\t2025-12-02 01:25:38\n60050\tTHE IMPORTANCE OF HAVING A PROFESSIONALLY WRITTEN SCANNABLE RESUME\timportance-professionally-written-scannable-resume\tPLACEHOLDER\t287\t2025-12-02 01:25:38\n60049\tTURN YOUR DEAD-ON-ARRIVAL RESUME INTO A POWERFUL MARKETING TOOL! YOU NEED A RESUME THAT SELLS YOU!\tturn-dead-on-arrival-resume-powerful-marketing-tool\tPLACEHOLDER\t257\t2025-12-02 01:25:38\n60048\tHOW A RESUME TEMPLATE WILL RARELY WIN YOU THE JOB\thow-resume-template-rarely-win-job\tPLACEHOLDER\t259\t2025-12-02 01:25:37\n60047\tA GUIDE TO JOB INTERVIEW QUESTIONS AND ANSWERS\tguide-job-interview-questions-answers\tPLACEHOLDER\t276\t2025-12-02 01:25:37\n60046\tWHY THEY ARE VITAL TO YOUR RESUME\twhy-they-are-vital-to-your-resume\tPLACEHOLDER\t265\t2025-12-02 01:25:37\n60045\tWHY AREN'T I WINNING THE JOB WHEN I AM THE PERFECT CANDIDATE?\twhy-arent-winning-job-perfect-candidate\tPLACEHOLDER\t261\t2025-12-02 01:25:37\n60044\tDON'T SELL YOURSELF SHORT WITH A DIY RESUME\tdont-sell-yourself-short-diy-resume\tPLACEHOLDER\t256\t2025-12-02 01:25:37\n60040\tESSENTIAL AND DESIRABLE SELECTION CRITERIA. DO I REALLY NEED TO ADDRESS EACH ONE?\tessential-desirable-selection-criteria-address-each-one\tPLACEHOLDER\t252\t2025-12-02 01:25:36\n60043\tWHY A PROFESSIONAL COVER LETTER IS ESSENTIAL WHEN APPLYING FOR JOBS.\twhy-professional-cover-letter-essential-applying-jobs\tPLACEHOLDER\t266\t2025-12-02 01:25:36\n60042\tRÉSUMÉ WRITING-BEST LEFT TO CERTIFIED PROFESSIONALS!\tresume-writing-best-left-certified-professionals\tPLACEHOLDER\t252\t2025-12-02 01:25:36\n60041\tSAMPLE RÉSUMÉS – WHY THE ONE SIZE FITS ALL APPROACH DOESN'T WORK.\tsample-resumes-one-size-fits-all-doesnt-work\tPLACEHOLDER\t270\t2025-12-02 01:25:36\n60036\tBest Resume Writing Service Nominee 2019\tbest-resume-writing-service-nominee-2019\tPLACEHOLDER\t267\t2025-12-02 01:25:35\n60038\tLOOKING TO CHANGE CAREERS? PUT YOUR BEST FOOT FORWARD WITH A PROFESSIONALLY WRITTEN RESUME\tchange-careers-best-foot-forward-professionally-written-resume\tPLACEHOLDER\t262\t2025-12-02 01:25:35\n60037\tSTAND OUT FROM THE CROWD WITH A PROFESSIONALLY PREPARED RESUME\tstand-out-crowd-professionally-prepared-resume\tPLACEHOLDER\t283\t2025-12-02 01:25:35\n60039\tCAN YOUR RESUME MAKE IT PAST THE DREADED APPLICANT TRACKING SOFTWARE (ATS)?\tcan-resume-make-it-past-dreaded-ats\tPLACEHOLDER\t306\t2025-12-02 01:25:35\n60035\tA GUIDE TO ADDRESSING SELECTION CRITERIA\tguide-addressing-selection-criteria\tPLACEHOLDER\t277\t2025-12-02 01:25:35\n60031\tPremium Résumé Writing Services By Top Résumé Writers\tpremium-resume-writing-services-top-resume-writers\tPLACEHOLDER\t259\t2025-12-02 01:25:34\n60034\tAce Your Next Interview\tace-your-next-interview\tPLACEHOLDER\t271\t2025-12-02 01:25:34\n60033\tWhy Use A Résumé Writing Service\twhy-use-resume-writing-service\tPLACEHOLDER\t257\t2025-12-02 01:25:34\n60032\tBenefits of using a Professional Résumé Writer\tbenefits-using-professional-resume-writer\tPLACEHOLDER\t259\t2025-12-02 01:25:34\n60028\tBenefits of APPLICANT TRACKING SOFTWARE (ATS) FOR RESUME SCRUTINY\tbenefits-applicant-tracking-software-ats-resume-scrutiny\tPLACEHOLDER\t288\t2025-12-02 01:25:33\n60030\t8 Reasons Why Your CV Needs To Be Updated\t8-reasons-cv-needs-updated\tPLACEHOLDER\t280\t2025-12-02 01:25:33\n60027\tWhy you need a professional Mining Resume\twhy-need-professional-mining-resume\tPLACEHOLDER\t264\t2025-12-02 01:25:33\n60026\tWhy you should hire Professional Resume Writer\twhy-hire-professional-resume-writer\tPLACEHOLDER\t264\t2025-12-02 01:25:33\n60025\tIf you are a fresher with No Experience then You Need a Professional Resume Writer\tfresher-no-experience-need-professional-resume-writer\tPLACEHOLDER\t250\t2025-12-02 01:25:32\n60024\tIf you are fresher then You should hire a Professional Resume Writer\tfresher-should-hire-professional-resume-writer\tPLACEHOLDER\t257\t2025-12-02 01:25:32\n60023\tGet Hired In The Mining Industry with help of Professional Resume Writers\tget-hired-mining-industry-professional-resume-writers\tPLACEHOLDER\t248\t2025-12-02 01:25:32\n60022\tGive Your Resume a Boost by Hiring a Professional Resume Writer\tgive-resume-boost-hiring-professional-resume-writer\tPLACEHOLDER\t274\t2025-12-02 01:25:32\n60017\t5 Things to Consider When Selecting a Résumé Writer\t5-things-consider-selecting-resume-writer\tPLACEHOLDER\t275\t2025-12-02 01:25:31\n60021\tWhat are the 5 benefits of having a Strong LinkedIn profile?\t5-benefits-strong-linkedin-profile\tPLACEHOLDER\t289\t2025-12-02 01:25:31\n60020\tCreate a Selection Criteria response that will make employers want to Interview You!!\tcreate-selection-criteria-response-employers-want-interview\tPLACEHOLDER\t269\t2025-12-02 01:25:31\n60019\tHow to Write a Desirable Selection Criteria?\thow-to-write-desirable-selection-criteria\tPLACEHOLDER\t260\t2025-12-02 01:25:31\n60018\tWinning Tips for Writing a Powerful Resume\twinning-tips-writing-powerful-resume\tPLACEHOLDER\t276\t2025-12-02 01:25:31\n60015\tAre Resume Writing Services Worth It?\tare-resume-writing-services-worth-it\tREAL CONTENT\t4215\t2025-12-02 01:25:30\n60012\tJob Search in Australia in 2022\tjob-search-australia-2022\tPLACEHOLDER\t257\t2025-12-02 01:25:30\n60016\tApproach to a Winning Selection Criteria Response\tapproach-winning-selection-criteria-response\tPLACEHOLDER\t278\t2025-12-02 01:25:30\n60014\tAre you looking to improve your resume and increase your chances of getting hired in Australia\timprove-resume-increase-chances-hired-australia\tPLACEHOLDER\t265\t2025-12-02 01:25:30\n60013\tHow to Create a Professional Mining Resume\thow-to-create-professional-mining-resume\tPLACEHOLDER\t253\t2025-12-02 01:25:30\n60010\tGift a Résumé Writing Service for Your Loved Ones\tgift-resume-writing-service-loved-ones\tPLACEHOLDER\t254\t2025-12-02 01:25:29\n60011\tHow to write your First Résumé\thow-to-write-your-first-resume\tREAL CONTENT\t2731\t2025-12-02 01:25:29\n60009\tOverlooked to Overhire: The Power of a Professionally-Written Résumé\toverlooked-to-overhire-power-professionally-written-resume-2\tPLACEHOLDER\t279\t2025-12-02 01:25:29\n60008\tFrom Résumé to Job Offer: How Professional Services Can Help You Land Your Dream Job in Australia In 2023\tresume-to-job-offer-professional-services-australia-2023\tPLACEHOLDER\t278\t2025-12-02 01:25:29\n60007\t10 Pointers for Writing an Outstanding Resume\t10-pointers-writing-outstanding-resume\tPLACEHOLDER\t265\t2025-12-02 01:25:28\n60006\tAre You Looking to Improve Your Resume and Increase Your Chances of Getting Hired in Australia?\timprove-resume-increase-chances-getting-hired-australia\tPLACEHOLDER\t276\t2025-12-02 01:25:28\n60005\tCrafting the Perfect Job Application Letter: An Australian Perspective by All Resume Services\tcrafting-perfect-job-application-letter-australian-perspective\tPLACEHOLDER\t281\t2025-12-02 01:25:28\n60004\tOverlooked to Overhire: The Power of a Professionally Written Resume\toverlooked-to-overhire-power-professionally-written-resume\tPLACEHOLDER\t293\t2025-12-02 01:25:28\n60003\tThe Role of ATS in the Australian Job Market\trole-of-ats-australian-job-market\tPLACEHOLDER\t278\t2025-12-02 01:25:28\n60001\tHome Truths About Job Hunting\thome-truths-about-job-hunting\tREAL CONTENT\t3830\t2025-12-02 01:25:27\n30010\tThe Importance of Having a Scannable Resume Professionally Written by All Resume Services\timportance-scannable-resume-professionally-written\tREAL CONTENT\t206\t2024-12-12 00:00:00\n30003\tLinkedIn and an Online Brand is Your Job Search Future\tlinkedin-online-brand-job-search-future\tREAL CONTENT\t244\t2024-12-12 00:00:00\n30001\tStand out in the Crowd with Professionally Prepared Resume Services\tstand-out-crowd-professionally-prepared-resume-services\tREAL CONTENT\t202\t2024-12-12 00:00:00\n30009\tResume Writing 101: How to Showcase Your Accomplishments and Wow Hiring Managers in 2023\tresume-writing-101-showcase-accomplishments-wow-hiring-managers-2023\tREAL CONTENT\t224\t2024-12-12 00:00:00\n30008\tGifting Resumes in Australia\tgifting-resumes-australia\tREAL CONTENT\t240\t2024-12-12 00:00:00\n30007\tWriting a Professional Selection Criteria Response\twriting-professional-selection-criteria-response\tREAL CONTENT\t240\t2024-12-12 00:00:00\n30006\tUsing Cheap Resume Writing Services\tusing-cheap-resume-writing-services\tREAL CONTENT\t246\t2024-12-12 00:00:00\n30005\tHome Truths About Job Hunting\thome-truths-job-hunting\tREAL CONTENT\t225\t2024-12-12 00:00:00\n30004\tWhy do you need CV services\twhy-need-cv-services\tREAL CONTENT\t232\t2024-12-12 00:00:00\n30011\tAll Resume Services: Expert Resume Writing for Job Seekers\tall-resume-services-expert-resume-writing-job-seekers\tREAL CONTENT\t229\t2024-12-12 00:00:00\n30002\tTurn Your Dead-on-Arrival Resume into a Powerful Marketing Tool\tturn-dead-arrival-resume-powerful-marketing-tool\tREAL CONTENT\t217\t2024-12-12 00:00:00\n9\tResume Length: How Long Should Your Resume Really Be?\tresume-length-how-long-should-it-be\tREAL CONTENT\t125\t2024-03-05 00:00:00\n8\tCareer Change Resume: Successfully Pivot Your Professional Path\tcareer-change-resume-successfully-pivot\tREAL CONTENT\t154\t2024-03-01 00:00:00\n7\tATS-Friendly Resume Formatting: Beat the Bots\tats-friendly-resume-formatting-beat-the-bots\tREAL CONTENT\t138\t2024-02-25 00:00:00\n6\tCover Letter Mistakes That Cost You Job Interviews\tcover-letter-mistakes-cost-job-interviews\tREAL CONTENT\t139\t2024-02-20 00:00:00\n5\tLinkedIn Profile Optimization: Your Digital First Impression\tlinkedin-profile-optimization-digital-first-impression\tREAL CONTENT\t124\t2024-02-15 00:00:00\n4\tAce Your Next Interview with Expert Preparation Tips\tace-your-next-interview-with-expert-preparation-tips\tREAL CONTENT\t133\t2024-02-10 00:00:00\n3\tWrite Winning Selection Criteria for Government Roles Today!\twrite-winning-selection-criteria-for-government-roles\tREAL CONTENT\t178\t2024-02-01 00:00:00\n2\tStand Out with Top-notch Senior Management Resume Services\tstand-out-with-top-notch-senior-management-resume-services\tREAL CONTENT\t131\t2024-01-20 00:00:00\n1\tTransform Your Resume with Powerful Action Verbs\ttransform-your-resume-with-powerful-action-verbs\tREAL CONTENT\t236\t2024-01-15 00:00:00\n",
+  "stderr": "",
+  "execution_time_ms": 1642
+}

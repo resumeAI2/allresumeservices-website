@@ -1,0 +1,150 @@
+{
+  "query": "SELECT id, title, slug, LENGTH(content) as content_length, published FROM blog_posts WHERE published = 1 ORDER BY createdAt DESC LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug, LENGTH(content) as content_length, published FROM blog_posts WHERE published = 1 ORDER BY createdAt DESC LIMIT 20;",
+  "rows": [
+    {
+      "id": "60051",
+      "title": "Expert Resume Writing: Maximize Your Job Prospects in 2025",
+      "slug": "expert-resume-writing-maximize-job-prospects-2025",
+      "content_length": "276",
+      "published": "1"
+    },
+    {
+      "id": "60049",
+      "title": "TURN YOUR DEAD-ON-ARRIVAL RESUME INTO A POWERFUL MARKETING TOOL! YOU NEED A RESUME THAT SELLS YOU!",
+      "slug": "turn-dead-on-arrival-resume-powerful-marketing-tool",
+      "content_length": "257",
+      "published": "1"
+    },
+    {
+      "id": "60050",
+      "title": "THE IMPORTANCE OF HAVING A PROFESSIONALLY WRITTEN SCANNABLE RESUME",
+      "slug": "importance-professionally-written-scannable-resume",
+      "content_length": "287",
+      "published": "1"
+    },
+    {
+      "id": "60048",
+      "title": "HOW A RESUME TEMPLATE WILL RARELY WIN YOU THE JOB",
+      "slug": "how-resume-template-rarely-win-job",
+      "content_length": "259",
+      "published": "1"
+    },
+    {
+      "id": "60044",
+      "title": "DON'T SELL YOURSELF SHORT WITH A DIY RESUME",
+      "slug": "dont-sell-yourself-short-diy-resume",
+      "content_length": "256",
+      "published": "1"
+    },
+    {
+      "id": "60047",
+      "title": "A GUIDE TO JOB INTERVIEW QUESTIONS AND ANSWERS",
+      "slug": "guide-job-interview-questions-answers",
+      "content_length": "276",
+      "published": "1"
+    },
+    {
+      "id": "60046",
+      "title": "WHY THEY ARE VITAL TO YOUR RESUME",
+      "slug": "why-they-are-vital-to-your-resume",
+      "content_length": "265",
+      "published": "1"
+    },
+    {
+      "id": "60045",
+      "title": "WHY AREN'T I WINNING THE JOB WHEN I AM THE PERFECT CANDIDATE?",
+      "slug": "why-arent-winning-job-perfect-candidate",
+      "content_length": "261",
+      "published": "1"
+    },
+    {
+      "id": "60042",
+      "title": "RÉSUMÉ WRITING-BEST LEFT TO CERTIFIED PROFESSIONALS!",
+      "slug": "resume-writing-best-left-certified-professionals",
+      "content_length": "252",
+      "published": "1"
+    },
+    {
+      "id": "60041",
+      "title": "SAMPLE RÉSUMÉS – WHY THE ONE SIZE FITS ALL APPROACH DOESN'T WORK.",
+      "slug": "sample-resumes-one-size-fits-all-doesnt-work",
+      "content_length": "270",
+      "published": "1"
+    },
+    {
+      "id": "60043",
+      "title": "WHY A PROFESSIONAL COVER LETTER IS ESSENTIAL WHEN APPLYING FOR JOBS.",
+      "slug": "why-professional-cover-letter-essential-applying-jobs",
+      "content_length": "266",
+      "published": "1"
+    },
+    {
+      "id": "60040",
+      "title": "ESSENTIAL AND DESIRABLE SELECTION CRITERIA. DO I REALLY NEED TO ADDRESS EACH ONE?",
+      "slug": "essential-desirable-selection-criteria-address-each-one",
+      "content_length": "252",
+      "published": "1"
+    },
+    {
+      "id": "60036",
+      "title": "Best Resume Writing Service Nominee 2019",
+      "slug": "best-resume-writing-service-nominee-2019",
+      "content_length": "267",
+      "published": "1"
+    },
+    {
+      "id": "60037",
+      "title": "STAND OUT FROM THE CROWD WITH A PROFESSIONALLY PREPARED RESUME",
+      "slug": "stand-out-crowd-professionally-prepared-resume",
+      "content_length": "283",
+      "published": "1"
+    },
+    {
+      "id": "60039",
+      "title": "CAN YOUR RESUME MAKE IT PAST THE DREADED APPLICANT TRACKING SOFTWARE (ATS)?",
+      "slug": "can-resume-make-it-past-dreaded-ats",
+      "content_length": "306",
+      "published": "1"
+    },
+    {
+      "id": "60035",
+      "title": "A GUIDE TO ADDRESSING SELECTION CRITERIA",
+      "slug": "guide-addressing-selection-criteria",
+      "content_length": "277",
+      "published": "1"
+    },
+    {
+      "id": "60038",
+      "title": "LOOKING TO CHANGE CAREERS? PUT YOUR BEST FOOT FORWARD WITH A PROFESSIONALLY WRITTEN RESUME",
+      "slug": "change-careers-best-foot-forward-professionally-written-resume",
+      "content_length": "262",
+      "published": "1"
+    },
+    {
+      "id": "60031",
+      "title": "Premium Résumé Writing Services By Top Résumé Writers",
+      "slug": "premium-resume-writing-services-top-resume-writers",
+      "content_length": "259",
+      "published": "1"
+    },
+    {
+      "id": "60032",
+      "title": "Benefits of using a Professional Résumé Writer",
+      "slug": "benefits-using-professional-resume-writer",
+      "content_length": "259",
+      "published": "1"
+    },
+    {
+      "id": "60034",
+      "title": "Ace Your Next Interview",
+      "slug": "ace-your-next-interview",
+      "content_length": "271",
+      "published": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\tcontent_length\tpublished\n60051\tExpert Resume Writing: Maximize Your Job Prospects in 2025\texpert-resume-writing-maximize-job-prospects-2025\t276\t1\n60049\tTURN YOUR DEAD-ON-ARRIVAL RESUME INTO A POWERFUL MARKETING TOOL! YOU NEED A RESUME THAT SELLS YOU!\tturn-dead-on-arrival-resume-powerful-marketing-tool\t257\t1\n60050\tTHE IMPORTANCE OF HAVING A PROFESSIONALLY WRITTEN SCANNABLE RESUME\timportance-professionally-written-scannable-resume\t287\t1\n60048\tHOW A RESUME TEMPLATE WILL RARELY WIN YOU THE JOB\thow-resume-template-rarely-win-job\t259\t1\n60044\tDON'T SELL YOURSELF SHORT WITH A DIY RESUME\tdont-sell-yourself-short-diy-resume\t256\t1\n60047\tA GUIDE TO JOB INTERVIEW QUESTIONS AND ANSWERS\tguide-job-interview-questions-answers\t276\t1\n60046\tWHY THEY ARE VITAL TO YOUR RESUME\twhy-they-are-vital-to-your-resume\t265\t1\n60045\tWHY AREN'T I WINNING THE JOB WHEN I AM THE PERFECT CANDIDATE?\twhy-arent-winning-job-perfect-candidate\t261\t1\n60042\tRÉSUMÉ WRITING-BEST LEFT TO CERTIFIED PROFESSIONALS!\tresume-writing-best-left-certified-professionals\t252\t1\n60041\tSAMPLE RÉSUMÉS – WHY THE ONE SIZE FITS ALL APPROACH DOESN'T WORK.\tsample-resumes-one-size-fits-all-doesnt-work\t270\t1\n60043\tWHY A PROFESSIONAL COVER LETTER IS ESSENTIAL WHEN APPLYING FOR JOBS.\twhy-professional-cover-letter-essential-applying-jobs\t266\t1\n60040\tESSENTIAL AND DESIRABLE SELECTION CRITERIA. DO I REALLY NEED TO ADDRESS EACH ONE?\tessential-desirable-selection-criteria-address-each-one\t252\t1\n60036\tBest Resume Writing Service Nominee 2019\tbest-resume-writing-service-nominee-2019\t267\t1\n60037\tSTAND OUT FROM THE CROWD WITH A PROFESSIONALLY PREPARED RESUME\tstand-out-crowd-professionally-prepared-resume\t283\t1\n60039\tCAN YOUR RESUME MAKE IT PAST THE DREADED APPLICANT TRACKING SOFTWARE (ATS)?\tcan-resume-make-it-past-dreaded-ats\t306\t1\n60035\tA GUIDE TO ADDRESSING SELECTION CRITERIA\tguide-addressing-selection-criteria\t277\t1\n60038\tLOOKING TO CHANGE CAREERS? PUT YOUR BEST FOOT FORWARD WITH A PROFESSIONALLY WRITTEN RESUME\tchange-careers-best-foot-forward-professionally-written-resume\t262\t1\n60031\tPremium Résumé Writing Services By Top Résumé Writers\tpremium-resume-writing-services-top-resume-writers\t259\t1\n60032\tBenefits of using a Professional Résumé Writer\tbenefits-using-professional-resume-writer\t259\t1\n60034\tAce Your Next Interview\tace-your-next-interview\t271\t1\n",
+  "stderr": "",
+  "execution_time_ms": 1527
+}
