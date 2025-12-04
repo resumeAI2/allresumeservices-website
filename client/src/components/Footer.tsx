@@ -13,7 +13,7 @@ export default function Footer() {
               <img 
                 src="/logo.svg" 
                 alt="All Resume Services Logo" 
-                className="h-16 w-auto object-contain"
+                className="h-16 w-auto object-contain drop-shadow-lg"
               />
               <div className="flex flex-col">
                 <span className="text-xs text-secondary">Expert Resume Writing</span>
