@@ -99,7 +99,7 @@ export default function Testimonials() {
         <div className="container">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Client Testimonials</h1>
           <p className="text-xl opacity-90 max-w-2xl">
-            Read what our satisfied clients have to say about their experience with All Résumé Services
+            Read what our satisfied clients have to say about their experience with All Resume Services
           </p>
         </div>
       </section>

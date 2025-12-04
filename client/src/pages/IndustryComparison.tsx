@@ -70,7 +70,7 @@ export default function IndustryComparison() {
   return (
     <>
       <Helmet>
-        <title>Industry Comparison | All Résumé Services</title>
+        <title>Industry Comparison | All Resume Services</title>
         <meta name="description" content="Compare our tailored approach across Mining, Healthcare, Government, and IT industries. See how we customize resumes for each sector's unique requirements." />
       </Helmet>
       <Header />
