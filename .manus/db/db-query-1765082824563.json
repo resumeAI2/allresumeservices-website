@@ -1,0 +1,22 @@
+{
+  "query": "SELECT slug, title FROM blog_posts WHERE content LIKE '%Career Stage%' OR content LIKE '%Ideal Length%' LIMIT 3",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT slug, title FROM blog_posts WHERE content LIKE '%Career Stage%' OR content LIKE '%Ideal Length%' LIMIT 3",
+  "rows": [
+    {
+      "slug": "stand-out-with-top-notch-senior-management-resume-services",
+      "title": "Stand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES"
+    },
+    {
+      "slug": "affordable-basic-resume-writing-stand-out-in-your-job-hunt",
+      "title": "Affordable Basic Resume Writing - Stand Out in Your Job Hunt - ALL RESUME SERVICES"
+    },
+    {
+      "slug": "expert-cv-help-for-crafting-winning-resumes-effortlessly",
+      "title": "Expert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\ttitle\nstand-out-with-top-notch-senior-management-resume-services\tStand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES\naffordable-basic-resume-writing-stand-out-in-your-job-hunt\tAffordable Basic Resume Writing - Stand Out in Your Job Hunt - ALL RESUME SERVICES\nexpert-cv-help-for-crafting-winning-resumes-effortlessly\tExpert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES\n",
+  "stderr": "",
+  "execution_time_ms": 1615
+}
