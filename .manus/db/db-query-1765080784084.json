@@ -1,0 +1,43 @@
+{
+  "query": "SELECT content FROM blog_posts WHERE slug = 'turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you' LIMIT 1",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT content FROM blog_posts WHERE slug = 'turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you' LIMIT 1",
+  "rows": [
+    {
+      "content": "<p>###### Introduction: Resurrect Your Resume</p>"
+    },
+    {
+      "content": "<p>Is your resume not opening doors but rather closing them before you even get a knock? You’re not alone. Across the Australian job landscape, countless skilled individuals are struggling to showcase their abilities, often due to resumes that fail to strike a chord with employers. Here’s the good news: with All Resume Services, your current ‘dead-on-arrival’ document can be revitalised into a powerful marketing tool—one that truly conveys your worth and aligns with Aussie employers’ expectations.</p>"
+    },
+    {
+      "content": "<p>###### The Art of the Australian Job Application Letter</p>"
+    },
+    {
+      "content": "<p>When diving into the job-hunting ‘bush’, a well-crafted application letter is your best mate, serving as a first impression and opening lines of communication with potential employers. In Australia, where the job market is as diverse as its wildlife, a one-size-fits-all approach just won’t do. You need a bespoke strategy that speaks directly to Aussie businesses—whether it’s a laid-back start-up or a top-tier corporate giant.</p>"
+    },
+    {
+      "content": "<p>###### Optimizing Your Approach with All Resume Services</p>"
+    },
+    {
+      "content": "<p>Integrating a touch of All Resume Services into your application could be the game-changer you need. With our finger on the pulse of the Australian job market, we understand the intricacies and nuances that make an application letter shine. With us, it’s not about stuffing keywords; it’s about crafting a narrative that weaves your professional story into the Aussie job tapestry.</p>"
+    },
+    {
+      "content": "<p>###### Crafting a Resume That Speaks ‘Strayan</p>"
+    },
+    {
+      "content": "<p>The lingo down under is unique, and so should be your resume. Throwing in a few ‘g’days’ won’t cut it. You need to strike the right balance—keeping it professional while sprinkling that Aussie charm that employers appreciate. This is where All Resume Services comes in, ensuring your resume doesn’t just talk the talk, but it walks the walk, too.</p>"
+    },
+    {
+      "content": "<p>###### Professional Edge: Elevating Your Application</p>"
+    },
+    {
+      "content": "<p>Standing out in the Aussie job market requires more than ticking boxes; it requires a strategy that highlights your unique professional narrative. That’s the All Resume Services difference. We don’t just update your resume; we transform it into a compelling story of your professional journey, tailored to catch the eye of Australian employers.</p>"
+    },
+    {
+      "content": "<p>‍</p>"
+    }
+  ],
+  "messages": [],
+  "stdout": "content\n<p>###### Introduction: Resurrect Your Resume</p>\n\n<p>Is your resume not opening doors but rather closing them before you even get a knock? You’re not alone. Across the Australian job landscape, countless skilled individuals are struggling to showcase their abilities, often due to resumes that fail to strike a chord with employers. Here’s the good news: with All Resume Services, your current ‘dead-on-arrival’ document can be revitalised into a powerful marketing tool—one that truly conveys your worth and aligns with Aussie employers’ expectations.</p>\n\n<p>###### The Art of the Australian Job Application Letter</p>\n\n<p>When diving into the job-hunting ‘bush’, a well-crafted application letter is your best mate, serving as a first impression and opening lines of communication with potential employers. In Australia, where the job market is as diverse as its wildlife, a one-size-fits-all approach just won’t do. You need a bespoke strategy that speaks directly to Aussie businesses—whether it’s a laid-back start-up or a top-tier corporate giant.</p>\n\n<p>###### Optimizing Your Approach with All Resume Services</p>\n\n<p>Integrating a touch of All Resume Services into your application could be the game-changer you need. With our finger on the pulse of the Australian job market, we understand the intricacies and nuances that make an application letter shine. With us, it’s not about stuffing keywords; it’s about crafting a narrative that weaves your professional story into the Aussie job tapestry.</p>\n\n<p>###### Crafting a Resume That Speaks ‘Strayan</p>\n\n<p>The lingo down under is unique, and so should be your resume. Throwing in a few ‘g’days’ won’t cut it. You need to strike the right balance—keeping it professional while sprinkling that Aussie charm that employers appreciate. This is where All Resume Services comes in, ensuring your resume doesn’t just talk the talk, but it walks the walk, too.</p>\n\n<p>###### Professional Edge: Elevating Your Application</p>\n\n<p>Standing out in the Aussie job market requires more than ticking boxes; it requires a strategy that highlights your unique professional narrative. That’s the All Resume Services difference. We don’t just update your resume; we transform it into a compelling story of your professional journey, tailored to catch the eye of Australian employers.</p>\n\n<p>‍</p>\n",
+  "stderr": "",
+  "execution_time_ms": 1549
+}

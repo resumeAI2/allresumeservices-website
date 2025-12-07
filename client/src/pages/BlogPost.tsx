@@ -11,6 +11,8 @@ import SEOHead from "@/components/SEOHead";
 import { getImageUrl } from "@/lib/imageUtils";
 import { BlogAuthor } from "@/components/BlogAuthor";
 import { LeadMagnetForm } from "@/components/LeadMagnetForm";
+import ReactMarkdown from 'react-markdown';
+import { cleanMarkdownContent } from '@/lib/markdownUtils';
 
 export default function BlogPost() {
   const params = useParams();
@@ -139,10 +141,9 @@ export default function BlogPost() {
         <section className="py-16">
           <div className="container">
             <div className="max-w-4xl mx-auto">
-              <div 
-                className="prose prose-lg max-w-none prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 prose-p:mb-6 prose-ul:mb-6 prose-li:mb-2"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+              <div className="prose prose-lg max-w-none prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 prose-p:mb-6 prose-p:leading-relaxed prose-ul:mb-6 prose-li:mb-2">
+                <ReactMarkdown>{cleanMarkdownContent(post.content)}</ReactMarkdown>
+              </div>
 
               {/* Lead Magnet - Resume Template Download */}
               <div className="my-12">
