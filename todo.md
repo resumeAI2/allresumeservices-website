@@ -1081,3 +1081,12 @@
 - [x] Ensure captions are accessible to screen readers
 - [x] Test table captions on all blog posts with tables
 - [x] Verify SEO improvements with structured data
+
+## Implement Structured Data Markup for Tables
+- [x] Research schema.org Table markup specification
+- [x] Create utility function to extract table data from markdown
+- [x] Generate JSON-LD structured data for tables
+- [x] Add JSON-LD script tags to blog post pages
+- [x] Test structured data with Google Rich Results Test
+- [x] Validate markup with Schema.org validator
+- [x] Verify structured data appears in page source
