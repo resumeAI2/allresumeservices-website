@@ -56,7 +56,8 @@ export const blog_posts = mysqlTable("blog_posts", {
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   content: text("content").notNull(),
   excerpt: text("excerpt").notNull(),
-  metaDescription: text("metaDescription"), // SEO meta description
+  metaTitle: varchar("metaTitle", { length: 60 }), // SEO meta title (max 60 chars)
+  metaDescription: text("metaDescription"), // SEO meta description (max 160 chars)
   category: varchar("category", { length: 100 }).notNull(), // Legacy field, will use categoryId
   categoryId: int("categoryId"),
   image: varchar("image", { length: 500 }),
