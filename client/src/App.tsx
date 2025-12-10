@@ -50,6 +50,9 @@ import AllIndustries from './pages/AllIndustries';
 import IndustryComparison from './pages/IndustryComparison';
 import ResumeTransformation from './pages/ResumeTransformation';
 import ExitIntentPopup from './components/ExitIntentPopup';
+import ThankYouOnboarding from './pages/ThankYouOnboarding';
+import AdminIntakeRecords from './pages/AdminIntakeRecords';
+import AdminIntakeRecordDetail from './pages/AdminIntakeRecordDetail';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -98,8 +101,10 @@ function Router() {
       <Route path={"/admin/case-studies"} component={AdminCaseStudies} />
       <Route path={"/admin/case-studies/new"} component={CaseStudyEditor} />
       <Route path={"/admin/case-studies/edit/:id"} component={CaseStudyEditor} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
+      <Route path={"/admin/intake-records"} component={AdminIntakeRecords} />
+      <Route path={"/admin/intake-records/:id"} component={AdminIntakeRecordDetail} />
+      <Route path={"/thank-you-onboarding"} component={ThankYouOnboarding} />
+      <Route path={"/404"} component={NotFound} />      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
