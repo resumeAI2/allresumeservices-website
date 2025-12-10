@@ -175,6 +175,24 @@
     }
   }
 }
+/* Blog Post Table Caption Styling */
+.blog-content p:has(strong:first-child) {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--muted);
+  border-left: 4px solid var(--primary);
+  border-radius: 0.375rem;
+}
+
+.blog-content p:has(strong:first-child) strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
 /* Blog Post Table Styling */
 .blog-content table {
   width: 100%;

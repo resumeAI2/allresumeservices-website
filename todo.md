@@ -1072,3 +1072,12 @@
 - [x] Add proper table borders and spacing
 - [x] Test table styling across different blog posts
 - [x] Verify accessibility and contrast ratios
+
+## Add Table Captions for Accessibility and SEO
+- [x] Find all blog posts containing tables in the database
+- [x] Add descriptive captions above each table in markdown format
+- [x] Update ReactMarkdown configuration to render table captions
+- [x] Style table captions with appropriate typography and spacing
+- [x] Ensure captions are accessible to screen readers
+- [x] Test table captions on all blog posts with tables
+- [x] Verify SEO improvements with structured data
