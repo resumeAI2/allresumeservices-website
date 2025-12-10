@@ -1090,3 +1090,69 @@
 - [x] Test structured data with Google Rich Results Test
 - [x] Validate markup with Schema.org validator
 - [x] Verify structured data appears in page source
+
+## Post-Payment Client Intake Form System
+- [ ] Design database schema for client_intake_records table
+- [ ] Create employment_history table for repeatable job entries
+- [ ] Add file_uploads table for resume and supporting documents
+- [ ] Run database migrations for new tables
+- [ ] Create TRPC API endpoints for intake form submission
+- [ ] Build Thank You + Onboarding page component
+- [ ] Implement Section 1: Personal Details form fields
+- [ ] Implement Section 2: Service and Order Reference (auto-populated)
+- [ ] Implement Section 3: Current Situation fields
+- [ ] Implement Section 4: Target Roles and Career Goals
+- [ ] Implement Section 5: Employment History with repeatable job blocks
+- [ ] Implement Section 6: Education and Training
+- [ ] Implement Section 7: Licences, Tickets and Clearances
+- [ ] Implement Section 8: Skills and Strengths
+- [ ] Implement Section 9: Additional Information
+- [ ] Implement Section 10: File Uploads (resume and documents)
+- [ ] Add form validation (client-side and server-side)
+- [ ] Implement file upload to S3 with size limits
+- [ ] Link intake record to PayPal transaction ID and order ID
+- [ ] Create confirmation email template for clients
+- [ ] Create admin notification email template
+- [ ] Send confirmation email after form submission
+- [ ] Send admin notification email after submission
+- [ ] Build admin interface to view all intake submissions
+- [ ] Add admin detail view for each intake record
+- [ ] Link intake records to PayPal transactions in admin view
+- [ ] Test complete flow: Payment → Redirect → Form → Submission
+- [ ] Test mobile responsiveness of intake form
+- [ ] Test file upload functionality
+- [ ] Test email delivery (confirmation and admin notification)
+- [ ] Handle edge cases (missing transaction ID, failed submission)
+
+## Autosave and Resume-Later Functionality
+- [ ] Add draft_intake_records table for autosave data
+- [ ] Create secure token generation for resume-later links
+- [ ] Implement autosave on field change (debounced)
+- [ ] Store draft data linked to PayPal transaction ID and email
+- [ ] Create resume-later email template with tokenized link
+- [ ] Build endpoint to retrieve draft data by token
+- [ ] Send automated follow-up email for incomplete forms
+- [ ] Test autosave functionality
+- [ ] Test resume-later link restoration
+
+## Post-Payment Client Intake System - COMPLETED
+
+- [x] Database schema for client intake records
+- [x] Database schema for employment history
+- [x] Database schema for draft intake records (autosave)
+- [x] TRPC API endpoints for intake submission
+- [x] TRPC API endpoints for admin management
+- [x] TRPC API endpoints for autosave and resume-later
+- [x] File upload system with S3 integration
+- [x] Thank You + Onboarding page with 10-section form
+- [x] Autosave functionality (2-second debounce)
+- [x] Resume-later with tokenized links
+- [x] Form validation
+- [x] File upload UI component
+- [x] Email notification templates (client confirmation, admin notification, resume-later)
+- [x] Admin intake records list page
+- [x] Admin intake record detail page
+- [x] Status management (pending/in_progress/completed)
+- [x] Admin notes functionality
+- [x] Search and filter in admin interface
+- [x] Routes added to App.tsx
