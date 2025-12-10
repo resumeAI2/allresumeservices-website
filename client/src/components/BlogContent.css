@@ -1,0 +1,229 @@
+/**
+ * Blog Content HTML Styling
+ * Ensures proper formatting for blog posts stored as HTML in the database
+ * 
+ * GLOBAL RULE: BLOG_FORMATTING_AND_SEO_STRUCTURE - Section 1
+ * - All headings must be bold
+ * - Headings must be visually larger than body text
+ * - Proper spacing above and below headings
+ * - Proper spacing between paragraphs
+ */
+
+.blog-content-html {
+  /* Base typography */
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75; /* 28px */
+  color: hsl(var(--foreground));
+}
+
+/* Headings - All bold and visually distinct */
+.blog-content-html h1,
+.blog-content-html h2,
+.blog-content-html h3,
+.blog-content-html h4,
+.blog-content-html h5,
+.blog-content-html h6 {
+  font-weight: 700; /* Bold */
+  color: hsl(var(--foreground));
+  line-height: 1.2;
+  margin-top: 2rem; /* Blank line above */
+  margin-bottom: 1rem; /* Blank line below */
+}
+
+.blog-content-html h1 {
+  font-size: 2.5rem; /* 40px */
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-content-html h2 {
+  font-size: 2rem; /* 32px */
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-content-html h3 {
+  font-size: 1.75rem; /* 28px */
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content-html h4 {
+  font-size: 1.5rem; /* 24px */
+  margin-top: 1.75rem;
+  margin-bottom: 0.875rem;
+}
+
+.blog-content-html h5 {
+  font-size: 1.25rem; /* 20px */
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.blog-content-html h6 {
+  font-size: 1.125rem; /* 18px */
+  margin-top: 1.25rem;
+  margin-bottom: 0.625rem;
+}
+
+/* First heading has no top margin */
+.blog-content-html > h1:first-child,
+.blog-content-html > h2:first-child,
+.blog-content-html > h3:first-child,
+.blog-content-html > h4:first-child,
+.blog-content-html > h5:first-child,
+.blog-content-html > h6:first-child {
+  margin-top: 0;
+}
+
+/* Paragraphs - Proper spacing */
+.blog-content-html p {
+  margin-bottom: 1.5rem; /* Blank line between paragraphs */
+  line-height: 1.75;
+}
+
+.blog-content-html p:last-child {
+  margin-bottom: 0;
+}
+
+/* Strong/Bold text */
+.blog-content-html strong {
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+
+/* Lists */
+.blog-content-html ul,
+.blog-content-html ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.blog-content-html li {
+  margin-bottom: 0.5rem;
+  line-height: 1.75;
+}
+
+.blog-content-html li:last-child {
+  margin-bottom: 0;
+}
+
+/* Nested lists */
+.blog-content-html ul ul,
+.blog-content-html ol ol,
+.blog-content-html ul ol,
+.blog-content-html ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Blockquotes */
+.blog-content-html blockquote {
+  border-left: 4px solid hsl(var(--primary));
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Links */
+.blog-content-html a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.blog-content-html a:hover {
+  color: hsl(var(--primary) / 0.8);
+}
+
+/* Tables */
+.blog-content-html table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+
+.blog-content-html th,
+.blog-content-html td {
+  padding: 0.75rem 1rem;
+  border: 1px solid hsl(var(--border));
+  text-align: left;
+}
+
+.blog-content-html th {
+  background-color: hsl(var(--muted));
+  font-weight: 700;
+}
+
+.blog-content-html tr:nth-child(even) {
+  background-color: hsl(var(--muted) / 0.3);
+}
+
+/* Code */
+.blog-content-html code {
+  background-color: hsl(var(--muted));
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9em;
+}
+
+.blog-content-html pre {
+  background-color: hsl(var(--muted));
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.blog-content-html pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Images */
+.blog-content-html img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+}
+
+/* Horizontal rule */
+.blog-content-html hr {
+  border: none;
+  border-top: 1px solid hsl(var(--border));
+  margin: 3rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .blog-content-html {
+    font-size: 1rem; /* 16px */
+  }
+
+  .blog-content-html h1 {
+    font-size: 2rem; /* 32px */
+  }
+
+  .blog-content-html h2 {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  .blog-content-html h3 {
+    font-size: 1.5rem; /* 24px */
+  }
+
+  .blog-content-html h4 {
+    font-size: 1.25rem; /* 20px */
+  }
+
+  .blog-content-html h5 {
+    font-size: 1.125rem; /* 18px */
+  }
+
+  .blog-content-html h6 {
+    font-size: 1rem; /* 16px */
+  }
+}
