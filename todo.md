@@ -1156,3 +1156,10 @@
 - [x] Admin notes functionality
 - [x] Search and filter in admin interface
 - [x] Routes added to App.tsx
+
+## Blog Formatting Cleanup (One-time)
+
+- [x] Find all existing blog posts in database
+- [x] Apply formatting rules: bold headings, proper spacing
+- [x] Verify no content/wording changes
+- [x] Test site builds successfully after updates
