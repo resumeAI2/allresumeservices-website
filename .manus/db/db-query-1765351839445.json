@@ -1,0 +1,15 @@
+{
+  "query": "SELECT \n  CHAR_LENGTH(content) as total_length,\n  CHAR_LENGTH(REPLACE(content, '\\n', '')) as length_without_newlines,\n  CHAR_LENGTH(content) - CHAR_LENGTH(REPLACE(content, '\\n', '')) as newline_count\nFROM blog_posts \nWHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly'",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT \n  CHAR_LENGTH(content) as total_length,\n  CHAR_LENGTH(REPLACE(content, '\\n', '')) as length_without_newlines,\n  CHAR_LENGTH(content) - CHAR_LENGTH(REPLACE(content, '\\n', '')) as newline_count\nFROM blog_posts \nWHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly'",
+  "rows": [
+    {
+      "total_length": "17680",
+      "length_without_newlines": "17502",
+      "newline_count": "178"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_length\tlength_without_newlines\tnewline_count\n17680\t17502\t178\n",
+  "stderr": "",
+  "execution_time_ms": 1520
+}

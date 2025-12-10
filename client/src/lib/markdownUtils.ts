@@ -14,24 +14,31 @@ export function cleanMarkdownContent(content: string): string {
       // This is markdown wrapped in HTML - just strip the HTML tags
       let cleaned = content;
       
-      // Remove <p> and </p> tags
-      cleaned = cleaned.replace(/<\/?p>/g, '\n\n');
+      // Remove <p> and </p> tags - replace with single newline
+      cleaned = cleaned.replace(/<\/p>\s*<p>/g, '\n');
+      cleaned = cleaned.replace(/<\/?p>/g, '\n');
       
       // Remove other common HTML tags but keep the content
-      cleaned = cleaned.replace(/<\/?div>/g, '\n\n');
+      cleaned = cleaned.replace(/<\/?div>/g, '\n');
       cleaned = cleaned.replace(/<\/?span>/g, '');
       cleaned = cleaned.replace(/<br\s*\/?>/g, '\n');
       
       // Remove any remaining HTML tags but keep content
       cleaned = cleaned.replace(/<[^>]+>/g, '');
       
+      // IMPORTANT: Remove blank lines within markdown tables FIRST
+      // This must happen before adding spacing around tables
+      cleaned = cleaned.replace(/(\|[^\n]+\|)\n\n+(\|[^\n]+\|)/g, '$1\n$2');
+      
       // Ensure headings have blank lines before and after
       cleaned = cleaned.replace(/([^\n])\n(#{1,6}\s)/g, '$1\n\n$2');
       cleaned = cleaned.replace(/(#{1,6}\s[^\n]+)\n([^\n#])/g, '$1\n\n$2');
       
-      // Ensure tables have blank lines before and after
-      cleaned = cleaned.replace(/([^\n])\n(\|[^\n]+\|)/g, '$1\n\n$2');
-      cleaned = cleaned.replace(/(\|[^\n]+\|)\n([^\n|])/g, '$1\n\n$2');
+      // Ensure tables have blank lines before and after the ENTIRE table
+      // But NOT between table rows (already fixed above)
+      // Use negative lookbehind/lookahead to avoid matching table rows
+      cleaned = cleaned.replace(/(^|[^|\n])(\n)(\|[^\n]+\|)/gm, '$1\n\n$3');
+      cleaned = cleaned.replace(/(\|[^\n]+\|)(\n)([^|\n]|$)/gm, '$1\n\n$3');
       
       // Clean up excessive newlines (more than 2 consecutive)
       cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
@@ -57,8 +64,9 @@ export function cleanMarkdownContent(content: string): string {
  * Basic fallback cleaning function
  */
 function basicClean(content: string): string {
-  let cleaned = content.replace(/<\/?p>/g, '\n\n');
-  cleaned = cleaned.replace(/<\/?div>/g, '\n\n');
+  let cleaned = content.replace(/<\/p>\s*<p>/g, '\n');
+  cleaned = cleaned.replace(/<\/?p>/g, '\n');
+  cleaned = cleaned.replace(/<\/?div>/g, '\n');
   cleaned = cleaned.replace(/<\/?span>/g, '');
   cleaned = cleaned.replace(/<br\s*\/?>/g, '\n');
   cleaned = cleaned.replace(/<[^>]+>/g, ''); // Remove all HTML tags
