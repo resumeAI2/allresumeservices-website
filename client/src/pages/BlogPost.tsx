@@ -14,6 +14,8 @@ import { LeadMagnetForm } from "@/components/LeadMagnetForm";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { cleanMarkdownContent } from '@/lib/markdownUtils';
+import { generateBlogPostTableStructuredData } from '@/lib/structuredData';
+import { useMemo } from 'react';
 
 export default function BlogPost() {
   const params = useParams();
@@ -25,6 +27,61 @@ export default function BlogPost() {
     { enabled: !!post?.id }
   );
   const incrementViewMutation = trpc.blog.incrementViewCount.useMutation();
+
+  // Generate structured data for tables
+  const tableStructuredData = useMemo(() => {
+    if (!post?.content || slug !== 'expert-cv-help-for-crafting-winning-resumes-effortlessly') return null;
+    
+    // Manual structured data for the CV length table
+    const currentUrl = `/blog/${slug}`;
+    const fullUrl = `${window.location.origin}${currentUrl}`;
+    
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Table',
+      'about': post.title,
+      'url': fullUrl,
+      'name': 'Recommended CV Length by Career Stage',
+      'description': 'This table outlines the ideal CV length for different career stages in the Australian job market, helping you determine the appropriate level of detail for your professional experience.',
+      'columns': [
+        { '@type': 'Text', 'name': 'Career Stage' },
+        { '@type': 'Text', 'name': 'Ideal Length' },
+        { '@type': 'Text', 'name': 'Why This Length Works' }
+      ],
+      'rows': [
+        {
+          '@type': 'TableRow',
+          'cells': ['Graduate / Entry Level', '1–2 pages', 'Focuses on education, internships, and foundational skills.']
+        },
+        {
+          '@type': 'TableRow',
+          'cells': ['Early to Mid-Career', '2–3 pages', 'Effectively balances detailed experience with demonstrated impact.']
+        },
+        {
+          '@type': 'TableRow',
+          'cells': ['Senior / Executive Level', '3–5 pages', 'Provides ample space to showcase leadership achievements and strategic contributions.']
+        }
+      ]
+    };
+  }, [post?.content, slug, post?.title]);
+
+  // Add Table structured data to head
+  useEffect(() => {
+    if (!tableStructuredData) return;
+    
+    const script = document.createElement('script');
+    script.id = 'table-schema-org';
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(tableStructuredData);
+    document.head.appendChild(script);
+    
+    return () => {
+      const existingScript = document.getElementById('table-schema-org');
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, [tableStructuredData]);
 
   // Track page view
   useEffect(() => {
@@ -77,6 +134,7 @@ export default function BlogPost() {
         publishedTime={new Date(post.createdAt).toISOString()}
         keywords={`${post.category}, resume writing, career advice, job search`}
       />
+
       <Header />
       
       <div className="container pt-4">
