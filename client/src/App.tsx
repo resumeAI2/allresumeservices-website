@@ -53,6 +53,7 @@ import ExitIntentPopup from './components/ExitIntentPopup';
 import ThankYouOnboarding from './pages/ThankYouOnboarding';
 import AdminIntakeRecords from './pages/AdminIntakeRecords';
 import AdminIntakeRecordDetail from './pages/AdminIntakeRecordDetail';
+import GoogleReviewsPage from './pages/GoogleReviews';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -72,6 +73,7 @@ function Router() {
       <Route path="/process" component={OurProcess} />
       <Route path={"/about"} component={AboutUs} />
       <Route path={"/testimonials"} component={Testimonials} />
+      <Route path={"/google-reviews"} component={GoogleReviewsPage} />
       <Route path={"/case-studies"} component={CaseStudies} />
       <Route path={"/case-studies/:slug"} component={CaseStudy} />
       <Route path={"/industries/mining-resources"} component={MiningResources} />
