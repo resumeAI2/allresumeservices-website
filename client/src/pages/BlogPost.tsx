@@ -159,7 +159,7 @@ export default function BlogPost() {
               <div className="inline-block px-4 py-1 bg-accent/20 text-accent-foreground rounded-full text-sm font-medium mb-4">
                 {post.category}
               </div>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6">{post.title}</h1>
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6">{post.title}</h1>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div className="flex items-center gap-4 text-muted-foreground">
                   <div className="flex items-center gap-2">
