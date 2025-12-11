@@ -51,7 +51,7 @@ export default function Blog() {
       <section className="bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-primary-foreground py-20">
         <div className="container">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-secondary">
               Career Advice Blog
             </h1>
             <p className="text-xl text-primary-foreground/90">

@@ -1267,3 +1267,10 @@
 - [x] Reduce section heading (H2) font size in blog content
 - [x] Adjust global heading scale to be more moderate
 - [x] Test blog posts to verify balanced appearance
+
+
+## Blog Heading Color Fix
+
+- [x] Change "Career Advice Blog" heading color to gold/yellow accent
+- [x] Ensure heading is visible against navy background
+- [x] Match brand accent color (like Free Resume Review button)
