@@ -1274,3 +1274,12 @@
 - [x] Change "Career Advice Blog" heading color to gold/yellow accent
 - [x] Ensure heading is visible against navy background
 - [x] Match brand accent color (like Free Resume Review button)
+
+
+## Featured Images for Blog Posts
+
+- [x] Verify blog_posts schema has featuredImage field
+- [x] Check if blog listing displays featured images
+- [x] Check if blog post detail page displays featured images
+- [x] Test admin interface for image upload functionality
+- [x] Create user guide for adding featured images via admin panel
