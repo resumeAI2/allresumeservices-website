@@ -1259,3 +1259,11 @@
 - [x] Verify images and icons are not stretched or blurry
 - [x] Identify and fix pages with disproportionate headings or spacing
 - [x] Produce consistency report listing corrected pages
+
+
+## Font Size Reduction (User Feedback)
+
+- [x] Reduce blog post title (H1) font size further
+- [x] Reduce section heading (H2) font size in blog content
+- [x] Adjust global heading scale to be more moderate
+- [x] Test blog posts to verify balanced appearance
