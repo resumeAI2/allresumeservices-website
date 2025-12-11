@@ -1228,3 +1228,16 @@
 - [x] Remove Markdown processing since content is stored as HTML
 - [x] Test blog post display to ensure headings are bold and properly formatted
 - [x] Verify no Markdown symbols are visible to users
+
+
+## Blog Content Styling Refinement
+
+- [x] Reduce font weight for headings (semi-bold, not fully bold)
+- [x] Set body text to regular weight
+- [x] Remove excessive letter spacing
+- [x] Adjust line height for comfortable reading
+- [x] Set max-width for paragraphs (650-750px)
+- [x] Use neutral dark grey color instead of pure black
+- [x] Ensure responsive formatting across devices
+- [x] Remove auto-bold styling from rendered content
+- [x] Test styling across multiple blog posts

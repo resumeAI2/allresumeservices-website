@@ -10,58 +10,63 @@
  */
 
 .blog-content-html {
-  /* Base typography */
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.75; /* 28px */
-  color: hsl(var(--foreground));
+  /* Base typography - Regular weight, comfortable reading */
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.7; /* Slightly tighter for better flow */
+  color: #2d3748; /* Neutral dark grey instead of pure black */
+  font-weight: 400; /* Regular weight */
+  max-width: 720px; /* Optimal reading width */
+  margin: 0 auto;
+  letter-spacing: normal; /* No excessive tracking */
 }
 
-/* Headings - All bold and visually distinct */
+/* Headings - Semi-bold for lighter, professional appearance */
 .blog-content-html h1,
 .blog-content-html h2,
 .blog-content-html h3,
 .blog-content-html h4,
 .blog-content-html h5,
 .blog-content-html h6 {
-  font-weight: 700; /* Bold */
-  color: hsl(var(--foreground));
-  line-height: 1.2;
-  margin-top: 2rem; /* Blank line above */
+  font-weight: 600; /* Semi-bold, not fully bold */
+  color: #1a202c; /* Slightly softer than pure black */
+  line-height: 1.4; /* Comfortable heading line height */
+  margin-top: 2.5rem; /* Blank line above */
   margin-bottom: 1rem; /* Blank line below */
+  letter-spacing: -0.01em; /* Slight tightening for elegance */
 }
 
 .blog-content-html h1 {
-  font-size: 2.5rem; /* 40px */
+  font-size: 2.25rem; /* 36px - Slightly smaller */
   margin-top: 3rem;
   margin-bottom: 1.5rem;
 }
 
 .blog-content-html h2 {
-  font-size: 2rem; /* 32px */
+  font-size: 1.875rem; /* 30px */
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;
 }
 
 .blog-content-html h3 {
-  font-size: 1.75rem; /* 28px */
+  font-size: 1.5rem; /* 24px */
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
 .blog-content-html h4 {
-  font-size: 1.5rem; /* 24px */
+  font-size: 1.25rem; /* 20px */
   margin-top: 1.75rem;
   margin-bottom: 0.875rem;
 }
 
 .blog-content-html h5 {
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.125rem; /* 18px */
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
 
 .blog-content-html h6 {
-  font-size: 1.125rem; /* 18px */
+  font-size: 1rem; /* 16px */
   margin-top: 1.25rem;
   margin-bottom: 0.625rem;
 }
@@ -76,20 +81,22 @@
   margin-top: 0;
 }
 
-/* Paragraphs - Proper spacing */
+/* Paragraphs - Proper spacing, regular weight */
 .blog-content-html p {
   margin-bottom: 1.5rem; /* Blank line between paragraphs */
-  line-height: 1.75;
+  line-height: 1.7;
+  font-weight: 400; /* Ensure regular weight */
+  letter-spacing: normal;
 }
 
 .blog-content-html p:last-child {
   margin-bottom: 0;
 }
 
-/* Strong/Bold text */
+/* Strong/Bold text - Lighter emphasis */
 .blog-content-html strong {
-  font-weight: 700;
-  color: hsl(var(--foreground));
+  font-weight: 600; /* Semi-bold for softer emphasis */
+  color: #1a202c;
 }
 
 /* Lists */
@@ -201,29 +208,35 @@
 @media (max-width: 768px) {
   .blog-content-html {
     font-size: 1rem; /* 16px */
+    max-width: 100%;
+    padding: 0 1rem; /* Comfortable mobile padding */
   }
 
   .blog-content-html h1 {
-    font-size: 2rem; /* 32px */
+    font-size: 1.875rem; /* 30px */
   }
 
   .blog-content-html h2 {
-    font-size: 1.75rem; /* 28px */
-  }
-
-  .blog-content-html h3 {
     font-size: 1.5rem; /* 24px */
   }
 
-  .blog-content-html h4 {
+  .blog-content-html h3 {
     font-size: 1.25rem; /* 20px */
   }
 
-  .blog-content-html h5 {
+  .blog-content-html h4 {
     font-size: 1.125rem; /* 18px */
   }
 
-  .blog-content-html h6 {
+  .blog-content-html h5 {
     font-size: 1rem; /* 16px */
+  }
+
+  .blog-content-html h6 {
+    font-size: 0.9375rem; /* 15px */
+  }
+
+  .blog-content-html p {
+    line-height: 1.65; /* Slightly tighter on mobile */
   }
 }
