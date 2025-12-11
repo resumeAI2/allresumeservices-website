@@ -147,7 +147,7 @@ export default function BlogPost() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary/10 via-background to-accent/10 py-20">
+        <section className="bg-gradient-to-br from-primary/10 via-background to-accent/10 py-8 md:py-12">
           <div className="container">
             <Link href="/blog">
               <Button variant="ghost" className="mb-6">
@@ -159,7 +159,7 @@ export default function BlogPost() {
               <div className="inline-block px-4 py-1 bg-accent/20 text-accent-foreground rounded-full text-sm font-medium mb-4">
                 {post.category}
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6">{post.title}</h1>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                 <div className="flex items-center gap-4 text-muted-foreground">
                   <div className="flex items-center gap-2">
