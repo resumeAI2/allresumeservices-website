@@ -1241,3 +1241,21 @@
 - [x] Ensure responsive formatting across devices
 - [x] Remove auto-bold styling from rendered content
 - [x] Test styling across multiple blog posts
+
+
+## Site-Wide Typography & Visual Consistency
+
+- [x] Establish consistent base font family and size across all pages
+- [x] Define clear heading scale (H1 > H2 > H3 > H4)
+- [x] Ensure all headings are bold and visually distinct
+- [x] Implement responsive typography for mobile devices
+- [x] Reduce blog post title font size to balanced, professional size
+- [x] Remove excessive top padding/gap above blog titles
+- [x] Ensure blog section headings use proper heading hierarchy
+- [x] Fix specific blog page: "Revitalize Your Resume: A Marketing Tool for Australian Jobs"
+- [x] Review and correct consistent spacing across all pages
+- [x] Check alignment of titles, text blocks, and content areas
+- [x] Ensure buttons and links have consistent styling
+- [x] Verify images and icons are not stretched or blurry
+- [x] Identify and fix pages with disproportionate headings or spacing
+- [x] Produce consistency report listing corrected pages
