@@ -1283,3 +1283,17 @@
 - [x] Check if blog post detail page displays featured images
 - [x] Test admin interface for image upload functionality
 - [x] Create user guide for adding featured images via admin panel
+
+
+## Google Reviews Import (JSON-based, separate from testimonials DB)
+
+- [x] Read all 60+ Google Reviews from uploaded files
+- [x] Create /client/public/data/ directory
+- [x] Create /client/public/data/full_reviews.json with all reviews
+- [x] Create /client/public/data/featured_reviews.json with selected reviews
+- [x] Assign relevant tags to each review (resume, cover letter, linkedin, ATS, selection criteria, mining, career change, repeat client)
+- [x] Sort reviews from most recent to oldest based on timeframe
+- [x] Install GoogleTestimonials.tsx component
+- [x] Integrate component into website pages
+- [x] Test JSON loading and component rendering
+- [x] Verify existing testimonials database remains untouched
