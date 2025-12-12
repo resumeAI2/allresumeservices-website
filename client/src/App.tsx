@@ -57,6 +57,8 @@ import GoogleReviewsPage from './pages/GoogleReviews';
 import ReviewsArchive from './pages/ReviewsArchive';
 import ResumeSamples from './pages/ResumeSamples';
 import AdminEmailTest from './pages/AdminEmailTest';
+import AdminOrders from './pages/AdminOrders';
+import AdminOrderDetail from './pages/AdminOrderDetail';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -111,6 +113,8 @@ function Router() {
       <Route path={"/admin/intake-records"} component={AdminIntakeRecords} />
       <Route path={'/admin/intake-records/:id'} component={AdminIntakeRecordDetail} />
       <Route path={'/admin/email-test'} component={AdminEmailTest} />
+      <Route path={'/admin/orders'} component={AdminOrders} />
+      <Route path={'/admin/orders/:id'} component={AdminOrderDetail} />
       <Route path={'/thank-you-onboarding'} component={ThankYouOnboarding} />
       <Route path={"/404"} component={NotFound} />      {/* Final fallback route */}
       <Route component={NotFound} />

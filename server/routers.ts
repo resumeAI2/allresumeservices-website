@@ -746,6 +746,66 @@ export const appRouter = router({
         return { configured: isSESConfigured() };
       }),
   }),
+  orders: router({
+    getAll: publicProcedure
+      .input(z.object({
+        status: z.enum(["pending", "completed", "cancelled", "failed"]).optional(),
+        search: z.string().optional(),
+        startDate: z.date().optional(),
+        endDate: z.date().optional(),
+      }).optional())
+      .query(async ({ input }) => {
+        const { getAllOrders } = await import('./orders');
+        return await getAllOrders(input);
+      }),
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const { getOrderById } = await import('./orders');
+        return await getOrderById(input.id);
+      }),
+    getStatistics: publicProcedure
+      .query(async () => {
+        const { getOrderStatistics } = await import('./orders');
+        return await getOrderStatistics();
+      }),
+    getRecent: publicProcedure
+      .input(z.object({ limit: z.number().optional().default(10) }))
+      .query(async ({ input }) => {
+        const { getRecentOrders } = await import('./orders');
+        return await getRecentOrders(input.limit);
+      }),
+    updateStatus: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        status: z.enum(["pending", "completed", "cancelled", "failed"]),
+      }))
+      .mutation(async ({ input }) => {
+        const { updateOrderStatus } = await import('./orders');
+        await updateOrderStatus(input.id, input.status);
+        return { success: true };
+      }),
+    update: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        customerName: z.string().optional(),
+        customerEmail: z.string().email().optional(),
+        customerPhone: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { updateOrder } = await import('./orders');
+        const { id, ...updates } = input;
+        await updateOrder(id, updates);
+        return { success: true };
+      }),
+    delete: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        const { deleteOrder } = await import('./orders');
+        await deleteOrder(input.id);
+        return { success: true };
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
