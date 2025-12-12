@@ -10,7 +10,8 @@ import {
   Plus,
   ExternalLink,
   TrendingUp,
-  Package
+  Package,
+  Tag
 } from 'lucide-react';
 
 export default function AdminDashboard() {
@@ -141,6 +142,12 @@ export default function AdminDashboard() {
               <Button variant="outline">
                 <Package className="mr-2 h-4 w-4" />
                 Manage Orders
+              </Button>
+            </Link>
+            <Link href="/admin/promo-codes">
+              <Button variant="outline">
+                <Tag className="mr-2 h-4 w-4" />
+                Promo Codes
               </Button>
             </Link>
           </div>

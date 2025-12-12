@@ -162,6 +162,13 @@
       "when": 1765363105994,
       "tag": "0022_deep_grandmaster",
       "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "5",
+      "when": 1765526051473,
+      "tag": "0023_magenta_gertrude_yorkes",
+      "breakpoints": true
     }
   ]
 }

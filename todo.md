@@ -1439,3 +1439,36 @@
 - [x] Remove old ATS-Friendly-Resume-Template.pdf
 - [x] Find and update all references to the old template file
 - [x] Test file access and download functionality
+
+## Resume Samples Gallery Enhancement
+- [x] Create basic "before" resume templates
+- [x] Copy professional "after" resume images to public directory
+- [x] Add resume samples to database with industry categories
+- [ ] Update Resume Samples page to display new examples
+- [ ] Test before/after comparison display
+
+## Promo Code System
+- [x] Update database schema to add promo_codes table
+- [x] Create promo code service functions (create, validate, apply discount)
+- [x] Build admin promo codes page with CRUD interface
+- [x] Add promo code input field to checkout page
+- [x] Implement real-time validation and discount calculation
+- [x] Display applied discount in order summary
+- [x] Track promo code usage and redemption count
+- [x] Add promo code expiration and usage limits
+
+## Order Email Notifications
+- [x] Create order confirmation email template
+- [x] Add sendOrderConfirmation function to SES email service
+- [x] Trigger email when order status changes to completed
+- [x] Include order details, customer info, and next steps
+- [ ] Test email delivery with sample orders (requires AWS SES credentials)
+
+## Customer Dashboard
+- [x] Create MyOrders page for authenticated users
+- [x] Display order history with status badges
+- [x] Add order detail view for customers
+- [x] Show order timeline and tracking information
+- [ ] Add filter by status functionality
+- [ ] Link customer dashboard from header navigation
+- [ ] Test with multiple order scenarios

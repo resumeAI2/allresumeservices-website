@@ -746,6 +746,69 @@ export const appRouter = router({
         return { configured: isSESConfigured() };
       }),
   }),
+  promoCodes: router({
+    getAll: publicProcedure
+      .input(z.object({ active: z.boolean().optional() }).optional())
+      .query(async ({ input }) => {
+        const { getAllPromoCodes } = await import('./promoCodes');
+        return await getAllPromoCodes(input);
+      }),
+    getById: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        const { getPromoCodeById } = await import('./promoCodes');
+        return await getPromoCodeById(input.id);
+      }),
+    validate: publicProcedure
+      .input(z.object({ code: z.string(), orderAmount: z.number() }))
+      .mutation(async ({ input }) => {
+        const { validatePromoCode } = await import('./promoCodes');
+        return await validatePromoCode(input.code, input.orderAmount);
+      }),
+    create: publicProcedure
+      .input(z.object({
+        code: z.string(),
+        description: z.string().optional(),
+        discountType: z.enum(["percentage", "fixed"]),
+        discountValue: z.string(),
+        minPurchase: z.string().optional(),
+        maxUses: z.number().optional(),
+        expiresAt: z.date().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { createPromoCode } = await import('./promoCodes');
+        return await createPromoCode(input);
+      }),
+    update: publicProcedure
+      .input(z.object({
+        id: z.number(),
+        code: z.string().optional(),
+        description: z.string().optional(),
+        discountType: z.enum(["percentage", "fixed"]).optional(),
+        discountValue: z.string().optional(),
+        minPurchase: z.string().optional(),
+        maxUses: z.number().optional(),
+        expiresAt: z.date().optional(),
+        active: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { updatePromoCode } = await import('./promoCodes');
+        const { id, ...updates } = input;
+        return await updatePromoCode(id, updates);
+      }),
+    delete: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        const { deletePromoCode } = await import('./promoCodes');
+        await deletePromoCode(input.id);
+        return { success: true };
+      }),
+    getStatistics: publicProcedure
+      .query(async () => {
+        const { getPromoCodeStatistics } = await import('./promoCodes');
+        return await getPromoCodeStatistics();
+      }),
+  }),
   orders: router({
     getAll: publicProcedure
       .input(z.object({
