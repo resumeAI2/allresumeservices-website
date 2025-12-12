@@ -1433,3 +1433,9 @@
 - [x] Add order history timeline
 - [x] Test order management with sample data
 - [x] Add link to orders dashboard in admin navigation
+
+## Replace ATS Resume Template
+- [x] Copy new MALEBASIC-ProfessionalResume.jpg to public directory
+- [x] Remove old ATS-Friendly-Resume-Template.pdf
+- [x] Find and update all references to the old template file
+- [x] Test file access and download functionality
