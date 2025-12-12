@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Linkedin, Users, Search, TrendingUp } from "lucide-react";
+import { TrustQuote } from "@/components/GoogleTestimonials";
 
 export default function LinkedInOptimization() {
   const benefits = [
@@ -112,6 +113,11 @@ export default function LinkedInOptimization() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Client Review */}
+            <div className="mb-12 bg-card rounded-lg p-8 border-l-4 border-secondary">
+              <TrustQuote tag="linkedin" />
             </div>
 
             {/* Key Sections We Optimize */}
