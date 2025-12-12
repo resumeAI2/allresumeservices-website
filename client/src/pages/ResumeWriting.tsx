@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, FileText, Target, Zap, Award } from "lucide-react";
 import { Link } from "wouter";
+import { TrustQuote } from "@/components/GoogleTestimonials";
 
 export default function ResumeWriting() {
   const benefits = [
@@ -113,6 +114,11 @@ export default function ResumeWriting() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Client Review */}
+            <div className="mb-12 bg-card rounded-lg p-8 border-l-4 border-secondary">
+              <TrustQuote tag="resume" />
             </div>
 
             {/* Process Overview */}
