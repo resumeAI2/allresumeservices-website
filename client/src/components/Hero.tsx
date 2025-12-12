@@ -36,7 +36,7 @@ export default function Hero() {
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="text-white">Get Noticed,<br />
-              Get Hired</span> with<br />
+              Get Hired with</span><br />
               <span className="text-secondary">All Resume Services</span>
             </h1>
             

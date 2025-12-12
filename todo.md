@@ -1348,3 +1348,7 @@
 ## Text Color Update
 - [x] Change "Get Noticed, Get Hired" text color to white
 - [x] Test the change
+
+## Fix "with" Text Color
+- [x] Change "with" text to white in hero headline
+- [x] Test the change
