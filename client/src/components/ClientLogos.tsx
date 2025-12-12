@@ -1,17 +1,59 @@
 export default function ClientLogos() {
   const companies = [
-    { name: "BHP", category: "Mining & Resources" },
-    { name: "Commonwealth Bank", category: "Banking & Finance" },
-    { name: "Woolworths", category: "Retail" },
-    { name: "Telstra", category: "Telecommunications" },
-    { name: "Qantas", category: "Aviation" },
-    { name: "Australian Government", category: "Public Sector" },
-    { name: "Rio Tinto", category: "Mining & Resources" },
-    { name: "Westpac", category: "Banking & Finance" },
-    { name: "ANZ", category: "Banking & Finance" },
-    { name: "Wesfarmers", category: "Retail & Services" },
-    { name: "Fortescue Metals", category: "Mining & Resources" },
-    { name: "Coles", category: "Retail" },
+    { 
+      name: "BHP", 
+      category: "Mining & Resources",
+      logo: "/company-logos/bhp-logo.jpg",
+      alt: "BHP logo - Mining & Resources company"
+    },
+    { 
+      name: "Commonwealth Bank", 
+      category: "Banking & Finance",
+      logo: "/company-logos/commonwealth-bank-logo.png",
+      alt: "Commonwealth Bank logo - Banking & Finance"
+    },
+    { 
+      name: "Woolworths", 
+      category: "Retail",
+      logo: "/company-logos/woolworths-logo.png",
+      alt: "Woolworths logo - Retail company"
+    },
+    { 
+      name: "Telstra", 
+      category: "Telecommunications",
+      logo: "/company-logos/telstra-logo.png",
+      alt: "Telstra logo - Telecommunications company"
+    },
+    { 
+      name: "Qantas", 
+      category: "Aviation",
+      logo: "/company-logos/qantas-logo.png",
+      alt: "Qantas logo - Aviation company"
+    },
+    { 
+      name: "Australian Government", 
+      category: "Public Sector",
+      logo: "/company-logos/australian-government-logo.png",
+      alt: "Australian Government logo - Public Sector"
+    },
+    { 
+      name: "Rio Tinto", 
+      category: "Mining & Resources",
+      logo: "/company-logos/rio-tinto-logo.png",
+      alt: "Rio Tinto logo - Mining & Resources company"
+    },
+    { 
+      name: "Westpac", 
+      category: "Banking & Finance",
+      logo: "/company-logos/westpac-logo.png",
+      alt: "Westpac logo - Banking & Finance"
+    },
+    { 
+      name: "ANZ", 
+      category: "Banking & Finance",
+      logo: "/company-logos/anz-logo.png",
+      alt: "ANZ Bank logo - Banking & Finance"
+    },
   ];
 
   return (
@@ -33,11 +75,19 @@ export default function ClientLogos() {
               key={index}
               className="flex flex-col items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all group"
             >
+              {/* Company Logo Image */}
+              <div className="h-20 w-full flex items-center justify-center mb-3">
+                <img 
+                  src={company.logo} 
+                  alt={company.alt}
+                  className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                />
+              </div>
+              
+              {/* Company Category */}
               <div className="text-center">
-                <p className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">
-                  {company.name}
-                </p>
-                <p className="text-xs text-muted-foreground mt-1">
+                <p className="text-xs text-muted-foreground">
                   {company.category}
                 </p>
               </div>
@@ -47,7 +97,7 @@ export default function ClientLogos() {
 
         {/* Disclaimer */}
         <p className="text-center text-sm text-muted-foreground mt-12 max-w-3xl mx-auto">
-          * Company names represent organizations where our clients have successfully secured employment. 
+          * Company names represent organisations where our clients have successfully secured employment. 
           We are not affiliated with or endorsed by these companies. Results may vary based on individual 
           qualifications, experience, and market conditions.
         </p>
