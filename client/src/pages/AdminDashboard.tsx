@@ -9,7 +9,8 @@ import {
   Search, 
   Plus,
   ExternalLink,
-  TrendingUp
+  TrendingUp,
+  Package
 } from 'lucide-react';
 
 export default function AdminDashboard() {
@@ -134,6 +135,12 @@ export default function AdminDashboard() {
             <Link href="/admin/media">
               <Button variant="outline">
                 Media Library
+              </Button>
+            </Link>
+            <Link href="/admin/orders">
+              <Button variant="outline">
+                <Package className="mr-2 h-4 w-4" />
+                Manage Orders
               </Button>
             </Link>
           </div>
