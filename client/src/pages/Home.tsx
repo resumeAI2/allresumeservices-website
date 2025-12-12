@@ -29,7 +29,6 @@ export default function Home() {
       <Header />
       <Hero />
       <Stats />
-      <ClientLogos />
       <SuccessMetrics />
       <Services />
       <Process />
@@ -40,6 +39,7 @@ export default function Home() {
       <FeaturedCaseStudies />
       <FAQ />
       <FreeReview />
+      <ClientLogos />
       <Footer />
       <EmailCapturePopup />
     </div>

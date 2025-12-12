@@ -1397,3 +1397,8 @@
 - [x] Check Tawk.to widget loading on website
 - [x] Verify widget is visible and functional (Script loads but widget not visible - dashboard settings issue)
 - [ ] Test chat functionality (Cannot test - widget not visible)
+
+## Client Logos Section Update
+- [x] Fix spelling: Organizations → Organisations
+- [x] Move Client Logos section to bottom of homepage
+- [x] Test new positioning
