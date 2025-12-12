@@ -1,5 +1,11 @@
 import { TrendingUp, Users, DollarSign, Briefcase } from 'lucide-react';
 import { Card } from './ui/card';
+import { useCountUp } from '@/hooks/useCountUp';
+
+function AnimatedMetric({ value, suffix = '', prefix = '' }: { value: number; suffix?: string; prefix?: string }) {
+  const { ref, count } = useCountUp({ end: value, duration: 2000, suffix, prefix });
+  return <div ref={ref}>{count}</div>;
+}
 
 export default function SuccessMetrics() {
   // Simulated real-time metrics (in production, these would come from your database)
@@ -60,7 +66,11 @@ export default function SuccessMetrics() {
                     <Icon className={`h-8 w-8 ${metric.color}`} />
                   </div>
                   <div className={`text-4xl font-bold mb-2 ${metric.color}`}>
-                    {metric.value}
+                    {metric.value.includes('%') ? (
+                      <AnimatedMetric value={parseInt(metric.value)} suffix="%" />
+                    ) : (
+                      <AnimatedMetric value={parseInt(metric.value)} />
+                    )}
                   </div>
                   <div className="text-sm font-medium text-foreground mb-1">
                     {metric.label}

@@ -10,6 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import { TestimonialSlider } from "@/components/GoogleTestimonials";
 import GoogleReviewsShowcase from "@/components/GoogleReviewsShowcase";
 import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
+import FAQ from "@/components/FAQ";
 import FreeReview from "@/components/FreeReview";
 import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
@@ -34,6 +35,7 @@ export default function Home() {
       <TestimonialSlider />
       <GoogleReviewsShowcase />
       <FeaturedCaseStudies />
+      <FAQ />
       <FreeReview />
       <Footer />
     </div>
