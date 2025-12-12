@@ -1472,3 +1472,9 @@
 - [ ] Add filter by status functionality
 - [ ] Link customer dashboard from header navigation
 - [ ] Test with multiple order scenarios
+
+## Fix Testimonial Visibility Issue
+- [x] Identify testimonial component on Our Process page
+- [x] Fix text color contrast (text not visible on dark background)
+- [x] Ensure all testimonial text is readable
+- [x] Test on Our Process and FAQ pages
