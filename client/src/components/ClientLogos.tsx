@@ -19,7 +19,7 @@ export default function ClientLogos() {
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Trusted by Professionals at Leading Organizations
+            Trusted by Professionals at Leading Organisations
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Our clients have successfully landed roles at Australia's most prestigious companies across diverse industries
