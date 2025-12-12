@@ -20,13 +20,37 @@ export default function Checkout() {
     email: '',
     phone: '',
   });
+  
+  const [promoCode, setPromoCode] = useState('');
+  const [appliedPromo, setAppliedPromo] = useState<any>(null);
+  const [promoError, setPromoError] = useState('');
+  const [isValidatingPromo, setIsValidatingPromo] = useState(false);
+  
+  const validatePromoMutation = trpc.promoCodes.validate.useMutation({
+    onSuccess: (result) => {
+      setIsValidatingPromo(false);
+      if (result.valid) {
+        setAppliedPromo(result);
+        setPromoError('');
+      } else {
+        setPromoError(result.message || 'Invalid promo code');
+        setAppliedPromo(null);
+      }
+    },
+    onError: (error) => {
+      setIsValidatingPromo(false);
+      setPromoError('Error validating promo code');
+      setAppliedPromo(null);
+    },
+  });
 
   const subtotal = getTotal();
   const individualServicesCount = cartItems.filter(
     item => item.service.type === 'individual'
   ).reduce((sum, item) => sum + item.quantity, 0);
   const bundleDiscount = individualServicesCount >= 2 ? subtotal * 0.1 : 0;
-  const total = subtotal - bundleDiscount;
+  const promoDiscount = appliedPromo?.discountAmount || 0;
+  const total = Math.max(0, subtotal - bundleDiscount - promoDiscount);
 
   const createOrderMutation = trpc.payment.createOrder.useMutation({
     onSuccess: (data: any) => {
@@ -177,6 +201,69 @@ export default function Checkout() {
                       <div className="flex justify-between text-green-600">
                         <span>Bundle Discount (10%)</span>
                         <span className="font-medium">-${bundleDiscount.toFixed(2)}</span>
+                      </div>
+                    )}
+                    
+                    {/* Promo Code Input */}
+                    <div className="space-y-2">
+                      <Label htmlFor="promoCode">Promo Code</Label>
+                      <div className="flex gap-2">
+                        <Input
+                          id="promoCode"
+                          type="text"
+                          placeholder="Enter code"
+                          value={promoCode}
+                          onChange={(e) => {
+                            setPromoCode(e.target.value.toUpperCase());
+                            setPromoError('');
+                          }}
+                          disabled={!!appliedPromo}
+                        />
+                        {!appliedPromo ? (
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => {
+                              if (promoCode) {
+                                setIsValidatingPromo(true);
+                                validatePromoMutation.mutate({
+                                  code: promoCode,
+                                  orderAmount: subtotal - bundleDiscount,
+                                });
+                              }
+                            }}
+                            disabled={!promoCode || isValidatingPromo}
+                          >
+                            {isValidatingPromo ? 'Checking...' : 'Apply'}
+                          </Button>
+                        ) : (
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => {
+                              setAppliedPromo(null);
+                              setPromoCode('');
+                              setPromoError('');
+                            }}
+                          >
+                            Remove
+                          </Button>
+                        )}
+                      </div>
+                      {promoError && (
+                        <p className="text-sm text-destructive">{promoError}</p>
+                      )}
+                      {appliedPromo && (
+                        <p className="text-sm text-green-600">
+                          ✓ Promo code applied successfully!
+                        </p>
+                      )}
+                    </div>
+                    
+                    {appliedPromo && promoDiscount > 0 && (
+                      <div className="flex justify-between text-green-600">
+                        <span>Promo Discount ({promoCode})</span>
+                        <span className="font-medium">-${promoDiscount.toFixed(2)}</span>
                       </div>
                     )}
                     

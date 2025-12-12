@@ -464,3 +464,22 @@ export const draft_intake_records = mysqlTable("draft_intake_records", {
 
 export type DraftIntakeRecord = typeof draft_intake_records.$inferSelect;
 export type InsertDraftIntakeRecord = typeof draft_intake_records.$inferInsert;
+
+/**
+ * Resume samples table for before/after gallery
+ */
+export const resume_samples = mysqlTable("resume_samples", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 255 }).notNull(),
+  industry: varchar("industry", { length: 100 }).notNull(),
+  beforeImage: varchar("beforeImage", { length: 500 }).notNull(),
+  afterImage: varchar("afterImage", { length: 500 }).notNull(),
+  description: text("description"),
+  improvements: text("improvements"), // JSON string of improvement points
+  sortOrder: int("sortOrder").default(0),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ResumeSample = typeof resume_samples.$inferSelect;
+export type InsertResumeSample = typeof resume_samples.$inferInsert;

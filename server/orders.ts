@@ -72,6 +72,29 @@ export async function updateOrderStatus(
   }
 
   await db.update(orders).set(updateData).where(eq(orders.id, orderId));
+  
+  // Send confirmation email when order is completed
+  if (status === "completed") {
+    const order = await getOrderById(orderId);
+    if (order && order.customerEmail) {
+      try {
+        const { sendOrderConfirmationEmail } = await import('./services/sesEmailService');
+        await sendOrderConfirmationEmail({
+          orderId: order.id,
+          customerName: order.customerName || 'Valued Customer',
+          customerEmail: order.customerEmail,
+          packageName: order.packageName,
+          amount: order.amount,
+          currency: order.currency,
+          paypalOrderId: order.paypalOrderId || undefined,
+        });
+        console.log(`[Orders] Confirmation email sent for order #${orderId}`);
+      } catch (error) {
+        console.error(`[Orders] Failed to send confirmation email for order #${orderId}:`, error);
+        // Don't throw error - email failure shouldn't prevent order update
+      }
+    }
+  }
 }
 
 /**

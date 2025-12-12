@@ -299,6 +299,114 @@ All Resume Services - Email System
 }
 
 /**
+ * Send order confirmation email
+ */
+export async function sendOrderConfirmationEmail(
+  orderData: {
+    orderId: number;
+    customerName: string;
+    customerEmail: string;
+    packageName: string;
+    amount: string;
+    currency: string;
+    paypalOrderId?: string;
+  }
+): Promise<boolean> {
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <div style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+        <h1 style="margin: 0; font-size: 28px;">✅ Order Confirmed!</h1>
+      </div>
+      
+      <div style="background-color: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+        <p style="font-size: 16px; color: #374151;">Hi ${orderData.customerName},</p>
+        
+        <p style="font-size: 16px; color: #374151;">
+          Thank you for your order! We've received your payment and are excited to start working on your professional documents.
+        </p>
+        
+        <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; margin: 25px 0;">
+          <h2 style="margin: 0 0 15px 0; font-size: 18px; color: #1f2937;">Order Details</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Order ID:</td>
+              <td style="padding: 8px 0; color: #1f2937; font-weight: 600; font-size: 14px; text-align: right;">#${orderData.orderId}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Service:</td>
+              <td style="padding: 8px 0; color: #1f2937; font-weight: 600; font-size: 14px; text-align: right;">${orderData.packageName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Amount Paid:</td>
+              <td style="padding: 8px 0; color: #10b981; font-weight: 700; font-size: 16px; text-align: right;">${orderData.currency} $${orderData.amount}</td>
+            </tr>
+            ${orderData.paypalOrderId ? `
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">PayPal Transaction:</td>
+              <td style="padding: 8px 0; color: #1f2937; font-size: 12px; text-align: right; font-family: monospace;">${orderData.paypalOrderId}</td>
+            </tr>
+            ` : ''}
+          </table>
+        </div>
+        
+        <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 20px 0;">
+          <p style="margin: 0 0 10px 0; color: #1e40af; font-weight: 600;">📋 What Happens Next?</p>
+          <ol style="margin: 10px 0; padding-left: 20px; color: #1e3a8a; font-size: 14px;">
+            <li style="margin-bottom: 8px;">Our team will review your order within 24 hours</li>
+            <li style="margin-bottom: 8px;">We'll contact you to schedule a consultation</li>
+            <li style="margin-bottom: 8px;">Our expert writers will craft your documents</li>
+            <li style="margin-bottom: 8px;">You'll receive your completed documents for review</li>
+          </ol>
+        </div>
+        
+        <p style="font-size: 14px; color: #6b7280; margin-top: 25px;">
+          If you have any questions, please don't hesitate to contact us at 
+          <a href="mailto:admin@allresumeservices.com.au" style="color: #3b82f6; text-decoration: none;">admin@allresumeservices.com.au</a>
+        </p>
+        
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
+          <p style="margin: 0; color: #6b7280; font-size: 12px;">All Resume Services</p>
+          <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 12px;">Professional Resume Writing & Career Services</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const textContent = `
+Order Confirmed!
+
+Hi ${orderData.customerName},
+
+Thank you for your order! We've received your payment and are excited to start working on your professional documents.
+
+Order Details:
+- Order ID: #${orderData.orderId}
+- Service: ${orderData.packageName}
+- Amount Paid: ${orderData.currency} $${orderData.amount}
+${orderData.paypalOrderId ? `- PayPal Transaction: ${orderData.paypalOrderId}` : ''}
+
+What Happens Next?
+1. Our team will review your order within 24 hours
+2. We'll contact you to schedule a consultation
+3. Our expert writers will craft your documents
+4. You'll receive your completed documents for review
+
+If you have any questions, please contact us at admin@allresumeservices.com.au
+
+---
+All Resume Services
+Professional Resume Writing & Career Services
+  `;
+
+  return await sendEmail({
+    to: orderData.customerEmail,
+    subject: `Order Confirmation #${orderData.orderId} - All Resume Services`,
+    html: htmlContent,
+    text: textContent,
+  });
+}
+
+/**
  * Check if SES is properly configured
  */
 export function isSESConfigured(): boolean {
