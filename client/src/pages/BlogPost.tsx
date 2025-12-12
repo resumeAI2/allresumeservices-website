@@ -206,8 +206,8 @@ export default function BlogPost() {
               {/* Lead Magnet - Resume Template Download */}
               <div className="my-12">
                 <LeadMagnetForm
-                  templateName="ATS-Friendly-Resume-Template.pdf"
-                  templateUrl="/ATS-Friendly-Resume-Template.pdf"
+                  templateName="ATS-Resume-Template.jpg"
+                  templateUrl="/ATS-Resume-Template.jpg"
                   sourcePost={post.slug}
                 />
               </div>
