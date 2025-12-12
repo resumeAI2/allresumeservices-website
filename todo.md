@@ -1344,3 +1344,7 @@
 - [x] Add filtered testimonials for Mining
 - [x] Update navigation menu with industry pages
 - [x] Test all industry pages and testimonial filtering
+
+## Text Color Update
+- [x] Change "Get Noticed, Get Hired" text color to white
+- [x] Test the change
