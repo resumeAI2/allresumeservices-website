@@ -14,6 +14,8 @@ import FAQ from "@/components/FAQ";
 import FreeReview from "@/components/FreeReview";
 import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import ClientLogos from "@/components/ClientLogos";
+import EmailCapturePopup from "@/components/EmailCapturePopup";
 
 export default function Home() {
   return (
@@ -27,6 +29,7 @@ export default function Home() {
       <Header />
       <Hero />
       <Stats />
+      <ClientLogos />
       <SuccessMetrics />
       <Services />
       <Process />
@@ -38,6 +41,7 @@ export default function Home() {
       <FAQ />
       <FreeReview />
       <Footer />
+      <EmailCapturePopup />
     </div>
   );
 }

@@ -46,7 +46,7 @@ export default function Hero() {
 
             {/* Google Reviews Badge */}
             <a 
-              href="https://www.google.com/search?q=all+resume+services" 
+              href="https://g.page/ALLRESUMESERVICES-REVIEWS" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all rounded-full px-5 py-3 border border-white/20 group"
