@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Upload, ArrowRight } from "lucide-react";
+import { Upload, ArrowRight, Star, ExternalLink } from "lucide-react";
 import { useABTest, trackABTestConversion } from "@/hooks/useABTest";
 
 export default function Hero() {
@@ -43,6 +43,25 @@ export default function Hero() {
             <p className="text-lg md:text-xl text-primary-foreground/90 max-w-xl">
               Expert ATS-Optimized Resumes & Cover Letters that help Australians land interviews and secure their dream jobs. 96% Interview Success Rate.
             </p>
+
+            {/* Google Reviews Badge */}
+            <a 
+              href="https://www.google.com/search?q=all+resume+services" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all rounded-full px-5 py-3 border border-white/20 group"
+            >
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <div className="flex flex-col items-start">
+                <span className="text-sm font-semibold">5.0 on Google</span>
+                <span className="text-xs text-primary-foreground/80">60+ verified reviews</span>
+              </div>
+              <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button 

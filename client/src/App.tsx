@@ -54,6 +54,7 @@ import ThankYouOnboarding from './pages/ThankYouOnboarding';
 import AdminIntakeRecords from './pages/AdminIntakeRecords';
 import AdminIntakeRecordDetail from './pages/AdminIntakeRecordDetail';
 import GoogleReviewsPage from './pages/GoogleReviews';
+import ReviewsArchive from './pages/ReviewsArchive';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -74,6 +75,7 @@ function Router() {
       <Route path={"/about"} component={AboutUs} />
       <Route path={"/testimonials"} component={Testimonials} />
       <Route path={"/google-reviews"} component={GoogleReviewsPage} />
+      <Route path={"/reviews"} component={ReviewsArchive} />
       <Route path={"/case-studies"} component={CaseStudies} />
       <Route path={"/case-studies/:slug"} component={CaseStudy} />
       <Route path={"/industries/mining-resources"} component={MiningResources} />
