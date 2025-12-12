@@ -7,6 +7,8 @@ import { CheckCircle2, Code, Cloud, Database, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import IndustryPricingTable from '@/components/IndustryPricingTable';
+import { Star } from 'lucide-react';
+import fullReviews from '@/data/full_reviews.json';
 
 export default function ITTechnology() {
   const pricingTiers = [
@@ -75,6 +77,9 @@ export default function ITTechnology() {
     "Cybersecurity Specialists", "Network Engineers", "System Administrators",
     "IT Support Specialists", "Database Administrators", "QA Engineers"
   ];
+
+  // Show top-rated Google Reviews (general resume writing reviews)
+  const itReviews = fullReviews.google_reviews.slice(3, 6);
 
   return (
     <>
@@ -290,6 +295,63 @@ export default function ITTechnology() {
           </div>
         </div>
       </section>
+
+      {/* Google Reviews - IT & Technology */}
+      {itReviews.length > 0 && (
+        <section className="py-16 bg-background">
+          <div className="container">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold mb-4">What IT Professionals Say</h2>
+                <p className="text-lg text-muted-foreground">
+                  Real Google reviews from IT and technology professionals who advanced their careers with our services.
+                </p>
+              </div>
+
+              <div className="grid gap-8">
+                {itReviews.map((review, index) => (
+                  <Card key={index} className="p-6 border-2">
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 fill-yellow-500 text-yellow-500" />
+                      ))}
+                    </div>
+                    <blockquote className="text-lg mb-4 text-foreground/90">
+                      "{review.review}"
+                    </blockquote>
+                    <div className="flex items-center justify-between flex-wrap gap-4">
+                      <div>
+                        <p className="font-bold">{review.name}</p>
+                        <p className="text-sm text-muted-foreground">{review.timeframe}</p>
+                      </div>
+                      {review.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {review.tags.slice(0, 3).map((tag, idx) => (
+                            <span
+                              key={idx}
+                              className="text-xs px-3 py-1 bg-accent text-accent-foreground rounded-full capitalize"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </Card>
+                ))}
+              </div>
+
+              <div className="text-center mt-8">
+                <Button asChild variant="outline">
+                  <Link href="/google-reviews">
+                    Read All Google Reviews <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Featured Case Study */}
       <section className="py-16 bg-slate-50">
