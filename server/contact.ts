@@ -1,7 +1,7 @@
 import { getDb } from './db';
 import { contact_submissions } from '../drizzle/schema';
 import { desc, eq } from 'drizzle-orm';
-import { sendContactFormNotification } from './emailService';
+import { sendContactFormNotification } from './services/sesEmailService';
 
 interface ContactSubmissionInput {
   name: string;

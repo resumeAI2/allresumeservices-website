@@ -722,6 +722,30 @@ export const appRouter = router({
         return await emailSubscribersService.getSubscriberCount();
       }),
   }),
+  email: router({
+    testSES: publicProcedure
+      .input(z.object({ recipientEmail: z.string().email() }))
+      .mutation(async ({ input }) => {
+        const { sendTestEmail, isSESConfigured } = await import('./services/sesEmailService');
+        
+        if (!isSESConfigured()) {
+          throw new Error('Amazon SES is not configured. Please add AWS credentials to environment variables.');
+        }
+        
+        const success = await sendTestEmail(input.recipientEmail);
+        
+        if (!success) {
+          throw new Error('Failed to send test email. Check server logs for details.');
+        }
+        
+        return { success: true, message: `Test email sent to ${input.recipientEmail}` };
+      }),
+    checkConfiguration: publicProcedure
+      .query(async () => {
+        const { isSESConfigured } = await import('./services/sesEmailService');
+        return { configured: isSESConfigured() };
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
