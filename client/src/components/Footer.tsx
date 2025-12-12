@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Award, CheckCircle2, Users, Shield } from 'lucide-react';
+import { ReviewsWidget } from './ReviewsWidget';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -130,6 +131,14 @@ export default function Footer() {
               </li>
             </ul>
             <p className="text-xs opacity-75 mt-3 italic">+ All industries & career levels</p>
+          </div>
+        </div>
+
+        {/* Client Reviews Widget */}
+        <div className="mt-12 pt-8 border-t border-primary-foreground/20">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="font-semibold mb-4 text-lg text-center">What Our Clients Say</h3>
+            <ReviewsWidget />
           </div>
         </div>
 
