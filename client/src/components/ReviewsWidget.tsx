@@ -16,7 +16,7 @@ export function ReviewsWidget() {
   const currentReview = reviews[currentIndex];
 
   return (
-    <div className="bg-accent/30 rounded-lg p-6 border border-border">
+    <div className="bg-card rounded-lg p-6 border border-border shadow-lg">
       <div className="flex items-start gap-4">
         <div className="flex-shrink-0">
           <svg
@@ -41,14 +41,14 @@ export function ReviewsWidget() {
                 </svg>
               ))}
             </div>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-sm text-card-foreground/70">
               {currentReview.timeframe}
             </span>
           </div>
-          <p className="text-sm italic text-foreground/90 mb-3 line-clamp-3">
+          <p className="text-sm italic text-card-foreground mb-3 line-clamp-3">
             "{currentReview.review}"
           </p>
-          <p className="text-sm font-semibold text-foreground">
+          <p className="text-sm font-semibold text-card-foreground">
             - {currentReview.name}
           </p>
         </div>
