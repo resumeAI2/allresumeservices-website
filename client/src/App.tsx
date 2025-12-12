@@ -56,6 +56,7 @@ import AdminIntakeRecordDetail from './pages/AdminIntakeRecordDetail';
 import GoogleReviewsPage from './pages/GoogleReviews';
 import ReviewsArchive from './pages/ReviewsArchive';
 import ResumeSamples from './pages/ResumeSamples';
+import AdminEmailTest from './pages/AdminEmailTest';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -108,8 +109,9 @@ function Router() {
       <Route path={"/admin/case-studies/new"} component={CaseStudyEditor} />
       <Route path={"/admin/case-studies/edit/:id"} component={CaseStudyEditor} />
       <Route path={"/admin/intake-records"} component={AdminIntakeRecords} />
-      <Route path={"/admin/intake-records/:id"} component={AdminIntakeRecordDetail} />
-      <Route path={"/thank-you-onboarding"} component={ThankYouOnboarding} />
+      <Route path={'/admin/intake-records/:id'} component={AdminIntakeRecordDetail} />
+      <Route path={'/admin/email-test'} component={AdminEmailTest} />
+      <Route path={'/thank-you-onboarding'} component={ThankYouOnboarding} />
       <Route path={"/404"} component={NotFound} />      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>

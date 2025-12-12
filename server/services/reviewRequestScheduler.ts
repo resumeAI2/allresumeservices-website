@@ -8,6 +8,7 @@ import { db } from "../db";
 import { intakeRecords } from "../../shared/schema";
 import { eq, and, gte, lte, isNull } from "drizzle-orm";
 import { generateReviewRequestEmail } from "../emails/reviewRequest";
+import { sendReviewRequestEmail } from "./sesEmailService";
 
 // Google Review Link for All Resume Services
 const GOOGLE_REVIEW_LINK = "https://g.page/r/CYourGoogleBusinessIDHere/review";
@@ -113,24 +114,18 @@ async function sendReviewRequest(record: any) {
 
   const { subject, html, text } = generateReviewRequestEmail(emailData);
 
-  // TODO: Integrate with your email service (e.g., SendGrid, AWS SES, Resend)
-  // For now, we'll log the email details
-  console.log(`[ReviewScheduler] Would send email to: ${record.email}`);
-  console.log(`[ReviewScheduler] Subject: ${subject}`);
-  
-  // Example integration with a hypothetical email service:
-  /*
-  await emailService.send({
-    to: record.email,
-    from: "admin@allresumeservices.com.au",
-    subject,
-    html,
-    text,
-  });
-  */
-  
-  // For demonstration, we'll just log it
-  // In production, uncomment the email service integration above
+  // Send review request email using SES
+  try {
+    await sendReviewRequestEmail(
+      record.email,
+      emailData.clientName,
+      emailData.googleReviewLink
+    );
+    console.log(`[ReviewScheduler] Successfully sent review request to ${record.email}`);
+  } catch (error) {
+    console.error(`[ReviewScheduler] Failed to send review request to ${record.email}:`, error);
+    throw error;
+  }
 }
 
 /**
