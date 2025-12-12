@@ -1363,3 +1363,26 @@
 - [x] Add comprehensive FAQ content (turnaround, revisions, ATS, payment)
 - [x] Integrate FAQ section into homepage
 - [x] Test accordion functionality
+
+## Google Reviews Link Update
+- [x] Update Google Reviews link to https://g.page/ALLRESUMESERVICES-REVIEWS in Hero badge
+- [x] Update link in all other Google Reviews badges/buttons
+- [x] Verify all links are working
+
+## Client Logo Showcase
+- [x] Create ClientLogos component
+- [x] Add company logos (BHP, Commonwealth Bank, Woolworths, government, etc.)
+- [x] Integrate into homepage
+
+## Resume Samples Gallery
+- [x] Create protected resume samples gallery component
+- [x] Add email gate for access
+- [x] Organize samples by industry and career level
+- [ ] Add before/after resume examples (waiting for user to provide)
+
+## Email Capture Popup
+- [x] Create exit-intent/timed popup component
+- [x] Design lead magnet offer (PDF checklist)
+- [x] Implement email capture form
+- [x] Add popup trigger logic
+- [x] Test popup functionality
