@@ -15,6 +15,7 @@ import FreeReview from "@/components/FreeReview";
 import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import ClientLogos from "@/components/ClientLogos";
+import IndustryStatistics from "@/components/IndustryStatistics";
 import EmailCapturePopup from "@/components/EmailCapturePopup";
 
 export default function Home() {
@@ -39,6 +40,7 @@ export default function Home() {
       <FeaturedCaseStudies />
       <FAQ />
       <FreeReview />
+      <IndustryStatistics />
       <ClientLogos />
       <Footer />
       <EmailCapturePopup />
