@@ -48,18 +48,18 @@ export default function GoogleReviews() {
         </Card>
 
         {/* Trust Indicators */}
-        <div className="grid md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
-          <Card className="p-6 text-center">
-            <div className="text-3xl font-bold text-primary mb-2">100%</div>
-            <p className="text-sm text-muted-foreground">5-Star Reviews</p>
+        <div className="grid md:grid-cols-3 gap-8 mt-12 max-w-4xl mx-auto">
+          <Card className="p-8 text-center bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-100 hover:shadow-xl transition-shadow">
+            <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-3">100%</div>
+            <p className="text-gray-700 font-medium">5-Star Reviews</p>
           </Card>
-          <Card className="p-6 text-center">
-            <div className="text-3xl font-bold text-primary mb-2">17+</div>
-            <p className="text-sm text-muted-foreground">Years Experience</p>
+          <Card className="p-8 text-center bg-gradient-to-br from-amber-50 to-yellow-50 border-2 border-amber-100 hover:shadow-xl transition-shadow">
+            <div className="text-4xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent mb-3">17+</div>
+            <p className="text-gray-700 font-medium">Years Experience</p>
           </Card>
-          <Card className="p-6 text-center">
-            <div className="text-3xl font-bold text-primary mb-2">96%</div>
-            <p className="text-sm text-muted-foreground">Interview Success Rate</p>
+          <Card className="p-8 text-center bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-100 hover:shadow-xl transition-shadow">
+            <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-3">96%</div>
+            <p className="text-gray-700 font-medium">Interview Success Rate</p>
           </Card>
         </div>
       </div>
