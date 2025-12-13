@@ -1478,3 +1478,10 @@
 - [x] Fix text color contrast (text not visible on dark background)
 - [x] Ensure all testimonial text is readable
 - [x] Test on Our Process and FAQ pages
+
+## Create Realistic Before Resume Samples
+- [x] Generate full-page before resume for David Miller (Executive) with complete work history
+- [x] Generate full-page before resume for Greg Read (Construction) with complete work history
+- [x] Include multiple positions, bullet points, education, skills sections
+- [x] Update resume samples in database with new files
+- [ ] Test display in Resume Samples gallery
