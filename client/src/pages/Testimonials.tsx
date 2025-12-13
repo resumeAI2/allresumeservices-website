@@ -95,31 +95,31 @@ export default function Testimonials() {
       <Header />
       <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-16">
+      <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-20">
         <div className="container">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Client Testimonials</h1>
-          <p className="text-xl opacity-90 max-w-2xl">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-secondary">Client Testimonials</h1>
+          <p className="text-xl text-white max-w-2xl">
             Read what our satisfied clients have to say about their experience with All Resume Services
           </p>
         </div>
       </section>
 
       {/* Statistics Section */}
-      <section className="py-12 bg-muted/30">
+      <section className="py-16 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">{stats.total}+</div>
-              <div className="text-muted-foreground">Total Reviews</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow border border-primary/10">
+              <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">{stats.total}+</div>
+              <div className="text-gray-600 font-medium">Total Reviews</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">{stats.avgRating}</div>
-              <div className="text-muted-foreground">Average Rating</div>
-              <div className="flex justify-center mt-2">{renderStars(Math.round(parseFloat(String(stats.avgRating))))}</div>
+            <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow border border-primary/10">
+              <div className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">{stats.avgRating}</div>
+              <div className="text-gray-600 font-medium mb-3">Average Rating</div>
+              <div className="flex justify-center">{renderStars(Math.round(parseFloat(String(stats.avgRating))))}</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">{stats.fiveStars}</div>
-              <div className="text-muted-foreground">5-Star Reviews</div>
+            <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow border border-primary/10">
+              <div className="text-5xl font-bold bg-gradient-to-r from-pink-600 to-orange-500 bg-clip-text text-transparent mb-3">{stats.fiveStars}</div>
+              <div className="text-gray-600 font-medium">5-Star Reviews</div>
             </div>
           </div>
         </div>
@@ -211,9 +211,9 @@ export default function Testimonials() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {displayedTestimonials.map((testimonial) => (
-                  <Card key={testimonial.id} className="p-6 hover:shadow-lg transition-shadow">
+                  <Card key={testimonial.id} className="p-6 hover:shadow-xl transition-all hover:-translate-y-1 border-2 border-transparent hover:border-primary/20">
                     {/* Rating */}
                     <div className="mb-4">{renderStars(testimonial.rating)}</div>
 
