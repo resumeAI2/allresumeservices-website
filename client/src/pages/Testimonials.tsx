@@ -76,6 +76,20 @@ export default function Testimonials() {
   const hasMore = displayCount < filteredTestimonials.length;
 
   const renderStars = (rating: number) => {
+    // Use custom 5-star logo for 5-star ratings
+    if (rating === 5) {
+      return (
+        <div className="flex items-center">
+          <img 
+            src="/5-star-logo-final-v3.png" 
+            alt="5 Star Rating" 
+            className="h-12 w-12 object-contain"
+          />
+        </div>
+      );
+    }
+    
+    // Fallback to individual stars for non-5-star ratings
     return (
       <div className="flex gap-1">
         {[1, 2, 3, 4, 5].map((star) => (
