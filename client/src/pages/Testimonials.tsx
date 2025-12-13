@@ -232,8 +232,26 @@ export default function Testimonials() {
                             className="w-12 h-12 rounded-full object-cover border-2 border-primary/20"
                           />
                         ) : (
-                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border-2 border-primary/20">
-                            <span className="text-primary font-bold text-sm">
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center border-2 font-bold text-sm text-white ${
+                            // Generate consistent color based on name
+                            (() => {
+                              const colors = [
+                                'bg-gradient-to-br from-blue-500 to-blue-600 border-blue-300',
+                                'bg-gradient-to-br from-purple-500 to-purple-600 border-purple-300',
+                                'bg-gradient-to-br from-pink-500 to-pink-600 border-pink-300',
+                                'bg-gradient-to-br from-green-500 to-green-600 border-green-300',
+                                'bg-gradient-to-br from-orange-500 to-orange-600 border-orange-300',
+                                'bg-gradient-to-br from-teal-500 to-teal-600 border-teal-300',
+                                'bg-gradient-to-br from-indigo-500 to-indigo-600 border-indigo-300',
+                                'bg-gradient-to-br from-rose-500 to-rose-600 border-rose-300',
+                                'bg-gradient-to-br from-cyan-500 to-cyan-600 border-cyan-300',
+                                'bg-gradient-to-br from-amber-500 to-amber-600 border-amber-300',
+                              ];
+                              const hash = testimonial.clientName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                              return colors[hash % colors.length];
+                            })()
+                          }`}>
+                            <span>
                               {testimonial.clientName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
                             </span>
                           </div>
