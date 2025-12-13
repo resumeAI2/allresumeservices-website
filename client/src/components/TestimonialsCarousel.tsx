@@ -65,7 +65,7 @@ export default function TestimonialsCarousel({
           <div className="flex justify-center mb-6">
             {currentTestimonial.rating === 5 ? (
               <img 
-                src="/5-star-logo-final-v3.png" 
+                src="/5-star-logo-final-v4.png" 
                 alt="5 Star Rating" 
                 className="h-16 w-16 object-contain"
               />
