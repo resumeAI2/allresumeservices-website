@@ -26,7 +26,7 @@ export default function Stats() {
   ];
 
   return (
-    <section className="py-20 bg-accent">
+    <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-accent-foreground mb-4">
@@ -43,7 +43,7 @@ export default function Stats() {
             return (
               <div 
                 key={index}
-                className="bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group"
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 border-2 border-transparent hover:border-secondary"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img 

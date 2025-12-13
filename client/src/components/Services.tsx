@@ -67,7 +67,7 @@ export default function Services() {
             return (
               <div 
                 key={index}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 text-center hover:bg-white/15 transition-all hover:scale-105"
+                className="bg-gradient-to-br from-secondary/20 to-white/10 backdrop-blur-sm border-2 border-secondary/30 rounded-xl p-6 text-center hover:from-secondary/30 hover:to-white/20 transition-all hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 <Icon className="h-8 w-8 text-secondary mx-auto mb-3" />
                 <div className="text-4xl font-bold text-secondary mb-2">{stat.number}</div>
