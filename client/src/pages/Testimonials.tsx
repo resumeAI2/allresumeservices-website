@@ -81,7 +81,7 @@ export default function Testimonials() {
       return (
         <div className="flex items-center">
           <img 
-            src="/5-star-logo-final-v3.png" 
+            src="/5-star-logo-final-v4.png" 
             alt="5 Star Rating" 
             className="h-12 w-12 object-contain"
           />
