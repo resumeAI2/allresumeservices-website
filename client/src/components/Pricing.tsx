@@ -76,6 +76,19 @@ export default function Pricing() {
     <section id="pricing" className="py-20 bg-background">
       <div className="container">
         <div className="text-center mb-12">
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50 to-purple-50 px-6 py-3 rounded-full border border-secondary/20">
+              <img 
+                src="/5-star-logo.png" 
+                alt="5 Star Rating" 
+                className="h-10 w-10 object-contain"
+              />
+              <div className="text-left">
+                <div className="text-sm font-semibold text-foreground">5.0 Rating</div>
+                <div className="text-xs text-muted-foreground">60+ verified reviews</div>
+              </div>
+            </div>
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Professional Resume Writing Services & Prices
           </h2>

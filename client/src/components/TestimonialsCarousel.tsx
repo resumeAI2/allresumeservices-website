@@ -65,9 +65,9 @@ export default function TestimonialsCarousel({
           <div className="flex justify-center mb-6">
             {currentTestimonial.rating === 5 ? (
               <img 
-                src="/5-star-logo-final-v4.png" 
+                src="/5-star-logo.png" 
                 alt="5 Star Rating" 
-                className="h-16 w-16 object-contain"
+                className="h-16 w-16 object-contain animate-in fade-in duration-700"
               />
             ) : (
               <div className="flex gap-1">
