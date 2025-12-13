@@ -60,7 +60,7 @@ export default function SuccessMetrics() {
           {metrics.map((metric, index) => {
             const Icon = metric.icon;
             return (
-              <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <Card key={index} className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 border-2">
                 <div className="flex flex-col items-center text-center">
                   <div className={`w-16 h-16 rounded-full ${metric.bgColor} flex items-center justify-center mb-4`}>
                     <Icon className={`h-8 w-8 ${metric.color}`} />

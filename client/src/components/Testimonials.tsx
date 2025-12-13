@@ -68,8 +68,8 @@ export default function Testimonials() {
     <section className="py-20 bg-background">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Success Stories from Our Clients
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Success Stories from <span className="text-secondary">Our Clients</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Don't just take our word for it—see what our clients have to say about their experience and results.
