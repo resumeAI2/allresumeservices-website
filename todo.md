@@ -1485,3 +1485,8 @@
 - [x] Include multiple positions, bullet points, education, skills sections
 - [x] Update resume samples in database with new files
 - [ ] Test display in Resume Samples gallery
+
+## Fix Client Testimonials Heading Color
+- [x] Change "Why Choose" heading from dark brown to white
+- [x] Ensure proper contrast against blue banner background
+- [x] Test visibility on homepage

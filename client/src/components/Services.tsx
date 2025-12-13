@@ -52,7 +52,7 @@ export default function Services() {
               Why Choose Us
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Why Choose <span className="text-secondary">All Resume Services</span>?
           </h2>
           <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
