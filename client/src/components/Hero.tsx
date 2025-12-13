@@ -51,11 +51,11 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all rounded-full px-5 py-3 border border-white/20 group"
             >
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
+              <img 
+                src="/5-star-logo.png" 
+                alt="5 Star Rating" 
+                className="h-10 w-10 object-contain"
+              />
               <div className="flex flex-col items-start">
                 <span className="text-sm font-semibold">5.0 on Google</span>
                 <span className="text-xs text-primary-foreground/80">60+ verified reviews</span>

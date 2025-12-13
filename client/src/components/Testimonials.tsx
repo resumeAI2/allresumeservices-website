@@ -87,9 +87,9 @@ export default function Testimonials() {
               <div className="flex items-center mb-4">
                 {testimonial.rating === 5 ? (
                   <img 
-                    src="/5-star-logo-final-v4.png" 
+                    src="/5-star-logo.png" 
                     alt="5 Star Rating" 
-                    className="h-12 w-12 object-contain"
+                    className="h-12 w-12 object-contain animate-in fade-in duration-700"
                   />
                 ) : (
                   <div className="flex gap-1">
