@@ -118,29 +118,46 @@ export default function Testimonials() {
         </div>
       </section>
 
-      {/* Statistics Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+      {/* Statistics Section - Premium Badge Style */}
+      <section className="py-16 bg-white">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow border border-primary/10">
-              <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">{stats.total}+</div>
-              <div className="text-gray-600 font-medium">Total Reviews</div>
+          <div className="flex flex-wrap justify-center items-center gap-6">
+            {/* Primary Badge - Total Reviews */}
+            <div className="flex items-center gap-4 px-8 py-5 bg-white rounded-full border-2 border-[#D9A514] shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex-shrink-0">
+                <svg className="w-8 h-8 text-[#D9A514]" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-3xl font-bold text-[#141E32]">{stats.total}+</div>
+                <div className="text-sm text-[#71717B] font-medium">Client Reviews</div>
+              </div>
             </div>
-            <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow border border-primary/10">
-              <div className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">{stats.avgRating}</div>
-              <div className="text-gray-600 font-medium mb-3">Average Rating</div>
-              <div className="flex justify-center">{renderStars(Math.round(parseFloat(String(stats.avgRating))))}</div>
+
+            {/* Secondary Badge - Perfect Rating */}
+            <div className="flex items-center gap-4 px-6 py-4 bg-white rounded-full border-2 border-[#D9A514] shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex-shrink-0">
+                <svg className="w-6 h-6 text-[#D9A514]" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-2xl font-bold text-[#141E32]">{stats.avgRating} Rating</div>
+                <div className="text-sm text-[#71717B] font-medium">Perfect Score</div>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl p-8 text-center shadow-lg hover:shadow-2xl transition-all border-2 border-amber-200 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-100/20 to-transparent"></div>
-              <div className="relative z-10">
-                <div className="text-6xl font-bold bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 bg-clip-text text-transparent mb-3 drop-shadow-sm">
-                  {stats.fiveStars > 0 ? `${stats.fiveStars}+` : '60+'}
-                </div>
-                <div className="text-lg font-bold bg-gradient-to-r from-amber-700 to-yellow-700 bg-clip-text text-transparent mb-2">
-                  ⭐ 5-Star Reviews ⭐
-                </div>
-                <div className="text-sm text-amber-600 font-medium">Excellence Guaranteed</div>
+
+            {/* Secondary Badge - 5-Star Reviews */}
+            <div className="flex items-center gap-4 px-6 py-4 bg-white rounded-full border-2 border-[#D9A514] shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex-shrink-0">
+                <svg className="w-6 h-6 text-[#D9A514]" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-2xl font-bold text-[#141E32]">{stats.fiveStars}+ Five-Star</div>
+                <div className="text-sm text-[#71717B] font-medium">Excellence Certified</div>
               </div>
             </div>
           </div>
