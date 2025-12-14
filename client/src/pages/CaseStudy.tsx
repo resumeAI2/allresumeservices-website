@@ -53,12 +53,12 @@ export default function CaseStudy() {
           <p className="text-muted-foreground mb-8">
             The case study you're looking for doesn't exist or has been removed.
           </p>
-          <Link href="/case-studies">
-            <Button>
+          <Button asChild>
+            <Link href="/case-studies">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Case Studies
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </main>
         <Footer />
       </div>
@@ -80,12 +80,12 @@ export default function CaseStudy() {
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary/10 via-background to-background py-12">
           <div className="container">
-            <Link href="/case-studies">
-              <Button variant="ghost" size="sm" className="mb-6">
+            <Button asChild variant="ghost" size="sm" className="mb-6">
+              <Link href="/case-studies">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to All Case Studies
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             
             <div className="max-w-4xl">
               <div className="flex items-center gap-3 mb-4">
@@ -235,12 +235,12 @@ export default function CaseStudy() {
                 Like {study.clientName}, you too can achieve your career goals with the right tools and guidance. Let us help you craft a compelling resume that opens doors.
               </p>
               <div className="flex gap-4 justify-center">
-                <Link href="/contact">
-                  <Button size="lg">Get Started Today</Button>
-                </Link>
-                <Link href="/services">
-                  <Button size="lg" variant="outline">View Our Services</Button>
-                </Link>
+                <Button asChild size="lg">
+                  <Link href="/contact">Get Started Today</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/services">View Our Services</Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -261,9 +261,9 @@ export default function CaseStudy() {
                     <p className="text-muted-foreground mb-4 line-clamp-2">
                       {relatedStudy.challenge.substring(0, 150)}...
                     </p>
-                    <Link href={`/case-studies/${relatedStudy.slug}`}>
-                      <Button variant="outline" size="sm">Read Story</Button>
-                    </Link>
+                    <Button asChild variant="outline" size="sm">
+                      <Link href={`/case-studies/${relatedStudy.slug}`}>Read Story</Link>
+                    </Button>
                   </Card>
                 ))}
               </div>
