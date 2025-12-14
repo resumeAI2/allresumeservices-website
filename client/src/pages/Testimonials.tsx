@@ -228,48 +228,10 @@ export default function Testimonials() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {displayedTestimonials.map((testimonial) => (
                   <Card key={testimonial.id} className="p-6 hover:shadow-xl transition-all hover:-translate-y-1 border-2 border-transparent hover:border-primary/20">
-                    {/* Rating */}
-                    <div className="mb-4">{renderStars(testimonial.rating)}</div>
-
-                    {/* Testimonial Text */}
-                    <p className="text-muted-foreground mb-4 line-clamp-6">
-                      "{testimonial.testimonialText}"
-                    </p>
-
-                    {/* Client Info */}
-                    <div className="border-t pt-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        {testimonial.clientPhoto ? (
-                          <img
-                            src={testimonial.clientPhoto}
-                            alt={testimonial.clientName}
-                            className="w-12 h-12 rounded-full object-cover border-2 border-primary/20"
-                          />
-                        ) : (
-                          <div className={`w-12 h-12 rounded-full flex items-center justify-center border-2 font-bold text-sm text-white ${
-                            // Generate consistent color based on name
-                            (() => {
-                              const colors = [
-                                'bg-gradient-to-br from-blue-500 to-blue-600 border-blue-300',
-                                'bg-gradient-to-br from-purple-500 to-purple-600 border-purple-300',
-                                'bg-gradient-to-br from-pink-500 to-pink-600 border-pink-300',
-                                'bg-gradient-to-br from-green-500 to-green-600 border-green-300',
-                                'bg-gradient-to-br from-orange-500 to-orange-600 border-orange-300',
-                                'bg-gradient-to-br from-teal-500 to-teal-600 border-teal-300',
-                                'bg-gradient-to-br from-indigo-500 to-indigo-600 border-indigo-300',
-                                'bg-gradient-to-br from-rose-500 to-rose-600 border-rose-300',
-                                'bg-gradient-to-br from-cyan-500 to-cyan-600 border-cyan-300',
-                                'bg-gradient-to-br from-amber-500 to-amber-600 border-amber-300',
-                              ];
-                              const hash = testimonial.clientName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-                              return colors[hash % colors.length];
-                            })()
-                          }`}>
-                            <span>
-                              {testimonial.clientName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
-                            </span>
-                          </div>
-                        )}
+                    {/* Header with Rating and Client Info */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div>{renderStars(testimonial.rating)}</div>
                         <div>
                           <div className="font-semibold text-foreground">{testimonial.clientName}</div>
                           {testimonial.clientTitle && (
@@ -277,14 +239,52 @@ export default function Testimonials() {
                           )}
                         </div>
                       </div>
-                      {testimonial.serviceUsed && (
-                        <div className="mt-2">
-                          <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">
-                            {testimonial.serviceUsed}
+                      {testimonial.clientPhoto ? (
+                        <img
+                          src={testimonial.clientPhoto}
+                          alt={testimonial.clientName}
+                          className="w-12 h-12 rounded-full object-cover border-2 border-primary/20"
+                        />
+                      ) : (
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center border-2 font-bold text-sm text-white ${
+                          // Generate consistent color based on name
+                          (() => {
+                            const colors = [
+                              'bg-gradient-to-br from-blue-500 to-blue-600 border-blue-300',
+                              'bg-gradient-to-br from-purple-500 to-purple-600 border-purple-300',
+                              'bg-gradient-to-br from-pink-500 to-pink-600 border-pink-300',
+                              'bg-gradient-to-br from-green-500 to-green-600 border-green-300',
+                              'bg-gradient-to-br from-orange-500 to-orange-600 border-orange-300',
+                              'bg-gradient-to-br from-teal-500 to-teal-600 border-teal-300',
+                              'bg-gradient-to-br from-indigo-500 to-indigo-600 border-indigo-300',
+                              'bg-gradient-to-br from-rose-500 to-rose-600 border-rose-300',
+                              'bg-gradient-to-br from-cyan-500 to-cyan-600 border-cyan-300',
+                              'bg-gradient-to-br from-amber-500 to-amber-600 border-amber-300',
+                            ];
+                            const hash = testimonial.clientName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                            return colors[hash % colors.length];
+                          })()
+                        }`}>
+                          <span>
+                            {testimonial.clientName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
                           </span>
                         </div>
                       )}
                     </div>
+
+                    {/* Testimonial Text */}
+                    <p className="text-muted-foreground mb-4 line-clamp-6">
+                      "{testimonial.testimonialText}"
+                    </p>
+
+                    {/* Service Tag */}
+                    {testimonial.serviceUsed && (
+                      <div className="mt-2">
+                        <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">
+                          {testimonial.serviceUsed}
+                        </span>
+                      </div>
+                    )}
                   </Card>
                 ))}
               </div>

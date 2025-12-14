@@ -84,27 +84,27 @@ export default function Testimonials() {
             >
               <Quote className="absolute top-4 right-4 h-8 w-8 text-secondary/20" />
               
-              <div className="flex items-center mb-4">
-                {testimonial.rating === 5 ? (
-                  <img 
-                    src="/5-star-logo.png" 
-                    alt="5 Star Rating" 
-                    className="h-12 w-12 object-contain animate-in fade-in duration-700"
-                  />
-                ) : (
-                  <div className="flex gap-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-secondary text-secondary" />
-                    ))}
+              {/* Header with logo and name */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  {testimonial.rating === 5 ? (
+                    <img 
+                      src="/5-star-logo.png" 
+                      alt="5 Star Rating" 
+                      className="h-12 w-12 object-contain animate-in fade-in duration-700"
+                    />
+                  ) : (
+                    <div className="flex gap-1">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 fill-secondary text-secondary" />
+                      ))}
+                    </div>
+                  )}
+                  <div>
+                    <p className="font-semibold text-card-foreground">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                   </div>
-                )}
-              </div>
-
-              <p className="text-card-foreground mb-6 leading-relaxed">
-                "{testimonial.content}"
-              </p>
-
-              <div className="border-t border-border pt-4 flex items-center gap-3">
+                </div>
                 {testimonial.photo && (
                   <img
                     src={testimonial.photo}
@@ -112,11 +112,11 @@ export default function Testimonials() {
                     className="w-12 h-12 rounded-full object-cover"
                   />
                 )}
-                <div>
-                  <p className="font-semibold text-card-foreground">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                </div>
               </div>
+
+              <p className="text-card-foreground leading-relaxed">
+                "{testimonial.content}"
+              </p>
             </div>
           ))}
         </div>

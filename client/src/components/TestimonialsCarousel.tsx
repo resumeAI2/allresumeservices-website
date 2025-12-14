@@ -54,6 +54,54 @@ export default function TestimonialsCarousel({
     <div className="relative max-w-4xl mx-auto">
       <Card className="border-2 border-[#d4af37]/20 shadow-lg">
         <CardContent className="p-8 md:p-12">
+          {/* Header with Rating and Name */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-4">
+              {currentTestimonial.rating === 5 ? (
+                <img 
+                  src="/5-star-logo.png" 
+                  alt="5 Star Rating" 
+                  className="h-16 w-16 object-contain animate-in fade-in duration-700"
+                />
+              ) : (
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className={`w-6 h-6 ${
+                        i < currentTestimonial.rating ? 'text-[#d4af37]' : 'text-gray-300'
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+              )}
+              <div>
+                <p className="font-bold text-[#1e3a5f] text-lg">{currentTestimonial.name}</p>
+                <p className="text-gray-600 text-sm">
+                  {currentTestimonial.role}
+                  {currentTestimonial.company && ` • ${currentTestimonial.company}`}
+                </p>
+              </div>
+            </div>
+            {currentTestimonial.photo ? (
+              <img
+                src={currentTestimonial.photo}
+                alt={currentTestimonial.name}
+                className="w-16 h-16 rounded-full object-cover border-2 border-[#d4af37]/30"
+              />
+            ) : (
+              <div className="w-16 h-16 rounded-full bg-[#d4af37]/20 flex items-center justify-center border-2 border-[#d4af37]/30">
+                <span className="text-[#d4af37] font-bold text-xl">
+                  {currentTestimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+                </span>
+              </div>
+            )}
+          </div>
+
           {/* Quote Icon */}
           <div className="flex justify-center mb-6">
             <div className="w-16 h-16 rounded-full bg-[#d4af37]/10 flex items-center justify-center">
@@ -61,59 +109,10 @@ export default function TestimonialsCarousel({
             </div>
           </div>
 
-          {/* Rating Stars */}
-          <div className="flex justify-center mb-6">
-            {currentTestimonial.rating === 5 ? (
-              <img 
-                src="/5-star-logo.png" 
-                alt="5 Star Rating" 
-                className="h-16 w-16 object-contain animate-in fade-in duration-700"
-              />
-            ) : (
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className={`w-6 h-6 ${
-                      i < currentTestimonial.rating ? 'text-[#d4af37]' : 'text-gray-300'
-                    }`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-            )}
-          </div>
-
           {/* Testimonial Text */}
-          <blockquote className="text-lg md:text-xl text-gray-700 text-center leading-relaxed mb-8 min-h-[120px] flex items-center justify-center">
+          <blockquote className="text-lg md:text-xl text-gray-700 text-center leading-relaxed min-h-[120px] flex items-center justify-center">
             "{currentTestimonial.text}"
           </blockquote>
-
-          {/* Author Info */}
-          <div className="flex flex-col items-center">
-            {/* Client Photo or Initial Avatar */}
-            {currentTestimonial.photo ? (
-              <img
-                src={currentTestimonial.photo}
-                alt={currentTestimonial.name}
-                className="w-16 h-16 rounded-full object-cover mb-3 border-2 border-[#d4af37]/30"
-              />
-            ) : (
-              <div className="w-16 h-16 rounded-full bg-[#d4af37]/20 flex items-center justify-center mb-3 border-2 border-[#d4af37]/30">
-                <span className="text-[#d4af37] font-bold text-xl">
-                  {currentTestimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
-                </span>
-              </div>
-            )}
-            <p className="font-bold text-[#1e3a5f] text-lg">{currentTestimonial.name}</p>
-            <p className="text-gray-600">
-              {currentTestimonial.role}
-              {currentTestimonial.company && ` • ${currentTestimonial.company}`}
-            </p>
-          </div>
         </CardContent>
       </Card>
 
