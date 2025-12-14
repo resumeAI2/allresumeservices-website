@@ -58,11 +58,13 @@ export default function TestimonialsCarousel({
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               {currentTestimonial.rating === 5 ? (
-                <img 
-                  src="/5-star-logo.png" 
-                  alt="5 Star Rating" 
-                  className="h-16 w-16 object-contain animate-in fade-in duration-700"
-                />
+                <div className="bg-white rounded-lg p-2 shadow-sm">
+                  <img 
+                    src="/5-star-logo.png" 
+                    alt="5 Star Rating" 
+                    className="h-20 w-20 object-contain animate-in fade-in duration-700"
+                  />
+                </div>
               ) : (
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (

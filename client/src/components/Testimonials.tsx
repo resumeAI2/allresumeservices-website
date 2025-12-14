@@ -88,11 +88,13 @@ export default function Testimonials() {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   {testimonial.rating === 5 ? (
-                    <img 
-                      src="/5-star-logo.png" 
-                      alt="5 Star Rating" 
-                      className="h-12 w-12 object-contain animate-in fade-in duration-700"
-                    />
+                    <div className="bg-white rounded-lg p-2 shadow-sm">
+                      <img 
+                        src="/5-star-logo.png" 
+                        alt="5 Star Rating" 
+                        className="h-16 w-16 object-contain animate-in fade-in duration-700"
+                      />
+                    </div>
                   ) : (
                     <div className="flex gap-1">
                       {[...Array(testimonial.rating)].map((_, i) => (
