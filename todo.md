@@ -1554,3 +1554,4 @@
 - [x] Update years of experience from 17+ to 18+ across the website
 - [x] Redesign review statistics section into premium badge-style trust seals with brand palette
 - [x] Fix nested anchor tag error on case study page
+- [x] Fix nested anchor tag error in Breadcrumb component
