@@ -227,7 +227,7 @@ export default function BlogPost() {
               <div className="mt-16 p-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg">
                 <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Resume?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Get professional help from our expert resume writers. With 17+ years of experience and a 96% interview success rate, we'll help you stand out.
+                  Get professional help from our expert resume writers. With 18+ years of experience and a 96% interview success rate, we'll help you stand out.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link href="/#pricing">

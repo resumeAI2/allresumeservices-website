@@ -1551,3 +1551,4 @@
 - [x] Regenerate 5-star logo with exact gold color from main logo and navy background
 - [x] Configure SMTP email settings with ProtonMail for contact forms
 - [x] Fix review count data source so 60+ persists after refresh (not just UI)
+- [x] Update years of experience from 17+ to 18+ across the website

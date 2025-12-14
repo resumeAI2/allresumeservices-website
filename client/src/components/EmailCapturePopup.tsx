@@ -120,7 +120,7 @@ export default function EmailCapturePopup() {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm">Get exclusive resume writing tips from our 17+ years of experience</span>
+                  <span className="text-sm">Get exclusive resume writing tips from our 18+ years of experience</span>
                 </li>
               </ul>
 

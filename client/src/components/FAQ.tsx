@@ -25,7 +25,7 @@ export default function FAQ() {
     },
     {
       question: "Do you write resumes for all industries and career levels?",
-      answer: "Yes! We have 17+ years of experience writing resumes for professionals across all industries—from entry-level graduates to C-suite executives. Whether you're in healthcare, IT, mining, government, education, or any other sector, we tailor your resume to your specific industry standards and career goals."
+      answer: "Yes! We have 18+ years of experience writing resumes for professionals across all industries—from entry-level graduates to C-suite executives. Whether you're in healthcare, IT, mining, government, education, or any other sector, we tailor your resume to your specific industry standards and career goals."
     },
     {
       question: "What information do you need from me?",
@@ -65,7 +65,7 @@ export default function FAQ() {
     },
     {
       question: "What makes you different from other resume writing services?",
-      answer: "We combine 17+ years of experience with a proven track record (96% interview success rate), personalized service, and deep understanding of Australian recruitment practices. Unlike template-based services or AI generators, we craft each resume from scratch based on your unique background. We also offer unlimited revisions and work with you until you're completely satisfied—not just until we deliver a first draft."
+      answer: "We combine 18+ years of experience with a proven track record (96% interview success rate), personalized service, and deep understanding of Australian recruitment practices. Unlike template-based services or AI generators, we craft each resume from scratch based on your unique background. We also offer unlimited revisions and work with you until you're completely satisfied—not just until we deliver a first draft."
     }
   ];
 

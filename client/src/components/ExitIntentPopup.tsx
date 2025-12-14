@@ -111,7 +111,7 @@ export default function ExitIntentPopup() {
                 </li>
                 <li className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-secondary mr-2 flex-shrink-0 mt-0.5" />
-                  <span>Proven formatting strategies from 17+ years experience</span>
+                  <span>Proven formatting strategies from 18+ years experience</span>
                 </li>
                 <li className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-secondary mr-2 flex-shrink-0 mt-0.5" />

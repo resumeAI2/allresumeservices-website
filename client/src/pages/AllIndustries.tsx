@@ -48,7 +48,7 @@ export default function AllIndustries() {
   const benefits = [
     {
       icon: Award,
-      title: "17+ Years Experience",
+      title: "18+ Years Experience",
       description: "We've successfully served professionals across every industry imaginable, from entry-level to C-suite executives."
     },
     {
@@ -80,7 +80,7 @@ export default function AllIndustries() {
               Professional Resume Writing for All Industries
             </h1>
             <p className="text-xl text-blue-100 mb-8">
-              With 17+ years of experience, we've helped Australian professionals across every industry and career level land their dream jobs. No matter your field, we have the expertise to showcase your unique value.
+              With 18+ years of experience, we've helped Australian professionals across every industry and career level land their dream jobs. No matter your field, we have the expertise to showcase your unique value.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90">

@@ -74,7 +74,7 @@ export default function Services() {
               </h1>
               <p className="text-xl text-blue-100 leading-relaxed mb-8">
                 Choose from individual services or complete packages tailored to your career level. 
-                Every resume is crafted by experienced writers with 17+ years in the industry.
+                Every resume is crafted by experienced writers with 18+ years in the industry.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white">

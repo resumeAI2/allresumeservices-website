@@ -4,7 +4,7 @@ export default function Stats() {
   const stats = [
     {
       icon: Award,
-      value: "17+ Years",
+      value: "18+ Years",
       label: "Professional Experience",
       description: "Crafting resumes, cover letters, and LinkedIn profiles for clients at all career stages",
       image: "/consultation.jpg"

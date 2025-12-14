@@ -210,7 +210,7 @@ export default function AboutUs() {
     {
       year: "Today",
       title: "Industry Leaders",
-      description: "With 17+ years of experience, a 96% interview success rate, and thousands of satisfied clients, we continue to innovate and adapt to the changing job market. Our commitment to excellence remains unwavering.",
+      description: "With 18+ years of experience, a 96% interview success rate, and thousands of satisfied clients, we continue to innovate and adapt to the changing job market. Our commitment to excellence remains unwavering.",
       side: "right"
     }
   ];
@@ -245,7 +245,7 @@ export default function AboutUs() {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-3">
                   <Award className="h-8 w-8 text-secondary" />
                 </div>
-                <div className="text-3xl font-bold text-foreground mb-1">17+</div>
+                <div className="text-3xl font-bold text-foreground mb-1">18+</div>
                 <div className="text-sm text-muted-foreground">Years Experience</div>
               </div>
               <div className="text-center">
@@ -296,7 +296,7 @@ export default function AboutUs() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-6 w-6 text-[#d4af37] flex-shrink-0 mt-1" />
                     <span className="text-gray-700">
-                      <strong>17+ years of experience</strong> helping Australians secure interviews and job offers
+                      <strong>18+ years of experience</strong> helping Australians secure interviews and job offers
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
@@ -390,7 +390,7 @@ export default function AboutUs() {
                     <td className="p-4 font-medium text-gray-700">Experience</td>
                     <td className="p-4 text-center text-gray-500">Varies</td>
                     <td className="p-4 text-center text-gray-500">1-5 years</td>
-                    <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold">17+ years</span></td>
+                    <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold">18+ years</span></td>
                   </tr>
                   <tr>
                     <td className="p-4 font-medium text-gray-700">Turnaround Time</td>

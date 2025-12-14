@@ -20,12 +20,12 @@ const faqData: FAQItem[] = [
   {
     category: "Services",
     question: "Do you write resumes for all industries and career levels?",
-    answer: "Yes, we have 17+ years of experience writing resumes for professionals across all industries including healthcare, IT, finance, education, engineering, hospitality, and more. We work with entry-level candidates, mid-career professionals, senior executives, and career changers."
+    answer: "Yes, we have 18+ years of experience writing resumes for professionals across all industries including healthcare, IT, finance, education, engineering, hospitality, and more. We work with entry-level candidates, mid-career professionals, senior executives, and career changers."
   },
   {
     category: "Services",
     question: "What makes your resume writing service different?",
-    answer: "Our service stands out with a 96% interview success rate, 17+ years of industry experience, and personalized one-on-one consultations. We don't use templates—every resume is custom-written to highlight your unique strengths and achievements. We work with you until you're 100% satisfied with your documents."
+    answer: "Our service stands out with a 96% interview success rate, 18+ years of industry experience, and personalized one-on-one consultations. We don't use templates—every resume is custom-written to highlight your unique strengths and achievements. We work with you until you're 100% satisfied with your documents."
   },
   {
     category: "Pricing",
