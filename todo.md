@@ -1552,3 +1552,4 @@
 - [x] Configure SMTP email settings with ProtonMail for contact forms
 - [x] Fix review count data source so 60+ persists after refresh (not just UI)
 - [x] Update years of experience from 17+ to 18+ across the website
+- [x] Redesign review statistics section into premium badge-style trust seals with brand palette
