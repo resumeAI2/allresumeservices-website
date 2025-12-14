@@ -79,7 +79,7 @@ export default function Testimonials() {
     // Use custom 5-star logo for 5-star ratings
     if (rating === 5) {
       return (
-        <div className="bg-white rounded-lg p-2 shadow-sm">
+        <div className="bg-[#1e3a5f] rounded-lg p-2 shadow-sm">
           <img 
             src="/5-star-logo.png" 
             alt="5 Star Rating" 
