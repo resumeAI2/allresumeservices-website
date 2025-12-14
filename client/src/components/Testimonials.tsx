@@ -88,7 +88,7 @@ export default function Testimonials() {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   {testimonial.rating === 5 ? (
-                    <div className="bg-[#1e3a5f] rounded-lg p-2 shadow-sm">
+                    <div className="rounded-lg shadow-sm">
                       <img 
                         src="/5-star-logo.png" 
                         alt="5 Star Rating" 
