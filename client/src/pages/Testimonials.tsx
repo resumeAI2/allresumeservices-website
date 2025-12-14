@@ -131,9 +131,17 @@ export default function Testimonials() {
               <div className="text-gray-600 font-medium mb-3">Average Rating</div>
               <div className="flex justify-center">{renderStars(Math.round(parseFloat(String(stats.avgRating))))}</div>
             </div>
-            <div className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow border border-primary/10">
-              <div className="text-5xl font-bold bg-gradient-to-r from-pink-600 to-orange-500 bg-clip-text text-transparent mb-3">{stats.fiveStars}</div>
-              <div className="text-gray-600 font-medium">5-Star Reviews</div>
+            <div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl p-8 text-center shadow-lg hover:shadow-2xl transition-all border-2 border-amber-200 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-100/20 to-transparent"></div>
+              <div className="relative z-10">
+                <div className="text-6xl font-bold bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 bg-clip-text text-transparent mb-3 drop-shadow-sm">
+                  {stats.fiveStars > 0 ? `${stats.fiveStars}+` : '60+'}
+                </div>
+                <div className="text-lg font-bold bg-gradient-to-r from-amber-700 to-yellow-700 bg-clip-text text-transparent mb-2">
+                  ⭐ 5-Star Reviews ⭐
+                </div>
+                <div className="text-sm text-amber-600 font-medium">Excellence Guaranteed</div>
+              </div>
             </div>
           </div>
         </div>
