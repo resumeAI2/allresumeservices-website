@@ -1546,3 +1546,4 @@
 - [x] Test all logo placements and animations
 - [ ] Update total review count to 60 across all locations
 - [x] Move customer name to top of testimonial cards next to 5-star logo
+- [x] Improve 5-star logo visibility by adding background and increasing size

@@ -79,11 +79,11 @@ export default function Testimonials() {
     // Use custom 5-star logo for 5-star ratings
     if (rating === 5) {
       return (
-        <div className="flex items-center">
+        <div className="bg-white rounded-lg p-2 shadow-sm">
           <img 
             src="/5-star-logo.png" 
             alt="5 Star Rating" 
-            className="h-12 w-12 object-contain animate-in fade-in duration-700"
+            className="h-16 w-16 object-contain animate-in fade-in duration-700"
           />
         </div>
       );
