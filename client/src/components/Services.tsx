@@ -2,7 +2,7 @@ import { Award, MapPin, Users, FileCheck, Briefcase, TrendingUp, Target, CheckCi
 
 export default function Services() {
   const stats = [
-    { number: "17+", label: "Years Experience", icon: Award },
+    { number: "18+", label: "Years Experience", icon: Award },
     { number: "96%", label: "Interview Success Rate", icon: Target },
     { number: "5,000+", label: "Clients Served", icon: Users },
     { number: "100%", label: "Satisfaction Guarantee", icon: CheckCircle }

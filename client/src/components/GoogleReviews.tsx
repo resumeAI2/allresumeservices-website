@@ -54,7 +54,7 @@ export default function GoogleReviews() {
             <p className="text-gray-700 font-medium">5-Star Reviews</p>
           </Card>
           <Card className="p-8 text-center bg-gradient-to-br from-amber-50 to-yellow-50 border-2 border-amber-100 hover:shadow-xl transition-shadow">
-            <div className="text-4xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent mb-3">17+</div>
+            <div className="text-4xl font-bold bg-gradient-to-r from-amber-600 to-yellow-600 bg-clip-text text-transparent mb-3">18+</div>
             <p className="text-gray-700 font-medium">Years Experience</p>
           </Card>
           <Card className="p-8 text-center bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-100 hover:shadow-xl transition-shadow">

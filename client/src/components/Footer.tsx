@@ -21,7 +21,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm opacity-90 mb-4 max-w-md">
-              Professional resume writing services helping Australians land interviews and secure their dream jobs. With 17+ years of experience and a 96% interview success rate, we're your partner in career advancement.
+              Professional resume writing services helping Australians land interviews and secure their dream jobs. With 18+ years of experience and a 96% interview success rate, we're your partner in career advancement.
             </p>
             <div className="space-y-2">
               <a href="tel:0410934371" className="flex items-center gap-2 text-sm hover:text-secondary transition-colors">
@@ -147,12 +147,12 @@ export default function Footer() {
           <div className="text-center">
             <h3 className="font-semibold mb-6 text-lg">Trusted & Certified</h3>
             <div className="flex flex-wrap justify-center items-center gap-8">
-              {/* 17+ Years Badge */}
+              {/* 18+ Years Badge */}
               <div className="flex flex-col items-center">
                 <div className="h-16 w-16 rounded-full bg-secondary/20 flex items-center justify-center mb-2">
                   <Award className="h-8 w-8 text-secondary" />
                 </div>
-                <p className="text-xs font-medium">17+ Years</p>
+                <p className="text-xs font-medium">18+ Years</p>
                 <p className="text-xs opacity-75">Experience</p>
               </div>
 

@@ -31,7 +31,7 @@ export default function Hero() {
           {/* Left Content */}
           <div className="space-y-6">
             <div className="inline-block bg-secondary/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium">
-              ✨ 17+ Years of Professional Excellence
+              ✨ 18+ Years of Professional Excellence
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
