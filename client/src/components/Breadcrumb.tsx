@@ -16,11 +16,9 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
       <ol className="flex items-center gap-2 text-sm flex-wrap">
         {/* Home Link */}
         <li className="flex items-center gap-2">
-          <Link href="/">
-            <a className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors">
-              <Home className="h-4 w-4" />
-              <span>Home</span>
-            </a>
+          <Link href="/" className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors">
+            <Home className="h-4 w-4" />
+            <span>Home</span>
           </Link>
           <ChevronRight className="h-4 w-4 text-muted-foreground" />
         </li>
@@ -33,10 +31,8 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
             <li key={index} className="flex items-center gap-2">
               {item.href && !isLast ? (
                 <>
-                  <Link href={item.href}>
-                    <a className="text-muted-foreground hover:text-foreground transition-colors">
-                      {item.label}
-                    </a>
+                  <Link href={item.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                    {item.label}
                   </Link>
                   <ChevronRight className="h-4 w-4 text-muted-foreground" />
                 </>
