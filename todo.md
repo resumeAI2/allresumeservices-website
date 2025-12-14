@@ -1549,3 +1549,4 @@
 - [x] Improve 5-star logo visibility by adding background and increasing size
 - [x] Change 5-star logo background from white to dark navy blue
 - [x] Regenerate 5-star logo with exact gold color from main logo and navy background
+- [x] Configure SMTP email settings with ProtonMail for contact forms
