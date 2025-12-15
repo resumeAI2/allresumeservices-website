@@ -69,8 +69,8 @@ export default function Services() {
                   96% Interview Success Rate
                 </Badge>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Professional <span className="text-secondary">Resume</span> Services <span className="text-secondary">&</span> Packages
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
+                Professional Resume Services & Packages
               </h1>
               <p className="text-xl text-blue-100 leading-relaxed mb-8">
                 Choose from individual services or complete packages tailored to your career level. 
