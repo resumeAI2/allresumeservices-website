@@ -18,6 +18,17 @@ export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
   
+  backup: router({
+    create: publicProcedure.mutation(async () => {
+      const { createDatabaseBackup } = await import('./services/databaseBackup');
+      return await createDatabaseBackup();
+    }),
+    stats: publicProcedure.query(async () => {
+      const { getDatabaseStats } = await import('./services/databaseBackup');
+      return await getDatabaseStats();
+    }),
+  }),
+  
   health: router({
     check: publicProcedure.query(async () => {
       const startTime = Date.now();
