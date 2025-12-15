@@ -1555,3 +1555,4 @@
 - [x] Redesign review statistics section into premium badge-style trust seals with brand palette
 - [x] Fix nested anchor tag error on case study page
 - [x] Fix nested anchor tag error in Breadcrumb component
+- [x] Change "Ready to Join Our Success Stories?" heading color from brown to gold on Client Reviews page
