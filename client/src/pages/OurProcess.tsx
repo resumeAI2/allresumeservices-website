@@ -218,15 +218,44 @@ export default function OurProcess() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary/10 via-background to-accent/10 py-20">
-          <div className="container">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Our Process & FAQs
+        <section className="relative bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-24 overflow-hidden">
+          {/* Decorative Background Elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-10 w-72 h-72 bg-secondary rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="container relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              {/* Success Badge */}
+              <div className="inline-flex items-center gap-2 bg-secondary/20 backdrop-blur-sm border border-secondary/30 rounded-full px-6 py-2 mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <CheckCircle className="w-5 h-5 text-secondary" />
+                <span className="text-sm font-semibold text-white">96% Interview Success Rate</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                How We Transform Your <span className="text-secondary">Career Story</span>
               </h1>
-              <p className="text-xl text-muted-foreground">
-                Learn how we create professional resumes that get results, and find answers to your questions.
+              
+              <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+                Our proven 5-step process turns your experience into a powerful resume that opens doors to your dream job.
               </p>
+              
+              {/* Stats Row */}
+              <div className="flex flex-wrap justify-center gap-8 mt-10 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-secondary">18+</div>
+                  <div className="text-sm text-white/80">Years Experience</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-secondary">5,000+</div>
+                  <div className="text-sm text-white/80">Clients Served</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-secondary">2-5 Days</div>
+                  <div className="text-sm text-white/80">Fast Turnaround</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
