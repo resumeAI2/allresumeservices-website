@@ -103,7 +103,7 @@ export default function Services() {
                 { step: '1', title: 'Choose Service', description: 'Select the package that fits your career goals', icon: '🎯' },
                 { step: '2', title: 'Consultation', description: 'Share your career history and target roles', icon: '💬' },
                 { step: '3', title: 'Expert Writing', description: 'Our writers craft your ATS-optimized resume', icon: '✍️' },
-                { step: '4', title: 'Review & Refine', description: 'Unlimited revisions until you\'re satisfied', icon: '🔄' },
+                { step: '4', title: 'Review & Refine', description: 'We refine your documents based on your feedback', icon: '🔄' },
                 { step: '5', title: 'Land Interviews', description: 'Start applying with confidence', icon: '🎉' }
               ].map((item, index) => (
                 <div key={index} className="relative">

@@ -1559,3 +1559,5 @@
 - [x] Enhance Our Process page hero section to be more attention-grabbing
 - [x] Remove or replace 'Real Results, Real Time' section on homepage with static content
 - [x] Change 'Professional Resume Services & Packages' heading to white on Services page
+- [x] Remove 'Unlimited revisions' text from Services page
+- [x] Update Selection Criteria pricing from $89 to $100 for 5 criteria

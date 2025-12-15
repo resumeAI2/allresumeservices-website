@@ -151,7 +151,7 @@ const services = [
     type: 'individual',
     category: 'Selection Criteria',
     tier: 'Professional',
-    price: '89',
+    price: '100',
     originalPrice: null,
     features: JSON.stringify([
       'STAR/CAR method',
