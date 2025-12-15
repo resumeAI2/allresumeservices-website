@@ -1561,3 +1561,4 @@
 - [x] Change 'Professional Resume Services & Packages' heading to white on Services page
 - [x] Remove 'Unlimited revisions' text from Services page
 - [x] Update Selection Criteria pricing from $89 to $100 for 5 criteria
+- [x] Reduce font sizes and font weights to make text less bold and more subtle
