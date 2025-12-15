@@ -8,23 +8,22 @@ function AnimatedMetric({ value, suffix = '', prefix = '' }: { value: number; su
 }
 
 export default function SuccessMetrics() {
-  // Simulated real-time metrics (in production, these would come from your database)
-  const currentMonth = new Date().toLocaleString('default', { month: 'long' });
-  
   const metrics = [
     {
       icon: Briefcase,
-      label: `Resumes Written in ${currentMonth}`,
-      value: "127",
-      trend: "+23% from last month",
+      label: "Professional Experience",
+      value: "18+",
+      suffix: " Years",
+      trend: "Crafting career-defining resumes",
       color: "text-blue-600",
       bgColor: "bg-blue-50"
     },
     {
-      icon: DollarSign,
-      label: "Average Salary Increase",
-      value: "35%",
-      trend: "Based on client feedback",
+      icon: Users,
+      label: "Satisfied Clients",
+      value: "5,000+",
+      suffix: "",
+      trend: "Across all industries & career levels",
       color: "text-green-600",
       bgColor: "bg-green-50"
     },
@@ -32,15 +31,17 @@ export default function SuccessMetrics() {
       icon: TrendingUp,
       label: "Interview Success Rate",
       value: "96%",
+      suffix: "",
       trend: "Clients securing interviews",
       color: "text-purple-600",
       bgColor: "bg-purple-50"
     },
     {
-      icon: Users,
-      label: "Active Clients This Week",
-      value: "43",
-      trend: "Currently in progress",
+      icon: DollarSign,
+      label: "Average Salary Increase",
+      value: "35%",
+      suffix: "",
+      trend: "Based on client feedback",
       color: "text-orange-600",
       bgColor: "bg-orange-50"
     }
@@ -50,9 +51,9 @@ export default function SuccessMetrics() {
     <section className="py-16 bg-gradient-to-br from-muted/30 via-background to-muted/20">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Real Results, Real Time</h2>
+          <h2 className="text-4xl font-bold mb-4">Proven Track Record of Success</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Our commitment to transparency means sharing our success metrics with you. These numbers update regularly and reflect our ongoing client work.
+            Our commitment to excellence is reflected in our long-standing reputation and consistent results across thousands of successful career transitions.
           </p>
         </div>
 
@@ -68,8 +69,10 @@ export default function SuccessMetrics() {
                   <div className={`text-4xl font-bold mb-2 ${metric.color}`}>
                     {metric.value.includes('%') ? (
                       <AnimatedMetric value={parseInt(metric.value)} suffix="%" />
+                    ) : metric.value.includes('+') ? (
+                      <>{metric.value}</>
                     ) : (
-                      <AnimatedMetric value={parseInt(metric.value)} />
+                      <AnimatedMetric value={parseInt(metric.value)} suffix={metric.suffix} />
                     )}
                   </div>
                   <div className="text-sm font-medium text-foreground mb-1">
@@ -86,7 +89,7 @@ export default function SuccessMetrics() {
 
         <div className="mt-12 text-center">
           <p className="text-sm text-muted-foreground italic">
-            * Metrics based on client feedback, surveys, and project tracking. Individual results may vary based on industry, experience level, and market conditions.
+            * Statistics based on historical client feedback, surveys, and success tracking. Individual results may vary based on industry, experience level, and market conditions.
           </p>
         </div>
       </div>
