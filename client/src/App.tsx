@@ -58,6 +58,7 @@ import ReviewsArchive from './pages/ReviewsArchive';
 import ResumeSamples from './pages/ResumeSamples';
 import AdminEmailTest from './pages/AdminEmailTest';
 import AdminOrders from './pages/AdminOrders';
+import StyleGuide from './pages/StyleGuide';
 import AdminOrderDetail from './pages/AdminOrderDetail';
 import AdminPromoCodes from './pages/AdminPromoCodes';
 import MyOrders from './pages/MyOrders';
@@ -118,6 +119,7 @@ function Router() {
       <Route path={'/admin/orders'} component={AdminOrders} />
       <Route path={'/admin/orders/:id'} component={AdminOrderDetail} />
       <Route path={'/admin/promo-codes'} component={AdminPromoCodes} />
+      <Route path={'/style-guide'} component={StyleGuide} />
       <Route path={'/my-orders'} component={MyOrders} />
       <Route path={'/thank-you-onboarding'} component={ThankYouOnboarding} />
       <Route path={"/404"} component={NotFound} />      {/* Final fallback route */}

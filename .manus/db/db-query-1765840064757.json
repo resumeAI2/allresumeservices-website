@@ -1,0 +1,66 @@
+{
+  "query": "SELECT name, COUNT(*) as count FROM services WHERE active = 1 GROUP BY name HAVING COUNT(*) > 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT name, COUNT(*) as count FROM services WHERE active = 1 GROUP BY name HAVING COUNT(*) > 1;",
+  "rows": [
+    {
+      "name": "Executive Cover Letter",
+      "count": "2"
+    },
+    {
+      "name": "Selection Criteria Response",
+      "count": "2"
+    },
+    {
+      "name": "Additional Revisions (3 extra)",
+      "count": "2"
+    },
+    {
+      "name": "Basic Package",
+      "count": "2"
+    },
+    {
+      "name": "Executive Resume",
+      "count": "2"
+    },
+    {
+      "name": "Professional Cover Letter",
+      "count": "2"
+    },
+    {
+      "name": "LinkedIn Profile Optimization",
+      "count": "2"
+    },
+    {
+      "name": "Entry Level Resume",
+      "count": "2"
+    },
+    {
+      "name": "Standard Package",
+      "count": "2"
+    },
+    {
+      "name": "Entry Level Cover Letter",
+      "count": "2"
+    },
+    {
+      "name": "Premium Package",
+      "count": "2"
+    },
+    {
+      "name": "Rush Delivery (24-48 hours)",
+      "count": "2"
+    },
+    {
+      "name": "Phone Consultation (30 min)",
+      "count": "2"
+    },
+    {
+      "name": "Professional Resume",
+      "count": "2"
+    }
+  ],
+  "messages": [],
+  "stdout": "name\tcount\nExecutive Cover Letter\t2\nSelection Criteria Response\t2\nAdditional Revisions (3 extra)\t2\nBasic Package\t2\nExecutive Resume\t2\nProfessional Cover Letter\t2\nLinkedIn Profile Optimization\t2\nEntry Level Resume\t2\nStandard Package\t2\nEntry Level Cover Letter\t2\nPremium Package\t2\nRush Delivery (24-48 hours)\t2\nPhone Consultation (30 min)\t2\nProfessional Resume\t2\n",
+  "stderr": "",
+  "execution_time_ms": 1837
+}

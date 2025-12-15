@@ -1564,3 +1564,13 @@
 - [x] Reduce font sizes and font weights to make text less bold and more subtle
 - [x] Fix TRPC API error on Services page - server was down, restarted
 - [x] Fix TRPC API error on Services page - server was down, restarted
+- [x] Clean up duplicate services in database
+- [x] Adjust line spacing and letter spacing for readability
+- [x] QA: Test email functionality (contact forms, payment confirmations, admin notifications)
+- [x] QA: Test PayPal payment flow (checkout, success, cancel, webhooks)
+- [x] QA: Test all forms and data handling
+- [x] QA: Test navigation and links site-wide
+- [x] QA: Test responsiveness on mobile/tablet/desktop
+- [x] QA: Check for console errors and performance issues
+- [x] Create style guide page
+- [x] Add server health monitoring endpoint

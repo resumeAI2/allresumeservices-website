@@ -17,6 +17,41 @@ import { intakeFileUploadRouter } from './intakeFileUpload';
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
+  
+  health: router({
+    check: publicProcedure.query(async () => {
+      const startTime = Date.now();
+      let dbStatus = 'unknown';
+      let dbLatency = 0;
+      
+      try {
+        const { getDb } = await import('./db');
+        const db = await getDb();
+        const dbStart = Date.now();
+        await db!.execute('SELECT 1');
+        dbLatency = Date.now() - dbStart;
+        dbStatus = 'connected';
+      } catch (error) {
+        dbStatus = 'error';
+      }
+      
+      return {
+        status: 'healthy',
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime(),
+        responseTime: Date.now() - startTime,
+        database: {
+          status: dbStatus,
+          latency: dbLatency
+        },
+        memory: {
+          used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
+          total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024)
+        },
+        version: '1.0.0'
+      };
+    }),
+  }),
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
