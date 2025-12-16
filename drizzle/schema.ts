@@ -355,8 +355,11 @@ export const client_intake_records = mysqlTable("client_intake_records", {
   lastName: varchar("lastName", { length: 100 }).notNull(),
   email: varchar("email", { length: 320 }).notNull(),
   phone: varchar("phone", { length: 50 }).notNull(),
-  cityState: varchar("cityState", { length: 255 }).notNull(),
+  cityState: varchar("cityState", { length: 255 }),
   bestContactTime: text("bestContactTime"),
+  
+  // Section 2: LinkedIn Profile (NEW)
+  linkedinUrl: varchar("linkedinUrl", { length: 500 }),
   
   // Section 3: Current Situation
   employmentStatus: mysqlEnum("employmentStatus", [
@@ -367,13 +370,13 @@ export const client_intake_records = mysqlTable("client_intake_records", {
     "unemployed",
     "student",
     "other"
-  ]).notNull(),
+  ]),
   currentJobTitle: varchar("currentJobTitle", { length: 255 }),
   currentEmployer: varchar("currentEmployer", { length: 255 }),
   currentRoleOverview: text("currentRoleOverview"),
   
   // Section 4: Target Roles and Career Goals
-  targetRoles: text("targetRoles").notNull(),
+  targetRoles: text("targetRoles"),
   preferredIndustries: text("preferredIndustries"),
   locationPreferences: text("locationPreferences"),
   workArrangements: text("workArrangements"), // JSON array: FIFO, DIDO, shift work, remote
@@ -396,12 +399,23 @@ export const client_intake_records = mysqlTable("client_intake_records", {
   // Section 8: Skills and Strengths
   technicalSkills: text("technicalSkills"),
   interpersonalStrengths: text("interpersonalStrengths"),
+  languageSkills: text("languageSkills"), // NEW: e.g., "Fluent in Spanish, conversational French"
+  
+  // Section 8.1: Professional Development (NEW)
+  shortCoursesTraining: text("shortCoursesTraining"), // Seminars, conferences, in-house training
+  professionalMemberships: text("professionalMemberships"), // Organisation, membership type, year joined
+  volunteerWork: text("volunteerWork"), // Organisation, role, contributions
+  awardsRecognition: text("awardsRecognition"), // Performance appraisals, awards, client compliments
+  publications: text("publications"), // Papers written, professional presentations
   
   // Section 9: Additional Information
   employmentGaps: text("employmentGaps"),
   keyAchievements: text("keyAchievements"),
   preferredStyle: text("preferredStyle"),
   hearAboutUs: varchar("hearAboutUs", { length: 255 }),
+  
+  // Section 10: Referees (NEW)
+  referees: text("referees"), // JSON array of referee objects
   
   // File uploads
   resumeFileUrl: text("resumeFileUrl"),

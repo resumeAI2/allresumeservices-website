@@ -18,7 +18,7 @@ export async function runReviewRequestCron() {
     const result = await processReviewRequests();
     
     console.log(
-      `[ReviewRequestCron] Completed successfully. Processed ${result.processed} records.`
+      `[ReviewRequestCron] Completed successfully. Processed ${result?.processed || 0} records.`
     );
     
     return result;

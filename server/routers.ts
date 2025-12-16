@@ -914,6 +914,14 @@ export const appRouter = router({
         await deleteOrder(input.id);
         return { success: true };
       }),
+    getUserOrders: publicProcedure
+      .query(async ({ ctx }) => {
+        if (!ctx.user) {
+          return [];
+        }
+        const { getUserOrders } = await import('./orders');
+        return await getUserOrders(ctx.user.id);
+      }),
   }),
 });
 

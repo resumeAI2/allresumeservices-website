@@ -1585,3 +1585,20 @@
 - [x] Remove additional revisions fee from Services page
 - [x] Fix PayPal cart to exclude revisions fee
 - [x] Review and update all service revision policies to be clear and consistent
+
+## Online Data Form Updates (Based on Questionnaire)
+- [x] Add LinkedIn Profile URL field
+- [x] Add Language Skills field
+- [x] Add Professional Development section (Short Courses, Memberships, Volunteer Work, Awards, Publications)
+- [x] Add Referees section (up to 3 referees with name, position, company, email, phone, mobile)
+- [x] Make all fields optional except identity fields (First Name, Last Name, Email, Phone)
+- [x] Make resume upload optional
+- [x] Update database schema with new fields
+- [x] Update API validation schema
+- [x] Update form UI with new sections
+- [x] Fix TypeScript errors
+
+## PayPal Sandbox Configuration
+- [x] Update PayPal credentials to sandbox mode
+- [x] Test PayPal checkout flow with sandbox credentials
+- [x] Fix PayPal redirect URL issue

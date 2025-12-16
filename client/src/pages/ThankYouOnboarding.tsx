@@ -25,14 +25,26 @@ type EmploymentEntry = {
   keyAchievements: string;
 };
 
+type RefereeEntry = {
+  name: string;
+  position: string;
+  company: string;
+  email: string;
+  phone: string;
+  mobile: string;
+};
+
 type FormData = {
-  // Section 1: Personal Details
+  // Section 1: Personal Details (REQUIRED: firstName, lastName, email, phone)
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
   cityState: string;
   bestContactTime: string;
+  
+  // Section 2: LinkedIn Profile (NEW)
+  linkedinUrl: string;
   
   // Section 3: Current Situation
   employmentStatus: string;
@@ -67,6 +79,14 @@ type FormData = {
   // Section 8: Skills
   technicalSkills: string;
   interpersonalStrengths: string;
+  languageSkills: string; // NEW
+  
+  // Section 8.1: Professional Development (NEW)
+  shortCoursesTraining: string;
+  professionalMemberships: string;
+  volunteerWork: string;
+  awardsRecognition: string;
+  publications: string;
   
   // Section 9: Additional Info
   employmentGaps: string;
@@ -74,7 +94,10 @@ type FormData = {
   preferredStyle: string;
   hearAboutUs: string;
   
-  // Section 10: File Uploads
+  // Section 10: Referees (NEW)
+  referees: RefereeEntry[];
+  
+  // Section 11: File Uploads
   resumeFile?: { url: string; filename: string };
   supportingDocs: Array<{ url: string; filename: string }>;
 };
@@ -95,6 +118,7 @@ export default function ThankYouOnboarding() {
     phone: "",
     cityState: "",
     bestContactTime: "",
+    linkedinUrl: "",
     employmentStatus: "",
     currentJobTitle: "",
     currentEmployer: "",
@@ -106,16 +130,7 @@ export default function ThankYouOnboarding() {
     jobAdLink1: "",
     jobAdLink2: "",
     jobAdLink3: "",
-    employmentHistory: [{
-      jobTitle: "",
-      employer: "",
-      location: "",
-      startDate: "",
-      endDate: "",
-      employmentType: "full_time",
-      keyResponsibilities: "",
-      keyAchievements: "",
-    }],
+    employmentHistory: [],
     highestQualification: "",
     institution: "",
     yearCompleted: "",
@@ -126,10 +141,17 @@ export default function ThankYouOnboarding() {
     securityClearances: "",
     technicalSkills: "",
     interpersonalStrengths: "",
+    languageSkills: "",
+    shortCoursesTraining: "",
+    professionalMemberships: "",
+    volunteerWork: "",
+    awardsRecognition: "",
+    publications: "",
     employmentGaps: "",
     keyAchievements: "",
     preferredStyle: "",
     hearAboutUs: "",
+    referees: [],
     resumeFile: undefined,
     supportingDocs: [],
   });
@@ -234,24 +256,9 @@ export default function ThankYouOnboarding() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validation
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.cityState) {
-      toast.error("Please fill in all required personal details.");
-      return;
-    }
-
-    if (!formData.employmentStatus) {
-      toast.error("Please select your employment status.");
-      return;
-    }
-
-    if (!formData.targetRoles) {
-      toast.error("Please specify your target roles.");
-      return;
-    }
-
-    if (formData.employmentHistory.length === 0 || !formData.employmentHistory[0].jobTitle) {
-      toast.error("Please add at least one employment entry.");
+    // Validation - Only identity fields are required
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+      toast.error("Please fill in your name, email, and phone number.");
       return;
     }
 
@@ -266,34 +273,42 @@ export default function ThankYouOnboarding() {
         lastName: formData.lastName,
         email: formData.email,
         phone: formData.phone,
-        cityState: formData.cityState,
-        bestContactTime: formData.bestContactTime,
-        employmentStatus: formData.employmentStatus as any,
-        currentJobTitle: formData.currentJobTitle,
-        currentEmployer: formData.currentEmployer,
-        currentRoleOverview: formData.currentRoleOverview,
-        targetRoles: formData.targetRoles,
-        preferredIndustries: formData.preferredIndustries,
-        locationPreferences: formData.locationPreferences,
-        workArrangements: formData.workArrangements,
-        jobAdLink1: formData.jobAdLink1,
-        jobAdLink2: formData.jobAdLink2,
-        jobAdLink3: formData.jobAdLink3,
-        employmentHistory: formData.employmentHistory,
-        highestQualification: formData.highestQualification,
-        institution: formData.institution,
-        yearCompleted: formData.yearCompleted,
-        additionalQualifications: formData.additionalQualifications,
-        driversLicence: formData.driversLicence,
-        highRiskLicences: formData.highRiskLicences,
-        siteInductions: formData.siteInductions,
-        securityClearances: formData.securityClearances,
-        technicalSkills: formData.technicalSkills,
-        interpersonalStrengths: formData.interpersonalStrengths,
-        employmentGaps: formData.employmentGaps,
-        keyAchievements: formData.keyAchievements,
-        preferredStyle: formData.preferredStyle,
-        hearAboutUs: formData.hearAboutUs,
+        cityState: formData.cityState || undefined,
+        bestContactTime: formData.bestContactTime || undefined,
+        linkedinUrl: formData.linkedinUrl || undefined,
+        employmentStatus: formData.employmentStatus ? formData.employmentStatus as any : undefined,
+        currentJobTitle: formData.currentJobTitle || undefined,
+        currentEmployer: formData.currentEmployer || undefined,
+        currentRoleOverview: formData.currentRoleOverview || undefined,
+        targetRoles: formData.targetRoles || undefined,
+        preferredIndustries: formData.preferredIndustries || undefined,
+        locationPreferences: formData.locationPreferences || undefined,
+        workArrangements: formData.workArrangements.length > 0 ? formData.workArrangements : undefined,
+        jobAdLink1: formData.jobAdLink1 || undefined,
+        jobAdLink2: formData.jobAdLink2 || undefined,
+        jobAdLink3: formData.jobAdLink3 || undefined,
+        employmentHistory: formData.employmentHistory.length > 0 ? formData.employmentHistory : undefined,
+        highestQualification: formData.highestQualification || undefined,
+        institution: formData.institution || undefined,
+        yearCompleted: formData.yearCompleted || undefined,
+        additionalQualifications: formData.additionalQualifications || undefined,
+        driversLicence: formData.driversLicence || undefined,
+        highRiskLicences: formData.highRiskLicences || undefined,
+        siteInductions: formData.siteInductions || undefined,
+        securityClearances: formData.securityClearances || undefined,
+        technicalSkills: formData.technicalSkills || undefined,
+        interpersonalStrengths: formData.interpersonalStrengths || undefined,
+        languageSkills: formData.languageSkills || undefined,
+        shortCoursesTraining: formData.shortCoursesTraining || undefined,
+        professionalMemberships: formData.professionalMemberships || undefined,
+        volunteerWork: formData.volunteerWork || undefined,
+        awardsRecognition: formData.awardsRecognition || undefined,
+        publications: formData.publications || undefined,
+        employmentGaps: formData.employmentGaps || undefined,
+        keyAchievements: formData.keyAchievements || undefined,
+        preferredStyle: formData.preferredStyle || undefined,
+        hearAboutUs: formData.hearAboutUs || undefined,
+        referees: formData.referees.length > 0 ? formData.referees : undefined,
         resumeFileUrl: formData.resumeFile?.url,
         supportingDocsUrls: formData.supportingDocs.map(doc => doc.url).filter(Boolean),
       });
@@ -427,13 +442,12 @@ export default function ThankYouOnboarding() {
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <Label htmlFor="cityState">City/Suburb and State *</Label>
+                    <Label htmlFor="cityState">City/Suburb and State</Label>
                     <Input
                       id="cityState"
                       value={formData.cityState}
                       onChange={(e) => updateField("cityState", e.target.value)}
                       placeholder="e.g., Perth, WA"
-                      required
                     />
                   </div>
                   <div className="md:col-span-2">
@@ -445,6 +459,16 @@ export default function ThankYouOnboarding() {
                       placeholder="e.g., Email preferred, or call after 5pm"
                     />
                   </div>
+                  <div className="md:col-span-2">
+                    <Label htmlFor="linkedinUrl">LinkedIn Profile URL</Label>
+                    <Input
+                      id="linkedinUrl"
+                      value={formData.linkedinUrl}
+                      onChange={(e) => updateField("linkedinUrl", e.target.value)}
+                      placeholder="e.g., https://linkedin.com/in/yourname"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">This is crucial in today's competitive online job market</p>
+                  </div>
                 </div>
               </section>
 
@@ -453,7 +477,7 @@ export default function ThankYouOnboarding() {
                 <h2 className="text-2xl font-bold text-navy mb-6">Current Employment</h2>
                 <div className="space-y-6">
                   <div>
-                    <Label htmlFor="employmentStatus">Employment Status *</Label>
+                    <Label htmlFor="employmentStatus">Employment Status</Label>
                     <Select value={formData.employmentStatus} onValueChange={(value) => updateField("employmentStatus", value)}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select your employment status" />
@@ -502,14 +526,13 @@ export default function ThankYouOnboarding() {
                 <h2 className="text-2xl font-bold text-navy mb-6">Target Roles and Career Direction</h2>
                 <div className="space-y-6">
                   <div>
-                    <Label htmlFor="targetRoles">Target Role(s) and Job Titles *</Label>
+                    <Label htmlFor="targetRoles">Target Role(s) and Job Titles</Label>
                     <Textarea
                       id="targetRoles"
                       value={formData.targetRoles}
                       onChange={(e) => updateField("targetRoles", e.target.value)}
                       rows={3}
                       placeholder="e.g., Operations Manager, Project Coordinator"
-                      required
                     />
                   </div>
                   <div>
@@ -795,6 +818,76 @@ export default function ThankYouOnboarding() {
                       rows={4}
                     />
                   </div>
+                  <div>
+                    <Label htmlFor="languageSkills">Language Skills</Label>
+                    <Textarea
+                      id="languageSkills"
+                      value={formData.languageSkills}
+                      onChange={(e) => updateField("languageSkills", e.target.value)}
+                      rows={3}
+                      placeholder="e.g., Fluent in Spanish, conversational French"
+                    />
+                  </div>
+                </div>
+              </section>
+
+              {/* Section 8.1: Professional Development */}
+              <section className="border-t pt-8">
+                <h2 className="text-2xl font-bold text-navy mb-6">Professional Development</h2>
+                <p className="text-sm text-gray-600 mb-4">
+                  Include any additional training, memberships, volunteer work, awards, or publications.
+                </p>
+                <div className="space-y-6">
+                  <div>
+                    <Label htmlFor="shortCoursesTraining">Short Courses and Training</Label>
+                    <Textarea
+                      id="shortCoursesTraining"
+                      value={formData.shortCoursesTraining}
+                      onChange={(e) => updateField("shortCoursesTraining", e.target.value)}
+                      rows={3}
+                      placeholder="e.g., Seminars, conferences, in-house training programs"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="professionalMemberships">Professional Memberships</Label>
+                    <Textarea
+                      id="professionalMemberships"
+                      value={formData.professionalMemberships}
+                      onChange={(e) => updateField("professionalMemberships", e.target.value)}
+                      rows={3}
+                      placeholder="e.g., Organisation name, membership type, member ID, year joined"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="volunteerWork">Volunteer Work</Label>
+                    <Textarea
+                      id="volunteerWork"
+                      value={formData.volunteerWork}
+                      onChange={(e) => updateField("volunteerWork", e.target.value)}
+                      rows={3}
+                      placeholder="e.g., Organisation, role, contributions, achievements"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="awardsRecognition">Awards and Recognition</Label>
+                    <Textarea
+                      id="awardsRecognition"
+                      value={formData.awardsRecognition}
+                      onChange={(e) => updateField("awardsRecognition", e.target.value)}
+                      rows={3}
+                      placeholder="e.g., Performance appraisals, awards, client compliments"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="publications">Publications</Label>
+                    <Textarea
+                      id="publications"
+                      value={formData.publications}
+                      onChange={(e) => updateField("publications", e.target.value)}
+                      rows={3}
+                      placeholder="e.g., Papers written, professional presentations"
+                    />
+                  </div>
                 </div>
               </section>
 
@@ -841,9 +934,135 @@ export default function ThankYouOnboarding() {
                 </div>
               </section>
 
-              {/* Section 10: File Uploads */}
+              {/* Section 10: Referees */}
               <section className="border-t pt-8">
-                <h2 className="text-2xl font-bold text-navy mb-6">File Uploads</h2>
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-2xl font-bold text-navy">Referees</h2>
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      setFormData(prev => ({
+                        ...prev,
+                        referees: [...prev.referees, { name: "", position: "", company: "", email: "", phone: "", mobile: "" }],
+                      }));
+                    }}
+                    variant="outline"
+                    size="sm"
+                    disabled={formData.referees.length >= 3}
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Referee
+                  </Button>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">
+                  Please provide up to 3 professional referees. We will not contact them without your permission.
+                </p>
+                
+                {formData.referees.length === 0 && (
+                  <p className="text-gray-500 italic text-sm mb-4">No referees added yet. Click "Add Referee" to add one.</p>
+                )}
+                
+                {formData.referees.map((referee, index) => (
+                  <div key={index} className="mb-6 p-6 bg-gray-50 rounded-lg relative">
+                    <Button
+                      type="button"
+                      onClick={() => {
+                        setFormData(prev => ({
+                          ...prev,
+                          referees: prev.referees.filter((_, i) => i !== index),
+                        }));
+                      }}
+                      variant="ghost"
+                      size="sm"
+                      className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                    <h3 className="font-semibold mb-4">Referee {index + 1}</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label>Full Name</Label>
+                        <Input
+                          value={referee.name}
+                          onChange={(e) => {
+                            const newReferees = [...formData.referees];
+                            newReferees[index] = { ...newReferees[index], name: e.target.value };
+                            setFormData(prev => ({ ...prev, referees: newReferees }));
+                          }}
+                          placeholder="e.g., John Smith"
+                        />
+                      </div>
+                      <div>
+                        <Label>Position/Title</Label>
+                        <Input
+                          value={referee.position}
+                          onChange={(e) => {
+                            const newReferees = [...formData.referees];
+                            newReferees[index] = { ...newReferees[index], position: e.target.value };
+                            setFormData(prev => ({ ...prev, referees: newReferees }));
+                          }}
+                          placeholder="e.g., Operations Manager"
+                        />
+                      </div>
+                      <div>
+                        <Label>Company/Organisation</Label>
+                        <Input
+                          value={referee.company}
+                          onChange={(e) => {
+                            const newReferees = [...formData.referees];
+                            newReferees[index] = { ...newReferees[index], company: e.target.value };
+                            setFormData(prev => ({ ...prev, referees: newReferees }));
+                          }}
+                          placeholder="e.g., ABC Mining"
+                        />
+                      </div>
+                      <div>
+                        <Label>Email</Label>
+                        <Input
+                          type="email"
+                          value={referee.email}
+                          onChange={(e) => {
+                            const newReferees = [...formData.referees];
+                            newReferees[index] = { ...newReferees[index], email: e.target.value };
+                            setFormData(prev => ({ ...prev, referees: newReferees }));
+                          }}
+                          placeholder="e.g., john.smith@company.com"
+                        />
+                      </div>
+                      <div>
+                        <Label>Phone</Label>
+                        <Input
+                          type="tel"
+                          value={referee.phone}
+                          onChange={(e) => {
+                            const newReferees = [...formData.referees];
+                            newReferees[index] = { ...newReferees[index], phone: e.target.value };
+                            setFormData(prev => ({ ...prev, referees: newReferees }));
+                          }}
+                          placeholder="e.g., 08 1234 5678"
+                        />
+                      </div>
+                      <div>
+                        <Label>Mobile</Label>
+                        <Input
+                          type="tel"
+                          value={referee.mobile}
+                          onChange={(e) => {
+                            const newReferees = [...formData.referees];
+                            newReferees[index] = { ...newReferees[index], mobile: e.target.value };
+                            setFormData(prev => ({ ...prev, referees: newReferees }));
+                          }}
+                          placeholder="e.g., 0412 345 678"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </section>
+
+              {/* Section 11: File Uploads */}
+              <section className="border-t pt-8">
+                <h2 className="text-2xl font-bold text-navy mb-6">File Uploads (Optional)</h2>
                 <p className="text-sm text-gray-600 mb-6">
                   Please upload your current résumé and any supporting documents that may assist in preparing your new documents.
                 </p>

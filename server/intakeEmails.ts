@@ -1,6 +1,6 @@
 import { ENV } from "./_core/env";
 
-const SITE_URL = ENV.frontendUrl || "https://allresumeservices.com";
+const SITE_URL = "https://allresumeservices.com";
 const ADMIN_EMAIL = "admin@allresumeservices.com"; // TODO: Replace with actual admin email
 
 /**

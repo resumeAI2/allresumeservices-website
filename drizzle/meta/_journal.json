@@ -169,6 +169,13 @@
       "when": 1765526051473,
       "tag": "0023_magenta_gertrude_yorkes",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "5",
+      "when": 1765852609613,
+      "tag": "0024_deep_absorbing_man",
+      "breakpoints": true
     }
   ]
 }
