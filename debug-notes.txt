@@ -1,0 +1,22 @@
+Testimonial Section Issue Analysis:
+
+From screenshot: The testimonial section shows:
+- Quote icon is visible (dark gray)
+- Text is barely visible - appears to be light gray/white text on a light gray background
+- Shows "PM" initials and partial text like "I had bee..." and "made my resu..."
+- Background appears to be light gray/white, NOT the navy (#1e3a5f) that's in the code
+
+The code has inline styles:
+- style={{ backgroundColor: '#1e3a5f' }} on the section
+- style={{ color: '#ffffff' }} on the blockquote
+- style={{ color: '#d4a853' }} on the Quote icon
+
+But the screenshot shows the background is NOT navy - it's light gray/white.
+This suggests the inline styles are being overridden by something.
+
+Possible causes:
+1. CSS specificity issue - Tailwind classes overriding inline styles
+2. Some parent element has a white/light background that's covering this
+3. The section might be getting different styles applied
+
+Solution: Use !important or more specific targeting, or use Tailwind classes with arbitrary values.
