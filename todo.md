@@ -1619,3 +1619,20 @@
 - [x] Add Previous/Next navigation buttons
 - [x] Add clickable step pills for direct navigation
 - [x] Test progress indicator functionality
+
+## Save & Continue Later Feature
+- [ ] Review existing autosave and draft functionality
+- [ ] Add Save & Continue Later button to intake form
+- [ ] Send email with unique resume link when user saves
+- [ ] Implement resume link handling to restore form data
+- [ ] Test save and resume functionality
+
+## Admin Notification Email Setup
+- [x] Set ADMIN_NOTIFICATION_EMAIL environment secret (enquiries@allresumeservices.com)
+- [x] Verify admin receives notifications on form submission
+
+## Order Confirmation Emails
+- [x] Create order confirmation email template (orderEmails.ts)
+- [x] Send confirmation email after successful PayPal payment
+- [x] Include order details, purchased service, and next steps
+- [x] Add admin notification for new orders
