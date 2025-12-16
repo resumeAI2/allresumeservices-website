@@ -1755,3 +1755,17 @@
 - [x] Fix nested anchor in FeaturedCaseStudies (Button wrapping Link → Button asChild with Link inside)
 - [x] Implement FAQ schema markup for FAQ section (FAQPage schema with Question/Answer - 15 questions)
 - [x] Fix nested anchor tag error on /services page (3 Link wrapping <a> tags fixed)
+
+## Site-wide Improvements
+- [x] Scan all pages for nested anchor tags (Pricing, About, Process, Blog, Testimonials, etc.) - No issues found
+- [x] Fix any nested anchor issues found on other pages - None found, all clean
+- [x] Create Breadcrumb component with BreadcrumbList schema markup (updated existing component)
+- [x] Add breadcrumbs to Services page
+- [x] Add breadcrumbs to Pricing page
+- [x] Add breadcrumbs to About page
+- [x] Add breadcrumbs to Process page
+- [x] Add breadcrumbs to Blog page
+- [x] Add breadcrumbs to other subpages (Services, Pricing, About, Process, Blog)
+- [x] Convert hero background images to WebP format (hero-bg, success-image)
+- [x] Compress hero images for optimal file size (29-35% reduction)
+- [x] Implement lazy loading for hero images

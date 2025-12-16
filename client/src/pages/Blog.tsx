@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
@@ -46,6 +47,7 @@ export default function Blog() {
   return (
     <div className="min-h-screen">
       <Header />
+      <Breadcrumb items={[{ label: "Career Advice Blog" }]} />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-primary-foreground py-20">

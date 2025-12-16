@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PricingSchema from "@/components/PricingSchema";
+import Breadcrumb from "@/components/Breadcrumb";
 import { CheckCircle, Clock, Shield, Sparkles, FileText, Mail, Linkedin, FileCheck, Zap } from "lucide-react";
 import { Link } from "wouter";
 
@@ -123,6 +124,7 @@ export default function PricingPage() {
       </Helmet>
       <PricingSchema />
       <Header />
+      <Breadcrumb items={[{ label: "Pricing" }]} />
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-20">

@@ -1,5 +1,6 @@
 import { ChevronRight, Home } from 'lucide-react';
 import { Link } from 'wouter';
+import { Helmet } from 'react-helmet-async';
 
 interface BreadcrumbItem {
   label: string;
@@ -11,8 +12,35 @@ interface BreadcrumbProps {
 }
 
 export default function Breadcrumb({ items }: BreadcrumbProps) {
+  // Build schema.org BreadcrumbList
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.allresumeservices.com.au/"
+      },
+      ...items.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": item.label,
+        ...(item.href && { "item": `https://www.allresumeservices.com.au${item.href}` })
+      }))
+    ]
+  };
+
   return (
-    <nav aria-label="Breadcrumb" className="py-4">
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
+      </Helmet>
+      
+      <nav aria-label="Breadcrumb" className="py-4 bg-muted/30 border-b">
       <ol className="flex items-center gap-2 text-sm flex-wrap">
         {/* Home Link */}
         <li className="flex items-center gap-2">
@@ -46,5 +74,6 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         })}
       </ol>
     </nav>
+    </>
   );
 }
