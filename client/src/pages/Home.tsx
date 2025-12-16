@@ -14,6 +14,7 @@ import FAQ from "@/components/FAQ";
 import FreeReview from "@/components/FreeReview";
 import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import FAQSchema from "@/components/FAQSchema";
 import ClientLogos from "@/components/ClientLogos";
 import IndustryStatistics from "@/components/IndustryStatistics";
 import EmailCapturePopup from "@/components/EmailCapturePopup";
@@ -27,6 +28,7 @@ export default function Home() {
         <meta name="keywords" content="resume writing services, professional resume writer, ATS resume, resume writing Australia, cover letter writing, LinkedIn optimisation, executive resume" />
       </Helmet>
       <SchemaMarkup type="homepage" />
+      <FAQSchema />
       <Header />
       <Hero />
       <Stats />

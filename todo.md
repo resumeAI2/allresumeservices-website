@@ -1753,3 +1753,4 @@
 - [x] Implement schema markup for pricing page (Product/Service with Offer schema)
 - [x] Add pricing structured data for all packages and individual services (includes Organization, Product, Service schemas)
 - [x] Fix nested anchor in FeaturedCaseStudies (Button wrapping Link → Button asChild with Link inside)
+- [x] Implement FAQ schema markup for FAQ section (FAQPage schema with Question/Answer - 15 questions)
