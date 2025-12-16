@@ -1,400 +1,220 @@
-import { useState } from 'react';
-import { trpc } from '../lib/trpc';
-import { useCart } from '../contexts/CartContext';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { Button } from '../components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
-import { Check, ShoppingCart } from 'lucide-react';
+import { Helmet } from "react-helmet-async";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { FileText, Mail, Linkedin, FileCheck, Users, Award, TrendingUp, Target } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Services() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedType, setSelectedType] = useState<'all' | 'individual' | 'package' | 'addon'>('all');
-  
-  const { data: allServices = [], isLoading } = trpc.services.getAllServices.useQuery();
-  const { addToCart } = useCart();
-  const [addingToCart, setAddingToCart] = useState<number | null>(null);
-
-  // Filter services based on selected category and type
-  const filteredServices = allServices.filter(service => {
-    const matchesType = selectedType === 'all' || service.type === selectedType;
-    const matchesCategory = selectedCategory === 'all' || service.category === selectedCategory;
-    return matchesType && matchesCategory;
-  });
-
-  // Get unique categories
-  const uniqueCategories = new Set(allServices.map(s => s.category).filter(Boolean));
-  const categories = ['all', ...Array.from(uniqueCategories)];
-
-  const handleAddToCart = async (serviceId: number) => {
-    setAddingToCart(serviceId);
-    try {
-      await addToCart(serviceId, 1);
-      // Show success feedback
-      setTimeout(() => setAddingToCart(null), 1000);
-    } catch (error) {
-      console.error('Failed to add to cart:', error);
-      setAddingToCart(null);
+  const services = [
+    {
+      icon: FileText,
+      title: "Resume Writing",
+      description: "Professional, ATS-optimized resumes that highlight your achievements and get you noticed by hiring managers. Tailored to your industry and career level.",
+      features: [
+        "ATS-friendly formatting",
+        "Achievement-focused content",
+        "Industry-specific keywords",
+        "Professional design",
+        "Delivered in Word & PDF"
+      ],
+      link: "/services/resume-writing"
+    },
+    {
+      icon: Mail,
+      title: "Cover Letter Writing",
+      description: "Compelling cover letters that complement your resume and demonstrate your enthusiasm and fit for the role. Customized for each application.",
+      features: [
+        "Tailored to job description",
+        "Highlights key qualifications",
+        "Professional tone",
+        "Persuasive storytelling",
+        "Ready to customize"
+      ],
+      link: "/services/cover-letters"
+    },
+    {
+      icon: Linkedin,
+      title: "LinkedIn Profile Optimization",
+      description: "Transform your LinkedIn profile into a powerful personal brand. Optimized for searchability and designed to attract recruiters and opportunities.",
+      features: [
+        "Keyword-optimized headline",
+        "Compelling summary",
+        "Achievement-based experience",
+        "Skills optimization",
+        "Recruiter-friendly format"
+      ],
+      link: "/services/linkedin-optimisation"
+    },
+    {
+      icon: FileCheck,
+      title: "Selection Criteria",
+      description: "Detailed responses to government and corporate selection criteria. We help you demonstrate how you meet each requirement with concrete examples.",
+      features: [
+        "STAR method responses",
+        "Evidence-based examples",
+        "Addresses all criteria",
+        "Professional formatting",
+        "Government job ready"
+      ],
+      link: "/services/selection-criteria"
+    },
+    {
+      icon: Users,
+      title: "Career Consultation",
+      description: "One-on-one guidance from experienced career advisors. Get personalized advice on your career direction, job search strategy, and interview preparation.",
+      features: [
+        "Personalized career advice",
+        "Job search strategy",
+        "Interview preparation",
+        "Career transition support",
+        "Industry insights"
+      ],
+      link: "/services/career-consultation"
     }
-  };
+  ];
 
-  const parseFeatures = (featuresJson: string | null): string[] => {
-    if (!featuresJson) return [];
-    try {
-      return JSON.parse(featuresJson);
-    } catch {
-      return [];
+  const benefits = [
+    {
+      icon: Award,
+      title: "18+ Years Experience",
+      description: "Decades of expertise crafting resumes across all industries and career levels"
+    },
+    {
+      icon: Target,
+      title: "96% Interview Success",
+      description: "Our clients consistently land interviews and secure their dream roles"
+    },
+    {
+      icon: TrendingUp,
+      title: "ATS-Optimized",
+      description: "Every document is formatted to pass applicant tracking systems"
     }
-  };
+  ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <>
+      <Helmet>
+        <title>Our Services - Professional Resume & Career Services | All Resume Services</title>
+        <meta name="description" content="Professional resume writing, cover letters, LinkedIn optimization, selection criteria, and career consultation services. 18+ years experience, 96% interview success rate." />
+        <meta name="keywords" content="resume writing services, cover letter writing, LinkedIn profile, selection criteria, career consultation, professional resume" />
+      </Helmet>
       <Header />
-      
-      <main className="flex-1">
+      <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#1e3a5f] via-[#2d5a8f] to-[#1e3a5f] text-white py-20 overflow-hidden">
-          {/* Decorative Elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-10 left-10 w-72 h-72 bg-secondary rounded-full blur-3xl"></div>
-            <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          </div>
-          
-          <div className="container relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-block mb-6">
-                <Badge className="bg-secondary/20 text-white border-secondary/30 px-4 py-2 text-sm font-semibold">
-                  <Check className="w-4 h-4 mr-2 inline" />
-                  96% Interview Success Rate
-                </Badge>
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
-                Professional Resume Services & Packages
-              </h1>
-              <p className="text-xl text-blue-100 leading-relaxed mb-8">
-                Choose from individual services or complete packages tailored to your career level. 
-                Every resume is crafted by experienced writers with 18+ years in the industry.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white">
-                  <a href="#services">Browse Services</a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
-                  <a href="/resume-transformation">See Real Results</a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works Section */}
-        <section className="py-16 bg-white">
-          <div className="container max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">How It Works</h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Our proven 5-step process ensures you get a resume that opens doors
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-5 gap-6">
-              {[
-                { step: '1', title: 'Choose Service', description: 'Select the package that fits your career goals', icon: '🎯' },
-                { step: '2', title: 'Consultation', description: 'Share your career history and target roles', icon: '💬' },
-                { step: '3', title: 'Expert Writing', description: 'Our writers craft your ATS-optimised resume', icon: '✍️' },
-                { step: '4', title: 'Review & Refine', description: 'We refine your documents based on your feedback', icon: '🔄' },
-                { step: '5', title: 'Land Interviews', description: 'Start applying with confidence', icon: '🎉' }
-              ].map((item, index) => (
-                <div key={index} className="relative">
-                  <div className="text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-4 text-3xl">
-                      {item.icon}
-                    </div>
-                    <div className="absolute top-8 left-1/2 w-full h-0.5 bg-secondary/20 -z-10 hidden md:block" style={{ display: index === 4 ? 'none' : 'block' }}></div>
-                    <div className="mb-2">
-                      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-white text-sm font-bold">
-                        {item.step}
-                      </span>
-                    </div>
-                    <h3 className="font-bold text-lg mb-2 text-[#1e3a5f]">{item.title}</h3>
-                    <p className="text-sm text-gray-600">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Filters */}
-        <section className="py-8 border-b">
+        <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-20">
           <div className="container">
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-              {/* Type Filter */}
-              <div className="flex gap-2 flex-wrap">
-                <Button
-                  variant={selectedType === 'all' ? 'default' : 'outline'}
-                  onClick={() => setSelectedType('all')}
-                >
-                  All Services
-                </Button>
-                <Button
-                  variant={selectedType === 'individual' ? 'default' : 'outline'}
-                  onClick={() => setSelectedType('individual')}
-                >
-                  Individual Services
-                </Button>
-                <Button
-                  variant={selectedType === 'package' ? 'default' : 'outline'}
-                  onClick={() => setSelectedType('package')}
-                >
-                  Packages
-                </Button>
-                <Button
-                  variant={selectedType === 'addon' ? 'default' : 'outline'}
-                  onClick={() => setSelectedType('addon')}
-                >
-                  Add-ons
-                </Button>
-              </div>
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-secondary">
+                Professional Career Services
+              </h1>
+              <p className="text-xl text-white mb-8">
+                Expert resume writing, cover letters, LinkedIn optimization, and career guidance to help you land your dream job.
+              </p>
+              <Link href="/pricing">
+                <a className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
+                  View Pricing & Packages
+                </a>
+              </Link>
+            </div>
+          </div>
+        </section>
 
-              {/* Category Filter */}
-              {selectedType !== 'package' && selectedType !== 'addon' && (
-                <div className="flex gap-2 flex-wrap">
-                  {categories.map(category => (
-                    <Button
-                      key={category}
-                      variant={selectedCategory === category ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => setSelectedCategory(category || 'all')}
-                    >
-                      {category === 'all' ? 'All Categories' : category}
-                    </Button>
-                  ))}
-                </div>
-              )}
+        {/* Benefits Section */}
+        <section className="py-12 bg-white border-b">
+          <div className="container">
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {benefits.map((benefit, index) => {
+                const Icon = benefit.icon;
+                return (
+                  <div key={index} className="text-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-4">
+                      <Icon className="h-8 w-8 text-secondary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">{benefit.title}</h3>
+                    <p className="text-muted-foreground">{benefit.description}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* Services Grid */}
-        <section className="py-16">
+        <section className="py-20">
           <div className="container">
-            {isLoading ? (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">Loading services...</p>
-              </div>
-            ) : filteredServices.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">No services found matching your filters.</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredServices.map(service => {
-                  const features = parseFeatures(service.features);
-                  const isPackage = service.type === 'package';
-                  const hasDiscount = service.originalPrice && parseFloat(service.originalPrice) > parseFloat(service.price);
-
-                  return (
-                    <Card key={service.id} className={`flex flex-col ${isPackage ? 'border-primary shadow-lg' : ''}`}>
-                      <CardHeader>
-                        <div className="flex items-start justify-between mb-2">
-                          <div>
-                            {service.tier && (
-                              <Badge variant="secondary" className="mb-2">
-                                {service.tier}
-                              </Badge>
-                            )}
-                            {service.type === 'package' && (
-                              <Badge variant="default" className="mb-2">
-                                Package Deal
-                              </Badge>
-                            )}
-                            {service.type === 'addon' && (
-                              <Badge variant="outline" className="mb-2">
-                                Add-on
-                              </Badge>
-                            )}
-                          </div>
-                          <div className="text-right">
-                            {hasDiscount && (
-                              <p className="text-sm text-muted-foreground line-through">
-                                ${service.originalPrice}
-                              </p>
-                            )}
-                            <p className="text-2xl font-bold">
-                              ${service.price}
-                            </p>
-                          </div>
-                        </div>
-                        <CardTitle className="text-xl">{service.name}</CardTitle>
-                        <CardDescription>{service.description}</CardDescription>
-                      </CardHeader>
-                      
-                      <CardContent className="flex-1">
-                        {features.length > 0 && (
-                          <ul className="space-y-2">
-                            {features.map((feature, index) => (
-                              <li key={index} className="flex items-start gap-2 text-sm">
-                                <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                                <span>{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </CardContent>
-                      
-                      <CardFooter>
-                        <Button
-                          className="w-full"
-                          onClick={() => handleAddToCart(service.id)}
-                          disabled={addingToCart === service.id}
-                        >
-                          {addingToCart === service.id ? (
-                            <>Adding...</>
-                          ) : (
-                            <>
-                              <ShoppingCart className="h-4 w-4 mr-2" />
-                              Add to Cart
-                            </>
-                          )}
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* Client Testimonials Section */}
-        <section className="py-20 bg-white">
-          <div className="container max-w-6xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">What Our Clients Say</h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Real success stories from professionals who transformed their careers with our services
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Our Services
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Choose from our range of professional career services, or combine them in a package for the best value.
               </p>
             </div>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Testimonial 1 */}
-              <Card className="border-2 hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xl font-bold text-secondary">S.M.</span>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1 mb-1">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} className="w-4 h-4 text-[#d4af37] fill-current" viewBox="0 0 20 20">
-                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <p className="text-sm font-semibold text-gray-900">Sarah M.</p>
-                      <p className="text-xs text-gray-600">Marketing Manager</p>
-                    </div>
-                  </div>
-                  <blockquote className="text-gray-700 leading-relaxed mb-4 italic">
-                    "I was stuck in the same role for 5 years. After using their Executive Package, I received 4 interview requests in 3 weeks and landed a senior position with a 35% salary increase. The investment paid for itself many times over!"
-                  </blockquote>
-                  <div className="pt-4 border-t border-gray-100">
-                    <p className="text-xs text-secondary font-semibold">Executive Resume Package</p>
-                    <p className="text-xs text-gray-500 mt-1">Healthcare Industry</p>
-                  </div>
-                </CardContent>
-              </Card>
 
-              {/* Testimonial 2 */}
-              <Card className="border-2 hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xl font-bold text-secondary">J.K.</span>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {services.map((service, index) => {
+                const Icon = service.icon;
+                return (
+                  <div 
+                    key={index}
+                    className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all border border-border"
+                  >
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-secondary/10 mb-4">
+                      <Icon className="h-7 w-7 text-secondary" />
                     </div>
-                    <div>
-                      <div className="flex items-center gap-1 mb-1">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} className="w-4 h-4 text-[#d4af37] fill-current" viewBox="0 0 20 20">
-                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <p className="text-sm font-semibold text-gray-900">James K.</p>
-                      <p className="text-xs text-gray-600">IT Project Manager</p>
-                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4">
+                      {service.description}
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      {service.features.map((feature, fIndex) => (
+                        <li key={fIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <span className="text-secondary mt-0.5">✓</span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link href={service.link}>
+                      <a className="text-primary hover:text-primary/80 font-semibold text-sm">
+                        Learn More →
+                      </a>
+                    </Link>
                   </div>
-                  <blockquote className="text-gray-700 leading-relaxed mb-4 italic">
-                    "As a career changer moving from engineering to IT management, I needed a resume that highlighted transferable skills. The team nailed it! I secured my dream role at a Fortune 500 company within 6 weeks."
-                  </blockquote>
-                  <div className="pt-4 border-t border-gray-100">
-                    <p className="text-xs text-secondary font-semibold">Career Change Package</p>
-                    <p className="text-xs text-gray-500 mt-1">IT & Technology</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Testimonial 3 */}
-              <Card className="border-2 hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xl font-bold text-secondary">L.S.</span>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1 mb-1">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} className="w-4 h-4 text-[#d4af37] fill-current" viewBox="0 0 20 20">
-                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <p className="text-sm font-semibold text-gray-900">Lisa T.</p>
-                      <p className="text-xs text-gray-600">Operations Supervisor</p>
-                    </div>
-                  </div>
-                  <blockquote className="text-gray-700 leading-relaxed mb-4 italic">
-                    "After struggling to get interviews for months with my old resume, I decided to invest in professional help. Within two weeks, I secured three interviews and ultimately landed my dream role in mining technology. Worth every dollar!"
-                  </blockquote>
-                  <div className="pt-4 border-t border-gray-100">
-                    <p className="text-xs text-secondary font-semibold">Resume + Cover Letter Package</p>
-                    <p className="text-xs text-gray-500 mt-1">Mining & Resources</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* View More Link */}
-            <div className="text-center mt-12">
-              <Button asChild variant="outline" size="lg">
-                <a href="/testimonials">View All Success Stories</a>
-              </Button>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-primary/5">
+        <section className="py-16 bg-gradient-to-r from-primary/5 to-secondary/5">
           <div className="container">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">
-                Not Sure Which Service to Choose?
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Ready to Get Started?
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Contact us for a free consultation and we'll help you select the perfect package for your career goals.
+                Choose a package that fits your needs or get a free resume review to see how we can help.
               </p>
-              <Button size="lg" variant="default" onClick={() => window.location.href = '/contact'}>
-                Get Free Consultation
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/pricing">
+                  <a className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
+                    View Pricing & Packages
+                  </a>
+                </Link>
+                <Link href="/contact">
+                  <a className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-foreground font-semibold px-8 py-3 rounded-lg border-2 border-border transition-all">
+                    Get Free Resume Review
+                  </a>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
-      </main>
-
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
