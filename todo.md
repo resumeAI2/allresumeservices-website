@@ -1719,3 +1719,7 @@
 
 ## Featured Testimonials
 - [x] Mark 3-5 best testimonials as featured for homepage display
+
+## Homepage Sections Reorganization
+- [x] Replace full pricing packages on homepage with simple CTA linking to /pricing page
+- [x] Keep Services section as-is (it correctly shows "Why Choose Us" benefits)

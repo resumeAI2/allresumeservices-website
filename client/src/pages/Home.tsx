@@ -5,7 +5,7 @@ import Stats from "@/components/Stats";
 import SuccessMetrics from "@/components/SuccessMetrics";
 import Services from "@/components/Services";
 import Process from "@/components/Process";
-import Pricing from "@/components/Pricing";
+import PricingCTA from "@/components/PricingCTA";
 import Testimonials from "@/components/Testimonials";
 
 import GoogleReviewsShowcase from "@/components/GoogleReviewsShowcase";
@@ -33,7 +33,7 @@ export default function Home() {
       <SuccessMetrics />
       <Services />
       <Process />
-      <Pricing />
+      <PricingCTA />
       <Testimonials />
       <GoogleReviewsShowcase />
       <FeaturedCaseStudies />
