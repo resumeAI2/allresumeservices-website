@@ -1678,3 +1678,6 @@
 
 ## Additional Case Study Images
 - [x] Add images to all remaining case studies without images
+- [x] Replace duplicate case study images with unique images
+- [x] Fix remaining duplicate case study image (finance-executive.jpg used twice)
+- [x] Test enquiries@allresumeservices.com email functionality (SMTP test passed)
