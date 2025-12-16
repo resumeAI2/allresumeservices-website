@@ -1691,3 +1691,7 @@
 
 ## Case Study Photo Fix
 - [x] Replace photos of real people in case study sections with industry-specific images (no people)
+
+## Restore Original Images
+- [x] Restore original professional case study images
+- [ ] Only replace specific photos that show mismatched people faces
