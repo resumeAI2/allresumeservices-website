@@ -1825,3 +1825,8 @@
 - [x] Add section to Selection Criteria page
 - [x] Add section to Career Consultation page
 - [x] Test cross-selling functionality
+
+## Reduce Individual Services Section Spacing
+- [x] Locate Individual Services section in homepage
+- [x] Reduce padding above and below the section
+- [x] Test spacing changes on homepage
