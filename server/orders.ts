@@ -78,17 +78,50 @@ export async function updateOrderStatus(
     const order = await getOrderById(orderId);
     if (order && order.customerEmail) {
       try {
-        const { sendOrderConfirmationEmail } = await import('./services/sesEmailService');
-        await sendOrderConfirmationEmail({
-          orderId: order.id,
-          customerName: order.customerName || 'Valued Customer',
-          customerEmail: order.customerEmail,
-          packageName: order.packageName,
-          amount: order.amount,
-          currency: order.currency,
-          paypalOrderId: order.paypalOrderId || undefined,
-        });
-        console.log(`[Orders] Confirmation email sent for order #${orderId}`);
+        // Try SES first, fall back to ProtonMail SMTP
+        const { sendOrderConfirmationEmail, isSESConfigured } = await import('./services/sesEmailService');
+        
+        if (isSESConfigured()) {
+          await sendOrderConfirmationEmail({
+            orderId: order.id,
+            customerName: order.customerName || 'Valued Customer',
+            customerEmail: order.customerEmail,
+            packageName: order.packageName,
+            amount: order.amount,
+            currency: order.currency,
+            paypalOrderId: order.paypalOrderId || undefined,
+          });
+          console.log(`[Orders] Confirmation email sent via SES for order #${orderId}`);
+        } else {
+          // Fallback to ProtonMail SMTP
+          const { sendOrderConfirmationEmailSMTP } = await import('./orderEmails');
+          await sendOrderConfirmationEmailSMTP({
+            orderId: order.id,
+            customerName: order.customerName || 'Valued Customer',
+            customerEmail: order.customerEmail,
+            packageName: order.packageName,
+            amount: order.amount,
+            currency: order.currency,
+            paypalOrderId: order.paypalOrderId || undefined,
+          });
+          console.log(`[Orders] Confirmation email sent via SMTP for order #${orderId}`);
+        }
+        
+        // Also send admin notification
+        try {
+          const { sendAdminOrderNotificationEmail } = await import('./orderEmails');
+          await sendAdminOrderNotificationEmail({
+            orderId: order.id,
+            customerName: order.customerName || 'Valued Customer',
+            customerEmail: order.customerEmail,
+            packageName: order.packageName,
+            amount: order.amount,
+            currency: order.currency,
+            paypalOrderId: order.paypalOrderId || undefined,
+          });
+        } catch (adminError) {
+          console.error(`[Orders] Failed to send admin notification for order #${orderId}:`, adminError);
+        }
       } catch (error) {
         console.error(`[Orders] Failed to send confirmation email for order #${orderId}:`, error);
         // Don't throw error - email failure shouldn't prevent order update
