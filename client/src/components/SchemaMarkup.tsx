@@ -98,7 +98,7 @@ export default function SchemaMarkup({ type = "homepage" }: SchemaMarkupProps) {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "LinkedIn Profile Optimization",
+              "name": "LinkedIn Profile Optimisation",
               "description": "Professional LinkedIn profile enhancement"
             }
           },

@@ -32,9 +32,12 @@ export default function PricingPage() {
     {
       name: "Basic Package",
       price: "$125",
+      originalPrice: "$148",
+      savings: "$23",
       popular: false,
       features: [
-        "Professionally written resume",
+        "Entry Level Resume ($99)",
+        "Entry Level Cover Letter ($49)",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
         "2-3 day turnaround"
@@ -43,10 +46,12 @@ export default function PricingPage() {
     {
       name: "Standard Package",
       price: "$185",
+      originalPrice: "$224",
+      savings: "$39",
       popular: true,
       features: [
-        "Professionally written resume",
-        "Cover letter tailored to applications",
+        "Professional Resume ($149)",
+        "Professional Cover Letter ($75)",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
         "2-3 day turnaround",
@@ -56,18 +61,20 @@ export default function PricingPage() {
     {
       name: "Premium Package",
       price: "$255",
+      originalPrice: "$324",
+      savings: "$69",
       popular: false,
       features: [
-        "Professionally written resume",
-        "Cover letter tailored to applications",
-        "LinkedIn profile optimization",
+        "Executive Resume ($255)",
+        "Executive Cover Letter ($99)",
+        "LinkedIn Profile Optimisation ($125)",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
         "1 day express turnaround",
         "Priority support"
       ]
     }
-  ];
+  ]
 
   const individualServices = [
     {
@@ -92,7 +99,7 @@ export default function PricingPage() {
       category: "LinkedIn & Other Services",
       icon: Linkedin,
       services: [
-        { name: "LinkedIn Profile Optimization", price: "$125", description: "Complete LinkedIn transformation for maximum visibility" },
+        { name: "LinkedIn Profile Optimisation", price: "$125", description: "Complete LinkedIn transformation for maximum visibility" },
         { name: "Selection Criteria Response", price: "$100", description: "Expert STAR method responses for government applications (up to 5 criteria)" }
       ]
     },
@@ -168,10 +175,17 @@ export default function PricingPage() {
                     </div>
                   )}
                   <h3 className="text-2xl font-bold text-foreground mb-2">{pkg.name}</h3>
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold text-secondary">{pkg.price}</span>
-                    <span className="text-muted-foreground">AUD</span>
+                  <div className="mb-2">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl font-bold text-secondary">{pkg.price}</span>
+                      <span className="text-muted-foreground">AUD</span>
+                      <span className="text-lg text-muted-foreground line-through ml-2">{pkg.originalPrice}</span>
+                    </div>
+                    <div className="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold mt-2">
+                      Save {pkg.savings}
+                    </div>
                   </div>
+                  <div className="mb-6"></div>
                   <ul className="space-y-3 mb-8">
                     {pkg.features.map((feature, fIndex) => (
                       <li key={fIndex} className="flex items-start gap-2 text-sm">
@@ -234,8 +248,77 @@ export default function PricingPage() {
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section className="py-16">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-4">Real Results from Real Clients</h2>
+              <p className="text-lg text-muted-foreground">See how our services delivered ROI for job seekers</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div className="bg-white rounded-xl p-8 shadow-md border border-border">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center font-bold text-secondary text-lg">
+                    C
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">Christina Paiva</h4>
+                    <div className="flex text-secondary text-sm">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i}>★</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-muted-foreground text-sm mb-4">
+                  "Every time I've applied for a job using the resume they crafted for me, I've landed an interview. Their professionalism and swift turnaround times are unparalleled. My resume looks fabulous and stands out in the competitive job market here in Australia."
+                </p>
+                <p className="text-xs text-muted-foreground font-semibold">Resume Writing Service</p>
+              </div>
+              <div className="bg-white rounded-xl p-8 shadow-md border border-border">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center font-bold text-secondary text-lg">
+                    N
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">Nrupa Shah</h4>
+                    <div className="flex text-secondary text-sm">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i}>★</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-muted-foreground text-sm mb-4">
+                  "I just accepted a position at SCE Group! The feedback I received from interviewers was overwhelmingly positive, and I am confident your resume played a significant role in helping me stand out. Your expertise in showcasing my skills and experience truly made a difference."
+                </p>
+                <p className="text-xs text-muted-foreground font-semibold">Resume & Cover Letter Package</p>
+              </div>
+              <div className="bg-white rounded-xl p-8 shadow-md border border-border">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center font-bold text-secondary text-lg">
+                    T
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">Tony</h4>
+                    <div className="flex text-secondary text-sm">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i}>★</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-muted-foreground text-sm mb-4">
+                  "Within one week I scored an interview and was hired in two weeks! Recently changed careers and needed to update my resume—Sonia and the team delivered a brand new resume and cover letter that was professionally done. They really know their stuff!"
+                </p>
+                <p className="text-xs text-muted-foreground font-semibold">Resume & Cover Letter Package</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Custom Solution */}
-        <section className="py-12">
+        <section className="py-12 bg-muted/30">
           <div className="container">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-2xl font-bold text-foreground mb-4">

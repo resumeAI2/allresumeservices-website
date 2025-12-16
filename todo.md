@@ -1733,3 +1733,11 @@
 ## Pricing Page Enhancement
 - [x] Add all individual service prices to /pricing page (not just packages)
 - [x] Include: Resume Writing (Entry/Pro/Exec), Cover Letters, LinkedIn, Selection Criteria, Add-ons
+
+## Australian English Spelling
+- [x] Change "LinkedIn Profile Optimization" to "LinkedIn Profile Optimisation" throughout site
+
+## Pricing Page Improvements
+- [x] Add pricing comparison table showing packages vs individual services (shown in package features)
+- [x] Add "Save $X" badges on packages to highlight savings
+- [x] Add 2-3 testimonials to pricing page showing ROI
