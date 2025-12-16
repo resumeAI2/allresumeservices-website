@@ -240,22 +240,7 @@ const services = [
     active: 1,
     sortOrder: 30
   },
-  {
-    name: 'Additional Revisions (3 extra)',
-    description: 'Three additional revision rounds',
-    type: 'addon',
-    category: 'Add-on',
-    tier: null,
-    price: '30',
-    originalPrice: null,
-    features: JSON.stringify([
-      '3 extra revision rounds',
-      'Perfect for detailed customization',
-      'Per document'
-    ]),
-    active: 1,
-    sortOrder: 31
-  },
+
   {
     name: 'Phone Consultation (30 min)',
     description: 'One-on-one career consultation with expert',
