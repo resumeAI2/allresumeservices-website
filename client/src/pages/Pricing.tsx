@@ -198,10 +198,8 @@ export default function PricingPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/packages">
-                    <a className="block w-full text-center bg-secondary hover:bg-secondary/90 text-white font-semibold px-6 py-3 rounded-lg transition-all">
-                      Choose Package
-                    </a>
+                  <Link href="/packages" className="block w-full text-center bg-secondary hover:bg-secondary/90 text-white font-semibold px-6 py-3 rounded-lg transition-all">
+                    Choose Package
                   </Link>
                 </div>
               ))}
@@ -243,10 +241,8 @@ export default function PricingPage() {
               })}
             </div>
             <div className="text-center mt-12">
-              <Link href="/packages">
-                <a className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
-                  View Full Catalog & Add to Cart
-                </a>
+              <Link href="/packages" className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
+                View Full Catalog & Add to Cart
               </Link>
             </div>
           </div>
