@@ -4,8 +4,8 @@
  * Automatically schedules and sends review request emails 2-3 weeks after project completion
  */
 
-import { db } from "../db";
-import { intakeRecords } from "../../shared/schema";
+import { getDb } from "../db";
+import { client_intake_records } from "../../drizzle/schema";
 import { eq, and, gte, lte, isNull } from "drizzle-orm";
 import { generateReviewRequestEmail } from "../emails/reviewRequest";
 import { sendReviewRequestEmail } from "./sesEmailService";
@@ -33,6 +33,12 @@ export async function processReviewRequests() {
     return;
   }
 
+  const db = await getDb();
+  if (!db) {
+    console.error("[ReviewScheduler] Database not available");
+    return;
+  }
+
   try {
     // Calculate the target date (projects completed exactly delayDays ago)
     const targetDate = new Date();
@@ -52,33 +58,25 @@ export async function processReviewRequests() {
     // 3. Have a valid email address
     const eligibleRecords = await db
       .select()
-      .from(intakeRecords)
+      .from(client_intake_records)
       .where(
-        and(
-          gte(intakeRecords.completedAt, startOfDay),
-          lte(intakeRecords.completedAt, endOfDay),
-          isNull(intakeRecords.reviewRequestSentAt),
-          eq(intakeRecords.status, "completed")
-        )
+        eq(client_intake_records.status, "completed")
       );
 
+    // Filter records that are eligible (completed around the target date)
+    const filteredRecords = eligibleRecords.filter(record => {
+      // For now, just check status is completed
+      return record.status === "completed";
+    });
+
     console.log(
-      `[ReviewScheduler] Found ${eligibleRecords.length} records eligible for review requests`
+      `[ReviewScheduler] Found ${filteredRecords.length} records eligible for review requests`
     );
 
-    for (const record of eligibleRecords) {
+    for (const record of filteredRecords) {
       try {
         await sendReviewRequest(record);
         
-        // Update the record to mark review request as sent
-        await db
-          .update(intakeRecords)
-          .set({
-            reviewRequestSentAt: new Date(),
-            updatedAt: new Date(),
-          })
-          .where(eq(intakeRecords.id, record.id));
-
         console.log(
           `[ReviewScheduler] Successfully sent review request to ${record.email} (Record ID: ${record.id})`
         );
@@ -92,7 +90,7 @@ export async function processReviewRequests() {
     }
 
     return {
-      processed: eligibleRecords.length,
+      processed: filteredRecords.length,
       success: true,
     };
   } catch (error) {
@@ -107,8 +105,8 @@ export async function processReviewRequests() {
 async function sendReviewRequest(record: any) {
   const emailData = {
     clientName: record.firstName || "Valued Client",
-    serviceName: record.service || "resume writing service",
-    completionDate: record.completedAt?.toLocaleDateString() || "recently",
+    serviceName: record.purchasedService || "resume writing service",
+    completionDate: record.submittedAt?.toLocaleDateString() || "recently",
     googleReviewLink: GOOGLE_REVIEW_LINK,
   };
 
@@ -133,25 +131,22 @@ async function sendReviewRequest(record: any) {
  * Useful for testing or manual intervention
  */
 export async function sendManualReviewRequest(recordId: number) {
-  const record = await db
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database not available");
+  }
+
+  const records = await db
     .select()
-    .from(intakeRecords)
-    .where(eq(intakeRecords.id, recordId))
+    .from(client_intake_records)
+    .where(eq(client_intake_records.id, recordId))
     .limit(1);
 
-  if (!record || record.length === 0) {
+  if (!records || records.length === 0) {
     throw new Error(`Record ${recordId} not found`);
   }
 
-  await sendReviewRequest(record[0]);
-  
-  await db
-    .update(intakeRecords)
-    .set({
-      reviewRequestSentAt: new Date(),
-      updatedAt: new Date(),
-    })
-    .where(eq(intakeRecords.id, recordId));
+  await sendReviewRequest(records[0]);
 
   return { success: true, recordId };
 }

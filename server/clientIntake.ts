@@ -6,34 +6,48 @@ import { eq, desc } from "drizzle-orm";
 import crypto from "crypto";
 import { sendClientConfirmationEmail, sendAdminNotificationEmail } from "./intakeEmails";
 
-// Validation schema for employment history entry
+// Validation schema for employment history entry (all fields optional now)
 const employmentHistorySchema = z.object({
-  jobTitle: z.string().min(1, "Job title is required"),
-  employer: z.string().min(1, "Employer is required"),
+  jobTitle: z.string().optional().default(""),
+  employer: z.string().optional().default(""),
   location: z.string().optional(),
-  startDate: z.string().min(1, "Start date is required"),
-  endDate: z.string().min(1, "End date is required"),
-  employmentType: z.enum(["full_time", "part_time", "casual", "contract"]),
+  startDate: z.string().optional().default(""),
+  endDate: z.string().optional().default(""),
+  employmentType: z.enum(["full_time", "part_time", "casual", "contract"]).optional(),
   keyResponsibilities: z.string().optional(),
   keyAchievements: z.string().optional(),
 });
 
+// Validation schema for referee entry
+const refereeSchema = z.object({
+  name: z.string().optional(),
+  position: z.string().optional(),
+  company: z.string().optional(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
+  mobile: z.string().optional(),
+});
+
 // Validation schema for client intake form
+// Only identity fields (firstName, lastName, email, phone) are required
 const clientIntakeSchema = z.object({
   // Link to order
   orderId: z.number().optional(),
   paypalTransactionId: z.string().optional(),
   purchasedService: z.string().optional(),
   
-  // Section 1: Personal Details
+  // Section 1: Personal Details (REQUIRED: name, email, phone)
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Valid email is required"),
   phone: z.string().min(1, "Phone number is required"),
-  cityState: z.string().min(1, "City/State is required"),
+  cityState: z.string().optional(), // Now optional
   bestContactTime: z.string().optional(),
   
-  // Section 3: Current Situation
+  // Section 2: LinkedIn Profile (NEW)
+  linkedinUrl: z.string().optional(),
+  
+  // Section 3: Current Situation (all optional)
   employmentStatus: z.enum([
     "employed_full_time",
     "employed_part_time",
@@ -42,13 +56,13 @@ const clientIntakeSchema = z.object({
     "unemployed",
     "student",
     "other"
-  ]),
+  ]).optional(),
   currentJobTitle: z.string().optional(),
   currentEmployer: z.string().optional(),
   currentRoleOverview: z.string().optional(),
   
-  // Section 4: Target Roles
-  targetRoles: z.string().min(1, "Target roles are required"),
+  // Section 4: Target Roles (all optional)
+  targetRoles: z.string().optional(),
   preferredIndustries: z.string().optional(),
   locationPreferences: z.string().optional(),
   workArrangements: z.array(z.string()).optional(),
@@ -56,32 +70,43 @@ const clientIntakeSchema = z.object({
   jobAdLink2: z.string().url().optional().or(z.literal("")),
   jobAdLink3: z.string().url().optional().or(z.literal("")),
   
-  // Section 5: Employment History (array of jobs)
-  employmentHistory: z.array(employmentHistorySchema).min(1, "At least one employment entry is required"),
+  // Section 5: Employment History (optional)
+  employmentHistory: z.array(employmentHistorySchema).optional(),
   
-  // Section 6: Education
+  // Section 6: Education (all optional)
   highestQualification: z.string().optional(),
   institution: z.string().optional(),
   yearCompleted: z.string().optional(),
   additionalQualifications: z.string().optional(),
   
-  // Section 7: Licences
+  // Section 7: Licences (all optional)
   driversLicence: z.string().optional(),
   highRiskLicences: z.string().optional(),
   siteInductions: z.string().optional(),
   securityClearances: z.string().optional(),
   
-  // Section 8: Skills
+  // Section 8: Skills (all optional)
   technicalSkills: z.string().optional(),
   interpersonalStrengths: z.string().optional(),
+  languageSkills: z.string().optional(), // NEW
   
-  // Section 9: Additional Info
+  // Section 8.1: Professional Development (NEW - all optional)
+  shortCoursesTraining: z.string().optional(),
+  professionalMemberships: z.string().optional(),
+  volunteerWork: z.string().optional(),
+  awardsRecognition: z.string().optional(),
+  publications: z.string().optional(),
+  
+  // Section 9: Additional Info (all optional)
   employmentGaps: z.string().optional(),
   keyAchievements: z.string().optional(),
   preferredStyle: z.string().optional(),
   hearAboutUs: z.string().optional(),
   
-  // File uploads
+  // Section 10: Referees (NEW - optional)
+  referees: z.array(refereeSchema).optional(),
+  
+  // File uploads (all optional)
   resumeFileUrl: z.string().optional(),
   supportingDocsUrls: z.array(z.string()).optional(),
 });
@@ -93,12 +118,13 @@ export const clientIntakeRouter = router({
   submitIntake: publicProcedure
     .input(clientIntakeSchema)
     .mutation(async ({ input }) => {
-      // Extract employment history from input
-      const { employmentHistory: jobs, workArrangements, supportingDocsUrls, ...intakeData } = input;
+      // Extract employment history and referees from input
+      const { employmentHistory: jobs, workArrangements, supportingDocsUrls, referees, ...intakeData } = input;
       
       // Convert arrays to JSON strings for storage
       const workArrangementsJson = workArrangements ? JSON.stringify(workArrangements) : null;
       const supportingDocsJson = supportingDocsUrls ? JSON.stringify(supportingDocsUrls) : null;
+      const refereesJson = referees ? JSON.stringify(referees) : null;
       
       // Insert main intake record
       const db = await getDb();
@@ -108,6 +134,7 @@ export const clientIntakeRouter = router({
         ...intakeData,
         workArrangements: workArrangementsJson,
         supportingDocsUrls: supportingDocsJson,
+        referees: refereesJson,
       });
       
       const intakeRecordId = intakeRecord.insertId;
@@ -116,7 +143,14 @@ export const clientIntakeRouter = router({
       if (jobs && jobs.length > 0) {
         const employmentEntries = jobs.map((job, index) => ({
           intakeRecordId: intakeRecordId,
-          ...job,
+          jobTitle: job.jobTitle || "",
+          employer: job.employer || "",
+          location: job.location,
+          startDate: job.startDate || "",
+          endDate: job.endDate || "",
+          employmentType: job.employmentType || "full_time",
+          keyResponsibilities: job.keyResponsibilities,
+          keyAchievements: job.keyAchievements,
           sortOrder: index,
         }));
         

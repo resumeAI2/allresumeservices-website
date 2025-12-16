@@ -203,7 +203,7 @@ export default function AdminIntakeRecordDetail() {
           <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <dt className="text-sm font-medium text-gray-600">Employment Status</dt>
-              <dd className="mt-1 capitalize">{intake.employmentStatus.replace(/_/g, ' ')}</dd>
+              <dd className="mt-1 capitalize">{intake.employmentStatus?.replace(/_/g, ' ') || "N/A"}</dd>
             </div>
             <div>
               <dt className="text-sm font-medium text-gray-600">Current Job Title</dt>
