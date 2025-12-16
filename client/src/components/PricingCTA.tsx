@@ -73,15 +73,15 @@ export default function PricingCTA() {
 
           {/* CTA Button */}
           <Link href="/pricing">
-            <a className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-xl">
+            <button className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer">
               View All Packages & Pricing
               <ArrowRight className="h-5 w-5" />
-            </a>
+            </button>
           </Link>
 
           {/* Custom Quote */}
           <p className="mt-6 text-sm text-muted-foreground">
-            Need a custom solution? <Link href="/contact"><a className="text-primary hover:underline font-semibold">Contact us</a></Link> for a personalized quote
+            Need a custom solution? <Link href="/contact" className="text-primary hover:underline font-semibold">Contact us</Link> for a personalized quote
           </p>
         </div>
       </div>
