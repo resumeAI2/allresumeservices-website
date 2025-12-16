@@ -1579,3 +1579,5 @@
 - [x] Configure automated database backups
 - [x] Set up automated daily database backup cron job
 - [x] Test PayPal payment flow with real transaction (sandbox verified, ready for live)
+- [ ] Test complete PayPal sandbox payment flow end-to-end
+- [x] Remove broken testimonial carousel from all pages

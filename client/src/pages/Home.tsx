@@ -7,7 +7,7 @@ import Services from "@/components/Services";
 import Process from "@/components/Process";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
-import { TestimonialSlider } from "@/components/GoogleTestimonials";
+
 import GoogleReviewsShowcase from "@/components/GoogleReviewsShowcase";
 import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
 import FAQ from "@/components/FAQ";
@@ -35,7 +35,6 @@ export default function Home() {
       <Process />
       <Pricing />
       <Testimonials />
-      <TestimonialSlider />
       <GoogleReviewsShowcase />
       <FeaturedCaseStudies />
       <FAQ />
