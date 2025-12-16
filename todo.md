@@ -1783,3 +1783,11 @@
 ## Update Footer Copyright Year
 - [x] Update footer copyright from 2025 to 2026
 - [x] Verify copyright displays correctly on all pages
+
+## Update Service Page Hero Section Colors
+- [x] Update Resume Writing page hero section to use gold/secondary color
+- [x] Update Cover Letters page hero section to use gold/secondary color
+- [x] Update LinkedIn Optimization page hero section to use gold/secondary color
+- [x] Update Selection Criteria page hero section to use gold/secondary color
+- [x] Update Career Consultation page hero section to use gold/secondary color
+- [x] Test all service pages to verify color changes
