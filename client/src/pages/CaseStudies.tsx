@@ -346,24 +346,24 @@ export default function CaseStudies() {
         </section>
 
         {/* Testimonial Banner */}
-        <section className="py-16 relative overflow-hidden bg-[#1e3a5f]">
+        <section className="py-16 relative overflow-hidden" style={{ backgroundColor: '#1e3a5f' }}>
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gold rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl" style={{ backgroundColor: '#d4a853' }} />
+            <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-3xl" style={{ backgroundColor: '#3b82f6' }} />
           </div>
           <div className="container relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <Quote className="w-12 h-12 mx-auto mb-6 text-[#d4a853]" />
-              <blockquote className="text-2xl md:text-3xl font-light italic mb-8 leading-relaxed text-white">
+              <Quote className="w-12 h-12 mx-auto mb-6" style={{ color: '#d4a853' }} />
+              <blockquote className="text-2xl md:text-3xl font-light italic mb-8 leading-relaxed" style={{ color: '#ffffff' }}>
                 "The team at All Résumé Services transformed my career. Within two weeks of using my new resume, I landed three interviews and received two job offers!"
               </blockquote>
               <div className="flex items-center justify-center gap-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[rgba(212,168,83,0.2)]">
-                  <span className="font-bold text-lg text-[#d4a853]">JM</span>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(212, 168, 83, 0.2)' }}>
+                  <span className="font-bold text-lg" style={{ color: '#d4a853' }}>JM</span>
                 </div>
                 <div className="text-left">
-                  <div className="font-semibold text-white">James Mitchell</div>
-                  <div className="text-sm text-white/60">Senior Project Manager</div>
+                  <div className="font-semibold" style={{ color: '#ffffff' }}>James Mitchell</div>
+                  <div className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Senior Project Manager</div>
                 </div>
               </div>
             </div>
