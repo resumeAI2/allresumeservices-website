@@ -1675,3 +1675,6 @@
 - [x] Verify Case Studies testimonial section fix displays correctly
 - [x] Add featured images to case studies
 - [x] Implement Save & Continue Later button for intake form
+
+## Additional Case Study Images
+- [x] Add images to all remaining case studies without images
