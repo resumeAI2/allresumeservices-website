@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
-import { Loader2, Plus, Trash2, Upload, CheckCircle2, Save, ChevronLeft, ChevronRight } from "lucide-react";
+import { Loader2, Plus, Trash2, Upload, CheckCircle2, Save, ChevronLeft, ChevronRight, Mail } from "lucide-react";
 import { useAutosave } from "@/hooks/useAutosave";
 import { FileUpload } from "@/components/FileUpload";
 
@@ -125,6 +125,8 @@ export default function ThankYouOnboarding() {
   const [purchasedService, setPurchasedService] = useState<string>("");
   const [resumeToken, setResumeToken] = useState<string | undefined>();
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSendingResumeLater, setIsSendingResumeLater] = useState(false);
+  const [resumeLaterSent, setResumeLaterSent] = useState(false);
   
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -173,6 +175,7 @@ export default function ThankYouOnboarding() {
 
   const submitIntakeMutation = trpc.clientIntake.submitIntake.useMutation();
   const completeDraftMutation = trpc.clientIntake.completeDraft.useMutation();
+  const requestResumeLaterMutation = trpc.clientIntake.requestResumeLater.useMutation();
   const { data: draftData } = trpc.clientIntake.getDraftByToken.useQuery(
     { token: resumeToken || "" },
     { enabled: !!resumeToken }
@@ -1193,6 +1196,67 @@ export default function ThankYouOnboarding() {
 
               {/* Navigation Buttons */}
               <div className="border-t pt-8">
+                {/* Save & Continue Later */}
+                {formData.email && !resumeLaterSent && (
+                  <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                      <div className="text-center sm:text-left">
+                        <p className="text-sm font-medium text-blue-800">Need to finish later?</p>
+                        <p className="text-xs text-blue-600">We'll email you a link to continue where you left off.</p>
+                      </div>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={async () => {
+                          if (!formData.firstName || !formData.lastName || !formData.email) {
+                            toast.error("Please fill in your name and email first");
+                            return;
+                          }
+                          setIsSendingResumeLater(true);
+                          try {
+                            await requestResumeLaterMutation.mutateAsync({
+                              email: formData.email,
+                              name: `${formData.firstName} ${formData.lastName}`,
+                              paypalTransactionId,
+                              formData,
+                            });
+                            setResumeLaterSent(true);
+                            toast.success("Email sent! Check your inbox for the link to continue later.");
+                          } catch (error) {
+                            toast.error("Failed to send email. Please try again.");
+                          } finally {
+                            setIsSendingResumeLater(false);
+                          }
+                        }}
+                        disabled={isSendingResumeLater}
+                        className="border-blue-300 text-blue-700 hover:bg-blue-100"
+                      >
+                        {isSendingResumeLater ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <Mail className="w-4 h-4 mr-2" />
+                            Save & Continue Later
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                )}
+                
+                {resumeLaterSent && (
+                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <div className="flex items-center gap-2 text-green-700">
+                      <CheckCircle2 className="w-5 h-5" />
+                      <span className="text-sm font-medium">Email sent! Check your inbox for the link to continue later.</span>
+                    </div>
+                  </div>
+                )}
+                
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                   {/* Previous Button */}
                   <Button
