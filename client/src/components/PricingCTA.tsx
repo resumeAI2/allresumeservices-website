@@ -55,7 +55,7 @@ export default function PricingCTA() {
           <div className="grid md:grid-cols-2 gap-4 mb-10 max-w-2xl mx-auto">
             <div className="flex items-center gap-3 text-left">
               <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0" />
-              <span className="text-sm text-foreground">ATS-Optimized Formatting</span>
+              <span className="text-sm text-foreground">ATS-Optimised Formatting</span>
             </div>
             <div className="flex items-center gap-3 text-left">
               <CheckCircle className="h-5 w-5 text-secondary flex-shrink-0" />

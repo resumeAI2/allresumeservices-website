@@ -8,7 +8,7 @@ export default function PricingPage() {
   const benefits = [
     {
       icon: CheckCircle,
-      title: "ATS-Optimized",
+      title: "ATS-Optimised",
       description: "Get past applicant tracking systems and into human hands"
     },
     {
@@ -117,7 +117,7 @@ export default function PricingPage() {
     <>
       <Helmet>
         <title>Pricing - Professional Resume Writing Services | All Resume Services</title>
-        <meta name="description" content="Transparent pricing for professional resume writing services. Packages from $125 AUD. Individual services from $49. ATS-optimized resumes, cover letters, and LinkedIn profiles." />
+        <meta name="description" content="Transparent pricing for professional resume writing services. Packages from $125 AUD. Individual services from $49. ATS-optimised resumes, cover letters, and LinkedIn profiles." />
         <meta name="keywords" content="resume writing prices, resume service cost, professional resume pricing, cover letter pricing, LinkedIn profile cost" />
       </Helmet>
       <Header />

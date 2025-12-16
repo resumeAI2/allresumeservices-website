@@ -18,7 +18,7 @@ export function getImageUrl(
 /**
  * Get optimised image URL from uploaded image object
  */
-export function getOptimizedImageUrl(
+export function getOptimisedImageUrl(
   image: {
     url?: string | null;
     thumbnailUrl?: string | null;

@@ -399,7 +399,7 @@ export default function CaseStudy() {
               
               {/* Benefits */}
               <div className="flex flex-wrap justify-center gap-6 mb-10">
-                {["Expert Writers", "Fast Turnaround", "100% Satisfaction", "ATS-Optimized"].map((benefit, i) => (
+                {["Expert Writers", "Fast Turnaround", "100% Satisfaction", "ATS-Optimised"].map((benefit, i) => (
                   <div key={i} className="flex items-center gap-2 text-muted-foreground">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     <span>{benefit}</span>
