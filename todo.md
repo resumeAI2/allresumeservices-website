@@ -1791,3 +1791,37 @@
 - [x] Update Selection Criteria page hero section to use gold/secondary color
 - [x] Update Career Consultation page hero section to use gold/secondary color
 - [x] Test all service pages to verify color changes
+
+## Update Service Page Hero Heading Text to Gold
+- [x] Update Resume Writing hero heading to gold/secondary color
+- [x] Update Cover Letters hero heading to gold/secondary color
+- [x] Update LinkedIn Optimization hero heading to gold/secondary color
+- [x] Update Selection Criteria hero heading to gold/secondary color
+- [x] Update Career Consultation hero heading to gold/secondary color
+- [x] Test all service pages to verify gold heading colors
+
+## Add Breadcrumb Navigation to Service Pages
+- [x] Create or update Breadcrumb component for service pages
+- [x] Add breadcrumbs to Resume Writing page
+- [x] Add breadcrumbs to Cover Letters page
+- [x] Add breadcrumbs to LinkedIn Optimization page
+- [x] Add breadcrumbs to Selection Criteria page
+- [x] Add breadcrumbs to Career Consultation page
+- [x] Test breadcrumb navigation
+
+## Create Service Comparison Table
+- [x] Design service comparison table component
+- [x] Add comparison data for all service tiers
+- [x] Implement interactive features (highlighting, filtering)
+- [x] Add comparison table to relevant pages
+- [x] Test comparison table functionality
+
+## Add Frequently Bought Together Section
+- [x] Create FrequentlyBoughtTogether component
+- [x] Define related services for each service page
+- [x] Add section to Resume Writing page
+- [x] Add section to Cover Letters page
+- [x] Add section to LinkedIn Optimization page
+- [x] Add section to Selection Criteria page
+- [x] Add section to Career Consultation page
+- [x] Test cross-selling functionality
