@@ -1581,3 +1581,6 @@
 - [x] Test PayPal payment flow with real transaction (sandbox verified, ready for live)
 - [ ] Test complete PayPal sandbox payment flow end-to-end
 - [x] Remove broken testimonial carousel from all pages
+- [x] Remove additional revisions fee from Services page
+- [x] Remove additional revisions fee from Services page
+- [x] Fix PayPal cart to exclude revisions fee
