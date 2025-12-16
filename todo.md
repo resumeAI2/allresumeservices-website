@@ -1657,3 +1657,7 @@
 - [x] Add testimonial banner section
 - [x] Improve related case studies grid
 - [x] Test the updated design
+
+## Case Studies Bug Fixes
+- [x] Fix API error returning HTML instead of JSON on case studies page (was stale DB connection)
+- [x] Verified all Banking Analyst case studies have content (274+ chars each)
