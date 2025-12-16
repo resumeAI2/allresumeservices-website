@@ -110,10 +110,8 @@ export default function Services() {
               <p className="text-xl text-white mb-8">
                 Expert resume writing, cover letters, LinkedIn optimization, and career guidance to help you land your dream job.
               </p>
-              <Link href="/pricing">
-                <a className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
-                  View Pricing & Packages
-                </a>
+              <Link href="/pricing" className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
+                View Pricing & Packages
               </Link>
             </div>
           </div>
@@ -176,10 +174,8 @@ export default function Services() {
                         </li>
                       ))}
                     </ul>
-                    <Link href={service.link}>
-                      <a className="text-primary hover:text-primary/80 font-semibold text-sm">
-                        Learn More →
-                      </a>
+                    <Link href={service.link} className="text-primary hover:text-primary/80 font-semibold text-sm">
+                      Learn More →
                     </Link>
                   </div>
                 );
@@ -199,15 +195,11 @@ export default function Services() {
                 Choose a package that fits your needs or get a free resume review to see how we can help.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/pricing">
-                  <a className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
-                    View Pricing & Packages
-                  </a>
+                <Link href="/pricing" className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
+                  View Pricing & Packages
                 </Link>
-                <Link href="/contact">
-                  <a className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-foreground font-semibold px-8 py-3 rounded-lg border-2 border-border transition-all">
-                    Get Free Resume Review
-                  </a>
+                <Link href="/contact" className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-foreground font-semibold px-8 py-3 rounded-lg border-2 border-border transition-all">
+                  Get Free Resume Review
                 </Link>
               </div>
             </div>
