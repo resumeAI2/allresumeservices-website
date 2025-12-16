@@ -5,7 +5,7 @@ import { CheckCircle2, Mail, Target, Sparkles, TrendingUp } from "lucide-react";
 
 export default function CoverLetters() {
   const benefits = [
-    "Customized to the specific job and company",
+    "Customised to the specific job and company",
     "Compelling opening that captures attention",
     "Clear demonstration of your value proposition",
     "Professional tone tailored to your industry",
@@ -84,7 +84,7 @@ export default function CoverLetters() {
                 While your resume lists your qualifications, your cover letter tells your story. It's your opportunity to demonstrate your enthusiasm for the role, explain why you're the perfect fit, and show the hiring manager the person behind the credentials. A well-crafted cover letter can be the difference between getting an interview and being overlooked.
               </p>
               <p className="text-muted-foreground leading-relaxed mt-4">
-                Many job seekers struggle with cover letters—they either write generic templates that fail to engage, or they ramble without making a clear point. Our professional writers know how to strike the perfect balance: personalized, concise, and compelling content that makes hiring managers want to learn more about you.
+                Many job seekers struggle with cover letters—they either write generic templates that fail to engage, or they ramble without making a clear point. Our professional writers know how to strike the perfect balance: personalised, concise, and compelling content that makes hiring managers want to learn more about you.
               </p>
             </div>
 

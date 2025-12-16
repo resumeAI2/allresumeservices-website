@@ -142,7 +142,7 @@ export default function AllIndustries() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Featured Industry Expertise</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              We've developed specialized knowledge in these high-demand sectors, with dedicated pages showcasing our industry-specific approach.
+              We've developed specialised knowledge in these high-demand sectors, with dedicated pages showcasing our industry-specific approach.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">

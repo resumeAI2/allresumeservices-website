@@ -15,7 +15,7 @@ const faqData: FAQItem[] = [
   {
     category: "Services",
     question: "What resume writing services do you offer?",
-    answer: "We offer comprehensive resume writing services including professional resume writing, cover letter writing, LinkedIn profile optimisation, selection criteria responses, and career consultation. Each service is tailored to your industry, experience level, and career goals to maximize your chances of landing interviews."
+    answer: "We offer comprehensive resume writing services including professional resume writing, cover letter writing, LinkedIn profile optimisation, selection criteria responses, and career consultation. Each service is tailored to your industry, experience level, and career goals to maximise your chances of landing interviews."
   },
   {
     category: "Services",
@@ -25,7 +25,7 @@ const faqData: FAQItem[] = [
   {
     category: "Services",
     question: "What makes your resume writing service different?",
-    answer: "Our service stands out with a 96% interview success rate, 18+ years of industry experience, and personalized one-on-one consultations. We don't use templates—every resume is custom-written to highlight your unique strengths and achievements. We work with you until you're 100% satisfied with your documents."
+    answer: "Our service stands out with a 96% interview success rate, 18+ years of industry experience, and personalised one-on-one consultations. We don't use templates—every resume is custom-written to highlight your unique strengths and achievements. We work with you until you're 100% satisfied with your documents."
   },
   {
     category: "Pricing",
@@ -80,7 +80,7 @@ const faqData: FAQItem[] = [
   {
     category: "Results",
     question: "Can you help me if I'm changing careers?",
-    answer: "Absolutely! Career change resumes are one of our specialties. We know how to highlight transferable skills, reframe your experience for a new industry, and position you as a strong candidate despite lacking direct experience. We'll emphasize relevant achievements and skills that align with your target role."
+    answer: "Absolutely! Career change resumes are one of our specialties. We know how to highlight transferable skills, reframe your experience for a new industry, and position you as a strong candidate despite lacking direct experience. We'll emphasise relevant achievements and skills that align with your target role."
   },
   {
     category: "General",
