@@ -1712,3 +1712,10 @@
 
 ## Case Studies Hero Update
 - [x] Update Case Studies hero section to match Google Reviews/Client Reviews styling
+
+## Testimonials Page Performance
+- [ ] Implement Load More button for testimonials page
+- [ ] Load testimonials in batches (e.g., 12 at a time) instead of all at once
+
+## Featured Testimonials
+- [x] Mark 3-5 best testimonials as featured for homepage display
