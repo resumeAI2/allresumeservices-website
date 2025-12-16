@@ -34,7 +34,7 @@ export default function Services() {
     },
     {
       icon: Linkedin,
-      title: "LinkedIn Profile Optimization",
+      title: "LinkedIn Profile Optimisation",
       description: "Transform your LinkedIn profile into a powerful personal brand. Optimized for searchability and designed to attract recruiters and opportunities.",
       features: [
         "Keyword-optimized headline",

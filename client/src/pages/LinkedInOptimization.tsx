@@ -46,7 +46,7 @@ export default function LinkedInOptimization() {
         <div className="container">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              LinkedIn Profile Optimization
+              LinkedIn Profile Optimisation
             </h1>
             <p className="text-xl opacity-90 mb-8">
               Transform your LinkedIn profile into a powerful personal brand that attracts recruiters, opportunities, and professional connections.
@@ -77,7 +77,7 @@ export default function LinkedInOptimization() {
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6 text-foreground">
-              Why LinkedIn Optimization Matters
+              Why LinkedIn Optimisation Matters
             </h2>
             <div className="prose prose-lg max-w-none mb-12">
               <p className="text-muted-foreground leading-relaxed">
@@ -102,7 +102,7 @@ export default function LinkedInOptimization() {
             {/* What's Included */}
             <div className="bg-accent/50 rounded-xl p-8 mb-12">
               <h3 className="text-2xl font-bold mb-6 text-foreground">
-                What's Included in LinkedIn Optimization
+                What's Included in LinkedIn Optimisation
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 {benefits.map((benefit, index) => (
