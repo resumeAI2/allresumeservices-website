@@ -1774,3 +1774,8 @@
 - [x] Update all instances of "17 years" to "18 years" across the website
 - [x] Update homepage "Extensive Expertise" section
 - [x] Update any other pages mentioning 17 years
+
+## Fix Nested Anchor Tag Error on Pricing Page
+- [x] Identify nested anchor tags on /pricing page
+- [x] Fix nested anchor tag issues by removing nested <a> tags inside Link components
+- [x] Test pricing page for console errors
