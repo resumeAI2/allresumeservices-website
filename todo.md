@@ -1681,3 +1681,6 @@
 - [x] Replace duplicate case study images with unique images
 - [x] Fix remaining duplicate case study image (finance-executive.jpg used twice)
 - [x] Test enquiries@allresumeservices.com email functionality (SMTP test passed)
+
+## Testimonial Section Fix (Round 2)
+- [x] Fix invisible testimonial text on Case Studies page - switched from inline styles to Tailwind arbitrary values
