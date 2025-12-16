@@ -1661,3 +1661,8 @@
 ## Case Studies Bug Fixes
 - [x] Fix API error returning HTML instead of JSON on case studies page (was stale DB connection)
 - [x] Verified all Banking Analyst case studies have content (274+ chars each)
+
+## Featured Case Study Expansion
+- [x] Add Read More expansion to featured case study on listing page
+- [x] Shows Challenge, Solution, Result, and Testimonial when expanded
+- [x] Collapsible with Show Less button
