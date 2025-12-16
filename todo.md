@@ -1602,3 +1602,20 @@
 - [x] Update PayPal credentials to sandbox mode
 - [x] Test PayPal checkout flow with sandbox credentials
 - [x] Fix PayPal redirect URL issue
+
+## Payment Flow Testing
+- [x] Test complete payment flow with sandbox credentials
+- [x] Verify redirect to thank-you page works correctly
+- [x] Verify intake form is accessible after payment
+
+## Admin Email Notifications
+- [x] Configure admin email address for intake notifications
+- [x] Update intakeEmails.ts to use actual SMTP transporter
+- [x] Admin receives email when clients submit intake form
+
+## Intake Form Progress Indicator
+- [x] Add step-by-step wizard/progress bar to intake form
+- [x] Break form into 10 logical sections with navigation
+- [x] Add Previous/Next navigation buttons
+- [x] Add clickable step pills for direct navigation
+- [x] Test progress indicator functionality
