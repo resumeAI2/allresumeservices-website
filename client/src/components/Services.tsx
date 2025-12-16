@@ -12,7 +12,7 @@ export default function Services() {
     {
       icon: Award,
       title: "Extensive Expertise",
-      description: "Over 17 years' experience writing resumes, cover letters, LinkedIn profiles and selection criteria responses for clients at all career stages across diverse industries."
+      description: "Over 18 years' experience writing resumes, cover letters, LinkedIn profiles and selection criteria responses for clients at all career stages across diverse industries."
     },
     {
       icon: MapPin,

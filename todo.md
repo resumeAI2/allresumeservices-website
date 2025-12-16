@@ -1769,3 +1769,8 @@
 - [x] Convert hero background images to WebP format (hero-bg, success-image)
 - [x] Compress hero images for optimal file size (29-35% reduction)
 - [x] Implement lazy loading for hero images
+
+## Update Years of Experience
+- [x] Update all instances of "17 years" to "18 years" across the website
+- [x] Update homepage "Extensive Expertise" section
+- [x] Update any other pages mentioning 17 years
