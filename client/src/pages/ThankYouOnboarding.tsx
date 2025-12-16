@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
-import { Loader2, Plus, Trash2, Upload, CheckCircle2, Save } from "lucide-react";
+import { Loader2, Plus, Trash2, Upload, CheckCircle2, Save, ChevronLeft, ChevronRight } from "lucide-react";
 import { useAutosave } from "@/hooks/useAutosave";
 import { FileUpload } from "@/components/FileUpload";
 
@@ -102,6 +102,20 @@ type FormData = {
   supportingDocs: Array<{ url: string; filename: string }>;
 };
 
+// Define form steps
+const FORM_STEPS = [
+  { id: 1, title: "Personal Details", shortTitle: "Personal" },
+  { id: 2, title: "Current Employment", shortTitle: "Employment" },
+  { id: 3, title: "Target Roles", shortTitle: "Target" },
+  { id: 4, title: "Employment History", shortTitle: "History" },
+  { id: 5, title: "Education & Training", shortTitle: "Education" },
+  { id: 6, title: "Licences & Clearances", shortTitle: "Licences" },
+  { id: 7, title: "Skills & Development", shortTitle: "Skills" },
+  { id: 8, title: "Additional Info", shortTitle: "Additional" },
+  { id: 9, title: "Referees", shortTitle: "Referees" },
+  { id: 10, title: "File Uploads", shortTitle: "Files" },
+];
+
 export default function ThankYouOnboarding() {
   const [, navigate] = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -110,6 +124,7 @@ export default function ThankYouOnboarding() {
   const [orderId, setOrderId] = useState<number | undefined>();
   const [purchasedService, setPurchasedService] = useState<string>("");
   const [resumeToken, setResumeToken] = useState<string | undefined>();
+  const [currentStep, setCurrentStep] = useState(1);
   
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -397,10 +412,48 @@ export default function ThankYouOnboarding() {
               </p>
             </div>
 
+            {/* Progress Indicator */}
+            <div className="mb-8">
+              {/* Progress Bar */}
+              <div className="relative mb-4">
+                <div className="h-2 bg-gray-200 rounded-full">
+                  <div 
+                    className="h-2 bg-navy rounded-full transition-all duration-300"
+                    style={{ width: `${(currentStep / FORM_STEPS.length) * 100}%` }}
+                  />
+                </div>
+                <p className="text-sm text-gray-600 mt-2 text-center">
+                  Step {currentStep} of {FORM_STEPS.length}: <span className="font-medium">{FORM_STEPS[currentStep - 1]?.title}</span>
+                </p>
+              </div>
+              
+              {/* Step Navigation Pills */}
+              <div className="flex flex-wrap justify-center gap-2">
+                {FORM_STEPS.map((step) => (
+                  <button
+                    key={step.id}
+                    type="button"
+                    onClick={() => setCurrentStep(step.id)}
+                    className={`px-3 py-1.5 text-xs rounded-full transition-all ${
+                      step.id === currentStep
+                        ? "bg-navy text-white"
+                        : step.id < currentStep
+                        ? "bg-green-100 text-green-700 hover:bg-green-200"
+                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    }`}
+                  >
+                    {step.id < currentStep && <CheckCircle2 className="inline w-3 h-3 mr-1" />}
+                    <span className="hidden sm:inline">{step.title}</span>
+                    <span className="sm:hidden">{step.shortTitle}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-10">
               {/* Section 1: Personal Details */}
-              <section className="border-t pt-8">
+              <section className={`border-t pt-8 ${currentStep !== 1 ? 'hidden' : ''}`}>
                 <h2 className="text-2xl font-bold text-navy mb-6">Personal Details</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -472,8 +525,8 @@ export default function ThankYouOnboarding() {
                 </div>
               </section>
 
-              {/* Section 3: Current Employment */}
-              <section className="border-t pt-8">
+              {/* Section 2: Current Employment */}
+              <section className={`border-t pt-8 ${currentStep !== 2 ? 'hidden' : ''}`}>
                 <h2 className="text-2xl font-bold text-navy mb-6">Current Employment</h2>
                 <div className="space-y-6">
                   <div>
@@ -521,8 +574,8 @@ export default function ThankYouOnboarding() {
                 </div>
               </section>
 
-              {/* Section 4: Target Roles */}
-              <section className="border-t pt-8">
+              {/* Section 3: Target Roles */}
+              <section className={`border-t pt-8 ${currentStep !== 3 ? 'hidden' : ''}`}>
                 <h2 className="text-2xl font-bold text-navy mb-6">Target Roles and Career Direction</h2>
                 <div className="space-y-6">
                   <div>
@@ -599,8 +652,8 @@ export default function ThankYouOnboarding() {
                 </div>
               </section>
 
-              {/* Section 5: Employment History */}
-              <section className="border-t pt-8">
+              {/* Section 4: Employment History */}
+              <section className={`border-t pt-8 ${currentStep !== 4 ? 'hidden' : ''}`}>
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-bold text-navy">Employment History</h2>
                   <Button type="button" onClick={addEmploymentEntry} variant="outline" size="sm">
@@ -706,8 +759,8 @@ export default function ThankYouOnboarding() {
                 ))}
               </section>
 
-              {/* Section 6: Education */}
-              <section className="border-t pt-8">
+              {/* Section 5: Education */}
+              <section className={`border-t pt-8 ${currentStep !== 5 ? 'hidden' : ''}`}>
                 <h2 className="text-2xl font-bold text-navy mb-6">Education and Training</h2>
                 <div className="space-y-6">
                   <div>
@@ -747,8 +800,8 @@ export default function ThankYouOnboarding() {
                 </div>
               </section>
 
-              {/* Section 7: Licences */}
-              <section className="border-t pt-8">
+              {/* Section 6: Licences */}
+              <section className={`border-t pt-8 ${currentStep !== 6 ? 'hidden' : ''}`}>
                 <h2 className="text-2xl font-bold text-navy mb-6">Licences, Tickets, and Clearances</h2>
                 <div className="space-y-6">
                   <div>
@@ -793,8 +846,8 @@ export default function ThankYouOnboarding() {
                 </div>
               </section>
 
-              {/* Section 8: Skills */}
-              <section className="border-t pt-8">
+              {/* Section 7: Skills */}
+              <section className={`border-t pt-8 ${currentStep !== 7 ? 'hidden' : ''}`}>
                 <h2 className="text-2xl font-bold text-navy mb-6">Skills and Strengths</h2>
                 <p className="text-sm text-gray-600 mb-4">
                   List the skills and strengths you would like highlighted in your résumé and cover letter.
@@ -831,8 +884,8 @@ export default function ThankYouOnboarding() {
                 </div>
               </section>
 
-              {/* Section 8.1: Professional Development */}
-              <section className="border-t pt-8">
+              {/* Section 7.1: Professional Development - also step 7 */}
+              <section className={`border-t pt-8 ${currentStep !== 7 ? 'hidden' : ''}`}>
                 <h2 className="text-2xl font-bold text-navy mb-6">Professional Development</h2>
                 <p className="text-sm text-gray-600 mb-4">
                   Include any additional training, memberships, volunteer work, awards, or publications.
@@ -891,8 +944,8 @@ export default function ThankYouOnboarding() {
                 </div>
               </section>
 
-              {/* Section 9: Additional Information */}
-              <section className="border-t pt-8">
+              {/* Section 8: Additional Information */}
+              <section className={`border-t pt-8 ${currentStep !== 8 ? 'hidden' : ''}`}>
                 <h2 className="text-2xl font-bold text-navy mb-6">Additional Information</h2>
                 <div className="space-y-6">
                   <div>
@@ -934,8 +987,8 @@ export default function ThankYouOnboarding() {
                 </div>
               </section>
 
-              {/* Section 10: Referees */}
-              <section className="border-t pt-8">
+              {/* Section 9: Referees */}
+              <section className={`border-t pt-8 ${currentStep !== 9 ? 'hidden' : ''}`}>
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-bold text-navy">Referees</h2>
                   <Button
@@ -1060,8 +1113,8 @@ export default function ThankYouOnboarding() {
                 ))}
               </section>
 
-              {/* Section 11: File Uploads */}
-              <section className="border-t pt-8">
+              {/* Section 10: File Uploads */}
+              <section className={`border-t pt-8 ${currentStep !== 10 ? 'hidden' : ''}`}>
                 <h2 className="text-2xl font-bold text-navy mb-6">File Uploads (Optional)</h2>
                 <p className="text-sm text-gray-600 mb-6">
                   Please upload your current résumé and any supporting documents that may assist in preparing your new documents.
@@ -1138,23 +1191,71 @@ export default function ThankYouOnboarding() {
                 </div>
               </section>
 
-              {/* Submit Button */}
+              {/* Navigation Buttons */}
               <div className="border-t pt-8">
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full md:w-auto px-12"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Submitting...
-                    </>
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                  {/* Previous Button */}
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="lg"
+                    onClick={() => {
+                      if (currentStep > 1) {
+                        setCurrentStep(currentStep - 1);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                    disabled={currentStep === 1}
+                    className="w-full sm:w-auto"
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-2" />
+                    Previous
+                  </Button>
+                  
+                  {/* Step indicator on mobile */}
+                  <span className="text-sm text-gray-500 sm:hidden">
+                    Step {currentStep} of {FORM_STEPS.length}
+                  </span>
+                  
+                  {/* Next / Submit Button */}
+                  {currentStep < FORM_STEPS.length ? (
+                    <Button
+                      type="button"
+                      size="lg"
+                      onClick={() => {
+                        // Validate required fields on step 1
+                        if (currentStep === 1) {
+                          if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+                            toast.error("Please fill in all required fields (First Name, Last Name, Email, Phone)");
+                            return;
+                          }
+                        }
+                        setCurrentStep(currentStep + 1);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="w-full sm:w-auto"
+                    >
+                      Next
+                      <ChevronRight className="w-4 h-4 ml-2" />
+                    </Button>
                   ) : (
-                    "Submit Information"
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full sm:w-auto px-12"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        "Submit Information"
+                      )}
+                    </Button>
                   )}
-                </Button>
+                </div>
               </div>
             </form>
           </div>

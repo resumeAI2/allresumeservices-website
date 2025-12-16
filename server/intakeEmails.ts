@@ -1,7 +1,32 @@
-import { ENV } from "./_core/env";
+import nodemailer from 'nodemailer';
 
-const SITE_URL = "https://allresumeservices.com";
-const ADMIN_EMAIL = "admin@allresumeservices.com"; // TODO: Replace with actual admin email
+const SITE_URL = "https://allresumeservices.com.au";
+const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "admin@allresumeservices.com.au";
+
+/**
+ * Create email transporter using ProtonMail SMTP
+ */
+function createTransporter() {
+  const emailUser = process.env.EMAIL_USER || 'info@allresumeservices.com';
+  const emailPass = process.env.SMTP_PASSWORD;
+  const emailHost = process.env.EMAIL_HOST || 'smtp.protonmail.ch';
+  const emailPort = parseInt(process.env.EMAIL_PORT || '587');
+
+  if (!emailUser || !emailPass) {
+    console.warn('[IntakeEmails] Email credentials not configured. Emails will not be sent.');
+    return null;
+  }
+
+  return nodemailer.createTransport({
+    host: emailHost,
+    port: emailPort,
+    secure: emailPort === 465,
+    auth: {
+      user: emailUser,
+      pass: emailPass,
+    },
+  });
+}
 
 /**
  * Send confirmation email to client after intake form submission
@@ -116,12 +141,28 @@ This is an automated message. Please do not reply to this email.
 © ${new Date().getFullYear()} All Résumé Services. All rights reserved.
   `;
 
-  // TODO: Integrate with actual email service (SendGrid, AWS SES, etc.)
-  console.log(`[Email] Would send confirmation to ${clientEmail}`);
-  console.log(`Subject: ${subject}`);
-  console.log(`Text: ${textBody}`);
+  const transporter = createTransporter();
   
-  return { success: true };
+  if (!transporter) {
+    console.log('[IntakeEmails] Email transporter not configured, skipping client confirmation email');
+    return { success: false };
+  }
+
+  try {
+    await transporter.sendMail({
+      from: `"All Résumé Services" <info@allresumeservices.com>`,
+      to: clientEmail,
+      subject: subject,
+      text: textBody,
+      html: htmlBody,
+    });
+
+    console.log(`[IntakeEmails] Client confirmation email sent successfully to ${clientEmail}`);
+    return { success: true };
+  } catch (error) {
+    console.error(`[IntakeEmails] Failed to send client confirmation email to ${clientEmail}:`, error);
+    return { success: false };
+  }
 }
 
 /**
@@ -255,12 +296,28 @@ View full submission: ${SITE_URL}/admin/intake-records/${intakeRecordId || ''}
 This is an automated notification from the All Résumé Services client intake system.
   `;
 
-  // TODO: Integrate with actual email service
-  console.log(`[Email] Would send admin notification to ${ADMIN_EMAIL}`);
-  console.log(`Subject: ${subject}`);
-  console.log(`Text: ${textBody}`);
+  const transporter = createTransporter();
   
-  return { success: true };
+  if (!transporter) {
+    console.log('[IntakeEmails] Email transporter not configured, skipping admin notification email');
+    return { success: false };
+  }
+
+  try {
+    await transporter.sendMail({
+      from: `"All Résumé Services" <info@allresumeservices.com>`,
+      to: ADMIN_EMAIL,
+      subject: subject,
+      text: textBody,
+      html: htmlBody,
+    });
+
+    console.log(`[IntakeEmails] Admin notification email sent successfully to ${ADMIN_EMAIL}`);
+    return { success: true };
+  } catch (error) {
+    console.error(`[IntakeEmails] Failed to send admin notification email to ${ADMIN_EMAIL}:`, error);
+    return { success: false };
+  }
 }
 
 /**
@@ -378,10 +435,26 @@ All Résumé Services
 © ${new Date().getFullYear()} All Résumé Services. All rights reserved.
   `;
 
-  // TODO: Integrate with actual email service
-  console.log(`[Email] Would send resume-later email to ${clientEmail}`);
-  console.log(`Subject: ${subject}`);
-  console.log(`Resume URL: ${resumeUrl}`);
+  const transporter = createTransporter();
   
-  return { success: true };
+  if (!transporter) {
+    console.log('[IntakeEmails] Email transporter not configured, skipping resume-later email');
+    return { success: false };
+  }
+
+  try {
+    await transporter.sendMail({
+      from: `"All Résumé Services" <info@allresumeservices.com>`,
+      to: clientEmail,
+      subject: subject,
+      text: textBody,
+      html: htmlBody,
+    });
+
+    console.log(`[IntakeEmails] Resume-later email sent successfully to ${clientEmail}`);
+    return { success: true };
+  } catch (error) {
+    console.error(`[IntakeEmails] Failed to send resume-later email to ${clientEmail}:`, error);
+    return { success: false };
+  }
 }
