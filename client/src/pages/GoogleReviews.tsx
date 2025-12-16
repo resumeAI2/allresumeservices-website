@@ -1,8 +1,8 @@
-import { TestimonialsGrid } from "@/components/GoogleTestimonials";
 import { Helmet } from "react-helmet-async";
 import fullReviews from "@/data/full_reviews.json";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Star } from "lucide-react";
 
 export default function GoogleReviewsPage() {
   // Generate JSON-LD schema for aggregate rating and reviews
@@ -60,7 +60,28 @@ export default function GoogleReviewsPage() {
         <section className="py-12">
           <div className="container">
             <div className="max-w-6xl mx-auto">
-              <TestimonialsGrid />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {fullReviews.google_reviews.map((review, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-card rounded-lg p-6 border border-border shadow-sm"
+                  >
+                    <div className="flex items-center gap-1 mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-4 h-4 ${i < review.rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`}
+                        />
+                      ))}
+                      <span className="text-sm text-muted-foreground ml-2">{review.timeframe}</span>
+                    </div>
+                    <p className="text-card-foreground mb-4 text-sm leading-relaxed">
+                      "{review.review.length > 300 ? review.review.substring(0, 300) + "..." : review.review}"
+                    </p>
+                    <p className="font-semibold text-card-foreground">{review.name}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>

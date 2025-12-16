@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Mail, Target, Sparkles, TrendingUp } from "lucide-react";
-import { TrustQuote } from "@/components/GoogleTestimonials";
 
 export default function CoverLetters() {
   const benefits = [
@@ -14,8 +13,6 @@ export default function CoverLetters() {
     "Delivered in Word and PDF formats",
 
   ];
-
-  const clientReview = <div className="mb-12 bg-card rounded-lg p-8 border-l-4 border-secondary"><TrustQuote tag="cover letter" /></div>;
 
   const features = [
     {
@@ -116,9 +113,6 @@ export default function CoverLetters() {
                 ))}
               </div>
             </div>
-
-            {/* Client Review */}
-            {clientReview}
 
             {/* When You Need a Cover Letter */}
             <div className="mb-12">

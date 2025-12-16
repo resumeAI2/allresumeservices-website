@@ -7,7 +7,6 @@ import { CheckCircle2, Briefcase, TrendingUp, Award, ArrowRight } from 'lucide-r
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import IndustryPricingTable from '@/components/IndustryPricingTable';
-import { TrustQuote } from '@/components/GoogleTestimonials';
 import { Star } from 'lucide-react';
 import fullReviews from '@/data/full_reviews.json';
 
@@ -144,15 +143,6 @@ export default function MiningResources() {
                 </Card>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Client Review */}
-      <section className="py-16 bg-accent/20">
-        <div className="container">
-          <div className="max-w-3xl mx-auto bg-card rounded-lg p-8 border-l-4 border-secondary">
-            <TrustQuote tag="mining" />
           </div>
         </div>
       </section>

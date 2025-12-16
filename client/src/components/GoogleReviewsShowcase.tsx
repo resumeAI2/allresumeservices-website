@@ -2,15 +2,12 @@ import { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import fullReviews from "@/data/full_reviews.json";
-import featuredNames from "@/data/featured_reviews.json";
 
 export default function GoogleReviewsShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  // Filter full reviews to get only featured ones
-  const reviews = fullReviews.google_reviews.filter(review =>
-    featuredNames.featured_reviews.includes(review.name)
-  );
+  // Use top reviews from the full reviews list
+  const reviews = fullReviews.google_reviews.slice(0, 10);
 
   // Auto-rotate reviews every 6 seconds
   useEffect(() => {
