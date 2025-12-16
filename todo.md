@@ -1701,3 +1701,6 @@
 
 ## Case Studies Missing
 - [x] Restore all 16 case studies that went missing from database (they were there, just needed server restart)
+
+## Case Study Detail Page Fix
+- [x] Update case study detail page to show all stories, not just 3 related ones

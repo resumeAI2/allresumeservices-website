@@ -36,8 +36,13 @@ export default function CaseStudy() {
     }
   }, [study?.id]);
 
-  // Get related case studies from the same category
-  const related = study && relatedStudies
+  // Get all other case studies (excluding current one)
+  const allOtherStudies = study && relatedStudies
+    ? relatedStudies.filter(s => s.id !== study.id)
+    : [];
+  
+  // Get related case studies from the same category (for featured section)
+  const relatedByCategory = study && relatedStudies
     ? relatedStudies
         .filter(s => s.category === study.category && s.id !== study.id)
         .slice(0, 3)
@@ -312,16 +317,24 @@ export default function CaseStudy() {
           </section>
         )}
 
-        {/* Related Case Studies */}
-        {related.length > 0 && (
+        {/* All Case Studies */}
+        {allOtherStudies.length > 0 && (
           <section className="py-20 bg-white">
             <div className="container">
-              <div className="flex items-center gap-2 mb-10">
-                <Sparkles className="w-6 h-6 text-gold" />
-                <h2 className="text-3xl font-bold text-navy">More Success Stories</h2>
+              <div className="flex items-center justify-between mb-10">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-6 h-6 text-gold" />
+                  <h2 className="text-3xl font-bold text-navy">More Success Stories</h2>
+                </div>
+                <Link href="/case-studies">
+                  <Button variant="outline" className="border-navy text-navy hover:bg-navy hover:text-white">
+                    View All Stories
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
               </div>
-              <div className="grid md:grid-cols-3 gap-8">
-                {related.map((relatedStudy) => (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {allOtherStudies.map((relatedStudy) => (
                   <Card 
                     key={relatedStudy.id} 
                     className="group overflow-hidden bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
