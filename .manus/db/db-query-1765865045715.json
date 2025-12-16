@@ -1,0 +1,106 @@
+{
+  "query": "SELECT id, clientName, category, image FROM case_studies ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, clientName, category, image FROM case_studies ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "clientName": "Howard",
+      "category": "Career Change Success",
+      "image": "/case-studies/business-professional.jpg"
+    },
+    {
+      "id": "2",
+      "clientName": "Mark",
+      "category": "Age Discrimination Success",
+      "image": "/case-studies/mature-professional.jpg"
+    },
+    {
+      "id": "3",
+      "clientName": "Elizabeth",
+      "category": "Government Application Success",
+      "image": "/case-studies/interview-success.jpg"
+    },
+    {
+      "id": "30001",
+      "clientName": "David",
+      "category": "Mining & Resources Success",
+      "image": "/case-studies/career-success.jpg"
+    },
+    {
+      "id": "30002",
+      "clientName": "Sarah",
+      "category": "Healthcare Success",
+      "image": "/case-studies/nurse-healthcare.jpg"
+    },
+    {
+      "id": "30003",
+      "clientName": "Michael",
+      "category": "Government Application Success",
+      "image": "/case-studies/office-professional.jpg"
+    },
+    {
+      "id": "30004",
+      "clientName": "James",
+      "category": "IT & Technology Success",
+      "image": "/case-studies/tech-professional.jpg"
+    },
+    {
+      "id": "60001",
+      "clientName": "Michael T.",
+      "category": "Career Advancement",
+      "image": "/case-studies/mining-engineer.jpg"
+    },
+    {
+      "id": "60002",
+      "clientName": "Sarah L.",
+      "category": "Career Change Success",
+      "image": "/case-studies/banking-professional.jpg"
+    },
+    {
+      "id": "60003",
+      "clientName": "David K.",
+      "category": "Executive Promotion",
+      "image": "/case-studies/retail-manager.jpg"
+    },
+    {
+      "id": "60004",
+      "clientName": "Priya M.",
+      "category": "Career Advancement",
+      "image": "/case-studies/software-engineer.jpg"
+    },
+    {
+      "id": "60005",
+      "clientName": "James R.",
+      "category": "Career Advancement",
+      "image": "/case-studies/aviation-pilot.jpg"
+    },
+    {
+      "id": "60006",
+      "clientName": "Rebecca W.",
+      "category": "Executive Promotion",
+      "image": "/case-studies/public-servant.jpg"
+    },
+    {
+      "id": "60007",
+      "clientName": "Thomas H.",
+      "category": "Career Change Success",
+      "image": "/case-studies/finance-executive.jpg"
+    },
+    {
+      "id": "60008",
+      "clientName": "Amanda C.",
+      "category": "Career Advancement",
+      "image": "/case-studies/project-manager.jpg"
+    },
+    {
+      "id": "60009",
+      "clientName": "Daniel P.",
+      "category": "Career Advancement",
+      "image": "/case-studies/corporate-banking.jpg"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tclientName\tcategory\timage\n1\tHoward\tCareer Change Success\t/case-studies/business-professional.jpg\n2\tMark\tAge Discrimination Success\t/case-studies/mature-professional.jpg\n3\tElizabeth\tGovernment Application Success\t/case-studies/interview-success.jpg\n30001\tDavid\tMining & Resources Success\t/case-studies/career-success.jpg\n30002\tSarah\tHealthcare Success\t/case-studies/nurse-healthcare.jpg\n30003\tMichael\tGovernment Application Success\t/case-studies/office-professional.jpg\n30004\tJames\tIT & Technology Success\t/case-studies/tech-professional.jpg\n60001\tMichael T.\tCareer Advancement\t/case-studies/mining-engineer.jpg\n60002\tSarah L.\tCareer Change Success\t/case-studies/banking-professional.jpg\n60003\tDavid K.\tExecutive Promotion\t/case-studies/retail-manager.jpg\n60004\tPriya M.\tCareer Advancement\t/case-studies/software-engineer.jpg\n60005\tJames R.\tCareer Advancement\t/case-studies/aviation-pilot.jpg\n60006\tRebecca W.\tExecutive Promotion\t/case-studies/public-servant.jpg\n60007\tThomas H.\tCareer Change Success\t/case-studies/finance-executive.jpg\n60008\tAmanda C.\tCareer Advancement\t/case-studies/project-manager.jpg\n60009\tDaniel P.\tCareer Advancement\t/case-studies/corporate-banking.jpg\n",
+  "stderr": "",
+  "execution_time_ms": 1620
+}
