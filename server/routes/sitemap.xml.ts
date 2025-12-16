@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'express';
 import { getDb } from '../db.js';
-import { blog_posts } from '../../drizzle/schema.ts';
+import { blog_posts, case_studies } from '../../drizzle/schema.ts';
 import { eq } from 'drizzle-orm';
 
 export const GET: RequestHandler = async (req, res) => {
@@ -35,6 +35,7 @@ export const GET: RequestHandler = async (req, res) => {
       { url: '/pricing', priority: '0.9', changefreq: 'monthly' },
       { url: '/blog', priority: '0.9', changefreq: 'daily' },
       { url: '/contact', priority: '0.7', changefreq: 'monthly' },
+      { url: '/case-studies', priority: '0.8', changefreq: 'weekly' },
     ];
 
     // Build XML sitemap
@@ -57,6 +58,26 @@ export const GET: RequestHandler = async (req, res) => {
       
       xml += '  <url>\n';
       xml += `    <loc>${baseUrl}/blog/${post.slug}</loc>\n`;
+      xml += `    <lastmod>${formattedDate}</lastmod>\n`;
+      xml += `    <changefreq>monthly</changefreq>\n`;
+      xml += `    <priority>0.7</priority>\n`;
+      xml += '  </url>\n';
+    }
+
+    // Get all published case studies
+    const caseStudiesData = await db.select({
+      slug: case_studies.slug,
+      updatedAt: case_studies.updatedAt,
+      createdAt: case_studies.createdAt
+    }).from(case_studies).where(eq(case_studies.published, 1));
+
+    // Add case studies
+    for (const study of caseStudiesData) {
+      const lastmod = study.updatedAt || study.createdAt;
+      const formattedDate = lastmod.toISOString().split('T')[0];
+      
+      xml += '  <url>\n';
+      xml += `    <loc>${baseUrl}/case-studies/${study.slug}</loc>\n`;
       xml += `    <lastmod>${formattedDate}</lastmod>\n`;
       xml += `    <changefreq>monthly</changefreq>\n`;
       xml += `    <priority>0.7</priority>\n`;
