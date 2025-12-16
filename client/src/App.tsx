@@ -62,6 +62,7 @@ import StyleGuide from './pages/StyleGuide';
 import AdminOrderDetail from './pages/AdminOrderDetail';
 import AdminPromoCodes from './pages/AdminPromoCodes';
 import MyOrders from './pages/MyOrders';
+import PricingPage from './pages/Pricing';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -95,6 +96,7 @@ function Router() {
       <Route path="/resume-transformation" component={ResumeTransformation} />
       <Route path="/contact" component={Contact} />
       <Route path="/services" component={Services} />
+      <Route path="/pricing" component={PricingPage} />
       <Route path="/seo-setup" component={SeoSetup} />
       <Route path="/cart" component={Cart} />
       <Route path="/checkout" component={Checkout} />
