@@ -1,0 +1,2 @@
+Scraped testimonials from old website - need to parse and import to database.
+Total testimonials found: approximately 100+

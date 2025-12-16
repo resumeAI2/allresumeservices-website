@@ -1704,3 +1704,11 @@
 
 ## Case Study Detail Page Fix
 - [x] Update case study detail page to show all stories, not just 3 related ones
+
+## Import Client Reviews
+- [ ] Scrape testimonials from old website (allresumeservices.com.au/testimonials/)
+- [ ] Import to Client Reviews database
+- [ ] Ensure Google Reviews page only shows Google reviews
+
+## Case Studies Hero Update
+- [x] Update Case Studies hero section to match Google Reviews/Client Reviews styling

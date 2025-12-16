@@ -52,50 +52,13 @@ export default function CaseStudies() {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section - Enhanced */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-navy via-navy/95 to-primary py-24">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-96 h-96 bg-gold rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-          </div>
-          
-          <div className="container relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-gold mb-6">
-                <Sparkles className="w-4 h-4" />
-                <span className="text-sm font-medium">Real Results, Real Transformations</span>
-              </div>
-              
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                Client Success Stories
-              </h1>
-              <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
-                Discover how we've helped professionals like you achieve their career goals through expertly crafted resumes and career documents.
-              </p>
-              
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {stats.map((stat, index) => (
-                  <div 
-                    key={index}
-                    className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-colors"
-                  >
-                    <stat.icon className="w-8 h-8 text-gold mx-auto mb-3" />
-                    <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                    <div className="text-sm text-white/70">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          {/* Wave Divider */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-              <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" fillOpacity="0.05"/>
-              <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f8fafc"/>
-            </svg>
+        {/* Hero Section - Clean style matching Google Reviews */}
+        <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-20">
+          <div className="container">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-secondary">Client Success Stories</h1>
+            <p className="text-xl text-white max-w-2xl">
+              Discover how we've helped professionals like you achieve their career goals through expertly crafted resumes and career documents.
+            </p>
           </div>
         </section>
 
