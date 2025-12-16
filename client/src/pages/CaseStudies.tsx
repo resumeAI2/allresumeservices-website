@@ -13,13 +13,19 @@ import {
   Star,
   Quote,
   CheckCircle2,
-  Sparkles
+  Sparkles,
+  ChevronDown,
+  ChevronUp,
+  Target,
+  Lightbulb,
+  Trophy
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function CaseStudies() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
   
   const { data: caseStudies, isLoading } = trpc.caseStudies.getAll.useQuery({ publishedOnly: true });
 
@@ -164,12 +170,84 @@ export default function CaseStudies() {
                           <p className="text-lg text-muted-foreground mb-2">
                             <span className="font-medium text-foreground">Client:</span> {filteredStudies[0].clientName}
                           </p>
-                          <div className="relative my-6 pl-6 border-l-4 border-gold">
-                            <Quote className="absolute -left-3 -top-2 w-6 h-6 text-gold bg-white" />
-                            <p className="text-muted-foreground italic">
-                              {filteredStudies[0].challenge.substring(0, 250)}...
-                            </p>
-                          </div>
+                          
+                          {/* Preview or Expanded Content */}
+                          {!isExpanded ? (
+                            <>
+                              <div className="relative my-6 pl-6 border-l-4 border-gold">
+                                <Quote className="absolute -left-3 -top-2 w-6 h-6 text-gold bg-white" />
+                                <p className="text-muted-foreground italic">
+                                  {filteredStudies[0].challenge.substring(0, 250)}...
+                                </p>
+                              </div>
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                onClick={() => setIsExpanded(true)}
+                                className="text-primary hover:text-primary mb-4 w-fit"
+                              >
+                                <ChevronDown className="w-4 h-4 mr-1" />
+                                Read More
+                              </Button>
+                            </>
+                          ) : (
+                            <div className="my-6 space-y-6">
+                              {/* The Challenge */}
+                              <div className="bg-red-50 rounded-lg p-5 border border-red-100">
+                                <div className="flex items-center gap-2 mb-3">
+                                  <Target className="w-5 h-5 text-red-600" />
+                                  <h4 className="font-semibold text-red-700">The Challenge</h4>
+                                </div>
+                                <p className="text-muted-foreground text-sm leading-relaxed">
+                                  {filteredStudies[0].challenge}
+                                </p>
+                              </div>
+                              
+                              {/* Our Solution */}
+                              <div className="bg-blue-50 rounded-lg p-5 border border-blue-100">
+                                <div className="flex items-center gap-2 mb-3">
+                                  <Lightbulb className="w-5 h-5 text-blue-600" />
+                                  <h4 className="font-semibold text-blue-700">Our Solution</h4>
+                                </div>
+                                <p className="text-muted-foreground text-sm leading-relaxed">
+                                  {filteredStudies[0].solution}
+                                </p>
+                              </div>
+                              
+                              {/* The Result */}
+                              <div className="bg-green-50 rounded-lg p-5 border border-green-100">
+                                <div className="flex items-center gap-2 mb-3">
+                                  <Trophy className="w-5 h-5 text-green-600" />
+                                  <h4 className="font-semibold text-green-700">The Result</h4>
+                                </div>
+                                <p className="text-muted-foreground text-sm leading-relaxed">
+                                  {filteredStudies[0].result}
+                                </p>
+                              </div>
+                              
+                              {/* Testimonial */}
+                              {filteredStudies[0].testimonialQuote && (
+                                <div className="relative pl-6 border-l-4 border-gold bg-gold/5 rounded-r-lg p-4">
+                                  <Quote className="absolute -left-3 top-3 w-6 h-6 text-gold bg-white" />
+                                  <p className="text-muted-foreground italic mb-2">
+                                    "{filteredStudies[0].testimonialQuote}"
+                                  </p>
+                                  <p className="text-sm font-medium text-navy">— {filteredStudies[0].clientName}</p>
+                                </div>
+                              )}
+                              
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                onClick={() => setIsExpanded(false)}
+                                className="text-primary hover:text-primary w-fit"
+                              >
+                                <ChevronUp className="w-4 h-4 mr-1" />
+                                Show Less
+                              </Button>
+                            </div>
+                          )}
+                          
                           <div className="flex items-center gap-4 mb-6">
                             <div className="flex items-center gap-1 text-sm text-muted-foreground">
                               <Eye className="w-4 h-4" />
@@ -178,7 +256,7 @@ export default function CaseStudies() {
                           </div>
                           <Link href={`/case-studies/${filteredStudies[0].slug}`}>
                             <Button size="lg" className="bg-navy hover:bg-navy/90 group">
-                              Read Full Story
+                              View Full Case Study
                               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                             </Button>
                           </Link>
