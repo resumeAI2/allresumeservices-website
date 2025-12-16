@@ -1622,9 +1622,9 @@
 
 ## Save & Continue Later Feature
 - [ ] Review existing autosave and draft functionality
-- [ ] Add Save & Continue Later button to intake form
+- [ ] Add Save & Continue Later button to intake form UI
+- [ ] Create modal/dialog for save confirmation
 - [ ] Send email with unique resume link when user saves
-- [ ] Implement resume link handling to restore form data
 - [ ] Test save and resume functionality
 
 ## Admin Notification Email Setup
@@ -1636,3 +1636,13 @@
 - [x] Send confirmation email after successful PayPal payment
 - [x] Include order details, purchased service, and next steps
 - [x] Add admin notification for new orders
+
+## Case Studies Page Redesign
+- [x] Review current Case Studies page design
+- [x] Add more visual appeal with better cards/layout
+- [x] Improve typography and spacing
+- [x] Add engaging visual elements (icons, gradients, etc.)
+- [x] Add featured case study section
+- [x] Add testimonial banner
+- [x] Add stats section in hero
+- [x] Test the updated design
