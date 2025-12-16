@@ -1670,3 +1670,8 @@
 ## Testimonial Section Fix
 - [x] Fix invisible text in testimonial section on Case Studies page
 - [x] Applied inline styles to ensure navy background and white text visibility
+
+## New Features - December 2025
+- [x] Verify Case Studies testimonial section fix displays correctly
+- [x] Add featured images to case studies
+- [x] Implement Save & Continue Later button for intake form

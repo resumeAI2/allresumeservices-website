@@ -382,5 +382,65 @@ export const clientIntakeRouter = router({
     
     return drafts;
   }),
+  
+  /**
+   * Request resume-later email with link to continue form
+   */
+  requestResumeLater: publicProcedure
+    .input(z.object({
+      email: z.string().email(),
+      name: z.string(),
+      paypalTransactionId: z.string().optional(),
+      formData: z.any(),
+    }))
+    .mutation(async ({ input }) => {
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+      
+      // First save the draft
+      const existing = await db
+        .select()
+        .from(draft_intake_records)
+        .where(eq(draft_intake_records.email, input.email))
+        .limit(1);
+      
+      const formDataJson = JSON.stringify(input.formData);
+      let resumeToken: string;
+      
+      if (existing.length > 0) {
+        // Update existing draft
+        await db
+          .update(draft_intake_records)
+          .set({
+            formData: formDataJson,
+            paypalTransactionId: input.paypalTransactionId,
+          })
+          .where(eq(draft_intake_records.email, input.email));
+        
+        resumeToken = existing[0].resumeToken || crypto.randomBytes(32).toString('hex');
+      } else {
+        // Create new draft with unique token
+        resumeToken = crypto.randomBytes(32).toString('hex');
+        
+        await db.insert(draft_intake_records).values({
+          email: input.email,
+          paypalTransactionId: input.paypalTransactionId,
+          formData: formDataJson,
+          resumeToken,
+          completed: 0,
+          reminderSent: 0,
+        });
+      }
+      
+      // Send resume-later email
+      try {
+        const { sendResumeLaterEmail } = await import('./intakeEmails');
+        await sendResumeLaterEmail(input.email, input.name, resumeToken);
+        return { success: true, resumeToken };
+      } catch (error) {
+        console.error("Failed to send resume-later email:", error);
+        throw new Error("Failed to send email. Please try again.");
+      }
+    }),
 });
 
