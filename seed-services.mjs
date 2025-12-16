@@ -20,8 +20,8 @@ const services = [
       '1-2 pages',
       'Professional summary',
       'Skills section',
-      '2 revisions included',
-      '3-5 business days delivery'
+      "We work with you until you're 100% satisfied",
+      '2-5 business days delivery'
     ]),
     active: 1,
     sortOrder: 1
@@ -40,8 +40,8 @@ const services = [
       'Executive summary',
       'Achievement-focused content',
       'Skills & certifications',
-      '3 revisions included',
-      '3-5 business days delivery'
+      "We work with you until you're 100% satisfied",
+      '2-5 business days delivery'
     ]),
     active: 1,
     sortOrder: 2
@@ -60,8 +60,8 @@ const services = [
       'Executive branding',
       'Leadership achievements',
       'Board experience highlight',
-      'Unlimited revisions',
-      '2-3 business days delivery'
+      "We work with you until you're 100% satisfied",
+      '2-5 business days delivery'
     ]),
     active: 1,
     sortOrder: 3
@@ -80,8 +80,8 @@ const services = [
       'Tailored to job description',
       '1 page',
       'Professional tone',
-      '2 revisions included',
-      '2-3 business days delivery'
+      "We work with you until you're 100% satisfied",
+      '1-2 business days delivery'
     ]),
     active: 1,
     sortOrder: 4
@@ -98,8 +98,8 @@ const services = [
       'Customized to role',
       '1 page',
       'Achievement highlights',
-      '3 revisions included',
-      '2-3 business days delivery'
+      "We work with you until you're 100% satisfied",
+      '1-2 business days delivery'
     ]),
     active: 1,
     sortOrder: 5
@@ -116,7 +116,7 @@ const services = [
       'Executive positioning',
       '1 page',
       'Leadership narrative',
-      'Unlimited revisions',
+      "We work with you until you're 100% satisfied",
       '1-2 business days delivery'
     ]),
     active: 1,
@@ -137,8 +137,8 @@ const services = [
       'Compelling summary',
       'Experience section rewrite',
       'Skills optimization',
-      '3 revisions included',
-      '3-5 business days delivery'
+      "We work with you until you're 100% satisfied",
+      '2-5 business days delivery'
     ]),
     active: 1,
     sortOrder: 7
@@ -157,8 +157,8 @@ const services = [
       'STAR/CAR method',
       'Up to 5 criteria',
       'Evidence-based responses',
-      '3 revisions included',
-      '3-5 business days delivery'
+      "We work with you until you're 100% satisfied",
+      '2-5 business days delivery'
     ]),
     active: 1,
     sortOrder: 8
@@ -177,8 +177,8 @@ const services = [
       'Entry Level Resume',
       'Entry Level Cover Letter',
       'ATS-optimized',
-      '2 revisions per document',
-      '3-5 business days delivery',
+      "We work with you until you're 100% satisfied",
+      '2-5 business days delivery',
       'Save $23'
     ]),
     active: 1,
@@ -196,8 +196,8 @@ const services = [
       'Professional Resume',
       'Professional Cover Letter',
       'LinkedIn Profile Optimization',
-      '3 revisions per document',
-      '3-5 business days delivery',
+      "We work with you until you're 100% satisfied",
+      '2-5 business days delivery',
       'Save $39'
     ]),
     active: 1,
@@ -215,8 +215,8 @@ const services = [
       'Executive Resume',
       'Executive Cover Letter',
       'LinkedIn Profile Optimization',
-      'Unlimited revisions',
-      '2-3 business days delivery',
+      "We work with you until you're 100% satisfied",
+      '2-5 business days delivery',
       'Save $69'
     ]),
     active: 1,
