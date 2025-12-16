@@ -75,12 +75,12 @@ export default function FeaturedCaseStudies() {
 
         {/* View All Button */}
         <div className="text-center">
-          <Link href="/case-studies">
-            <Button size="lg" variant="outline">
+          <Button size="lg" variant="outline" asChild>
+            <Link href="/case-studies">
               View All Case Studies
               <ArrowRight className="h-4 w-4 ml-2" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
