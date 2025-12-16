@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PricingSchema from "@/components/PricingSchema";
 import { CheckCircle, Clock, Shield, Sparkles, FileText, Mail, Linkedin, FileCheck, Zap } from "lucide-react";
 import { Link } from "wouter";
 
@@ -120,6 +121,7 @@ export default function PricingPage() {
         <meta name="description" content="Transparent pricing for professional resume writing services. Packages from $125 AUD. Individual services from $49. ATS-optimised resumes, cover letters, and LinkedIn profiles." />
         <meta name="keywords" content="resume writing prices, resume service cost, professional resume pricing, cover letter pricing, LinkedIn profile cost" />
       </Helmet>
+      <PricingSchema />
       <Header />
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
