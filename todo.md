@@ -1729,3 +1729,7 @@
 - [x] Update footer "Services & Pricing" link to point to /pricing page
 - [x] Rename current /services page to /packages (it shows pricing/packages with cart)
 - [x] Create new /services page that describes services offered (informational, no pricing)
+
+## Pricing Page Enhancement
+- [x] Add all individual service prices to /pricing page (not just packages)
+- [x] Include: Resume Writing (Entry/Pro/Exec), Cover Letters, LinkedIn, Selection Criteria, Add-ons
