@@ -1688,3 +1688,6 @@
 ## Fixes - December 2025 (Round 3)
 - [x] Fix testimonial section visibility issue (used inline styles for all colors)
 - [x] Remove "Want the full case study" download sections
+
+## Case Study Photo Fix
+- [x] Replace photos of real people in case study sections with industry-specific images (no people)
