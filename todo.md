@@ -1684,3 +1684,7 @@
 
 ## Testimonial Section Fix (Round 2)
 - [x] Fix invisible testimonial text on Case Studies page - switched from inline styles to Tailwind arbitrary values
+
+## Fixes - December 2025 (Round 3)
+- [x] Fix testimonial section visibility issue (used inline styles for all colors)
+- [x] Remove "Want the full case study" download sections

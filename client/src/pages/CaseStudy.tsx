@@ -9,7 +9,6 @@ import {
   Quote, 
   Eye, 
   Calendar, 
-  Download, 
   ArrowRight,
   Target,
   Lightbulb,
@@ -21,12 +20,10 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
-import EmailCaptureModal from "@/components/EmailCaptureModal";
 
 export default function CaseStudy() {
   const params = useParams();
   const slug = params.slug;
-  const [showEmailModal, setShowEmailModal] = useState(false);
   
   const { data: study, isLoading } = trpc.caseStudies.getBySlug.useQuery({ slug: slug! });
   const { data: relatedStudies = [] } = trpc.caseStudies.getAll.useQuery({ publishedOnly: true });
@@ -288,53 +285,32 @@ export default function CaseStudy() {
 
         {/* Testimonial Quote */}
         {study.testimonialQuote && (
-          <section className="py-16 bg-navy relative overflow-hidden">
+          <section className="py-16 relative overflow-hidden" style={{ backgroundColor: '#1e3a5f' }}>
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gold rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary rounded-full blur-3xl" />
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl" style={{ backgroundColor: '#d4a853' }} />
+              <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-3xl" style={{ backgroundColor: '#3b82f6' }} />
             </div>
             <div className="container relative z-10">
               <div className="max-w-4xl mx-auto text-center">
-                <Quote className="w-16 h-16 text-gold mx-auto mb-8" />
-                <blockquote className="text-2xl md:text-3xl text-white font-light italic mb-8 leading-relaxed">
+                <Quote className="w-16 h-16 mx-auto mb-8" style={{ color: '#d4a853' }} />
+                <blockquote className="text-2xl md:text-3xl font-light italic mb-8 leading-relaxed" style={{ color: '#ffffff' }}>
                   "{study.testimonialQuote}"
                 </blockquote>
                 <div className="flex items-center justify-center gap-4">
-                  <div className="w-14 h-14 bg-gold/20 rounded-full flex items-center justify-center">
-                    <span className="text-gold font-bold text-xl">
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(212, 168, 83, 0.2)' }}>
+                    <span className="font-bold text-xl" style={{ color: '#d4a853' }}>
                       {study.clientName.split(' ').map(n => n[0]).join('').substring(0, 2)}
                     </span>
                   </div>
                   <div className="text-left">
-                    <div className="text-white font-semibold text-lg">{study.clientName}</div>
-                    <div className="text-white/60 text-sm">{study.category}</div>
+                    <div className="font-semibold text-lg" style={{ color: '#ffffff' }}>{study.clientName}</div>
+                    <div className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>{study.category}</div>
                   </div>
                 </div>
               </div>
             </div>
           </section>
         )}
-
-        {/* Download PDF CTA */}
-        <section className="py-16 bg-gradient-to-br from-slate-50 to-white">
-          <div className="container">
-            <div className="max-w-2xl mx-auto">
-              <Card className="p-8 border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-white text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Download className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-navy mb-3">Want the Full Case Study?</h3>
-                <p className="text-muted-foreground mb-6">
-                  Download this complete case study as a PDF to share with your team or save for later.
-                </p>
-                <Button onClick={() => setShowEmailModal(true)} size="lg" className="bg-navy hover:bg-navy/90">
-                  <Download className="h-5 w-5 mr-2" />
-                  Download PDF
-                </Button>
-              </Card>
-            </div>
-          </div>
-        </section>
 
         {/* Related Case Studies */}
         {related.length > 0 && (
@@ -438,15 +414,7 @@ export default function CaseStudy() {
       
       <Footer />
       
-      {/* Email Capture Modal */}
-      {study && (
-        <EmailCaptureModal
-          isOpen={showEmailModal}
-          onClose={() => setShowEmailModal(false)}
-          caseStudyId={study.id}
-          caseStudyTitle={study.title}
-        />
-      )}
+
     </div>
   );
 }
