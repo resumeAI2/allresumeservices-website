@@ -23,7 +23,7 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-20"
-        style={{ backgroundImage: 'url(/hero-bg.jpg)' }}
+        style={{ backgroundImage: 'url(/hero-bg.webp)' }}
       />
       
       <div className="container relative z-10 py-20">
@@ -106,9 +106,10 @@ export default function Hero() {
               <div className="absolute -inset-4 bg-secondary/20 rounded-3xl blur-2xl" />
               <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
                 <img 
-                  src="/success-image.jpg" 
+                  src="/success-image.webp" 
                   alt="Professional success" 
                   className="rounded-xl w-full h-auto shadow-lg"
+                  loading="lazy"
                 />
                 <div className="mt-6 text-center">
                   <p className="text-lg font-semibold italic">

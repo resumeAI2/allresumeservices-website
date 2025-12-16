@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { trpc } from "@/lib/trpc";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 import { FileSearch, DollarSign, ClipboardList, PenTool, CheckCircle, ChevronDown, Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
@@ -213,8 +214,9 @@ export default function OurProcess() {
   }, [searchQuery, filteredFAQs.length]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background">
       <Header />
+      <Breadcrumb items={[{ label: "Our Process" }]} />
       
       <main className="flex-1">
         {/* Hero Section */}

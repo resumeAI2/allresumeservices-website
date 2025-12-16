@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
 import { FileText, Mail, Linkedin, FileCheck, Users, Award, TrendingUp, Target } from "lucide-react";
 import { Link } from "wouter";
 
@@ -99,6 +100,7 @@ export default function Services() {
         <meta name="keywords" content="resume writing services, cover letter writing, LinkedIn profile, selection criteria, career consultation, professional resume" />
       </Helmet>
       <Header />
+      <Breadcrumb items={[{ label: "Services" }]} />
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-20">
