@@ -3,7 +3,21 @@ import { useParams, Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Quote, Eye, Calendar, Download } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { 
+  ArrowLeft, 
+  Quote, 
+  Eye, 
+  Calendar, 
+  Download, 
+  ArrowRight,
+  Target,
+  Lightbulb,
+  Trophy,
+  Sparkles,
+  CheckCircle2,
+  Briefcase
+} from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -29,15 +43,18 @@ export default function CaseStudy() {
   const related = study && relatedStudies
     ? relatedStudies
         .filter(s => s.category === study.category && s.id !== study.id)
-        .slice(0, 2)
+        .slice(0, 3)
     : [];
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
         <Header />
         <main className="flex-1 container py-20 flex items-center justify-center">
-          <p className="text-muted-foreground">Loading case study...</p>
+          <div className="inline-flex items-center gap-3 text-muted-foreground">
+            <div className="w-6 h-6 border-2 border-navy border-t-transparent rounded-full animate-spin" />
+            <span>Loading case study...</span>
+          </div>
         </main>
         <Footer />
       </div>
@@ -46,14 +63,17 @@ export default function CaseStudy() {
 
   if (!study) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
         <Header />
         <main className="flex-1 container py-20 text-center">
-          <h1 className="text-4xl font-bold mb-4">Case Study Not Found</h1>
+          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Briefcase className="w-10 h-10 text-slate-400" />
+          </div>
+          <h1 className="text-4xl font-bold text-navy mb-4">Case Study Not Found</h1>
           <p className="text-muted-foreground mb-8">
             The case study you're looking for doesn't exist or has been removed.
           </p>
-          <Button asChild>
+          <Button asChild className="bg-navy hover:bg-navy/90">
             <Link href="/case-studies">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Case Studies
@@ -66,21 +86,31 @@ export default function CaseStudy() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
       <Header />
       
-      <div className="container pt-4">
-        <Breadcrumb items={[
-          { label: 'Case Studies', href: '/case-studies' },
-          { label: study.title }
-        ]} />
-      </div>
-      
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary/10 via-background to-background py-12">
-          <div className="container">
-            <Button asChild variant="ghost" size="sm" className="mb-6">
+        {/* Hero Section - Navy Gradient */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-navy via-navy/95 to-primary pt-8 pb-32">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-gold rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+          </div>
+          
+          <div className="container relative z-10">
+            {/* Breadcrumb */}
+            <div className="mb-6">
+              <Breadcrumb 
+                items={[
+                  { label: 'Case Studies', href: '/case-studies' },
+                  { label: study.title }
+                ]} 
+              />
+            </div>
+            
+            {/* Back Button */}
+            <Button asChild variant="ghost" size="sm" className="mb-6 text-white/80 hover:text-white hover:bg-white/10">
               <Link href="/case-studies">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to All Case Studies
@@ -88,33 +118,48 @@ export default function CaseStudy() {
             </Button>
             
             <div className="max-w-4xl">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary">
+              {/* Meta Info */}
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <Badge className="bg-gold text-navy font-semibold">
                   {study.category}
-                </span>
-                <span className="text-sm text-muted-foreground flex items-center gap-1">
+                </Badge>
+                <span className="text-sm text-white/70 flex items-center gap-1">
                   <Eye className="h-4 w-4" />
                   {study.viewCount || 0} views
                 </span>
-                <span className="text-sm text-muted-foreground flex items-center gap-1">
+                <span className="text-sm text-white/70 flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
-                  {new Date(study.createdAt).toLocaleDateString()}
+                  {new Date(study.createdAt).toLocaleDateString('en-AU', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}
                 </span>
               </div>
               
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">{study.title}</h1>
-              <p className="text-xl text-muted-foreground">
-                How we helped {study.clientName} achieve their career goals
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                {study.title}
+              </h1>
+              <p className="text-xl text-white/80">
+                How we helped <span className="text-gold font-semibold">{study.clientName}</span> achieve their career goals
               </p>
             </div>
           </div>
+          
+          {/* Wave Divider */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+              <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" fillOpacity="0.05"/>
+              <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f8fafc"/>
+            </svg>
+          </div>
         </section>
 
-        {/* Featured Image */}
+        {/* Featured Image - Overlapping Hero */}
         {study.image && (
-          <section className="container py-8">
-            <div className="max-w-4xl mx-auto">
-              <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+          <section className="container -mt-20 relative z-10 mb-12">
+            <div className="max-w-5xl mx-auto">
+              <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                 <img
                   src={study.image}
                   alt={study.title}
@@ -125,151 +170,270 @@ export default function CaseStudy() {
           </section>
         )}
 
-        {/* Case Study Content */}
+        {/* Introduction */}
         <section className="container py-12">
           <div className="max-w-4xl mx-auto">
-            <div className="prose prose-lg max-w-none">
-              {/* Introduction */}
-              <div className="mb-12">
-                <p className="text-lg leading-relaxed text-foreground">
-                  Meet <strong>{study.clientName}</strong>, a dedicated professional who decided it was time for a bold career shift. Despite fervently applying for positions, they found themselves in the frustrating silence of rejection—no callbacks, no feedback.
-                </p>
-              </div>
+            <p className="text-xl leading-relaxed text-muted-foreground">
+              Meet <strong className="text-navy">{study.clientName}</strong>, a dedicated professional who decided it was time for a bold career shift. Despite fervently applying for positions, they found themselves in the frustrating silence of rejection—no callbacks, no feedback.
+            </p>
+          </div>
+        </section>
 
-              {/* The Challenge */}
-              <Card className="p-8 mb-12 bg-red-50/50 dark:bg-red-950/20 border-red-200 dark:border-red-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                  <span className="text-red-600 dark:text-red-400">The Challenge</span>
-                </h2>
-                <div className="text-foreground whitespace-pre-line leading-relaxed">
+        {/* Challenge, Solution, Result Cards */}
+        <section className="container pb-16">
+          <div className="max-w-4xl mx-auto space-y-8">
+            {/* The Challenge */}
+            <Card className="overflow-hidden border-0 shadow-xl">
+              <div className="bg-gradient-to-r from-red-500 to-red-600 p-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                    <Target className="w-6 h-6 text-white" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">The Challenge</h2>
+                </div>
+              </div>
+              <div className="p-8 bg-white">
+                <div className="text-foreground whitespace-pre-line leading-relaxed text-lg">
                   {study.challenge}
                 </div>
-              </Card>
+              </div>
+            </Card>
 
-              {/* The Solution */}
-              <Card className="p-8 mb-12 bg-blue-50/50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                  <span className="text-blue-600 dark:text-blue-400">Our Solution</span>
-                </h2>
-                <div className="text-foreground whitespace-pre-line leading-relaxed">
+            {/* Our Solution */}
+            <Card className="overflow-hidden border-0 shadow-xl">
+              <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                    <Lightbulb className="w-6 h-6 text-white" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">Our Solution</h2>
+                </div>
+              </div>
+              <div className="p-8 bg-white">
+                <div className="text-foreground whitespace-pre-line leading-relaxed text-lg">
                   {study.solution}
                 </div>
-              </Card>
+              </div>
+            </Card>
 
-              {/* The Result */}
-              <Card className="p-8 mb-12 bg-green-50/50 dark:bg-green-950/20 border-green-200 dark:border-green-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                  <span className="text-green-600 dark:text-green-400">The Result</span>
-                </h2>
-                <div className="text-foreground whitespace-pre-line leading-relaxed">
+            {/* The Result */}
+            <Card className="overflow-hidden border-0 shadow-xl">
+              <div className="bg-gradient-to-r from-green-500 to-green-600 p-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                    <Trophy className="w-6 h-6 text-white" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">The Result</h2>
+                </div>
+              </div>
+              <div className="p-8 bg-white">
+                <div className="text-foreground whitespace-pre-line leading-relaxed text-lg">
                   {study.result}
                 </div>
-              </Card>
-
-              {/* Before/After Resume Comparison */}
-              {(study.beforeResumeImage || study.afterResumeImage) && (
-                <Card className="p-8 mb-12 bg-gradient-to-br from-purple-50/50 to-background dark:from-purple-950/20 border-purple-200 dark:border-purple-900">
-                  <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                    <span className="text-purple-600 dark:text-purple-400">The Transformation</span>
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {study.beforeResumeImage && (
-                      <div>
-                        <h3 className="text-lg font-semibold mb-3 text-red-600 dark:text-red-400">Before</h3>
-                        <div className="border-2 border-red-200 dark:border-red-900 rounded-lg overflow-hidden">
-                          <img 
-                            src={study.beforeResumeImage} 
-                            alt="Before resume" 
-                            className="w-full h-auto"
-                          />
-                        </div>
-                      </div>
-                    )}
-                    {study.afterResumeImage && (
-                      <div>
-                        <h3 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400">After</h3>
-                        <div className="border-2 border-green-200 dark:border-green-900 rounded-lg overflow-hidden">
-                          <img 
-                            src={study.afterResumeImage} 
-                            alt="After resume" 
-                            className="w-full h-auto"
-                          />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <p className="text-sm text-muted-foreground mt-4 text-center">
-                    See the dramatic improvement in layout, content, and professional presentation
-                  </p>
-                </Card>
-              )}
-
-              {/* Testimonial Quote */}
-              {study.testimonialQuote && (
-                <Card className="p-8 mb-12 bg-gradient-to-br from-primary/5 to-background border-primary/20">
-                  <Quote className="h-12 w-12 text-primary/20 mb-4" />
-                  <blockquote className="text-xl italic text-foreground leading-relaxed mb-4">
-                    "{study.testimonialQuote}"
-                  </blockquote>
-                  <p className="text-muted-foreground font-medium">— {study.clientName}</p>
-                </Card>
-              )}
-            </div>
-
-            {/* Download PDF CTA */}
-            <div className="mt-12 p-6 bg-gradient-to-br from-blue-50 to-background dark:from-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-900 text-center">
-              <h3 className="text-xl font-bold mb-3">Want the Full Case Study?</h3>
-              <p className="text-muted-foreground mb-4">
-                Download this complete case study as a PDF to share with your team or save for later.
-              </p>
-              <Button onClick={() => setShowEmailModal(true)} size="lg" variant="outline">
-                <Download className="h-4 w-4 mr-2" />
-                Download PDF
-              </Button>
-            </div>
-
-            {/* CTA */}
-            <div className="mt-16 p-8 bg-gradient-to-br from-primary/10 to-background rounded-lg text-center">
-              <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Career?</h3>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Like {study.clientName}, you too can achieve your career goals with the right tools and guidance. Let us help you craft a compelling resume that opens doors.
-              </p>
-              <div className="flex gap-4 justify-center">
-                <Button asChild size="lg">
-                  <Link href="/contact">Get Started Today</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/services">View Our Services</Link>
-                </Button>
               </div>
+            </Card>
+          </div>
+        </section>
+
+        {/* Before/After Resume Comparison */}
+        {(study.beforeResumeImage || study.afterResumeImage) && (
+          <section className="py-16 bg-gradient-to-br from-purple-50 to-white">
+            <div className="container">
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-10">
+                  <Badge className="bg-purple-100 text-purple-700 mb-4">Resume Transformation</Badge>
+                  <h2 className="text-3xl font-bold text-navy">The Visual Difference</h2>
+                  <p className="text-muted-foreground mt-2">See the dramatic improvement in layout, content, and professional presentation</p>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  {study.beforeResumeImage && (
+                    <div className="group">
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                          <span className="text-red-600 font-bold text-sm">✕</span>
+                        </div>
+                        <h3 className="text-xl font-semibold text-red-600">Before</h3>
+                      </div>
+                      <div className="border-4 border-red-200 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow">
+                        <img 
+                          src={study.beforeResumeImage} 
+                          alt="Before resume" 
+                          className="w-full h-auto"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  {study.afterResumeImage && (
+                    <div className="group">
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                          <CheckCircle2 className="w-5 h-5 text-green-600" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-green-600">After</h3>
+                      </div>
+                      <div className="border-4 border-green-200 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow">
+                        <img 
+                          src={study.afterResumeImage} 
+                          alt="After resume" 
+                          className="w-full h-auto"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Testimonial Quote */}
+        {study.testimonialQuote && (
+          <section className="py-16 bg-navy relative overflow-hidden">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gold rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary rounded-full blur-3xl" />
+            </div>
+            <div className="container relative z-10">
+              <div className="max-w-4xl mx-auto text-center">
+                <Quote className="w-16 h-16 text-gold mx-auto mb-8" />
+                <blockquote className="text-2xl md:text-3xl text-white font-light italic mb-8 leading-relaxed">
+                  "{study.testimonialQuote}"
+                </blockquote>
+                <div className="flex items-center justify-center gap-4">
+                  <div className="w-14 h-14 bg-gold/20 rounded-full flex items-center justify-center">
+                    <span className="text-gold font-bold text-xl">
+                      {study.clientName.split(' ').map(n => n[0]).join('').substring(0, 2)}
+                    </span>
+                  </div>
+                  <div className="text-left">
+                    <div className="text-white font-semibold text-lg">{study.clientName}</div>
+                    <div className="text-white/60 text-sm">{study.category}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Download PDF CTA */}
+        <section className="py-16 bg-gradient-to-br from-slate-50 to-white">
+          <div className="container">
+            <div className="max-w-2xl mx-auto">
+              <Card className="p-8 border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-white text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Download className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-navy mb-3">Want the Full Case Study?</h3>
+                <p className="text-muted-foreground mb-6">
+                  Download this complete case study as a PDF to share with your team or save for later.
+                </p>
+                <Button onClick={() => setShowEmailModal(true)} size="lg" className="bg-navy hover:bg-navy/90">
+                  <Download className="h-5 w-5 mr-2" />
+                  Download PDF
+                </Button>
+              </Card>
             </div>
           </div>
         </section>
 
         {/* Related Case Studies */}
         {related.length > 0 && (
-          <section className="py-16 bg-muted/50">
+          <section className="py-20 bg-white">
             <div className="container">
-              <h2 className="text-3xl font-bold mb-8">More Success Stories</h2>
-              <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
+              <div className="flex items-center gap-2 mb-10">
+                <Sparkles className="w-6 h-6 text-gold" />
+                <h2 className="text-3xl font-bold text-navy">More Success Stories</h2>
+              </div>
+              <div className="grid md:grid-cols-3 gap-8">
                 {related.map((relatedStudy) => (
-                  <Card key={relatedStudy.id} className="p-6 hover:shadow-lg transition-shadow">
-                    <span className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary inline-block mb-3">
-                      {relatedStudy.category}
-                    </span>
-                    <h3 className="text-xl font-bold mb-2">{relatedStudy.title}</h3>
-                    <p className="text-muted-foreground mb-4 line-clamp-2">
-                      {relatedStudy.challenge.substring(0, 150)}...
-                    </p>
-                    <Button asChild variant="outline" size="sm">
-                      <Link href={`/case-studies/${relatedStudy.slug}`}>Read Story</Link>
-                    </Button>
+                  <Card 
+                    key={relatedStudy.id} 
+                    className="group overflow-hidden bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      {relatedStudy.image ? (
+                        <img
+                          src={relatedStudy.image}
+                          alt={relatedStudy.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-navy/10 to-primary/10 flex items-center justify-center">
+                          <Briefcase className="w-16 h-16 text-navy/30" />
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <Badge className="bg-white/90 text-navy hover:bg-white">
+                          {relatedStudy.category}
+                        </Badge>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-navy mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                        {relatedStudy.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-3">
+                        <span className="font-medium">Client:</span> {relatedStudy.clientName}
+                      </p>
+                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                        {relatedStudy.challenge.substring(0, 100)}...
+                      </p>
+                      <Link href={`/case-studies/${relatedStudy.slug}`}>
+                        <Button variant="ghost" size="sm" className="text-primary hover:text-primary group/btn p-0">
+                          Read Story
+                          <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                    </div>
                   </Card>
                 ))}
               </div>
             </div>
           </section>
         )}
+
+        {/* Final CTA */}
+        <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-primary/5">
+          <div className="container">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary mb-6">
+                <Sparkles className="w-4 h-4" />
+                <span className="text-sm font-medium">Your Success Story Starts Here</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6">
+                Ready to Transform Your Career?
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Like {study.clientName}, you too can achieve your career goals with the right tools and guidance. Let us help you craft a compelling resume that opens doors.
+              </p>
+              
+              {/* Benefits */}
+              <div className="flex flex-wrap justify-center gap-6 mb-10">
+                {["Expert Writers", "Fast Turnaround", "100% Satisfaction", "ATS-Optimized"].map((benefit, i) => (
+                  <div key={i} className="flex items-center gap-2 text-muted-foreground">
+                    <CheckCircle2 className="w-5 h-5 text-green-500" />
+                    <span>{benefit}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/contact">
+                  <Button size="lg" className="bg-navy hover:bg-navy/90 text-lg px-8 py-6">
+                    Get Started Today
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
+                <Link href="/services">
+                  <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-2">
+                    View Our Services
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       
       <Footer />
