@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin, Award, CheckCircle2, Users, Shield } from 'lucide-
 
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = 2026;
 
   return (
     <footer className="bg-primary text-primary-foreground">

@@ -1779,3 +1779,7 @@
 - [x] Identify nested anchor tags on /pricing page
 - [x] Fix nested anchor tag issues by removing nested <a> tags inside Link components
 - [x] Test pricing page for console errors
+
+## Update Footer Copyright Year
+- [x] Update footer copyright from 2025 to 2026
+- [x] Verify copyright displays correctly on all pages
