@@ -1741,3 +1741,7 @@
 - [x] Add pricing comparison table showing packages vs individual services (shown in package features)
 - [x] Add "Save $X" badges on packages to highlight savings
 - [x] Add 2-3 testimonials to pricing page showing ROI
+
+## Additional Australian English Spelling
+- [x] Change "ATS-Optimized" to "ATS-Optimised" throughout site
+- [x] Change "Optimized" to "Optimised" for all other instances

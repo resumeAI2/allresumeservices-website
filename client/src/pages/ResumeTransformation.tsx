@@ -28,7 +28,7 @@ export default function ResumeTransformation() {
     {
       icon: Award,
       before: "Basic Format",
-      after: "ATS-Optimized",
+      after: "ATS-Optimised",
       description: "Professional layout that passes screening"
     }
   ];

@@ -41,7 +41,7 @@ export default function Hero() {
             </h1>
             
             <p className="text-lg md:text-xl text-primary-foreground/90 max-w-xl">
-              Expert ATS-Optimized Resumes & Cover Letters that help Australians land interviews and secure their dream jobs. 96% Interview Success Rate.
+              Expert ATS-Optimised Resumes & Cover Letters that help Australians land interviews and secure their dream jobs. 96% Interview Success Rate.
             </p>
 
             {/* Google Reviews Badge */}

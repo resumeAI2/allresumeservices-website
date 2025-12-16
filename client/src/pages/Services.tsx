@@ -9,7 +9,7 @@ export default function Services() {
     {
       icon: FileText,
       title: "Resume Writing",
-      description: "Professional, ATS-optimized resumes that highlight your achievements and get you noticed by hiring managers. Tailored to your industry and career level.",
+      description: "Professional, ATS-optimised resumes that highlight your achievements and get you noticed by hiring managers. Tailored to your industry and career level.",
       features: [
         "ATS-friendly formatting",
         "Achievement-focused content",
@@ -35,9 +35,9 @@ export default function Services() {
     {
       icon: Linkedin,
       title: "LinkedIn Profile Optimisation",
-      description: "Transform your LinkedIn profile into a powerful personal brand. Optimized for searchability and designed to attract recruiters and opportunities.",
+      description: "Transform your LinkedIn profile into a powerful personal brand. Optimised for searchability and designed to attract recruiters and opportunities.",
       features: [
-        "Keyword-optimized headline",
+        "Keyword-optimised headline",
         "Compelling summary",
         "Achievement-based experience",
         "Skills optimization",
@@ -86,7 +86,7 @@ export default function Services() {
     },
     {
       icon: TrendingUp,
-      title: "ATS-Optimized",
+      title: "ATS-Optimised",
       description: "Every document is formatted to pass applicant tracking systems"
     }
   ];
