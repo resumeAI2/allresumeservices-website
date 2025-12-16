@@ -1,0 +1,90 @@
+{
+  "query": "SELECT id, title, slug FROM case_studies ORDER BY id DESC LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug FROM case_studies ORDER BY id DESC LIMIT 20;",
+  "rows": [
+    {
+      "id": "60009",
+      "title": "Banking Analyst Advances to Westpac Corporate Banking",
+      "slug": "banking-analyst-westpac-corporate-banking"
+    },
+    {
+      "id": "60008",
+      "title": "Project Manager Secures Senior Role at Rio Tinto",
+      "slug": "project-manager-rio-tinto-senior-role"
+    },
+    {
+      "id": "60007",
+      "title": "Finance Professional Joins ANZ Bank Investment Team",
+      "slug": "finance-professional-anz-investment-banking"
+    },
+    {
+      "id": "60006",
+      "title": "Public Servant Promoted to Executive Level in Australian Government",
+      "slug": "public-servant-australian-government-executive"
+    },
+    {
+      "id": "60005",
+      "title": "Aviation Professional Secures Management Role at Qantas",
+      "slug": "aviation-professional-qantas-management"
+    },
+    {
+      "id": "60004",
+      "title": "IT Professional Lands Cloud Architecture Role at Telstra",
+      "slug": "it-professional-telstra-cloud-architect"
+    },
+    {
+      "id": "60003",
+      "title": "Retail Manager Advances to Woolworths Regional Leadership",
+      "slug": "retail-manager-woolworths-regional-role"
+    },
+    {
+      "id": "60002",
+      "title": "Banking Professional Transitions to Commonwealth Bank Leadership",
+      "slug": "banking-professional-commonwealth-bank"
+    },
+    {
+      "id": "60001",
+      "title": "Mining Engineer Secures Senior Role at BHP",
+      "slug": "mining-engineer-bhp-success"
+    },
+    {
+      "id": "30004",
+      "title": "Software Engineer Joins Leading Tech Company with 40% Salary Increase",
+      "slug": "software-engineer-tech-company-salary-increase"
+    },
+    {
+      "id": "30003",
+      "title": "APS Officer Promoted to Executive Level 1 in Federal Government",
+      "slug": "aps-officer-executive-level-promotion"
+    },
+    {
+      "id": "30002",
+      "title": "Registered Nurse Secures Clinical Nurse Consultant Role in Major Hospital",
+      "slug": "registered-nurse-clinical-consultant-role"
+    },
+    {
+      "id": "30001",
+      "title": "Mining Engineer Lands $180K FIFO Role at Major Iron Ore Operation",
+      "slug": "mining-engineer-180k-fifo-role"
+    },
+    {
+      "id": "3",
+      "title": "Public Sector Success (STAR-aligned)",
+      "slug": "public-sector-success-star-aligned"
+    },
+    {
+      "id": "2",
+      "title": "Mature-Age Jobseeker Overcoming Barriers",
+      "slug": "mature-age-jobseeker-overcoming-barriers"
+    },
+    {
+      "id": "1",
+      "title": "Transforming a Career Path into Mining Opportunities",
+      "slug": "transforming-career-path-mining-opportunities"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\n60009\tBanking Analyst Advances to Westpac Corporate Banking\tbanking-analyst-westpac-corporate-banking\n60008\tProject Manager Secures Senior Role at Rio Tinto\tproject-manager-rio-tinto-senior-role\n60007\tFinance Professional Joins ANZ Bank Investment Team\tfinance-professional-anz-investment-banking\n60006\tPublic Servant Promoted to Executive Level in Australian Government\tpublic-servant-australian-government-executive\n60005\tAviation Professional Secures Management Role at Qantas\taviation-professional-qantas-management\n60004\tIT Professional Lands Cloud Architecture Role at Telstra\tit-professional-telstra-cloud-architect\n60003\tRetail Manager Advances to Woolworths Regional Leadership\tretail-manager-woolworths-regional-role\n60002\tBanking Professional Transitions to Commonwealth Bank Leadership\tbanking-professional-commonwealth-bank\n60001\tMining Engineer Secures Senior Role at BHP\tmining-engineer-bhp-success\n30004\tSoftware Engineer Joins Leading Tech Company with 40% Salary Increase\tsoftware-engineer-tech-company-salary-increase\n30003\tAPS Officer Promoted to Executive Level 1 in Federal Government\taps-officer-executive-level-promotion\n30002\tRegistered Nurse Secures Clinical Nurse Consultant Role in Major Hospital\tregistered-nurse-clinical-consultant-role\n30001\tMining Engineer Lands $180K FIFO Role at Major Iron Ore Operation\tmining-engineer-180k-fifo-role\n3\tPublic Sector Success (STAR-aligned)\tpublic-sector-success-star-aligned\n2\tMature-Age Jobseeker Overcoming Barriers\tmature-age-jobseeker-overcoming-barriers\n1\tTransforming a Career Path into Mining Opportunities\ttransforming-career-path-mining-opportunities\n",
+  "stderr": "",
+  "execution_time_ms": 1528
+}
