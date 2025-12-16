@@ -1745,3 +1745,6 @@
 ## Additional Australian English Spelling
 - [x] Change "ATS-Optimized" to "ATS-Optimised" throughout site
 - [x] Change "Optimized" to "Optimised" for all other instances
+
+## Bug Fixes
+- [x] Fix nested anchor tag error on homepage (Link containing <a>)
