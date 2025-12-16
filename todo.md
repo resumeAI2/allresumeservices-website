@@ -1666,3 +1666,7 @@
 - [x] Add Read More expansion to featured case study on listing page
 - [x] Shows Challenge, Solution, Result, and Testimonial when expanded
 - [x] Collapsible with Show Less button
+
+## Testimonial Section Fix
+- [x] Fix invisible text in testimonial section on Case Studies page
+- [x] Applied inline styles to ensure navy background and white text visibility
