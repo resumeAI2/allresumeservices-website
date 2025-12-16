@@ -6,7 +6,7 @@ import { CheckCircle2, Compass, Target, TrendingUp, Users } from "lucide-react";
 export default function CareerConsultation() {
   const benefits = [
     "One-on-one consultation with career experts",
-    "Personalized career strategy and action plan",
+    "Personalised career strategy and action plan",
     "Industry insights and market trends analysis",
     "Job search strategy and techniques",
     "Interview preparation and coaching",
@@ -23,7 +23,7 @@ export default function CareerConsultation() {
     {
       icon: Target,
       title: "Job Search Strategy",
-      description: "Develop an effective job search plan that targets the right opportunities and maximizes your chances of success."
+      description: "Develop an effective job search plan that targets the right opportunities and maximises your chances of success."
     },
     {
       icon: TrendingUp,
@@ -84,7 +84,7 @@ export default function CareerConsultation() {
                 Navigating your career can be challenging, whether you're just starting out, considering a career change, seeking advancement, or facing unexpected transitions. Having an experienced career consultant in your corner can make the difference between feeling stuck and moving forward with clarity and confidence.
               </p>
               <p className="text-muted-foreground leading-relaxed mt-4">
-                Our career consultation services provide personalized guidance tailored to your unique situation, goals, and challenges. We combine industry expertise, market knowledge, and proven strategies to help you make informed decisions and take purposeful action toward your career aspirations.
+                Our career consultation services provide personalised guidance tailored to your unique situation, goals, and challenges. We combine industry expertise, market knowledge, and proven strategies to help you make informed decisions and take purposeful action toward your career aspirations.
               </p>
             </div>
 
@@ -235,7 +235,7 @@ export default function CareerConsultation() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Action Plan</h4>
-                    <p className="text-muted-foreground">You'll receive a personalized action plan with specific steps to achieve your career goals.</p>
+                    <p className="text-muted-foreground">You'll receive a personalised action plan with specific steps to achieve your career goals.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">

@@ -1695,3 +1695,6 @@
 ## Restore Original Images
 - [x] Restore original professional case study images
 - [ ] Only replace specific photos that show mismatched people faces
+
+## Australian English Spelling
+- [x] Convert American English spellings to Australian English (emphasized→emphasised, optimized→optimised, etc.)

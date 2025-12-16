@@ -141,7 +141,7 @@ export default function AboutUs() {
       name: "Steven Jason",
       title: "Professional Resume Writer",
       bio: "For over five years, Steven has been dedicated to enhancing the career prospects of job seekers through expertly crafted application documents. He has honed his ability to create resumes that capture the attention of employers and cover letters that effectively convey personal narratives. Steven specialises in optimising LinkedIn profiles and skilfully employs the STAR method when addressing selection criteria to highlight applicants' strengths and achievements with clarity and impact.",
-      expertise: ["Resume Writing", "Cover Letters", "LinkedIn Optimization", "STAR Method"],
+      expertise: ["Resume Writing", "Cover Letters", "LinkedIn Optimisation", "STAR Method"],
       photo: "/team/steven-jason.png"
     },
     {
@@ -161,7 +161,7 @@ export default function AboutUs() {
     },
     {
       icon: Heart,
-      title: "Personalized Service",
+      title: "Personalised Service",
       description: "Every client receives individual attention. We take the time to understand your unique career story and goals to create documents that truly represent you."
     },
     {
@@ -180,7 +180,7 @@ export default function AboutUs() {
     {
       year: "2007",
       title: "Founded in Australia",
-      description: "All Resume Services was established with a vision to help Australian job seekers stand out in an increasingly competitive market. Started as a small operation with a focus on personalized, quality service.",
+      description: "All Resume Services was established with a vision to help Australian job seekers stand out in an increasingly competitive market. Started as a small operation with a focus on personalised, quality service.",
       side: "left"
     },
     {
@@ -191,7 +191,7 @@ export default function AboutUs() {
     },
     {
       year: "2015",
-      title: "ATS Optimization Pioneer",
+      title: "ATS Optimisation Pioneer",
       description: "Became early adopters of ATS (Applicant Tracking System) optimisation techniques, ensuring our clients' resumes passed automated screening systems. Achieved 90%+ interview success rate.",
       side: "left"
     },
@@ -280,7 +280,7 @@ export default function AboutUs() {
               <div>
                 <h2 className="text-3xl font-bold mb-4 text-[#1e3a5f]">Our Mission</h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  To provide exceptional, personalized resume writing services that help Australian 
+                  To provide exceptional, personalised resume writing services that help Australian 
                   professionals at every career stage achieve their employment goals. We believe 
                   everyone deserves a professionally written resume that showcases their unique 
                   value and opens doors to new opportunities.
@@ -756,7 +756,7 @@ export default function AboutUs() {
                       <SelectContent>
                         <SelectItem value="resume-writing">Resume Writing</SelectItem>
                         <SelectItem value="cover-letter">Cover Letter Writing</SelectItem>
-                        <SelectItem value="linkedin">LinkedIn Optimization</SelectItem>
+                        <SelectItem value="linkedin">LinkedIn Optimisation</SelectItem>
                         <SelectItem value="selection-criteria">Selection Criteria</SelectItem>
                         <SelectItem value="career-consultation">Career Consultation</SelectItem>
                         <SelectItem value="package">Complete Package</SelectItem>

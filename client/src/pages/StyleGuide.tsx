@@ -47,7 +47,7 @@ export default function StyleGuide() {
                 <p>
                   Professional resume writing services helping Australians land interviews and secure their dream jobs. 
                   With 18+ years of experience and a 96% interview success rate, we're your partner in career advancement.
-                  Our expert writers craft ATS-optimized resumes tailored to your industry and career goals.
+                  Our expert writers craft ATS-optimised resumes tailored to your industry and career goals.
                 </p>
               </div>
               

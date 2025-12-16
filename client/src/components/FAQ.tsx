@@ -16,8 +16,8 @@ export default function FAQ() {
       answer: "We work with you until you're 100% satisfied. Your package includes unlimited revisions within reason. Most clients are happy after 1-2 rounds of feedback. We want you to feel confident submitting your resume, so we'll refine it until it's perfect."
     },
     {
-      question: "What is ATS optimization and why does it matter?",
-      answer: "ATS (Applicant Tracking System) is software used by 98% of Fortune 500 companies and many Australian employers to scan and filter resumes before a human sees them. Our ATS-optimized resumes use proper formatting, relevant keywords, and clean structure to ensure your application passes these systems and reaches hiring managers. Without ATS optimization, your resume may be automatically rejected regardless of your qualifications."
+      question: "What is ATS optimisation and why does it matter?",
+      answer: "ATS (Applicant Tracking System) is software used by 98% of Fortune 500 companies and many Australian employers to scan and filter resumes before a human sees them. Our ATS-optimised resumes use proper formatting, relevant keywords, and clean structure to ensure your application passes these systems and reaches hiring managers. Without ATS optimisation, your resume may be automatically rejected regardless of your qualifications."
     },
     {
       question: "What payment methods do you accept?",
@@ -33,15 +33,15 @@ export default function FAQ() {
     },
     {
       question: "Can you help me if I'm changing careers?",
-      answer: "Absolutely! Career transitions require special attention to transferable skills and reframing your experience. We're experts at highlighting how your background applies to your new field, even if your previous roles seem unrelated. We'll emphasize relevant skills, achievements, and qualifications that align with your target industry."
+      answer: "Absolutely! Career transitions require special attention to transferable skills and reframing your experience. We're experts at highlighting how your background applies to your new field, even if your previous roles seem unrelated. We'll emphasise relevant skills, achievements, and qualifications that align with your target industry."
     },
     {
       question: "Will my resume be written by AI or a real person?",
-      answer: "Every resume is personally written by our experienced professional writers—real humans with deep expertise in recruitment and career development. While we use technology to optimize formatting and keyword placement, the strategy, content, and storytelling are 100% human-crafted and tailored to your unique background."
+      answer: "Every resume is personally written by our experienced professional writers—real humans with deep expertise in recruitment and career development. While we use technology to optimise formatting and keyword placement, the strategy, content, and storytelling are 100% human-crafted and tailored to your unique background."
     },
     {
       question: "Do you guarantee I'll get a job?",
-      answer: "While we can't guarantee employment (as hiring depends on many factors beyond the resume), we do guarantee a professionally written, ATS-optimized resume that significantly improves your chances. Our 96% interview success rate speaks to the effectiveness of our approach. If you're not satisfied with your resume, we'll revise it until you are."
+      answer: "While we can't guarantee employment (as hiring depends on many factors beyond the resume), we do guarantee a professionally written, ATS-optimised resume that significantly improves your chances. Our 96% interview success rate speaks to the effectiveness of our approach. If you're not satisfied with your resume, we'll revise it until you are."
     },
     {
       question: "What file formats will I receive?",
@@ -65,7 +65,7 @@ export default function FAQ() {
     },
     {
       question: "What makes you different from other resume writing services?",
-      answer: "We combine 18+ years of experience with a proven track record (96% interview success rate), personalized service, and deep understanding of Australian recruitment practices. Unlike template-based services or AI generators, we craft each resume from scratch based on your unique background. We also offer unlimited revisions and work with you until you're completely satisfied—not just until we deliver a first draft."
+      answer: "We combine 18+ years of experience with a proven track record (96% interview success rate), personalised service, and deep understanding of Australian recruitment practices. Unlike template-based services or AI generators, we craft each resume from scratch based on your unique background. We also offer unlimited revisions and work with you until you're completely satisfied—not just until we deliver a first draft."
     }
   ];
 

@@ -83,7 +83,7 @@ export default function SchemaMarkup({ type = "homepage" }: SchemaMarkupProps) {
             "itemOffered": {
               "@type": "Service",
               "name": "Professional Resume Writing",
-              "description": "ATS-optimized resume writing service"
+              "description": "ATS-optimised resume writing service"
             }
           },
           {
@@ -91,7 +91,7 @@ export default function SchemaMarkup({ type = "homepage" }: SchemaMarkupProps) {
             "itemOffered": {
               "@type": "Service",
               "name": "Cover Letter Writing",
-              "description": "Customized cover letters tailored to job applications"
+              "description": "Customised cover letters tailored to job applications"
             }
           },
           {
@@ -127,7 +127,7 @@ export default function SchemaMarkup({ type = "homepage" }: SchemaMarkupProps) {
         "jobTitle": "Founder & Senior Resume Writer"
       },
       "foundingDate": "2008",
-      "description": "Professional resume writing service helping Australians land interviews and secure their dream jobs with ATS-optimized resumes, cover letters, and LinkedIn profiles."
+      "description": "Professional resume writing service helping Australians land interviews and secure their dream jobs with ATS-optimised resumes, cover letters, and LinkedIn profiles."
     };
 
     // Add schemas to head

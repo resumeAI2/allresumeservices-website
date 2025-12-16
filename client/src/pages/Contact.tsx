@@ -28,7 +28,7 @@ export default function Contact() {
       // Show detailed success message
       const hasResume = resumeFile !== null;
       const successMessage = hasResume 
-        ? "✓ Message sent successfully! Your resume has been uploaded. We'll review it and get back to you within 24 hours with a personalized quote."
+        ? "✓ Message sent successfully! Your resume has been uploaded. We'll review it and get back to you within 24 hours with a personalised quote."
         : "✓ Message sent successfully! We'll get back to you within 24 hours.";
       
       toast.success(successMessage, {
@@ -232,7 +232,7 @@ export default function Contact() {
                     <SelectContent>
                       <SelectItem value="resume-writing">Resume Writing</SelectItem>
                       <SelectItem value="cover-letter">Cover Letter Writing</SelectItem>
-                      <SelectItem value="linkedin">LinkedIn Optimization</SelectItem>
+                      <SelectItem value="linkedin">LinkedIn Optimisation</SelectItem>
                       <SelectItem value="selection-criteria">Selection Criteria</SelectItem>
                       <SelectItem value="career-consultation">Career Consultation</SelectItem>
                       <SelectItem value="package">Complete Package</SelectItem>

@@ -23,8 +23,8 @@ export default function Home() {
     <div className="min-h-screen">
       <Helmet>
         <title>Professional Resume Writing Services Australia | All Resume Services</title>
-        <meta name="description" content="Expert ATS-optimized resume writing services with 96% interview success rate. Professional resume writers helping Australians land their dream jobs. 18+ years experience. Get your free resume review today!" />
-        <meta name="keywords" content="resume writing services, professional resume writer, ATS resume, resume writing Australia, cover letter writing, LinkedIn optimization, executive resume" />
+        <meta name="description" content="Expert ATS-optimised resume writing services with 96% interview success rate. Professional resume writers helping Australians land their dream jobs. 18+ years experience. Get your free resume review today!" />
+        <meta name="keywords" content="resume writing services, professional resume writer, ATS resume, resume writing Australia, cover letter writing, LinkedIn optimisation, executive resume" />
       </Helmet>
       <SchemaMarkup type="homepage" />
       <Header />
