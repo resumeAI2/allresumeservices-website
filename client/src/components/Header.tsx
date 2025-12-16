@@ -69,6 +69,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/services" className="hover:text-secondary transition-colors">Services</Link>
+            <Link href="/pricing" className="hover:text-secondary transition-colors">Pricing</Link>
             <Link href="/process" className="hover:text-secondary transition-colors">Our Process</Link>
             <Link href="/blog" className="hover:text-secondary transition-colors">Career Advice Blog</Link>
             <div className="relative group">
@@ -111,6 +112,7 @@ export default function Header() {
         {mobileMenuOpen && (
           <nav className="md:hidden mt-4 flex flex-col gap-3 pb-4">
             <Link href="/services" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Services</Link>
+            <Link href="/pricing" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
             <Link href="/process" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Our Process</Link>
             <Link href="/blog" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Career Advice Blog</Link>
             <div className="pl-4 flex flex-col gap-2">

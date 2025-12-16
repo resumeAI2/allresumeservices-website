@@ -1723,3 +1723,9 @@
 ## Homepage Sections Reorganization
 - [x] Replace full pricing packages on homepage with simple CTA linking to /pricing page
 - [x] Keep Services section as-is (it correctly shows "Why Choose Us" benefits)
+
+## Navigation and Services Page Updates
+- [x] Add "Pricing" link to main header navigation
+- [x] Update footer "Services & Pricing" link to point to /pricing page
+- [x] Rename current /services page to /packages (it shows pricing/packages with cart)
+- [x] Create new /services page that describes services offered (informational, no pricing)

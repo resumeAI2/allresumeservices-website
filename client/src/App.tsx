@@ -32,7 +32,8 @@ import BlogSchedule from "./pages/BlogSchedule";
 import BlogAnalytics from "./pages/BlogAnalytics";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminContacts from "./pages/AdminContacts";
-import Services from "./pages/Services";
+import Packages from './pages/Packages';
+import Services from './pages/Services';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import AboutUs from './pages/AboutUs';
@@ -95,6 +96,7 @@ function Router() {
       <Route path="/industries/compare" component={IndustryComparison} />
       <Route path="/resume-transformation" component={ResumeTransformation} />
       <Route path="/contact" component={Contact} />
+      <Route path="/packages" component={Packages} />
       <Route path="/services" component={Services} />
       <Route path="/pricing" component={PricingPage} />
       <Route path="/seo-setup" component={SeoSetup} />
