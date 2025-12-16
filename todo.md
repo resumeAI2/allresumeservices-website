@@ -1706,9 +1706,9 @@
 - [x] Update case study detail page to show all stories, not just 3 related ones
 
 ## Import Client Reviews
-- [ ] Scrape testimonials from old website (allresumeservices.com.au/testimonials/)
-- [ ] Import to Client Reviews database
-- [ ] Ensure Google Reviews page only shows Google reviews
+- [x] Scrape testimonials from old website (allresumeservices.com.au/testimonials/)
+- [x] Import to Client Reviews database (107 unique testimonials)
+- [x] Ensure Google Reviews page only shows Google reviews (60 reviews from JSON file)
 
 ## Case Studies Hero Update
 - [x] Update Case Studies hero section to match Google Reviews/Client Reviews styling
