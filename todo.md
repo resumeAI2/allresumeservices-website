@@ -1584,3 +1584,4 @@
 - [x] Remove additional revisions fee from Services page
 - [x] Remove additional revisions fee from Services page
 - [x] Fix PayPal cart to exclude revisions fee
+- [x] Review and update all service revision policies to be clear and consistent
