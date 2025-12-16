@@ -1698,3 +1698,6 @@
 
 ## Australian English Spelling
 - [x] Convert American English spellings to Australian English (emphasized→emphasised, optimized→optimised, etc.)
+
+## Case Studies Missing
+- [x] Restore all 16 case studies that went missing from database (they were there, just needed server restart)
