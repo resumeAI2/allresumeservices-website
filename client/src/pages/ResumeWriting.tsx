@@ -1,5 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumb from "@/components/Breadcrumb";
+import ServiceComparisonTable from "@/components/ServiceComparisonTable";
+import FrequentlyBoughtTogether from "@/components/FrequentlyBoughtTogether";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, FileText, Target, Zap, Award } from "lucide-react";
 import { Link } from "wouter";
@@ -42,6 +45,12 @@ export default function ResumeWriting() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
+      <div className="container">
+        <Breadcrumb items={[
+          { label: "Services", href: "/services" },
+          { label: "Resume Writing" }
+        ]} />
+      </div>
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-[#1e3a5f] via-[#2d5a8f] to-[#1e3a5f] text-white relative overflow-hidden">
@@ -52,7 +61,7 @@ export default function ResumeWriting() {
         </div>
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-secondary">
               Professional Resume Writing Services
             </h1>
             <p className="text-xl opacity-90 mb-8">
@@ -204,6 +213,26 @@ export default function ResumeWriting() {
           </div>
         </div>
       </section>
+
+      {/* Service Comparison Table */}
+      <section className="py-16 bg-background">
+        <div className="container">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4 text-foreground">
+                Compare Our Service Packages
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Choose the package that best fits your career goals and budget
+              </p>
+            </div>
+            <ServiceComparisonTable />
+          </div>
+        </div>
+      </section>
+
+      {/* Frequently Bought Together */}
+      <FrequentlyBoughtTogether currentService="resume" />
 
       <Footer />
     </div>
