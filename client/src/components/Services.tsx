@@ -37,7 +37,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-8 bg-gradient-to-br from-[#1e3a5f] via-[#2d5a8f] to-[#1e3a5f] text-white relative overflow-hidden">
+    <section id="services" className="py-6 md:py-8 bg-gradient-to-br from-[#1e3a5f] via-[#2d5a8f] to-[#1e3a5f] text-white relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
@@ -46,7 +46,7 @@ export default function Services() {
 
       <div className="container relative z-10">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8 md:mb-10">
           <div className="inline-block mb-4">
             <span className="bg-secondary/20 text-white border border-secondary/30 px-4 py-2 rounded-full text-sm font-semibold">
               Why Choose Us
@@ -61,7 +61,7 @@ export default function Services() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-10 max-w-5xl mx-auto">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (

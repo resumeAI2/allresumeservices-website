@@ -18,6 +18,8 @@ import FAQSchema from "@/components/FAQSchema";
 import ClientLogos from "@/components/ClientLogos";
 import IndustryStatistics from "@/components/IndustryStatistics";
 import EmailCapturePopup from "@/components/EmailCapturePopup";
+import StickyGetStarted from "@/components/StickyGetStarted";
+import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
   return (
@@ -45,6 +47,8 @@ export default function Home() {
       <ClientLogos />
       <Footer />
       <EmailCapturePopup />
+      <StickyGetStarted />
+      <BackToTop />
     </div>
   );
 }
