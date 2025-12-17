@@ -83,10 +83,10 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#services" className="hover:text-secondary transition-colors">Services</a>
-            <a href="#pricing" className="hover:text-secondary transition-colors">Pricing</a>
-            <a href="#process" className="hover:text-secondary transition-colors">Process</a>
-            <a href="#testimonials" className="hover:text-secondary transition-colors">Reviews</a>
+            <Link href="/services" className="hover:text-secondary transition-colors">Services</Link>
+            <Link href="/pricing" className="hover:text-secondary transition-colors">Pricing</Link>
+            <Link href="/process" className="hover:text-secondary transition-colors">Our Process</Link>
+            <Link href="/testimonials" className="hover:text-secondary transition-colors">Reviews</Link>
             <Link href="/blog" className="hover:text-secondary transition-colors">Career Advice Blog</Link>
             <div className="relative group">
               <button className="hover:text-secondary transition-colors">Success Stories</button>
