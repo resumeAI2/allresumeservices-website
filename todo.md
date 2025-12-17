@@ -1877,3 +1877,9 @@
 - [x] Add loading="lazy" attribute to below-the-fold images
 - [x] Keep hero/above-the-fold images with eager loading
 - [x] Test page load performance improvements
+
+## Fix Header Navigation Links
+- [x] Change anchor links back to proper page routes
+- [x] Update Services, Pricing, Process, Reviews links
+- [x] Test navigation from different pages
+- [x] Ensure no unwanted scrolling behavior
