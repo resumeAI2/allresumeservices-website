@@ -1830,3 +1830,6 @@
 - [x] Locate Individual Services section in homepage
 - [x] Reduce padding above and below the section
 - [x] Test spacing changes on homepage
+- [x] Investigate why spacing reduction is not visible on preview
+- [x] Apply more aggressive spacing reduction (py-8, mb-10)
+- [x] Verify changes are clearly visible
