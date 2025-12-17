@@ -1,18 +1,33 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, ShoppingCart } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { useCart } from "../contexts/CartContext";
 import { Badge } from "./ui/badge";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { cartCount } = useCart();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // Shrink header after scrolling 100px down
+      if (window.scrollY > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 bg-primary text-primary-foreground shadow-md">
+    <header className={`sticky top-0 z-50 bg-primary text-primary-foreground shadow-md transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
       {/* Top Bar with Contact Info */}
-      <div className="bg-primary/90 py-2 text-sm">
+      <div className={`bg-primary/90 text-sm transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`}>
         <div className="container flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4">
             <a href="tel:0410934371" className="flex items-center gap-1 hover:text-secondary transition-colors">
@@ -50,7 +65,7 @@ export default function Header() {
       </div>
 
       {/* Main Navigation */}
-      <div className="container py-4">
+      <div className={`container transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/">
@@ -58,7 +73,7 @@ export default function Header() {
               <img 
                 src="/logo-v2.svg" 
                 alt="All Resume Services Logo" 
-                className="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-lg"
+                className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-lg ${isScrolled ? 'h-14' : 'h-20'}`}
               />
               <div className="flex flex-col">
                 <span className="text-xs text-secondary">Expert Resume Writing</span>
