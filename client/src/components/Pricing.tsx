@@ -82,6 +82,7 @@ export default function Pricing() {
                 src="/5-star-logo.png" 
                 alt="5 Star Rating" 
                 className="h-10 w-10 object-contain"
+                loading="lazy"
               />
               <div className="text-left">
                 <div className="text-sm font-semibold text-foreground">5.0 Rating</div>

@@ -1871,3 +1871,9 @@
 - [x] Implement shrinking behavior (reduce padding, logo size)
 - [x] Add smooth transition animations
 - [x] Test header behavior on scroll
+
+## Add Lazy Loading to Images Below the Fold
+- [x] Identify all image components across the site
+- [x] Add loading="lazy" attribute to below-the-fold images
+- [x] Keep hero/above-the-fold images with eager loading
+- [x] Test page load performance improvements
