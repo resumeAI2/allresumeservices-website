@@ -153,7 +153,7 @@ export default function FreeReview() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-primary-foreground">
+                <Label htmlFor="name" className="text-white font-medium">
                   Full Name <span className="text-secondary">*</span>
                 </Label>
                 <Input
@@ -163,12 +163,12 @@ export default function FreeReview() {
                   value={formData.name}
                   onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                   required
-                  className="bg-white/20 border-white/30 text-primary-foreground placeholder:text-primary-foreground/50"
+                  className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-primary-foreground">
+                <Label htmlFor="email" className="text-white font-medium">
                   Email Address <span className="text-secondary">*</span>
                 </Label>
                 <Input
@@ -178,13 +178,13 @@ export default function FreeReview() {
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                   required
-                  className="bg-white/20 border-white/30 text-primary-foreground placeholder:text-primary-foreground/50"
+                  className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phone" className="text-primary-foreground">
+              <Label htmlFor="phone" className="text-white font-medium">
                 Phone Number (Optional)
               </Label>
               <Input
@@ -193,12 +193,12 @@ export default function FreeReview() {
                 placeholder="0410 934 371"
                 value={formData.phone}
                 onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                className="bg-white/20 border-white/30 text-primary-foreground placeholder:text-primary-foreground/50"
+                className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="message" className="text-primary-foreground">
+              <Label htmlFor="message" className="text-white font-medium">
                 Additional Information (Optional)
               </Label>
               <Textarea
@@ -207,12 +207,12 @@ export default function FreeReview() {
                 value={formData.message}
                 onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                 rows={4}
-                className="bg-white/20 border-white/30 text-primary-foreground placeholder:text-primary-foreground/50"
+                className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="resume-upload" className="text-primary-foreground">
+              <Label htmlFor="resume-upload" className="text-white font-medium">
                 Upload Your Resume <span className="text-secondary">*</span>
               </Label>
               <div className="relative">
@@ -222,7 +222,7 @@ export default function FreeReview() {
                   accept=".pdf,.doc,.docx"
                   onChange={handleFileChange}
                   required
-                  className="bg-white/20 border-white/30 text-primary-foreground file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-secondary file:text-secondary-foreground file:font-semibold hover:file:bg-secondary/90 cursor-pointer"
+                  className="bg-white/20 border-white/30 text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-secondary file:text-secondary-foreground file:font-semibold hover:file:bg-secondary/90 cursor-pointer"
                 />
               </div>
               <p className="text-xs opacity-75 mt-1">
