@@ -1956,3 +1956,9 @@
 - [x] Locate "Read Our Google Reviews" button section in GoogleReviews component
 - [x] Move button section to bottom of Google Reviews page
 - [x] Test layout
+
+## Fix Missing Blog Images
+- [x] Navigate to Career Advice Blog page to check image display
+- [x] Investigate image paths and sources
+- [x] Fix or add missing images (updated 45/47 posts)
+- [x] Test all blog post images
