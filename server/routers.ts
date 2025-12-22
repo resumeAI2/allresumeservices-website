@@ -285,8 +285,16 @@ export const appRouter = router({
         downloadedTemplate: z.string(),
         sourcePost: z.string().optional(),
       }))
-      .mutation(async ({ input }) => {
-        return await leadMagnetService.captureLeadMagnetEmail(input);
+      .mutation(async ({ input, ctx }) => {
+        // Save to database
+        await leadMagnetService.captureLeadMagnetEmail(input);
+        
+        // Send email with PDF download link
+        const { sendLeadMagnetEmail } = await import('./emailService');
+        const pdfUrl = `${ctx.req.protocol}://${ctx.req.get('host')}/downloads/ats-resume-mistakes-guide.pdf`;
+        await sendLeadMagnetEmail(input.name, input.email, pdfUrl);
+        
+        return { success: true, message: 'Guide sent to your email' };
       }),
     getAll: publicProcedure
       .query(async () => {
