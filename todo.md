@@ -1900,3 +1900,20 @@
 - [x] Add satisfaction guarantee badge to service cards
 - [x] Update FAQ page with "100% satisfaction" revision policy explanation
 - [x] Test Services page display and verify all service cards show updated features correctly
+
+## Lead Magnet Landing Page
+- [x] Create database schema for lead magnet downloads tracking
+- [x] Upload ATS mistakes PDF to public storage
+- [x] Create lead magnet landing page component with email capture form
+- [x] Create backend API endpoint for lead capture
+- [x] Implement automatic email delivery with PDF attachment
+- [x] Add route for /free-resume-guide
+- [ ] Add conversion tracking and analytics
+- [ ] Test form submission and email delivery
+- [ ] Add link to lead magnet in header/footer navigation
+
+## Blog Post Images
+- [x] Generate professional images for all blog posts
+- [x] Upload blog images to S3 storage
+- [x] Update blog post records with image URLs
+- [ ] Verify images display correctly on blog pages
