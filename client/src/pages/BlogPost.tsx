@@ -170,13 +170,28 @@ export default function BlogPost() {
               </div>
               <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6">{post.title}</h1>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                <div className="flex items-center gap-4 text-muted-foreground">
+                <div className="flex items-center gap-4 text-muted-foreground flex-wrap">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
-                    <span>{new Date(post.createdAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                    <span>Published {new Date(post.createdAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                   </div>
+                  {post.updatedAt && new Date(post.updatedAt).getTime() > new Date(post.createdAt).getTime() + 86400000 && (
+                    <>
+                      <span>•</span>
+                      <div className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        <span>Updated {new Date(post.updatedAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                      </div>
+                    </>
+                  )}
                   <span>•</span>
                   <span>{post.readTime || '5 min read'}</span>
+                  {post.viewCount > 0 && (
+                    <>
+                      <span>•</span>
+                      <span className="text-secondary font-medium">{post.viewCount.toLocaleString()} readers found this helpful</span>
+                    </>
+                  )}
                 </div>
                 <SocialShare 
                   url={fullUrl}
