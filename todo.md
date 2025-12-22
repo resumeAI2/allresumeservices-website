@@ -1917,3 +1917,8 @@
 - [x] Upload blog images to S3 storage
 - [x] Update blog post records with image URLs
 - [ ] Verify images display correctly on blog pages
+
+## Reviews Page Layout Reorganization
+- [x] Move Google reviews section to top of page
+- [x] Reorder sections: Google intro → Stats → Review cards → Google CTA
+- [x] Test new layout on Reviews page
