@@ -91,7 +91,7 @@ export default function Header() {
             <div className="relative group">
               <button className="hover:text-secondary transition-colors">Success Stories</button>
               <div className="absolute left-0 mt-2 w-48 bg-primary border border-secondary/20 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <Link href="/testimonials" className="block px-4 py-2 hover:bg-secondary/10 transition-colors">Client Reviews</Link>
+                <Link href="/testimonials" className="block px-4 py-2 hover:bg-secondary/10 transition-colors">Client Testimonials</Link>
                 <Link href="/google-reviews" className="block px-4 py-2 hover:bg-secondary/10 transition-colors">Google Reviews</Link>
                 <Link href="/case-studies" className="block px-4 py-2 hover:bg-secondary/10 transition-colors">Case Studies</Link>
               </div>
@@ -133,7 +133,7 @@ export default function Header() {
             <Link href="/blog" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Career Advice Blog</Link>
             <div className="pl-4 flex flex-col gap-2">
               <span className="text-secondary font-semibold">Success Stories:</span>
-              <Link href="/testimonials" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Client Reviews</Link>
+              <Link href="/testimonials" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Client Testimonials</Link>
               <Link href="/google-reviews" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Google Reviews</Link>
               <Link href="/case-studies" className="hover:text-secondary transition-colors" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
             </div>

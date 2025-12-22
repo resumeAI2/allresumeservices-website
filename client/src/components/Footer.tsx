@@ -60,7 +60,7 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Success Stories</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/testimonials" className="hover:text-secondary transition-colors">Client Reviews</a>
+                <a href="/testimonials" className="hover:text-secondary transition-colors">Client Testimonials</a>
               </li>
               <li>
                 <a href="/case-studies" className="hover:text-secondary transition-colors">Case Studies</a>
