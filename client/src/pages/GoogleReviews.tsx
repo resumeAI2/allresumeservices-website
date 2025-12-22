@@ -48,7 +48,7 @@ export default function GoogleReviewsPage() {
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-20">
           <div className="container">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-secondary">Client Reviews</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-secondary">Google Reviews</h1>
             <p className="text-xl text-white max-w-2xl">
               Read what our clients say about our professional resume writing services.
               All reviews are from verified Google customers.
