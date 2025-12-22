@@ -5,9 +5,13 @@ import { Label } from "@/components/ui/label";
 import { CheckCircle2, Upload, Loader2 } from "lucide-react";
 import { useState, FormEvent } from "react";
 import { toast } from "sonner";
+import { useLocation } from "wouter";
 
 export default function FreeReview() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<{[key: string]: string}>({});
+  const [fieldValid, setFieldValid] = useState<{[key: string]: boolean}>({});
+  const [, setLocation] = useLocation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -74,24 +78,16 @@ export default function FreeReview() {
         `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\nNote: Resume file attached separately.`
       )}`;
 
-      // Open mailto link
-      window.location.href = mailtoLink;
+      // Open mailto link in new tab
+      window.open(mailtoLink, '_blank');
 
       // Show success message
-      toast.success('Thank you! Your request has been prepared. Please attach your resume to the email and send.');
+      toast.success('Redirecting to confirmation page...');
 
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-        file: null
-      });
-
-      // Reset file input
-      const fileInput = document.getElementById('resume-upload') as HTMLInputElement;
-      if (fileInput) fileInput.value = '';
+      // Wait a moment then redirect to thank you page
+      setTimeout(() => {
+        setLocation('/thank-you-review');
+      }, 1000);
 
     } catch (error) {
       toast.error('Something went wrong. Please try again or email us directly.');
@@ -161,10 +157,31 @@ export default function FreeReview() {
                   type="text"
                   placeholder="John Smith"
                   value={formData.name}
-                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setFormData(prev => ({ ...prev, name: value }));
+                    if (value.trim().length >= 2) {
+                      setFieldValid(prev => ({ ...prev, name: true }));
+                      setFieldErrors(prev => ({ ...prev, name: '' }));
+                    } else {
+                      setFieldValid(prev => ({ ...prev, name: false }));
+                      if (value.length > 0) {
+                        setFieldErrors(prev => ({ ...prev, name: 'Name must be at least 2 characters' }));
+                      }
+                    }
+                  }}
                   required
-                  className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
+                  className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-secondary focus:ring-2 focus:ring-secondary/50 transition-all"
                 />
+                {fieldValid.name && (
+                  <p className="text-sm text-green-400 mt-1 flex items-center gap-1">
+                    <CheckCircle2 className="h-4 w-4" />
+                    Looks good!
+                  </p>
+                )}
+                {fieldErrors.name && (
+                  <p className="text-sm text-red-400 mt-1">{fieldErrors.name}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -176,10 +193,32 @@ export default function FreeReview() {
                   type="email"
                   placeholder="john@example.com"
                   value={formData.email}
-                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setFormData(prev => ({ ...prev, email: value }));
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (emailRegex.test(value)) {
+                      setFieldValid(prev => ({ ...prev, email: true }));
+                      setFieldErrors(prev => ({ ...prev, email: '' }));
+                    } else {
+                      setFieldValid(prev => ({ ...prev, email: false }));
+                      if (value.length > 0) {
+                        setFieldErrors(prev => ({ ...prev, email: 'Please enter a valid email address' }));
+                      }
+                    }
+                  }}
                   required
-                  className="bg-white/20 border-white/30 text-white placeholder:text-white/60"
+                  className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-secondary focus:ring-2 focus:ring-secondary/50 transition-all"
                 />
+                {fieldValid.email && (
+                  <p className="text-sm text-green-400 mt-1 flex items-center gap-1">
+                    <CheckCircle2 className="h-4 w-4" />
+                    Valid email address
+                  </p>
+                )}
+                {fieldErrors.email && (
+                  <p className="text-sm text-red-400 mt-1">{fieldErrors.email}</p>
+                )}
               </div>
             </div>
 
