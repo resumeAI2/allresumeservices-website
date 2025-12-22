@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import GoogleReviews from "@/components/GoogleReviews";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -117,9 +117,6 @@ export default function Testimonials() {
           </p>
         </div>
       </section>
-
-      {/* Google Reviews Section */}
-      <GoogleReviews />
 
       {/* Filters Section */}
       <section className="py-8 border-b">
