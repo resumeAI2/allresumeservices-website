@@ -15,7 +15,7 @@ interface SEOHeadProps {
 export default function SEOHead({
   title,
   description,
-  image = '/blog/resume-writing.jpg',
+  image = '/og-image.png',
   url,
   type = 'article',
   publishedTime,
