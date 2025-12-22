@@ -1925,3 +1925,10 @@
 
 ## Google Reviews Page Heading Update
 - [x] Change heading from "Client Reviews" to "Google Reviews"
+
+## FAQ Schema for Blog Posts
+- [x] Identify blog posts with Q&A content
+- [x] Create FAQ schema component for blog posts
+- [x] Create utility function to extract FAQ content from markdown
+- [x] Integrate FAQ schema into BlogPost component
+- [ ] Test schema markup with Google Rich Results Test
