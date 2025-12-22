@@ -1922,3 +1922,6 @@
 - [x] Move Google reviews section to top of page
 - [x] Reorder sections: Google intro → Stats → Review cards → Google CTA
 - [x] Test new layout on Reviews page
+
+## Google Reviews Page Heading Update
+- [x] Change heading from "Client Reviews" to "Google Reviews"
