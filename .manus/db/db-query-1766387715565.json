@@ -1,0 +1,292 @@
+{
+  "query": "SELECT id, slug, title, image FROM blog_posts ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, slug, title, image FROM blog_posts ORDER BY id;",
+  "rows": [
+    {
+      "id": "90001",
+      "slug": "transform-your-resume-with-powerful-action-verbs",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "image": "/blog/action-verbs-resume.jpg"
+    },
+    {
+      "id": "120001",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "image": "/blog/resume-marketing-tool.jpg"
+    },
+    {
+      "id": "120002",
+      "slug": "stand-out-in-the-crowd-with-professionally-prepared-resume-services",
+      "title": "Professional Resume Services: Stand Out in Australia (2025)",
+      "image": "/blog/professional-resume-services-australia.jpg"
+    },
+    {
+      "id": "120003",
+      "slug": "scanning-software-scans-your-resume-navigating-ats-in-job-hunting",
+      "title": "ATS Resume Help: All Resume Services Boosts Your Job Search",
+      "image": "/blog/ats-resume-optimization.jpg"
+    },
+    {
+      "id": "120004",
+      "slug": "dont-sell-short-diy-resume",
+      "title": "Resume Optimization: All Resume Services' Expert Tips",
+      "image": "/blog/resume-writing-tips.jpg"
+    },
+    {
+      "id": "120005",
+      "slug": "the-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services",
+      "title": "All Resume Services: Expert Scannable Resume Writing",
+      "image": "/blog/scannable-resume-writing.jpg"
+    },
+    {
+      "id": "120006",
+      "slug": "resume-writing-101-how-to-showcase-your-accomplishments-and-wow-hiring-managers-in-2023",
+      "title": "Wow Hiring Managers: Expert Resume Writing Tips 2023",
+      "image": "/blog/hiring-managers-resume-tips.jpg"
+    },
+    {
+      "id": "120007",
+      "slug": "gifting-resumes-in-australia",
+      "title": "Gifting Resumes in Australia",
+      "image": "/blog/gifting-resumes.jpg"
+    },
+    {
+      "id": "120008",
+      "slug": "writing-a-professional-selection-criteria-response",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide",
+      "image": "/blog/selection-criteria-writing.jpg"
+    },
+    {
+      "id": "120009",
+      "slug": "using-cheap-resume-writing-services",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia",
+      "image": "/blog/cheap-resume-services-warning.jpg"
+    },
+    {
+      "id": "120010",
+      "slug": "home-truths-about-job-hunting",
+      "title": "Home Truths About Job Hunting: Get Expert Help in Australia",
+      "image": "/blog/job-hunting-truths.jpg"
+    },
+    {
+      "id": "120011",
+      "slug": "stand-out-with-top-notch-senior-management-resume-services",
+      "title": "Stand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES",
+      "image": "/blog/senior-management-resume.jpg"
+    },
+    {
+      "id": "120012",
+      "slug": "linkedin-and-an-online-brand-is-your-job-search-future",
+      "title": "LinkedIn & Brand: Job Search with All Resume Services",
+      "image": "/blog/linkedin-personal-brand.jpg"
+    },
+    {
+      "id": "120013",
+      "slug": "the-role-of-ats-in-the-australian-job-market",
+      "title": "Optimize Your Resume for ATS in Australia: Expert Tips",
+      "image": "/blog/ats-resume-optimization.jpg"
+    },
+    {
+      "id": "120014",
+      "slug": "overlooked-to-overhire-the-power-of-a-professionally-written-resume",
+      "title": "Professional resumes: Get Overhired with Expert Help",
+      "image": "/blog/professional-resume-services-australia.jpg"
+    },
+    {
+      "id": "120015",
+      "slug": "crafting-the-perfect-job-application-letter-an-australian-perspective-by-all-resume-services",
+      "title": "All Resume Services: Australian Job Application Guide",
+      "image": "/blog/australian-job-application-guide.jpg"
+    },
+    {
+      "id": "120016",
+      "slug": "are-you-looking-to-improve-your-resume-and-increase-your-chances-of-getting-hired-in-australia",
+      "title": "Are you looking to improve your resume and increase your chances of getting hired in Australia?",
+      "image": "/blog/improve-resume-australia.jpg"
+    },
+    {
+      "id": "120017",
+      "slug": "10-pointers-for-writing-an-outstanding-resume",
+      "title": "10 Pointers for Writing an Outstanding Resume",
+      "image": "/blog/outstanding-resume-pointers.jpg"
+    },
+    {
+      "id": "120018",
+      "slug": "page",
+      "title": "Land Your Job: Professional resume Help in Australia (2025)",
+      "image": "/blog/professional-resume-help-australia.jpg"
+    },
+    {
+      "id": "120019",
+      "slug": "how-to-write-your-first-resume",
+      "title": "Write Your First resume: Expert Guide by All Resume Services",
+      "image": "/blog/first-resume-guide.jpg"
+    },
+    {
+      "id": "120020",
+      "slug": "job-search-in-australia-in-2022",
+      "title": "Australia Job Search in 2025: All resume Services Guide",
+      "image": "/blog/job-search-australia.jpg"
+    },
+    {
+      "id": "120021",
+      "slug": "how-to-create-a-professional-mining-resume",
+      "title": "Mining Resume: Expert Tips from All Resume Services",
+      "image": "/blog/mining-resume-tips.jpg"
+    },
+    {
+      "id": "120022",
+      "slug": "elevate-your-career-with-expert-resume-services",
+      "title": "Elevate Your Career with Expert Resume Services",
+      "image": "/blog/career-elevation.jpg"
+    },
+    {
+      "id": "120023",
+      "slug": "are-resume-writing-services-worth-it",
+      "title": "Resume Writing Services: Are They Worth It? (Australia)",
+      "image": "/blog/resume-services-worth-it.jpg"
+    },
+    {
+      "id": "120024",
+      "slug": "approach-to-a-winning-selection-criteria-response",
+      "title": "Winning Selection Criteria: All Resume Services' Approach",
+      "image": "/blog/selection-criteria-approach.jpg"
+    },
+    {
+      "id": "120025",
+      "slug": "5-things-to-consider-when-selecting-a-resume-writer",
+      "title": "5 Tips to Choose a resume Writer: All Resume Services Guide",
+      "image": "/blog/choosing-resume-writer.jpg"
+    },
+    {
+      "id": "120026",
+      "slug": "winning-tips-for-writing-a-powerful-resume",
+      "title": "Resume Tips: All Resume Services' Guide to Winning in 2025",
+      "image": "/blog/resume-tips-2025.jpg"
+    },
+    {
+      "id": "120027",
+      "slug": "how-to-write-a-desirable-selection-criteria",
+      "title": "Selection Criteria: How to Write Effectively in 2025",
+      "image": "/blog/selection-criteria-writing.jpg"
+    },
+    {
+      "id": "120028",
+      "slug": "create-a-selection-criteria-response-that-will-make-employers-want-to-interview-you",
+      "title": "Selection Criteria Success: Get Interviewed! - 2025",
+      "image": "NULL"
+    },
+    {
+      "id": "120029",
+      "slug": "what-are-the-5-benefits-of-having-a-strong-linkedin-profile",
+      "title": "LinkedIn Profile Benefits: Boost Your Career in 2025",
+      "image": "NULL"
+    },
+    {
+      "id": "120030",
+      "slug": "give-your-resume-a-boost-by-hiring-a-professional-resume-writer",
+      "title": "Boost Your Resume: Professional Resume Writers in 2025",
+      "image": "NULL"
+    },
+    {
+      "id": "120031",
+      "slug": "get-hired-in-the-mining-industry-with-help-of-professional-resume-writers",
+      "title": "Mining Resumes: Get Hired with Expert Help | 2025",
+      "image": "NULL"
+    },
+    {
+      "id": "120032",
+      "slug": "if-you-are-a-fresher-with-no-experience-then-you-need-a-professional-resume-writer",
+      "title": "Resume Help for Freshers: All Resume Services in 2025",
+      "image": "NULL"
+    },
+    {
+      "id": "120033",
+      "slug": "unlock-opportunities-with-expert-mid-career-resume-help",
+      "title": "Unlock Opportunities with Expert Mid-Career Resume Help - ALL RESUME SERVICES",
+      "image": "NULL"
+    },
+    {
+      "id": "120034",
+      "slug": "why-you-should-hire-professional-resume-writer",
+      "title": "Why You Should Hire Professional Resume Writer",
+      "image": "NULL"
+    },
+    {
+      "id": "120035",
+      "slug": "why-you-need-a-professional-mining-resume",
+      "title": "Professional Mining Resume: Get Hired in 2025",
+      "image": "NULL"
+    },
+    {
+      "id": "120036",
+      "slug": "benefits-of-applicant-tracking-software-ats-for-resume-scrutiny",
+      "title": "ATS Resume Tips: All Resume Services Can Help You Succeed",
+      "image": "NULL"
+    },
+    {
+      "id": "120037",
+      "slug": "why-do-you-need-cv-services",
+      "title": "Why Use CV Services? Improve Your Career Prospects in 2025",
+      "image": "NULL"
+    },
+    {
+      "id": "120038",
+      "slug": "8-reasons-why-your-cv-needs-to-be-updated",
+      "title": "Update Your CV: 8 Reasons Why (2025)",
+      "image": "NULL"
+    },
+    {
+      "id": "120039",
+      "slug": "premium-resume-writing-services-by-top-resume-writers",
+      "title": "Premium resume Writing Services By Top resume Writers",
+      "image": "NULL"
+    },
+    {
+      "id": "120040",
+      "slug": "benefits-of-using-a-professional-resume-writer",
+      "title": "Professional Resume Writer Benefits: Get Hired!",
+      "image": "NULL"
+    },
+    {
+      "id": "120041",
+      "slug": "why-use-a-resume-writing-service",
+      "title": "Resume Writing Service: Benefits & Choosing the Right One",
+      "image": "NULL"
+    },
+    {
+      "id": "120042",
+      "slug": "affordable-basic-resume-writing-stand-out-in-your-job-hunt",
+      "title": "Affordable Basic Resume Writing - Stand Out in Your Job Hunt - ALL RESUME SERVICES",
+      "image": "NULL"
+    },
+    {
+      "id": "120043",
+      "slug": "selection-criteria-writing-for-public-service-in-australia",
+      "title": "Write Winning Selection Criteria for Government Roles Today!",
+      "image": "NULL"
+    },
+    {
+      "id": "120044",
+      "slug": "effective-cv-writing-strategies-for-career-success",
+      "title": "Effective CV Writing for Australian Career Success",
+      "image": "NULL"
+    },
+    {
+      "id": "120045",
+      "slug": "expert-cv-help-for-crafting-winning-resumes-effortlessly",
+      "title": "Expert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES",
+      "image": "NULL"
+    },
+    {
+      "id": "120046",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you",
+      "title": "Revitalize Your Resume: A Marketing Tool for Australian Jobs",
+      "image": "NULL"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tslug\ttitle\timage\n90001\ttransform-your-resume-with-powerful-action-verbs\tTransform Your Resume with Powerful Action Verbs\t/blog/action-verbs-resume.jpg\n120001\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool\tAll Resume Services: Turn Your Resume into a Marketing Tool\t/blog/resume-marketing-tool.jpg\n120002\tstand-out-in-the-crowd-with-professionally-prepared-resume-services\tProfessional Resume Services: Stand Out in Australia (2025)\t/blog/professional-resume-services-australia.jpg\n120003\tscanning-software-scans-your-resume-navigating-ats-in-job-hunting\tATS Resume Help: All Resume Services Boosts Your Job Search\t/blog/ats-resume-optimization.jpg\n120004\tdont-sell-short-diy-resume\tResume Optimization: All Resume Services' Expert Tips\t/blog/resume-writing-tips.jpg\n120005\tthe-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services\tAll Resume Services: Expert Scannable Resume Writing\t/blog/scannable-resume-writing.jpg\n120006\tresume-writing-101-how-to-showcase-your-accomplishments-and-wow-hiring-managers-in-2023\tWow Hiring Managers: Expert Resume Writing Tips 2023\t/blog/hiring-managers-resume-tips.jpg\n120007\tgifting-resumes-in-australia\tGifting Resumes in Australia\t/blog/gifting-resumes.jpg\n120008\twriting-a-professional-selection-criteria-response\tSelection Criteria Help: All Resume Services' Expert Guide\t/blog/selection-criteria-writing.jpg\n120009\tusing-cheap-resume-writing-services\tAvoid Cheap Resume Services: Get Expert Help in Australia\t/blog/cheap-resume-services-warning.jpg\n120010\thome-truths-about-job-hunting\tHome Truths About Job Hunting: Get Expert Help in Australia\t/blog/job-hunting-truths.jpg\n120011\tstand-out-with-top-notch-senior-management-resume-services\tStand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES\t/blog/senior-management-resume.jpg\n120012\tlinkedin-and-an-online-brand-is-your-job-search-future\tLinkedIn & Brand: Job Search with All Resume Services\t/blog/linkedin-personal-brand.jpg\n120013\tthe-role-of-ats-in-the-australian-job-market\tOptimize Your Resume for ATS in Australia: Expert Tips\t/blog/ats-resume-optimization.jpg\n120014\toverlooked-to-overhire-the-power-of-a-professionally-written-resume\tProfessional resumes: Get Overhired with Expert Help\t/blog/professional-resume-services-australia.jpg\n120015\tcrafting-the-perfect-job-application-letter-an-australian-perspective-by-all-resume-services\tAll Resume Services: Australian Job Application Guide\t/blog/australian-job-application-guide.jpg\n120016\tare-you-looking-to-improve-your-resume-and-increase-your-chances-of-getting-hired-in-australia\tAre you looking to improve your resume and increase your chances of getting hired in Australia?\t/blog/improve-resume-australia.jpg\n120017\t10-pointers-for-writing-an-outstanding-resume\t10 Pointers for Writing an Outstanding Resume\t/blog/outstanding-resume-pointers.jpg\n120018\tpage\tLand Your Job: Professional resume Help in Australia (2025)\t/blog/professional-resume-help-australia.jpg\n120019\thow-to-write-your-first-resume\tWrite Your First resume: Expert Guide by All Resume Services\t/blog/first-resume-guide.jpg\n120020\tjob-search-in-australia-in-2022\tAustralia Job Search in 2025: All resume Services Guide\t/blog/job-search-australia.jpg\n120021\thow-to-create-a-professional-mining-resume\tMining Resume: Expert Tips from All Resume Services\t/blog/mining-resume-tips.jpg\n120022\televate-your-career-with-expert-resume-services\tElevate Your Career with Expert Resume Services\t/blog/career-elevation.jpg\n120023\tare-resume-writing-services-worth-it\tResume Writing Services: Are They Worth It? (Australia)\t/blog/resume-services-worth-it.jpg\n120024\tapproach-to-a-winning-selection-criteria-response\tWinning Selection Criteria: All Resume Services' Approach\t/blog/selection-criteria-approach.jpg\n120025\t5-things-to-consider-when-selecting-a-resume-writer\t5 Tips to Choose a resume Writer: All Resume Services Guide\t/blog/choosing-resume-writer.jpg\n120026\twinning-tips-for-writing-a-powerful-resume\tResume Tips: All Resume Services' Guide to Winning in 2025\t/blog/resume-tips-2025.jpg\n120027\thow-to-write-a-desirable-selection-criteria\tSelection Criteria: How to Write Effectively in 2025\t/blog/selection-criteria-writing.jpg\n120028\tcreate-a-selection-criteria-response-that-will-make-employers-want-to-interview-you\tSelection Criteria Success: Get Interviewed! - 2025\tNULL\n120029\twhat-are-the-5-benefits-of-having-a-strong-linkedin-profile\tLinkedIn Profile Benefits: Boost Your Career in 2025\tNULL\n120030\tgive-your-resume-a-boost-by-hiring-a-professional-resume-writer\tBoost Your Resume: Professional Resume Writers in 2025\tNULL\n120031\tget-hired-in-the-mining-industry-with-help-of-professional-resume-writers\tMining Resumes: Get Hired with Expert Help | 2025\tNULL\n120032\tif-you-are-a-fresher-with-no-experience-then-you-need-a-professional-resume-writer\tResume Help for Freshers: All Resume Services in 2025\tNULL\n120033\tunlock-opportunities-with-expert-mid-career-resume-help\tUnlock Opportunities with Expert Mid-Career Resume Help - ALL RESUME SERVICES\tNULL\n120034\twhy-you-should-hire-professional-resume-writer\tWhy You Should Hire Professional Resume Writer\tNULL\n120035\twhy-you-need-a-professional-mining-resume\tProfessional Mining Resume: Get Hired in 2025\tNULL\n120036\tbenefits-of-applicant-tracking-software-ats-for-resume-scrutiny\tATS Resume Tips: All Resume Services Can Help You Succeed\tNULL\n120037\twhy-do-you-need-cv-services\tWhy Use CV Services? Improve Your Career Prospects in 2025\tNULL\n120038\t8-reasons-why-your-cv-needs-to-be-updated\tUpdate Your CV: 8 Reasons Why (2025)\tNULL\n120039\tpremium-resume-writing-services-by-top-resume-writers\tPremium resume Writing Services By Top resume Writers\tNULL\n120040\tbenefits-of-using-a-professional-resume-writer\tProfessional Resume Writer Benefits: Get Hired!\tNULL\n120041\twhy-use-a-resume-writing-service\tResume Writing Service: Benefits & Choosing the Right One\tNULL\n120042\taffordable-basic-resume-writing-stand-out-in-your-job-hunt\tAffordable Basic Resume Writing - Stand Out in Your Job Hunt - ALL RESUME SERVICES\tNULL\n120043\tselection-criteria-writing-for-public-service-in-australia\tWrite Winning Selection Criteria for Government Roles Today!\tNULL\n120044\teffective-cv-writing-strategies-for-career-success\tEffective CV Writing for Australian Career Success\tNULL\n120045\texpert-cv-help-for-crafting-winning-resumes-effortlessly\tExpert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES\tNULL\n120046\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you\tRevitalize Your Resume: A Marketing Tool for Australian Jobs\tNULL\n",
+  "stderr": "",
+  "execution_time_ms": 1605
+}
