@@ -17,6 +17,8 @@ import { cleanMarkdownContent } from '@/lib/markdownUtils';
 import BlogContent from '@/components/BlogContent';
 import { generateBlogPostTableStructuredData } from '@/lib/structuredData';
 import { useMemo } from 'react';
+import { BlogFAQSchema } from '@/components/BlogFAQSchema';
+import { extractFAQsFromMarkdown } from '@/lib/extractFAQs';
 
 export default function BlogPost() {
   const params = useParams();
@@ -124,6 +126,12 @@ export default function BlogPost() {
   const currentUrl = `/blog/${post.slug}`;
   const fullUrl = `${window.location.origin}${currentUrl}`;
 
+  // Extract FAQ data from post content
+  const faqData = useMemo(() => {
+    if (!post?.content) return [];
+    return extractFAQsFromMarkdown(post.content);
+  }, [post?.content]);
+
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
@@ -135,6 +143,7 @@ export default function BlogPost() {
         publishedTime={new Date(post.createdAt).toISOString()}
         keywords={`${post.category}, resume writing, career advice, job search`}
       />
+      <BlogFAQSchema faqs={faqData} />
 
       <Header />
       
