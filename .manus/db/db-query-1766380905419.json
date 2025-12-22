@@ -1,0 +1,45 @@
+{
+  "query": "SELECT id, clientName, serviceUsed, rating, approved FROM testimonials LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, clientName, serviceUsed, rating, approved FROM testimonials LIMIT 5;",
+  "rows": [
+    {
+      "id": "120001",
+      "clientName": "R. Sipes",
+      "serviceUsed": "Resume Writing",
+      "rating": "5",
+      "approved": "1"
+    },
+    {
+      "id": "120002",
+      "clientName": "Michael Goldenberg",
+      "serviceUsed": "Resume & Cover Letter",
+      "rating": "5",
+      "approved": "1"
+    },
+    {
+      "id": "120003",
+      "clientName": "Jackson Misago",
+      "serviceUsed": "Resume & Cover Letter",
+      "rating": "5",
+      "approved": "1"
+    },
+    {
+      "id": "120004",
+      "clientName": "S. Muller",
+      "serviceUsed": "Resume Writing",
+      "rating": "5",
+      "approved": "1"
+    },
+    {
+      "id": "120005",
+      "clientName": "T. Zboncak",
+      "serviceUsed": "Resume Writing",
+      "rating": "5",
+      "approved": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tclientName\tserviceUsed\trating\tapproved\n120001\tR. Sipes\tResume Writing\t5\t1\n120002\tMichael Goldenberg\tResume & Cover Letter\t5\t1\n120003\tJackson Misago\tResume & Cover Letter\t5\t1\n120004\tS. Muller\tResume Writing\t5\t1\n120005\tT. Zboncak\tResume Writing\t5\t1\n",
+  "stderr": "",
+  "execution_time_ms": 1560
+}

@@ -1,0 +1,14 @@
+{
+  "query": "SELECT COUNT(*) as total_count, COUNT(CASE WHEN approved = 1 THEN 1 END) as approved_count FROM testimonials;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT COUNT(*) as total_count, COUNT(CASE WHEN approved = 1 THEN 1 END) as approved_count FROM testimonials;",
+  "rows": [
+    {
+      "total_count": "107",
+      "approved_count": "107"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_count\tapproved_count\n107\t107\n",
+  "stderr": "",
+  "execution_time_ms": 1729
+}
