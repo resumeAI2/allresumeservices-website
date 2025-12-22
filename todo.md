@@ -1940,3 +1940,9 @@
 - [x] Move statistics badges section below testimonials grid
 - [x] Ensure testimonials appear immediately after Google Reviews intro
 - [x] Test page layout and flow
+
+## Move Stat Cards Between Pages
+- [x] Locate the three colored stat cards (100% 5-Star, 18+ Years, 96% Success Rate)
+- [x] Remove stat cards from Testimonials page (removed GoogleReviews component)
+- [x] Stat cards remain on Google Reviews page (already there)
+- [x] Test both pages

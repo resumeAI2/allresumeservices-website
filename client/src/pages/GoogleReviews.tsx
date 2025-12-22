@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import fullReviews from "@/data/full_reviews.json";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GoogleReviewsComponent from "@/components/GoogleReviews";
 import { Star } from "lucide-react";
 
 export default function GoogleReviewsPage() {
@@ -55,6 +56,9 @@ export default function GoogleReviewsPage() {
             </p>
           </div>
         </section>
+
+        {/* Google Reviews Stats Component */}
+        <GoogleReviewsComponent />
 
         {/* Reviews Section */}
         <section className="py-12">
