@@ -118,11 +118,57 @@ export default function Testimonials() {
         </div>
       </section>
 
-      {/* Google Reviews Intro Section */}
+      {/* Google Reviews Section */}
       <GoogleReviews />
 
+      {/* Statistics Section - Premium Badge Style */}
+      <section className="py-16 bg-white">
+        <div className="container">
+          <div className="flex flex-wrap justify-center items-center gap-6">
+            {/* Primary Badge - Total Reviews */}
+            <div className="flex items-center gap-4 px-8 py-5 bg-white rounded-full border-2 border-[#D9A514] shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex-shrink-0">
+                <svg className="w-8 h-8 text-[#D9A514]" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-3xl font-bold text-[#141E32]">{stats.total}+</div>
+                <div className="text-sm text-[#71717B] font-medium">Client Reviews</div>
+              </div>
+            </div>
+
+            {/* Secondary Badge - Perfect Rating */}
+            <div className="flex items-center gap-4 px-6 py-4 bg-white rounded-full border-2 border-[#D9A514] shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex-shrink-0">
+                <svg className="w-6 h-6 text-[#D9A514]" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-2xl font-bold text-[#141E32]">{stats.avgRating} Rating</div>
+                <div className="text-sm text-[#71717B] font-medium">Perfect Score</div>
+              </div>
+            </div>
+
+            {/* Secondary Badge - 5-Star Reviews */}
+            <div className="flex items-center gap-4 px-6 py-4 bg-white rounded-full border-2 border-[#D9A514] shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex-shrink-0">
+                <svg className="w-6 h-6 text-[#D9A514]" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-2xl font-bold text-[#141E32]">{stats.fiveStars}+ Five-Star</div>
+                <div className="text-sm text-[#71717B] font-medium">Excellence Certified</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Filters Section */}
-      <section className="py-8 border-b bg-white">
+      <section className="py-8 border-b">
         <div className="container">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
@@ -180,7 +226,7 @@ export default function Testimonials() {
       </section>
 
       {/* Testimonials Grid */}
-      <section className="py-12 bg-white">
+      <section className="py-12">
         <div className="container">
           {isLoading ? (
             <div className="text-center py-12">
