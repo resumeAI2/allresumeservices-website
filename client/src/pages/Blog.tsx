@@ -194,7 +194,7 @@ export default function Blog() {
       <section className="bg-primary text-primary-foreground py-16">
         <div className="container">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">
+            <h2 className="text-3xl font-bold mb-4 text-secondary">
               Get Career Tips Delivered to Your Inbox
             </h2>
             <p className="text-lg mb-8 text-primary-foreground/90">
