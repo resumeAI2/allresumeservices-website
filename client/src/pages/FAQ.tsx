@@ -64,6 +64,11 @@ const faqData: FAQItem[] = [
   },
   {
     category: "Process",
+    question: "What does '100% satisfaction guarantee' mean in practice?",
+    answer: "Our 100% satisfaction guarantee means we work with you until you're completely happy with your documents. After receiving your first draft, you can request reasonable revisions—such as rewording sections, adjusting formatting, adding or removing content, or changing the emphasis on certain achievements. We typically complete revisions within 2-3 business days. While we accommodate reasonable revision requests, this doesn't include complete rewrites for different roles or industries after the initial consultation. Our goal is to ensure you feel confident submitting your resume and that it accurately represents your professional brand."
+  },
+  {
+    category: "Process",
     question: "What information do you need from me to get started?",
     answer: "We'll need your current resume (if you have one), a job description or target role you're applying for, your LinkedIn profile URL (if applicable), and details about your career goals. During the consultation, we'll discuss your work history, key achievements, skills, and what makes you stand out."
   },

@@ -157,8 +157,17 @@ export default function Services() {
                 return (
                   <div 
                     key={index}
-                    className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all border border-border"
+                    className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all border border-border relative"
                   >
+                    {/* Satisfaction Guarantee Badge */}
+                    <div className="absolute top-4 right-4">
+                      <img 
+                        src="/satisfaction-badge.png" 
+                        alt="100% Satisfaction Guarantee" 
+                        className="w-16 h-16"
+                        title="100% Satisfaction Guarantee - We work with you until you're 100% satisfied"
+                      />
+                    </div>
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-secondary/10 mb-4">
                       <Icon className="h-7 w-7 text-secondary" />
                     </div>

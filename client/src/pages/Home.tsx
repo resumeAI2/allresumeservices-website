@@ -20,6 +20,7 @@ import IndustryStatistics from "@/components/IndustryStatistics";
 import EmailCapturePopup from "@/components/EmailCapturePopup";
 import StickyGetStarted from "@/components/StickyGetStarted";
 import BackToTop from "@/components/BackToTop";
+import StructuredData from "@/components/StructuredData";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <meta name="keywords" content="resume writing services, professional resume writer, ATS resume, resume writing Australia, cover letter writing, LinkedIn optimisation, executive resume" />
       </Helmet>
       <SchemaMarkup type="homepage" />
+      <StructuredData type="homepage" />
       <FAQSchema />
       <Header />
       <Hero />
