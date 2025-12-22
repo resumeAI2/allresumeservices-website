@@ -65,6 +65,7 @@ import AdminPromoCodes from './pages/AdminPromoCodes';
 import MyOrders from './pages/MyOrders';
 import PricingPage from './pages/Pricing';
 import FreeResumeGuide from './pages/FreeResumeGuide';
+import ThankYouReview from './pages/ThankYouReview';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -128,6 +129,7 @@ function Router() {
       <Route path={'/style-guide'} component={StyleGuide} />
       <Route path={'/my-orders'} component={MyOrders} />
       <Route path={'/thank-you-onboarding'} component={ThankYouOnboarding} />
+      <Route path={'/thank-you-review'} component={ThankYouReview} />
       <Route path={"/404"} component={NotFound} />      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
