@@ -118,6 +118,9 @@ export default function Testimonials() {
         </div>
       </section>
 
+      {/* Google Reviews Section */}
+      <GoogleReviews />
+
       {/* Statistics Section - Premium Badge Style */}
       <section className="py-16 bg-white">
         <div className="container">
@@ -163,9 +166,6 @@ export default function Testimonials() {
           </div>
         </div>
       </section>
-
-      {/* Google Reviews Section */}
-      <GoogleReviews />
 
       {/* Filters Section */}
       <section className="py-8 border-b">
