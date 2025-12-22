@@ -66,6 +66,7 @@ import MyOrders from './pages/MyOrders';
 import PricingPage from './pages/Pricing';
 import FreeResumeGuide from './pages/FreeResumeGuide';
 import ThankYouReview from './pages/ThankYouReview';
+import ContentCalendar from './pages/ContentCalendar';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -109,7 +110,8 @@ function Router() {
       <Route path={"/admin/blog"} component={AdminBlog} />
       <Route path={"/admin/blog/new"} component={BlogEditor} />
       <Route path={"/admin/blog/edit/:id"} component={BlogEditor} />
-      <Route path={"/admin/blog/schedule"} component={BlogSchedule} />
+      <Route path={'/admin/blog/schedule'} component={BlogSchedule} />
+      <Route path={'/admin/content-calendar'} component={ContentCalendar} />
       <Route path={"/admin/blog/analytics"} component={BlogAnalytics} />
       <Route path={"/admin/media"} component={MediaLibrary} />
       <Route path={"/admin/faq-analytics"} component={FaqAnalytics} />
