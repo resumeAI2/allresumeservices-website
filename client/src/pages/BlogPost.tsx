@@ -5,20 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Calendar, ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { trpc } from "@/lib/trpc";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import SocialShare from "@/components/SocialShare";
 import SEOHead from "@/components/SEOHead";
 import { getImageUrl } from "@/lib/imageUtils";
 import { BlogAuthor } from "@/components/BlogAuthor";
 import { LeadMagnetForm } from "@/components/LeadMagnetForm";
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { cleanMarkdownContent } from '@/lib/markdownUtils';
 import BlogContent from '@/components/BlogContent';
-import { generateBlogPostTableStructuredData } from '@/lib/structuredData';
-import { useMemo } from 'react';
 import { BlogFAQSchema } from '@/components/BlogFAQSchema';
 import { extractFAQsFromMarkdown } from '@/lib/extractFAQs';
+import { ArticleSchema, BreadcrumbSchema } from '@/components/ArticleSchema';
 
 export default function BlogPost() {
   const params = useParams();
@@ -31,13 +27,13 @@ export default function BlogPost() {
   );
   const incrementViewMutation = trpc.blog.incrementViewCount.useMutation();
 
+  // ALL HOOKS MUST BE CALLED BEFORE ANY CONDITIONAL RETURNS
   // Generate structured data for tables
   const tableStructuredData = useMemo(() => {
     if (!post?.content || slug !== 'expert-cv-help-for-crafting-winning-resumes-effortlessly') return null;
     
-    // Manual structured data for the CV length table
     const currentUrl = `/blog/${slug}`;
-    const fullUrl = `${window.location.origin}${currentUrl}`;
+    const fullUrl = typeof window !== 'undefined' ? `${window.location.origin}${currentUrl}` : currentUrl;
     
     return {
       '@context': 'https://schema.org',
@@ -45,28 +41,25 @@ export default function BlogPost() {
       'about': post.title,
       'url': fullUrl,
       'name': 'Recommended CV Length by Career Stage',
-      'description': 'This table outlines the ideal CV length for different career stages in the Australian job market, helping you determine the appropriate level of detail for your professional experience.',
+      'description': 'This table outlines the ideal CV length for different career stages in the Australian job market.',
       'columns': [
         { '@type': 'Text', 'name': 'Career Stage' },
         { '@type': 'Text', 'name': 'Ideal Length' },
         { '@type': 'Text', 'name': 'Why This Length Works' }
       ],
       'rows': [
-        {
-          '@type': 'TableRow',
-          'cells': ['Graduate / Entry Level', '1–2 pages', 'Focuses on education, internships, and foundational skills.']
-        },
-        {
-          '@type': 'TableRow',
-          'cells': ['Early to Mid-Career', '2–3 pages', 'Effectively balances detailed experience with demonstrated impact.']
-        },
-        {
-          '@type': 'TableRow',
-          'cells': ['Senior / Executive Level', '3–5 pages', 'Provides ample space to showcase leadership achievements and strategic contributions.']
-        }
+        { '@type': 'TableRow', 'cells': ['Graduate / Entry Level', '1–2 pages', 'Focuses on education, internships, and foundational skills.'] },
+        { '@type': 'TableRow', 'cells': ['Early to Mid-Career', '2–3 pages', 'Effectively balances detailed experience with demonstrated impact.'] },
+        { '@type': 'TableRow', 'cells': ['Senior / Executive Level', '3–5 pages', 'Provides ample space to showcase leadership achievements.'] }
       ]
     };
   }, [post?.content, slug, post?.title]);
+
+  // Extract FAQ data from post content - MUST be called before conditional returns
+  const faqData = useMemo(() => {
+    if (!post?.content) return [];
+    return extractFAQsFromMarkdown(post.content);
+  }, [post?.content]);
 
   // Add Table structured data to head
   useEffect(() => {
@@ -93,6 +86,7 @@ export default function BlogPost() {
     }
   }, [post?.id]);
 
+  // NOW we can have conditional returns after all hooks are called
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col">
@@ -124,13 +118,7 @@ export default function BlogPost() {
   }
 
   const currentUrl = `/blog/${post.slug}`;
-  const fullUrl = `${window.location.origin}${currentUrl}`;
-
-  // Extract FAQ data from post content
-  const faqData = useMemo(() => {
-    if (!post?.content) return [];
-    return extractFAQsFromMarkdown(post.content);
-  }, [post?.content]);
+  const fullUrl = typeof window !== 'undefined' ? `${window.location.origin}${currentUrl}` : currentUrl;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -144,6 +132,30 @@ export default function BlogPost() {
         keywords={`${post.category}, resume writing, career advice, job search`}
       />
       <BlogFAQSchema faqs={faqData} />
+      
+      {/* Comprehensive Article Schema for Google Rich Snippets */}
+      <ArticleSchema
+        title={post.title}
+        description={post.metaDescription || post.excerpt}
+        content={post.content}
+        image={post.image || undefined}
+        url={currentUrl}
+        publishedTime={new Date(post.createdAt).toISOString()}
+        modifiedTime={post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined}
+        authorName="Sonia Lynch"
+        authorTitle="Founder & CEO, All Resume Services"
+        authorImage="/team/sonia-lynch.png"
+        category={post.category}
+        readTime={post.readTime || '5 min read'}
+      />
+      
+      {/* Breadcrumb Schema for Search Results */}
+      <BreadcrumbSchema
+        items={[
+          { name: 'Blog', url: '/blog' },
+          { name: post.title }
+        ]}
+      />
 
       <Header />
       
@@ -285,42 +297,19 @@ export default function BlogPost() {
                         loading="lazy"
                       />
                     </div>
-                    
                     <div className="p-6">
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                        <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-medium">
-                          {relatedPost.category}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {new Date(relatedPost.createdAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
-                        </span>
-                      </div>
-
-                      <h3 className="text-lg font-bold text-card-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                      <div className="text-sm text-primary mb-2">{relatedPost.category}</div>
+                      <h3 className="font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                         {relatedPost.title}
                       </h3>
-
-                      <p className="text-muted-foreground mb-4 line-clamp-2 text-sm">
+                      <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
                         {relatedPost.excerpt}
                       </p>
-
-                      <div className="flex items-center justify-between">
-                        <span className="flex items-center gap-1 text-sm text-muted-foreground">
-                          <Clock className="h-3 w-3" />
-                          {relatedPost.readTime || '5 min read'}
-                        </span>
-                        <Link href={`/blog/${relatedPost.slug}`}>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="text-primary hover:text-primary/80 group/btn"
-                          >
-                            Read More
-                            <ArrowRight className="ml-1 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                          </Button>
-                        </Link>
-                      </div>
+                      <Link href={`/blog/${relatedPost.slug}`}>
+                        <Button variant="link" className="p-0 h-auto">
+                          Read More <ArrowRight className="ml-1 h-4 w-4" />
+                        </Button>
+                      </Link>
                     </div>
                   </article>
                 ))}
@@ -329,6 +318,7 @@ export default function BlogPost() {
           </section>
         )}
       </main>
+
       <Footer />
     </div>
   );
