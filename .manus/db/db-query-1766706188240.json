@@ -1,0 +1,26 @@
+{
+  "query": "SELECT id, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) > 160;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) > 160;",
+  "rows": [
+    {
+      "id": "120018",
+      "len": "201"
+    },
+    {
+      "id": "120031",
+      "len": "201"
+    },
+    {
+      "id": "120039",
+      "len": "162"
+    },
+    {
+      "id": "120040",
+      "len": "164"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tlen\n120018\t201\n120031\t201\n120039\t162\n120040\t164\n",
+  "stderr": "",
+  "execution_time_ms": 1598
+}

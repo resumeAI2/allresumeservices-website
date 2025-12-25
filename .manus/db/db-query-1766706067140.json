@@ -1,0 +1,122 @@
+{
+  "query": "SELECT id, title, slug, excerpt, metaDescription, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) < 120 ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug, excerpt, metaDescription, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) < 120 ORDER BY id;",
+  "rows": [
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool",
+      "excerpt": "Craft a standout resume, unlock new job opportunities.",
+      "metaDescription": "Craft a standout resume, unlock new job opportunities.",
+      "len": "54"
+    },
+    {
+      "id": "120005",
+      "title": "All Resume Services: Expert Scannable Resume Writing",
+      "slug": "the-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services",
+      "excerpt": "Boost your job chances with a pro scannable resume.",
+      "metaDescription": "Boost your job chances with a pro scannable resume.",
+      "len": "51"
+    },
+    {
+      "id": "120007",
+      "title": "Gifting Resumes in Australia",
+      "slug": "gifting-resumes-in-australia",
+      "excerpt": "Boost your Aussie job search with expert resume tips.",
+      "metaDescription": "Boost your Aussie job search with expert resume tips.",
+      "len": "53"
+    },
+    {
+      "id": "120008",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide",
+      "slug": "writing-a-professional-selection-criteria-response",
+      "excerpt": "Master Selection Criteria Responses for Job Success",
+      "metaDescription": "Master Selection Criteria Responses for Job Success",
+      "len": "51"
+    },
+    {
+      "id": "120009",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia",
+      "slug": "using-cheap-resume-writing-services",
+      "excerpt": "Boost job prospects with a quality resume.",
+      "metaDescription": "Boost job prospects with a quality resume.",
+      "len": "42"
+    },
+    {
+      "id": "120015",
+      "title": "All Resume Services: Australian Job Application Guide",
+      "slug": "crafting-the-perfect-job-application-letter-an-australian-perspective-by-all-resume-services",
+      "excerpt": "Craft a winning job application letter for the Australian market.",
+      "metaDescription": "Craft a winning job application letter for the Australian market.",
+      "len": "65"
+    },
+    {
+      "id": "120018",
+      "title": "Land Your Job: Professional resume Help in Australia (2025)",
+      "slug": "page",
+      "excerpt": "Need a job in Australia? All resume Services provides expert resume help to land your dream role. Get started today!",
+      "metaDescription": "Need a job in Australia? All resume Services provides expert resume help to land your dream role. Get started today!",
+      "len": "116"
+    },
+    {
+      "id": "120019",
+      "title": "Write Your First resume: Expert Guide by All Resume Services",
+      "slug": "how-to-write-your-first-resume",
+      "excerpt": "Craft a winning first resume with ease!",
+      "metaDescription": "Craft a winning first resume with ease!",
+      "len": "39"
+    },
+    {
+      "id": "120029",
+      "title": "LinkedIn Profile Benefits: Boost Your Career in 2025",
+      "slug": "what-are-the-5-benefits-of-having-a-strong-linkedin-profile",
+      "excerpt": "Unlock LinkedIn's Power: Boost Your Career & Networking Success",
+      "metaDescription": "Unlock LinkedIn's Power: Boost Your Career & Networking Success",
+      "len": "63"
+    },
+    {
+      "id": "120031",
+      "title": "Mining Resumes: Get Hired with Expert Help | 2025",
+      "slug": "get-hired-in-the-mining-industry-with-help-of-professional-resume-writers",
+      "excerpt": "Mining Resumes: Need a mining job? All Resume Services provides expert resume writing to help you get hired in 2025.",
+      "metaDescription": "Mining Resumes: Need a mining job? All Resume Services provides expert resume writing to help you get hired in 2025.",
+      "len": "116"
+    },
+    {
+      "id": "120032",
+      "title": "Resume Help for Freshers: All Resume Services in 2025",
+      "slug": "if-you-are-a-fresher-with-no-experience-then-you-need-a-professional-resume-writer",
+      "excerpt": "Get hired with a pro resume, no experience needed.",
+      "metaDescription": "Get hired with a pro resume, no experience needed.",
+      "len": "50"
+    },
+    {
+      "id": "120036",
+      "title": "ATS Resume Tips: All Resume Services Can Help You Succeed",
+      "slug": "benefits-of-applicant-tracking-software-ats-for-resume-scrutiny",
+      "excerpt": "Unlock ATS: Get noticed by recruiters!",
+      "metaDescription": "Unlock ATS: Get noticed by recruiters!",
+      "len": "38"
+    },
+    {
+      "id": "120041",
+      "title": "Resume Writing Service: Benefits & Choosing the Right One",
+      "slug": "why-use-a-resume-writing-service",
+      "excerpt": "Boost Your Career with Professional resume Writing Services",
+      "metaDescription": "Boost Your Career with Professional resume Writing Services",
+      "len": "59"
+    },
+    {
+      "id": "120046",
+      "title": "Revitalize Your Resume: A Marketing Tool for Australian Jobs",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you",
+      "excerpt": "Transform Your Resume: Open Doors, Not Close Them.",
+      "metaDescription": "Transform Your Resume: Open Doors, Not Close Them.",
+      "len": "50"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\texcerpt\tmetaDescription\tlen\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool\tCraft a standout resume, unlock new job opportunities.\tCraft a standout resume, unlock new job opportunities.\t54\n120005\tAll Resume Services: Expert Scannable Resume Writing\tthe-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services\tBoost your job chances with a pro scannable resume.\tBoost your job chances with a pro scannable resume.\t51\n120007\tGifting Resumes in Australia\tgifting-resumes-in-australia\tBoost your Aussie job search with expert resume tips.\tBoost your Aussie job search with expert resume tips.\t53\n120008\tSelection Criteria Help: All Resume Services' Expert Guide\twriting-a-professional-selection-criteria-response\tMaster Selection Criteria Responses for Job Success\tMaster Selection Criteria Responses for Job Success\t51\n120009\tAvoid Cheap Resume Services: Get Expert Help in Australia\tusing-cheap-resume-writing-services\tBoost job prospects with a quality resume.\tBoost job prospects with a quality resume.\t42\n120015\tAll Resume Services: Australian Job Application Guide\tcrafting-the-perfect-job-application-letter-an-australian-perspective-by-all-resume-services\tCraft a winning job application letter for the Australian market.\tCraft a winning job application letter for the Australian market.\t65\n120018\tLand Your Job: Professional resume Help in Australia (2025)\tpage\tNeed a job in Australia? All resume Services provides expert resume help to land your dream role. Get started today!\tNeed a job in Australia? All resume Services provides expert resume help to land your dream role. Get started today!\t116\n120019\tWrite Your First resume: Expert Guide by All Resume Services\thow-to-write-your-first-resume\tCraft a winning first resume with ease!\tCraft a winning first resume with ease!\t39\n120029\tLinkedIn Profile Benefits: Boost Your Career in 2025\twhat-are-the-5-benefits-of-having-a-strong-linkedin-profile\tUnlock LinkedIn's Power: Boost Your Career & Networking Success\tUnlock LinkedIn's Power: Boost Your Career & Networking Success\t63\n120031\tMining Resumes: Get Hired with Expert Help | 2025\tget-hired-in-the-mining-industry-with-help-of-professional-resume-writers\tMining Resumes: Need a mining job? All Resume Services provides expert resume writing to help you get hired in 2025.\tMining Resumes: Need a mining job? All Resume Services provides expert resume writing to help you get hired in 2025.\t116\n120032\tResume Help for Freshers: All Resume Services in 2025\tif-you-are-a-fresher-with-no-experience-then-you-need-a-professional-resume-writer\tGet hired with a pro resume, no experience needed.\tGet hired with a pro resume, no experience needed.\t50\n120036\tATS Resume Tips: All Resume Services Can Help You Succeed\tbenefits-of-applicant-tracking-software-ats-for-resume-scrutiny\tUnlock ATS: Get noticed by recruiters!\tUnlock ATS: Get noticed by recruiters!\t38\n120041\tResume Writing Service: Benefits & Choosing the Right One\twhy-use-a-resume-writing-service\tBoost Your Career with Professional resume Writing Services\tBoost Your Career with Professional resume Writing Services\t59\n120046\tRevitalize Your Resume: A Marketing Tool for Australian Jobs\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you\tTransform Your Resume: Open Doors, Not Close Them.\tTransform Your Resume: Open Doors, Not Close Them.\t50\n",
+  "stderr": "",
+  "execution_time_ms": 1624
+}

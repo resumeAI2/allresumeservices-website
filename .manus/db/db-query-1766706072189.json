@@ -1,0 +1,66 @@
+{
+  "query": "SELECT id, title FROM blog_posts WHERE LENGTH(metaDescription) < 120;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title FROM blog_posts WHERE LENGTH(metaDescription) < 120;",
+  "rows": [
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool"
+    },
+    {
+      "id": "120005",
+      "title": "All Resume Services: Expert Scannable Resume Writing"
+    },
+    {
+      "id": "120007",
+      "title": "Gifting Resumes in Australia"
+    },
+    {
+      "id": "120008",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide"
+    },
+    {
+      "id": "120009",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia"
+    },
+    {
+      "id": "120015",
+      "title": "All Resume Services: Australian Job Application Guide"
+    },
+    {
+      "id": "120018",
+      "title": "Land Your Job: Professional resume Help in Australia (2025)"
+    },
+    {
+      "id": "120019",
+      "title": "Write Your First resume: Expert Guide by All Resume Services"
+    },
+    {
+      "id": "120029",
+      "title": "LinkedIn Profile Benefits: Boost Your Career in 2025"
+    },
+    {
+      "id": "120031",
+      "title": "Mining Resumes: Get Hired with Expert Help | 2025"
+    },
+    {
+      "id": "120032",
+      "title": "Resume Help for Freshers: All Resume Services in 2025"
+    },
+    {
+      "id": "120036",
+      "title": "ATS Resume Tips: All Resume Services Can Help You Succeed"
+    },
+    {
+      "id": "120041",
+      "title": "Resume Writing Service: Benefits & Choosing the Right One"
+    },
+    {
+      "id": "120046",
+      "title": "Revitalize Your Resume: A Marketing Tool for Australian Jobs"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\n120005\tAll Resume Services: Expert Scannable Resume Writing\n120007\tGifting Resumes in Australia\n120008\tSelection Criteria Help: All Resume Services' Expert Guide\n120009\tAvoid Cheap Resume Services: Get Expert Help in Australia\n120015\tAll Resume Services: Australian Job Application Guide\n120018\tLand Your Job: Professional resume Help in Australia (2025)\n120019\tWrite Your First resume: Expert Guide by All Resume Services\n120029\tLinkedIn Profile Benefits: Boost Your Career in 2025\n120031\tMining Resumes: Get Hired with Expert Help | 2025\n120032\tResume Help for Freshers: All Resume Services in 2025\n120036\tATS Resume Tips: All Resume Services Can Help You Succeed\n120041\tResume Writing Service: Benefits & Choosing the Right One\n120046\tRevitalize Your Resume: A Marketing Tool for Australian Jobs\n",
+  "stderr": "",
+  "execution_time_ms": 1514
+}

@@ -1,0 +1,20 @@
+{
+  "query": "SELECT id, title, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) < 120 OR LENGTH(metaDescription) > 160 ORDER BY len;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) < 120 OR LENGTH(metaDescription) > 160 ORDER BY len;",
+  "rows": [
+    {
+      "id": "120039",
+      "title": "Premium resume Writing Services By Top resume Writers",
+      "len": "162"
+    },
+    {
+      "id": "120040",
+      "title": "Professional Resume Writer Benefits: Get Hired!",
+      "len": "164"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tlen\n120039\tPremium resume Writing Services By Top resume Writers\t162\n120040\tProfessional Resume Writer Benefits: Get Hired!\t164\n",
+  "stderr": "",
+  "execution_time_ms": 1584
+}

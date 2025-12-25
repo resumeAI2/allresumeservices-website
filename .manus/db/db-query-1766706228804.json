@@ -1,0 +1,22 @@
+{
+  "query": "SELECT id, title, metaDescription, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) < 120 OR LENGTH(metaDescription) > 160;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, metaDescription, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) < 120 OR LENGTH(metaDescription) > 160;",
+  "rows": [
+    {
+      "id": "120039",
+      "title": "Premium resume Writing Services By Top resume Writers",
+      "metaDescription": "Job seekers often face a lot of challenges when it comes to writing their resumes. For one, they’re not sure what format to use or what sections to include. ...",
+      "len": "162"
+    },
+    {
+      "id": "120040",
+      "title": "Professional Resume Writer Benefits: Get Hired!",
+      "metaDescription": "In today’s job market, the importance of a resume is greater than ever before. With so many people vying for the same positions, it’s essential that your res...",
+      "len": "164"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tmetaDescription\tlen\n120039\tPremium resume Writing Services By Top resume Writers\tJob seekers often face a lot of challenges when it comes to writing their resumes. For one, they’re not sure what format to use or what sections to include. ...\t162\n120040\tProfessional Resume Writer Benefits: Get Hired!\tIn today’s job market, the importance of a resume is greater than ever before. With so many people vying for the same positions, it’s essential that your res...\t164\n",
+  "stderr": "",
+  "execution_time_ms": 1622
+}

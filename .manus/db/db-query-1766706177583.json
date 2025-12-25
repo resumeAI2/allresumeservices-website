@@ -1,0 +1,18 @@
+{
+  "query": "SELECT 'short' as type, COUNT(*) as cnt FROM blog_posts WHERE LENGTH(metaDescription) < 120 UNION ALL SELECT 'long' as type, COUNT(*) as cnt FROM blog_posts WHERE LENGTH(metaDescription) > 160;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT 'short' as type, COUNT(*) as cnt FROM blog_posts WHERE LENGTH(metaDescription) < 120 UNION ALL SELECT 'long' as type, COUNT(*) as cnt FROM blog_posts WHERE LENGTH(metaDescription) > 160;",
+  "rows": [
+    {
+      "type": "long",
+      "cnt": "4"
+    },
+    {
+      "type": "short",
+      "cnt": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "type\tcnt\nlong\t4\nshort\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1612
+}
