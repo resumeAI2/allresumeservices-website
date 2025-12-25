@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, slug, title FROM blog_posts WHERE slug LIKE '%resume-writing-tips%' OR slug LIKE '%10-%' LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, slug, title FROM blog_posts WHERE slug LIKE '%resume-writing-tips%' OR slug LIKE '%10-%' LIMIT 5;",
+  "rows": [
+    {
+      "id": "120017",
+      "slug": "10-pointers-for-writing-an-outstanding-resume",
+      "title": "10 Pointers for Writing an Outstanding Resume"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tslug\ttitle\n120017\t10-pointers-for-writing-an-outstanding-resume\t10 Pointers for Writing an Outstanding Resume\n",
+  "stderr": "",
+  "execution_time_ms": 1600
+}
