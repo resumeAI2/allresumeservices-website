@@ -21,6 +21,7 @@ import EmailCapturePopup from "@/components/EmailCapturePopup";
 import StickyGetStarted from "@/components/StickyGetStarted";
 import BackToTop from "@/components/BackToTop";
 import StructuredData from "@/components/StructuredData";
+import OrganizationSchema from "@/components/OrganizationSchema";
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
       <SchemaMarkup type="homepage" />
       <StructuredData type="homepage" />
       <FAQSchema />
+      <OrganizationSchema />
       <Header />
       <Hero />
       <Stats />
