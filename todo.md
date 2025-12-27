@@ -1989,3 +1989,29 @@
 - [x] Create blog content calendar page for 2025-2026
 - [x] Add scheduling interface for future blog posts
 - [x] Test all blog enhancements
+
+
+## Email Notifications System
+- [ ] Review existing email infrastructure (SMTP setup)
+- [ ] Create email notification templates for users
+- [ ] Add order confirmation email notification
+- [ ] Add contact form submission email notification
+- [ ] Add free resume review submission email notification
+- [ ] Test email delivery to users
+
+## Admin Notifications System
+- [ ] Create admin notification service
+- [ ] Add notification for new orders
+- [ ] Add notification for new contact form submissions
+- [ ] Add notification for new free resume review requests
+- [ ] Configure admin email recipient (ADMIN_NOTIFICATION_EMAIL)
+- [ ] Test admin notification delivery
+
+
+## Remove Amazon SES - Use ProtonMail SMTP Only
+- [x] Remove sesEmailService.ts file
+- [x] Update orders.ts to use ProtonMail SMTP only
+- [x] Update reviewRequestScheduler.ts to use ProtonMail SMTP
+- [x] Update routers.ts to remove SES test endpoint
+- [x] Remove @aws-sdk/client-ses dependency
+- [x] Test all email notifications work with ProtonMail SMTP

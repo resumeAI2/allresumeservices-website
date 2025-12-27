@@ -8,19 +8,28 @@ interface ContactFormData {
   message: string;
 }
 
+interface OrderData {
+  orderId: number;
+  customerName: string;
+  customerEmail: string;
+  packageName: string;
+  amount: string;
+  currency: string;
+  paypalOrderId?: string;
+}
+
 /**
- * Create email transporter
+ * Create email transporter using ProtonMail SMTP
  * Uses environment variables for configuration
  */
 function createTransporter() {
-  // ProtonMail SMTP configuration
   const emailUser = process.env.EMAIL_USER || 'info@allresumeservices.com';
   const emailPass = process.env.SMTP_PASSWORD;
   const emailHost = process.env.EMAIL_HOST || 'smtp.protonmail.ch';
   const emailPort = parseInt(process.env.EMAIL_PORT || '587');
 
   if (!emailUser || !emailPass) {
-    console.warn('Email credentials not configured. Emails will not be sent.');
+    console.warn('[Email] ProtonMail SMTP credentials not configured. Emails will not be sent.');
     return null;
   }
 
@@ -36,17 +45,26 @@ function createTransporter() {
 }
 
 /**
- * Send contact form notification email
+ * Check if email is properly configured
+ */
+export function isEmailConfigured(): boolean {
+  const emailUser = process.env.EMAIL_USER || 'info@allresumeservices.com';
+  const emailPass = process.env.SMTP_PASSWORD;
+  return !!(emailUser && emailPass);
+}
+
+/**
+ * Send contact form notification email to admin
  */
 export async function sendContactFormNotification(data: ContactFormData): Promise<boolean> {
   const transporter = createTransporter();
   
   if (!transporter) {
-    console.log('Email transporter not configured, skipping email notification');
+    console.log('[Email] Transporter not configured, skipping contact form notification');
     return false;
   }
 
-  const recipientEmail = process.env.CONTACT_NOTIFICATION_EMAIL || 'info@allresumeservices.com';
+  const recipientEmail = process.env.ADMIN_NOTIFICATION_EMAIL || process.env.CONTACT_NOTIFICATION_EMAIL || 'info@allresumeservices.com';
 
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -99,10 +117,10 @@ Submitted at: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney
       html: htmlContent,
     });
 
-    console.log('Contact form notification email sent successfully');
+    console.log('[Email] Contact form notification sent successfully');
     return true;
   } catch (error) {
-    console.error('Failed to send contact form notification email:', error);
+    console.error('[Email] Failed to send contact form notification:', error);
     return false;
   }
 }
@@ -114,8 +132,34 @@ export async function sendTestEmail(recipientEmail: string): Promise<boolean> {
   const transporter = createTransporter();
   
   if (!transporter) {
-    throw new Error('Email transporter not configured');
+    throw new Error('Email transporter not configured. Please check SMTP_PASSWORD environment variable.');
   }
+
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #1e3a8a; border-bottom: 2px solid #f59e0b; padding-bottom: 10px;">
+        ProtonMail SMTP Test Email
+      </h2>
+      
+      <p style="font-size: 16px; line-height: 1.6;">
+        Congratulations! Your ProtonMail SMTP integration is working correctly.
+      </p>
+      
+      <div style="background-color: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0;">
+        <p style="margin: 0; color: #065f46;">
+          ✅ <strong>Email Configuration Verified</strong>
+        </p>
+      </div>
+      
+      <p style="font-size: 14px; color: #6b7280;">
+        Test sent at: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })}
+      </p>
+      
+      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 12px;">
+        <p>All Resume Services - Email System</p>
+      </div>
+    </div>
+  `;
 
   try {
     await transporter.sendMail({
@@ -123,13 +167,13 @@ export async function sendTestEmail(recipientEmail: string): Promise<boolean> {
       to: recipientEmail,
       subject: 'Test Email from All Resume Services',
       text: 'This is a test email to verify your email configuration is working correctly.',
-      html: '<p>This is a test email to verify your email configuration is working correctly.</p>',
+      html: htmlContent,
     });
 
-    console.log('Test email sent successfully');
+    console.log('[Email] Test email sent successfully');
     return true;
   } catch (error) {
-    console.error('Failed to send test email:', error);
+    console.error('[Email] Failed to send test email:', error);
     throw error;
   }
 }
@@ -141,7 +185,7 @@ export async function sendLeadMagnetEmail(name: string, email: string, pdfUrl: s
   const transporter = createTransporter();
   
   if (!transporter) {
-    console.log('Email transporter not configured, skipping lead magnet email');
+    console.log('[Email] Transporter not configured, skipping lead magnet email');
     return false;
   }
 
@@ -248,10 +292,224 @@ Professional Resume Writing | 18+ Years Experience | 96% Interview Success Rate
       html: htmlContent,
     });
 
-    console.log(`Lead magnet email sent successfully to ${email}`);
+    console.log(`[Email] Lead magnet email sent successfully to ${email}`);
     return true;
   } catch (error) {
-    console.error('Failed to send lead magnet email:', error);
+    console.error('[Email] Failed to send lead magnet email:', error);
+    return false;
+  }
+}
+
+/**
+ * Send order confirmation email to customer
+ */
+export async function sendOrderConfirmationEmail(orderData: OrderData): Promise<boolean> {
+  const transporter = createTransporter();
+  
+  if (!transporter) {
+    console.log('[Email] Transporter not configured, skipping order confirmation email');
+    return false;
+  }
+
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <div style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+        <h1 style="margin: 0; font-size: 28px;">✅ Order Confirmed!</h1>
+      </div>
+      
+      <div style="background-color: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+        <p style="font-size: 16px; color: #374151;">Hi ${orderData.customerName},</p>
+        
+        <p style="font-size: 16px; color: #374151;">
+          Thank you for your order! We've received your payment and are excited to start working on your professional documents.
+        </p>
+        
+        <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; margin: 25px 0;">
+          <h2 style="margin: 0 0 15px 0; font-size: 18px; color: #1f2937;">Order Details</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Order ID:</td>
+              <td style="padding: 8px 0; color: #1f2937; font-weight: 600; font-size: 14px; text-align: right;">#${orderData.orderId}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Service:</td>
+              <td style="padding: 8px 0; color: #1f2937; font-weight: 600; font-size: 14px; text-align: right;">${orderData.packageName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Amount Paid:</td>
+              <td style="padding: 8px 0; color: #10b981; font-weight: 700; font-size: 16px; text-align: right;">${orderData.currency} $${orderData.amount}</td>
+            </tr>
+            ${orderData.paypalOrderId ? `
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">PayPal Transaction:</td>
+              <td style="padding: 8px 0; color: #1f2937; font-size: 12px; text-align: right; font-family: monospace;">${orderData.paypalOrderId}</td>
+            </tr>
+            ` : ''}
+          </table>
+        </div>
+        
+        <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 20px 0;">
+          <p style="margin: 0 0 10px 0; color: #1e40af; font-weight: 600;">📋 What Happens Next?</p>
+          <ol style="margin: 10px 0; padding-left: 20px; color: #1e3a8a; font-size: 14px;">
+            <li style="margin-bottom: 8px;">Our team will review your order within 24 hours</li>
+            <li style="margin-bottom: 8px;">We'll contact you to schedule a consultation</li>
+            <li style="margin-bottom: 8px;">Our expert writers will craft your documents</li>
+            <li style="margin-bottom: 8px;">You'll receive your completed documents for review</li>
+          </ol>
+        </div>
+        
+        <p style="font-size: 14px; color: #6b7280; margin-top: 25px;">
+          If you have any questions, please don't hesitate to contact us at 
+          <a href="mailto:admin@allresumeservices.com.au" style="color: #3b82f6; text-decoration: none;">admin@allresumeservices.com.au</a>
+        </p>
+        
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
+          <p style="margin: 0; color: #6b7280; font-size: 12px;">All Resume Services</p>
+          <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 12px;">Professional Resume Writing & Career Services</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const textContent = `
+Order Confirmed!
+
+Hi ${orderData.customerName},
+
+Thank you for your order! We've received your payment and are excited to start working on your professional documents.
+
+Order Details:
+- Order ID: #${orderData.orderId}
+- Service: ${orderData.packageName}
+- Amount Paid: ${orderData.currency} $${orderData.amount}
+${orderData.paypalOrderId ? `- PayPal Transaction: ${orderData.paypalOrderId}` : ''}
+
+What Happens Next?
+1. Our team will review your order within 24 hours
+2. We'll contact you to schedule a consultation
+3. Our expert writers will craft your documents
+4. You'll receive your completed documents for review
+
+If you have any questions, please contact us at admin@allresumeservices.com.au
+
+---
+All Resume Services
+Professional Resume Writing & Career Services
+  `;
+
+  try {
+    await transporter.sendMail({
+      from: `"All Resume Services" <info@allresumeservices.com>`,
+      to: orderData.customerEmail,
+      subject: `Order Confirmation #${orderData.orderId} - All Resume Services`,
+      text: textContent,
+      html: htmlContent,
+    });
+
+    console.log(`[Email] Order confirmation sent successfully to ${orderData.customerEmail}`);
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send order confirmation email:', error);
+    return false;
+  }
+}
+
+/**
+ * Send review request email to client
+ */
+export async function sendReviewRequestEmail(
+  clientEmail: string,
+  clientName: string,
+  reviewLink: string
+): Promise<boolean> {
+  const transporter = createTransporter();
+  
+  if (!transporter) {
+    console.log('[Email] Transporter not configured, skipping review request email');
+    return false;
+  }
+
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #1e3a8a; border-bottom: 2px solid #f59e0b; padding-bottom: 10px;">
+        We'd Love Your Feedback!
+      </h2>
+      
+      <p style="font-size: 16px; line-height: 1.6;">
+        Hi ${clientName},
+      </p>
+      
+      <p style="font-size: 16px; line-height: 1.6;">
+        Thank you for choosing All Resume Services! We hope you're thrilled with your new resume and that it's helping you land interviews.
+      </p>
+      
+      <p style="font-size: 16px; line-height: 1.6;">
+        We'd be incredibly grateful if you could take a moment to share your experience by leaving us a Google review. Your feedback helps us improve and helps other job seekers find quality resume services.
+      </p>
+      
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="${reviewLink}" 
+           style="background-color: #f59e0b; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+          Leave a Google Review
+        </a>
+      </div>
+      
+      <p style="font-size: 16px; line-height: 1.6;">
+        It only takes a minute, and your review means the world to us!
+      </p>
+      
+      <p style="font-size: 16px; line-height: 1.6;">
+        Thank you again for your trust in All Resume Services.
+      </p>
+      
+      <p style="font-size: 16px; line-height: 1.6;">
+        Best regards,<br>
+        <strong>The All Resume Services Team</strong>
+      </p>
+      
+      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 12px;">
+        <p>All Resume Services | Professional Resume Writing</p>
+        <p>Email: admin@allresumeservices.com.au | Phone: +61 410 934 371</p>
+      </div>
+    </div>
+  `;
+
+  const textContent = `
+We'd Love Your Feedback!
+
+Hi ${clientName},
+
+Thank you for choosing All Resume Services! We hope you're thrilled with your new resume and that it's helping you land interviews.
+
+We'd be incredibly grateful if you could take a moment to share your experience by leaving us a Google review. Your feedback helps us improve and helps other job seekers find quality resume services.
+
+Leave a Google Review: ${reviewLink}
+
+It only takes a minute, and your review means the world to us!
+
+Thank you again for your trust in All Resume Services.
+
+Best regards,
+The All Resume Services Team
+
+---
+All Resume Services | Professional Resume Writing
+Email: admin@allresumeservices.com.au | Phone: +61 410 934 371
+  `;
+
+  try {
+    await transporter.sendMail({
+      from: `"All Resume Services" <info@allresumeservices.com>`,
+      to: clientEmail,
+      subject: "We'd Love Your Feedback - All Resume Services",
+      text: textContent,
+      html: htmlContent,
+    });
+
+    console.log(`[Email] Review request sent successfully to ${clientEmail}`);
+    return true;
+  } catch (error) {
+    console.error('[Email] Failed to send review request email:', error);
     return false;
   }
 }

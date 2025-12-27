@@ -17,7 +17,7 @@ export default function AdminEmailTest() {
   } | null>(null);
 
   const configQuery = trpc.email.checkConfiguration.useQuery();
-  const testMutation = trpc.email.testSES.useMutation();
+  const testMutation = trpc.email.testEmail.useMutation();
 
   const handleTestEmail = async () => {
     if (!recipientEmail || !recipientEmail.includes("@")) {
@@ -58,9 +58,9 @@ export default function AdminEmailTest() {
       <main className="flex-1 py-16 bg-muted/20">
         <div className="container max-w-2xl">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold mb-2">Amazon SES Email Test</h1>
+            <h1 className="text-3xl font-bold mb-2">ProtonMail SMTP Email Test</h1>
             <p className="text-muted-foreground">
-              Test your Amazon SES integration and verify email delivery
+              Test your ProtonMail SMTP integration and verify email delivery
             </p>
           </div>
 
@@ -73,7 +73,7 @@ export default function AdminEmailTest() {
                   <div>
                     <h3 className="font-semibold mb-1">Checking Configuration...</h3>
                     <p className="text-sm text-muted-foreground">
-                      Please wait while we verify your SES setup
+                      Please wait while we verify your email setup
                     </p>
                   </div>
                 </>
@@ -82,10 +82,10 @@ export default function AdminEmailTest() {
                   <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
                   <div>
                     <h3 className="font-semibold text-green-600 mb-1">
-                      SES Configured ✓
+                      Email Configured ✓
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Amazon SES is properly configured with valid credentials
+                      ProtonMail SMTP is properly configured with valid credentials
                     </p>
                   </div>
                 </>
@@ -94,17 +94,22 @@ export default function AdminEmailTest() {
                   <XCircle className="h-5 w-5 text-red-600 mt-0.5" />
                   <div>
                     <h3 className="font-semibold text-red-600 mb-1">
-                      SES Not Configured
+                      Email Not Configured
                     </h3>
                     <p className="text-sm text-muted-foreground mb-3">
-                      Amazon SES credentials are missing. Please add the following
-                      environment variables in the Secrets Panel:
+                      ProtonMail SMTP credentials are missing. Please add the following
+                      environment variable in the Secrets Panel:
                     </p>
                     <ul className="text-sm space-y-1 font-mono bg-muted p-3 rounded">
-                      <li>• AWS_REGION</li>
-                      <li>• AWS_ACCESS_KEY_ID</li>
-                      <li>• AWS_SECRET_ACCESS_KEY</li>
-                      <li>• SES_FROM_EMAIL</li>
+                      <li>• SMTP_PASSWORD (ProtonMail Bridge password)</li>
+                    </ul>
+                    <p className="text-sm text-muted-foreground mt-3">
+                      Optional settings (have defaults):
+                    </p>
+                    <ul className="text-sm space-y-1 font-mono bg-muted p-3 rounded mt-2">
+                      <li>• EMAIL_USER (default: info@allresumeservices.com)</li>
+                      <li>• EMAIL_HOST (default: smtp.protonmail.ch)</li>
+                      <li>• EMAIL_PORT (default: 587)</li>
                     </ul>
                   </div>
                 </>
@@ -134,7 +139,7 @@ export default function AdminEmailTest() {
                 <p className="text-xs text-muted-foreground mt-1.5">
                   {isConfigured
                     ? "Enter the email address where you want to receive the test email"
-                    : "Configure SES credentials first to enable testing"}
+                    : "Configure SMTP credentials first to enable testing"}
                 </p>
               </div>
 
@@ -185,22 +190,22 @@ export default function AdminEmailTest() {
               <li className="flex gap-2">
                 <span className="font-bold">•</span>
                 <span>
-                  <strong>Verify your email:</strong> Make sure your sender email
-                  (SES_FROM_EMAIL) is verified in the Amazon SES console
+                  <strong>ProtonMail Bridge:</strong> You need ProtonMail Bridge installed
+                  to use SMTP with ProtonMail accounts
                 </span>
               </li>
               <li className="flex gap-2">
                 <span className="font-bold">•</span>
                 <span>
-                  <strong>Sandbox mode:</strong> If your SES account is in sandbox
-                  mode, you can only send to verified email addresses
+                  <strong>SMTP Password:</strong> Use the password generated by ProtonMail
+                  Bridge, not your regular ProtonMail password
                 </span>
               </li>
               <li className="flex gap-2">
                 <span className="font-bold">•</span>
                 <span>
-                  <strong>Production mode:</strong> Request production access in AWS
-                  to send emails to any address
+                  <strong>Port settings:</strong> ProtonMail uses port 587 with STARTTLS
+                  by default
                 </span>
               </li>
               <li className="flex gap-2">
