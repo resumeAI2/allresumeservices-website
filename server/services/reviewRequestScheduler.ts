@@ -8,7 +8,7 @@ import { getDb } from "../db";
 import { client_intake_records } from "../../drizzle/schema";
 import { eq, and, gte, lte, isNull } from "drizzle-orm";
 import { generateReviewRequestEmail } from "../emails/reviewRequest";
-import { sendReviewRequestEmail } from "./sesEmailService";
+import { sendReviewRequestEmail } from "../emailService";
 
 // Google Review Link for All Resume Services
 const GOOGLE_REVIEW_LINK = "https://g.page/r/CYourGoogleBusinessIDHere/review";

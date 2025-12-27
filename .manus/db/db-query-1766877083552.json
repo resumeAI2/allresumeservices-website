@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, slug, title FROM blog_posts ORDER BY createdAt DESC LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, slug, title FROM blog_posts ORDER BY createdAt DESC LIMIT 10;",
+  "rows": [
+    {
+      "id": "90001",
+      "slug": "transform-your-resume-with-powerful-action-verbs",
+      "title": "Transform Your Resume with Powerful Action Verbs"
+    },
+    {
+      "id": "120046",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you",
+      "title": "Revitalize Your Resume: A Marketing Tool for Australian Jobs"
+    },
+    {
+      "id": "120042",
+      "slug": "affordable-basic-resume-writing-stand-out-in-your-job-hunt",
+      "title": "Affordable Basic Resume Writing - Stand Out in Your Job Hunt - ALL RESUME SERVICES"
+    },
+    {
+      "id": "120045",
+      "slug": "expert-cv-help-for-crafting-winning-resumes-effortlessly",
+      "title": "Expert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES"
+    },
+    {
+      "id": "120044",
+      "slug": "effective-cv-writing-strategies-for-career-success",
+      "title": "Effective CV Writing for Australian Career Success"
+    },
+    {
+      "id": "120038",
+      "slug": "8-reasons-why-your-cv-needs-to-be-updated",
+      "title": "Update Your CV: 8 Reasons Why (2025)"
+    },
+    {
+      "id": "120037",
+      "slug": "why-do-you-need-cv-services",
+      "title": "Why Use CV Services? Improve Your Career Prospects in 2025"
+    },
+    {
+      "id": "120039",
+      "slug": "premium-resume-writing-services-by-top-resume-writers",
+      "title": "Premium resume Writing Services By Top resume Writers"
+    },
+    {
+      "id": "120040",
+      "slug": "benefits-of-using-a-professional-resume-writer",
+      "title": "Professional Resume Writer Benefits: Get Hired!"
+    },
+    {
+      "id": "120041",
+      "slug": "why-use-a-resume-writing-service",
+      "title": "Resume Writing Service: Benefits & Choosing the Right One"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tslug\ttitle\n90001\ttransform-your-resume-with-powerful-action-verbs\tTransform Your Resume with Powerful Action Verbs\n120046\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you\tRevitalize Your Resume: A Marketing Tool for Australian Jobs\n120042\taffordable-basic-resume-writing-stand-out-in-your-job-hunt\tAffordable Basic Resume Writing - Stand Out in Your Job Hunt - ALL RESUME SERVICES\n120045\texpert-cv-help-for-crafting-winning-resumes-effortlessly\tExpert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES\n120044\teffective-cv-writing-strategies-for-career-success\tEffective CV Writing for Australian Career Success\n120038\t8-reasons-why-your-cv-needs-to-be-updated\tUpdate Your CV: 8 Reasons Why (2025)\n120037\twhy-do-you-need-cv-services\tWhy Use CV Services? Improve Your Career Prospects in 2025\n120039\tpremium-resume-writing-services-by-top-resume-writers\tPremium resume Writing Services By Top resume Writers\n120040\tbenefits-of-using-a-professional-resume-writer\tProfessional Resume Writer Benefits: Get Hired!\n120041\twhy-use-a-resume-writing-service\tResume Writing Service: Benefits & Choosing the Right One\n",
+  "stderr": "",
+  "execution_time_ms": 2139
+}

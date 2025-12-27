@@ -78,34 +78,18 @@ export async function updateOrderStatus(
     const order = await getOrderById(orderId);
     if (order && order.customerEmail) {
       try {
-        // Try SES first, fall back to ProtonMail SMTP
-        const { sendOrderConfirmationEmail, isSESConfigured } = await import('./services/sesEmailService');
-        
-        if (isSESConfigured()) {
-          await sendOrderConfirmationEmail({
-            orderId: order.id,
-            customerName: order.customerName || 'Valued Customer',
-            customerEmail: order.customerEmail,
-            packageName: order.packageName,
-            amount: order.amount,
-            currency: order.currency,
-            paypalOrderId: order.paypalOrderId || undefined,
-          });
-          console.log(`[Orders] Confirmation email sent via SES for order #${orderId}`);
-        } else {
-          // Fallback to ProtonMail SMTP
-          const { sendOrderConfirmationEmailSMTP } = await import('./orderEmails');
-          await sendOrderConfirmationEmailSMTP({
-            orderId: order.id,
-            customerName: order.customerName || 'Valued Customer',
-            customerEmail: order.customerEmail,
-            packageName: order.packageName,
-            amount: order.amount,
-            currency: order.currency,
-            paypalOrderId: order.paypalOrderId || undefined,
-          });
-          console.log(`[Orders] Confirmation email sent via SMTP for order #${orderId}`);
-        }
+        // Use ProtonMail SMTP for all emails
+        const { sendOrderConfirmationEmail } = await import('./emailService');
+        await sendOrderConfirmationEmail({
+          orderId: order.id,
+          customerName: order.customerName || 'Valued Customer',
+          customerEmail: order.customerEmail,
+          packageName: order.packageName,
+          amount: order.amount,
+          currency: order.currency,
+          paypalOrderId: order.paypalOrderId || undefined,
+        });
+        console.log(`[Orders] Confirmation email sent for order #${orderId}`);
         
         // Also send admin notification
         try {

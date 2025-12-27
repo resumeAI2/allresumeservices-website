@@ -777,13 +777,13 @@ export const appRouter = router({
       }),
   }),
   email: router({
-    testSES: publicProcedure
+    testEmail: publicProcedure
       .input(z.object({ recipientEmail: z.string().email() }))
       .mutation(async ({ input }) => {
-        const { sendTestEmail, isSESConfigured } = await import('./services/sesEmailService');
+        const { sendTestEmail, isEmailConfigured } = await import('./emailService');
         
-        if (!isSESConfigured()) {
-          throw new Error('Amazon SES is not configured. Please add AWS credentials to environment variables.');
+        if (!isEmailConfigured()) {
+          throw new Error('Email is not configured. Please add SMTP_PASSWORD to environment variables.');
         }
         
         const success = await sendTestEmail(input.recipientEmail);
@@ -796,8 +796,8 @@ export const appRouter = router({
       }),
     checkConfiguration: publicProcedure
       .query(async () => {
-        const { isSESConfigured } = await import('./services/sesEmailService');
-        return { configured: isSESConfigured() };
+        const { isEmailConfigured } = await import('./emailService');
+        return { configured: isEmailConfigured() };
       }),
   }),
   promoCodes: router({
