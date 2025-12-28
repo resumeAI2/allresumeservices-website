@@ -2015,3 +2015,8 @@
 - [x] Update routers.ts to remove SES test endpoint
 - [x] Remove @aws-sdk/client-ses dependency
 - [x] Test all email notifications work with ProtonMail SMTP
+
+## Email System Improvements (Dec 28, 2025)
+- [x] Test email delivery via /admin/email-test
+- [x] Update Google Review link in review request scheduler with actual URL
+- [x] Add email delivery logging to track sent notifications

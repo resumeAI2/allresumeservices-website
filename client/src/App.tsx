@@ -67,6 +67,7 @@ import PricingPage from './pages/Pricing';
 import FreeResumeGuide from './pages/FreeResumeGuide';
 import ThankYouReview from './pages/ThankYouReview';
 import ContentCalendar from './pages/ContentCalendar';
+import AdminEmailLogs from './pages/AdminEmailLogs';
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -125,6 +126,7 @@ function Router() {
       <Route path={"/admin/intake-records"} component={AdminIntakeRecords} />
       <Route path={'/admin/intake-records/:id'} component={AdminIntakeRecordDetail} />
       <Route path={'/admin/email-test'} component={AdminEmailTest} />
+      <Route path={'/admin/email-logs'} component={AdminEmailLogs} />
       <Route path={'/admin/orders'} component={AdminOrders} />
       <Route path={'/admin/orders/:id'} component={AdminOrderDetail} />
       <Route path={'/admin/promo-codes'} component={AdminPromoCodes} />

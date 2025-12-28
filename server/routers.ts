@@ -799,6 +799,31 @@ export const appRouter = router({
         const { isEmailConfigured } = await import('./emailService');
         return { configured: isEmailConfigured() };
       }),
+    // Email logging endpoints
+    getLogs: publicProcedure
+      .input(z.object({ limit: z.number().optional() }).optional())
+      .query(async ({ input }) => {
+        const { getRecentEmailLogs } = await import('./services/emailLogger');
+        return await getRecentEmailLogs(input?.limit || 50);
+      }),
+    getStatistics: publicProcedure
+      .input(z.object({ days: z.number().optional() }).optional())
+      .query(async ({ input }) => {
+        const { getEmailStatistics } = await import('./services/emailLogger');
+        return await getEmailStatistics(input?.days || 30);
+      }),
+    getLogsByType: publicProcedure
+      .input(z.object({ emailType: z.string(), limit: z.number().optional() }))
+      .query(async ({ input }) => {
+        const { getLogsByType } = await import('./services/emailLogger');
+        return await getLogsByType(input.emailType as any, input.limit || 50);
+      }),
+    getLogsByRecipient: publicProcedure
+      .input(z.object({ email: z.string().email(), limit: z.number().optional() }))
+      .query(async ({ input }) => {
+        const { getLogsByRecipient } = await import('./services/emailLogger');
+        return await getLogsByRecipient(input.email, input.limit || 50);
+      }),
   }),
   promoCodes: router({
     getAll: publicProcedure

@@ -176,6 +176,13 @@
       "when": 1765852609613,
       "tag": "0024_deep_absorbing_man",
       "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "5",
+      "when": 1766881448720,
+      "tag": "0025_flimsy_shinko_yamashiro",
+      "breakpoints": true
     }
   ]
 }
