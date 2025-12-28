@@ -125,10 +125,10 @@ export default function FreeReview() {
   ];
 
   return (
-    <section id="free-review" className="py-20 bg-gradient-to-br from-primary to-primary/90 text-primary-foreground relative overflow-hidden">
+    <section id="free-review" className="py-20 bg-gradient-to-br from-[#C9A227] via-[#D4AF37] to-[#B8860B] text-white relative overflow-hidden">
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
       
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-12">
@@ -141,8 +141,8 @@ export default function FreeReview() {
         </div>
 
         {/* Contact Form */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 max-w-3xl mx-auto border border-white/20 mb-12">
-          <h3 className="text-2xl font-bold mb-6 text-center">
+        <div className="bg-primary/90 backdrop-blur-md rounded-2xl p-8 md:p-12 max-w-3xl mx-auto border border-primary/30 shadow-2xl mb-12">
+          <h3 className="text-2xl font-bold mb-6 text-center text-white">
             Submit Your Resume for Free Review
           </h3>
           
@@ -150,7 +150,7 @@ export default function FreeReview() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-white font-medium">
-                  Full Name <span className="text-secondary">*</span>
+                  Full Name <span className="text-yellow-300">*</span>
                 </Label>
                 <Input
                   id="name"
@@ -171,7 +171,7 @@ export default function FreeReview() {
                     }
                   }}
                   required
-                  className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-secondary focus:ring-2 focus:ring-secondary/50 transition-all"
+                  className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-yellow-300 focus:ring-2 focus:ring-yellow-300/50 transition-all"
                 />
                 {fieldValid.name && (
                   <p className="text-sm text-green-400 mt-1 flex items-center gap-1">
@@ -186,7 +186,7 @@ export default function FreeReview() {
 
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-white font-medium">
-                  Email Address <span className="text-secondary">*</span>
+                  Email Address <span className="text-yellow-300">*</span>
                 </Label>
                 <Input
                   id="email"
@@ -208,7 +208,7 @@ export default function FreeReview() {
                     }
                   }}
                   required
-                  className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-secondary focus:ring-2 focus:ring-secondary/50 transition-all"
+                  className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-yellow-300 focus:ring-2 focus:ring-yellow-300/50 transition-all"
                 />
                 {fieldValid.email && (
                   <p className="text-sm text-green-400 mt-1 flex items-center gap-1">
@@ -252,7 +252,7 @@ export default function FreeReview() {
 
             <div className="space-y-2">
               <Label htmlFor="resume-upload" className="text-white font-medium">
-                Upload Your Resume <span className="text-secondary">*</span>
+                Upload Your Resume <span className="text-yellow-300">*</span>
               </Label>
               <div className="relative">
                 <Input
@@ -261,14 +261,14 @@ export default function FreeReview() {
                   accept=".pdf,.doc,.docx"
                   onChange={handleFileChange}
                   required
-                  className="bg-white/20 border-white/30 text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-secondary file:text-secondary-foreground file:font-semibold hover:file:bg-secondary/90 cursor-pointer"
+                  className="bg-white/20 border-white/30 text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-yellow-400 file:text-primary file:font-semibold hover:file:bg-yellow-300 cursor-pointer"
                 />
               </div>
               <p className="text-xs opacity-75 mt-1">
                 Accepted formats: PDF, DOC, DOCX (Max 5MB)
               </p>
               {formData.file && (
-                <p className="text-sm text-secondary mt-2 flex items-center gap-2">
+                <p className="text-sm text-yellow-300 mt-2 flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4" />
                   File selected: {formData.file.name}
                 </p>
@@ -279,7 +279,7 @@ export default function FreeReview() {
               type="submit"
               size="lg" 
               disabled={isSubmitting}
-              className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg py-6 shadow-xl"
+              className="w-full bg-primary text-white hover:bg-primary/90 text-lg py-6 shadow-xl font-semibold"
             >
               {isSubmitting ? (
                 <>
@@ -296,12 +296,12 @@ export default function FreeReview() {
           </form>
 
           <div className="mt-6 text-center text-sm opacity-80">
-            <p>Or call us directly: <a href="tel:0410934371" className="text-secondary font-semibold hover:underline">0410 934 371</a></p>
+            <p>Or call us directly: <a href="tel:0410934371" className="text-yellow-300 font-semibold hover:underline">0410 934 371</a></p>
           </div>
         </div>
 
         {/* Benefits Section */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 max-w-5xl mx-auto border border-white/20">
+        <div className="bg-primary/90 backdrop-blur-md rounded-2xl p-8 md:p-12 max-w-5xl mx-auto border border-primary/30 shadow-2xl">
           <h3 className="text-2xl font-bold mb-8 text-center">
             What's Included in Your Free Review?
           </h3>
@@ -310,7 +310,7 @@ export default function FreeReview() {
             {benefits.map((benefit, index) => (
               <div key={index} className="flex gap-4">
                 <div className="flex-shrink-0 mt-1">
-                  <CheckCircle2 className="h-6 w-6 text-secondary" />
+                  <CheckCircle2 className="h-6 w-6 text-white" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">{benefit.title}</h4>
