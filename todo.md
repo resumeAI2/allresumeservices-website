@@ -2020,3 +2020,6 @@
 - [x] Test email delivery via /admin/email-test
 - [x] Update Google Review link in review request scheduler with actual URL
 - [x] Add email delivery logging to track sent notifications
+
+- [ ] Verify Google Review URL redirects correctly and update if needed
+- [x] Add Email Logs quick link card to Admin Dashboard
