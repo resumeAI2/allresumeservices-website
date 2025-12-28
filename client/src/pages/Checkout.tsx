@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCart } from '../contexts/CartContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Alert, AlertDescription, AlertTitle } from '../components/ui/alert';
+import { AlertTriangle } from 'lucide-react';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Separator } from '../components/ui/separator';
@@ -94,8 +96,13 @@ export default function Checkout() {
     });
   };
 
+  useEffect(() => {
+    if (cartCount === 0) {
+      setLocation('/cart');
+    }
+  }, [cartCount, setLocation]);
+
   if (cartCount === 0) {
-    setLocation('/cart');
     return null;
   }
 
@@ -106,6 +113,19 @@ export default function Checkout() {
       <main className="flex-1 py-12">
         <div className="container max-w-6xl">
           <h1 className="text-4xl font-bold mb-8">Checkout</h1>
+          
+          {/* Temporary Payment Notice */}
+          <Alert className="mb-8 border-amber-500 bg-amber-500/10">
+            <AlertTriangle className="h-5 w-5 text-amber-500" />
+            <AlertTitle className="text-amber-500 font-semibold">Online Payments Temporarily Unavailable</AlertTitle>
+            <AlertDescription className="text-muted-foreground">
+              We're currently updating our payment system. To place an order, please contact us directly at{' '}
+              <a href="tel:0410934371" className="text-primary hover:underline font-medium">0410 934 371</a>{' '}
+              or email{' '}
+              <a href="mailto:admin@allresumeservices.com.au" className="text-primary hover:underline font-medium">admin@allresumeservices.com.au</a>.
+              We apologise for any inconvenience.
+            </AlertDescription>
+          </Alert>
           
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
