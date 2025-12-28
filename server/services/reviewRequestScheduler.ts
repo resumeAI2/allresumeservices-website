@@ -11,7 +11,7 @@ import { generateReviewRequestEmail } from "../emails/reviewRequest";
 import { sendReviewRequestEmail } from "../emailService";
 
 // Google Review Link for All Resume Services
-const GOOGLE_REVIEW_LINK = "https://g.page/r/CYourGoogleBusinessIDHere/review";
+const GOOGLE_REVIEW_LINK = "https://g.page/ALLRESUMESERVICES-REVIEWS";
 
 interface ReviewRequestConfig {
   delayDays: number; // Number of days after completion to send request

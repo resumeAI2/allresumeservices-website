@@ -497,3 +497,22 @@ export const resume_samples = mysqlTable("resume_samples", {
 
 export type ResumeSample = typeof resume_samples.$inferSelect;
 export type InsertResumeSample = typeof resume_samples.$inferInsert;
+
+
+/**
+ * Email logs table for tracking email delivery
+ */
+export const email_logs = mysqlTable("email_logs", {
+  id: int("id").autoincrement().primaryKey(),
+  emailType: varchar("emailType", { length: 100 }).notNull(), // contact_form, order_confirmation, review_request, lead_magnet, test, etc.
+  recipientEmail: varchar("recipientEmail", { length: 320 }).notNull(),
+  recipientName: varchar("recipientName", { length: 255 }),
+  subject: varchar("subject", { length: 500 }),
+  status: mysqlEnum("status", ["sent", "failed", "pending"]).default("pending").notNull(),
+  errorMessage: text("errorMessage"), // Store error details if failed
+  metadata: text("metadata"), // JSON string for additional data (orderId, contactId, etc.)
+  sentAt: timestamp("sentAt").defaultNow().notNull(),
+});
+
+export type EmailLog = typeof email_logs.$inferSelect;
+export type InsertEmailLog = typeof email_logs.$inferInsert;

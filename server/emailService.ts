@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { logEmail } from './services/emailLogger';
 
 interface ContactFormData {
   name: string;
@@ -108,18 +109,41 @@ ${data.message}
 Submitted at: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })}
   `;
 
+  const subject = `New Contact Form Submission from ${data.name}`;
+  
   try {
     await transporter.sendMail({
       from: `"All Resume Services" <info@allresumeservices.com>`,
       to: recipientEmail,
-      subject: `New Contact Form Submission from ${data.name}`,
+      subject,
       text: textContent,
       html: htmlContent,
     });
 
+    // Log successful email
+    await logEmail({
+      emailType: 'contact_form',
+      recipientEmail,
+      recipientName: data.name,
+      subject,
+      status: 'sent',
+      metadata: { senderEmail: data.email, phone: data.phone, serviceInterest: data.serviceInterest },
+    });
+
     console.log('[Email] Contact form notification sent successfully');
     return true;
-  } catch (error) {
+  } catch (error: any) {
+    // Log failed email
+    await logEmail({
+      emailType: 'contact_form',
+      recipientEmail,
+      recipientName: data.name,
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+      metadata: { senderEmail: data.email },
+    });
+
     console.error('[Email] Failed to send contact form notification:', error);
     return false;
   }
@@ -161,18 +185,37 @@ export async function sendTestEmail(recipientEmail: string): Promise<boolean> {
     </div>
   `;
 
+  const subject = 'Test Email from All Resume Services';
+  
   try {
     await transporter.sendMail({
       from: `"All Resume Services" <info@allresumeservices.com>`,
       to: recipientEmail,
-      subject: 'Test Email from All Resume Services',
+      subject,
       text: 'This is a test email to verify your email configuration is working correctly.',
       html: htmlContent,
     });
 
+    // Log successful test email
+    await logEmail({
+      emailType: 'test',
+      recipientEmail,
+      subject,
+      status: 'sent',
+    });
+
     console.log('[Email] Test email sent successfully');
     return true;
-  } catch (error) {
+  } catch (error: any) {
+    // Log failed test email
+    await logEmail({
+      emailType: 'test',
+      recipientEmail,
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+    });
+
     console.error('[Email] Failed to send test email:', error);
     throw error;
   }
@@ -283,18 +326,39 @@ All Resume Services
 Professional Resume Writing | 18+ Years Experience | 96% Interview Success Rate
   `;
 
+  const subject = 'Your Free Guide: 10 ATS Resume Mistakes Costing You Interviews';
+  
   try {
     await transporter.sendMail({
       from: `"All Resume Services" <info@allresumeservices.com>`,
       to: email,
-      subject: 'Your Free Guide: 10 ATS Resume Mistakes Costing You Interviews',
+      subject,
       text: textContent,
       html: htmlContent,
     });
 
+    // Log successful email
+    await logEmail({
+      emailType: 'lead_magnet',
+      recipientEmail: email,
+      recipientName: name,
+      subject,
+      status: 'sent',
+    });
+
     console.log(`[Email] Lead magnet email sent successfully to ${email}`);
     return true;
-  } catch (error) {
+  } catch (error: any) {
+    // Log failed email
+    await logEmail({
+      emailType: 'lead_magnet',
+      recipientEmail: email,
+      recipientName: name,
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+    });
+
     console.error('[Email] Failed to send lead magnet email:', error);
     return false;
   }
@@ -397,18 +461,41 @@ All Resume Services
 Professional Resume Writing & Career Services
   `;
 
+  const subject = `Order Confirmation #${orderData.orderId} - All Resume Services`;
+  
   try {
     await transporter.sendMail({
       from: `"All Resume Services" <info@allresumeservices.com>`,
       to: orderData.customerEmail,
-      subject: `Order Confirmation #${orderData.orderId} - All Resume Services`,
+      subject,
       text: textContent,
       html: htmlContent,
     });
 
+    // Log successful email
+    await logEmail({
+      emailType: 'order_confirmation',
+      recipientEmail: orderData.customerEmail,
+      recipientName: orderData.customerName,
+      subject,
+      status: 'sent',
+      metadata: { orderId: orderData.orderId, packageName: orderData.packageName, amount: orderData.amount },
+    });
+
     console.log(`[Email] Order confirmation sent successfully to ${orderData.customerEmail}`);
     return true;
-  } catch (error) {
+  } catch (error: any) {
+    // Log failed email
+    await logEmail({
+      emailType: 'order_confirmation',
+      recipientEmail: orderData.customerEmail,
+      recipientName: orderData.customerName,
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+      metadata: { orderId: orderData.orderId },
+    });
+
     console.error('[Email] Failed to send order confirmation email:', error);
     return false;
   }
@@ -497,18 +584,40 @@ All Resume Services | Professional Resume Writing
 Email: admin@allresumeservices.com.au | Phone: +61 410 934 371
   `;
 
+  const subject = "We'd Love Your Feedback - All Resume Services";
+  
   try {
     await transporter.sendMail({
       from: `"All Resume Services" <info@allresumeservices.com>`,
       to: clientEmail,
-      subject: "We'd Love Your Feedback - All Resume Services",
+      subject,
       text: textContent,
       html: htmlContent,
     });
 
+    // Log successful email
+    await logEmail({
+      emailType: 'review_request',
+      recipientEmail: clientEmail,
+      recipientName: clientName,
+      subject,
+      status: 'sent',
+      metadata: { reviewLink },
+    });
+
     console.log(`[Email] Review request sent successfully to ${clientEmail}`);
     return true;
-  } catch (error) {
+  } catch (error: any) {
+    // Log failed email
+    await logEmail({
+      emailType: 'review_request',
+      recipientEmail: clientEmail,
+      recipientName: clientName,
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+    });
+
     console.error('[Email] Failed to send review request email:', error);
     return false;
   }
