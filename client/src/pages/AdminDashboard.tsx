@@ -11,7 +11,8 @@ import {
   ExternalLink,
   TrendingUp,
   Package,
-  Tag
+  Tag,
+  MailCheck
 } from 'lucide-react';
 
 export default function AdminDashboard() {
@@ -148,6 +149,18 @@ export default function AdminDashboard() {
               <Button variant="outline">
                 <Tag className="mr-2 h-4 w-4" />
                 Promo Codes
+              </Button>
+            </Link>
+            <Link href="/admin/email-logs">
+              <Button variant="outline">
+                <MailCheck className="mr-2 h-4 w-4" />
+                Email Logs
+              </Button>
+            </Link>
+            <Link href="/admin/email-test">
+              <Button variant="outline">
+                <Mail className="mr-2 h-4 w-4" />
+                Test Email
               </Button>
             </Link>
           </div>
