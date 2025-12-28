@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { logEmail } from './services/emailLogger';
+import { sendEmailFailureAlert } from './services/emailFailureAlert';
 
 interface ContactFormData {
   name: string;
@@ -145,6 +146,17 @@ Submitted at: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney
     });
 
     console.error('[Email] Failed to send contact form notification:', error);
+    
+    // Send admin failure alert
+    await sendEmailFailureAlert({
+      emailType: 'contact_form',
+      recipientEmail,
+      recipientName: data.name,
+      subject,
+      errorMessage: error?.message || 'Unknown error',
+      attemptedAt: new Date(),
+    });
+    
     return false;
   }
 }
@@ -360,6 +372,17 @@ Professional Resume Writing | 18+ Years Experience | 96% Interview Success Rate
     });
 
     console.error('[Email] Failed to send lead magnet email:', error);
+    
+    // Send admin failure alert
+    await sendEmailFailureAlert({
+      emailType: 'lead_magnet',
+      recipientEmail: email,
+      recipientName: name,
+      subject,
+      errorMessage: error?.message || 'Unknown error',
+      attemptedAt: new Date(),
+    });
+    
     return false;
   }
 }
@@ -497,6 +520,17 @@ Professional Resume Writing & Career Services
     });
 
     console.error('[Email] Failed to send order confirmation email:', error);
+    
+    // Send admin failure alert
+    await sendEmailFailureAlert({
+      emailType: 'order_confirmation',
+      recipientEmail: orderData.customerEmail,
+      recipientName: orderData.customerName,
+      subject,
+      errorMessage: error?.message || 'Unknown error',
+      attemptedAt: new Date(),
+    });
+    
     return false;
   }
 }
@@ -619,6 +653,17 @@ Email: admin@allresumeservices.com.au | Phone: +61 410 934 371
     });
 
     console.error('[Email] Failed to send review request email:', error);
+    
+    // Send admin failure alert
+    await sendEmailFailureAlert({
+      emailType: 'review_request',
+      recipientEmail: clientEmail,
+      recipientName: clientName,
+      subject,
+      errorMessage: error?.message || 'Unknown error',
+      attemptedAt: new Date(),
+    });
+    
     return false;
   }
 }

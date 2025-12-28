@@ -1,4 +1,6 @@
 import nodemailer from 'nodemailer';
+import { sendEmailFailureAlert } from './services/emailFailureAlert';
+import { logEmail } from './services/emailLogger';
 
 interface OrderData {
   orderId: number;
@@ -152,8 +154,32 @@ Professional Resume Writing & Career Services
 
     console.log(`[OrderEmails] Order confirmation email sent successfully to ${orderData.customerEmail}`);
     return true;
-  } catch (error) {
+  } catch (error: any) {
     console.error(`[OrderEmails] Failed to send order confirmation email to ${orderData.customerEmail}:`, error);
+    
+    const subject = `Order Confirmation #${orderData.orderId} - All Résumé Services`;
+    
+    // Log failed email
+    await logEmail({
+      emailType: 'order_confirmation',
+      recipientEmail: orderData.customerEmail,
+      recipientName: orderData.customerName,
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+      metadata: { orderId: orderData.orderId },
+    });
+    
+    // Send admin failure alert
+    await sendEmailFailureAlert({
+      emailType: 'order_confirmation',
+      recipientEmail: orderData.customerEmail,
+      recipientName: orderData.customerName,
+      subject,
+      errorMessage: error?.message || 'Unknown error',
+      attemptedAt: new Date(),
+    });
+    
     return false;
   }
 }
@@ -254,8 +280,31 @@ Time: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Perth' })}
 
     console.log(`[OrderEmails] Admin notification email sent successfully to ${adminEmail}`);
     return true;
-  } catch (error) {
+  } catch (error: any) {
     console.error(`[OrderEmails] Failed to send admin notification email:`, error);
+    
+    const subject = `💰 New Order #${orderData.orderId} - ${orderData.packageName}`;
+    
+    // Log failed email
+    await logEmail({
+      emailType: 'order_admin_notification',
+      recipientEmail: adminEmail,
+      recipientName: 'Admin',
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+      metadata: { orderId: orderData.orderId },
+    });
+    
+    // Send admin failure alert
+    await sendEmailFailureAlert({
+      emailType: 'order_admin_notification',
+      recipientEmail: adminEmail,
+      subject,
+      errorMessage: error?.message || 'Unknown error',
+      attemptedAt: new Date(),
+    });
+    
     return false;
   }
 }

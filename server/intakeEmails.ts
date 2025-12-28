@@ -1,4 +1,6 @@
 import nodemailer from 'nodemailer';
+import { sendEmailFailureAlert } from './services/emailFailureAlert';
+import { logEmail } from './services/emailLogger';
 
 const SITE_URL = "https://allresumeservices.com.au";
 const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "admin@allresumeservices.com.au";
@@ -159,8 +161,29 @@ This is an automated message. Please do not reply to this email.
 
     console.log(`[IntakeEmails] Client confirmation email sent successfully to ${clientEmail}`);
     return { success: true };
-  } catch (error) {
+  } catch (error: any) {
     console.error(`[IntakeEmails] Failed to send client confirmation email to ${clientEmail}:`, error);
+    
+    // Log failed email
+    await logEmail({
+      emailType: 'intake_confirmation',
+      recipientEmail: clientEmail,
+      recipientName: clientName,
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+    });
+    
+    // Send admin failure alert
+    await sendEmailFailureAlert({
+      emailType: 'intake_confirmation',
+      recipientEmail: clientEmail,
+      recipientName: clientName,
+      subject,
+      errorMessage: error?.message || 'Unknown error',
+      attemptedAt: new Date(),
+    });
+    
     return { success: false };
   }
 }
@@ -314,8 +337,28 @@ This is an automated notification from the All Résumé Services client intake s
 
     console.log(`[IntakeEmails] Admin notification email sent successfully to ${ADMIN_EMAIL}`);
     return { success: true };
-  } catch (error) {
+  } catch (error: any) {
     console.error(`[IntakeEmails] Failed to send admin notification email to ${ADMIN_EMAIL}:`, error);
+    
+    // Log failed email
+    await logEmail({
+      emailType: 'intake_admin_notification',
+      recipientEmail: ADMIN_EMAIL,
+      recipientName: 'Admin',
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+    });
+    
+    // Send admin failure alert
+    await sendEmailFailureAlert({
+      emailType: 'intake_admin_notification',
+      recipientEmail: ADMIN_EMAIL,
+      subject,
+      errorMessage: error?.message || 'Unknown error',
+      attemptedAt: new Date(),
+    });
+    
     return { success: false };
   }
 }
@@ -453,8 +496,29 @@ All Résumé Services
 
     console.log(`[IntakeEmails] Resume-later email sent successfully to ${clientEmail}`);
     return { success: true };
-  } catch (error) {
+  } catch (error: any) {
     console.error(`[IntakeEmails] Failed to send resume-later email to ${clientEmail}:`, error);
+    
+    // Log failed email
+    await logEmail({
+      emailType: 'intake_resume_later',
+      recipientEmail: clientEmail,
+      recipientName: clientName,
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+    });
+    
+    // Send admin failure alert
+    await sendEmailFailureAlert({
+      emailType: 'intake_resume_later',
+      recipientEmail: clientEmail,
+      recipientName: clientName,
+      subject,
+      errorMessage: error?.message || 'Unknown error',
+      attemptedAt: new Date(),
+    });
+    
     return { success: false };
   }
 }
