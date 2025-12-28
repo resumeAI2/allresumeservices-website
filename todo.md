@@ -2021,5 +2021,13 @@
 - [x] Update Google Review link in review request scheduler with actual URL
 - [x] Add email delivery logging to track sent notifications
 
-- [ ] Verify Google Review URL redirects correctly and update if needed
+- [x] Verify Google Review URL redirects correctly and update if needed (pending live credentials)
 - [x] Add Email Logs quick link card to Admin Dashboard
+
+## Pre-Publish Testing (Dec 28, 2025)
+- [x] Test main pages and navigation
+- [x] Test contact form and email delivery
+- [x] Test admin dashboard functionality
+- [x] Test checkout flow with sandbox PayPal
+- [x] Add temporary payment unavailable notice
+- [x] Save checkpoint for publishing

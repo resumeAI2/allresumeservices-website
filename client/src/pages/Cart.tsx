@@ -218,9 +218,11 @@ export default function Cart() {
                   </p>
                 </CardContent>
                 <CardFooter className="flex flex-col gap-3">
-                  <Button className="w-full" size="lg">
-                    Proceed to Checkout
-                  </Button>
+                  <Link href="/checkout" className="w-full">
+                    <Button className="w-full" size="lg">
+                      Proceed to Checkout
+                    </Button>
+                  </Link>
                   <Link href="/services" className="w-full">
                     <Button variant="outline" className="w-full">
                       Continue Shopping
