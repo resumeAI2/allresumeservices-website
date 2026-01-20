@@ -18,7 +18,7 @@ export default function FAQSchema() {
         "name": "How many revisions do I get?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We work with you until you're 100% satisfied. Your package includes unlimited revisions within reason. Most clients are happy after 1-2 rounds of feedback. We want you to feel confident submitting your resume, so we'll refine it until it's perfect."
+          "text": "We work with you until you're 100% satisfied. Your package includes revisions. Most clients are happy after 1-2 rounds of feedback. We want you to feel confident submitting your resume, so we'll refine it until it's perfect."
         }
       },
       {
