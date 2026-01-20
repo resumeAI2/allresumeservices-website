@@ -2050,3 +2050,8 @@
 
 ## FAQ Revisions Section Update
 - [x] Update "How many revisions do I get?" to remove "unlimited" language and use exact user wording
+
+
+## Career Advice Blog Image Issues
+- [x] Fix broken images in Career Advice Blog section
+- [x] Optimize image loading performance to reduce page load time
