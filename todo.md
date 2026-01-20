@@ -2046,3 +2046,7 @@
 
 ## Testimonials Legibility Fix
 - [x] Change testimonials text from light colours to darker/blue for better readability
+
+
+## FAQ Revisions Section Update
+- [x] Update "How many revisions do I get?" to remove "unlimited" language and use exact user wording

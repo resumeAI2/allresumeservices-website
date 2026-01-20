@@ -13,7 +13,7 @@ export default function FAQ() {
     },
     {
       question: "How many revisions do I get?",
-      answer: "We work with you until you're 100% satisfied. Your package includes unlimited revisions within reason. Most clients are happy after 1-2 rounds of feedback. We want you to feel confident submitting your resume, so we'll refine it until it's perfect."
+      answer: "We work with you until you're 100% satisfied. Your package includes revisions. Most clients are happy after 1-2 rounds of feedback. We want you to feel confident submitting your resume, so we'll refine it until it's perfect."
     },
     {
       question: "What is ATS optimisation and why does it matter?",
