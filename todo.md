@@ -2042,3 +2042,7 @@
 
 ## Homepage Form Colour Fix
 - [x] Change Free Resume Review form section from brown to gold colour scheme
+
+
+## Testimonials Legibility Fix
+- [x] Change testimonials text from light colours to darker/blue for better readability

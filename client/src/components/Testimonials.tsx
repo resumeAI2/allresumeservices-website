@@ -116,7 +116,7 @@ export default function Testimonials() {
                 )}
               </div>
 
-              <p className="text-card-foreground leading-relaxed">
+              <p className="text-primary leading-relaxed font-medium">
                 "{testimonial.content}"
               </p>
             </div>
@@ -124,7 +124,7 @@ export default function Testimonials() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-muted-foreground mb-4">
+          <p className="text-primary mb-4 font-medium">
             Join hundreds of satisfied clients who've transformed their careers
           </p>
         </div>
