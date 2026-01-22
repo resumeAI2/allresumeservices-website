@@ -127,7 +127,7 @@ export default function Services() {
         </section>
 
         {/* Filters */}
-        <section className="py-8 border-b">
+        <section className="py-8">
           <div className="container">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
               {/* Type Filter */}

@@ -120,7 +120,7 @@ export default function Services() {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-12 bg-white border-b">
+        <section className="py-12 bg-white">
           <div className="container">
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {benefits.map((benefit, index) => {
