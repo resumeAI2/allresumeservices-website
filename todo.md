@@ -2065,3 +2065,7 @@
 ## Popup Positioning Fix
 - [x] Fix popup being cut off at the top on some pages
 - [x] Ensure close button is fully accessible and clickable
+
+
+## White Strip/Gap Fix
+- [x] Remove white strip/gap between breadcrumb navigation and Career Advice Blog heading
