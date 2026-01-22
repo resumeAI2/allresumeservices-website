@@ -228,7 +228,7 @@ export default function AboutUs() {
         <section className="bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] text-white py-20">
           <div className="container max-w-6xl">
             <div className="max-w-3xl">
-              <h1 className="text-5xl font-bold mb-6">About All Resume Services</h1>
+              <h1 className="text-5xl font-bold mb-6 text-secondary">About All Resume Services</h1>
               <p className="text-xl text-blue-100 leading-relaxed">
                 For over 17 years, we've been helping Australians land their dream jobs through 
                 professionally crafted resumes, cover letters, and career documents. Our mission 
