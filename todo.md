@@ -2055,3 +2055,8 @@
 ## Career Advice Blog Image Issues
 - [x] Fix broken images in Career Advice Blog section
 - [x] Optimize image loading performance to reduce page load time
+
+
+## Header Logo Text Size
+- [x] Make "Expert Resume Writing" text larger next to the logo
+- [x] Change "About All Resume Services" heading to gold colour
