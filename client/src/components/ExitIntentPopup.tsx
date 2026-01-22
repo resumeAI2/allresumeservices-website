@@ -73,8 +73,8 @@ export default function ExitIntentPopup() {
       />
 
       {/* Popup */}
-      <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md animate-in zoom-in-95 duration-300">
-        <div className="bg-white rounded-lg shadow-2xl p-8 relative mx-4">
+      <div className="fixed left-1/2 top-0 -translate-x-1/2 z-50 w-full max-w-md animate-in zoom-in-95 duration-300 flex items-center justify-center min-h-screen">
+        <div className="bg-white rounded-lg shadow-2xl p-8 relative mx-4 my-4 max-h-[90vh] overflow-y-auto">
           {/* Close button */}
           <button
             onClick={handleClose}

@@ -2060,3 +2060,8 @@
 ## Header Logo Text Size
 - [x] Make "Expert Resume Writing" text larger next to the logo
 - [x] Change "About All Resume Services" heading to gold colour
+
+
+## Popup Positioning Fix
+- [x] Fix popup being cut off at the top on some pages
+- [x] Ensure close button is fully accessible and clickable
