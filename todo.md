@@ -2093,3 +2093,8 @@
 - [x] Compare About page blue background with other pages
 - [x] Update About page blue background to match other pages (changed from hardcoded #1e3a5f/#2d5a8f to primary color variable)
 - [x] Verify consistency across desktop, tablet, and mobile views
+
+## Popup Cutoff Issue - Round 2
+- [x] Fix Free Resume Review popup being cut off at the top of the page (added max-h-[calc(100vh-2rem)] overflow-y-auto to DialogContent)
+- [x] Ensure popup is fully visible and accessible on all pages
+- [x] Test popup positioning on different viewport sizes
