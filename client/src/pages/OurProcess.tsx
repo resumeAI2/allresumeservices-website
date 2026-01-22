@@ -214,7 +214,7 @@ export default function OurProcess() {
   }, [searchQuery, filteredFAQs.length]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Header />
       <Breadcrumb items={[{ label: "Our Process" }]} />
       

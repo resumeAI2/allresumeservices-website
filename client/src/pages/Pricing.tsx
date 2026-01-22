@@ -125,7 +125,7 @@ export default function PricingPage() {
       <PricingSchema />
       <Header />
       <Breadcrumb items={[{ label: "Pricing" }]} />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-20">
           <div className="container">
