@@ -2074,3 +2074,16 @@
 ## Header Logo and Text Size Increase
 - [x] Increase logo size to make it more prominent
 - [x] Increase "Expert Resume Writing" text size to be more impressive
+
+
+## White Stripe Removal Across Site
+- [ ] Inspect and identify white stripe on each page
+- [ ] Fix white stripe on Home page
+- [ ] Fix white stripe on Services page
+- [ ] Fix white stripe on Pricing page
+- [ ] Fix white stripe on Process page
+- [ ] Fix white stripe on Blog page
+- [ ] Fix white stripe on Success Stories pages
+- [ ] Fix white stripe on About Us page
+- [ ] Verify Reviews page unchanged
+- [ ] Verify fix across desktop, tablet, and mobile views

@@ -40,7 +40,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         </script>
       </Helmet>
       
-      <nav aria-label="Breadcrumb" className="py-0 px-0 bg-transparent border-b">
+      <nav aria-label="Breadcrumb" className="py-0 px-0 bg-transparent">
       <ol className="flex items-center gap-2 text-sm flex-wrap">
         {/* Home Link */}
         <li className="flex items-center gap-2">
