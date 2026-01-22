@@ -64,7 +64,7 @@ export default function CaseStudies() {
 
         {/* Category Filter - Enhanced */}
         {categories.length > 0 && (
-          <section className="py-8 bg-white border-b sticky top-0 z-20 shadow-sm">
+          <section className="py-8 bg-white sticky top-0 z-20 shadow-sm">
             <div className="container">
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Button

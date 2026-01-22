@@ -165,7 +165,7 @@ export default function Testimonials() {
       </section>
 
       {/* Filters Section */}
-      <section className="py-8 border-b">
+      <section className="py-8">
         <div className="container">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}

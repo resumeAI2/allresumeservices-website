@@ -64,7 +64,7 @@ export default function Blog() {
       </section>
 
       {/* Categories and Tags Filter */}
-      <section className="bg-accent py-6 border-b">
+      <section className="bg-accent py-6">
         <div className="container space-y-4">
           {/* Categories */}
           <div>
