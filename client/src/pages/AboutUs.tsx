@@ -225,7 +225,7 @@ export default function AboutUs() {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] text-white py-20">
+        <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-white py-20">
           <div className="container max-w-6xl">
             <div className="max-w-3xl">
               <h1 className="text-5xl font-bold mb-6 text-secondary">About All Resume Services</h1>
