@@ -46,7 +46,7 @@ export default function GoogleReviewsPage() {
         </script>
       </Helmet>
       <Header />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-20">
           <div className="container">

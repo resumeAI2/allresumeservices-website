@@ -48,7 +48,7 @@ export default function ReviewsArchive() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <div className="container py-12">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
