@@ -2069,3 +2069,8 @@
 
 ## White Strip/Gap Fix
 - [x] Remove white strip/gap between breadcrumb navigation and Career Advice Blog heading
+
+
+## Header Logo and Text Size Increase
+- [x] Increase logo size to make it more prominent
+- [x] Increase "Expert Resume Writing" text size to be more impressive

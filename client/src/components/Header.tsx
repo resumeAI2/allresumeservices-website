@@ -73,10 +73,10 @@ export default function Header() {
               <img 
                 src="/logo-v2.svg" 
                 alt="All Resume Services Logo" 
-                className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-lg ${isScrolled ? 'h-14' : 'h-20'}`}
+                className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-lg ${isScrolled ? 'h-16' : 'h-28'}`}
               />
               <div className="flex flex-col">
-                <span className="text-lg font-semibold text-secondary">Expert Resume Writing</span>
+                <span className="text-2xl font-bold text-secondary">Expert Resume Writing</span>
               </div>
             </div>
           </Link>
