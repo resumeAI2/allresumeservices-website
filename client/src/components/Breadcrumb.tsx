@@ -49,7 +49,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         </script>
       </Helmet>
       
-      <div className="w-full bg-gradient-to-r from-muted/30 via-muted/20 to-muted/30 border-b border-border/40 backdrop-blur-sm">
+      <div className="w-full bg-[#e0f2fe] dark:bg-[#0c4a6e]/30 border-b border-[#bae6fd] dark:border-blue-800/30">
         <div className="container py-3 sm:py-4">
           <BreadcrumbRoot>
             <BreadcrumbList className="text-xs sm:text-sm">
