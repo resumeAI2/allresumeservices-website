@@ -4,38 +4,35 @@
   "outputDirectory": "dist/public",
   "installCommand": "pnpm install",
   "framework": null,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/trpc/(.*)",
-      "dest": "/api/index.ts"
+      "source": "/api/trpc/:path*",
+      "destination": "/api/index.ts"
     },
     {
-      "src": "/api/oauth/(.*)",
-      "dest": "/api/index.ts"
+      "source": "/api/auth/:path*",
+      "destination": "/api/auth/[...nextauth].ts"
     },
     {
-      "src": "/api/cron/(.*)",
-      "dest": "/api/index.ts"
+      "source": "/api/cron/:path*",
+      "destination": "/api/index.ts"
     },
     {
-      "src": "/sitemap.xml",
-      "dest": "/api/index.ts"
+      "source": "/sitemap.xml",
+      "destination": "/api/index.ts"
     },
     {
-      "src": "/robots.txt",
-      "dest": "/api/index.ts"
+      "source": "/robots.txt",
+      "destination": "/api/index.ts"
     },
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/:path((?!api).*)*",
+      "destination": "/index.html"
     }
   ],
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/:path*",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
@@ -52,7 +49,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(js|css|jpg|jpeg|png|gif|svg|ico|webp|woff|woff2|ttf|eot))",
+      "source": "/:path*\\.(js|css|jpg|jpeg|png|gif|svg|ico|webp|woff|woff2|ttf|eot)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -61,7 +58,7 @@
       ]
     },
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "headers": [
         {
           "key": "X-Content-Type-Options",
