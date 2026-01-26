@@ -41,7 +41,7 @@ export default function ImageGalleryModal({ open, onClose, onSelect }: ImageGall
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-hidden flex flex-col">
+      <DialogContent className="max-w-[calc(100vw-1rem)] sm:max-w-4xl max-h-[90vh] overflow-hidden flex flex-col p-4 sm:p-6">
         <DialogHeader>
           <DialogTitle>Select Image from Library</DialogTitle>
           <DialogDescription>
@@ -62,7 +62,7 @@ export default function ImageGalleryModal({ open, onClose, onSelect }: ImageGall
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto min-h-0">
           {isLoading ? (
             <div className="text-center py-12">
               <p className="text-muted-foreground">Loading images...</p>
@@ -74,7 +74,7 @@ export default function ImageGalleryModal({ open, onClose, onSelect }: ImageGall
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 pb-4">
               {filteredImages.map((image) => (
                 <div
                   key={image.id}
@@ -113,11 +113,11 @@ export default function ImageGalleryModal({ open, onClose, onSelect }: ImageGall
           )}
         </div>
 
-        <div className="flex justify-end gap-2 mt-4 pt-4 border-t">
-          <Button variant="outline" onClick={onClose}>
+        <div className="flex flex-col-reverse sm:flex-row justify-end gap-2 mt-4 pt-4 border-t">
+          <Button variant="outline" onClick={onClose} className="w-full sm:w-auto">
             Cancel
           </Button>
-          <Button onClick={handleSelect} disabled={!selectedImage}>
+          <Button onClick={handleSelect} disabled={!selectedImage} className="w-full sm:w-auto">
             Insert Image
           </Button>
         </div>

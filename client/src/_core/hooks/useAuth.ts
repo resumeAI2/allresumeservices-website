@@ -1,6 +1,6 @@
-import { getLoginUrl } from "@/const";
 import { trpc } from "@/lib/trpc";
 import { TRPCClientError } from "@trpc/client";
+import { signOut } from "next-auth/react";
 import { useCallback, useEffect, useMemo } from "react";
 
 type UseAuthOptions = {
@@ -8,8 +8,17 @@ type UseAuthOptions = {
   redirectPath?: string;
 };
 
+/**
+ * Custom hook for authentication with NextAuth.js
+ * 
+ * Provides:
+ * - Current user data from database
+ * - Loading and error states
+ * - Logout functionality
+ * - Optional redirect for unauthenticated users
+ */
 export function useAuth(options?: UseAuthOptions) {
-  const { redirectOnUnauthenticated = false, redirectPath = getLoginUrl() } =
+  const { redirectOnUnauthenticated = false, redirectPath = "/login" } =
     options ?? {};
   const utils = trpc.useUtils();
 
@@ -26,26 +35,39 @@ export function useAuth(options?: UseAuthOptions) {
 
   const logout = useCallback(async () => {
     try {
+      // Clear tRPC session
       await logoutMutation.mutateAsync();
+      
+      // Sign out from NextAuth
+      await signOut({ redirect: false });
+      
+      // Clear local storage
+      localStorage.removeItem("user-info");
     } catch (error: unknown) {
       if (
         error instanceof TRPCClientError &&
         error.data?.code === "UNAUTHORIZED"
       ) {
+        // Already logged out, just sign out from NextAuth
+        await signOut({ redirect: false });
         return;
       }
       throw error;
     } finally {
       utils.auth.me.setData(undefined, null);
       await utils.auth.me.invalidate();
+      
+      // Redirect to login page
+      window.location.href = "/login";
     }
   }, [logoutMutation, utils]);
 
   const state = useMemo(() => {
-    localStorage.setItem(
-      "manus-runtime-user-info",
-      JSON.stringify(meQuery.data)
-    );
+    // Store user info in local storage for persistence
+    if (meQuery.data) {
+      localStorage.setItem("user-info", JSON.stringify(meQuery.data));
+    }
+    
     return {
       user: meQuery.data ?? null,
       loading: meQuery.isLoading || logoutMutation.isPending,
@@ -67,7 +89,7 @@ export function useAuth(options?: UseAuthOptions) {
     if (typeof window === "undefined") return;
     if (window.location.pathname === redirectPath) return;
 
-    window.location.href = redirectPath
+    window.location.href = redirectPath;
   }, [
     redirectOnUnauthenticated,
     redirectPath,

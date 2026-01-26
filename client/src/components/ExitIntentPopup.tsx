@@ -68,53 +68,53 @@ export default function ExitIntentPopup() {
     <>
       {/* Overlay */}
       <div 
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 animate-in fade-in duration-300"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 animate-in fade-in duration-300 overflow-y-auto"
         onClick={handleClose}
       />
 
       {/* Popup */}
-      <div className="fixed left-1/2 top-0 -translate-x-1/2 z-50 w-full max-w-md animate-in zoom-in-95 duration-300 flex items-center justify-center min-h-screen">
-        <div className="bg-white rounded-lg shadow-2xl p-8 relative mx-4 my-4 max-h-[90vh] overflow-y-auto">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto pointer-events-none">
+        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-2xl p-6 sm:p-8 relative mx-auto my-auto max-w-md w-full max-h-[90vh] overflow-y-auto pointer-events-auto">
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="absolute right-4 top-4 text-gray-400 hover:text-gray-600 transition-colors"
+            className="absolute right-3 top-3 sm:right-4 sm:top-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors z-10"
             aria-label="Close popup"
           >
-            <X className="h-6 w-6" />
+            <X className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
 
           {!isSubmitted ? (
             <>
               {/* Icon */}
               <div className="flex justify-center mb-4">
-                <div className="bg-primary/10 p-4 rounded-full">
-                  <Download className="h-8 w-8 text-primary" />
+                <div className="bg-primary/10 p-3 sm:p-4 rounded-full">
+                  <Download className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                 </div>
               </div>
 
               {/* Heading */}
-              <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">
+              <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-900 dark:text-white mb-2">
                 Wait! Before You Go...
               </h2>
 
               {/* Subheading */}
-              <p className="text-center text-gray-600 mb-6">
+              <p className="text-center text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6">
                 Get your <span className="font-semibold text-primary">FREE 10-Point Resume Checklist</span> and discover what Australian employers really want to see.
               </p>
 
               {/* Benefits */}
-              <ul className="space-y-2 mb-6 text-sm text-gray-700">
+              <ul className="space-y-2 mb-6 text-xs sm:text-sm text-gray-700 dark:text-gray-300">
                 <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-secondary mr-2 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-secondary mr-2 flex-shrink-0 mt-0.5" />
                   <span>ATS optimisation tips that get past automated screening</span>
                 </li>
                 <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-secondary mr-2 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-secondary mr-2 flex-shrink-0 mt-0.5" />
                   <span>Proven formatting strategies from 18+ years experience</span>
                 </li>
                 <li className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-secondary mr-2 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-secondary mr-2 flex-shrink-0 mt-0.5" />
                   <span>Instant PDF download - no waiting</span>
                 </li>
               </ul>
@@ -142,7 +142,7 @@ export default function ExitIntentPopup() {
               </form>
 
               {/* Privacy note */}
-              <p className="text-xs text-gray-500 text-center mt-4">
+              <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4">
                 We respect your privacy. Unsubscribe anytime.
               </p>
             </>
@@ -150,16 +150,16 @@ export default function ExitIntentPopup() {
             <>
               {/* Success state */}
               <div className="flex justify-center mb-4">
-                <div className="bg-green-100 p-4 rounded-full">
-                  <CheckCircle className="h-8 w-8 text-green-600" />
+                <div className="bg-green-100 dark:bg-green-900/20 p-3 sm:p-4 rounded-full">
+                  <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-green-600" />
                 </div>
               </div>
 
-              <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">
+              <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-900 dark:text-white mb-2">
                 Check Your Email!
               </h2>
 
-              <p className="text-center text-gray-600 mb-6">
+              <p className="text-sm sm:text-base text-center text-gray-600 dark:text-gray-300 mb-6">
                 Your <strong>10-Point Resume Checklist</strong> is downloading now. We've also sent a copy to <strong>{email}</strong>.
               </p>
 
@@ -170,7 +170,7 @@ export default function ExitIntentPopup() {
                 Continue Browsing
               </Button>
 
-              <p className="text-sm text-center text-gray-600 mt-4">
+              <p className="text-xs sm:text-sm text-center text-gray-600 dark:text-gray-300 mt-4">
                 Ready to transform your resume?{' '}
                 <a href="/services" className="text-primary hover:underline font-medium">
                   View our services
