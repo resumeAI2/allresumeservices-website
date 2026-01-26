@@ -49,21 +49,21 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         </script>
       </Helmet>
       
-      <div className="w-full bg-[#e0f2fe] dark:bg-[#0c4a6e]/30 border-b border-[#bae6fd] dark:border-blue-800/30">
-        <div className="container py-3 sm:py-4">
+      <div className="bg-primary text-primary-foreground border-b border-primary-foreground/10">
+        <div className="container py-2 sm:py-3">
           <BreadcrumbRoot>
-            <BreadcrumbList className="text-xs sm:text-sm">
+            <BreadcrumbList className="text-xs sm:text-sm text-primary-foreground/80">
               {/* Home Link */}
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/" className="flex items-center gap-1.5 group">
+                  <Link href="/" className="flex items-center gap-1.5 group text-primary-foreground/80 hover:text-secondary transition-colors">
                     <Home className="h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:scale-110 transition-transform" />
                     <span className="font-medium">Home</span>
                   </Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               
-              <BreadcrumbSeparator />
+              <BreadcrumbSeparator className="text-primary-foreground/50" />
 
               {/* Dynamic Breadcrumb Items */}
               {items.map((item, index) => {
@@ -76,19 +76,19 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
                         <BreadcrumbLink asChild>
                           <Link 
                             href={item.href}
-                            className="font-medium hover:text-primary"
+                            className="font-medium text-primary-foreground/80 hover:text-secondary transition-colors"
                           >
                             {item.label}
                           </Link>
                         </BreadcrumbLink>
                       ) : (
-                        <BreadcrumbPage className="font-semibold">
+                        <BreadcrumbPage className="font-semibold text-primary-foreground">
                           {item.label}
                         </BreadcrumbPage>
                       )}
                     </BreadcrumbItem>
                     
-                    {!isLast && <BreadcrumbSeparator />}
+                    {!isLast && <BreadcrumbSeparator className="text-primary-foreground/50" />}
                   </React.Fragment>
                 );
               })}
