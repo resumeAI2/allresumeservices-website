@@ -119,6 +119,8 @@
   }
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
   }
   body {
     @apply bg-background text-foreground;
@@ -127,6 +129,17 @@
     line-height: 1.7;
     font-weight: 400;
     letter-spacing: 0.01em;
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  /* Prevent horizontal scroll on small screens */
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100vh;
   }
   
   /* Site-wide Typography System */
@@ -233,6 +246,42 @@
       padding-right: 2rem;
       max-width: 1280px; /* Standard content width */
     }
+  }
+  
+  /* Modal and Dialog fixes for mobile viewports */
+  [data-slot="dialog-overlay"] {
+    overscroll-behavior: contain;
+  }
+  
+  [data-slot="dialog-content"] {
+    /* Ensure modals don't exceed viewport on small screens */
+    max-width: calc(100vw - 1rem);
+    max-height: calc(100dvh - 2rem); /* Use dvh for better mobile support */
+    overscroll-behavior: contain;
+  }
+  
+  /* Improve touch scrolling on mobile devices */
+  @media (max-width: 640px) {
+    [data-slot="dialog-content"] {
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+    }
+  }
+  
+  /* Header and Navigation fixes */
+  header {
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  /* Prevent navigation text wrapping */
+  nav a, nav button {
+    white-space: nowrap;
+  }
+  
+  /* Ensure header content doesn't overflow */
+  header .container {
+    overflow-x: visible;
   }
 }
 /* Blog Post Table Caption Styling */
