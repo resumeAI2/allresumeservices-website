@@ -1,6 +1,5 @@
 import { trpc } from "@/lib/trpc";
 import { TRPCClientError } from "@trpc/client";
-import { signOut } from "next-auth/react";
 import { useCallback, useEffect, useMemo } from "react";
 
 type UseAuthOptions = {
@@ -9,7 +8,7 @@ type UseAuthOptions = {
 };
 
 /**
- * Custom hook for authentication with NextAuth.js
+ * Custom hook for authentication
  * 
  * Provides:
  * - Current user data from database
@@ -38,9 +37,6 @@ export function useAuth(options?: UseAuthOptions) {
       // Clear tRPC session
       await logoutMutation.mutateAsync();
       
-      // Sign out from NextAuth
-      await signOut({ redirect: false });
-      
       // Clear local storage
       localStorage.removeItem("user-info");
     } catch (error: unknown) {
@@ -48,8 +44,8 @@ export function useAuth(options?: UseAuthOptions) {
         error instanceof TRPCClientError &&
         error.data?.code === "UNAUTHORIZED"
       ) {
-        // Already logged out, just sign out from NextAuth
-        await signOut({ redirect: false });
+        // Already logged out
+        localStorage.removeItem("user-info");
         return;
       }
       throw error;

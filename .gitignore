@@ -129,3 +129,4 @@ credentials/
 PASSWORD_ROTATION_CHECKLIST.md
 
 .vercel
+.env*.local

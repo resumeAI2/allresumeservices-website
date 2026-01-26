@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { signIn } from "next-auth/react";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,25 +25,48 @@ export default function Login() {
   const [signupPassword, setSignupPassword] = useState("");
 
   const signupMutation = trpc.auth.signup.useMutation();
+  const utils = trpc.useUtils();
 
-  // Handle email/password login
+  // Handle email/password login via NextAuth.js credentials
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
 
     try {
-      const result = await signIn("credentials", {
-        email: loginEmail,
-        password: loginPassword,
-        redirect: false,
+      // First get CSRF token
+      const csrfRes = await fetch("/api/auth/csrf", { credentials: "include" });
+      const { csrfToken } = await csrfRes.json();
+
+      // Call NextAuth.js credentials callback
+      const response = await fetch("/api/auth/callback/credentials", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        credentials: "include",
+        body: new URLSearchParams({
+          csrfToken,
+          email: loginEmail,
+          password: loginPassword,
+          callbackUrl: window.location.origin,
+          json: "true",
+        }),
       });
 
-      if (result?.error) {
-        setError(result.error);
+      // NextAuth returns a redirect URL on success, or stays on same page with error
+      if (response.ok) {
+        const data = await response.json();
+        if (data.url) {
+          // Refresh auth state and redirect
+          await utils.auth.me.invalidate();
+          setLocation("/");
+        } else if (data.error) {
+          setError(data.error);
+        } else {
+          await utils.auth.me.invalidate();
+          setLocation("/");
+        }
       } else {
-        // Redirect to home page on success
-        setLocation("/");
+        setError("Invalid email or password");
       }
     } catch (err: any) {
       setError(err.message || "Login failed");
@@ -67,18 +89,34 @@ export default function Login() {
         password: signupPassword,
       });
 
-      setSuccess("Account created successfully! You can now log in.");
+      setSuccess("Account created successfully! Logging you in...");
       
-      // Auto-login after signup
+      // Auto-login after signup using the same credentials flow
       setTimeout(async () => {
-        const result = await signIn("credentials", {
-          email: signupEmail,
-          password: signupPassword,
-          redirect: false,
-        });
+        try {
+          const csrfRes = await fetch("/api/auth/csrf", { credentials: "include" });
+          const { csrfToken } = await csrfRes.json();
 
-        if (!result?.error) {
-          setLocation("/");
+          const response = await fetch("/api/auth/callback/credentials", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            credentials: "include",
+            body: new URLSearchParams({
+              csrfToken,
+              email: signupEmail,
+              password: signupPassword,
+              callbackUrl: window.location.origin,
+              json: "true",
+            }),
+          });
+
+          if (response.ok) {
+            await utils.auth.me.invalidate();
+            setLocation("/");
+          }
+        } catch (loginErr) {
+          console.error("Auto-login failed:", loginErr);
+          setLocation("/login");
         }
       }, 1000);
     } catch (err: any) {
@@ -88,15 +126,19 @@ export default function Login() {
     }
   };
 
-  // Handle social login
+  // Handle social login (redirect to NextAuth.js OAuth signin)
   const handleSocialLogin = async (provider: "google" | "github") => {
     setError("");
     setIsLoading(true);
 
     try {
-      await signIn(provider, {
-        callbackUrl: "/",
-      });
+      // Get CSRF token first
+      const csrfRes = await fetch("/api/auth/csrf", { credentials: "include" });
+      const { csrfToken } = await csrfRes.json();
+
+      // Redirect to NextAuth.js OAuth signin
+      const callbackUrl = encodeURIComponent(window.location.origin);
+      window.location.href = `/api/auth/signin/${provider}?callbackUrl=${callbackUrl}&csrfToken=${csrfToken}`;
     } catch (err: any) {
       setError(err.message || `${provider} login failed`);
       setIsLoading(false);
