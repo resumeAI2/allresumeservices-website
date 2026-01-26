@@ -1,0 +1,83 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist/public",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "routes": [
+    {
+      "src": "/api/trpc/(.*)",
+      "dest": "/api/index.ts"
+    },
+    {
+      "src": "/api/oauth/(.*)",
+      "dest": "/api/index.ts"
+    },
+    {
+      "src": "/api/cron/(.*)",
+      "dest": "/api/index.ts"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/api/index.ts"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/api/index.ts"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.(js|css|jpg|jpeg|png|gif|svg|ico|webp|woff|woff2|ttf|eot))",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "api/index.ts": {
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/backup",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/review-requests",
+      "schedule": "0 9 * * *"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
