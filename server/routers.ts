@@ -65,6 +65,70 @@ export const appRouter = router({
   }),
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
+    
+    // Sign up with email/password
+    signup: publicProcedure
+      .input(z.object({
+        name: z.string().min(2, "Name must be at least 2 characters"),
+        email: z.string().email("Invalid email address"),
+        password: z.string().min(8, "Password must be at least 8 characters"),
+      }))
+      .mutation(async ({ input }) => {
+        const bcrypt = await import("bcryptjs");
+        const { eq } = await import("drizzle-orm");
+        const { getDb } = await import("./db");
+        const { users } = await import("../drizzle/schema");
+        const { ENV } = await import("./_core/env");
+        
+        const db = await getDb();
+        if (!db) {
+          throw new Error("Database not available");
+        }
+
+        // Check if user already exists
+        const existingUser = await db
+          .select()
+          .from(users)
+          .where(eq(users.email, input.email))
+          .limit(1)
+          .then((rows) => rows[0]);
+
+        if (existingUser) {
+          throw new Error("User with this email already exists");
+        }
+
+        // Hash password
+        const hashedPassword = await bcrypt.hash(input.password, 10);
+
+        // Determine if user should be admin
+        const isAdmin = input.email === ENV.adminEmail;
+
+        // Create user
+        const newUser = await db
+          .insert(users)
+          .values({
+            name: input.name,
+            email: input.email,
+            password: hashedPassword,
+            emailVerified: new Date(),
+            loginMethod: "email",
+            role: isAdmin ? "admin" : "user",
+            lastSignedIn: new Date(),
+          })
+          .returning()
+          .then((rows) => rows[0]);
+
+        return {
+          success: true,
+          user: {
+            id: newUser.id,
+            name: newUser.name,
+            email: newUser.email,
+            role: newUser.role,
+          },
+        };
+      }),
+
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });

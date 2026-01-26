@@ -65,7 +65,7 @@ export default function EmailCaptureModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="max-w-[calc(100vw-1rem)] sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Download className="h-5 w-5 text-primary" />
@@ -102,26 +102,26 @@ export default function EmailCaptureModal({
             />
           </div>
 
-          <div className="bg-muted p-4 rounded-lg text-sm">
+          <div className="bg-muted p-3 sm:p-4 rounded-lg text-sm">
             <p className="text-muted-foreground">
               By downloading, you'll also receive our career advice newsletter with expert tips and exclusive content. 
               You can unsubscribe anytime.
             </p>
           </div>
 
-          <div className="flex gap-3 pt-2">
+          <div className="flex flex-col-reverse sm:flex-row gap-3 pt-2">
             <Button
               type="button"
               variant="outline"
               onClick={onClose}
-              className="flex-1"
+              className="w-full sm:flex-1"
               disabled={subscribeMutation.isPending}
             >
               Cancel
             </Button>
             <Button
               type="submit"
-              className="flex-1"
+              className="w-full sm:flex-1"
               disabled={subscribeMutation.isPending}
             >
               {subscribeMutation.isPending ? (

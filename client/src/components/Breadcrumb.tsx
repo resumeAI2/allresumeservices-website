@@ -1,14 +1,23 @@
-import { ChevronRight, Home } from 'lucide-react';
+import React from 'react';
+import { Home } from 'lucide-react';
 import { Link } from 'wouter';
 import { Helmet } from 'react-helmet-async';
+import {
+  Breadcrumb as BreadcrumbRoot,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 
-interface BreadcrumbItem {
+interface BreadcrumbItemType {
   label: string;
   href?: string;
 }
 
 interface BreadcrumbProps {
-  items: BreadcrumbItem[];
+  items: BreadcrumbItemType[];
 }
 
 export default function Breadcrumb({ items }: BreadcrumbProps) {
@@ -40,40 +49,53 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         </script>
       </Helmet>
       
-      <nav aria-label="Breadcrumb" className="py-0 px-0 bg-transparent">
-      <ol className="flex items-center gap-2 text-sm flex-wrap">
-        {/* Home Link */}
-        <li className="flex items-center gap-2">
-          <Link href="/" className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors">
-            <Home className="h-4 w-4" />
-            <span>Home</span>
-          </Link>
-          <ChevronRight className="h-4 w-4 text-muted-foreground" />
-        </li>
-
-        {/* Dynamic Breadcrumb Items */}
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
-          
-          return (
-            <li key={index} className="flex items-center gap-2">
-              {item.href && !isLast ? (
-                <>
-                  <Link href={item.href} className="text-muted-foreground hover:text-foreground transition-colors">
-                    {item.label}
+      <div className="w-full bg-gradient-to-r from-muted/30 via-muted/20 to-muted/30 border-b border-border/40 backdrop-blur-sm">
+        <div className="container py-3 sm:py-4">
+          <BreadcrumbRoot>
+            <BreadcrumbList className="text-xs sm:text-sm">
+              {/* Home Link */}
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/" className="flex items-center gap-1.5 group">
+                    <Home className="h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:scale-110 transition-transform" />
+                    <span className="font-medium">Home</span>
                   </Link>
-                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                </>
-              ) : (
-                <span className="text-foreground font-medium">
-                  {item.label}
-                </span>
-              )}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              
+              <BreadcrumbSeparator />
+
+              {/* Dynamic Breadcrumb Items */}
+              {items.map((item, index) => {
+                const isLast = index === items.length - 1;
+                
+                return (
+                  <React.Fragment key={index}>
+                    <BreadcrumbItem>
+                      {item.href && !isLast ? (
+                        <BreadcrumbLink asChild>
+                          <Link 
+                            href={item.href}
+                            className="font-medium hover:text-primary"
+                          >
+                            {item.label}
+                          </Link>
+                        </BreadcrumbLink>
+                      ) : (
+                        <BreadcrumbPage className="font-semibold">
+                          {item.label}
+                        </BreadcrumbPage>
+                      )}
+                    </BreadcrumbItem>
+                    
+                    {!isLast && <BreadcrumbSeparator />}
+                  </React.Fragment>
+                );
+              })}
+            </BreadcrumbList>
+          </BreadcrumbRoot>
+        </div>
+      </div>
     </>
   );
 }
