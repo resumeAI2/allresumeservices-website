@@ -11,16 +11,13 @@ export async function createOrder(order: InsertOrder): Promise<Order> {
     throw new Error("Database not available");
   }
 
-  const result = await db.insert(orders).values(order);
-  const orderId = Number(result[0].insertId);
+  const [createdOrder] = await db.insert(orders).values(order).returning();
 
-  const createdOrder = await db.select().from(orders).where(eq(orders.id, orderId)).limit(1);
-
-  if (!createdOrder[0]) {
+  if (!createdOrder) {
     throw new Error("Failed to create order");
   }
 
-  return createdOrder[0];
+  return createdOrder;
 }
 
 /**
@@ -158,7 +155,7 @@ export async function getAllOrders(filters?: {
         like(orders.customerName, searchTerm),
         like(orders.customerEmail, searchTerm),
         like(orders.paypalOrderId, searchTerm),
-        sql`CAST(${orders.id} AS CHAR) LIKE ${searchTerm}`
+        sql`CAST(${orders.id} AS TEXT) LIKE ${searchTerm}`
       )
     );
   }

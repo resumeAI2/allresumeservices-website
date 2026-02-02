@@ -215,7 +215,7 @@ export const authConfig: NextAuthConfig = {
               name: user.name || null,
               image: user.image || null,
               emailVerified: new Date(),
-              loginMethod: account.provider,
+              loginMethod: account?.provider,
               role: isAdmin ? "admin" : "user",
               lastSignedIn: new Date(),
             });
@@ -238,8 +238,8 @@ export const authConfig: NextAuthConfig = {
     async signIn({ user, account }) {
       console.log(`[Auth] User signed in: ${user.email} via ${account?.provider || "credentials"}`);
     },
-    async signOut({ token }) {
-      console.log(`[Auth] User signed out: ${token?.email}`);
+    async signOut(message: any) {
+      console.log(`[Auth] User signed out: ${message?.token?.email}`);
     },
   },
 

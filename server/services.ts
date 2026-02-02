@@ -65,13 +65,9 @@ export async function addToCart(data: InsertCartItem): Promise<CartItem> {
     return updated[0];
   } else {
     // Insert new item
-    const result = await db!.insert(cart_items).values(data) as any;
-    const insertId = result.insertId || result[0]?.insertId;
-    if (!insertId) {
-      throw new Error('Failed to get insert ID');
-    }
-    const inserted = await db!.select().from(cart_items).where(eq(cart_items.id, Number(insertId))).limit(1);
-    return inserted[0];
+    const [inserted] = await db!.insert(cart_items).values(data).returning();
+    if (!inserted) { throw new Error('Failed to insert cart item'); }
+    return inserted;
   }
 }
 
@@ -255,8 +251,8 @@ export async function addTestimonial(data: {
   approved?: number;
 }) {
   const db = await getDb();
-  const result = await db!.insert(testimonials).values(data);
-  return { id: Number(result[0].insertId) };
+  const [inserted] = await db!.insert(testimonials).values(data).returning();
+  return { id: inserted?.id };
 }
 
 /**

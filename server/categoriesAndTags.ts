@@ -8,13 +8,13 @@ export async function createCategory(name: string, slug: string, description?: s
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
-  const [result] = await db.insert(blog_categories).values({
+  const [inserted] = await db.insert(blog_categories).values({
     name,
     slug,
     description: description || null,
-  });
+  }).returning();
 
-  return { success: true, id: result.insertId };
+  return { success: true, id: inserted?.id };
 }
 
 export async function getAllCategories() {
@@ -71,12 +71,12 @@ export async function createTag(name: string, slug: string) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
-  const [result] = await db.insert(blog_tags).values({
+  const [inserted] = await db.insert(blog_tags).values({
     name,
     slug,
-  });
+  }).returning();
 
-  return { success: true, id: result.insertId };
+  return { success: true, id: inserted?.id };
 }
 
 export async function getAllTags() {
@@ -139,12 +139,12 @@ export async function addTagToPost(postId: number, tagId: number) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
-  const [result] = await db.insert(blog_post_tags).values({
+  const [inserted] = await db.insert(blog_post_tags).values({
     postId,
     tagId,
-  });
+  }).returning();
 
-  return { success: true, id: result.insertId };
+  return { success: true, id: inserted?.id };
 }
 
 export async function removeTagFromPost(postId: number, tagId: number) {

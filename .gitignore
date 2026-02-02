@@ -128,5 +128,42 @@ credentials/
 # Password rotation checklist (contains new password - remove from .gitignore after rotation complete)
 PASSWORD_ROTATION_CHECKLIST.md
 
+# Agent-generated docs (may contain secrets/credentials)
+DEPLOYMENT_READY.md
+DEPLOYMENT_SUMMARY.md
+FINAL_STATUS.md
+HOSTINGER_DEPLOYMENT_GUIDE.md
+PAYPAL_SECURITY_AUDIT.md
+PRE_DEPLOYMENT_CHECKLIST.md
+PRODUCTION_DEPLOYMENT_AUDIT.md
+SECURITY_AUDIT_REPORT.md
+SECURITY_IMPLEMENTATION_COMPLETE.md
+SECURITY_RECOMMENDATIONS.md
+VERCEL_DEPLOYMENT_GUIDE.md
+VERCEL_ENV_SETUP_GUIDE.md
+VERCEL_PREPARATION_CHECKLIST.md
+VERCEL_SETUP_COMPLETE.md
+CHANGELOG.md
+DEPLOYMENT_CHECKLIST.md
+IMPLEMENTATION_GUIDE.md
+IMPROVEMENTS_SUMMARY.md
+OPTIMIZATION_RECOMMENDATIONS.md
+SECURITY_AND_PERFORMANCE_COMPLETE.md
+SECURITY_FIXES_APPLIED.md
+START_HERE.md
+TODO_NEXT_STEPS.md
+TYPESCRIPT_FIXES.md
+
+# Scripts that may contain credentials
+setup-vercel-env.sh
+setup-env-vars.ps1
+setup-database.ps1
+get-neon-connection.ps1
+run-db-setup.bat
+run-db-setup.ps1
+
+# Cursor MCP config (may contain API keys)
+.cursor/
+
 .vercel
 .env*.local
