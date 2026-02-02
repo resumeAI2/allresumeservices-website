@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, title, slug, SUBSTRING(content, 1, 500) as content_preview FROM blog_posts WHERE slug = 'transform-your-resume-with-powerful-action-verbs' LIMIT 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug, SUBSTRING(content, 1, 500) as content_preview FROM blog_posts WHERE slug = 'transform-your-resume-with-powerful-action-verbs' LIMIT 1;",
+  "rows": [
+    {
+      "id": "90001",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "slug": "transform-your-resume-with-powerful-action-verbs",
+      "content_preview": "A sharp set of action verbs can transform a simple list of duties into a compelling story that recruiters and Applicant Tracking Systems (ATS) instantly recognise as achievement-driven and relevant. This comprehensive guide shows you how to pick, perfect, and weave action verbs into every part of your resume, ensuring your work experience, summary statement, and skills section showcase your accomplishments and career growth."
+    }
+  ],
+  "messages": [
+    "Many job seekers stick to passive descriptions or generic verbs that d"
+  ],
+  "stdout": "id\ttitle\tslug\tcontent_preview\n90001\tTransform Your Resume with Powerful Action Verbs\ttransform-your-resume-with-powerful-action-verbs\tA sharp set of action verbs can transform a simple list of duties into a compelling story that recruiters and Applicant Tracking Systems (ATS) instantly recognise as achievement-driven and relevant. This comprehensive guide shows you how to pick, perfect, and weave action verbs into every part of your resume, ensuring your work experience, summary statement, and skills section showcase your accomplishments and career growth.\n\nMany job seekers stick to passive descriptions or generic verbs that d\n",
+  "stderr": "",
+  "execution_time_ms": 1937
+}

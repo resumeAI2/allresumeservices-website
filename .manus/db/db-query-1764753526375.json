@@ -1,0 +1,15 @@
+{
+  "query": "SELECT COUNT(*) as total_posts, \n       SUM(CASE WHEN content LIKE '%This is a placeholder for the full blog post content%' THEN 1 ELSE 0 END) as placeholder_posts,\n       SUM(CASE WHEN content NOT LIKE '%This is a placeholder for the full blog post content%' THEN 1 ELSE 0 END) as real_content_posts\nFROM blog_posts WHERE published = 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT COUNT(*) as total_posts, \n       SUM(CASE WHEN content LIKE '%This is a placeholder for the full blog post content%' THEN 1 ELSE 0 END) as placeholder_posts,\n       SUM(CASE WHEN content NOT LIKE '%This is a placeholder for the full blog post content%' THEN 1 ELSE 0 END) as real_content_posts\nFROM blog_posts WHERE published = 1;",
+  "rows": [
+    {
+      "total_posts": "69",
+      "placeholder_posts": "46",
+      "real_content_posts": "23"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_posts\tplaceholder_posts\treal_content_posts\n69\t46\t23\n",
+  "stderr": "",
+  "execution_time_ms": 1742
+}

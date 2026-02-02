@@ -1,0 +1,55 @@
+{
+  "query": "SELECT slug FROM blog_posts WHERE slug IS NOT NULL LIMIT 15;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT slug FROM blog_posts WHERE slug IS NOT NULL LIMIT 15;",
+  "rows": [
+    {
+      "slug": "10-pointers-for-writing-an-outstanding-resume"
+    },
+    {
+      "slug": "5-things-to-consider-when-selecting-a-resume-writer"
+    },
+    {
+      "slug": "8-reasons-why-your-cv-needs-to-be-updated"
+    },
+    {
+      "slug": "affordable-basic-resume-writing-stand-out-in-your-job-hunt"
+    },
+    {
+      "slug": "approach-to-a-winning-selection-criteria-response"
+    },
+    {
+      "slug": "are-resume-writing-services-worth-it"
+    },
+    {
+      "slug": "are-you-looking-to-improve-your-resume-and-increase-your-chances-of-getting-hired-in-australia"
+    },
+    {
+      "slug": "benefits-of-applicant-tracking-software-ats-for-resume-scrutiny"
+    },
+    {
+      "slug": "benefits-of-using-a-professional-resume-writer"
+    },
+    {
+      "slug": "crafting-the-perfect-job-application-letter-an-australian-perspective-by-all-resume-services"
+    },
+    {
+      "slug": "create-a-selection-criteria-response-that-will-make-employers-want-to-interview-you"
+    },
+    {
+      "slug": "dont-sell-short-diy-resume"
+    },
+    {
+      "slug": "effective-cv-writing-strategies-for-career-success"
+    },
+    {
+      "slug": "elevate-your-career-with-expert-resume-services"
+    },
+    {
+      "slug": "expert-cv-help-for-crafting-winning-resumes-effortlessly"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\n10-pointers-for-writing-an-outstanding-resume\n5-things-to-consider-when-selecting-a-resume-writer\n8-reasons-why-your-cv-needs-to-be-updated\naffordable-basic-resume-writing-stand-out-in-your-job-hunt\napproach-to-a-winning-selection-criteria-response\nare-resume-writing-services-worth-it\nare-you-looking-to-improve-your-resume-and-increase-your-chances-of-getting-hired-in-australia\nbenefits-of-applicant-tracking-software-ats-for-resume-scrutiny\nbenefits-of-using-a-professional-resume-writer\ncrafting-the-perfect-job-application-letter-an-australian-perspective-by-all-resume-services\ncreate-a-selection-criteria-response-that-will-make-employers-want-to-interview-you\ndont-sell-short-diy-resume\neffective-cv-writing-strategies-for-career-success\nelevate-your-career-with-expert-resume-services\nexpert-cv-help-for-crafting-winning-resumes-effortlessly\n",
+  "stderr": "",
+  "execution_time_ms": 1487
+}

@@ -1,0 +1,15 @@
+{
+  "query": "SELECT MIN(LENGTH(metaDescription)) as minLen, MAX(LENGTH(metaDescription)) as maxLen, AVG(LENGTH(metaDescription)) as avgLen FROM blog_posts;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT MIN(LENGTH(metaDescription)) as minLen, MAX(LENGTH(metaDescription)) as maxLen, AVG(LENGTH(metaDescription)) as avgLen FROM blog_posts;",
+  "rows": [
+    {
+      "minLen": "123",
+      "maxLen": "164",
+      "avgLen": "143.5532"
+    }
+  ],
+  "messages": [],
+  "stdout": "minLen\tmaxLen\tavgLen\n123\t164\t143.5532\n",
+  "stderr": "",
+  "execution_time_ms": 1598
+}

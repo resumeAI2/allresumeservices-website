@@ -1,0 +1,25 @@
+{
+  "query": "SELECT slug FROM blog_posts LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT slug FROM blog_posts LIMIT 5;",
+  "rows": [
+    {
+      "slug": "10-pointers-for-writing-an-outstanding-resume"
+    },
+    {
+      "slug": "5-things-to-consider-when-selecting-a-resume-writer"
+    },
+    {
+      "slug": "8-reasons-why-your-cv-needs-to-be-updated"
+    },
+    {
+      "slug": "affordable-basic-resume-writing-stand-out-in-your-job-hunt"
+    },
+    {
+      "slug": "approach-to-a-winning-selection-criteria-response"
+    }
+  ],
+  "messages": [],
+  "stdout": "slug\n10-pointers-for-writing-an-outstanding-resume\n5-things-to-consider-when-selecting-a-resume-writer\n8-reasons-why-your-cv-needs-to-be-updated\naffordable-basic-resume-writing-stand-out-in-your-job-hunt\napproach-to-a-winning-selection-criteria-response\n",
+  "stderr": "",
+  "execution_time_ms": 1512
+}

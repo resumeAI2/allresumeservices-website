@@ -1,0 +1,25 @@
+{
+  "query": "SELECT * FROM services WHERE name LIKE '%revision%' OR name LIKE '%Revision%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT * FROM services WHERE name LIKE '%revision%' OR name LIKE '%Revision%';",
+  "rows": [
+    {
+      "id": "13",
+      "name": "Additional Revisions (3 extra)",
+      "description": "Three additional revision rounds",
+      "type": "addon",
+      "category": "Add-on",
+      "tier": "NULL",
+      "price": "30",
+      "originalPrice": "NULL",
+      "features": "[\"3 extra revision rounds\",\"Perfect for detailed customization\",\"Per document\"]",
+      "active": "1",
+      "sortOrder": "31",
+      "createdAt": "2025-11-27 10:18:17",
+      "updatedAt": "2025-11-27 10:18:17"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tdescription\ttype\tcategory\ttier\tprice\toriginalPrice\tfeatures\tactive\tsortOrder\tcreatedAt\tupdatedAt\n13\tAdditional Revisions (3 extra)\tThree additional revision rounds\taddon\tAdd-on\tNULL\t30\tNULL\t[\"3 extra revision rounds\",\"Perfect for detailed customization\",\"Per document\"]\t1\t31\t2025-11-27 10:18:17\t2025-11-27 10:18:17\n",
+  "stderr": "",
+  "execution_time_ms": 1534
+}

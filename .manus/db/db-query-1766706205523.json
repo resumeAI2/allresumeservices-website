@@ -1,0 +1,339 @@
+{
+  "query": "SELECT id, title, LENGTH(metaDescription) as metaLen, LENGTH(metaTitle) as titleLen, CASE WHEN image IS NULL OR image = '' THEN 'MISSING' ELSE 'OK' END as imageStatus FROM blog_posts ORDER BY id LIMIT 50;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, LENGTH(metaDescription) as metaLen, LENGTH(metaTitle) as titleLen, CASE WHEN image IS NULL OR image = '' THEN 'MISSING' ELSE 'OK' END as imageStatus FROM blog_posts ORDER BY id LIMIT 50;",
+  "rows": [
+    {
+      "id": "90001",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "metaLen": "155",
+      "titleLen": "48",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "metaLen": "139",
+      "titleLen": "59",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120002",
+      "title": "Professional Resume Services: Stand Out in Australia (2025)",
+      "metaLen": "160",
+      "titleLen": "59",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120003",
+      "title": "ATS Resume Help: All Resume Services Boosts Your Job Search",
+      "metaLen": "129",
+      "titleLen": "59",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120004",
+      "title": "Resume Optimization: All Resume Services' Expert Tips",
+      "metaLen": "134",
+      "titleLen": "53",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120005",
+      "title": "All Resume Services: Expert Scannable Resume Writing",
+      "metaLen": "136",
+      "titleLen": "52",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120006",
+      "title": "Wow Hiring Managers: Expert Resume Writing Tips 2023",
+      "metaLen": "145",
+      "titleLen": "52",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120007",
+      "title": "Gifting Resumes in Australia",
+      "metaLen": "138",
+      "titleLen": "28",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120008",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide",
+      "metaLen": "136",
+      "titleLen": "58",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120009",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia",
+      "metaLen": "127",
+      "titleLen": "57",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120010",
+      "title": "Home Truths About Job Hunting: Get Expert Help in Australia",
+      "metaLen": "138",
+      "titleLen": "59",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120011",
+      "title": "Stand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES",
+      "metaLen": "153",
+      "titleLen": "58",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120012",
+      "title": "LinkedIn & Brand: Job Search with All Resume Services",
+      "metaLen": "138",
+      "titleLen": "53",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120013",
+      "title": "Optimize Your Resume for ATS in Australia: Expert Tips",
+      "metaLen": "147",
+      "titleLen": "54",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120014",
+      "title": "Professional resumes: Get Overhired with Expert Help",
+      "metaLen": "140",
+      "titleLen": "52",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120015",
+      "title": "All Resume Services: Australian Job Application Guide",
+      "metaLen": "150",
+      "titleLen": "53",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120016",
+      "title": "Are you looking to improve your resume and increase your chances of getting hired in Australia?",
+      "metaLen": "154",
+      "titleLen": "59",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120017",
+      "title": "10 Pointers for Writing an Outstanding Resume",
+      "metaLen": "160",
+      "titleLen": "45",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120018",
+      "title": "Land Your Job: Professional resume Help in Australia (2025)",
+      "metaLen": "160",
+      "titleLen": "59",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120019",
+      "title": "Write Your First resume: Expert Guide by All Resume Services",
+      "metaLen": "124",
+      "titleLen": "60",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120020",
+      "title": "Australia Job Search in 2025: All resume Services Guide",
+      "metaLen": "149",
+      "titleLen": "55",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120021",
+      "title": "Mining Resume: Expert Tips from All Resume Services",
+      "metaLen": "138",
+      "titleLen": "51",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120022",
+      "title": "Elevate Your Career with Expert Resume Services",
+      "metaLen": "152",
+      "titleLen": "47",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120023",
+      "title": "Resume Writing Services: Are They Worth It? (Australia)",
+      "metaLen": "128",
+      "titleLen": "55",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120024",
+      "title": "Winning Selection Criteria: All Resume Services' Approach",
+      "metaLen": "133",
+      "titleLen": "57",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120025",
+      "title": "5 Tips to Choose a resume Writer: All Resume Services Guide",
+      "metaLen": "160",
+      "titleLen": "59",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120026",
+      "title": "Resume Tips: All Resume Services' Guide to Winning in 2025",
+      "metaLen": "155",
+      "titleLen": "58",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120027",
+      "title": "Selection Criteria: How to Write Effectively in 2025",
+      "metaLen": "134",
+      "titleLen": "52",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120028",
+      "title": "Selection Criteria Success: Get Interviewed! - 2025",
+      "metaLen": "145",
+      "titleLen": "51",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120029",
+      "title": "LinkedIn Profile Benefits: Boost Your Career in 2025",
+      "metaLen": "152",
+      "titleLen": "52",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120030",
+      "title": "Boost Your Resume: Professional Resume Writers in 2025",
+      "metaLen": "139",
+      "titleLen": "54",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120031",
+      "title": "Mining Resumes: Get Hired with Expert Help | 2025",
+      "metaLen": "160",
+      "titleLen": "49",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120032",
+      "title": "Resume Help for Freshers: All Resume Services in 2025",
+      "metaLen": "135",
+      "titleLen": "53",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120033",
+      "title": "Unlock Opportunities with Expert Mid-Career Resume Help - ALL RESUME SERVICES",
+      "metaLen": "160",
+      "titleLen": "55",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120034",
+      "title": "Why You Should Hire Professional Resume Writer",
+      "metaLen": "130",
+      "titleLen": "46",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120035",
+      "title": "Professional Mining Resume: Get Hired in 2025",
+      "metaLen": "140",
+      "titleLen": "45",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120036",
+      "title": "ATS Resume Tips: All Resume Services Can Help You Succeed",
+      "metaLen": "123",
+      "titleLen": "57",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120037",
+      "title": "Why Use CV Services? Improve Your Career Prospects in 2025",
+      "metaLen": "123",
+      "titleLen": "58",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120038",
+      "title": "Update Your CV: 8 Reasons Why (2025)",
+      "metaLen": "128",
+      "titleLen": "36",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120039",
+      "title": "Premium resume Writing Services By Top resume Writers",
+      "metaLen": "162",
+      "titleLen": "53",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120040",
+      "title": "Professional Resume Writer Benefits: Get Hired!",
+      "metaLen": "164",
+      "titleLen": "47",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120041",
+      "title": "Resume Writing Service: Benefits & Choosing the Right One",
+      "metaLen": "144",
+      "titleLen": "57",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120042",
+      "title": "Affordable Basic Resume Writing - Stand Out in Your Job Hunt - ALL RESUME SERVICES",
+      "metaLen": "157",
+      "titleLen": "60",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120043",
+      "title": "Write Winning Selection Criteria for Government Roles Today!",
+      "metaLen": "160",
+      "titleLen": "60",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120044",
+      "title": "Effective CV Writing for Australian Career Success",
+      "metaLen": "132",
+      "titleLen": "50",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120045",
+      "title": "Expert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES",
+      "metaLen": "146",
+      "titleLen": "56",
+      "imageStatus": "OK"
+    },
+    {
+      "id": "120046",
+      "title": "Revitalize Your Resume: A Marketing Tool for Australian Jobs",
+      "metaLen": "135",
+      "titleLen": "60",
+      "imageStatus": "OK"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tmetaLen\ttitleLen\timageStatus\n90001\tTransform Your Resume with Powerful Action Verbs\t155\t48\tOK\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\t139\t59\tOK\n120002\tProfessional Resume Services: Stand Out in Australia (2025)\t160\t59\tOK\n120003\tATS Resume Help: All Resume Services Boosts Your Job Search\t129\t59\tOK\n120004\tResume Optimization: All Resume Services' Expert Tips\t134\t53\tOK\n120005\tAll Resume Services: Expert Scannable Resume Writing\t136\t52\tOK\n120006\tWow Hiring Managers: Expert Resume Writing Tips 2023\t145\t52\tOK\n120007\tGifting Resumes in Australia\t138\t28\tOK\n120008\tSelection Criteria Help: All Resume Services' Expert Guide\t136\t58\tOK\n120009\tAvoid Cheap Resume Services: Get Expert Help in Australia\t127\t57\tOK\n120010\tHome Truths About Job Hunting: Get Expert Help in Australia\t138\t59\tOK\n120011\tStand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES\t153\t58\tOK\n120012\tLinkedIn & Brand: Job Search with All Resume Services\t138\t53\tOK\n120013\tOptimize Your Resume for ATS in Australia: Expert Tips\t147\t54\tOK\n120014\tProfessional resumes: Get Overhired with Expert Help\t140\t52\tOK\n120015\tAll Resume Services: Australian Job Application Guide\t150\t53\tOK\n120016\tAre you looking to improve your resume and increase your chances of getting hired in Australia?\t154\t59\tOK\n120017\t10 Pointers for Writing an Outstanding Resume\t160\t45\tOK\n120018\tLand Your Job: Professional resume Help in Australia (2025)\t160\t59\tOK\n120019\tWrite Your First resume: Expert Guide by All Resume Services\t124\t60\tOK\n120020\tAustralia Job Search in 2025: All resume Services Guide\t149\t55\tOK\n120021\tMining Resume: Expert Tips from All Resume Services\t138\t51\tOK\n120022\tElevate Your Career with Expert Resume Services\t152\t47\tOK\n120023\tResume Writing Services: Are They Worth It? (Australia)\t128\t55\tOK\n120024\tWinning Selection Criteria: All Resume Services' Approach\t133\t57\tOK\n120025\t5 Tips to Choose a resume Writer: All Resume Services Guide\t160\t59\tOK\n120026\tResume Tips: All Resume Services' Guide to Winning in 2025\t155\t58\tOK\n120027\tSelection Criteria: How to Write Effectively in 2025\t134\t52\tOK\n120028\tSelection Criteria Success: Get Interviewed! - 2025\t145\t51\tOK\n120029\tLinkedIn Profile Benefits: Boost Your Career in 2025\t152\t52\tOK\n120030\tBoost Your Resume: Professional Resume Writers in 2025\t139\t54\tOK\n120031\tMining Resumes: Get Hired with Expert Help | 2025\t160\t49\tOK\n120032\tResume Help for Freshers: All Resume Services in 2025\t135\t53\tOK\n120033\tUnlock Opportunities with Expert Mid-Career Resume Help - ALL RESUME SERVICES\t160\t55\tOK\n120034\tWhy You Should Hire Professional Resume Writer\t130\t46\tOK\n120035\tProfessional Mining Resume: Get Hired in 2025\t140\t45\tOK\n120036\tATS Resume Tips: All Resume Services Can Help You Succeed\t123\t57\tOK\n120037\tWhy Use CV Services? Improve Your Career Prospects in 2025\t123\t58\tOK\n120038\tUpdate Your CV: 8 Reasons Why (2025)\t128\t36\tOK\n120039\tPremium resume Writing Services By Top resume Writers\t162\t53\tOK\n120040\tProfessional Resume Writer Benefits: Get Hired!\t164\t47\tOK\n120041\tResume Writing Service: Benefits & Choosing the Right One\t144\t57\tOK\n120042\tAffordable Basic Resume Writing - Stand Out in Your Job Hunt - ALL RESUME SERVICES\t157\t60\tOK\n120043\tWrite Winning Selection Criteria for Government Roles Today!\t160\t60\tOK\n120044\tEffective CV Writing for Australian Career Success\t132\t50\tOK\n120045\tExpert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES\t146\t56\tOK\n120046\tRevitalize Your Resume: A Marketing Tool for Australian Jobs\t135\t60\tOK\n",
+  "stderr": "",
+  "execution_time_ms": 1586
+}

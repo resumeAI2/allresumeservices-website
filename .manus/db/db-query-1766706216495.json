@@ -1,0 +1,18 @@
+{
+  "query": "SELECT CASE WHEN LENGTH(metaDescription) < 120 THEN 'Too Short (<120)' WHEN LENGTH(metaDescription) > 160 THEN 'Too Long (>160)' ELSE 'Optimal (120-160)' END as status, COUNT(*) as count FROM blog_posts GROUP BY status;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT CASE WHEN LENGTH(metaDescription) < 120 THEN 'Too Short (<120)' WHEN LENGTH(metaDescription) > 160 THEN 'Too Long (>160)' ELSE 'Optimal (120-160)' END as status, COUNT(*) as count FROM blog_posts GROUP BY status;",
+  "rows": [
+    {
+      "status": "Too Long (>160)",
+      "count": "2"
+    },
+    {
+      "status": "Optimal (120-160)",
+      "count": "45"
+    }
+  ],
+  "messages": [],
+  "stdout": "status\tcount\nToo Long (>160)\t2\nOptimal (120-160)\t45\n",
+  "stderr": "",
+  "execution_time_ms": 1553
+}

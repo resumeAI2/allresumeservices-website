@@ -1,0 +1,16 @@
+{
+  "query": "SELECT id, title, clientName, testimonialQuote FROM case_studies WHERE clientName LIKE '%Mark%' OR testimonialQuote LIKE '%age%' OR testimonialQuote LIKE '%realized%' OR testimonialQuote LIKE '%stressed%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, clientName, testimonialQuote FROM case_studies WHERE clientName LIKE '%Mark%' OR testimonialQuote LIKE '%age%' OR testimonialQuote LIKE '%realized%' OR testimonialQuote LIKE '%stressed%';",
+  "rows": [
+    {
+      "id": "2",
+      "title": "Mature-Age Jobseeker Overcoming Barriers",
+      "clientName": "Mark",
+      "testimonialQuote": "I was so stressed about my age holding me back, but after working with All Resume Services, I realized my experience is actually my greatest asset. The new resume opened doors I thought were closed forever."
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tclientName\ttestimonialQuote\n2\tMature-Age Jobseeker Overcoming Barriers\tMark\tI was so stressed about my age holding me back, but after working with All Resume Services, I realized my experience is actually my greatest asset. The new resume opened doors I thought were closed forever.\n",
+  "stderr": "",
+  "execution_time_ms": 1500
+}

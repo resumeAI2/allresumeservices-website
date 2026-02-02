@@ -1,0 +1,59 @@
+{
+  "query": "SELECT id, name, category, tier, features FROM services WHERE id IN (1,2,3,4,5,6,7);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, name, category, tier, features FROM services WHERE id IN (1,2,3,4,5,6,7);",
+  "rows": [
+    {
+      "id": "1",
+      "name": "Entry Level Resume",
+      "category": "Resume",
+      "tier": "Entry Level",
+      "features": "[\"ATS-optimized format\",\"1-2 pages\",\"Professional summary\",\"Skills section\",\"We work with you until you're 100% satisfied\",\"3-5 business days delivery\"]"
+    },
+    {
+      "id": "2",
+      "name": "Professional Resume",
+      "category": "Resume",
+      "tier": "Professional",
+      "features": "[\"ATS-optimized format\",\"2-3 pages\",\"Executive summary\",\"Achievement-focused content\",\"Skills & certifications\",\"We work with you until you're 100% satisfied\",\"3-5 business days delivery\"]"
+    },
+    {
+      "id": "3",
+      "name": "Executive Resume",
+      "category": "Resume",
+      "tier": "Executive",
+      "features": "[\"ATS-optimized format\",\"2-3 pages\",\"Executive branding\",\"Leadership achievements\",\"Board experience highlight\",\"We work with you until you're 100% satisfied\",\"2-3 business days delivery\"]"
+    },
+    {
+      "id": "4",
+      "name": "Entry Level Cover Letter",
+      "category": "Cover Letter",
+      "tier": "Entry Level",
+      "features": "[\"Tailored to job description\", \"1 page\", \"Professional tone\", \"We work with you until you're 100% satisfied\", \"1 business day delivery\"]"
+    },
+    {
+      "id": "5",
+      "name": "Professional Cover Letter",
+      "category": "Cover Letter",
+      "tier": "Professional",
+      "features": "[\"Customized to role\", \"1 page\", \"Achievement highlights\", \"We work with you until you're 100% satisfied\", \"1 business day delivery\"]"
+    },
+    {
+      "id": "6",
+      "name": "Executive Cover Letter",
+      "category": "Cover Letter",
+      "tier": "Executive",
+      "features": "[\"Executive positioning\", \"1 page\", \"Leadership narrative\", \"We work with you until you're 100% satisfied\", \"1 business day delivery\"]"
+    },
+    {
+      "id": "7",
+      "name": "LinkedIn Profile Optimization",
+      "category": "LinkedIn",
+      "tier": "Professional",
+      "features": "[\"Keyword-optimized headline\",\"Compelling summary\",\"Experience section rewrite\",\"Skills optimization\",\"We work with you until you're 100% satisfied\",\"3-5 business days delivery\"]"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tcategory\ttier\tfeatures\n1\tEntry Level Resume\tResume\tEntry Level\t[\"ATS-optimized format\",\"1-2 pages\",\"Professional summary\",\"Skills section\",\"We work with you until you're 100% satisfied\",\"3-5 business days delivery\"]\n2\tProfessional Resume\tResume\tProfessional\t[\"ATS-optimized format\",\"2-3 pages\",\"Executive summary\",\"Achievement-focused content\",\"Skills & certifications\",\"We work with you until you're 100% satisfied\",\"3-5 business days delivery\"]\n3\tExecutive Resume\tResume\tExecutive\t[\"ATS-optimized format\",\"2-3 pages\",\"Executive branding\",\"Leadership achievements\",\"Board experience highlight\",\"We work with you until you're 100% satisfied\",\"2-3 business days delivery\"]\n4\tEntry Level Cover Letter\tCover Letter\tEntry Level\t[\"Tailored to job description\", \"1 page\", \"Professional tone\", \"We work with you until you're 100% satisfied\", \"1 business day delivery\"]\n5\tProfessional Cover Letter\tCover Letter\tProfessional\t[\"Customized to role\", \"1 page\", \"Achievement highlights\", \"We work with you until you're 100% satisfied\", \"1 business day delivery\"]\n6\tExecutive Cover Letter\tCover Letter\tExecutive\t[\"Executive positioning\", \"1 page\", \"Leadership narrative\", \"We work with you until you're 100% satisfied\", \"1 business day delivery\"]\n7\tLinkedIn Profile Optimization\tLinkedIn\tProfessional\t[\"Keyword-optimized headline\",\"Compelling summary\",\"Experience section rewrite\",\"Skills optimization\",\"We work with you until you're 100% satisfied\",\"3-5 business days delivery\"]\n",
+  "stderr": "",
+  "execution_time_ms": 1605
+}

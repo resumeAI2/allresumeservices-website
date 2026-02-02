@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE services SET description = 'Expert-crafted responses using proven STAR methodology, specifically tailored for Australian government applications with evidence-based examples' WHERE name = 'Selection Criteria Response';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute UPDATE services SET description = 'Expert-crafted responses using proven STAR methodology, specifically tailored for Australian government applications with evidence-based examples' WHERE name = 'Selection Criteria Response';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1542
+}

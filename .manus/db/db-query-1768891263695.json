@@ -1,0 +1,100 @@
+{
+  "query": "SELECT id, title, slug, image FROM blog_posts LIMIT 15;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug, image FROM blog_posts LIMIT 15;",
+  "rows": [
+    {
+      "id": "90001",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "slug": "transform-your-resume-with-powerful-action-verbs",
+      "image": "/blog/resume-review-session.jpg"
+    },
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool",
+      "image": "/blog/interview-candidate-confident.jpg"
+    },
+    {
+      "id": "120002",
+      "title": "Professional Resume Services: Stand Out in Australia (2025)",
+      "slug": "stand-out-in-the-crowd-with-professionally-prepared-resume-services",
+      "image": "/blog/workspace-laptop-coffee-notebook.jpg"
+    },
+    {
+      "id": "120003",
+      "title": "ATS Resume Help: All Resume Services Boosts Your Job Search",
+      "slug": "scanning-software-scans-your-resume-navigating-ats-in-job-hunting",
+      "image": "/blog/professional-phone-call-office.jpg"
+    },
+    {
+      "id": "120004",
+      "title": "Resume Optimization: All Resume Services' Expert Tips",
+      "slug": "dont-sell-short-diy-resume",
+      "image": "/blog/mentor-mentee-discussion.jpg"
+    },
+    {
+      "id": "120005",
+      "title": "All Resume Services: Expert Scannable Resume Writing",
+      "slug": "the-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services",
+      "image": "/blog/woman-typing-laptop-office.jpg"
+    },
+    {
+      "id": "120006",
+      "title": "Wow Hiring Managers: Expert Resume Writing Tips 2023",
+      "slug": "resume-writing-101-how-to-showcase-your-accomplishments-and-wow-hiring-managers-in-2023",
+      "image": "/blog/networking-event-professionals.jpg"
+    },
+    {
+      "id": "120007",
+      "title": "Gifting Resumes in Australia",
+      "slug": "gifting-resumes-in-australia",
+      "image": "/blog/office-celebration-success.jpg"
+    },
+    {
+      "id": "120008",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide",
+      "slug": "writing-a-professional-selection-criteria-response",
+      "image": "/blog/career-documents-organized.jpg"
+    },
+    {
+      "id": "120009",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia",
+      "slug": "using-cheap-resume-writing-services",
+      "image": "/blog/resume-review-session.jpg"
+    },
+    {
+      "id": "120010",
+      "title": "Home Truths About Job Hunting: Get Expert Help in Australia",
+      "slug": "home-truths-about-job-hunting",
+      "image": "/blog/job-search-strategy.jpg"
+    },
+    {
+      "id": "120011",
+      "title": "Stand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES",
+      "slug": "stand-out-with-top-notch-senior-management-resume-services",
+      "image": "/blog/executive-leadership-meeting.jpg"
+    },
+    {
+      "id": "120012",
+      "title": "LinkedIn & Brand: Job Search with All Resume Services",
+      "slug": "linkedin-and-an-online-brand-is-your-job-search-future",
+      "image": "/blog/career-coaching-session.jpg"
+    },
+    {
+      "id": "120013",
+      "title": "Optimize Your Resume for ATS in Australia: Expert Tips",
+      "slug": "the-role-of-ats-in-the-australian-job-market",
+      "image": "/blog/diverse-team-collaboration.jpg"
+    },
+    {
+      "id": "120014",
+      "title": "Professional resumes: Get Overhired with Expert Help",
+      "slug": "overlooked-to-overhire-the-power-of-a-professionally-written-resume",
+      "image": "/blog/job-search-strategy.jpg"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\timage\n90001\tTransform Your Resume with Powerful Action Verbs\ttransform-your-resume-with-powerful-action-verbs\t/blog/resume-review-session.jpg\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool\t/blog/interview-candidate-confident.jpg\n120002\tProfessional Resume Services: Stand Out in Australia (2025)\tstand-out-in-the-crowd-with-professionally-prepared-resume-services\t/blog/workspace-laptop-coffee-notebook.jpg\n120003\tATS Resume Help: All Resume Services Boosts Your Job Search\tscanning-software-scans-your-resume-navigating-ats-in-job-hunting\t/blog/professional-phone-call-office.jpg\n120004\tResume Optimization: All Resume Services' Expert Tips\tdont-sell-short-diy-resume\t/blog/mentor-mentee-discussion.jpg\n120005\tAll Resume Services: Expert Scannable Resume Writing\tthe-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services\t/blog/woman-typing-laptop-office.jpg\n120006\tWow Hiring Managers: Expert Resume Writing Tips 2023\tresume-writing-101-how-to-showcase-your-accomplishments-and-wow-hiring-managers-in-2023\t/blog/networking-event-professionals.jpg\n120007\tGifting Resumes in Australia\tgifting-resumes-in-australia\t/blog/office-celebration-success.jpg\n120008\tSelection Criteria Help: All Resume Services' Expert Guide\twriting-a-professional-selection-criteria-response\t/blog/career-documents-organized.jpg\n120009\tAvoid Cheap Resume Services: Get Expert Help in Australia\tusing-cheap-resume-writing-services\t/blog/resume-review-session.jpg\n120010\tHome Truths About Job Hunting: Get Expert Help in Australia\thome-truths-about-job-hunting\t/blog/job-search-strategy.jpg\n120011\tStand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES\tstand-out-with-top-notch-senior-management-resume-services\t/blog/executive-leadership-meeting.jpg\n120012\tLinkedIn & Brand: Job Search with All Resume Services\tlinkedin-and-an-online-brand-is-your-job-search-future\t/blog/career-coaching-session.jpg\n120013\tOptimize Your Resume for ATS in Australia: Expert Tips\tthe-role-of-ats-in-the-australian-job-market\t/blog/diverse-team-collaboration.jpg\n120014\tProfessional resumes: Get Overhired with Expert Help\toverlooked-to-overhire-the-power-of-a-professionally-written-resume\t/blog/job-search-strategy.jpg\n",
+  "stderr": "",
+  "execution_time_ms": 1555
+}

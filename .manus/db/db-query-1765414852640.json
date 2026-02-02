@@ -1,0 +1,30 @@
+{
+  "query": "SELECT id, title FROM blog_posts LIMIT 5",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title FROM blog_posts LIMIT 5",
+  "rows": [
+    {
+      "id": "90001",
+      "title": "Transform Your Resume with Powerful Action Verbs"
+    },
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool"
+    },
+    {
+      "id": "120002",
+      "title": "Professional Resume Services: Stand Out in Australia (2025)"
+    },
+    {
+      "id": "120003",
+      "title": "ATS Resume Help: All Resume Services Boosts Your Job Search"
+    },
+    {
+      "id": "120004",
+      "title": "Resume Optimization: All Resume Services' Expert Tips"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\n90001\tTransform Your Resume with Powerful Action Verbs\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\n120002\tProfessional Resume Services: Stand Out in Australia (2025)\n120003\tATS Resume Help: All Resume Services Boosts Your Job Search\n120004\tResume Optimization: All Resume Services' Expert Tips\n",
+  "stderr": "",
+  "execution_time_ms": 1851
+}

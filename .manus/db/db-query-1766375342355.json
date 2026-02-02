@@ -1,0 +1,150 @@
+{
+  "query": "SELECT id, title, slug, image, category FROM blog_posts LIMIT 20;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug, image, category FROM blog_posts LIMIT 20;",
+  "rows": [
+    {
+      "id": "90001",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "slug": "transform-your-resume-with-powerful-action-verbs",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120002",
+      "title": "Professional Resume Services: Stand Out in Australia (2025)",
+      "slug": "stand-out-in-the-crowd-with-professionally-prepared-resume-services",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120003",
+      "title": "ATS Resume Help: All Resume Services Boosts Your Job Search",
+      "slug": "scanning-software-scans-your-resume-navigating-ats-in-job-hunting",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120004",
+      "title": "Resume Optimization: All Resume Services' Expert Tips",
+      "slug": "dont-sell-short-diy-resume",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120005",
+      "title": "All Resume Services: Expert Scannable Resume Writing",
+      "slug": "the-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120006",
+      "title": "Wow Hiring Managers: Expert Resume Writing Tips 2023",
+      "slug": "resume-writing-101-how-to-showcase-your-accomplishments-and-wow-hiring-managers-in-2023",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120007",
+      "title": "Gifting Resumes in Australia",
+      "slug": "gifting-resumes-in-australia",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120008",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide",
+      "slug": "writing-a-professional-selection-criteria-response",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120009",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia",
+      "slug": "using-cheap-resume-writing-services",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120010",
+      "title": "Home Truths About Job Hunting: Get Expert Help in Australia",
+      "slug": "home-truths-about-job-hunting",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120011",
+      "title": "Stand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES",
+      "slug": "stand-out-with-top-notch-senior-management-resume-services",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120012",
+      "title": "LinkedIn & Brand: Job Search with All Resume Services",
+      "slug": "linkedin-and-an-online-brand-is-your-job-search-future",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120013",
+      "title": "Optimize Your Resume for ATS in Australia: Expert Tips",
+      "slug": "the-role-of-ats-in-the-australian-job-market",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120014",
+      "title": "Professional resumes: Get Overhired with Expert Help",
+      "slug": "overlooked-to-overhire-the-power-of-a-professionally-written-resume",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120015",
+      "title": "All Resume Services: Australian Job Application Guide",
+      "slug": "crafting-the-perfect-job-application-letter-an-australian-perspective-by-all-resume-services",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120016",
+      "title": "Are you looking to improve your resume and increase your chances of getting hired in Australia?",
+      "slug": "are-you-looking-to-improve-your-resume-and-increase-your-chances-of-getting-hired-in-australia",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120017",
+      "title": "10 Pointers for Writing an Outstanding Resume",
+      "slug": "10-pointers-for-writing-an-outstanding-resume",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120018",
+      "title": "Land Your Job: Professional resume Help in Australia (2025)",
+      "slug": "page",
+      "image": "NULL",
+      "category": "Resume Writing"
+    },
+    {
+      "id": "120019",
+      "title": "Write Your First resume: Expert Guide by All Resume Services",
+      "slug": "how-to-write-your-first-resume",
+      "image": "NULL",
+      "category": "Resume Writing"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\timage\tcategory\n90001\tTransform Your Resume with Powerful Action Verbs\ttransform-your-resume-with-powerful-action-verbs\tNULL\tResume Writing\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool\tNULL\tResume Writing\n120002\tProfessional Resume Services: Stand Out in Australia (2025)\tstand-out-in-the-crowd-with-professionally-prepared-resume-services\tNULL\tResume Writing\n120003\tATS Resume Help: All Resume Services Boosts Your Job Search\tscanning-software-scans-your-resume-navigating-ats-in-job-hunting\tNULL\tResume Writing\n120004\tResume Optimization: All Resume Services' Expert Tips\tdont-sell-short-diy-resume\tNULL\tResume Writing\n120005\tAll Resume Services: Expert Scannable Resume Writing\tthe-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services\tNULL\tResume Writing\n120006\tWow Hiring Managers: Expert Resume Writing Tips 2023\tresume-writing-101-how-to-showcase-your-accomplishments-and-wow-hiring-managers-in-2023\tNULL\tResume Writing\n120007\tGifting Resumes in Australia\tgifting-resumes-in-australia\tNULL\tResume Writing\n120008\tSelection Criteria Help: All Resume Services' Expert Guide\twriting-a-professional-selection-criteria-response\tNULL\tResume Writing\n120009\tAvoid Cheap Resume Services: Get Expert Help in Australia\tusing-cheap-resume-writing-services\tNULL\tResume Writing\n120010\tHome Truths About Job Hunting: Get Expert Help in Australia\thome-truths-about-job-hunting\tNULL\tResume Writing\n120011\tStand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES\tstand-out-with-top-notch-senior-management-resume-services\tNULL\tResume Writing\n120012\tLinkedIn & Brand: Job Search with All Resume Services\tlinkedin-and-an-online-brand-is-your-job-search-future\tNULL\tResume Writing\n120013\tOptimize Your Resume for ATS in Australia: Expert Tips\tthe-role-of-ats-in-the-australian-job-market\tNULL\tResume Writing\n120014\tProfessional resumes: Get Overhired with Expert Help\toverlooked-to-overhire-the-power-of-a-professionally-written-resume\tNULL\tResume Writing\n120015\tAll Resume Services: Australian Job Application Guide\tcrafting-the-perfect-job-application-letter-an-australian-perspective-by-all-resume-services\tNULL\tResume Writing\n120016\tAre you looking to improve your resume and increase your chances of getting hired in Australia?\tare-you-looking-to-improve-your-resume-and-increase-your-chances-of-getting-hired-in-australia\tNULL\tResume Writing\n120017\t10 Pointers for Writing an Outstanding Resume\t10-pointers-for-writing-an-outstanding-resume\tNULL\tResume Writing\n120018\tLand Your Job: Professional resume Help in Australia (2025)\tpage\tNULL\tResume Writing\n120019\tWrite Your First resume: Expert Guide by All Resume Services\thow-to-write-your-first-resume\tNULL\tResume Writing\n",
+  "stderr": "",
+  "execution_time_ms": 1520
+}

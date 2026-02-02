@@ -1,0 +1,31 @@
+{
+  "query": "SELECT id, title, SUBSTR(content, 1, 300) as sample FROM blog_posts WHERE content LIKE '%######%' LIMIT 3",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, SUBSTR(content, 1, 300) as sample FROM blog_posts WHERE content LIKE '%######%' LIMIT 3",
+  "rows": [
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "sample": "**<p>###### Introduction: A New Chapter Awaits</p>**"
+    },
+    {
+      "id": "120002",
+      "title": "Professional Resume Services: Stand Out in Australia (2025)",
+      "sample": "**<p>###### Introduction: Your Resume, The Key to Unlocking Opportunities</p>**"
+    },
+    {
+      "id": "120004",
+      "title": "Resume Optimization: All Resume Services' Expert Tips",
+      "sample": "**<p># Resume Optimization: All Resume Services' Expert Tips</p>**"
+    }
+  ],
+  "messages": [
+    "<p>The job search process can often feel like wandering through an unforgiving desert, with your resume as the only water source – if it’s empty, your chances of survival are slim. In a world where first impressions are everything, a lackluster r",
+    "<p>The job search process in Australia can often feel like wading through a crowded beach, trying to catch the eye of the ultimate employer. Amidst a sea of candidates, your resume is your beacon, a signal flare that ca",
+    "**<p>[Skip to content]()</p>**",
+    "**<p>###### Introduction: Navigating the Job Search Jungle</p>**",
+    "<p>In the dense jungle of job searching, a resume is your machete clearing the path towards your next opportunity. Yet, many job seeke"
+  ],
+  "stdout": "id\ttitle\tsample\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\t**<p>###### Introduction: A New Chapter Awaits</p>**\n\n<p>The job search process can often feel like wandering through an unforgiving desert, with your resume as the only water source – if it’s empty, your chances of survival are slim. In a world where first impressions are everything, a lackluster r\n120002\tProfessional Resume Services: Stand Out in Australia (2025)\t**<p>###### Introduction: Your Resume, The Key to Unlocking Opportunities</p>**\n\n<p>The job search process in Australia can often feel like wading through a crowded beach, trying to catch the eye of the ultimate employer. Amidst a sea of candidates, your resume is your beacon, a signal flare that ca\n120004\tResume Optimization: All Resume Services' Expert Tips\t**<p># Resume Optimization: All Resume Services' Expert Tips</p>**\n\n**<p>[Skip to content]()</p>**\n\n**<p>###### Introduction: Navigating the Job Search Jungle</p>**\n\n<p>In the dense jungle of job searching, a resume is your machete clearing the path towards your next opportunity. Yet, many job seeke\n",
+  "stderr": "",
+  "execution_time_ms": 1612
+}

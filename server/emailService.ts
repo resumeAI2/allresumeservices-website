@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer';
 import { logEmail } from './services/emailLogger';
 import { sendEmailFailureAlert } from './services/emailFailureAlert';
-import { escapeHtml, sanitizeForEmail } from './utils/sanitize';
 
 interface ContactFormData {
   name: string;
@@ -19,6 +18,18 @@ interface OrderData {
   amount: string;
   currency: string;
   paypalOrderId?: string;
+}
+
+// Simple HTML escape function
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m] || m);
 }
 
 /**
@@ -85,7 +96,7 @@ export async function sendContactFormNotification(data: ContactFormData): Promis
       <div style="margin: 20px 0;">
         <h3 style="color: #1e3a8a;">Message:</h3>
         <p style="background-color: #ffffff; padding: 15px; border-left: 4px solid #f59e0b; border-radius: 4px;">
-          ${sanitizeForEmail(data.message)}
+          ${escapeHtml(data.message).replace(/\n/g, '<br>')}
         </p>
       </div>
       
@@ -111,7 +122,7 @@ ${data.message}
 Submitted at: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })}
   `;
 
-  const subject = `New Contact Form Submission from ${escapeHtml(data.name)}`;
+  const subject = `New Contact Form Submission from ${data.name}`;
   
   try {
     await transporter.sendMail({

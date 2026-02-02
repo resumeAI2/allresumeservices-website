@@ -1,0 +1,106 @@
+{
+  "query": "SELECT id, title, LEFT(metaDescription, 200) as metaDesc, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) < 120 OR LENGTH(metaDescription) > 160 ORDER BY len ASC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, LEFT(metaDescription, 200) as metaDesc, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) < 120 OR LENGTH(metaDescription) > 160 ORDER BY len ASC;",
+  "rows": [
+    {
+      "id": "120036",
+      "title": "ATS Resume Tips: All Resume Services Can Help You Succeed",
+      "metaDesc": "Unlock ATS: Get noticed by recruiters!",
+      "len": "38"
+    },
+    {
+      "id": "120019",
+      "title": "Write Your First resume: Expert Guide by All Resume Services",
+      "metaDesc": "Craft a winning first resume with ease!",
+      "len": "39"
+    },
+    {
+      "id": "120009",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia",
+      "metaDesc": "Boost job prospects with a quality resume.",
+      "len": "42"
+    },
+    {
+      "id": "120032",
+      "title": "Resume Help for Freshers: All Resume Services in 2025",
+      "metaDesc": "Get hired with a pro resume, no experience needed.",
+      "len": "50"
+    },
+    {
+      "id": "120046",
+      "title": "Revitalize Your Resume: A Marketing Tool for Australian Jobs",
+      "metaDesc": "Transform Your Resume: Open Doors, Not Close Them.",
+      "len": "50"
+    },
+    {
+      "id": "120005",
+      "title": "All Resume Services: Expert Scannable Resume Writing",
+      "metaDesc": "Boost your job chances with a pro scannable resume.",
+      "len": "51"
+    },
+    {
+      "id": "120008",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide",
+      "metaDesc": "Master Selection Criteria Responses for Job Success",
+      "len": "51"
+    },
+    {
+      "id": "120007",
+      "title": "Gifting Resumes in Australia",
+      "metaDesc": "Boost your Aussie job search with expert resume tips.",
+      "len": "53"
+    },
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "metaDesc": "Craft a standout resume, unlock new job opportunities.",
+      "len": "54"
+    },
+    {
+      "id": "120041",
+      "title": "Resume Writing Service: Benefits & Choosing the Right One",
+      "metaDesc": "Boost Your Career with Professional resume Writing Services",
+      "len": "59"
+    },
+    {
+      "id": "120029",
+      "title": "LinkedIn Profile Benefits: Boost Your Career in 2025",
+      "metaDesc": "Unlock LinkedIn's Power: Boost Your Career & Networking Success",
+      "len": "63"
+    },
+    {
+      "id": "120015",
+      "title": "All Resume Services: Australian Job Application Guide",
+      "metaDesc": "Craft a winning job application letter for the Australian market.",
+      "len": "65"
+    },
+    {
+      "id": "120031",
+      "title": "Mining Resumes: Get Hired with Expert Help | 2025",
+      "metaDesc": "Mining Resumes: Need a mining job? All Resume Services provides expert resume writing to help you get hired in 2025.",
+      "len": "116"
+    },
+    {
+      "id": "120018",
+      "title": "Land Your Job: Professional resume Help in Australia (2025)",
+      "metaDesc": "Need a job in Australia? All resume Services provides expert resume help to land your dream role. Get started today!",
+      "len": "116"
+    },
+    {
+      "id": "120039",
+      "title": "Premium resume Writing Services By Top resume Writers",
+      "metaDesc": "Job seekers often face a lot of challenges when it comes to writing their resumes. For one, they’re not sure what format to use or what sections to include. Sec",
+      "len": "162"
+    },
+    {
+      "id": "120040",
+      "title": "Professional Resume Writer Benefits: Get Hired!",
+      "metaDesc": "In today’s job market, the importance of a resume is greater than ever before. With so many people vying for the same positions, it’s essential that your resume",
+      "len": "164"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tmetaDesc\tlen\n120036\tATS Resume Tips: All Resume Services Can Help You Succeed\tUnlock ATS: Get noticed by recruiters!\t38\n120019\tWrite Your First resume: Expert Guide by All Resume Services\tCraft a winning first resume with ease!\t39\n120009\tAvoid Cheap Resume Services: Get Expert Help in Australia\tBoost job prospects with a quality resume.\t42\n120032\tResume Help for Freshers: All Resume Services in 2025\tGet hired with a pro resume, no experience needed.\t50\n120046\tRevitalize Your Resume: A Marketing Tool for Australian Jobs\tTransform Your Resume: Open Doors, Not Close Them.\t50\n120005\tAll Resume Services: Expert Scannable Resume Writing\tBoost your job chances with a pro scannable resume.\t51\n120008\tSelection Criteria Help: All Resume Services' Expert Guide\tMaster Selection Criteria Responses for Job Success\t51\n120007\tGifting Resumes in Australia\tBoost your Aussie job search with expert resume tips.\t53\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\tCraft a standout resume, unlock new job opportunities.\t54\n120041\tResume Writing Service: Benefits & Choosing the Right One\tBoost Your Career with Professional resume Writing Services\t59\n120029\tLinkedIn Profile Benefits: Boost Your Career in 2025\tUnlock LinkedIn's Power: Boost Your Career & Networking Success\t63\n120015\tAll Resume Services: Australian Job Application Guide\tCraft a winning job application letter for the Australian market.\t65\n120031\tMining Resumes: Get Hired with Expert Help | 2025\tMining Resumes: Need a mining job? All Resume Services provides expert resume writing to help you get hired in 2025.\t116\n120018\tLand Your Job: Professional resume Help in Australia (2025)\tNeed a job in Australia? All resume Services provides expert resume help to land your dream role. Get started today!\t116\n120039\tPremium resume Writing Services By Top resume Writers\tJob seekers often face a lot of challenges when it comes to writing their resumes. For one, they’re not sure what format to use or what sections to include. Sec\t162\n120040\tProfessional Resume Writer Benefits: Get Hired!\tIn today’s job market, the importance of a resume is greater than ever before. With so many people vying for the same positions, it’s essential that your resume\t164\n",
+  "stderr": "",
+  "execution_time_ms": 1531
+}

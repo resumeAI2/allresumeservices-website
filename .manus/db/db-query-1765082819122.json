@@ -1,0 +1,20 @@
+{
+  "query": "SELECT id, title, slug FROM blog_posts WHERE content LIKE '%|%' AND published = 1 LIMIT 5",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug FROM blog_posts WHERE content LIKE '%|%' AND published = 1 LIMIT 5",
+  "rows": [
+    {
+      "id": "120004",
+      "title": "Resume Optimization: All Resume Services' Expert Tips",
+      "slug": "dont-sell-short-diy-resume"
+    },
+    {
+      "id": "120043",
+      "title": "Write Winning Selection Criteria for Government Roles Today!",
+      "slug": "selection-criteria-writing-for-public-service-in-australia"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\n120004\tResume Optimization: All Resume Services' Expert Tips\tdont-sell-short-diy-resume\n120043\tWrite Winning Selection Criteria for Government Roles Today!\tselection-criteria-writing-for-public-service-in-australia\n",
+  "stderr": "",
+  "execution_time_ms": 1632
+}

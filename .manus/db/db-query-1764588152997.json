@@ -1,0 +1,100 @@
+{
+  "query": "SELECT clientName FROM testimonials ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT clientName FROM testimonials ORDER BY id;",
+  "rows": [
+    {
+      "clientName": "Michael Goldenberg"
+    },
+    {
+      "clientName": "Jackson Misago"
+    },
+    {
+      "clientName": "S. Muller"
+    },
+    {
+      "clientName": "T. Zboncak"
+    },
+    {
+      "clientName": "Nigel Howarth"
+    },
+    {
+      "clientName": "Megan Dawson"
+    },
+    {
+      "clientName": "Mayur Chauhan"
+    },
+    {
+      "clientName": "Brad and Nichole Ralph"
+    },
+    {
+      "clientName": "Gavin Atkinson"
+    },
+    {
+      "clientName": "Christina Paiva"
+    },
+    {
+      "clientName": "Mark Randall"
+    },
+    {
+      "clientName": "Ali Al Obeid"
+    },
+    {
+      "clientName": "Naveen Karunaratne"
+    },
+    {
+      "clientName": "Peter Koikas"
+    },
+    {
+      "clientName": "Nrupa Shah"
+    },
+    {
+      "clientName": "Caroline"
+    },
+    {
+      "clientName": "Jaisen Tanner"
+    },
+    {
+      "clientName": "Stewart McGarth"
+    },
+    {
+      "clientName": "Ashley QLD"
+    },
+    {
+      "clientName": "QLD – March 2020"
+    },
+    {
+      "clientName": "Nrupa Shah"
+    },
+    {
+      "clientName": "Stewart McGrath"
+    },
+    {
+      "clientName": "Martin Hill"
+    },
+    {
+      "clientName": "Scott Green"
+    },
+    {
+      "clientName": "Tony"
+    },
+    {
+      "clientName": "Nina"
+    },
+    {
+      "clientName": "Jason"
+    },
+    {
+      "clientName": "Phil Tanoh"
+    },
+    {
+      "clientName": "Dylan Barlow"
+    },
+    {
+      "clientName": "Batto Batto"
+    }
+  ],
+  "messages": [],
+  "stdout": "clientName\nMichael Goldenberg\nJackson Misago\nS. Muller\nT. Zboncak\nNigel Howarth\nMegan Dawson\nMayur Chauhan\nBrad and Nichole Ralph\nGavin Atkinson\nChristina Paiva\nMark Randall\nAli Al Obeid\nNaveen Karunaratne\nPeter Koikas\nNrupa Shah\nCaroline\nJaisen Tanner\nStewart McGarth\nAshley QLD\nQLD – March 2020\nNrupa Shah\nStewart McGrath\nMartin Hill\nScott Green\nTony\nNina\nJason\nPhil Tanoh\nDylan Barlow\nBatto Batto\n",
+  "stderr": "",
+  "execution_time_ms": 1652
+}

@@ -1,0 +1,73 @@
+{
+  "query": "SELECT id, title, slug, category, createdAt FROM blog_posts ORDER BY createdAt DESC;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug, category, createdAt FROM blog_posts ORDER BY createdAt DESC;",
+  "rows": [
+    {
+      "id": "9",
+      "title": "Resume Length: How Long Should Your Resume Really Be?",
+      "slug": "resume-length-how-long-should-it-be",
+      "category": "Resume Tips",
+      "createdAt": "2024-03-05 00:00:00"
+    },
+    {
+      "id": "8",
+      "title": "Career Change Resume: Successfully Pivot Your Professional Path",
+      "slug": "career-change-resume-successfully-pivot",
+      "category": "Career Advice",
+      "createdAt": "2024-03-01 00:00:00"
+    },
+    {
+      "id": "7",
+      "title": "ATS-Friendly Resume Formatting: Beat the Bots",
+      "slug": "ats-friendly-resume-formatting-beat-the-bots",
+      "category": "Resume Tips",
+      "createdAt": "2024-02-25 00:00:00"
+    },
+    {
+      "id": "6",
+      "title": "Cover Letter Mistakes That Cost You Job Interviews",
+      "slug": "cover-letter-mistakes-cost-job-interviews",
+      "category": "Cover Letters",
+      "createdAt": "2024-02-20 00:00:00"
+    },
+    {
+      "id": "5",
+      "title": "LinkedIn Profile Optimization: Your Digital First Impression",
+      "slug": "linkedin-profile-optimization-digital-first-impression",
+      "category": "LinkedIn",
+      "createdAt": "2024-02-15 00:00:00"
+    },
+    {
+      "id": "4",
+      "title": "Ace Your Next Interview with Expert Preparation Tips",
+      "slug": "ace-your-next-interview-with-expert-preparation-tips",
+      "category": "Interview Tips",
+      "createdAt": "2024-02-10 00:00:00"
+    },
+    {
+      "id": "3",
+      "title": "Write Winning Selection Criteria for Government Roles Today!",
+      "slug": "write-winning-selection-criteria-for-government-roles",
+      "category": "Selection Criteria",
+      "createdAt": "2024-02-01 00:00:00"
+    },
+    {
+      "id": "2",
+      "title": "Stand Out with Top-notch Senior Management Resume Services",
+      "slug": "stand-out-with-top-notch-senior-management-resume-services",
+      "category": "Resume Tips",
+      "createdAt": "2024-01-20 00:00:00"
+    },
+    {
+      "id": "1",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "slug": "transform-your-resume-with-powerful-action-verbs",
+      "category": "Resume Tips",
+      "createdAt": "2024-01-15 00:00:00"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\tcategory\tcreatedAt\n9\tResume Length: How Long Should Your Resume Really Be?\tresume-length-how-long-should-it-be\tResume Tips\t2024-03-05 00:00:00\n8\tCareer Change Resume: Successfully Pivot Your Professional Path\tcareer-change-resume-successfully-pivot\tCareer Advice\t2024-03-01 00:00:00\n7\tATS-Friendly Resume Formatting: Beat the Bots\tats-friendly-resume-formatting-beat-the-bots\tResume Tips\t2024-02-25 00:00:00\n6\tCover Letter Mistakes That Cost You Job Interviews\tcover-letter-mistakes-cost-job-interviews\tCover Letters\t2024-02-20 00:00:00\n5\tLinkedIn Profile Optimization: Your Digital First Impression\tlinkedin-profile-optimization-digital-first-impression\tLinkedIn\t2024-02-15 00:00:00\n4\tAce Your Next Interview with Expert Preparation Tips\tace-your-next-interview-with-expert-preparation-tips\tInterview Tips\t2024-02-10 00:00:00\n3\tWrite Winning Selection Criteria for Government Roles Today!\twrite-winning-selection-criteria-for-government-roles\tSelection Criteria\t2024-02-01 00:00:00\n2\tStand Out with Top-notch Senior Management Resume Services\tstand-out-with-top-notch-senior-management-resume-services\tResume Tips\t2024-01-20 00:00:00\n1\tTransform Your Resume with Powerful Action Verbs\ttransform-your-resume-with-powerful-action-verbs\tResume Tips\t2024-01-15 00:00:00\n",
+  "stderr": "",
+  "execution_time_ms": 1556
+}

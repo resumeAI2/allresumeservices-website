@@ -1,0 +1,30 @@
+{
+  "query": "SELECT 'Total posts' as metric, COUNT(*) as value FROM blog_posts UNION ALL SELECT 'Short meta (<120)' as metric, COUNT(*) as value FROM blog_posts WHERE LENGTH(metaDescription) < 120 UNION ALL SELECT 'Long meta (>160)' as metric, COUNT(*) as value FROM blog_posts WHERE LENGTH(metaDescription) > 160 UNION ALL SELECT 'Missing meta title' as metric, COUNT(*) as value FROM blog_posts WHERE metaTitle IS NULL OR metaTitle = '' UNION ALL SELECT 'Missing image' as metric, COUNT(*) as value FROM blog_posts WHERE image IS NULL OR image = '';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT 'Total posts' as metric, COUNT(*) as value FROM blog_posts UNION ALL SELECT 'Short meta (<120)' as metric, COUNT(*) as value FROM blog_posts WHERE LENGTH(metaDescription) < 120 UNION ALL SELECT 'Long meta (>160)' as metric, COUNT(*) as value FROM blog_posts WHERE LENGTH(metaDescription) > 160 UNION ALL SELECT 'Missing meta title' as metric, COUNT(*) as value FROM blog_posts WHERE metaTitle IS NULL OR metaTitle = '' UNION ALL SELECT 'Missing image' as metric, COUNT(*) as value FROM blog_posts WHERE image IS NULL OR image = '';",
+  "rows": [
+    {
+      "metric": "Missing image",
+      "value": "0"
+    },
+    {
+      "metric": "Long meta (>160)",
+      "value": "2"
+    },
+    {
+      "metric": "Missing meta title",
+      "value": "0"
+    },
+    {
+      "metric": "Total posts",
+      "value": "47"
+    },
+    {
+      "metric": "Short meta (<120)",
+      "value": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "metric\tvalue\nMissing image\t0\nLong meta (>160)\t2\nMissing meta title\t0\nTotal posts\t47\nShort meta (<120)\t0\n",
+  "stderr": "",
+  "execution_time_ms": 1526
+}
