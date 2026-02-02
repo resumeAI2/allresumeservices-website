@@ -80,16 +80,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [isAuthenticated]);
 
   const { data: cartItems = [], refetch, isLoading } = trpc.services.getCartItems.useQuery(
-    { 
-      userId: isAuthenticated && user ? user.id : undefined,
+    {
       sessionId: !isAuthenticated ? sessionId : undefined,
     },
     { enabled: !!sessionId || (!!isAuthenticated && !!user) }
   );
 
   const { data: cartCount = 0, refetch: refetchCount } = trpc.services.getCartItemCount.useQuery(
-    { 
-      userId: isAuthenticated && user ? user.id : undefined,
+    {
       sessionId: !isAuthenticated ? sessionId : undefined,
     },
     { enabled: !!sessionId || (!!isAuthenticated && !!user) }
@@ -120,7 +118,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     await addToCartMutation.mutateAsync({
       serviceId,
       quantity,
-      userId: isAuthenticated && user ? user.id : undefined,
       sessionId: !isAuthenticated ? sessionId : undefined,
     });
   };

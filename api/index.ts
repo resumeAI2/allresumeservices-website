@@ -6,6 +6,13 @@ import { appRouter } from "../server/routers";
 import { createContext } from "../server/_core/context";
 import { parse } from "url";
 import { apiLimiter, authLimiter } from "../server/middleware/rateLimit";
+import crypto from "node:crypto";
+
+/** Constant-time string comparison to prevent timing attacks */
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
+}
 
 // Import Express app setup
 let app: any = null;
@@ -56,9 +63,9 @@ async function getApp() {
         console.error("[Cron Backup] CRON_SECRET not configured - rejecting request");
         return res.status(403).json({ error: "Cron secret not configured" });
       }
-      const providedSecret = req.headers.authorization?.replace("Bearer ", "");
+      const providedSecret = req.headers.authorization?.replace("Bearer ", "") || "";
 
-      if (providedSecret !== cronSecret) {
+      if (!safeCompare(providedSecret, cronSecret)) {
         console.error("[Cron Backup] Unauthorized access attempt");
         return res.status(401).json({ error: "Unauthorized" });
       }
@@ -97,9 +104,9 @@ async function getApp() {
         console.error("[Cron Review Requests] CRON_SECRET not configured - rejecting request");
         return res.status(403).json({ error: "Cron secret not configured" });
       }
-      const providedSecret = req.headers.authorization?.replace("Bearer ", "");
+      const providedSecret = req.headers.authorization?.replace("Bearer ", "") || "";
 
-      if (providedSecret !== cronSecret) {
+      if (!safeCompare(providedSecret, cronSecret)) {
         console.error("[Cron Review Requests] Unauthorized access attempt");
         return res.status(401).json({ error: "Unauthorized" });
       }
