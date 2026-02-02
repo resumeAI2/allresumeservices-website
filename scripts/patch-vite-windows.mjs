@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Postinstall: fix Vite Windows spawn error in optimizeSafeRealPathSync.
- * Wraps exec("net use", ...) in try/catch so spawn failures (e.g. paths with spaces)
- * fall back to fs.realpathSync.native. Only runs on Windows.
+ * Postinstall: fix Vite Windows spawn EPERM in optimizeSafeRealPathSync.
+ * Skips exec("net use") entirely and uses fs.realpathSync.native (no spawn).
+ * Only runs on Windows.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -28,7 +28,9 @@ if (!fs.existsSync(chunksDir)) {
   process.exit(0);
 }
 
-const original = `\texec("net use", (error$1, stdout) => {
+const replacement = "\tsafeRealpathSync = fs.realpathSync.native;";
+
+const unpatched = `\texec("net use", (error$1, stdout) => {
 		if (error$1) return;
 		const lines = stdout.split("\\n");
 		for (const line of lines) {
@@ -39,7 +41,7 @@ const original = `\texec("net use", (error$1, stdout) => {
 		else safeRealpathSync = windowsMappedRealpathSync;
 	});`;
 
-const patched = `\ttry {
+const tryCatchPatched = `\ttry {
 		exec("net use", (error$1, stdout) => {
 			if (error$1) return;
 			const lines = stdout.split("\\n");
@@ -59,14 +61,19 @@ for (const name of files) {
   if (!name.startsWith("dep-") || !name.endsWith(".js")) continue;
   const filePath = path.join(chunksDir, name);
   let content = fs.readFileSync(filePath, "utf8");
-  if (content.includes("optimizeSafeRealPathSync") && content.includes('exec("net use"')) {
-    if (content.includes("} catch (e) {") && content.includes("safeRealpathSync = fs.realpathSync.native;")) {
-      process.exit(0);
-    }
-    if (!content.includes(original)) {
-      continue;
-    }
-    content = content.replace(original, patched);
+  if (!content.includes("optimizeSafeRealPathSync") || !content.includes('exec("net use"')) {
+    continue;
+  }
+  if (content.includes(replacement) && !content.includes("exec(\"net use\", (error$1, stdout)")) {
+    process.exit(0);
+  }
+  if (content.includes(unpatched)) {
+    content = content.replace(unpatched, replacement);
+    fs.writeFileSync(filePath, content);
+    break;
+  }
+  if (content.includes(tryCatchPatched)) {
+    content = content.replace(tryCatchPatched, replacement);
     fs.writeFileSync(filePath, content);
     break;
   }
