@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import { logEmail } from './services/emailLogger';
 import { sendEmailFailureAlert } from './services/emailFailureAlert';
+import { escapeHtml, sanitizeForEmail } from './utils/sanitize';
 
 interface ContactFormData {
   name: string;
@@ -75,16 +76,16 @@ export async function sendContactFormNotification(data: ContactFormData): Promis
       </h2>
       
       <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
-        <p style="margin: 10px 0;"><strong>Name:</strong> ${data.name}</p>
-        <p style="margin: 10px 0;"><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
-        ${data.phone ? `<p style="margin: 10px 0;"><strong>Phone:</strong> ${data.phone}</p>` : ''}
-        ${data.serviceInterest ? `<p style="margin: 10px 0;"><strong>Service Interest:</strong> ${data.serviceInterest}</p>` : ''}
+        <p style="margin: 10px 0;"><strong>Name:</strong> ${escapeHtml(data.name)}</p>
+        <p style="margin: 10px 0;"><strong>Email:</strong> <a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></p>
+        ${data.phone ? `<p style="margin: 10px 0;"><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>` : ''}
+        ${data.serviceInterest ? `<p style="margin: 10px 0;"><strong>Service Interest:</strong> ${escapeHtml(data.serviceInterest)}</p>` : ''}
       </div>
       
       <div style="margin: 20px 0;">
         <h3 style="color: #1e3a8a;">Message:</h3>
         <p style="background-color: #ffffff; padding: 15px; border-left: 4px solid #f59e0b; border-radius: 4px;">
-          ${data.message.replace(/\n/g, '<br>')}
+          ${sanitizeForEmail(data.message)}
         </p>
       </div>
       
@@ -110,7 +111,7 @@ ${data.message}
 Submitted at: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })}
   `;
 
-  const subject = `New Contact Form Submission from ${data.name}`;
+  const subject = `New Contact Form Submission from ${escapeHtml(data.name)}`;
   
   try {
     await transporter.sendMail({
@@ -248,7 +249,7 @@ export async function sendLeadMagnetEmail(name: string, email: string, pdfUrl: s
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h1 style="color: #1e3a8a;">Your Free Resume Guide is Ready!</h1>
       
-      <p>Hi ${name},</p>
+      <p>Hi ${escapeHtml(name)},</p>
       
       <p>Thank you for downloading our guide: <strong>"10 ATS Resume Mistakes Costing You Interviews"</strong></p>
       
@@ -526,6 +527,148 @@ Professional Resume Writing & Career Services
       emailType: 'order_confirmation',
       recipientEmail: orderData.customerEmail,
       recipientName: orderData.customerName,
+      subject,
+      errorMessage: error?.message || 'Unknown error',
+      attemptedAt: new Date(),
+    });
+    
+    return false;
+  }
+}
+
+interface RefundData {
+  orderId: number;
+  customerName: string;
+  customerEmail: string;
+  packageName: string;
+  amount: string;
+  currency: string;
+}
+
+/**
+ * Send refund notification email to customer
+ */
+export async function sendRefundNotificationEmail(refundData: RefundData): Promise<boolean> {
+  const transporter = createTransporter();
+  
+  if (!transporter) {
+    console.log('[Email] Transporter not configured, skipping refund notification email');
+    return false;
+  }
+
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <div style="background: linear-gradient(135deg, #6b7280 0%, #374151 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+        <h1 style="margin: 0; font-size: 28px;">Refund Processed</h1>
+      </div>
+      
+      <div style="background-color: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+        <p style="font-size: 16px; color: #374151;">Hi ${escapeHtml(refundData.customerName)},</p>
+        
+        <p style="font-size: 16px; color: #374151;">
+          We have processed a refund for your order. The details are below:
+        </p>
+        
+        <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; margin: 25px 0;">
+          <h2 style="margin: 0 0 15px 0; font-size: 18px; color: #1f2937;">Refund Details</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Order ID:</td>
+              <td style="padding: 8px 0; color: #1f2937; font-weight: 600; font-size: 14px; text-align: right;">#${refundData.orderId}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Service:</td>
+              <td style="padding: 8px 0; color: #1f2937; font-weight: 600; font-size: 14px; text-align: right;">${escapeHtml(refundData.packageName)}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Refund Amount:</td>
+              <td style="padding: 8px 0; color: #dc2626; font-weight: 700; font-size: 16px; text-align: right;">${refundData.currency} $${refundData.amount}</td>
+            </tr>
+          </table>
+        </div>
+        
+        <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0;">
+          <p style="margin: 0; color: #92400e; font-size: 14px;">
+            <strong>Note:</strong> Refunds typically take 5-10 business days to appear in your account, depending on your payment provider.
+          </p>
+        </div>
+        
+        <p style="font-size: 14px; color: #6b7280; margin-top: 25px;">
+          If you have any questions about this refund, please contact us at 
+          <a href="mailto:admin@allresumeservices.com.au" style="color: #3b82f6; text-decoration: none;">admin@allresumeservices.com.au</a>
+        </p>
+        
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
+          <p style="margin: 0; color: #6b7280; font-size: 12px;">All Resume Services</p>
+          <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 12px;">Professional Resume Writing & Career Services</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const textContent = `
+Refund Processed
+
+Hi ${refundData.customerName},
+
+We have processed a refund for your order. The details are below:
+
+Refund Details:
+- Order ID: #${refundData.orderId}
+- Service: ${refundData.packageName}
+- Refund Amount: ${refundData.currency} $${refundData.amount}
+
+Note: Refunds typically take 5-10 business days to appear in your account, depending on your payment provider.
+
+If you have any questions about this refund, please contact us at admin@allresumeservices.com.au
+
+---
+All Resume Services
+Professional Resume Writing & Career Services
+  `;
+
+  const subject = `Refund Processed - Order #${refundData.orderId}`;
+  
+  try {
+    await transporter.sendMail({
+      from: `"All Resume Services" <info@allresumeservices.com>`,
+      to: refundData.customerEmail,
+      subject,
+      text: textContent,
+      html: htmlContent,
+    });
+
+    // Log successful email
+    await logEmail({
+      emailType: 'refund_notification',
+      recipientEmail: refundData.customerEmail,
+      recipientName: refundData.customerName,
+      subject,
+      status: 'sent',
+      metadata: { orderId: refundData.orderId, amount: refundData.amount },
+    });
+
+    console.log(`[Email] Refund notification sent successfully to ${refundData.customerEmail}`);
+    return true;
+  } catch (error: any) {
+    // Log failed email
+    await logEmail({
+      emailType: 'refund_notification',
+      recipientEmail: refundData.customerEmail,
+      recipientName: refundData.customerName,
+      subject,
+      status: 'failed',
+      errorMessage: error?.message || 'Unknown error',
+      metadata: { orderId: refundData.orderId },
+    });
+
+    console.error('[Email] Failed to send refund notification email:', error);
+    
+    // Send admin failure alert
+    await sendEmailFailureAlert({
+      emailType: 'refund_notification',
+      recipientEmail: refundData.customerEmail,
+      recipientName: refundData.customerName,
       subject,
       errorMessage: error?.message || 'Unknown error',
       attemptedAt: new Date(),

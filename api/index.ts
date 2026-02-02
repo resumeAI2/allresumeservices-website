@@ -16,6 +16,42 @@ async function getApp() {
   const express = (await import("express")).default;
   app = express();
 
+  // Add request ID for tracking and debugging
+  const { requestIdMiddleware } = await import("../server/middleware/requestId");
+  app.use(requestIdMiddleware);
+
+  // Add performance monitoring (logs slow requests)
+  const { performanceMonitoring } = await import("../server/middleware/performance");
+  app.use(performanceMonitoring);
+
+  // Security: Add Helmet.js for security headers
+  // TODO: Install helmet: pnpm add helmet
+  // TODO: Uncomment once installed:
+  // const helmet = (await import("helmet")).default;
+  // app.use(helmet({
+  //   contentSecurityPolicy: {
+  //     directives: {
+  //       defaultSrc: ["'self'"],
+  //       scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com"],
+  //       styleSrc: ["'self'", "'unsafe-inline'"],
+  //       imgSrc: ["'self'", "data:", "https:", "blob:"],
+  //       fontSrc: ["'self'", "data:"],
+  //       connectSrc: ["'self'", "https://*.neon.tech"],
+  //     },
+  //   },
+  //   xContentTypeOptions: true,
+  //   xFrameOptions: { action: 'deny' },
+  //   xXssProtection: true,
+  //   referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+  //   permissionsPolicy: {
+  //     features: {
+  //       geolocation: ["'none'"],
+  //       camera: ["'none'"],
+  //       microphone: ["'none'"],
+  //     },
+  //   },
+  // }));
+
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -30,7 +66,8 @@ async function getApp() {
   app.get("/sitemap.xml", async (req: any, res: any) => {
     try {
       const sitemapRoute = await import("../server/routes/sitemap.xml.js");
-      await sitemapRoute.GET(req, res);
+      const handler = sitemapRoute.GET as any;
+      await handler(req, res);
     } catch (error) {
       console.error("[Sitemap] Error:", error);
       res.status(500).send("Error generating sitemap");
@@ -40,7 +77,8 @@ async function getApp() {
   app.get("/robots.txt", async (req: any, res: any) => {
     try {
       const robotsRoute = await import("../server/routes/robots.txt.js");
-      await robotsRoute.GET(req, res);
+      const handler = robotsRoute.GET as any;
+      await handler(req, res);
     } catch (error) {
       console.error("[Robots] Error:", error);
       res.status(500).send("Error generating robots.txt");
@@ -53,8 +91,13 @@ async function getApp() {
       // Verify cron secret for security
       const cronSecret = process.env.CRON_SECRET;
       const providedSecret = req.headers.authorization?.replace("Bearer ", "") || req.query.secret;
-      
-      if (cronSecret && providedSecret !== cronSecret) {
+
+      if (!cronSecret) {
+        console.error("[Cron Backup] CRON_SECRET not configured - endpoint disabled");
+        return res.status(503).json({ error: "Cron endpoint not configured" });
+      }
+
+      if (providedSecret !== cronSecret) {
         console.error("[Cron Backup] Unauthorized access attempt");
         return res.status(401).json({ error: "Unauthorized" });
       }
@@ -90,8 +133,13 @@ async function getApp() {
       // Verify cron secret for security
       const cronSecret = process.env.CRON_SECRET;
       const providedSecret = req.headers.authorization?.replace("Bearer ", "") || req.query.secret;
-      
-      if (cronSecret && providedSecret !== cronSecret) {
+
+      if (!cronSecret) {
+        console.error("[Cron Review Requests] CRON_SECRET not configured - endpoint disabled");
+        return res.status(503).json({ error: "Cron endpoint not configured" });
+      }
+
+      if (providedSecret !== cronSecret) {
         console.error("[Cron Review Requests] Unauthorized access attempt");
         return res.status(401).json({ error: "Unauthorized" });
       }
@@ -105,12 +153,68 @@ async function getApp() {
         success: true,
         message: "Review requests processed",
         processed: result?.processed || 0,
-        sent: result?.sent || 0,
         timestamp: new Date().toISOString(),
       });
     } catch (error) {
       console.error("[Cron Review Requests] Error:", error);
       res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
+  // PayPal Webhook endpoint
+  app.post("/api/paypal/webhook", async (req: any, res: any) => {
+    try {
+      console.log("[PayPal Webhook] Received webhook event");
+      
+      const { verifyWebhookSignature, processWebhookEvent } = await import("../server/paypal");
+      
+      // Get PayPal signature headers
+      const headers = {
+        'paypal-transmission-id': req.headers['paypal-transmission-id'] as string,
+        'paypal-transmission-time': req.headers['paypal-transmission-time'] as string,
+        'paypal-transmission-sig': req.headers['paypal-transmission-sig'] as string,
+        'paypal-cert-url': req.headers['paypal-cert-url'] as string,
+        'paypal-auth-algo': req.headers['paypal-auth-algo'] as string,
+      };
+      
+      // Verify all required headers are present
+      if (!headers['paypal-transmission-id'] || !headers['paypal-transmission-sig']) {
+        console.error("[PayPal Webhook] Missing required headers");
+        return res.status(400).json({ error: "Missing required PayPal headers" });
+      }
+      
+      // Get raw body for signature verification
+      const rawBody = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
+      
+      // Verify webhook signature
+      const isValid = await verifyWebhookSignature(headers, rawBody);
+      
+      if (!isValid) {
+        console.error("[PayPal Webhook] Invalid signature");
+        return res.status(401).json({ error: "Invalid webhook signature" });
+      }
+      
+      // Parse and process the event
+      const event = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+      const result = await processWebhookEvent(event);
+      
+      console.log(`[PayPal Webhook] Event processed: ${result.message}`);
+      
+      // Always return 200 to acknowledge receipt (even if processing fails)
+      // PayPal will retry on non-2xx responses
+      res.status(200).json({ 
+        received: true, 
+        success: result.success,
+        message: result.message 
+      });
+    } catch (error) {
+      console.error("[PayPal Webhook] Error:", error);
+      // Return 200 to prevent PayPal from retrying indefinitely
+      res.status(200).json({ 
+        received: true, 
+        success: false, 
+        error: "Internal processing error" 
+      });
     }
   });
 
