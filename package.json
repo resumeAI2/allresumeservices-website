@@ -15,7 +15,11 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:setup": "node setup-database.mjs",
-    "db:get-connection": "node get-neon-connection.mjs"
+    "db:get-connection": "node get-neon-connection.mjs",
+    "postinstall": "node scripts/patch-vite-windows.mjs"
+  },
+  "_comments": {
+    "postinstall": "Fixes Vite Windows spawn error (paths with spaces). No-op on Mac/Linux; safe for deploy."
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.11.1",
