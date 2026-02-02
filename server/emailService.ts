@@ -37,7 +37,7 @@ function escapeHtml(text: string): string {
  * Uses environment variables for configuration
  */
 function createTransporter() {
-  const emailUser = process.env.EMAIL_USER || 'info@allresumeservices.com';
+  const emailUser = process.env.EMAIL_USER || 'admin@allresumeservices.com';
   const emailPass = process.env.SMTP_PASSWORD;
   const emailHost = process.env.EMAIL_HOST || 'smtp.protonmail.ch';
   const emailPort = parseInt(process.env.EMAIL_PORT || '587');
@@ -62,7 +62,7 @@ function createTransporter() {
  * Check if email is properly configured
  */
 export function isEmailConfigured(): boolean {
-  const emailUser = process.env.EMAIL_USER || 'info@allresumeservices.com';
+  const emailUser = process.env.EMAIL_USER || 'admin@allresumeservices.com';
   const emailPass = process.env.SMTP_PASSWORD;
   return !!(emailUser && emailPass);
 }
@@ -78,7 +78,7 @@ export async function sendContactFormNotification(data: ContactFormData): Promis
     return false;
   }
 
-  const recipientEmail = process.env.ADMIN_NOTIFICATION_EMAIL || process.env.CONTACT_NOTIFICATION_EMAIL || 'info@allresumeservices.com';
+  const recipientEmail = process.env.ADMIN_NOTIFICATION_EMAIL || 'enquiries@allresumeservices.com';
 
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -126,7 +126,7 @@ Submitted at: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <info@allresumeservices.com>`,
+      from: `"All Resume Services" <admin@allresumeservices.com>`,
       to: recipientEmail,
       subject,
       text: textContent,
@@ -213,7 +213,7 @@ export async function sendTestEmail(recipientEmail: string): Promise<boolean> {
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <info@allresumeservices.com>`,
+      from: `"All Resume Services" <admin@allresumeservices.com>`,
       to: recipientEmail,
       subject,
       text: 'This is a test email to verify your email configuration is working correctly.',
@@ -354,7 +354,7 @@ Professional Resume Writing | 18+ Years Experience | 96% Interview Success Rate
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <info@allresumeservices.com>`,
+      from: `"All Resume Services" <admin@allresumeservices.com>`,
       to: email,
       subject,
       text: textContent,
@@ -500,7 +500,7 @@ Professional Resume Writing & Career Services
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <info@allresumeservices.com>`,
+      from: `"All Resume Services" <admin@allresumeservices.com>`,
       to: orderData.customerEmail,
       subject,
       text: textContent,
@@ -642,7 +642,7 @@ Professional Resume Writing & Career Services
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <info@allresumeservices.com>`,
+      from: `"All Resume Services" <admin@allresumeservices.com>`,
       to: refundData.customerEmail,
       subject,
       text: textContent,
@@ -776,7 +776,7 @@ Email: admin@allresumeservices.com.au | Phone: +61 410 934 371
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <info@allresumeservices.com>`,
+      from: `"All Resume Services" <admin@allresumeservices.com>`,
       to: clientEmail,
       subject,
       text: textContent,

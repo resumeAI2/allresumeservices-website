@@ -47,7 +47,7 @@ function recordAlertSent(emailType: string): void {
  * Uses the same SMTP but with different error handling
  */
 function createAlertTransporter() {
-  const emailUser = process.env.EMAIL_USER || 'info@allresumeservices.com';
+  const emailUser = process.env.EMAIL_USER || 'admin@allresumeservices.com';
   const emailPass = process.env.SMTP_PASSWORD;
   const emailHost = process.env.EMAIL_HOST || 'smtp.protonmail.ch';
   const emailPort = parseInt(process.env.EMAIL_PORT || '587');
@@ -171,7 +171,7 @@ Note: To prevent spam, you will only receive one alert per email type per hour.
 
   try {
     await transporter.sendMail({
-      from: `"All Resume Services Alert" <info@allresumeservices.com>`,
+      from: `"All Resume Services Alert" <admin@allresumeservices.com>`,
       to: adminEmail,
       subject: `⚠️ Email Delivery Failed: ${data.emailType}`,
       text: textContent,

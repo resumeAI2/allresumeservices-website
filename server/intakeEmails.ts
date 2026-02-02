@@ -3,13 +3,13 @@ import { sendEmailFailureAlert } from './services/emailFailureAlert';
 import { logEmail } from './services/emailLogger';
 
 const SITE_URL = "https://allresumeservices.com.au";
-const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "admin@allresumeservices.com.au";
+const ADMIN_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || "resumes@allresumeservices.com";
 
 /**
  * Create email transporter using ProtonMail SMTP
  */
 function createTransporter() {
-  const emailUser = process.env.EMAIL_USER || 'info@allresumeservices.com';
+  const emailUser = process.env.EMAIL_USER || 'admin@allresumeservices.com';
   const emailPass = process.env.SMTP_PASSWORD;
   const emailHost = process.env.EMAIL_HOST || 'smtp.protonmail.ch';
   const emailPort = parseInt(process.env.EMAIL_PORT || '587');
@@ -152,7 +152,7 @@ This is an automated message. Please do not reply to this email.
 
   try {
     await transporter.sendMail({
-      from: `"All Résumé Services" <info@allresumeservices.com>`,
+      from: `"All Résumé Services" <admin@allresumeservices.com>`,
       to: clientEmail,
       subject: subject,
       text: textBody,
@@ -328,7 +328,7 @@ This is an automated notification from the All Résumé Services client intake s
 
   try {
     await transporter.sendMail({
-      from: `"All Résumé Services" <info@allresumeservices.com>`,
+      from: `"All Résumé Services" <admin@allresumeservices.com>`,
       to: ADMIN_EMAIL,
       subject: subject,
       text: textBody,
@@ -487,7 +487,7 @@ All Résumé Services
 
   try {
     await transporter.sendMail({
-      from: `"All Résumé Services" <info@allresumeservices.com>`,
+      from: `"All Résumé Services" <admin@allresumeservices.com>`,
       to: clientEmail,
       subject: subject,
       text: textBody,
