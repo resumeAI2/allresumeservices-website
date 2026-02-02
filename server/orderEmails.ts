@@ -145,7 +145,7 @@ Professional Resume Writing & Career Services
 
   try {
     await transporter.sendMail({
-      from: `"All Résumé Services" <admin@allresumeservices.com>`,
+      from: `"All Résumé Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
       to: orderData.customerEmail,
       subject: `Order Confirmation #${orderData.orderId} - All Résumé Services`,
       text: textContent,
@@ -271,7 +271,7 @@ Time: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Perth' })}
 
   try {
     await transporter.sendMail({
-      from: `"All Résumé Services" <admin@allresumeservices.com>`,
+      from: `"All Résumé Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
       to: adminEmail,
       subject: `💰 New Order #${orderData.orderId} - ${orderData.packageName}`,
       text: textContent,

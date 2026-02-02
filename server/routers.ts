@@ -1,7 +1,7 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { publicProcedure, protectedProcedure, adminProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import * as blogService from './blog';
 import * as categoriesAndTagsService from './categoriesAndTags';
@@ -17,24 +17,24 @@ import { intakeFileUploadRouter } from './intakeFileUpload';
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
-  
+
   backup: router({
-    create: publicProcedure.mutation(async () => {
+    create: adminProcedure.mutation(async () => {
       const { createDatabaseBackup } = await import('./services/databaseBackup');
       return await createDatabaseBackup();
     }),
-    stats: publicProcedure.query(async () => {
+    stats: adminProcedure.query(async () => {
       const { getDatabaseStats } = await import('./services/databaseBackup');
       return await getDatabaseStats();
     }),
   }),
-  
+
   health: router({
     check: publicProcedure.query(async () => {
       const startTime = Date.now();
       let dbStatus = 'unknown';
       let dbLatency = 0;
-      
+
       try {
         const { getDb } = await import('./db');
         const db = await getDb();
@@ -45,7 +45,7 @@ export const appRouter = router({
       } catch (error) {
         dbStatus = 'error';
       }
-      
+
       return {
         status: 'healthy',
         timestamp: new Date().toISOString(),
@@ -65,7 +65,7 @@ export const appRouter = router({
   }),
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
-    
+
     // Sign up with email/password
     signup: publicProcedure
       .input(z.object({
@@ -79,7 +79,7 @@ export const appRouter = router({
         const { getDb } = await import("./db");
         const { users } = await import("../drizzle/schema");
         const { ENV } = await import("./_core/env");
-        
+
         const db = await getDb();
         if (!db) {
           throw new Error("Database not available");
@@ -202,7 +202,7 @@ export const appRouter = router({
 
         try {
           const captureData = await capturePayPalOrder(input.paypalOrderId);
-          
+
           // Update order status
           await updateOrderStatus(
             input.orderId,
@@ -285,7 +285,7 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await servicesService.getCartItemCount(input.userId, input.sessionId);
       }),
-    mergeGuestCart: publicProcedure
+    mergeGuestCart: protectedProcedure
       .input(z.object({
         userId: z.number(),
         sessionId: z.string(),
@@ -302,7 +302,7 @@ export const appRouter = router({
       .query(async () => {
         return await servicesService.getAllTestimonials();
       }),
-    addTestimonial: publicProcedure
+    addTestimonial: adminProcedure
       .input(z.object({
         clientName: z.string(),
         clientTitle: z.string().optional(),
@@ -315,7 +315,7 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await servicesService.addTestimonial(input);
       }),
-    updateTestimonial: publicProcedure
+    updateTestimonial: adminProcedure
       .input(z.object({
         id: z.number(),
         data: z.object({
@@ -331,7 +331,7 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await servicesService.updateTestimonial(input.id, input.data);
       }),
-    deleteTestimonial: publicProcedure
+    deleteTestimonial: adminProcedure
       .input(z.number())
       .mutation(async ({ input }) => {
         return await servicesService.deleteTestimonial(input);
@@ -352,15 +352,15 @@ export const appRouter = router({
       .mutation(async ({ input, ctx }) => {
         // Save to database
         await leadMagnetService.captureLeadMagnetEmail(input);
-        
+
         // Send email with PDF download link
         const { sendLeadMagnetEmail } = await import('./emailService');
         const pdfUrl = `${ctx.req.protocol}://${ctx.req.get('host')}/downloads/ats-resume-mistakes-guide.pdf`;
         await sendLeadMagnetEmail(input.name, input.email, pdfUrl);
-        
+
         return { success: true, message: 'Guide sent to your email' };
       }),
-    getAll: publicProcedure
+    getAll: adminProcedure
       .query(async () => {
         return await leadMagnetService.getAllLeadMagnetSubscribers();
       }),
@@ -382,12 +382,12 @@ export const appRouter = router({
         const { createContactSubmission } = await import("./contact");
         return await createContactSubmission(input);
       }),
-    getAll: publicProcedure
+    getAll: adminProcedure
       .query(async () => {
         const { getAllContactSubmissions } = await import("./contact");
         return await getAllContactSubmissions();
       }),
-    updateStatus: publicProcedure
+    updateStatus: adminProcedure
       .input(z.object({
         id: z.number(),
         status: z.enum(["new", "contacted", "converted", "archived"]),
@@ -396,7 +396,7 @@ export const appRouter = router({
         const { updateContactSubmissionStatus } = await import("./contact");
         return await updateContactSubmissionStatus(input.id, input.status);
       }),
-    updateNotes: publicProcedure
+    updateNotes: adminProcedure
       .input(z.object({
         id: z.number(),
         notes: z.string(),
@@ -408,7 +408,7 @@ export const appRouter = router({
   }),
 
   testimonials: router({
-    create: publicProcedure
+    create: adminProcedure
       .input(z.object({
         clientName: z.string().min(1),
         clientTitle: z.string().optional(),
@@ -438,7 +438,7 @@ export const appRouter = router({
         const { getTestimonialById } = await import("./testimonials");
         return await getTestimonialById(input.id);
       }),
-    update: publicProcedure
+    update: adminProcedure
       .input(z.object({
         id: z.number(),
         clientName: z.string().optional(),
@@ -455,7 +455,7 @@ export const appRouter = router({
         const { updateTestimonial } = await import("./testimonials");
         return await updateTestimonial(id, data);
       }),
-    delete: publicProcedure
+    delete: adminProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         const { deleteTestimonial } = await import("./testimonials");
@@ -478,7 +478,7 @@ export const appRouter = router({
           ipAddress: ctx.req.ip || ctx.req.socket.remoteAddress,
         });
       }),
-    getSearchAnalytics: publicProcedure
+    getSearchAnalytics: adminProcedure
       .input(z.object({
         limit: z.number().optional().default(50),
       }))
@@ -486,7 +486,7 @@ export const appRouter = router({
         const { getSearchAnalytics } = await import("./faqAnalytics");
         return await getSearchAnalytics(input.limit);
       }),
-    getTopSearches: publicProcedure
+    getTopSearches: adminProcedure
       .input(z.object({
         limit: z.number().optional().default(10),
       }))
@@ -494,7 +494,7 @@ export const appRouter = router({
         const { getTopSearches } = await import("./faqAnalytics");
         return await getTopSearches(input.limit);
       }),
-    getNoResultSearches: publicProcedure
+    getNoResultSearches: adminProcedure
       .query(async () => {
         const { getNoResultSearches } = await import("./faqAnalytics");
         return await getNoResultSearches();
@@ -502,7 +502,7 @@ export const appRouter = router({
   }),
 
   blog: router({
-    uploadImage: publicProcedure
+    uploadImage: adminProcedure
       .input(z.object({
         filename: z.string(),
         contentType: z.string(),
@@ -527,7 +527,7 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await blogService.getBlogPostById(input.id);
       }),
-    create: publicProcedure
+    create: adminProcedure
       .input(z.object({
         title: z.string(),
         slug: z.string(),
@@ -541,7 +541,7 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await blogService.createBlogPost(input);
       }),
-    update: publicProcedure
+    update: adminProcedure
       .input(z.object({
         id: z.number(),
         title: z.string().optional(),
@@ -557,16 +557,16 @@ export const appRouter = router({
         const { id, ...data } = input;
         return await blogService.updateBlogPost(id, data);
       }),
-    delete: publicProcedure
+    delete: adminProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         return await blogService.deleteBlogPost(input.id);
       }),
-    getAllImages: publicProcedure
+    getAllImages: adminProcedure
       .query(async () => {
         return await blogService.getAllUploadedImages();
       }),
-    updateImageAltText: publicProcedure
+    updateImageAltText: adminProcedure
       .input(z.object({
         id: z.number(),
         altText: z.string(),
@@ -595,7 +595,7 @@ export const appRouter = router({
       .query(async () => {
         return await categoriesAndTagsService.getAllCategories();
       }),
-    createCategory: publicProcedure
+    createCategory: adminProcedure
       .input(z.object({
         name: z.string(),
         slug: z.string(),
@@ -604,7 +604,7 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await categoriesAndTagsService.createCategory(input.name, input.slug, input.description);
       }),
-    updateCategory: publicProcedure
+    updateCategory: adminProcedure
       .input(z.object({
         id: z.number(),
         name: z.string().optional(),
@@ -615,7 +615,7 @@ export const appRouter = router({
         const { id, ...data } = input;
         return await categoriesAndTagsService.updateCategory(id, data);
       }),
-    deleteCategory: publicProcedure
+    deleteCategory: adminProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         return await categoriesAndTagsService.deleteCategory(input.id);
@@ -625,7 +625,7 @@ export const appRouter = router({
       .query(async () => {
         return await categoriesAndTagsService.getAllTags();
       }),
-    createTag: publicProcedure
+    createTag: adminProcedure
       .input(z.object({
         name: z.string(),
         slug: z.string(),
@@ -633,7 +633,7 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await categoriesAndTagsService.createTag(input.name, input.slug);
       }),
-    updateTag: publicProcedure
+    updateTag: adminProcedure
       .input(z.object({
         id: z.number(),
         name: z.string().optional(),
@@ -643,7 +643,7 @@ export const appRouter = router({
         const { id, ...data } = input;
         return await categoriesAndTagsService.updateTag(id, data);
       }),
-    deleteTag: publicProcedure
+    deleteTag: adminProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         return await categoriesAndTagsService.deleteTag(input.id);
@@ -654,7 +654,7 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await categoriesAndTagsService.getTagsForPost(input.postId);
       }),
-    setPostTags: publicProcedure
+    setPostTags: adminProcedure
       .input(z.object({
         postId: z.number(),
         tagIds: z.array(z.number()),
@@ -664,21 +664,21 @@ export const appRouter = router({
       }),
   }),
   dashboard: router({
-    getMetrics: publicProcedure
+    getMetrics: adminProcedure
       .query(async () => {
         return await dashboardService.getDashboardMetrics();
       }),
-    getRecentContacts: publicProcedure
+    getRecentContacts: adminProcedure
       .input(z.object({ limit: z.number().optional() }))
       .query(async ({ input }) => {
         return await dashboardService.getRecentContactSubmissions(input.limit);
       }),
-    getRecentPosts: publicProcedure
+    getRecentPosts: adminProcedure
       .input(z.object({ limit: z.number().optional() }))
       .query(async ({ input }) => {
         return await dashboardService.getRecentBlogPosts(input.limit);
       }),
-    getScheduledPosts: publicProcedure
+    getScheduledPosts: adminProcedure
       .input(z.object({ limit: z.number().optional() }))
       .query(async ({ input }) => {
         return await dashboardService.getScheduledBlogPosts(input.limit);
@@ -705,7 +705,7 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await caseStudiesService.getFeaturedCaseStudies(input.limit);
       }),
-    create: publicProcedure
+    create: adminProcedure
       .input(z.object({
         title: z.string(),
         slug: z.string(),
@@ -729,7 +729,7 @@ export const appRouter = router({
           viewCount: 0,
         });
       }),
-    update: publicProcedure
+    update: adminProcedure
       .input(z.object({
         id: z.number(),
         title: z.string().optional(),
@@ -748,7 +748,7 @@ export const appRouter = router({
         const { id, ...data } = input;
         return await caseStudiesService.updateCaseStudy(id, data);
       }),
-    delete: publicProcedure
+    delete: adminProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         return await caseStudiesService.deleteCaseStudy(input.id);
@@ -760,7 +760,7 @@ export const appRouter = router({
       }),
   }),
   socialMedia: router({
-    createPostsForBlog: publicProcedure
+    createPostsForBlog: adminProcedure
       .input(z.object({
         blogPostId: z.number(),
         blogPostTitle: z.string(),
@@ -773,21 +773,21 @@ export const appRouter = router({
           input.blogPostSlug
         );
       }),
-    getPostsForBlog: publicProcedure
+    getPostsForBlog: adminProcedure
       .input(z.object({ blogPostId: z.number() }))
       .query(async ({ input }) => {
         return await socialMediaService.getSocialMediaPostsForBlog(input.blogPostId);
       }),
-    getPendingPosts: publicProcedure
+    getPendingPosts: adminProcedure
       .query(async () => {
         return await socialMediaService.getPendingSocialMediaPosts();
       }),
-    getPostingHistory: publicProcedure
+    getPostingHistory: adminProcedure
       .input(z.object({ limit: z.number().optional().default(50) }))
       .query(async ({ input }) => {
         return await socialMediaService.getSocialMediaPostingHistory(input.limit);
       }),
-    markAsPosted: publicProcedure
+    markAsPosted: adminProcedure
       .input(z.object({
         id: z.number(),
         postUrl: z.string(),
@@ -795,7 +795,7 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await socialMediaService.markSocialMediaPostAsPosted(input.id, input.postUrl);
       }),
-    markAsFailed: publicProcedure
+    markAsFailed: adminProcedure
       .input(z.object({
         id: z.number(),
         errorMessage: z.string(),
@@ -803,7 +803,7 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await socialMediaService.markSocialMediaPostAsFailed(input.id, input.errorMessage);
       }),
-    deletePostsForBlog: publicProcedure
+    deletePostsForBlog: adminProcedure
       .input(z.object({ blogPostId: z.number() }))
       .mutation(async ({ input }) => {
         return await socialMediaService.deleteSocialMediaPostsForBlog(input.blogPostId);
@@ -830,59 +830,59 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return await emailSubscribersService.unsubscribeEmail(input.email);
       }),
-    getAll: publicProcedure
+    getAll: adminProcedure
       .input(z.object({ subscribedOnly: z.boolean().optional().default(true) }))
       .query(async ({ input }) => {
         return await emailSubscribersService.getAllSubscribers(input.subscribedOnly);
       }),
-    getCount: publicProcedure
+    getCount: adminProcedure
       .query(async () => {
         return await emailSubscribersService.getSubscriberCount();
       }),
   }),
   email: router({
-    testEmail: publicProcedure
+    testEmail: adminProcedure
       .input(z.object({ recipientEmail: z.string().email() }))
       .mutation(async ({ input }) => {
         const { sendTestEmail, isEmailConfigured } = await import('./emailService');
-        
+
         if (!isEmailConfigured()) {
           throw new Error('Email is not configured. Please add SMTP_PASSWORD to environment variables.');
         }
-        
+
         const success = await sendTestEmail(input.recipientEmail);
-        
+
         if (!success) {
           throw new Error('Failed to send test email. Check server logs for details.');
         }
-        
+
         return { success: true, message: `Test email sent to ${input.recipientEmail}` };
       }),
-    checkConfiguration: publicProcedure
+    checkConfiguration: adminProcedure
       .query(async () => {
         const { isEmailConfigured } = await import('./emailService');
         return { configured: isEmailConfigured() };
       }),
     // Email logging endpoints
-    getLogs: publicProcedure
+    getLogs: adminProcedure
       .input(z.object({ limit: z.number().optional() }).optional())
       .query(async ({ input }) => {
         const { getRecentEmailLogs } = await import('./services/emailLogger');
         return await getRecentEmailLogs(input?.limit || 50);
       }),
-    getStatistics: publicProcedure
+    getStatistics: adminProcedure
       .input(z.object({ days: z.number().optional() }).optional())
       .query(async ({ input }) => {
         const { getEmailStatistics } = await import('./services/emailLogger');
         return await getEmailStatistics(input?.days || 30);
       }),
-    getLogsByType: publicProcedure
+    getLogsByType: adminProcedure
       .input(z.object({ emailType: z.string(), limit: z.number().optional() }))
       .query(async ({ input }) => {
         const { getLogsByType } = await import('./services/emailLogger');
         return await getLogsByType(input.emailType as any, input.limit || 50);
       }),
-    getLogsByRecipient: publicProcedure
+    getLogsByRecipient: adminProcedure
       .input(z.object({ email: z.string().email(), limit: z.number().optional() }))
       .query(async ({ input }) => {
         const { getLogsByRecipient } = await import('./services/emailLogger');
@@ -890,13 +890,13 @@ export const appRouter = router({
       }),
   }),
   promoCodes: router({
-    getAll: publicProcedure
+    getAll: adminProcedure
       .input(z.object({ active: z.boolean().optional() }).optional())
       .query(async ({ input }) => {
         const { getAllPromoCodes } = await import('./promoCodes');
         return await getAllPromoCodes(input);
       }),
-    getById: publicProcedure
+    getById: adminProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input }) => {
         const { getPromoCodeById } = await import('./promoCodes');
@@ -908,7 +908,7 @@ export const appRouter = router({
         const { validatePromoCode } = await import('./promoCodes');
         return await validatePromoCode(input.code, input.orderAmount);
       }),
-    create: publicProcedure
+    create: adminProcedure
       .input(z.object({
         code: z.string(),
         description: z.string().optional(),
@@ -922,7 +922,7 @@ export const appRouter = router({
         const { createPromoCode } = await import('./promoCodes');
         return await createPromoCode(input);
       }),
-    update: publicProcedure
+    update: adminProcedure
       .input(z.object({
         id: z.number(),
         code: z.string().optional(),
@@ -939,21 +939,21 @@ export const appRouter = router({
         const { id, ...updates } = input;
         return await updatePromoCode(id, updates);
       }),
-    delete: publicProcedure
+    delete: adminProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         const { deletePromoCode } = await import('./promoCodes');
         await deletePromoCode(input.id);
         return { success: true };
       }),
-    getStatistics: publicProcedure
+    getStatistics: adminProcedure
       .query(async () => {
         const { getPromoCodeStatistics } = await import('./promoCodes');
         return await getPromoCodeStatistics();
       }),
   }),
   orders: router({
-    getAll: publicProcedure
+    getAll: adminProcedure
       .input(z.object({
         status: z.enum(["pending", "completed", "cancelled", "failed"]).optional(),
         search: z.string().optional(),
@@ -964,24 +964,24 @@ export const appRouter = router({
         const { getAllOrders } = await import('./orders');
         return await getAllOrders(input);
       }),
-    getById: publicProcedure
+    getById: adminProcedure
       .input(z.object({ id: z.number() }))
       .query(async ({ input }) => {
         const { getOrderById } = await import('./orders');
         return await getOrderById(input.id);
       }),
-    getStatistics: publicProcedure
+    getStatistics: adminProcedure
       .query(async () => {
         const { getOrderStatistics } = await import('./orders');
         return await getOrderStatistics();
       }),
-    getRecent: publicProcedure
+    getRecent: adminProcedure
       .input(z.object({ limit: z.number().optional().default(10) }))
       .query(async ({ input }) => {
         const { getRecentOrders } = await import('./orders');
         return await getRecentOrders(input.limit);
       }),
-    updateStatus: publicProcedure
+    updateStatus: adminProcedure
       .input(z.object({
         id: z.number(),
         status: z.enum(["pending", "completed", "cancelled", "failed"]),
@@ -991,7 +991,7 @@ export const appRouter = router({
         await updateOrderStatus(input.id, input.status);
         return { success: true };
       }),
-    update: publicProcedure
+    update: adminProcedure
       .input(z.object({
         id: z.number(),
         customerName: z.string().optional(),
@@ -1004,18 +1004,15 @@ export const appRouter = router({
         await updateOrder(id, updates);
         return { success: true };
       }),
-    delete: publicProcedure
+    delete: adminProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         const { deleteOrder } = await import('./orders');
         await deleteOrder(input.id);
         return { success: true };
       }),
-    getUserOrders: publicProcedure
+    getUserOrders: protectedProcedure
       .query(async ({ ctx }) => {
-        if (!ctx.user) {
-          return [];
-        }
         const { getUserOrders } = await import('./orders');
         return await getUserOrders(ctx.user.id);
       }),

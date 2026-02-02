@@ -16,9 +16,9 @@ async function getApp() {
   const express = (await import("express")).default;
   app = express();
 
-  // Configure body parser with larger size limit for file uploads
-  app.use(express.json({ limit: "50mb" }));
-  app.use(express.urlencoded({ limit: "50mb", extended: true }));
+  // Configure body parser with sensible default limits
+  app.use(express.json({ limit: "5mb" }));
+  app.use(express.urlencoded({ limit: "5mb", extended: true }));
 
   // Apply rate limiting to auth routes (authentication)
   app.use('/api/auth', authLimiter);
@@ -47,14 +47,18 @@ async function getApp() {
     }
   });
 
-  // Cron job endpoints (protected with CRON_SECRET)
+  // Cron job endpoints (protected with CRON_SECRET - fail closed)
   app.get("/api/cron/backup", async (req: any, res: any) => {
     try {
-      // Verify cron secret for security
+      // Verify cron secret for security (fail-closed: reject if not configured)
       const cronSecret = process.env.CRON_SECRET;
-      const providedSecret = req.headers.authorization?.replace("Bearer ", "") || req.query.secret;
-      
-      if (cronSecret && providedSecret !== cronSecret) {
+      if (!cronSecret) {
+        console.error("[Cron Backup] CRON_SECRET not configured - rejecting request");
+        return res.status(403).json({ error: "Cron secret not configured" });
+      }
+      const providedSecret = req.headers.authorization?.replace("Bearer ", "");
+
+      if (providedSecret !== cronSecret) {
         console.error("[Cron Backup] Unauthorized access attempt");
         return res.status(401).json({ error: "Unauthorized" });
       }
@@ -87,11 +91,15 @@ async function getApp() {
 
   app.get("/api/cron/review-requests", async (req: any, res: any) => {
     try {
-      // Verify cron secret for security
+      // Verify cron secret for security (fail-closed: reject if not configured)
       const cronSecret = process.env.CRON_SECRET;
-      const providedSecret = req.headers.authorization?.replace("Bearer ", "") || req.query.secret;
-      
-      if (cronSecret && providedSecret !== cronSecret) {
+      if (!cronSecret) {
+        console.error("[Cron Review Requests] CRON_SECRET not configured - rejecting request");
+        return res.status(403).json({ error: "Cron secret not configured" });
+      }
+      const providedSecret = req.headers.authorization?.replace("Bearer ", "");
+
+      if (providedSecret !== cronSecret) {
         console.error("[Cron Review Requests] Unauthorized access attempt");
         return res.status(401).json({ error: "Unauthorized" });
       }

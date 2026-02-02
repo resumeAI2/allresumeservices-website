@@ -1,7 +1,7 @@
 # Get Neon Database Connection String using PowerShell
 # This script fetches the connection string from Neon API and updates .env file
 
-$NEON_API_KEY = "napi_f4kl5zlimjyb1rgh44atz0p5ct9l94bltpvwnpfp4avih3i04mo2ry750uc0edl3"
+$NEON_API_KEY = "[REDACTED]"
 $NEON_API_BASE = "https://console.neon.tech/api/v2"
 
 # Ensure TLS 1.2 is used

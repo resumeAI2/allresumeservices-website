@@ -7,12 +7,12 @@ echo "🚀 Setting up Vercel Environment Variables..."
 echo ""
 
 # CRON_SECRET (Generated)
-CRON_SECRET="nPPm7igX+JSRywMt5OHrSd/IMPHRxF+U/7BU4pKl1oo="
+CRON_SECRET="[REDACTED]"
 echo "✅ Setting CRON_SECRET..."
 echo "$CRON_SECRET" | vercel env add CRON_SECRET production
 
 # DATABASE_URL (From .env)
-DATABASE_URL="postgresql://neondb_owner:npg_tEl9QgKmJ3rB@ep-proud-smoke-a78h2pb8-pooler.ap-southeast-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+DATABASE_URL="postgresql://neondb_owner:[REDACTED]@[REDACTED]/neondb?sslmode=require"
 echo "✅ Setting DATABASE_URL..."
 echo "$DATABASE_URL" | vercel env add DATABASE_URL production
 

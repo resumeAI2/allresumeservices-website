@@ -10,7 +10,7 @@ All required NextAuth.js environment variables have been successfully generated 
 
 ### 1. AUTH_SECRET ✅
 - **Status:** Encrypted
-- **Value:** `aad2578885e9569b0ee0182811dbb8f9500b83fab4c8d7c80d425ca972e31c95`
+- **Value:** `[REDACTED]`
 - **Purpose:** Signs JWT tokens for NextAuth.js sessions
 - **Security:** 256-bit cryptographically secure random string
 
@@ -27,7 +27,7 @@ All required NextAuth.js environment variables have been successfully generated 
 Both variables have also been added to your local `.env` file:
 
 ```env
-AUTH_SECRET=aad2578885e9569b0ee0182811dbb8f9500b83fab4c8d7c80d425ca972e31c95
+AUTH_SECRET=[REDACTED]
 ADMIN_EMAIL=admin@allresumeservices.com
 ```
 

@@ -171,7 +171,7 @@ Note: To prevent spam, you will only receive one alert per email type per hour.
 
   try {
     await transporter.sendMail({
-      from: `"All Resume Services Alert" <admin@allresumeservices.com>`,
+      from: `"All Resume Services Alert" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
       to: adminEmail,
       subject: `⚠️ Email Delivery Failed: ${data.emailType}`,
       text: textContent,

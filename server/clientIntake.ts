@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { getDb } from "./db";
 import { client_intake_records, employment_history, draft_intake_records } from "../drizzle/schema";
-import { publicProcedure, router } from "./_core/trpc";
+import { publicProcedure, adminProcedure, router } from "./_core/trpc";
 import { eq, desc } from "drizzle-orm";
 import crypto from "crypto";
 import { sendClientConfirmationEmail, sendAdminNotificationEmail } from "./intakeEmails";
@@ -191,7 +191,7 @@ export const clientIntakeRouter = router({
   /**
    * Get all intake records (admin)
    */
-  getAllIntakes: publicProcedure.query(async () => {
+  getAllIntakes: adminProcedure.query(async () => {
     const db = await getDb();
     if (!db) throw new Error("Database not available");
     
@@ -206,7 +206,7 @@ export const clientIntakeRouter = router({
   /**
    * Get single intake record with employment history (admin)
    */
-  getIntakeById: publicProcedure
+  getIntakeById: adminProcedure
     .input(z.object({ id: z.number() }))
     .query(async ({ input }) => {
       const db = await getDb();
@@ -238,7 +238,7 @@ export const clientIntakeRouter = router({
   /**
    * Update intake status (admin)
    */
-  updateIntakeStatus: publicProcedure
+  updateIntakeStatus: adminProcedure
     .input(z.object({
       id: z.number(),
       status: z.enum(["pending", "in_progress", "completed"]),
@@ -371,7 +371,7 @@ export const clientIntakeRouter = router({
   /**
    * Get incomplete drafts (for sending reminders)
    */
-  getIncompleteDrafts: publicProcedure.query(async () => {
+  getIncompleteDrafts: adminProcedure.query(async () => {
     const db = await getDb();
     if (!db) throw new Error("Database not available");
     

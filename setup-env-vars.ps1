@@ -23,8 +23,8 @@ function Set-VercelEnv {
 
 # Core Variables (Known Values)
 Write-Host "📦 Setting Core Variables..." -ForegroundColor Yellow
-Set-VercelEnv "CRON_SECRET" "nPPm7igX+JSRywMt5OHrSd/IMPHRxF+U/7BU4pKl1oo="
-Set-VercelEnv "DATABASE_URL" "postgresql://neondb_owner:npg_tEl9QgKmJ3rB@ep-proud-smoke-a78h2pb8-pooler.ap-southeast-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+Set-VercelEnv "CRON_SECRET" "[REDACTED]"
+Set-VercelEnv "DATABASE_URL" "postgresql://neondb_owner:[REDACTED]@[REDACTED]/neondb?sslmode=require"
 Set-VercelEnv "NODE_ENV" "production"
 
 Write-Host ""
