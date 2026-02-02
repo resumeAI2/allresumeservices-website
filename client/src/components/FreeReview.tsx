@@ -6,18 +6,33 @@ import { CheckCircle2, Upload, Loader2 } from "lucide-react";
 import { useState, FormEvent } from "react";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
+import { trpc } from "@/lib/trpc";
 
 export default function FreeReview() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<{[key: string]: string}>({});
   const [fieldValid, setFieldValid] = useState<{[key: string]: boolean}>({});
   const [, setLocation] = useLocation();
+  const [formMountTime] = useState(() => Date.now());
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
     file: null as File | null
+  });
+
+  const submitMutation = trpc.contact.submit.useMutation({
+    onSuccess: () => {
+      toast.success('Your resume has been submitted for review! We\'ll get back to you within 24 hours.');
+      setTimeout(() => {
+        setLocation('/thank-you-review');
+      }, 1000);
+    },
+    onError: (error) => {
+      toast.error(`Failed to submit: ${error.message}`);
+      setIsSubmitting(false);
+    },
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,37 +77,49 @@ export default function FreeReview() {
         return;
       }
 
-      // Create FormData for file upload
-      const submitData = new FormData();
-      submitData.append('name', formData.name);
-      submitData.append('email', formData.email);
-      submitData.append('phone', formData.phone);
-      submitData.append('message', formData.message);
+      // Upload resume file first
+      let resumeFileUrl: string | undefined;
       if (formData.file) {
-        submitData.append('resume', formData.file);
+        try {
+          toast.info('Uploading your resume...');
+          const uploadData = new FormData();
+          uploadData.append('file', formData.file);
+          
+          const uploadResponse = await fetch('/api/upload-image', {
+            method: 'POST',
+            body: uploadData,
+          });
+          
+          if (!uploadResponse.ok) {
+            throw new Error('Failed to upload resume');
+          }
+          
+          const uploadResult = await uploadResponse.json();
+          resumeFileUrl = uploadResult.url;
+          toast.success('Resume uploaded successfully!');
+        } catch (error) {
+          toast.error('Failed to upload resume file. Please try again.');
+          setIsSubmitting(false);
+          return;
+        }
       }
 
-      // For now, we'll use Formspree (user will need to set up their account)
-      // Alternative: mailto link with form data
-      const mailtoLink = `mailto:admin@allresumeservices.com.au?subject=Free Resume Review Request from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}\n\nNote: Resume file attached separately.`
-      )}`;
-
-      // Open mailto link in new tab
-      window.open(mailtoLink, '_blank');
-
-      // Show success message
-      toast.success('Redirecting to confirmation page...');
-
-      // Wait a moment then redirect to thank you page
-      setTimeout(() => {
-        setLocation('/thank-you-review');
-      }, 1000);
+      // Submit the contact form via API
+      toast.info('Submitting your request...');
+      submitMutation.mutate({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || undefined,
+        serviceInterest: 'free-review',
+        message: formData.message.trim() || 'Free resume review request',
+        resumeFileUrl: resumeFileUrl,
+        honeypot: '',
+        submissionTime: formMountTime,
+      });
 
     } catch (error) {
       toast.error('Something went wrong. Please try again or email us directly.');
       console.error('Form submission error:', error);
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -278,13 +305,13 @@ export default function FreeReview() {
             <Button 
               type="submit"
               size="lg" 
-              disabled={isSubmitting}
+              disabled={isSubmitting || submitMutation.isPending}
               className="w-full bg-primary text-white hover:bg-primary/90 text-lg py-6 shadow-xl font-semibold"
             >
-              {isSubmitting ? (
+              {isSubmitting || submitMutation.isPending ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Processing...
+                  {isSubmitting ? 'Uploading Resume...' : 'Submitting...'}
                 </>
               ) : (
                 <>
