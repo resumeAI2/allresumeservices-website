@@ -1,7 +1,8 @@
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
-import type { NextAuthConfig } from "next-auth";
+import type { NextAuthConfig, Session, User, Account } from "next-auth";
+import type { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
@@ -51,7 +52,7 @@ export const authConfig: NextAuthConfig = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials: Record<string, unknown> | undefined) {
         try {
           // Validate input
           const { email, password } = loginSchema.parse(credentials);
@@ -126,11 +127,11 @@ export const authConfig: NextAuthConfig = {
   // Callbacks for customizing behavior
   callbacks: {
     // JWT callback - runs when JWT is created or updated
-    async jwt({ token, user, account, trigger }) {
+    async jwt({ token, user, account, trigger }: { token: JWT; user?: User; account?: Account | null; trigger?: "signIn" | "signUp" | "update" }) {
       // Initial sign in
       if (user) {
         token.id = user.id;
-        token.role = user.role || "user";
+        token.role = (user as any).role || "user";
         token.email = user.email;
         token.name = user.name;
 
@@ -183,10 +184,10 @@ export const authConfig: NextAuthConfig = {
     },
 
     // Session callback - runs when session is checked
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: JWT }) {
       if (token && session.user) {
-        session.user.id = token.id as string;
-        session.user.role = token.role as "user" | "admin";
+        (session.user as any).id = token.id as string;
+        (session.user as any).role = token.role as "user" | "admin";
         session.user.email = token.email as string;
         session.user.name = token.name as string;
       }
@@ -194,7 +195,7 @@ export const authConfig: NextAuthConfig = {
     },
 
     // Sign in callback - control who can sign in
-    async signIn({ user, account, profile }) {
+    async signIn({ user, account, profile }: { user: User; account?: Account | null; profile?: any }) {
       // For OAuth providers, create user if doesn't exist
       if (account?.provider !== "credentials") {
         const signInDb = await getDb();
@@ -235,7 +236,7 @@ export const authConfig: NextAuthConfig = {
 
   // Events for logging
   events: {
-    async signIn({ user, account }) {
+    async signIn({ user, account }: { user: User; account?: Account | null }) {
       console.log(`[Auth] User signed in: ${user.email} via ${account?.provider || "credentials"}`);
     },
     async signOut(message: any) {
