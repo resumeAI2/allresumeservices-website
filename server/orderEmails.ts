@@ -16,7 +16,7 @@ interface OrderData {
  * Create email transporter using ProtonMail SMTP
  */
 function createTransporter() {
-  const emailUser = process.env.EMAIL_USER || 'info@allresumeservices.com';
+  const emailUser = process.env.EMAIL_USER || 'admin@allresumeservices.com';
   const emailPass = process.env.SMTP_PASSWORD;
   const emailHost = process.env.EMAIL_HOST || 'smtp.protonmail.ch';
   const emailPort = parseInt(process.env.EMAIL_PORT || '587');
@@ -145,7 +145,7 @@ Professional Resume Writing & Career Services
 
   try {
     await transporter.sendMail({
-      from: `"All Résumé Services" <info@allresumeservices.com>`,
+      from: `"All Résumé Services" <admin@allresumeservices.com>`,
       to: orderData.customerEmail,
       subject: `Order Confirmation #${orderData.orderId} - All Résumé Services`,
       text: textContent,
@@ -195,7 +195,7 @@ export async function sendAdminOrderNotificationEmail(orderData: OrderData): Pro
     return false;
   }
 
-  const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || 'enquiries@allresumeservices.com';
+  const adminEmail = process.env.ORDER_NOTIFICATION_EMAIL || 'accounts@allresumeservices.com';
 
   const htmlContent = `
 <!DOCTYPE html>
@@ -271,7 +271,7 @@ Time: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Perth' })}
 
   try {
     await transporter.sendMail({
-      from: `"All Résumé Services" <info@allresumeservices.com>`,
+      from: `"All Résumé Services" <admin@allresumeservices.com>`,
       to: adminEmail,
       subject: `💰 New Order #${orderData.orderId} - ${orderData.packageName}`,
       text: textContent,
