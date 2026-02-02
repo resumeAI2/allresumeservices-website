@@ -39,24 +39,24 @@ export function registerAuthRoutes(app: Express) {
       });
 
       // Route to appropriate handler
-      let response: Response;
+      let authResponse: globalThis.Response;
       if (req.method === "GET") {
-        response = await GET(request);
+        authResponse = await GET(request);
       } else if (req.method === "POST") {
-        response = await POST(request);
+        authResponse = await POST(request);
       } else {
         res.status(405).json({ error: "Method not allowed" });
         return;
       }
 
       // Convert Response to Express response
-      const body = await response.text();
+      const body = await authResponse.text();
       
       // Set status code
-      res.status(response.status);
-      
+      res.status(authResponse.status);
+
       // Copy headers
-      response.headers.forEach((value, key) => {
+      authResponse.headers.forEach((value: string, key: string) => {
         res.setHeader(key, value);
       });
       

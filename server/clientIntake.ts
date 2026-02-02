@@ -135,9 +135,9 @@ export const clientIntakeRouter = router({
         workArrangements: workArrangementsJson,
         supportingDocsUrls: supportingDocsJson,
         referees: refereesJson,
-      });
-      
-      const intakeRecordId = intakeRecord.insertId;
+      }).returning();
+
+      const intakeRecordId = intakeRecord?.id;
       
       // Insert employment history entries
       if (jobs && jobs.length > 0) {

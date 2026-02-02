@@ -20,7 +20,7 @@ export async function createTestimonial(input: TestimonialInput) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
-  const [result] = await db.insert(testimonials).values({
+  const [inserted] = await db.insert(testimonials).values({
     clientName: input.clientName,
     clientTitle: input.clientTitle || null,
     clientPhoto: input.clientPhoto || null,
@@ -29,9 +29,9 @@ export async function createTestimonial(input: TestimonialInput) {
     serviceUsed: input.serviceUsed || null,
     featured: input.featured || 0,
     approved: input.approved || 1,
-  });
+  }).returning();
 
-  return { success: true, id: result.insertId };
+  return { success: true, id: inserted?.id };
 }
 
 /**

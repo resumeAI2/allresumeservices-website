@@ -18,7 +18,8 @@ export type EmailType =
   | "intake_admin_notification"
   | "intake_resume_later"
   | "test"
-  | "free_review";
+  | "free_review"
+  | "refund_notification";
 
 export type EmailStatus = "sent" | "failed" | "pending";
 
@@ -43,7 +44,7 @@ export async function logEmail(params: LogEmailParams): Promise<number | null> {
   }
 
   try {
-    const result = await db.insert(email_logs).values({
+    const [inserted] = await db.insert(email_logs).values({
       emailType: params.emailType,
       recipientEmail: params.recipientEmail,
       recipientName: params.recipientName || null,
@@ -51,10 +52,10 @@ export async function logEmail(params: LogEmailParams): Promise<number | null> {
       status: params.status,
       errorMessage: params.errorMessage || null,
       metadata: params.metadata ? JSON.stringify(params.metadata) : null,
-    });
+    }).returning();
 
     console.log(`[EmailLogger] Logged ${params.status} email: ${params.emailType} to ${params.recipientEmail}`);
-    return result[0]?.insertId || null;
+    return inserted?.id || null;
   } catch (error) {
     console.error("[EmailLogger] Failed to log email:", error);
     return null;

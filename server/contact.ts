@@ -35,7 +35,7 @@ export async function createContactSubmission(input: ContactSubmissionInput) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
-  const [result] = await db.insert(contact_submissions).values({
+  const [inserted] = await db.insert(contact_submissions).values({
     name: input.name,
     email: input.email,
     phone: input.phone || null,
@@ -43,7 +43,7 @@ export async function createContactSubmission(input: ContactSubmissionInput) {
     message: input.message,
     resumeFileUrl: input.resumeFileUrl || null,
     status: "new",
-  });
+  }).returning();
 
   // Send email notification (non-blocking)
   sendContactFormNotification({
@@ -56,7 +56,7 @@ export async function createContactSubmission(input: ContactSubmissionInput) {
     console.error('Failed to send contact form notification:', error);
   });
 
-  return { success: true, id: result.insertId };
+  return { success: true, id: inserted?.id };
 }
 
 /**

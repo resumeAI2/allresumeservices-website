@@ -1,4 +1,4 @@
-import { integer, pgEnum, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { index, integer, numeric, pgEnum, pgTable, serial, text, timestamp, uniqueIndex, varchar } from "drizzle-orm/pg-core";
 
 // Define all enums first
 export const roleEnum = pgEnum("role", ["user", "admin"]);
@@ -60,7 +60,7 @@ export type InsertUser = typeof users.$inferInsert;
  */
 export const accounts = pgTable("accounts", {
   id: serial("id").primaryKey(),
-  userId: integer("userId").notNull(),
+  userId: integer("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
   type: varchar("type", { length: 255 }).notNull(),
   provider: varchar("provider", { length: 255 }).notNull(),
   providerAccountId: varchar("providerAccountId", { length: 255 }).notNull(),
@@ -71,7 +71,7 @@ export const accounts = pgTable("accounts", {
   scope: text("scope"),
   id_token: text("id_token"),
   session_state: text("session_state"),
-});
+}, (table) => [uniqueIndex("accounts_provider_account_idx").on(table.provider, table.providerAccountId),]);
 
 export type Account = typeof accounts.$inferSelect;
 export type InsertAccount = typeof accounts.$inferInsert;
@@ -82,9 +82,9 @@ export type InsertAccount = typeof accounts.$inferInsert;
 export const sessions = pgTable("sessions", {
   id: serial("id").primaryKey(),
   sessionToken: varchar("sessionToken", { length: 255 }).notNull().unique(),
-  userId: integer("userId").notNull(),
+  userId: integer("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
   expires: timestamp("expires").notNull(),
-});
+}, (table) => [index("sessions_user_id_idx").on(table.userId),]);
 
 export type Session = typeof sessions.$inferSelect;
 export type InsertSession = typeof sessions.$inferInsert;
@@ -106,9 +106,9 @@ export type InsertVerificationToken = typeof verificationTokens.$inferInsert;
  */
 export const orders = pgTable("orders", {
   id: serial("id").primaryKey(),
-  userId: integer("userId"),
+  userId: integer("userId").references(() => users.id, { onDelete: "set null" }),
   packageName: varchar("packageName", { length: 100 }).notNull(),
-  amount: varchar("amount", { length: 20 }).notNull(),
+  amount: numeric("amount", { precision: 10, scale: 2 }).notNull(),
   currency: varchar("currency", { length: 3 }).default("AUD").notNull(),
   paypalOrderId: varchar("paypalOrderId", { length: 255 }),
   paypalPayerId: varchar("paypalPayerId", { length: 255 }),
@@ -118,7 +118,7 @@ export const orders = pgTable("orders", {
   customerPhone: varchar("customerPhone", { length: 50 }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
-});
+}, (table) => [index("orders_user_id_idx").on(table.userId), index("orders_status_idx").on(table.status), index("orders_paypal_order_id_idx").on(table.paypalOrderId), index("orders_customer_email_idx").on(table.customerEmail),]);
 
 export type Order = typeof orders.$inferSelect;
 export type InsertOrder = typeof orders.$inferInsert;
@@ -135,7 +135,7 @@ export const blog_posts = pgTable("blog_posts", {
   metaTitle: varchar("metaTitle", { length: 60 }), // SEO meta title (max 60 chars)
   metaDescription: text("metaDescription"), // SEO meta description (max 160 chars)
   category: varchar("category", { length: 100 }).notNull(), // Legacy field, will use categoryId
-  categoryId: integer("categoryId"),
+  categoryId: integer("categoryId").references(() => blog_categories.id, { onDelete: "set null" }),
   image: varchar("image", { length: 500 }),
   readTime: varchar("readTime", { length: 50 }),
   published: integer("published").default(0).notNull(), // 0 = draft, 1 = published
@@ -143,7 +143,7 @@ export const blog_posts = pgTable("blog_posts", {
   viewCount: integer("viewCount").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
-});
+}, (table) => [index("blog_posts_published_idx").on(table.published), index("blog_posts_category_id_idx").on(table.categoryId), index("blog_posts_created_at_idx").on(table.createdAt),]);
 
 export type BlogPost = typeof blog_posts.$inferSelect;
 export type InsertBlogPost = typeof blog_posts.$inferInsert;
@@ -200,7 +200,7 @@ export const contact_submissions = pgTable("contact_submissions", {
   notes: text("notes"),
   submittedAt: timestamp("submittedAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
-});
+}, (table) => [index("contact_submissions_status_idx").on(table.status),]);
 
 export type ContactSubmission = typeof contact_submissions.$inferSelect;
 export type InsertContactSubmission = typeof contact_submissions.$inferInsert;
@@ -219,7 +219,7 @@ export const testimonials = pgTable("testimonials", {
   featured: integer("featured").default(0).notNull(), // 0 = not featured, 1 = featured on homepage
   approved: integer("approved").default(1).notNull(), // 0 = pending, 1 = approved
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
+}, (table) => [index("testimonials_featured_idx").on(table.featured), index("testimonials_approved_idx").on(table.approved),]);
 
 export type Testimonial = typeof testimonials.$inferSelect;
 export type InsertTestimonial = typeof testimonials.$inferInsert;
@@ -256,10 +256,10 @@ export type InsertBlogTag = typeof blog_tags.$inferInsert;
  */
 export const blog_post_tags = pgTable("blog_post_tags", {
   id: serial("id").primaryKey(),
-  postId: integer("postId").notNull(),
-  tagId: integer("tagId").notNull(),
+  postId: integer("postId").notNull().references(() => blog_posts.id, { onDelete: "cascade" }),
+  tagId: integer("tagId").notNull().references(() => blog_tags.id, { onDelete: "cascade" }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
+}, (table) => [index("blog_post_tags_post_id_idx").on(table.postId), index("blog_post_tags_tag_id_idx").on(table.tagId),]);
 
 export type BlogPostTag = typeof blog_post_tags.$inferSelect;
 export type InsertBlogPostTag = typeof blog_post_tags.$inferInsert;
@@ -273,8 +273,8 @@ export const services = pgTable("services", {
   type: serviceTypeEnum("type").notNull(),
   category: varchar("category", { length: 100 }), // e.g., "Resume", "Cover Letter", "LinkedIn"
   tier: varchar("tier", { length: 50 }), // e.g., "Entry Level", "Professional", "Executive"
-  price: varchar("price", { length: 20 }).notNull(),
-  originalPrice: varchar("originalPrice", { length: 20 }), // For showing discounts
+  price: numeric("price", { precision: 10, scale: 2 }).notNull(),
+  originalPrice: numeric("originalPrice", { precision: 10, scale: 2 }),
   features: text("features"), // JSON string of features array
   active: integer("active").default(1).notNull(),
   sortOrder: integer("sortOrder").default(0),
@@ -290,13 +290,13 @@ export type InsertService = typeof services.$inferInsert;
  */
 export const cart_items = pgTable("cart_items", {
   id: serial("id").primaryKey(),
-  userId: integer("userId"),
+  userId: integer("userId").references(() => users.id, { onDelete: "set null" }),
   sessionId: varchar("sessionId", { length: 255 }), // For guest users
-  serviceId: integer("serviceId").notNull(),
+  serviceId: integer("serviceId").notNull().references(() => services.id, { onDelete: "cascade" }),
   quantity: integer("quantity").default(1).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
-});
+}, (table) => [index("cart_items_user_id_idx").on(table.userId), index("cart_items_session_id_idx").on(table.sessionId), index("cart_items_service_id_idx").on(table.serviceId),]);
 
 export type CartItem = typeof cart_items.$inferSelect;
 export type InsertCartItem = typeof cart_items.$inferInsert;
@@ -306,13 +306,13 @@ export type InsertCartItem = typeof cart_items.$inferInsert;
  */
 export const order_items = pgTable("order_items", {
   id: serial("id").primaryKey(),
-  orderId: integer("orderId").notNull(),
-  serviceId: integer("serviceId").notNull(),
+  orderId: integer("orderId").notNull().references(() => orders.id, { onDelete: "cascade" }),
+  serviceId: integer("serviceId").notNull().references(() => services.id, { onDelete: "set null" }),
   serviceName: varchar("serviceName", { length: 255 }).notNull(),
   quantity: integer("quantity").default(1).notNull(),
-  price: varchar("price", { length: 20 }).notNull(),
+  price: numeric("price", { precision: 10, scale: 2 }).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
+}, (table) => [index("order_items_order_id_idx").on(table.orderId), index("order_items_service_id_idx").on(table.serviceId),]);
 
 export type OrderItem = typeof order_items.$inferSelect;
 export type InsertOrderItem = typeof order_items.$inferInsert;
@@ -325,8 +325,8 @@ export const promo_codes = pgTable("promo_codes", {
   code: varchar("code", { length: 50 }).notNull().unique(),
   description: text("description"),
   discountType: discountTypeEnum("discountType").notNull(),
-  discountValue: varchar("discountValue", { length: 20 }).notNull(), // Percentage (e.g., "10") or fixed amount (e.g., "50")
-  minPurchase: varchar("minPurchase", { length: 20 }), // Minimum purchase amount to use code
+  discountValue: numeric("discountValue", { precision: 10, scale: 2 }).notNull(), // Percentage (e.g., "10") or fixed amount (e.g., "50")
+  minPurchase: numeric("minPurchase", { precision: 10, scale: 2 }), // Minimum purchase amount to use code
   maxUses: integer("maxUses"), // Maximum number of times code can be used
   usedCount: integer("usedCount").default(0).notNull(),
   active: integer("active").default(1).notNull(),
@@ -359,7 +359,7 @@ export const case_studies = pgTable("case_studies", {
   viewCount: integer("viewCount").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
-});
+}, (table) => [index("case_studies_published_idx").on(table.published),]);
 
 export type CaseStudy = typeof case_studies.$inferSelect;
 export type InsertCaseStudy = typeof case_studies.$inferInsert;
@@ -369,8 +369,8 @@ export type InsertCaseStudy = typeof case_studies.$inferInsert;
  */
 export const social_media_posts = pgTable("social_media_posts", {
   id: serial("id").primaryKey(),
-  blogPostId: integer("blogPostId"), // Reference to blog_posts table
-  caseStudyId: integer("caseStudyId"), // Reference to case_studies table
+  blogPostId: integer("blogPostId").references(() => blog_posts.id, { onDelete: "set null" }),
+  caseStudyId: integer("caseStudyId").references(() => case_studies.id, { onDelete: "set null" }),
   platform: varchar("platform", { length: 50 }).notNull(), // e.g., "linkedin", "facebook", "twitter"
   postText: text("postText").notNull(),
   postUrl: varchar("postUrl", { length: 500 }), // URL to the social media post
@@ -379,7 +379,7 @@ export const social_media_posts = pgTable("social_media_posts", {
   postedAt: timestamp("postedAt"),
   errorMessage: text("errorMessage"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
+}, (table) => [index("social_media_posts_blog_post_id_idx").on(table.blogPostId), index("social_media_posts_status_idx").on(table.status),]);
 
 export type SocialMediaPost = typeof social_media_posts.$inferSelect;
 export type InsertSocialMediaPost = typeof social_media_posts.$inferInsert;
@@ -392,7 +392,7 @@ export const email_subscribers = pgTable("email_subscribers", {
   email: varchar("email", { length: 255 }).notNull().unique(),
   name: varchar("name", { length: 255 }),
   source: varchar("source", { length: 100 }), // e.g., "case_study_download", "newsletter_signup"
-  caseStudyId: integer("caseStudyId"), // Reference to case study if downloaded from case study page
+  caseStudyId: integer("caseStudyId").references(() => case_studies.id, { onDelete: "set null" }),
   subscribed: integer("subscribed").default(1).notNull(), // 0 = unsubscribed, 1 = subscribed
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
@@ -422,7 +422,7 @@ export const client_intake_records = pgTable("client_intake_records", {
   id: serial("id").primaryKey(),
   
   // Link to order and payment
-  orderId: integer("orderId"),
+  orderId: integer("orderId").references(() => orders.id, { onDelete: "set null" }),
   paypalTransactionId: varchar("paypalTransactionId", { length: 255 }),
   purchasedService: varchar("purchasedService", { length: 255 }),
   
@@ -494,7 +494,7 @@ export const client_intake_records = pgTable("client_intake_records", {
   adminNotes: text("adminNotes"),
   submittedAt: timestamp("submittedAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
-});
+}, (table) => [index("client_intake_records_order_id_idx").on(table.orderId), index("client_intake_records_email_idx").on(table.email), index("client_intake_records_status_idx").on(table.status),]);
 
 export type ClientIntakeRecord = typeof client_intake_records.$inferSelect;
 export type InsertClientIntakeRecord = typeof client_intake_records.$inferInsert;
@@ -504,7 +504,7 @@ export type InsertClientIntakeRecord = typeof client_intake_records.$inferInsert
  */
 export const employment_history = pgTable("employment_history", {
   id: serial("id").primaryKey(),
-  intakeRecordId: integer("intakeRecordId").notNull(),
+  intakeRecordId: integer("intakeRecordId").notNull().references(() => client_intake_records.id, { onDelete: "cascade" }),
   
   jobTitle: varchar("jobTitle", { length: 255 }).notNull(),
   employer: varchar("employer", { length: 255 }).notNull(),
@@ -517,7 +517,7 @@ export const employment_history = pgTable("employment_history", {
   
   sortOrder: integer("sortOrder").default(0), // For maintaining order of jobs
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
+}, (table) => [index("employment_history_intake_record_id_idx").on(table.intakeRecordId),]);
 
 export type EmploymentHistory = typeof employment_history.$inferSelect;
 export type InsertEmploymentHistory = typeof employment_history.$inferInsert;
@@ -580,7 +580,7 @@ export const email_logs = pgTable("email_logs", {
   errorMessage: text("errorMessage"), // Store error details if failed
   metadata: text("metadata"), // JSON string for additional data (orderId, contactId, etc.)
   sentAt: timestamp("sentAt").defaultNow().notNull(),
-});
+}, (table) => [index("email_logs_recipient_email_idx").on(table.recipientEmail), index("email_logs_email_type_idx").on(table.emailType), index("email_logs_sent_at_idx").on(table.sentAt),]);
 
 export type EmailLog = typeof email_logs.$inferSelect;
 export type InsertEmailLog = typeof email_logs.$inferInsert;
