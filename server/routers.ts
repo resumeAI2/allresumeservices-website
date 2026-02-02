@@ -30,7 +30,7 @@ export const appRouter = router({
   }),
 
   health: router({
-    check: publicProcedure.query(async () => {
+    check: adminProcedure.query(async () => {
       const startTime = Date.now();
       let dbStatus = 'unknown';
       let dbLatency = 0;
@@ -220,13 +220,19 @@ export const appRouter = router({
         }
       }),
 
-    getOrder: publicProcedure
+    getOrder: protectedProcedure
       .input(z.object({
         orderId: z.number(),
       }))
-      .query(async ({ input }) => {
+      .query(async ({ input, ctx }) => {
         const { getOrderById } = await import("./orders");
-        return await getOrderById(input.orderId);
+        const order = await getOrderById(input.orderId);
+        if (!order) return null;
+        // Only allow users to view their own orders (admins use orders.getById)
+        if (order.userId !== ctx.user.id && ctx.user.role !== 'admin') {
+          throw new Error("Unauthorized: You can only view your own orders");
+        }
+        return order;
       }),
   }),
 
@@ -248,19 +254,20 @@ export const appRouter = router({
       .input(z.object({
         serviceId: z.number(),
         quantity: z.number().default(1),
-        userId: z.number().optional(),
         sessionId: z.string().optional(),
       }))
-      .mutation(async ({ input }) => {
-        return await servicesService.addToCart(input);
+      .mutation(async ({ input, ctx }) => {
+        // Use authenticated user ID from session, not client input
+        const userId = ctx.user?.id;
+        return await servicesService.addToCart({ ...input, userId });
       }),
     getCartItems: publicProcedure
       .input(z.object({
-        userId: z.number().optional(),
         sessionId: z.string().optional(),
       }))
-      .query(async ({ input }) => {
-        return await servicesService.getCartItems(input.userId, input.sessionId);
+      .query(async ({ input, ctx }) => {
+        const userId = ctx.user?.id;
+        return await servicesService.getCartItems(userId, input.sessionId);
       }),
     updateCartItemQuantity: publicProcedure
       .input(z.object({
@@ -279,11 +286,11 @@ export const appRouter = router({
       }),
     getCartItemCount: publicProcedure
       .input(z.object({
-        userId: z.number().optional(),
         sessionId: z.string().optional(),
       }))
-      .query(async ({ input }) => {
-        return await servicesService.getCartItemCount(input.userId, input.sessionId);
+      .query(async ({ input, ctx }) => {
+        const userId = ctx.user?.id;
+        return await servicesService.getCartItemCount(userId, input.sessionId);
       }),
     mergeGuestCart: protectedProcedure
       .input(z.object({

@@ -8,35 +8,83 @@ interface BackupResult {
   error?: string;
 }
 
+// Allowlist of known safe table names (prevents SQL injection)
+const ALLOWED_TABLES = new Set([
+  'users',
+  'sessions',
+  'accounts',
+  'verification_tokens',
+  'orders',
+  'order_items',
+  'payments',
+  'blog_posts',
+  'blog_categories',
+  'case_studies',
+  'testimonials',
+  'contact_submissions',
+  'email_subscribers',
+  'free_review_submissions',
+  'intake_forms',
+  'resume_samples',
+  'carts',
+  'cart_items',
+  'coupons',
+  'files',
+  'pages',
+  'faqs',
+  'services',
+]);
+
+/**
+ * Validate table name against allowlist to prevent SQL injection
+ */
+function isValidTableName(tableName: string): boolean {
+  // Must be in allowlist AND match safe pattern (alphanumeric + underscore only)
+  return ALLOWED_TABLES.has(tableName) && /^[a-z_][a-z0-9_]*$/i.test(tableName);
+}
+
 /**
  * Get list of all tables in the database
  */
 async function getTableNames(): Promise<string[]> {
   const db = await getDb();
+  // Use current_schema() for PostgreSQL compatibility
   const result = await db!.execute(`
     SELECT table_name 
     FROM information_schema.tables 
-    WHERE table_schema = DATABASE()
+    WHERE table_schema = current_schema()
   `);
   
-  return (result[0] as unknown as any[]).map(row => row.table_name);
+  const tables = (result[0] as unknown as any[]).map(row => row.table_name);
+  // Filter to only allowed tables for safety
+  return tables.filter(isValidTableName);
 }
 
 /**
  * Get row count for a specific table
+ * @throws Error if table name is not in allowlist
  */
 async function getTableRowCount(tableName: string): Promise<number> {
+  if (!isValidTableName(tableName)) {
+    throw new Error(`Invalid table name: ${tableName}`);
+  }
   const db = await getDb();
-  const result = await db!.execute(`SELECT COUNT(*) as count FROM \`${tableName}\``);
+  // Using parameterized identifier is not possible in most ORMs,
+  // but we've validated against allowlist above
+  const result = await db!.execute(`SELECT COUNT(*) as count FROM "${tableName}"`);
   return (result[0] as unknown as any[])[0]?.count || 0;
 }
 
 /**
  * Export table data as JSON
+ * @throws Error if table name is not in allowlist
  */
 async function exportTableData(tableName: string): Promise<any[]> {
+  if (!isValidTableName(tableName)) {
+    throw new Error(`Invalid table name: ${tableName}`);
+  }
   const db = await getDb();
-  const result = await db!.execute(`SELECT * FROM \`${tableName}\``);
+  const result = await db!.execute(`SELECT * FROM "${tableName}"`);
   return result[0] as unknown as any[];
 }
 

@@ -262,17 +262,17 @@ export const clientIntakeRouter = router({
   /**
    * Get intake by PayPal transaction ID
    */
-  getIntakeByTransaction: publicProcedure
+  getIntakeByTransaction: adminProcedure
     .input(z.object({ transactionId: z.string() }))
     .query(async ({ input }) => {
       const db = await getDb();
       if (!db) throw new Error("Database not available");
-      
+
       const [intake] = await db
         .select()
         .from(client_intake_records)
         .where(eq(client_intake_records.paypalTransactionId, input.transactionId));
-      
+
       return intake || null;
     }),
   
@@ -283,7 +283,10 @@ export const clientIntakeRouter = router({
     .input(z.object({
       email: z.string().email(),
       paypalTransactionId: z.string().optional(),
-      formData: z.any(), // JSON object of form data
+      formData: z.record(z.string(), z.unknown()).refine(
+        (data) => JSON.stringify(data).length <= 500_000,
+        { message: "Form data too large (max 500KB)" }
+      ),
     }))
     .mutation(async ({ input }) => {
       const db = await getDb();
@@ -391,7 +394,10 @@ export const clientIntakeRouter = router({
       email: z.string().email(),
       name: z.string(),
       paypalTransactionId: z.string().optional(),
-      formData: z.any(),
+      formData: z.record(z.string(), z.unknown()).refine(
+        (data) => JSON.stringify(data).length <= 500_000,
+        { message: "Form data too large (max 500KB)" }
+      ),
     }))
     .mutation(async ({ input }) => {
       const db = await getDb();
