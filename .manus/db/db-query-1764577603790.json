@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE testimonials SET serviceUsed = 'Resume Writing' WHERE clientName IN ('Michael Goldenberg', 'Naveen Karunaratne', 'Ashley QLD', 'Stewart McGarth', 'Nigel Howarth', 'Mark Randall');\nUPDATE testimonials SET serviceUsed = 'Resume & Cover Letter' WHERE clientName IN ('Jackson Misago', 'S. Muller', 'Gavin Atkinson', 'Christina Paiva', 'Caroline', 'Jaisen Tanner');\nUPDATE testimonials SET serviceUsed = 'LinkedIn Profile' WHERE clientName IN ('Nrupa Shah', 'Martin Hill');\nUPDATE testimonials SET serviceUsed = 'Resume, Cover Letter & LinkedIn' WHERE clientName IN ('Scott Green', 'Peter Koikas');\nUPDATE testimonials SET serviceUsed = 'Selection Criteria' WHERE clientName IN ('C. Brekke', 'QLD – March 2020');",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute UPDATE testimonials SET serviceUsed = 'Resume Writing' WHERE clientName IN ('Michael Goldenberg', 'Naveen Karunaratne', 'Ashley QLD', 'Stewart McGarth', 'Nigel Howarth', 'Mark Randall');\nUPDATE testimonials SET serviceUsed = 'Resume & Cover Letter' WHERE clientName IN ('Jackson Misago', 'S. Muller', 'Gavin Atkinson', 'Christina Paiva', 'Caroline', 'Jaisen Tanner');\nUPDATE testimonials SET serviceUsed = 'LinkedIn Profile' WHERE clientName IN ('Nrupa Shah', 'Martin Hill');\nUPDATE testimonials SET serviceUsed = 'Resume, Cover Letter & LinkedIn' WHERE clientName IN ('Scott Green', 'Peter Koikas');\nUPDATE testimonials SET serviceUsed = 'Selection Criteria' WHERE clientName IN ('C. Brekke', 'QLD – March 2020');",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 2583
+}

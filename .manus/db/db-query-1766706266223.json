@@ -1,0 +1,13 @@
+{
+  "query": "SELECT COUNT(*) as issues FROM blog_posts WHERE LENGTH(metaDescription) < 120 OR LENGTH(metaDescription) > 160;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT COUNT(*) as issues FROM blog_posts WHERE LENGTH(metaDescription) < 120 OR LENGTH(metaDescription) > 160;",
+  "rows": [
+    {
+      "issues": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "issues\n1\n",
+  "stderr": "",
+  "execution_time_ms": 1532
+}

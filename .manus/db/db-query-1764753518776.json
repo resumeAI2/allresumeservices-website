@@ -1,0 +1,36 @@
+{
+  "query": "SELECT title, SUBSTRING(content, 1, 200) as content_preview FROM blog_posts WHERE published = 1 LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT title, SUBSTRING(content, 1, 200) as content_preview FROM blog_posts WHERE published = 1 LIMIT 5;",
+  "rows": [
+    {
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "content_preview": "<h2>Why Action Verbs Matter in Your Resume</h2>"
+    },
+    {
+      "title": "Stand Out with Top-notch Senior Management Resume Services",
+      "content_preview": "<h2>The Executive Resume Challenge</h2>"
+    },
+    {
+      "title": "Write Winning Selection Criteria for Government Roles Today!",
+      "content_preview": "<h2>Understanding Selection Criteria</h2>"
+    },
+    {
+      "title": "Ace Your Next Interview with Expert Preparation Tips",
+      "content_preview": "<h2>Pre-Interview Research</h2>"
+    },
+    {
+      "title": "LinkedIn Profile Optimization: Your Digital First Impression",
+      "content_preview": "<h2>Why LinkedIn Optimization Matters</h2>"
+    }
+  ],
+  "messages": [
+    "<p>Your resume is often the first impression you make on a potential employer. Using powerful action verbs can significantly enhance how your experience",
+    "<p>Senior management positions require resumes that go beyond listing responsibilities.</p>",
+    "<p>Selection criteria are specific skills, knowledge, and experience requirements that government agencies use to assess candidates.</p>",
+    "<p>Thorough preparation begins with comprehensive research about the company, role, and industry.</p>",
+    "<p>Your LinkedIn profile is often the first professional impression you make.</p>"
+  ],
+  "stdout": "title\tcontent_preview\nTransform Your Resume with Powerful Action Verbs\t<h2>Why Action Verbs Matter in Your Resume</h2>\n<p>Your resume is often the first impression you make on a potential employer. Using powerful action verbs can significantly enhance how your experience\nStand Out with Top-notch Senior Management Resume Services\t<h2>The Executive Resume Challenge</h2>\n<p>Senior management positions require resumes that go beyond listing responsibilities.</p>\nWrite Winning Selection Criteria for Government Roles Today!\t<h2>Understanding Selection Criteria</h2>\n<p>Selection criteria are specific skills, knowledge, and experience requirements that government agencies use to assess candidates.</p>\nAce Your Next Interview with Expert Preparation Tips\t<h2>Pre-Interview Research</h2>\n<p>Thorough preparation begins with comprehensive research about the company, role, and industry.</p>\nLinkedIn Profile Optimization: Your Digital First Impression\t<h2>Why LinkedIn Optimization Matters</h2>\n<p>Your LinkedIn profile is often the first professional impression you make.</p>\n",
+  "stderr": "",
+  "execution_time_ms": 2112
+}

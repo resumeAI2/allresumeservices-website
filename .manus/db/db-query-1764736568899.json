@@ -1,0 +1,45 @@
+{
+  "query": "SELECT id, name, description, price, features FROM services WHERE name LIKE '%cover%letter%' OR description LIKE '%cover%letter%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, name, description, price, features FROM services WHERE name LIKE '%cover%letter%' OR description LIKE '%cover%letter%';",
+  "rows": [
+    {
+      "id": "4",
+      "name": "Entry Level Cover Letter",
+      "description": "Compelling cover letter for entry-level applications",
+      "price": "49",
+      "features": "[\"Tailored to job description\",\"1 page\",\"Professional tone\",\"We work with you until you're 100% satisfied\",\"2-3 business days delivery\"]"
+    },
+    {
+      "id": "5",
+      "name": "Professional Cover Letter",
+      "description": "Strategic cover letter for professional positions",
+      "price": "75",
+      "features": "[\"Customized to role\",\"1 page\",\"Achievement highlights\",\"We work with you until you're 100% satisfied\",\"2-3 business days delivery\"]"
+    },
+    {
+      "id": "6",
+      "name": "Executive Cover Letter",
+      "description": "Executive-level cover letter showcasing leadership",
+      "price": "99",
+      "features": "[\"Executive positioning\",\"1 page\",\"Leadership narrative\",\"We work with you until you're 100% satisfied\",\"1-2 business days delivery\"]"
+    },
+    {
+      "id": "9",
+      "name": "Basic Package",
+      "description": "Resume + Cover Letter for entry-level professionals",
+      "price": "125",
+      "features": "[\"Entry Level Resume\",\"Entry Level Cover Letter\",\"ATS-optimized\",\"2 revisions per document\",\"3-5 business days delivery\",\"Save $23\"]"
+    },
+    {
+      "id": "10",
+      "name": "Standard Package",
+      "description": "Resume + Cover Letter + LinkedIn for professionals",
+      "price": "185",
+      "features": "[\"Professional Resume\",\"Professional Cover Letter\",\"LinkedIn Profile Optimization\",\"3 revisions per document\",\"3-5 business days delivery\",\"Save $39\"]"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tdescription\tprice\tfeatures\n4\tEntry Level Cover Letter\tCompelling cover letter for entry-level applications\t49\t[\"Tailored to job description\",\"1 page\",\"Professional tone\",\"We work with you until you're 100% satisfied\",\"2-3 business days delivery\"]\n5\tProfessional Cover Letter\tStrategic cover letter for professional positions\t75\t[\"Customized to role\",\"1 page\",\"Achievement highlights\",\"We work with you until you're 100% satisfied\",\"2-3 business days delivery\"]\n6\tExecutive Cover Letter\tExecutive-level cover letter showcasing leadership\t99\t[\"Executive positioning\",\"1 page\",\"Leadership narrative\",\"We work with you until you're 100% satisfied\",\"1-2 business days delivery\"]\n9\tBasic Package\tResume + Cover Letter for entry-level professionals\t125\t[\"Entry Level Resume\",\"Entry Level Cover Letter\",\"ATS-optimized\",\"2 revisions per document\",\"3-5 business days delivery\",\"Save $23\"]\n10\tStandard Package\tResume + Cover Letter + LinkedIn for professionals\t185\t[\"Professional Resume\",\"Professional Cover Letter\",\"LinkedIn Profile Optimization\",\"3 revisions per document\",\"3-5 business days delivery\",\"Save $39\"]\n",
+  "stderr": "",
+  "execution_time_ms": 1646
+}

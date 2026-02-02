@@ -1,0 +1,40 @@
+{
+  "query": "SELECT id, title, image, slug FROM blog_posts LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, image, slug FROM blog_posts LIMIT 5;",
+  "rows": [
+    {
+      "id": "90001",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "image": "/blog/resume-review-session.jpg",
+      "slug": "transform-your-resume-with-powerful-action-verbs"
+    },
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "image": "/blog/interview-candidate-confident.jpg",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool"
+    },
+    {
+      "id": "120002",
+      "title": "Professional Resume Services: Stand Out in Australia (2025)",
+      "image": "/blog/workspace-laptop-coffee-notebook.jpg",
+      "slug": "stand-out-in-the-crowd-with-professionally-prepared-resume-services"
+    },
+    {
+      "id": "120003",
+      "title": "ATS Resume Help: All Resume Services Boosts Your Job Search",
+      "image": "/blog/professional-phone-call-office.jpg",
+      "slug": "scanning-software-scans-your-resume-navigating-ats-in-job-hunting"
+    },
+    {
+      "id": "120004",
+      "title": "Resume Optimization: All Resume Services' Expert Tips",
+      "image": "/blog/mentor-mentee-discussion.jpg",
+      "slug": "dont-sell-short-diy-resume"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\timage\tslug\n90001\tTransform Your Resume with Powerful Action Verbs\t/blog/resume-review-session.jpg\ttransform-your-resume-with-powerful-action-verbs\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\t/blog/interview-candidate-confident.jpg\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool\n120002\tProfessional Resume Services: Stand Out in Australia (2025)\t/blog/workspace-laptop-coffee-notebook.jpg\tstand-out-in-the-crowd-with-professionally-prepared-resume-services\n120003\tATS Resume Help: All Resume Services Boosts Your Job Search\t/blog/professional-phone-call-office.jpg\tscanning-software-scans-your-resume-navigating-ats-in-job-hunting\n120004\tResume Optimization: All Resume Services' Expert Tips\t/blog/mentor-mentee-discussion.jpg\tdont-sell-short-diy-resume\n",
+  "stderr": "",
+  "execution_time_ms": 1582
+}

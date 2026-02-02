@@ -1,0 +1,35 @@
+{
+  "query": "SELECT id, title, metaDescription FROM blog_posts WHERE LENGTH(metaDescription) < 120 LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, metaDescription FROM blog_posts WHERE LENGTH(metaDescription) < 120 LIMIT 5;",
+  "rows": [
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "metaDescription": "Craft a standout resume, unlock new job opportunities."
+    },
+    {
+      "id": "120005",
+      "title": "All Resume Services: Expert Scannable Resume Writing",
+      "metaDescription": "Boost your job chances with a pro scannable resume."
+    },
+    {
+      "id": "120007",
+      "title": "Gifting Resumes in Australia",
+      "metaDescription": "Boost your Aussie job search with expert resume tips."
+    },
+    {
+      "id": "120008",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide",
+      "metaDescription": "Master Selection Criteria Responses for Job Success"
+    },
+    {
+      "id": "120009",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia",
+      "metaDescription": "Boost job prospects with a quality resume."
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tmetaDescription\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\tCraft a standout resume, unlock new job opportunities.\n120005\tAll Resume Services: Expert Scannable Resume Writing\tBoost your job chances with a pro scannable resume.\n120007\tGifting Resumes in Australia\tBoost your Aussie job search with expert resume tips.\n120008\tSelection Criteria Help: All Resume Services' Expert Guide\tMaster Selection Criteria Responses for Job Success\n120009\tAvoid Cheap Resume Services: Get Expert Help in Australia\tBoost job prospects with a quality resume.\n",
+  "stderr": "",
+  "execution_time_ms": 1608
+}

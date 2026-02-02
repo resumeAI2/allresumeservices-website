@@ -1,0 +1,22 @@
+{
+  "query": "SELECT SUBSTRING(content, LOCATE('How Long Should', content) - 100, 800) as table_section FROM blog_posts WHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly' LIMIT 1",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT SUBSTRING(content, LOCATE('How Long Should', content) - 100, 800) as table_section FROM blog_posts WHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly' LIMIT 1",
+  "rows": [
+    {
+      "table_section": " career stage within the Australian job market, ensuring both clarity and comprehensive detail. ### How Long Should My Australian CV Be?</p>"
+    },
+    {
+      "table_section": "<p>The ideal length for an Australian CV depends on your career stage, balancing comprehensive detail with reader engagement. The following table outlines recommended lengths for different levels.</p>"
+    },
+    {
+      "table_section": "<p>Here’s a guide to appropriate CV length based on your career stage:</p>"
+    },
+    {
+      "table_section": "<p>Career StageIdeal LengthWhy This Length WorksGraduate / Entry Level1–2 pagesFocuses on education, internships, and foundational skills.Early to Mid-Career2–3 pagesEffectively balances detailed experience with demonstrated impact.Senior / Executive Level3–5 pagesProvides ample space to showcase leadership achievements and strategic contributions. Adhering to these length guid"
+    }
+  ],
+  "messages": [],
+  "stdout": "table_section\n career stage within the Australian job market, ensuring both clarity and comprehensive detail. ### How Long Should My Australian CV Be?</p>\n\n<p>The ideal length for an Australian CV depends on your career stage, balancing comprehensive detail with reader engagement. The following table outlines recommended lengths for different levels.</p>\n\n<p>Here’s a guide to appropriate CV length based on your career stage:</p>\n\n<p>Career StageIdeal LengthWhy This Length WorksGraduate / Entry Level1–2 pagesFocuses on education, internships, and foundational skills.Early to Mid-Career2–3 pagesEffectively balances detailed experience with demonstrated impact.Senior / Executive Level3–5 pagesProvides ample space to showcase leadership achievements and strategic contributions. Adhering to these length guid\n",
+  "stderr": "",
+  "execution_time_ms": 1615
+}

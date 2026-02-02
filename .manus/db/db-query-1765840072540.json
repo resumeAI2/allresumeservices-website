@@ -1,0 +1,178 @@
+{
+  "query": "SELECT id, name, price, createdAt FROM services WHERE active = 1 ORDER BY name, id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, name, price, createdAt FROM services WHERE active = 1 ORDER BY name, id;",
+  "rows": [
+    {
+      "id": "13",
+      "name": "Additional Revisions (3 extra)",
+      "price": "30",
+      "createdAt": "2025-11-27 10:18:17"
+    },
+    {
+      "id": "30013",
+      "name": "Additional Revisions (3 extra)",
+      "price": "30",
+      "createdAt": "2025-12-15 06:21:48"
+    },
+    {
+      "id": "9",
+      "name": "Basic Package",
+      "price": "125",
+      "createdAt": "2025-11-27 10:18:16"
+    },
+    {
+      "id": "30009",
+      "name": "Basic Package",
+      "price": "125",
+      "createdAt": "2025-12-15 06:21:47"
+    },
+    {
+      "id": "4",
+      "name": "Entry Level Cover Letter",
+      "price": "49",
+      "createdAt": "2025-11-27 10:18:15"
+    },
+    {
+      "id": "30004",
+      "name": "Entry Level Cover Letter",
+      "price": "49",
+      "createdAt": "2025-12-15 06:21:46"
+    },
+    {
+      "id": "1",
+      "name": "Entry Level Resume",
+      "price": "99",
+      "createdAt": "2025-11-27 10:18:14"
+    },
+    {
+      "id": "30001",
+      "name": "Entry Level Resume",
+      "price": "99",
+      "createdAt": "2025-12-15 06:21:45"
+    },
+    {
+      "id": "6",
+      "name": "Executive Cover Letter",
+      "price": "99",
+      "createdAt": "2025-11-27 10:18:15"
+    },
+    {
+      "id": "30006",
+      "name": "Executive Cover Letter",
+      "price": "99",
+      "createdAt": "2025-12-15 06:21:46"
+    },
+    {
+      "id": "3",
+      "name": "Executive Resume",
+      "price": "255",
+      "createdAt": "2025-11-27 10:18:15"
+    },
+    {
+      "id": "30003",
+      "name": "Executive Resume",
+      "price": "255",
+      "createdAt": "2025-12-15 06:21:46"
+    },
+    {
+      "id": "7",
+      "name": "LinkedIn Profile Optimization",
+      "price": "125",
+      "createdAt": "2025-11-27 10:18:16"
+    },
+    {
+      "id": "30007",
+      "name": "LinkedIn Profile Optimization",
+      "price": "125",
+      "createdAt": "2025-12-15 06:21:47"
+    },
+    {
+      "id": "14",
+      "name": "Phone Consultation (30 min)",
+      "price": "75",
+      "createdAt": "2025-11-27 10:18:17"
+    },
+    {
+      "id": "30014",
+      "name": "Phone Consultation (30 min)",
+      "price": "75",
+      "createdAt": "2025-12-15 06:21:48"
+    },
+    {
+      "id": "11",
+      "name": "Premium Package",
+      "price": "255",
+      "createdAt": "2025-11-27 10:18:17"
+    },
+    {
+      "id": "30011",
+      "name": "Premium Package",
+      "price": "255",
+      "createdAt": "2025-12-15 06:21:47"
+    },
+    {
+      "id": "5",
+      "name": "Professional Cover Letter",
+      "price": "75",
+      "createdAt": "2025-11-27 10:18:15"
+    },
+    {
+      "id": "30005",
+      "name": "Professional Cover Letter",
+      "price": "75",
+      "createdAt": "2025-12-15 06:21:46"
+    },
+    {
+      "id": "2",
+      "name": "Professional Resume",
+      "price": "149",
+      "createdAt": "2025-11-27 10:18:15"
+    },
+    {
+      "id": "30002",
+      "name": "Professional Resume",
+      "price": "149",
+      "createdAt": "2025-12-15 06:21:45"
+    },
+    {
+      "id": "12",
+      "name": "Rush Delivery (24-48 hours)",
+      "price": "50",
+      "createdAt": "2025-11-27 10:18:17"
+    },
+    {
+      "id": "30012",
+      "name": "Rush Delivery (24-48 hours)",
+      "price": "50",
+      "createdAt": "2025-12-15 06:21:48"
+    },
+    {
+      "id": "8",
+      "name": "Selection Criteria Response",
+      "price": "89",
+      "createdAt": "2025-11-27 10:18:16"
+    },
+    {
+      "id": "30008",
+      "name": "Selection Criteria Response",
+      "price": "100",
+      "createdAt": "2025-12-15 06:21:47"
+    },
+    {
+      "id": "10",
+      "name": "Standard Package",
+      "price": "185",
+      "createdAt": "2025-11-27 10:18:16"
+    },
+    {
+      "id": "30010",
+      "name": "Standard Package",
+      "price": "185",
+      "createdAt": "2025-12-15 06:21:47"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tprice\tcreatedAt\n13\tAdditional Revisions (3 extra)\t30\t2025-11-27 10:18:17\n30013\tAdditional Revisions (3 extra)\t30\t2025-12-15 06:21:48\n9\tBasic Package\t125\t2025-11-27 10:18:16\n30009\tBasic Package\t125\t2025-12-15 06:21:47\n4\tEntry Level Cover Letter\t49\t2025-11-27 10:18:15\n30004\tEntry Level Cover Letter\t49\t2025-12-15 06:21:46\n1\tEntry Level Resume\t99\t2025-11-27 10:18:14\n30001\tEntry Level Resume\t99\t2025-12-15 06:21:45\n6\tExecutive Cover Letter\t99\t2025-11-27 10:18:15\n30006\tExecutive Cover Letter\t99\t2025-12-15 06:21:46\n3\tExecutive Resume\t255\t2025-11-27 10:18:15\n30003\tExecutive Resume\t255\t2025-12-15 06:21:46\n7\tLinkedIn Profile Optimization\t125\t2025-11-27 10:18:16\n30007\tLinkedIn Profile Optimization\t125\t2025-12-15 06:21:47\n14\tPhone Consultation (30 min)\t75\t2025-11-27 10:18:17\n30014\tPhone Consultation (30 min)\t75\t2025-12-15 06:21:48\n11\tPremium Package\t255\t2025-11-27 10:18:17\n30011\tPremium Package\t255\t2025-12-15 06:21:47\n5\tProfessional Cover Letter\t75\t2025-11-27 10:18:15\n30005\tProfessional Cover Letter\t75\t2025-12-15 06:21:46\n2\tProfessional Resume\t149\t2025-11-27 10:18:15\n30002\tProfessional Resume\t149\t2025-12-15 06:21:45\n12\tRush Delivery (24-48 hours)\t50\t2025-11-27 10:18:17\n30012\tRush Delivery (24-48 hours)\t50\t2025-12-15 06:21:48\n8\tSelection Criteria Response\t89\t2025-11-27 10:18:16\n30008\tSelection Criteria Response\t100\t2025-12-15 06:21:47\n10\tStandard Package\t185\t2025-11-27 10:18:16\n30010\tStandard Package\t185\t2025-12-15 06:21:47\n",
+  "stderr": "",
+  "execution_time_ms": 1610
+}

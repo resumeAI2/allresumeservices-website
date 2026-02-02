@@ -1,0 +1,15 @@
+{
+  "query": "SELECT id, title, slug FROM blog_posts WHERE content LIKE '%| Career Stage |%' LIMIT 10",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug FROM blog_posts WHERE content LIKE '%| Career Stage |%' LIMIT 10",
+  "rows": [
+    {
+      "id": "120045",
+      "title": "Expert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES",
+      "slug": "expert-cv-help-for-crafting-winning-resumes-effortlessly"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\n120045\tExpert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES\texpert-cv-help-for-crafting-winning-resumes-effortlessly\n",
+  "stderr": "",
+  "execution_time_ms": 1546
+}

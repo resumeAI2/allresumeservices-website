@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, title, slug FROM blog_posts LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug FROM blog_posts LIMIT 10;",
+  "rows": [
+    {
+      "id": "90001",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "slug": "transform-your-resume-with-powerful-action-verbs"
+    },
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool"
+    },
+    {
+      "id": "120002",
+      "title": "Professional Resume Services: Stand Out in Australia (2025)",
+      "slug": "stand-out-in-the-crowd-with-professionally-prepared-resume-services"
+    },
+    {
+      "id": "120003",
+      "title": "ATS Resume Help: All Resume Services Boosts Your Job Search",
+      "slug": "scanning-software-scans-your-resume-navigating-ats-in-job-hunting"
+    },
+    {
+      "id": "120004",
+      "title": "Resume Optimization: All Resume Services' Expert Tips",
+      "slug": "dont-sell-short-diy-resume"
+    },
+    {
+      "id": "120005",
+      "title": "All Resume Services: Expert Scannable Resume Writing",
+      "slug": "the-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services"
+    },
+    {
+      "id": "120006",
+      "title": "Wow Hiring Managers: Expert Resume Writing Tips 2023",
+      "slug": "resume-writing-101-how-to-showcase-your-accomplishments-and-wow-hiring-managers-in-2023"
+    },
+    {
+      "id": "120007",
+      "title": "Gifting Resumes in Australia",
+      "slug": "gifting-resumes-in-australia"
+    },
+    {
+      "id": "120008",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide",
+      "slug": "writing-a-professional-selection-criteria-response"
+    },
+    {
+      "id": "120009",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia",
+      "slug": "using-cheap-resume-writing-services"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tslug\n90001\tTransform Your Resume with Powerful Action Verbs\ttransform-your-resume-with-powerful-action-verbs\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool\n120002\tProfessional Resume Services: Stand Out in Australia (2025)\tstand-out-in-the-crowd-with-professionally-prepared-resume-services\n120003\tATS Resume Help: All Resume Services Boosts Your Job Search\tscanning-software-scans-your-resume-navigating-ats-in-job-hunting\n120004\tResume Optimization: All Resume Services' Expert Tips\tdont-sell-short-diy-resume\n120005\tAll Resume Services: Expert Scannable Resume Writing\tthe-importance-of-having-a-scannable-resume-professionally-written-by-all-resume-services\n120006\tWow Hiring Managers: Expert Resume Writing Tips 2023\tresume-writing-101-how-to-showcase-your-accomplishments-and-wow-hiring-managers-in-2023\n120007\tGifting Resumes in Australia\tgifting-resumes-in-australia\n120008\tSelection Criteria Help: All Resume Services' Expert Guide\twriting-a-professional-selection-criteria-response\n120009\tAvoid Cheap Resume Services: Get Expert Help in Australia\tusing-cheap-resume-writing-services\n",
+  "stderr": "",
+  "execution_time_ms": 1671
+}

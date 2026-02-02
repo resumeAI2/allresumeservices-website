@@ -1,0 +1,106 @@
+{
+  "query": "SELECT id, title, published, featured FROM case_studies ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, published, featured FROM case_studies ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "Transforming a Career Path into Mining Opportunities",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "2",
+      "title": "Mature-Age Jobseeker Overcoming Barriers",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "3",
+      "title": "Public Sector Success (STAR-aligned)",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "30001",
+      "title": "Mining Engineer Lands $180K FIFO Role at Major Iron Ore Operation",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "30002",
+      "title": "Registered Nurse Secures Clinical Nurse Consultant Role in Major Hospital",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "30003",
+      "title": "APS Officer Promoted to Executive Level 1 in Federal Government",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "30004",
+      "title": "Software Engineer Joins Leading Tech Company with 40% Salary Increase",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "60001",
+      "title": "Mining Engineer Secures Senior Role at BHP",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "60002",
+      "title": "Banking Professional Transitions to Commonwealth Bank Leadership",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "60003",
+      "title": "Retail Manager Advances to Woolworths Regional Leadership",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "60004",
+      "title": "IT Professional Lands Cloud Architecture Role at Telstra",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "60005",
+      "title": "Aviation Professional Secures Management Role at Qantas",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "60006",
+      "title": "Public Servant Promoted to Executive Level in Australian Government",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "60007",
+      "title": "Finance Professional Joins ANZ Bank Investment Team",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "60008",
+      "title": "Project Manager Secures Senior Role at Rio Tinto",
+      "published": "1",
+      "featured": "1"
+    },
+    {
+      "id": "60009",
+      "title": "Banking Analyst Advances to Westpac Corporate Banking",
+      "published": "1",
+      "featured": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tpublished\tfeatured\n1\tTransforming a Career Path into Mining Opportunities\t1\t1\n2\tMature-Age Jobseeker Overcoming Barriers\t1\t1\n3\tPublic Sector Success (STAR-aligned)\t1\t1\n30001\tMining Engineer Lands $180K FIFO Role at Major Iron Ore Operation\t1\t1\n30002\tRegistered Nurse Secures Clinical Nurse Consultant Role in Major Hospital\t1\t1\n30003\tAPS Officer Promoted to Executive Level 1 in Federal Government\t1\t1\n30004\tSoftware Engineer Joins Leading Tech Company with 40% Salary Increase\t1\t1\n60001\tMining Engineer Secures Senior Role at BHP\t1\t1\n60002\tBanking Professional Transitions to Commonwealth Bank Leadership\t1\t1\n60003\tRetail Manager Advances to Woolworths Regional Leadership\t1\t1\n60004\tIT Professional Lands Cloud Architecture Role at Telstra\t1\t1\n60005\tAviation Professional Secures Management Role at Qantas\t1\t1\n60006\tPublic Servant Promoted to Executive Level in Australian Government\t1\t1\n60007\tFinance Professional Joins ANZ Bank Investment Team\t1\t1\n60008\tProject Manager Secures Senior Role at Rio Tinto\t1\t1\n60009\tBanking Analyst Advances to Westpac Corporate Banking\t1\t1\n",
+  "stderr": "",
+  "execution_time_ms": 1512
+}

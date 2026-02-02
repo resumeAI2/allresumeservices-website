@@ -1,0 +1,19 @@
+{
+  "query": "SELECT SUBSTRING(content, LOCATE('Career Stage', content) - 50, 500) as sample FROM blog_posts WHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly' LIMIT 1",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT SUBSTRING(content, LOCATE('Career Stage', content) - 50, 500) as sample FROM blog_posts WHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly' LIMIT 1",
+  "rows": [
+    {
+      "sample": " documents, and tailor your application for every career stage. We’ll provide clear, actionable steps, practical examples, and insights into why our expert resume writing service is your best bet for turning applications into interview invitations.</p>"
+    },
+    {
+      "sample": "<p>## How to Craft a Winning CV for the Australian Job Market</p>"
+    },
+    {
+      "sample": "<p>An effective Australian CV is a strategic blend of clear organisation, smart keyword integration, and compelling content designed to capture the attention of both human recruit"
+    }
+  ],
+  "messages": [],
+  "stdout": "sample\n documents, and tailor your application for every career stage. We’ll provide clear, actionable steps, practical examples, and insights into why our expert resume writing service is your best bet for turning applications into interview invitations.</p>\n\n<p>## How to Craft a Winning CV for the Australian Job Market</p>\n\n<p>An effective Australian CV is a strategic blend of clear organisation, smart keyword integration, and compelling content designed to capture the attention of both human recruit\n",
+  "stderr": "",
+  "execution_time_ms": 1705
+}

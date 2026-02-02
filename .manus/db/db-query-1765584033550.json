@@ -1,0 +1,34 @@
+{
+  "query": "SELECT * FROM resume_samples ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT * FROM resume_samples ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "title": "Executive Leadership Transformation - David Miller",
+      "industry": "Management",
+      "beforeImage": "/resume-samples/before-executive-david-miller.png",
+      "afterImage": "/resume-samples/after-executive-david-miller.jpg",
+      "description": "Transformed a basic executive resume into a comprehensive leadership profile showcasing strategic competencies, key attributes, and measurable achievements. Enhanced visual hierarchy and professional presentation to attract C-suite opportunities.",
+      "improvements": "[\"Added comprehensive competencies section highlighting strategic planning and business development\",\"Developed detailed key attributes with quantifiable achievements\",\"Enhanced visual design with professional formatting and clear sections\",\"Incorporated industry-specific keywords for ATS optimization\",\"Structured content to emphasize leadership impact and business results\"]",
+      "sortOrder": "1",
+      "createdAt": "2025-12-12 07:55:31",
+      "updatedAt": "2025-12-12 07:55:31"
+    },
+    {
+      "id": "2",
+      "title": "Construction & FIFO Professional - Greg Read",
+      "industry": "Construction",
+      "beforeImage": "/resume-samples/before-construction-greg-read.png",
+      "afterImage": "/resume-samples/after-construction-greg-read.jpg",
+      "description": "Elevated a simple FIFO worker resume into a comprehensive professional profile highlighting technical proficiency, safety focus, and operational leadership. Modern design with clear sections for certifications and key attributes.",
+      "improvements": "[\"Created detailed profile showcasing technical skills and safety commitment\",\"Added comprehensive key attributes section with specific competencies\",\"Highlighted relevant certifications and training prominently\",\"Improved visual layout with modern design and clear information hierarchy\",\"Emphasized safety focus and operational excellence for mining/construction roles\"]",
+      "sortOrder": "2",
+      "createdAt": "2025-12-12 07:55:32",
+      "updatedAt": "2025-12-12 07:55:32"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tindustry\tbeforeImage\tafterImage\tdescription\timprovements\tsortOrder\tcreatedAt\tupdatedAt\n1\tExecutive Leadership Transformation - David Miller\tManagement\t/resume-samples/before-executive-david-miller.png\t/resume-samples/after-executive-david-miller.jpg\tTransformed a basic executive resume into a comprehensive leadership profile showcasing strategic competencies, key attributes, and measurable achievements. Enhanced visual hierarchy and professional presentation to attract C-suite opportunities.\t[\"Added comprehensive competencies section highlighting strategic planning and business development\",\"Developed detailed key attributes with quantifiable achievements\",\"Enhanced visual design with professional formatting and clear sections\",\"Incorporated industry-specific keywords for ATS optimization\",\"Structured content to emphasize leadership impact and business results\"]\t1\t2025-12-12 07:55:31\t2025-12-12 07:55:31\n2\tConstruction & FIFO Professional - Greg Read\tConstruction\t/resume-samples/before-construction-greg-read.png\t/resume-samples/after-construction-greg-read.jpg\tElevated a simple FIFO worker resume into a comprehensive professional profile highlighting technical proficiency, safety focus, and operational leadership. Modern design with clear sections for certifications and key attributes.\t[\"Created detailed profile showcasing technical skills and safety commitment\",\"Added comprehensive key attributes section with specific competencies\",\"Highlighted relevant certifications and training prominently\",\"Improved visual layout with modern design and clear information hierarchy\",\"Emphasized safety focus and operational excellence for mining/construction roles\"]\t2\t2025-12-12 07:55:32\t2025-12-12 07:55:32\n",
+  "stderr": "",
+  "execution_time_ms": 2129
+}

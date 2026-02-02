@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, title, slug, LEFT(content, 500) as content_preview FROM blog_posts WHERE slug = 'turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you' LIMIT 1",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, slug, LEFT(content, 500) as content_preview FROM blog_posts WHERE slug = 'turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you' LIMIT 1",
+  "rows": [
+    {
+      "id": "120046",
+      "title": "Revitalize Your Resume: A Marketing Tool for Australian Jobs",
+      "slug": "turn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you",
+      "content_preview": "<p>###### Introduction: Resurrect Your Resume</p>"
+    }
+  ],
+  "messages": [
+    "<p>Is your resume not opening doors but rather closing them before you even get a knock? You’re not alone. Across the Australian job landscape, countless skilled individuals are struggling to showcase their abilities, often due to resumes that fail to strike a chord with employers. Here’s the good news: with All Resume Services, your current ‘dead-on-arrival’ document can be revitalised into a powerful marketing tool—one that truly conveys your "
+  ],
+  "stdout": "id\ttitle\tslug\tcontent_preview\n120046\tRevitalize Your Resume: A Marketing Tool for Australian Jobs\tturn-your-dead-on-arrival-resume-into-a-powerful-marketing-tool-that-sells-you\t<p>###### Introduction: Resurrect Your Resume</p>\n\n<p>Is your resume not opening doors but rather closing them before you even get a knock? You’re not alone. Across the Australian job landscape, countless skilled individuals are struggling to showcase their abilities, often due to resumes that fail to strike a chord with employers. Here’s the good news: with All Resume Services, your current ‘dead-on-arrival’ document can be revitalised into a powerful marketing tool—one that truly conveys your \n",
+  "stderr": "",
+  "execution_time_ms": 1596
+}

@@ -1,0 +1,13 @@
+{
+  "query": "SELECT CASE WHEN content LIKE '%Table 1: Recommended CV Length%' THEN 'Caption found!' ELSE 'Caption not found' END as status FROM blog_posts WHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly'",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT CASE WHEN content LIKE '%Table 1: Recommended CV Length%' THEN 'Caption found!' ELSE 'Caption not found' END as status FROM blog_posts WHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly'",
+  "rows": [
+    {
+      "status": "Caption found!"
+    }
+  ],
+  "messages": [],
+  "stdout": "status\nCaption found!\n",
+  "stderr": "",
+  "execution_time_ms": 1669
+}

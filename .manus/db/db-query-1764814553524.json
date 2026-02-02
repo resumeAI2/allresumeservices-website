@@ -1,0 +1,94 @@
+{
+  "query": "SELECT id, name, description, category FROM services ORDER BY category, id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, name, description, category FROM services ORDER BY category, id;",
+  "rows": [
+    {
+      "id": "12",
+      "name": "Rush Delivery (24-48 hours)",
+      "description": "Expedited delivery within 24-48 hours",
+      "category": "Add-on"
+    },
+    {
+      "id": "13",
+      "name": "Additional Revisions (3 extra)",
+      "description": "Three additional revision rounds",
+      "category": "Add-on"
+    },
+    {
+      "id": "14",
+      "name": "Phone Consultation (30 min)",
+      "description": "One-on-one career consultation with expert",
+      "category": "Add-on"
+    },
+    {
+      "id": "4",
+      "name": "Entry Level Cover Letter",
+      "description": "Compelling cover letter for entry-level applications",
+      "category": "Cover Letter"
+    },
+    {
+      "id": "5",
+      "name": "Professional Cover Letter",
+      "description": "Strategic cover letter for professional positions",
+      "category": "Cover Letter"
+    },
+    {
+      "id": "6",
+      "name": "Executive Cover Letter",
+      "description": "Executive-level cover letter showcasing leadership",
+      "category": "Cover Letter"
+    },
+    {
+      "id": "7",
+      "name": "LinkedIn Profile Optimization",
+      "description": "Complete LinkedIn profile makeover for maximum visibility",
+      "category": "LinkedIn"
+    },
+    {
+      "id": "9",
+      "name": "Basic Package",
+      "description": "Resume + Cover Letter for entry-level professionals",
+      "category": "Package"
+    },
+    {
+      "id": "10",
+      "name": "Standard Package",
+      "description": "Resume + Cover Letter + LinkedIn for professionals",
+      "category": "Package"
+    },
+    {
+      "id": "11",
+      "name": "Premium Package",
+      "description": "Complete career package for executives",
+      "category": "Package"
+    },
+    {
+      "id": "1",
+      "name": "Entry Level Resume",
+      "description": "Professional resume writing for entry-level positions and recent graduates",
+      "category": "Resume"
+    },
+    {
+      "id": "2",
+      "name": "Professional Resume",
+      "description": "Comprehensive resume for mid-level professionals with 3-10 years experience",
+      "category": "Resume"
+    },
+    {
+      "id": "3",
+      "name": "Executive Resume",
+      "description": "Premium resume for senior executives and C-level professionals",
+      "category": "Resume"
+    },
+    {
+      "id": "8",
+      "name": "Selection Criteria Response",
+      "description": "Professional responses to government selection criteria using STAR method",
+      "category": "Selection Criteria"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tdescription\tcategory\n12\tRush Delivery (24-48 hours)\tExpedited delivery within 24-48 hours\tAdd-on\n13\tAdditional Revisions (3 extra)\tThree additional revision rounds\tAdd-on\n14\tPhone Consultation (30 min)\tOne-on-one career consultation with expert\tAdd-on\n4\tEntry Level Cover Letter\tCompelling cover letter for entry-level applications\tCover Letter\n5\tProfessional Cover Letter\tStrategic cover letter for professional positions\tCover Letter\n6\tExecutive Cover Letter\tExecutive-level cover letter showcasing leadership\tCover Letter\n7\tLinkedIn Profile Optimization\tComplete LinkedIn profile makeover for maximum visibility\tLinkedIn\n9\tBasic Package\tResume + Cover Letter for entry-level professionals\tPackage\n10\tStandard Package\tResume + Cover Letter + LinkedIn for professionals\tPackage\n11\tPremium Package\tComplete career package for executives\tPackage\n1\tEntry Level Resume\tProfessional resume writing for entry-level positions and recent graduates\tResume\n2\tProfessional Resume\tComprehensive resume for mid-level professionals with 3-10 years experience\tResume\n3\tExecutive Resume\tPremium resume for senior executives and C-level professionals\tResume\n8\tSelection Criteria Response\tProfessional responses to government selection criteria using STAR method\tSelection Criteria\n",
+  "stderr": "",
+  "execution_time_ms": 1559
+}

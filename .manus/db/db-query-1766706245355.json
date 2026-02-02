@@ -1,0 +1,16 @@
+{
+  "query": "SELECT id, title, metaDescription, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) NOT BETWEEN 120 AND 160;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, metaDescription, LENGTH(metaDescription) as len FROM blog_posts WHERE LENGTH(metaDescription) NOT BETWEEN 120 AND 160;",
+  "rows": [
+    {
+      "id": "120040",
+      "title": "Professional Resume Writer Benefits: Get Hired!",
+      "metaDescription": "In today’s job market, the importance of a resume is greater than ever before. With so many people vying for the same positions, it’s essential that your res",
+      "len": "161"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\ttitle\tmetaDescription\tlen\n120040\tProfessional Resume Writer Benefits: Get Hired!\tIn today’s job market, the importance of a resume is greater than ever before. With so many people vying for the same positions, it’s essential that your res\t161\n",
+  "stderr": "",
+  "execution_time_ms": 1535
+}

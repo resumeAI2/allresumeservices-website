@@ -16,42 +16,6 @@ async function getApp() {
   const express = (await import("express")).default;
   app = express();
 
-  // Add request ID for tracking and debugging
-  const { requestIdMiddleware } = await import("../server/middleware/requestId");
-  app.use(requestIdMiddleware);
-
-  // Add performance monitoring (logs slow requests)
-  const { performanceMonitoring } = await import("../server/middleware/performance");
-  app.use(performanceMonitoring);
-
-  // Security: Add Helmet.js for security headers
-  // TODO: Install helmet: pnpm add helmet
-  // TODO: Uncomment once installed:
-  // const helmet = (await import("helmet")).default;
-  // app.use(helmet({
-  //   contentSecurityPolicy: {
-  //     directives: {
-  //       defaultSrc: ["'self'"],
-  //       scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com"],
-  //       styleSrc: ["'self'", "'unsafe-inline'"],
-  //       imgSrc: ["'self'", "data:", "https:", "blob:"],
-  //       fontSrc: ["'self'", "data:"],
-  //       connectSrc: ["'self'", "https://*.neon.tech"],
-  //     },
-  //   },
-  //   xContentTypeOptions: true,
-  //   xFrameOptions: { action: 'deny' },
-  //   xXssProtection: true,
-  //   referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
-  //   permissionsPolicy: {
-  //     features: {
-  //       geolocation: ["'none'"],
-  //       camera: ["'none'"],
-  //       microphone: ["'none'"],
-  //     },
-  //   },
-  // }));
-
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
@@ -66,8 +30,7 @@ async function getApp() {
   app.get("/sitemap.xml", async (req: any, res: any) => {
     try {
       const sitemapRoute = await import("../server/routes/sitemap.xml.js");
-      const handler = sitemapRoute.GET as any;
-      await handler(req, res);
+      await sitemapRoute.GET(req, res);
     } catch (error) {
       console.error("[Sitemap] Error:", error);
       res.status(500).send("Error generating sitemap");
@@ -77,8 +40,7 @@ async function getApp() {
   app.get("/robots.txt", async (req: any, res: any) => {
     try {
       const robotsRoute = await import("../server/routes/robots.txt.js");
-      const handler = robotsRoute.GET as any;
-      await handler(req, res);
+      await robotsRoute.GET(req, res);
     } catch (error) {
       console.error("[Robots] Error:", error);
       res.status(500).send("Error generating robots.txt");
@@ -91,13 +53,8 @@ async function getApp() {
       // Verify cron secret for security
       const cronSecret = process.env.CRON_SECRET;
       const providedSecret = req.headers.authorization?.replace("Bearer ", "") || req.query.secret;
-
-      if (!cronSecret) {
-        console.error("[Cron Backup] CRON_SECRET not configured - endpoint disabled");
-        return res.status(503).json({ error: "Cron endpoint not configured" });
-      }
-
-      if (providedSecret !== cronSecret) {
+      
+      if (cronSecret && providedSecret !== cronSecret) {
         console.error("[Cron Backup] Unauthorized access attempt");
         return res.status(401).json({ error: "Unauthorized" });
       }
@@ -133,13 +90,8 @@ async function getApp() {
       // Verify cron secret for security
       const cronSecret = process.env.CRON_SECRET;
       const providedSecret = req.headers.authorization?.replace("Bearer ", "") || req.query.secret;
-
-      if (!cronSecret) {
-        console.error("[Cron Review Requests] CRON_SECRET not configured - endpoint disabled");
-        return res.status(503).json({ error: "Cron endpoint not configured" });
-      }
-
-      if (providedSecret !== cronSecret) {
+      
+      if (cronSecret && providedSecret !== cronSecret) {
         console.error("[Cron Review Requests] Unauthorized access attempt");
         return res.status(401).json({ error: "Unauthorized" });
       }
@@ -153,6 +105,7 @@ async function getApp() {
         success: true,
         message: "Review requests processed",
         processed: result?.processed || 0,
+        sent: result?.sent || 0,
         timestamp: new Date().toISOString(),
       });
     } catch (error) {

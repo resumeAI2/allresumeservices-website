@@ -1,0 +1,25 @@
+{
+  "query": "SELECT SUBSTRING(content, LOCATE('| Career Stage |', content), 500) as table_section \nFROM blog_posts \nWHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly'",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT SUBSTRING(content, LOCATE('| Career Stage |', content), 500) as table_section \nFROM blog_posts \nWHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly'",
+  "rows": [
+    {
+      "table_section": "| Career Stage | Ideal Length | Why This Length Works |"
+    },
+    {
+      "table_section": "| --- | --- | --- |"
+    },
+    {
+      "table_section": "| Graduate / Entry Level | 1–2 pages | Focuses on education, internships, and foundational skills. |"
+    },
+    {
+      "table_section": "| Early to Mid-Career | 2–3 pages | Effectively balances detailed experience with demonstrated impact. |"
+    },
+    {
+      "table_section": "| Senior / Executive Level | 3–5 pages | Provides ample space to showcase leadership achievements and strategic contributions. | Adhering to these length guidelines helps maintain recruiter interest while accurately re"
+    }
+  ],
+  "messages": [],
+  "stdout": "table_section\n| Career Stage | Ideal Length | Why This Length Works |\n| --- | --- | --- |\n| Graduate / Entry Level | 1–2 pages | Focuses on education, internships, and foundational skills. |\n| Early to Mid-Career | 2–3 pages | Effectively balances detailed experience with demonstrated impact. |\n| Senior / Executive Level | 3–5 pages | Provides ample space to showcase leadership achievements and strategic contributions. | Adhering to these length guidelines helps maintain recruiter interest while accurately re\n",
+  "stderr": "",
+  "execution_time_ms": 2166
+}

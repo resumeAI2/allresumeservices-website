@@ -1,0 +1,290 @@
+{
+  "query": "SELECT id, title, metaDescription, LENGTH(metaDescription) as len FROM blog_posts ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT id, title, metaDescription, LENGTH(metaDescription) as len FROM blog_posts ORDER BY id;",
+  "rows": [
+    {
+      "id": "90001",
+      "title": "Transform Your Resume with Powerful Action Verbs",
+      "metaDescription": "Learn how to transform your resume with powerful action verbs. Expert tips for ATS optimization and Australian job market success from All Resume Services.",
+      "len": "155"
+    },
+    {
+      "id": "120001",
+      "title": "All Resume Services: Turn Your Resume into a Marketing Tool",
+      "metaDescription": "Craft a standout resume, unlock new job opportunities.",
+      "len": "54"
+    },
+    {
+      "id": "120002",
+      "title": "Professional Resume Services: Stand Out in Australia (2025)",
+      "metaDescription": "The job search process in Australia can often feel like wading through a crowded beach, trying to catch the eye of the ultimate employer. Amidst a sea of candid",
+      "len": "160"
+    },
+    {
+      "id": "120003",
+      "title": "ATS Resume Help: All Resume Services Boosts Your Job Search",
+      "metaDescription": "ATS Resume Help: All Resume Services helps your job search in Australia. Get ATS-friendly resumes that stand out. Contact us now!",
+      "len": "129"
+    },
+    {
+      "id": "120004",
+      "title": "Resume Optimization: All Resume Services' Expert Tips",
+      "metaDescription": "All Resume Services: Don't sell yourself short! Get a professional resume that highlights your strengths and lands you your dream job.",
+      "len": "134"
+    },
+    {
+      "id": "120005",
+      "title": "All Resume Services: Expert Scannable Resume Writing",
+      "metaDescription": "Boost your job chances with a pro scannable resume.",
+      "len": "51"
+    },
+    {
+      "id": "120006",
+      "title": "Wow Hiring Managers: Expert Resume Writing Tips 2023",
+      "metaDescription": "Wow Hiring Managers: Showcase your accomplishments! All Resume Services helps you create a standout resume for the Australian job market in 2025.",
+      "len": "145"
+    },
+    {
+      "id": "120007",
+      "title": "Gifting Resumes in Australia",
+      "metaDescription": "Boost your Aussie job search with expert resume tips.",
+      "len": "53"
+    },
+    {
+      "id": "120008",
+      "title": "Selection Criteria Help: All Resume Services' Expert Guide",
+      "metaDescription": "Master Selection Criteria Responses for Job Success",
+      "len": "51"
+    },
+    {
+      "id": "120009",
+      "title": "Avoid Cheap Resume Services: Get Expert Help in Australia",
+      "metaDescription": "Boost job prospects with a quality resume.",
+      "len": "42"
+    },
+    {
+      "id": "120010",
+      "title": "Home Truths About Job Hunting: Get Expert Help in Australia",
+      "metaDescription": "All Resume Services offers expert job hunting help in Australia. Get personalized application strategies to boost your chances of success.",
+      "len": "138"
+    },
+    {
+      "id": "120011",
+      "title": "Stand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES",
+      "metaDescription": "Revamp your career with our senior management resume services. Create a standout leadership resume that showcases your executive skills and achievements.",
+      "len": "153"
+    },
+    {
+      "id": "120012",
+      "title": "LinkedIn & Brand: Job Search with All Resume Services",
+      "metaDescription": "LinkedIn & Brand: All Resume Services helps you boost your job search with a strong LinkedIn profile and resume. Get noticed in Australia!",
+      "len": "138"
+    },
+    {
+      "id": "120013",
+      "title": "Optimize Your Resume for ATS in Australia: Expert Tips",
+      "metaDescription": "Optimize your resume for ATS in Australia with expert tips from All Resume Services. Get your application noticed and land more interviews in 2025.",
+      "len": "147"
+    },
+    {
+      "id": "120014",
+      "title": "Professional resumes: Get Overhired with Expert Help",
+      "metaDescription": "Need a standout resume? All resume Services offers expert help to get you overhired. Contact us for a professional resume that gets results!",
+      "len": "140"
+    },
+    {
+      "id": "120015",
+      "title": "All Resume Services: Australian Job Application Guide",
+      "metaDescription": "Craft a winning job application letter for the Australian market.",
+      "len": "65"
+    },
+    {
+      "id": "120016",
+      "title": "Are you looking to improve your resume and increase your chances of getting hired in Australia?",
+      "metaDescription": "Australia Resume Services: Get hired with a professional resume! Enhance your job search in Australia with expert resume writing services. Contact us now!",
+      "len": "154"
+    },
+    {
+      "id": "120017",
+      "title": "10 Pointers for Writing an Outstanding Resume",
+      "metaDescription": "In many cases, your resume is your first opportunity to make a good impression on a potential employer. Your dream job may be within reach if you have a strong ",
+      "len": "160"
+    },
+    {
+      "id": "120018",
+      "title": "Land Your Job: Professional resume Help in Australia (2025)",
+      "metaDescription": "Need a job in Australia? All resume Services provides expert resume help to land your dream role. Get started today!",
+      "len": "116"
+    },
+    {
+      "id": "120019",
+      "title": "Write Your First resume: Expert Guide by All Resume Services",
+      "metaDescription": "Craft a winning first resume with ease!",
+      "len": "39"
+    },
+    {
+      "id": "120020",
+      "title": "Australia Job Search in 2025: All resume Services Guide",
+      "metaDescription": "Australia Job Search in 2025: All resume Services provides expert resume writing to help you succeed in your job search. Get professional help today!",
+      "len": "149"
+    },
+    {
+      "id": "120021",
+      "title": "Mining Resume: Expert Tips from All Resume Services",
+      "metaDescription": "Mining Resume: Get expert tips from All Resume Services to create a standout resume. Highlight your skills and land your dream mining job.",
+      "len": "138"
+    },
+    {
+      "id": "120022",
+      "title": "Elevate Your Career with Expert Resume Services",
+      "metaDescription": "Boost your career prospects with expert resume services. Craft a powerful resume that highlights your strengths and sets you apart from the competition.",
+      "len": "152"
+    },
+    {
+      "id": "120023",
+      "title": "Resume Writing Services: Are They Worth It? (Australia)",
+      "metaDescription": "Need a standout resume? All Resume Services helps you craft a compelling application for the Australian job market. Get noticed!",
+      "len": "128"
+    },
+    {
+      "id": "120024",
+      "title": "Winning Selection Criteria: All Resume Services' Approach",
+      "metaDescription": "Selection Criteria: All Resume Services helps you create winning responses. Improve your job applications and stand out in Australia.",
+      "len": "133"
+    },
+    {
+      "id": "120025",
+      "title": "5 Tips to Choose a resume Writer: All Resume Services Guide",
+      "metaDescription": "Selecting the right resume writer is crucial for crafting a document that not only showcases your skills and experiences but also resonates with potential emplo",
+      "len": "160"
+    },
+    {
+      "id": "120026",
+      "title": "Resume Tips: All Resume Services' Guide to Winning in 2025",
+      "metaDescription": "Craft a powerful resume with All Resume Services! Get winning tips for 2025 to showcase your skills, highlight achievements, and build your personal brand.",
+      "len": "155"
+    },
+    {
+      "id": "120027",
+      "title": "Selection Criteria: How to Write Effectively in 2025",
+      "metaDescription": "Selection Criteria: All resume Services provides expert tips to help you write effective selection criteria for 2025 job applications.",
+      "len": "134"
+    },
+    {
+      "id": "120028",
+      "title": "Selection Criteria Success: Get Interviewed! - 2025",
+      "metaDescription": "Selection criteria success! All Resume Services helps you get interviews with expert responses. Stand out and boost your job application in 2025.",
+      "len": "145"
+    },
+    {
+      "id": "120029",
+      "title": "LinkedIn Profile Benefits: Boost Your Career in 2025",
+      "metaDescription": "Unlock LinkedIn's Power: Boost Your Career & Networking Success",
+      "len": "63"
+    },
+    {
+      "id": "120030",
+      "title": "Boost Your Resume: Professional Resume Writers in 2025",
+      "metaDescription": "Get a winning resume! All Resume Services' professional writers create standout resumes and cover letters to boost your job search in 2025.",
+      "len": "139"
+    },
+    {
+      "id": "120031",
+      "title": "Mining Resumes: Get Hired with Expert Help | 2025",
+      "metaDescription": "Mining Resumes: Need a mining job? All Resume Services provides expert resume writing to help you get hired in 2025.",
+      "len": "116"
+    },
+    {
+      "id": "120032",
+      "title": "Resume Help for Freshers: All Resume Services in 2025",
+      "metaDescription": "Get hired with a pro resume, no experience needed.",
+      "len": "50"
+    },
+    {
+      "id": "120033",
+      "title": "Unlock Opportunities with Expert Mid-Career Resume Help - ALL RESUME SERVICES",
+      "metaDescription": "Unlock new job opportunities with our expert mid-career resume help. Tailored drafts enhance your experienced or professional resume for impactful applications.",
+      "len": "160"
+    },
+    {
+      "id": "120034",
+      "title": "Why You Should Hire Professional Resume Writer",
+      "metaDescription": "All Resume Services offers expert resume writing help to boost your job search. Get a professional resume and expert advice today.",
+      "len": "130"
+    },
+    {
+      "id": "120035",
+      "title": "Professional Mining Resume: Get Hired in 2025",
+      "metaDescription": "Mining Resume: Secure your next job with a professional resume from All Resume Services. Tailored for 2025, contact us for a winning resume!",
+      "len": "140"
+    },
+    {
+      "id": "120036",
+      "title": "ATS Resume Tips: All Resume Services Can Help You Succeed",
+      "metaDescription": "Unlock ATS: Get noticed by recruiters!",
+      "len": "38"
+    },
+    {
+      "id": "120037",
+      "title": "Why Use CV Services? Improve Your Career Prospects in 2025",
+      "metaDescription": "Boost your career with expert CV services in 2025! All Resume Services crafts standout CVs to help you land your ideal job.",
+      "len": "123"
+    },
+    {
+      "id": "120038",
+      "title": "Update Your CV: 8 Reasons Why (2025)",
+      "metaDescription": "Need to update your CV? All Resume Services shares 8 reasons why in 2025. Get expert CV writing tips to improve your job search.",
+      "len": "128"
+    },
+    {
+      "id": "120039",
+      "title": "Premium resume Writing Services By Top resume Writers",
+      "metaDescription": "Job seekers often face a lot of challenges when it comes to writing their resumes. For one, they’re not sure what format to use or what sections to include. Sec",
+      "len": "162"
+    },
+    {
+      "id": "120040",
+      "title": "Professional Resume Writer Benefits: Get Hired!",
+      "metaDescription": "In today’s job market, the importance of a resume is greater than ever before. With so many people vying for the same positions, it’s essential that your resume",
+      "len": "164"
+    },
+    {
+      "id": "120041",
+      "title": "Resume Writing Service: Benefits & Choosing the Right One",
+      "metaDescription": "Boost Your Career with Professional resume Writing Services",
+      "len": "59"
+    },
+    {
+      "id": "120042",
+      "title": "Affordable Basic Resume Writing - Stand Out in Your Job Hunt - ALL RESUME SERVICES",
+      "metaDescription": "Stand out in your job hunt with an affordable basic resume. Master entry-level applications and impress employers without breaking the bank. Get started now!",
+      "len": "157"
+    },
+    {
+      "id": "120044",
+      "title": "Effective CV Writing for Australian Career Success",
+      "metaDescription": "Effective CV writing for Australian jobs. Get expert strategies from All Resume Services to create a winning CV and land interviews.",
+      "len": "132"
+    },
+    {
+      "id": "120045",
+      "title": "Expert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES",
+      "metaDescription": "Unlock the secrets to crafting a winning resume effortlessly. Get expert CV help and transform your job applications into interview opportunities.",
+      "len": "146"
+    },
+    {
+      "id": "120046",
+      "title": "Revitalize Your Resume: A Marketing Tool for Australian Jobs",
+      "metaDescription": "Transform Your Resume: Open Doors, Not Close Them.",
+      "len": "50"
+    }
+  ],
+  "messages": [
+    "120043\tWrite Winning Selection Criteria for Government Roles Today!\t**URL:** https://www.allresumeservices.com.au/selection-criteria-writing-for-public-service-in-australia/",
+    "---",
+    "Nail Your Public Service Application: Expert Selec\t160"
+  ],
+  "stdout": "id\ttitle\tmetaDescription\tlen\n90001\tTransform Your Resume with Powerful Action Verbs\tLearn how to transform your resume with powerful action verbs. Expert tips for ATS optimization and Australian job market success from All Resume Services.\t155\n120001\tAll Resume Services: Turn Your Resume into a Marketing Tool\tCraft a standout resume, unlock new job opportunities.\t54\n120002\tProfessional Resume Services: Stand Out in Australia (2025)\tThe job search process in Australia can often feel like wading through a crowded beach, trying to catch the eye of the ultimate employer. Amidst a sea of candid\t160\n120003\tATS Resume Help: All Resume Services Boosts Your Job Search\tATS Resume Help: All Resume Services helps your job search in Australia. Get ATS-friendly resumes that stand out. Contact us now!\t129\n120004\tResume Optimization: All Resume Services' Expert Tips\tAll Resume Services: Don't sell yourself short! Get a professional resume that highlights your strengths and lands you your dream job.\t134\n120005\tAll Resume Services: Expert Scannable Resume Writing\tBoost your job chances with a pro scannable resume.\t51\n120006\tWow Hiring Managers: Expert Resume Writing Tips 2023\tWow Hiring Managers: Showcase your accomplishments! All Resume Services helps you create a standout resume for the Australian job market in 2025.\t145\n120007\tGifting Resumes in Australia\tBoost your Aussie job search with expert resume tips.\t53\n120008\tSelection Criteria Help: All Resume Services' Expert Guide\tMaster Selection Criteria Responses for Job Success\t51\n120009\tAvoid Cheap Resume Services: Get Expert Help in Australia\tBoost job prospects with a quality resume.\t42\n120010\tHome Truths About Job Hunting: Get Expert Help in Australia\tAll Resume Services offers expert job hunting help in Australia. Get personalized application strategies to boost your chances of success.\t138\n120011\tStand Out with Top-notch Senior Management Resume Services - ALL RESUME SERVICES\tRevamp your career with our senior management resume services. Create a standout leadership resume that showcases your executive skills and achievements.\t153\n120012\tLinkedIn & Brand: Job Search with All Resume Services\tLinkedIn & Brand: All Resume Services helps you boost your job search with a strong LinkedIn profile and resume. Get noticed in Australia!\t138\n120013\tOptimize Your Resume for ATS in Australia: Expert Tips\tOptimize your resume for ATS in Australia with expert tips from All Resume Services. Get your application noticed and land more interviews in 2025.\t147\n120014\tProfessional resumes: Get Overhired with Expert Help\tNeed a standout resume? All resume Services offers expert help to get you overhired. Contact us for a professional resume that gets results!\t140\n120015\tAll Resume Services: Australian Job Application Guide\tCraft a winning job application letter for the Australian market.\t65\n120016\tAre you looking to improve your resume and increase your chances of getting hired in Australia?\tAustralia Resume Services: Get hired with a professional resume! Enhance your job search in Australia with expert resume writing services. Contact us now!\t154\n120017\t10 Pointers for Writing an Outstanding Resume\tIn many cases, your resume is your first opportunity to make a good impression on a potential employer. Your dream job may be within reach if you have a strong \t160\n120018\tLand Your Job: Professional resume Help in Australia (2025)\tNeed a job in Australia? All resume Services provides expert resume help to land your dream role. Get started today!\t116\n120019\tWrite Your First resume: Expert Guide by All Resume Services\tCraft a winning first resume with ease!\t39\n120020\tAustralia Job Search in 2025: All resume Services Guide\tAustralia Job Search in 2025: All resume Services provides expert resume writing to help you succeed in your job search. Get professional help today!\t149\n120021\tMining Resume: Expert Tips from All Resume Services\tMining Resume: Get expert tips from All Resume Services to create a standout resume. Highlight your skills and land your dream mining job.\t138\n120022\tElevate Your Career with Expert Resume Services\tBoost your career prospects with expert resume services. Craft a powerful resume that highlights your strengths and sets you apart from the competition.\t152\n120023\tResume Writing Services: Are They Worth It? (Australia)\tNeed a standout resume? All Resume Services helps you craft a compelling application for the Australian job market. Get noticed!\t128\n120024\tWinning Selection Criteria: All Resume Services' Approach\tSelection Criteria: All Resume Services helps you create winning responses. Improve your job applications and stand out in Australia.\t133\n120025\t5 Tips to Choose a resume Writer: All Resume Services Guide\tSelecting the right resume writer is crucial for crafting a document that not only showcases your skills and experiences but also resonates with potential emplo\t160\n120026\tResume Tips: All Resume Services' Guide to Winning in 2025\tCraft a powerful resume with All Resume Services! Get winning tips for 2025 to showcase your skills, highlight achievements, and build your personal brand.\t155\n120027\tSelection Criteria: How to Write Effectively in 2025\tSelection Criteria: All resume Services provides expert tips to help you write effective selection criteria for 2025 job applications.\t134\n120028\tSelection Criteria Success: Get Interviewed! - 2025\tSelection criteria success! All Resume Services helps you get interviews with expert responses. Stand out and boost your job application in 2025.\t145\n120029\tLinkedIn Profile Benefits: Boost Your Career in 2025\tUnlock LinkedIn's Power: Boost Your Career & Networking Success\t63\n120030\tBoost Your Resume: Professional Resume Writers in 2025\tGet a winning resume! All Resume Services' professional writers create standout resumes and cover letters to boost your job search in 2025.\t139\n120031\tMining Resumes: Get Hired with Expert Help | 2025\tMining Resumes: Need a mining job? All Resume Services provides expert resume writing to help you get hired in 2025.\t116\n120032\tResume Help for Freshers: All Resume Services in 2025\tGet hired with a pro resume, no experience needed.\t50\n120033\tUnlock Opportunities with Expert Mid-Career Resume Help - ALL RESUME SERVICES\tUnlock new job opportunities with our expert mid-career resume help. Tailored drafts enhance your experienced or professional resume for impactful applications.\t160\n120034\tWhy You Should Hire Professional Resume Writer\tAll Resume Services offers expert resume writing help to boost your job search. Get a professional resume and expert advice today.\t130\n120035\tProfessional Mining Resume: Get Hired in 2025\tMining Resume: Secure your next job with a professional resume from All Resume Services. Tailored for 2025, contact us for a winning resume!\t140\n120036\tATS Resume Tips: All Resume Services Can Help You Succeed\tUnlock ATS: Get noticed by recruiters!\t38\n120037\tWhy Use CV Services? Improve Your Career Prospects in 2025\tBoost your career with expert CV services in 2025! All Resume Services crafts standout CVs to help you land your ideal job.\t123\n120038\tUpdate Your CV: 8 Reasons Why (2025)\tNeed to update your CV? All Resume Services shares 8 reasons why in 2025. Get expert CV writing tips to improve your job search.\t128\n120039\tPremium resume Writing Services By Top resume Writers\tJob seekers often face a lot of challenges when it comes to writing their resumes. For one, they’re not sure what format to use or what sections to include. Sec\t162\n120040\tProfessional Resume Writer Benefits: Get Hired!\tIn today’s job market, the importance of a resume is greater than ever before. With so many people vying for the same positions, it’s essential that your resume\t164\n120041\tResume Writing Service: Benefits & Choosing the Right One\tBoost Your Career with Professional resume Writing Services\t59\n120042\tAffordable Basic Resume Writing - Stand Out in Your Job Hunt - ALL RESUME SERVICES\tStand out in your job hunt with an affordable basic resume. Master entry-level applications and impress employers without breaking the bank. Get started now!\t157\n120043\tWrite Winning Selection Criteria for Government Roles Today!\t**URL:** https://www.allresumeservices.com.au/selection-criteria-writing-for-public-service-in-australia/\n---\nNail Your Public Service Application: Expert Selec\t160\n120044\tEffective CV Writing for Australian Career Success\tEffective CV writing for Australian jobs. Get expert strategies from All Resume Services to create a winning CV and land interviews.\t132\n120045\tExpert CV Help for Crafting Winning Resumes Effortlessly - ALL RESUME SERVICES\tUnlock the secrets to crafting a winning resume effortlessly. Get expert CV help and transform your job applications into interview opportunities.\t146\n120046\tRevitalize Your Resume: A Marketing Tool for Australian Jobs\tTransform Your Resume: Open Doors, Not Close Them.\t50\n",
+  "stderr": "",
+  "execution_time_ms": 1628
+}

@@ -1,0 +1,25 @@
+{
+  "query": "SELECT SUBSTRING(content, LOCATE('| Career Stage', content) - 150, 250) as table_context FROM blog_posts WHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly'",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user ijVUtDru4Z9cqPT.98f765e38313 --database YeXpL2RbTVxqVQqhWQzraf --execute SELECT SUBSTRING(content, LOCATE('| Career Stage', content) - 150, 250) as table_context FROM blog_posts WHERE slug = 'expert-cv-help-for-crafting-winning-resumes-effortlessly'",
+  "rows": [
+    {
+      "table_context": "ollowing table outlines recommended lengths for different levels.</p>"
+    },
+    {
+      "table_context": "<p>Here’s a guide to appropriate CV length based on your career stage:</p>"
+    },
+    {
+      "table_context": "<p>| Career Stage | Ideal Length | Why This Length Works |"
+    },
+    {
+      "table_context": "| --- | --- | --- |"
+    },
+    {
+      "table_context": "| Graduate / Entry Level"
+    }
+  ],
+  "messages": [],
+  "stdout": "table_context\nollowing table outlines recommended lengths for different levels.</p>\n\n<p>Here’s a guide to appropriate CV length based on your career stage:</p>\n\n<p>| Career Stage | Ideal Length | Why This Length Works |\n| --- | --- | --- |\n| Graduate / Entry Level\n",
+  "stderr": "",
+  "execution_time_ms": 1550
+}
