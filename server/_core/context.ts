@@ -5,9 +5,26 @@ import { auth } from "./auth";
 import { getDb } from "../db";
 import { users } from "../../drizzle/schema";
 
+// Extended request type for compatibility with both Express and Vercel
+interface ExtendedRequest {
+  protocol?: string;
+  headers?: Record<string, string | string[] | undefined>;
+  ip?: string;
+  socket?: { remoteAddress?: string };
+  get?: (name: string) => string | undefined;
+  [key: string]: any;
+}
+
+// Extended response type for compatibility with both Express and Vercel
+interface ExtendedResponse {
+  clearCookie?: (name: string, options?: any) => any;
+  cookie?: (name: string, value: string, options?: any) => any;
+  [key: string]: any;
+}
+
 export type TrpcContext = {
-  req: CreateExpressContextOptions["req"];
-  res: CreateExpressContextOptions["res"];
+  req: ExtendedRequest;
+  res: ExtendedResponse;
   user: User | null;
   session: Awaited<ReturnType<typeof auth>> | null;
 };

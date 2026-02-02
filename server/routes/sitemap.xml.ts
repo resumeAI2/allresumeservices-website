@@ -1,9 +1,21 @@
-import type { RequestHandler } from 'express';
 import { getDb } from '../db.js';
 import { blog_posts, case_studies } from '../../drizzle/schema.ts';
 import { eq } from 'drizzle-orm';
 
-export const GET: RequestHandler = async (req, res) => {
+// Generic request/response types to avoid Express/Vercel conflicts
+interface RequestLike {
+  protocol?: string;
+  get?: (name: string) => string | undefined;
+  headers?: Record<string, string | string[] | undefined>;
+}
+
+interface ResponseLike {
+  status: (code: number) => ResponseLike;
+  setHeader: (name: string, value: string) => void;
+  send: (body: string) => void;
+}
+
+export const GET = async (req: RequestLike, res: ResponseLike) => {
   try {
     // Get all published blog posts
     const db = await getDb();
@@ -19,8 +31,8 @@ export const GET: RequestHandler = async (req, res) => {
     }).from(blog_posts).where(eq(blog_posts.published, 1));
 
     // Get the base URL from the request
-    const protocol = req.protocol;
-    const host = req.get('host');
+    const protocol = req.protocol || "https";
+    const host = req.get?.('host') || req.headers?.['host'] || "www.allresumeservices.com.au";
     const baseUrl = `${protocol}://${host}`;
 
     // Define static pages

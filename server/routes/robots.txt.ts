@@ -1,8 +1,18 @@
-import type { RequestHandler } from 'express';
+// Generic request/response types to avoid Express/Vercel conflicts
+interface RequestLike {
+  protocol?: string;
+  get?: (name: string) => string | undefined;
+  headers?: Record<string, string | string[] | undefined>;
+}
 
-export const GET: RequestHandler = async (req, res) => {
-  const protocol = req.protocol;
-  const host = req.get('host');
+interface ResponseLike {
+  setHeader: (name: string, value: string) => void;
+  send: (body: string) => void;
+}
+
+export const GET = async (req: RequestLike, res: ResponseLike) => {
+  const protocol = req.protocol || "https";
+  const host = req.get?.('host') || req.headers?.['host'] || "www.allresumeservices.com.au";
   const baseUrl = `${protocol}://${host}`;
 
   const robotsTxt = `# All Resume Services - Robots.txt

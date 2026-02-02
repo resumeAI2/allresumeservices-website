@@ -1,5 +1,25 @@
-import type { Express, Request, Response } from "express";
 import { GET, POST } from "./auth";
+
+// Use generic types to avoid Express/Vercel type conflicts
+interface RequestLike {
+  url?: string;
+  method?: string;
+  protocol?: string;
+  headers?: Record<string, string | string[] | undefined>;
+  body?: any;
+  get?: (name: string) => string | undefined;
+}
+
+interface ResponseLike {
+  status: (code: number) => ResponseLike;
+  json: (body: any) => void;
+  setHeader: (name: string, value: string) => void;
+  send: (body: string) => void;
+}
+
+interface AppLike {
+  all: (path: string, handler: (req: RequestLike, res: ResponseLike) => Promise<void>) => void;
+}
 
 /**
  * Register NextAuth.js routes for Express (local development)
@@ -13,22 +33,26 @@ import { GET, POST } from "./auth";
  * - etc.
  */
 
-export function registerAuthRoutes(app: Express) {
+export function registerAuthRoutes(app: AppLike) {
   // Handle all /api/auth/* routes
-  app.all("/api/auth/*", async (req: Request, res: Response) => {
+  app.all("/api/auth/*", async (req: RequestLike, res: ResponseLike) => {
     try {
       // Convert Express request to standard Request object
+      const protocol = req.protocol || "https";
+      const host = req.get?.("host") || req.headers?.["host"] || "localhost";
       const url = new URL(
-        req.url,
-        `${req.protocol}://${req.get("host")}`
+        req.url || "/",
+        `${protocol}://${host}`
       );
 
       const headers = new Headers();
-      Object.entries(req.headers).forEach(([key, value]) => {
-        if (value) {
-          headers.set(key, Array.isArray(value) ? value[0] : value);
-        }
-      });
+      if (req.headers) {
+        Object.entries(req.headers).forEach(([key, value]) => {
+          if (value) {
+            headers.set(key, Array.isArray(value) ? value[0] : String(value));
+          }
+        });
+      }
 
       const request = new Request(url, {
         method: req.method,
