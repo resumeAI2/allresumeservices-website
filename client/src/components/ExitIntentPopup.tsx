@@ -2,12 +2,29 @@ import { useState, useEffect } from 'react';
 import { X, Download, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { trpc } from '@/lib/trpc';
+import { toast } from 'sonner';
 
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+
+  const subscribeMutation = trpc.emailSubscribers.subscribe.useMutation({
+    onSuccess: () => {
+      setIsSubmitted(true);
+      // Auto-download PDF after successful submission
+      setTimeout(() => {
+        const link = document.createElement('a');
+        link.href = '/10-point-resume-checklist.pdf';
+        link.download = '10-Point-Resume-Checklist.pdf';
+        link.click();
+      }, 500);
+    },
+    onError: (error) => {
+      toast.error(`Failed to subscribe: ${error.message}`);
+    },
+  });
 
   useEffect(() => {
     // Check if popup has been shown in this session
@@ -42,24 +59,16 @@ export default function ExitIntentPopup() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    
+    if (!email) {
+      toast.error('Please enter your email address');
+      return;
+    }
 
-    // Simulate API call to save email
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // In production, send email to your backend/email service
-    console.log('Email captured:', email);
-
-    setIsLoading(false);
-    setIsSubmitted(true);
-
-    // Auto-download PDF after submission
-    setTimeout(() => {
-      const link = document.createElement('a');
-      link.href = '/10-point-resume-checklist.pdf';
-      link.download = '10-Point-Resume-Checklist.pdf';
-      link.click();
-    }, 500);
+    subscribeMutation.mutate({
+      email,
+      source: 'exit_intent_popup',
+    });
   };
 
   if (!isVisible) return null;
@@ -135,9 +144,9 @@ export default function ExitIntentPopup() {
                 <Button
                   type="submit"
                   className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground"
-                  disabled={isLoading}
+                  disabled={subscribeMutation.isPending}
                 >
-                  {isLoading ? 'Sending...' : 'Download Free Checklist'}
+                  {subscribeMutation.isPending ? 'Sending...' : 'Download Free Checklist'}
                 </Button>
               </form>
 

@@ -3,13 +3,29 @@ import { X, Download, Mail, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import { trpc } from "@/lib/trpc";
+import { toast } from "sonner";
 
 export default function EmailCapturePopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
+
+  const subscribeMutation = trpc.emailSubscribers.subscribe.useMutation({
+    onSuccess: () => {
+      setSubmitSuccess(true);
+      localStorage.setItem("emailCapturePopupSeen", "true");
+      
+      // Auto-close after 3 seconds
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 3000);
+    },
+    onError: (error) => {
+      toast.error(`Failed to subscribe: ${error.message}`);
+    },
+  });
 
   useEffect(() => {
     // Check if user has already seen or dismissed the popup
@@ -48,24 +64,16 @@ export default function EmailCapturePopup() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    
+    if (!email) {
+      toast.error('Please enter your email address');
+      return;
+    }
 
-    // Simulate API call to save email
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // TODO: Integrate with email service (e.g., Mailchimp, SendGrid, or database)
-    console.log("Email captured:", email);
-
-    setSubmitSuccess(true);
-    setIsSubmitting(false);
-
-    // Store in localStorage to prevent showing again
-    localStorage.setItem("emailCapturePopupSeen", "true");
-
-    // Auto-close after 3 seconds
-    setTimeout(() => {
-      setIsVisible(false);
-    }, 3000);
+    subscribeMutation.mutate({
+      email,
+      source: 'email_capture_popup',
+    });
   };
 
   if (!isVisible) {
@@ -142,9 +150,9 @@ export default function EmailCapturePopup() {
                   type="submit"
                   className="w-full"
                   size="lg"
-                  disabled={isSubmitting}
+                  disabled={subscribeMutation.isPending}
                 >
-                  {isSubmitting ? "Sending..." : "Download Free Checklist"}
+                  {subscribeMutation.isPending ? "Sending..." : "Download Free Checklist"}
                 </Button>
 
                 <p className="text-xs text-center text-muted-foreground">
