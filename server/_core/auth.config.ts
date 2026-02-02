@@ -112,14 +112,14 @@ export const authConfig: NextAuthConfig = {
     Google({
       clientId: ENV.googleClientId,
       clientSecret: ENV.googleClientSecret,
-      allowDangerousEmailAccountLinking: true, // Allow linking existing email accounts
+      allowDangerousEmailAccountLinking: false,
     }),
 
     // GitHub OAuth
     GitHub({
       clientId: ENV.githubClientId,
       clientSecret: ENV.githubClientSecret,
-      allowDangerousEmailAccountLinking: true,
+      allowDangerousEmailAccountLinking: false,
     }),
   ],
 
