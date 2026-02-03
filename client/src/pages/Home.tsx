@@ -16,7 +16,6 @@ import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import FAQSchema from "@/components/FAQSchema";
 import ClientLogos from "@/components/ClientLogos";
-import IndustryStatistics from "@/components/IndustryStatistics";
 import EmailCapturePopup from "@/components/EmailCapturePopup";
 import StickyGetStarted from "@/components/StickyGetStarted";
 import BackToTop from "@/components/BackToTop";
@@ -47,7 +46,6 @@ export default function Home() {
       <FeaturedCaseStudies />
       <FAQ />
       <FreeReview />
-      <IndustryStatistics />
       <ClientLogos />
       <Footer />
       <EmailCapturePopup />
