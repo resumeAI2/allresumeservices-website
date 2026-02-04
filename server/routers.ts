@@ -131,7 +131,7 @@ export const appRouter = router({
 
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
-      ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
+      ctx.res.clearCookie?.(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
       return {
         success: true,
       } as const;
@@ -164,12 +164,14 @@ export const appRouter = router({
         });
 
         // Create PayPal order
+        const protocol = ctx.req?.protocol ?? "https";
+        const host = ctx.req?.get?.("host") ?? "allresumeservices.com.au";
         const paypalOrder = await createPayPalOrder({
           amount: input.amount,
           currency: "AUD",
           description: `All Resume Services - ${input.packageName}`,
-          returnUrl: `${ctx.req.protocol}://${ctx.req.get("host")}/payment/success?orderId=${order.id}`,
-          cancelUrl: `${ctx.req.protocol}://${ctx.req.get("host")}/payment/cancel?orderId=${order.id}`,
+          returnUrl: `${protocol}://${host}/payment/success?orderId=${order.id}`,
+          cancelUrl: `${protocol}://${host}/payment/cancel?orderId=${order.id}`,
         });
 
         // Update order with PayPal order ID
@@ -362,7 +364,9 @@ export const appRouter = router({
 
         // Send email with PDF download link
         const { sendLeadMagnetEmail } = await import('./emailService');
-        const pdfUrl = `${ctx.req.protocol}://${ctx.req.get('host')}/downloads/ats-resume-mistakes-guide.pdf`;
+        const protocol = ctx.req?.protocol ?? "https";
+        const host = ctx.req?.get?.("host") ?? "allresumeservices.com.au";
+        const pdfUrl = `${protocol}://${host}/downloads/ats-resume-mistakes-guide.pdf`;
         await sendLeadMagnetEmail(input.name, input.email, pdfUrl);
 
         return { success: true, message: 'Guide sent to your email' };
@@ -478,11 +482,14 @@ export const appRouter = router({
       }))
       .mutation(async ({ input, ctx }) => {
         const { logFaqSearch } = await import("./faqAnalytics");
+        const rawUserAgent = ctx.req?.headers?.["user-agent"];
+        const userAgent = Array.isArray(rawUserAgent) ? rawUserAgent[0] : rawUserAgent;
+        const ipAddress = ctx.req?.ip ?? ctx.req?.socket?.remoteAddress ?? "unknown";
         return await logFaqSearch({
           query: input.query,
           resultsCount: input.resultsCount,
-          userAgent: ctx.req.headers['user-agent'],
-          ipAddress: ctx.req.ip || ctx.req.socket.remoteAddress,
+          userAgent,
+          ipAddress,
         });
       }),
     getSearchAnalytics: adminProcedure

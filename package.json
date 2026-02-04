@@ -16,6 +16,7 @@
     "db:studio": "drizzle-kit studio",
     "db:setup": "node setup-database.mjs",
     "db:get-connection": "node get-neon-connection.mjs",
+    "db:seed-testimonials": "tsx scripts/seed-testimonials.ts",
     "postinstall": "node scripts/patch-vite-windows.mjs"
   },
   "_comments": {
