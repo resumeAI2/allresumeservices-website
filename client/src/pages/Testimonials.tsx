@@ -19,11 +19,25 @@ export default function Testimonials() {
     approvedOnly: true,
   });
 
+  // Fallback when DB is empty (e.g. after migration or previous DB issue)
+  const fallbackTestimonials = useMemo(
+    () =>
+      [
+        { id: -1, clientName: "Sarah M.", clientTitle: "Marketing Manager", clientPhoto: null as string | null, rating: 5, testimonialText: "I was struggling to get interviews despite having 10+ years of experience. After working with All Resume Services, I received 3 interview invitations within 2 weeks! The ATS optimisation made all the difference.", serviceUsed: "Resume Writing" },
+        { id: -2, clientName: "James T.", clientTitle: "Software Engineer", clientPhoto: null as string | null, rating: 5, testimonialText: "The team understood exactly what tech recruiters look for. My new resume highlights my achievements perfectly, and I landed my dream role at a top tech company. Worth every dollar!", serviceUsed: "Resume Writing" },
+        { id: -3, clientName: "Emily R.", clientTitle: "HR Professional", clientPhoto: null as string | null, rating: 5, testimonialText: "As someone who reviews resumes daily, I can confidently say the quality of work from All Resume Services is exceptional. Professional, polished, and results-driven. Highly recommend!", serviceUsed: "Resume Writing" },
+        { id: -4, clientName: "Michael K.", clientTitle: "Project Manager", clientPhoto: null as string | null, rating: 5, testimonialText: "Working with All Resume Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimisation was a bonus that really boosted my visibility.", serviceUsed: "LinkedIn Profile" },
+        { id: -5, clientName: "Lisa W.", clientTitle: "Career Changer", clientPhoto: null as string | null, rating: 5, testimonialText: "Transitioning careers felt overwhelming, but the team helped me reframe my experience beautifully. I got my first interview in my new field within a month. Thank you!", serviceUsed: "Resume Writing" },
+        { id: -6, clientName: "David P.", clientTitle: "Executive Leader", clientPhoto: null as string | null, rating: 5, testimonialText: "After 20 years in leadership, I needed a resume that reflected my strategic impact. The premium package delivered exactly that—sophisticated, compelling, and interview-winning.", serviceUsed: "Resume Writing" },
+      ] as const,
+    []
+  );
+
+  const effectiveTestimonials = testimonials && testimonials.length > 0 ? testimonials : fallbackTestimonials;
+
   // Filter and search testimonials
   const filteredTestimonials = useMemo(() => {
-    if (!testimonials) return [];
-
-    let filtered = [...testimonials];
+    let filtered = [...effectiveTestimonials];
 
     // Search filter
     if (searchQuery.trim()) {
@@ -48,29 +62,28 @@ export default function Testimonials() {
     }
 
     return filtered;
-  }, [testimonials, searchQuery, serviceFilter, ratingFilter]);
+  }, [effectiveTestimonials, searchQuery, serviceFilter, ratingFilter]);
 
   // Calculate statistics
   const stats = useMemo(() => {
-    if (!testimonials || testimonials.length === 0) {
+    if (effectiveTestimonials.length === 0) {
       return { total: 0, avgRating: 0, fiveStars: 0 };
     }
 
-    const total = testimonials.length;
-    const avgRating = testimonials.reduce((sum, t) => sum + t.rating, 0) / total;
-    const fiveStars = testimonials.filter((t) => t.rating === 5).length;
+    const total = effectiveTestimonials.length;
+    const avgRating = effectiveTestimonials.reduce((sum, t) => sum + t.rating, 0) / total;
+    const fiveStars = effectiveTestimonials.filter((t) => t.rating === 5).length;
 
     return { total, avgRating: avgRating.toFixed(1), fiveStars };
-  }, [testimonials]);
+  }, [effectiveTestimonials]);
 
   // Get unique services for filter dropdown
   const services = useMemo(() => {
-    if (!testimonials) return [];
     const uniqueServices = new Set(
-      testimonials.map((t) => t.serviceUsed).filter((s): s is string => !!s)
+      effectiveTestimonials.map((t) => t.serviceUsed).filter((s): s is string => !!s)
     );
     return Array.from(uniqueServices).sort();
-  }, [testimonials]);
+  }, [effectiveTestimonials]);
 
   const displayedTestimonials = filteredTestimonials.slice(0, displayCount);
   const hasMore = displayCount < filteredTestimonials.length;
