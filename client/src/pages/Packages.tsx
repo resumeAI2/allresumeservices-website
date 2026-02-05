@@ -8,11 +8,21 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '../components/ui/badge';
 import { Check, ShoppingCart } from 'lucide-react';
 
+// Fallback packages when API is loading, fails, or returns empty (so the page is never blank)
+const FALLBACK_PACKAGES = [
+  { name: 'Basic Package', price: '$125', originalPrice: '$180', description: 'Resume + Cover Letter for entry-level professionals', features: ['Entry Level Resume', 'Entry Level Cover Letter', 'ATS-friendly formatting', 'Delivered in Word & PDF', '2-3 day turnaround'], popular: false },
+  { name: 'Standard Package', price: '$185', originalPrice: '$270', description: 'Resume + Cover Letter + LinkedIn for professionals', features: ['Professional Resume', 'Professional Cover Letter', 'ATS-friendly formatting', 'Delivered in Word & PDF', '2-3 day turnaround', 'Priority support'], popular: true },
+  { name: 'Premium Package', price: '$255', originalPrice: '$605', description: 'Complete career package for executives', features: ['Executive Resume', 'Executive Cover Letter', 'LinkedIn Profile Optimisation', 'ATS-friendly formatting', 'Delivered in Word & PDF', '1 day express turnaround', 'Priority support'], popular: false },
+];
+
 export default function Services() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedType, setSelectedType] = useState<'all' | 'individual' | 'package' | 'addon'>('all');
   
-  const { data: allServices = [], isLoading } = trpc.services.getAllServices.useQuery();
+  const { data: allServices = [], isLoading, isError, error, refetch } = trpc.services.getAllServices.useQuery(
+    undefined,
+    { retry: 1, refetchOnWindowFocus: false }
+  );
   const { addToCart } = useCart();
   const [addingToCart, setAddingToCart] = useState<number | null>(null);
 
@@ -178,16 +188,60 @@ export default function Services() {
         </section>
 
         {/* Services Grid */}
-        <section className="py-16">
+        <section className="py-16" id="services">
           <div className="container">
-            {isLoading ? (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">Loading services...</p>
-              </div>
-            ) : filteredServices.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">No services found matching your filters.</p>
-              </div>
+            {(isLoading || isError || filteredServices.length === 0) ? (
+              <>
+                {isLoading && (
+                  <p className="text-center text-muted-foreground mb-6">Loading services...</p>
+                )}
+                {isError && (
+                  <div className="text-center mb-6">
+                    <p className="text-muted-foreground mb-2">We couldn&apos;t load the full catalog. Order via the buttons below or try again.</p>
+                    <Button variant="outline" size="sm" onClick={() => refetch()} disabled={isLoading}>Try again</Button>
+                  </div>
+                )}
+                {!isLoading && !isError && filteredServices.length === 0 && allServices.length > 0 && (
+                  <p className="text-center text-muted-foreground mb-6">No services match the current filters. Try &quot;All Services&quot; or a different category.</p>
+                )}
+                {!isLoading && !isError && allServices.length === 0 && (
+                  <p className="text-center text-muted-foreground mb-6">Contact us to place an order—we&apos;ll get you a quote quickly.</p>
+                )}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                  {FALLBACK_PACKAGES.map((pkg, index) => (
+                    <Card key={pkg.name} className={`flex flex-col ${pkg.popular ? 'border-primary shadow-lg' : ''}`}>
+                      <CardHeader>
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            {pkg.popular && <Badge variant="default" className="mb-2">Most Popular</Badge>}
+                          </div>
+                          <div className="text-right">
+                            {pkg.originalPrice && <p className="text-sm text-muted-foreground line-through">{pkg.originalPrice}</p>}
+                            <p className="text-2xl font-bold">{pkg.price}</p>
+                          </div>
+                        </div>
+                        <CardTitle className="text-xl">{pkg.name}</CardTitle>
+                        <CardDescription>{pkg.description}</CardDescription>
+                      </CardHeader>
+                      <CardContent className="flex-1">
+                        <ul className="space-y-2">
+                          {pkg.features.map((feature, i) => (
+                            <li key={i} className="flex items-start gap-2 text-sm">
+                              <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                      <CardFooter>
+                        <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
+                          <a href={`/contact?package=${encodeURIComponent(pkg.name)}`}>Contact us to order</a>
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              </>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredServices.map(service => {

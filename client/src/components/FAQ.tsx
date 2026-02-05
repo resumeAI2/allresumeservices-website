@@ -74,7 +74,7 @@ export default function FAQ() {
       <div className="container max-w-4xl">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-gray-700">
             Got questions? We've got answers. Find everything you need to know about our services, process, and guarantees.
           </p>
         </div>
@@ -89,7 +89,7 @@ export default function FAQ() {
               <AccordionTrigger className="text-left font-semibold hover:no-underline py-5">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">
+              <AccordionContent className="text-gray-700 pb-5 leading-relaxed">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
@@ -97,7 +97,7 @@ export default function FAQ() {
         </Accordion>
 
         <div className="mt-12 text-center">
-          <p className="text-muted-foreground mb-4">
+          <p className="text-gray-700 mb-4">
             Still have questions?
           </p>
           <a 

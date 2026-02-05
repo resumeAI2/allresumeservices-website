@@ -31,9 +31,9 @@ export function OrganizationSchema() {
       "@id": `${siteUrl}/#organization`,
       
       // Core business information
-      "name": "All Resume Services",
+      "name": "All Résumé Services",
       "alternateName": "All Résumé Services",
-      "legalName": "All Resume Services Pty Ltd",
+      "legalName": "All Résumé Services Pty Ltd",
       "description": "Australia's leading professional resume writing service with 18+ years of experience. We help job seekers land interviews with ATS-optimized resumes, cover letters, LinkedIn profiles, and selection criteria. 96% interview success rate.",
       
       // URLs and identifiers
@@ -46,7 +46,7 @@ export function OrganizationSchema() {
         "url": `${siteUrl}/logo-v2.svg`,
         "width": 200,
         "height": 60,
-        "caption": "All Resume Services Logo"
+        "caption": "All Résumé Services Logo"
       },
       "image": [
         `${siteUrl}/og-image.png`,
@@ -220,7 +220,7 @@ export function OrganizationSchema() {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
-      "name": "All Resume Services",
+      "name": "All Résumé Services",
       "alternateName": "All Résumé Services Australia",
       "url": siteUrl,
       "description": "Professional resume writing services in Australia. Expert CV writers with 18+ years experience and 96% interview success rate.",
@@ -243,7 +243,7 @@ export function OrganizationSchema() {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "@id": `${siteUrl}/#localbusiness`,
-      "name": "All Resume Services",
+      "name": "All Résumé Services",
       "image": `${siteUrl}/og-image.png`,
       "telephone": "+61-410-934-371",
       "email": "admin@allresumeservices.com.au",

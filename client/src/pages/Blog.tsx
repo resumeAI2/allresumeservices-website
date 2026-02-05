@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -7,15 +8,21 @@ import { Link } from "wouter";
 import { getImageUrl } from "@/lib/imageUtils";
 import { trpc } from "@/lib/trpc";
 import { useState, useMemo } from "react";
+import { FALLBACK_BLOG_POSTS } from "@/data/fallbackBlogPosts";
 
 export default function Blog() {
   const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null);
   const [activeTagId, setActiveTagId] = useState<number | null>(null);
   const [postsToShow, setPostsToShow] = useState(6);
   
-  const { data: allPosts, isLoading } = trpc.blog.getAll.useQuery({ publishedOnly: true });
+  const { data: apiPosts, isLoading } = trpc.blog.getAll.useQuery(
+    { publishedOnly: true },
+    { retry: 1 }
+  );
   const { data: categories = [] } = trpc.blog.getAllCategories.useQuery();
   const { data: tags = [] } = trpc.blog.getAllTags.useQuery();
+
+  const allPosts = (apiPosts && apiPosts.length > 0) ? apiPosts : (!isLoading ? FALLBACK_BLOG_POSTS : []);
   
   // Filter posts by category and tag
   const filteredPosts = useMemo(() => {
@@ -24,9 +31,6 @@ export default function Blog() {
     if (activeCategoryId) {
       posts = posts.filter(post => post.categoryId === activeCategoryId);
     }
-    
-    // Note: Tag filtering would require fetching tags for each post
-    // For now, we'll just show the tag filter UI
     
     return posts;
   }, [allPosts, activeCategoryId, activeTagId]);
@@ -46,6 +50,12 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Career Advice Blog - Resume & Job Search Tips | All Résumé Services</title>
+        <meta name="description" content="Expert career advice, resume tips, and job search strategies for the Australian market. ATS optimisation, cover letters, LinkedIn, and selection criteria." />
+        <meta name="keywords" content="career advice blog, resume tips Australia, job search tips, ATS resume, cover letter advice" />
+        <link rel="canonical" href="https://allresumeservices.com.au/blog" />
+      </Helmet>
       <Header />
       <Breadcrumb items={[{ label: "Career Advice Blog" }]} />
       
@@ -125,6 +135,20 @@ export default function Blog() {
       {/* Blog Posts Grid */}
       <section className="py-16">
         <div className="container">
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center py-16">
+              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mb-4" />
+              <p className="text-muted-foreground">Loading articles...</p>
+            </div>
+          ) : displayedPosts.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground mb-4">No articles match your filters.</p>
+              <Button variant="outline" onClick={() => setActiveCategoryId(null)}>
+                Show all categories
+              </Button>
+            </div>
+          ) : (
+          <>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {displayedPosts.map((post) => (          <article
                 key={post.id}
@@ -186,6 +210,8 @@ export default function Blog() {
                 Load More Articles
               </Button>
             </div>
+          )}
+          </>
           )}
         </div>
       </section>

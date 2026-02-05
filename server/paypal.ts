@@ -84,7 +84,7 @@ export async function createPayPalOrder(params: CreateOrderParams) {
       application_context: {
         return_url: params.returnUrl,
         cancel_url: params.cancelUrl,
-        brand_name: "All Resume Services",
+        brand_name: "All Résumé Services",
         user_action: "PAY_NOW",
       },
     },

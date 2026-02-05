@@ -10,7 +10,7 @@ export default function SchemaMarkup({ type = "homepage" }: SchemaMarkupProps) {
     const localBusinessSchema = {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
-      "name": "All Resume Services",
+      "name": "All Résumé Services",
       "image": "https://www.allresumeservices.com.au/logo.png",
       "@id": "https://www.allresumeservices.com.au",
       "url": "https://www.allresumeservices.com.au",
@@ -118,7 +118,7 @@ export default function SchemaMarkup({ type = "homepage" }: SchemaMarkupProps) {
     const organizationSchema = {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "All Resume Services",
+      "name": "All Résumé Services",
       "url": "https://www.allresumeservices.com.au",
       "logo": "https://www.allresumeservices.com.au/logo.png",
       "founder": {

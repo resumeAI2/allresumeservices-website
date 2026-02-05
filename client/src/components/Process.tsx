@@ -36,7 +36,7 @@ export default function Process() {
           <h2 className="text-3xl md:text-4xl font-bold text-accent-foreground mb-4">
             Our Simple 5-Step Process
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             From initial assessment to final delivery, we make the process smooth and stress-free so you can focus on preparing for interviews.
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function Process() {
                     <h3 className="text-xl font-semibold text-card-foreground mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-gray-700 leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -80,7 +80,7 @@ export default function Process() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-lg text-muted-foreground mb-6">
+          <p className="text-lg text-gray-700 mb-6">
             Each step is designed to give you the confidence to sell yourself—because, let's face it, talking about yourself is HARD! And first impressions matter!
           </p>
         </div>

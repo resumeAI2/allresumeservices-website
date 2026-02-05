@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
+import { resolveCaseStudyImageUrl } from "@/lib/imageUtils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,14 +21,25 @@ import {
   Lightbulb,
   Trophy
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { FALLBACK_CASE_STUDIES } from "@/data/fallbackCaseStudies";
 
 export default function CaseStudies() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [imageFailedIds, setImageFailedIds] = useState<Set<number>>(new Set());
+  const markImageFailed = useCallback((id: number) => {
+    setImageFailedIds((prev) => new Set(prev).add(id));
+  }, []);
   
-  const { data: caseStudies, isLoading } = trpc.caseStudies.getAll.useQuery({ publishedOnly: true });
+  const { data: apiCaseStudies, isLoading } = trpc.caseStudies.getAll.useQuery(
+    { publishedOnly: true },
+    { retry: 1 }
+  );
+
+  const caseStudies = (apiCaseStudies && apiCaseStudies.length > 0) ? apiCaseStudies : (!isLoading ? FALLBACK_CASE_STUDIES : []);
 
   // Get unique categories
   const categories = caseStudies
@@ -49,6 +61,12 @@ export default function CaseStudies() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
+      <Helmet>
+        <title>Client Success Stories & Case Studies | All Résumé Services</title>
+        <meta name="description" content="Real success stories: before and after resumes, interview wins, and career transitions. See how our resume writing helped Australians land their dream jobs." />
+        <meta name="keywords" content="resume case studies, success stories, before after resume, interview success Australia" />
+        <link rel="canonical" href="https://allresumeservices.com.au/case-studies" />
+      </Helmet>
       <Header />
       
       <main className="flex-1">
@@ -112,14 +130,22 @@ export default function CaseStudies() {
                     </div>
                     <Card className="overflow-hidden bg-white shadow-xl border-0 hover:shadow-2xl transition-all duration-300">
                       <div className="grid lg:grid-cols-2">
-                        {filteredStudies[0].image && (
+                        {(resolveCaseStudyImageUrl(filteredStudies[0].image) && !imageFailedIds.has(filteredStudies[0].id)) ? (
                           <div className="relative aspect-video lg:aspect-auto overflow-hidden">
                             <img
-                              src={filteredStudies[0].image}
+                              src={resolveCaseStudyImageUrl(filteredStudies[0].image)!}
                               alt={filteredStudies[0].title}
                               className="w-full h-full object-cover"
+                              onError={() => markImageFailed(filteredStudies[0].id)}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:bg-gradient-to-r" />
+                            <Badge className="absolute top-4 left-4 bg-gold text-navy font-semibold">
+                              Featured
+                            </Badge>
+                          </div>
+                        ) : (
+                          <div className="relative aspect-video lg:aspect-auto overflow-hidden bg-gradient-to-br from-navy/10 to-primary/10 flex items-center justify-center">
+                            <Briefcase className="w-24 h-24 text-navy/30" />
                             <Badge className="absolute top-4 left-4 bg-gold text-navy font-semibold">
                               Featured
                             </Badge>
@@ -243,11 +269,13 @@ export default function CaseStudies() {
                           className="group overflow-hidden bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                         >
                           <div className="relative aspect-[4/3] overflow-hidden">
-                            {study.image ? (
+                            {(resolveCaseStudyImageUrl(study.image) && !imageFailedIds.has(study.id)) ? (
                               <img
-                                src={study.image}
+                                src={resolveCaseStudyImageUrl(study.image)!}
                                 alt={study.title}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                loading="lazy"
+                                onError={() => markImageFailed(study.id)}
                               />
                             ) : (
                               <div className="w-full h-full bg-gradient-to-br from-navy/10 to-primary/10 flex items-center justify-center">

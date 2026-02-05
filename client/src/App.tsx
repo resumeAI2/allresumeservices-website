@@ -2,7 +2,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { HelmetProvider } from 'react-helmet-async';
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
+import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { CartProvider } from "./contexts/CartContext";
@@ -50,7 +51,6 @@ import ITTechnology from './pages/industries/ITTechnology';
 import AllIndustries from './pages/AllIndustries';
 import IndustryComparison from './pages/IndustryComparison';
 import ResumeTransformation from './pages/ResumeTransformation';
-import ExitIntentPopup from './components/ExitIntentPopup';
 import ThankYouOnboarding from './pages/ThankYouOnboarding';
 import AdminIntakeRecords from './pages/AdminIntakeRecords';
 import AdminIntakeRecordDetail from './pages/AdminIntakeRecordDetail';
@@ -69,10 +69,38 @@ import ThankYouReview from './pages/ThankYouReview';
 import ContentCalendar from './pages/ContentCalendar';
 import AdminEmailLogs from './pages/AdminEmailLogs';
 
+function ScrollToTop() {
+  const [location] = useLocation();
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.slice(1);
+      const scrollToEl = () => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          return true;
+        }
+        return false;
+      };
+      if (scrollToEl()) return;
+      // Defer so the route's DOM has mounted (e.g. preview or slow load)
+      const t = setTimeout(() => {
+        if (!scrollToEl()) window.scrollTo(0, 0);
+      }, 150);
+      return () => clearTimeout(t);
+    }
+    window.scrollTo(0, 0);
+  }, [location]);
+  return null;
+}
+
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
-    <Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/services/resume-writing"} component={ResumeWriting} />
       <Route path={"/services/cover-letters"} component={CoverLetters} />
@@ -137,6 +165,7 @@ function Router() {
       <Route path={"/404"} component={NotFound} />      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
+    </>
   );
 }
 
@@ -156,7 +185,6 @@ function App() {
           <TooltipProvider>
             <HelmetProvider>
               <Toaster />
-              <ExitIntentPopup />
               <Router />
             </HelmetProvider>
           </TooltipProvider>

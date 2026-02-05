@@ -15,7 +15,7 @@ export const GET = async (req: RequestLike, res: ResponseLike) => {
   const host = req.get?.('host') || req.headers?.['host'] || "www.allresumeservices.com.au";
   const baseUrl = `${protocol}://${host}`;
 
-  const robotsTxt = `# All Resume Services - Robots.txt
+  const robotsTxt = `# All Résumé Services - Robots.txt
 User-agent: *
 Allow: /
 

@@ -131,7 +131,7 @@ export default function ServiceComparisonTable() {
               onMouseLeave={() => setHighlightedTier("Standard")}
             >
               <h3 className="text-2xl font-bold text-foreground mb-2">{tier.name}</h3>
-              <p className="text-3xl font-bold text-secondary mb-2">{tier.price}</p>
+              <p className="text-3xl font-bold font-gold-brand mb-2">{tier.price}</p>
               <p className="text-sm text-muted-foreground mb-4">{tier.description}</p>
               <Button
                 className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90"

@@ -59,10 +59,11 @@
   --card-foreground: oklch(0.235 0.015 65);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.75 0.15 85);
+  --secondary: #D4AF37;
   --secondary-foreground: oklch(0.235 0.043 264);
   --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
+  /* Darker muted text for better readability - closer to foreground for strong contrast */
+  --muted-foreground: oklch(0.35 0.015 265);
   --accent: oklch(0.95 0.01 264);
   --accent-foreground: oklch(0.235 0.043 264);
   --destructive: oklch(0.577 0.245 27.325);
@@ -140,6 +141,21 @@
     overflow-x: hidden;
     width: 100%;
     min-height: 100vh;
+  }
+
+  /* Header tagline – all caps, first letter of each word larger, gold color (no font change) */
+  .logo-tagline {
+    letter-spacing: 0.06em;
+    color: #D4AF37;
+  }
+  .logo-tagline-first {
+    font-size: 1.4em;
+    line-height: 1;
+  }
+
+  /* Gold brand text – gold color only, uses default/rest of site font */
+  .font-gold-brand {
+    color: #D4AF37;
   }
   
   /* Site-wide Typography System */

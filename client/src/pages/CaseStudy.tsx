@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams, Link } from "wouter";
 import { trpc } from "@/lib/trpc";
+import { resolveCaseStudyImageUrl } from "@/lib/imageUtils";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,35 +21,47 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
+import { getFallbackCaseStudyBySlug, FALLBACK_CASE_STUDIES } from "@/data/fallbackCaseStudies";
 
 export default function CaseStudy() {
   const params = useParams();
   const slug = params.slug;
   
-  const { data: study, isLoading } = trpc.caseStudies.getBySlug.useQuery({ slug: slug! });
+  const { data: apiStudy, isLoading } = trpc.caseStudies.getBySlug.useQuery(
+    { slug: slug! },
+    { retry: 1, enabled: !!slug }
+  );
   const { data: relatedStudies = [] } = trpc.caseStudies.getAll.useQuery({ publishedOnly: true });
   const incrementViewMutation = trpc.caseStudies.incrementViewCount.useMutation();
 
-  // Track page view
+  const fallbackStudy = slug ? getFallbackCaseStudyBySlug(slug) : undefined;
+  const study = apiStudy ?? fallbackStudy;
+  const [heroImageFailed, setHeroImageFailed] = useState(false);
+  const [relatedImageFailedIds, setRelatedImageFailedIds] = useState<Set<number>>(new Set());
+  const markRelatedImageFailed = useCallback((id: number) => {
+    setRelatedImageFailedIds((prev) => new Set(prev).add(id));
+  }, []);
+
+  // Track page view (only for API study to avoid mutation on fallback)
   useEffect(() => {
-    if (study && slug) {
+    if (apiStudy && slug) {
       incrementViewMutation.mutate({ slug });
     }
-  }, [study?.id]);
+  }, [apiStudy?.id]);
 
-  // Get all other case studies (excluding current one)
-  const allOtherStudies = study && relatedStudies
-    ? relatedStudies.filter(s => s.id !== study.id)
+  // Get all other case studies (excluding current one) - include fallbacks when API is empty
+  const allStudies = (relatedStudies.length > 0 ? relatedStudies : FALLBACK_CASE_STUDIES);
+  const allOtherStudies = study
+    ? allStudies.filter(s => s.id !== study.id)
     : [];
   
-  // Get related case studies from the same category (for featured section)
-  const relatedByCategory = study && relatedStudies
-    ? relatedStudies
+  const relatedByCategory = study
+    ? allStudies
         .filter(s => s.category === study.category && s.id !== study.id)
         .slice(0, 3)
     : [];
 
-  if (isLoading) {
+  if (isLoading && !fallbackStudy) {
     return (
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
         <Header />
@@ -158,19 +171,22 @@ export default function CaseStudy() {
         </section>
 
         {/* Featured Image - Overlapping Hero */}
-        {study.image && (
+        {(resolveCaseStudyImageUrl(study.image) && !heroImageFailed) ? (
           <section className="container -mt-20 relative z-10 mb-12">
             <div className="max-w-5xl mx-auto">
               <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                 <img
-                  src={study.image}
+                  src={resolveCaseStudyImageUrl(study.image)!}
                   alt={study.title}
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  fetchPriority="high"
+                  onError={() => setHeroImageFailed(true)}
                 />
               </div>
             </div>
           </section>
-        )}
+        ) : null}
 
         {/* Introduction */}
         <section className="container py-12">
@@ -248,7 +264,7 @@ export default function CaseStudy() {
                   <p className="text-muted-foreground mt-2">See the dramatic improvement in layout, content, and professional presentation</p>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
-                  {study.beforeResumeImage && (
+                  {resolveCaseStudyImageUrl((study as { beforeResumeImage?: string | null }).beforeResumeImage) && (
                     <div className="group">
                       <div className="flex items-center gap-2 mb-4">
                         <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
@@ -258,14 +274,15 @@ export default function CaseStudy() {
                       </div>
                       <div className="border-4 border-red-200 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow">
                         <img 
-                          src={study.beforeResumeImage} 
+                          src={resolveCaseStudyImageUrl((study as { beforeResumeImage?: string | null }).beforeResumeImage)!} 
                           alt="Before resume" 
                           className="w-full h-auto"
+                          loading="lazy"
                         />
                       </div>
                     </div>
                   )}
-                  {study.afterResumeImage && (
+                  {resolveCaseStudyImageUrl((study as { afterResumeImage?: string | null }).afterResumeImage) && (
                     <div className="group">
                       <div className="flex items-center gap-2 mb-4">
                         <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
@@ -275,9 +292,10 @@ export default function CaseStudy() {
                       </div>
                       <div className="border-4 border-green-200 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow">
                         <img 
-                          src={study.afterResumeImage} 
+                          src={resolveCaseStudyImageUrl((study as { afterResumeImage?: string | null }).afterResumeImage)!} 
                           alt="After resume" 
                           className="w-full h-auto"
+                          loading="lazy"
                         />
                       </div>
                     </div>
@@ -340,11 +358,13 @@ export default function CaseStudy() {
                     className="group overflow-hidden bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden">
-                      {relatedStudy.image ? (
+                      {(resolveCaseStudyImageUrl(relatedStudy.image) && !relatedImageFailedIds.has(relatedStudy.id)) ? (
                         <img
-                          src={relatedStudy.image}
+                          src={resolveCaseStudyImageUrl(relatedStudy.image)!}
                           alt={relatedStudy.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                          onError={() => markRelatedImageFailed(relatedStudy.id)}
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-navy/10 to-primary/10 flex items-center justify-center">

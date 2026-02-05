@@ -1,14 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, ShoppingCart } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useCart } from "../contexts/CartContext";
 import { Badge } from "./ui/badge";
 
 export default function Header() {
+  const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { cartCount } = useCart();
+
+  const isContactPage = location === "/contact";
+  const handleFreeReviewClick = () => {
+    if (isContactPage) {
+      document.getElementById("enquiry-form")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      document.getElementById("free-review")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,11 +82,13 @@ export default function Header() {
             <div className="flex items-center gap-2 sm:gap-3 cursor-pointer group">
               <img 
                 src="/logo-v2.svg" 
-                alt="All Resume Services Logo" 
+                alt="All Résumé Services Logo" 
                 className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-lg ${isScrolled ? 'h-12 sm:h-14' : 'h-16 sm:h-20 lg:h-24'}`}
               />
-              <div className="hidden lg:flex flex-col">
-                <span className="text-lg lg:text-xl xl:text-2xl font-bold text-secondary whitespace-nowrap">Expert Resume Writing</span>
+              <div className="hidden md:flex flex-col">
+                <span className="text-base lg:text-lg xl:text-xl whitespace-nowrap tracking-wide logo-tagline">
+                  <span className="logo-tagline-first">E</span>XPERT <span className="logo-tagline-first">R</span>ÉSUMÉ <span className="logo-tagline-first">W</span>RITING
+                </span>
               </div>
             </div>
           </Link>
@@ -86,7 +98,6 @@ export default function Header() {
             <Link href="/services" className="hover:text-secondary transition-colors whitespace-nowrap">Services</Link>
             <Link href="/pricing" className="hover:text-secondary transition-colors whitespace-nowrap">Pricing</Link>
             <Link href="/process" className="hover:text-secondary transition-colors whitespace-nowrap">Our Process</Link>
-            <Link href="/testimonials" className="hover:text-secondary transition-colors whitespace-nowrap">Reviews</Link>
             <Link href="/blog" className="hover:text-secondary transition-colors whitespace-nowrap hidden xl:inline-block">Career Advice Blog</Link>
             <Link href="/blog" className="hover:text-secondary transition-colors whitespace-nowrap xl:hidden">Blog</Link>
             <div className="relative group">
@@ -111,7 +122,7 @@ export default function Header() {
               variant="default" 
               size="sm"
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90 whitespace-nowrap text-xs xl:text-sm"
-              onClick={() => document.getElementById('free-review')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={handleFreeReviewClick}
             >
               Free Review
             </Button>
@@ -133,10 +144,9 @@ export default function Header() {
             <Link href="/services" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Services</Link>
             <Link href="/pricing" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
             <Link href="/process" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Our Process</Link>
-            <Link href="/testimonials" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Reviews</Link>
             <Link href="/blog" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Career Advice Blog</Link>
             <div className="pl-4 flex flex-col gap-2 border-l-2 border-secondary/30">
-              <span className="text-secondary font-semibold text-sm">Success Stories:</span>
+              <span className="font-gold-brand font-semibold text-sm">Success Stories:</span>
               <Link href="/testimonials" className="hover:text-secondary transition-colors text-sm" onClick={() => setMobileMenuOpen(false)}>Client Testimonials</Link>
               <Link href="/google-reviews" className="hover:text-secondary transition-colors text-sm" onClick={() => setMobileMenuOpen(false)}>Google Reviews</Link>
               <Link href="/case-studies" className="hover:text-secondary transition-colors text-sm" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
@@ -156,7 +166,7 @@ export default function Header() {
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90 w-full mt-2"
               onClick={() => {
                 setMobileMenuOpen(false);
-                document.getElementById('free-review')?.scrollIntoView({ behavior: 'smooth' });
+                handleFreeReviewClick();
               }}
             >
               Free Resume Review

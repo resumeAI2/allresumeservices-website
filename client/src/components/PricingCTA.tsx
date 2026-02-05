@@ -25,7 +25,7 @@ export default function PricingCTA() {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Professional Resume Writing Services
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
               Transparent pricing with no hidden fees. Packages starting from just $125 AUD.
             </p>
           </div>
@@ -35,7 +35,7 @@ export default function PricingCTA() {
             <div className="bg-white rounded-lg p-6 border-2 border-border hover:border-primary/50 transition-colors">
               <h3 className="text-xl font-bold text-foreground mb-2">Basic</h3>
               <div className="text-3xl font-bold text-primary mb-3">$125</div>
-              <p className="text-sm text-muted-foreground">Professional Resume</p>
+              <p className="text-sm text-gray-700">Professional Resume</p>
             </div>
             <div className="bg-white rounded-lg p-6 border-2 border-primary shadow-lg relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full text-xs font-semibold">
@@ -43,12 +43,12 @@ export default function PricingCTA() {
               </div>
               <h3 className="text-xl font-bold text-foreground mb-2">Standard</h3>
               <div className="text-3xl font-bold text-primary mb-3">$185</div>
-              <p className="text-sm text-muted-foreground">Resume + Cover Letter</p>
+              <p className="text-sm text-gray-700">Resume + Cover Letter</p>
             </div>
             <div className="bg-white rounded-lg p-6 border-2 border-border hover:border-primary/50 transition-colors">
               <h3 className="text-xl font-bold text-foreground mb-2">Premium</h3>
               <div className="text-3xl font-bold text-primary mb-3">$255</div>
-              <p className="text-sm text-muted-foreground">Resume + Cover + LinkedIn</p>
+              <p className="text-sm text-gray-700">Resume + Cover + LinkedIn</p>
             </div>
           </div>
 
@@ -73,7 +73,7 @@ export default function PricingCTA() {
           </div>
 
           {/* CTA Button */}
-          <Link href="/pricing">
+          <Link href="/pricing#packages">
             <button className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer">
               View All Packages & Pricing
               <ArrowRight className="h-5 w-5" />
@@ -81,7 +81,7 @@ export default function PricingCTA() {
           </Link>
 
           {/* Custom Quote */}
-          <p className="mt-6 text-sm text-muted-foreground">
+          <p className="mt-6 text-sm text-gray-700">
             Need a custom solution? <Link href="/contact" className="text-primary hover:underline font-semibold">Contact us</Link> for a personalized quote
           </p>
         </div>

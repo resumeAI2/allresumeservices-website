@@ -24,7 +24,8 @@ export interface OptimizedImage {
 }
 
 /**
- * Generate multiple optimized versions of an image
+ * Generate multiple optimized versions of an image.
+ * Variant generation and storage uploads run in parallel for faster uploads and less client wait time.
  * @param buffer - Original image buffer
  * @param filename - Original filename
  * @param basePath - Base S3 path (e.g., 'blog-images')
@@ -35,44 +36,24 @@ export async function generateOptimizedImages(
   filename: string,
   basePath: string = 'blog-images'
 ): Promise<OptimizedImage[]> {
-  const optimizedImages: OptimizedImage[] = [];
-  
-  // Get original image metadata
-  const image = sharp(buffer);
-  const metadata = await image.metadata();
-  
-  // Extract filename without extension
   const nameWithoutExt = filename.replace(/\.[^/.]+$/, '');
   const ext = filename.split('.').pop()?.toLowerCase() || 'jpg';
-  
-  // Generate a unique identifier to prevent enumeration
   const uniqueId = Date.now().toString(36) + Math.random().toString(36).substring(2, 9);
-  
-  // Store original image
-  const originalKey = `${basePath}/${nameWithoutExt}-${uniqueId}-original.${ext}`;
-  const originalResult = await storagePut(
-    originalKey,
-    buffer,
-    `image/${ext === 'jpg' ? 'jpeg' : ext}`
-  );
-  
-  optimizedImages.push({
-    size: 'original',
-    url: originalResult.url,
-    width: metadata.width || 0,
-    height: metadata.height || 0,
-  });
-  
-  // Generate optimized variants
-  for (const [sizeName, sizeConfig] of Object.entries(IMAGE_SIZES)) {
-    try {
+  const mime = ext === 'jpg' ? 'jpeg' : ext;
+
+  // Get original metadata once
+  const metadata = await sharp(buffer).metadata();
+  const originalWidth = metadata.width || 0;
+  const originalHeight = metadata.height || 0;
+
+  // Generate all resized buffers in parallel (no uploads yet); one failure doesn't break others
+  const variantResults = await Promise.allSettled(
+    Object.entries(IMAGE_SIZES).map(async ([sizeName, sizeConfig]) => {
       let resizeOptions: sharp.ResizeOptions = {
         width: sizeConfig.width,
         fit: 'inside',
         withoutEnlargement: true,
       };
-      
-      // For thumbnails, use cover fit to create square images
       if (sizeName === 'thumbnail' && sizeConfig.height) {
         resizeOptions = {
           width: sizeConfig.width,
@@ -81,34 +62,55 @@ export async function generateOptimizedImages(
           position: 'center',
         };
       }
-      
       const optimizedBuffer = await sharp(buffer)
         .resize(resizeOptions)
         .jpeg({ quality: sizeConfig.quality || 85, progressive: true })
         .toBuffer();
-      
-      const optimizedMetadata = await sharp(optimizedBuffer).metadata();
-      
-      const optimizedKey = `${basePath}/${nameWithoutExt}-${uniqueId}${sizeConfig.suffix}.jpg`;
-      const result = await storagePut(
-        optimizedKey,
-        optimizedBuffer,
-        'image/jpeg'
-      );
-      
-      optimizedImages.push({
-        size: sizeName,
-        url: result.url,
-        width: optimizedMetadata.width || sizeConfig.width,
-        height: optimizedMetadata.height || 0,
-      });
-    } catch (error) {
-      console.error(`Failed to generate ${sizeName} variant:`, error);
-      // Continue with other sizes even if one fails
+      const meta = await sharp(optimizedBuffer).metadata();
+      return {
+        sizeName,
+        sizeConfig,
+        buffer: optimizedBuffer,
+        width: meta.width || sizeConfig.width,
+        height: meta.height || 0,
+      };
+    })
+  );
+  type VariantResult = { sizeName: string; sizeConfig: ImageSize; buffer: Buffer; width: number; height: number };
+  const variantBuffers = variantResults
+    .filter((r): r is PromiseFulfilledResult<VariantResult> => r.status === 'fulfilled')
+    .map((r) => r.value);
+  variantResults.forEach((r, i) => {
+    if (r.status === 'rejected') {
+      console.error(`Failed to generate ${Object.keys(IMAGE_SIZES)[i]} variant:`, r.reason);
     }
-  }
-  
-  return optimizedImages;
+  });
+
+  // Upload original + all variants in parallel for minimal client wait
+  const originalKey = `${basePath}/${nameWithoutExt}-${uniqueId}-original.${ext}`;
+  const uploads = [
+    storagePut(originalKey, buffer, `image/${mime}`).then((r) => ({
+      size: 'original',
+      url: r.url,
+      width: originalWidth,
+      height: originalHeight,
+    })),
+    ...variantBuffers.map((v) =>
+      storagePut(
+        `${basePath}/${nameWithoutExt}-${uniqueId}${v.sizeConfig.suffix}.jpg`,
+        v.buffer,
+        'image/jpeg'
+      ).then((r) => ({
+        size: v.sizeName,
+        url: r.url,
+        width: v.width,
+        height: v.height,
+      }))
+    ),
+  ];
+
+  const results = await Promise.all(uploads);
+  return results.filter((r): r is OptimizedImage => Boolean(r.url));
 }
 
 /**

@@ -15,6 +15,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:setup": "node setup-database.mjs",
+    "db:seed-services": "node scripts/seed-services-postgres.mjs",
     "db:get-connection": "node get-neon-connection.mjs",
     "db:seed-testimonials": "tsx scripts/seed-testimonials.ts",
     "postinstall": "node scripts/patch-vite-windows.mjs"

@@ -66,8 +66,9 @@ export default function AllIndustries() {
   return (
     <>
       <Helmet>
-        <title>All Industries Resume Writing Services | All Resume Services</title>
+        <title>All Industries Resume Writing Services | All Résumé Services</title>
         <meta name="description" content="Professional resume writing for all industries and career levels. From mining to healthcare, IT to government, we help Australian professionals across every sector land interviews." />
+        <link rel="canonical" href="https://allresumeservices.com.au/industries" />
       </Helmet>
 
       <Header />

@@ -138,7 +138,7 @@ export async function sendEmailFailureAlert(data: FailureAlertData): Promise<boo
       </div>
       
       <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 12px;">
-        <p>This is an automated alert from All Resume Services email monitoring system.</p>
+        <p>This is an automated alert from All Résumé Services email monitoring system.</p>
         <p>Note: To prevent spam, you will only receive one alert per email type per hour.</p>
       </div>
     </div>
@@ -165,13 +165,13 @@ RECOMMENDED ACTIONS:
 4. Review server logs for additional details
 
 ---
-This is an automated alert from All Resume Services email monitoring system.
+This is an automated alert from All Résumé Services email monitoring system.
 Note: To prevent spam, you will only receive one alert per email type per hour.
   `;
 
   try {
     await transporter.sendMail({
-      from: `"All Resume Services Alert" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
+      from: `"All Résumé Services Alert" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
       to: adminEmail,
       subject: `⚠️ Email Delivery Failed: ${data.emailType}`,
       text: textContent,

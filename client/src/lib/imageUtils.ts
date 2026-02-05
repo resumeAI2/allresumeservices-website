@@ -11,8 +11,19 @@ export function getImageUrl(
   // If it's already a full URL, return it
   if (imageUrl.startsWith('http')) return imageUrl;
   
-  // For backward compatibility, if no size suffix exists, return as-is
-  return imageUrl;
+  // Ensure relative paths work from site root (prepend / if missing)
+  if (imageUrl.startsWith('/')) return imageUrl;
+  return `/${imageUrl}`;
+}
+
+/**
+ * Resolve case study image URL for display (handles relative paths from API).
+ * Returns null if no URL so callers can show a placeholder.
+ */
+export function resolveCaseStudyImageUrl(url: string | null | undefined): string | null {
+  if (!url || typeof url !== 'string' || !url.trim()) return null;
+  if (url.startsWith('http')) return url;
+  return url.startsWith('/') ? url : `/${url}`;
 }
 
 /**

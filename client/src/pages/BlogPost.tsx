@@ -15,16 +15,29 @@ import BlogContent from '@/components/BlogContent';
 import { BlogFAQSchema } from '@/components/BlogFAQSchema';
 import { extractFAQsFromMarkdown } from '@/lib/extractFAQs';
 import { ArticleSchema, BreadcrumbSchema } from '@/components/ArticleSchema';
+import { getFallbackPostBySlug, FALLBACK_BLOG_POSTS } from '@/data/fallbackBlogPosts';
 
 export default function BlogPost() {
   const params = useParams();
   const slug = params.slug;
   
-  const { data: post, isLoading } = trpc.blog.getBySlug.useQuery({ slug: slug! });
+  const { data: apiPost, isLoading } = trpc.blog.getBySlug.useQuery(
+    { slug: slug! },
+    { retry: 1, enabled: !!slug }
+  );
+  const fallbackPost = slug ? getFallbackPostBySlug(slug) : undefined;
+  const post = apiPost ?? fallbackPost;
+
   const { data: relatedPosts = [] } = trpc.blog.getSmartRelatedPosts.useQuery(
     { postId: post?.id || 0, limit: 3 },
-    { enabled: !!post?.id }
+    { enabled: !!post?.id && !!apiPost }
   );
+  const relatedFromFallback = useMemo(() => {
+    if (!post || apiPost) return [];
+    return FALLBACK_BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
+  }, [post, apiPost]);
+  const displayRelatedPosts = (relatedPosts?.length ? relatedPosts : relatedFromFallback) as typeof relatedPosts;
+
   const incrementViewMutation = trpc.blog.incrementViewCount.useMutation();
 
   // ALL HOOKS MUST BE CALLED BEFORE ANY CONDITIONAL RETURNS
@@ -79,12 +92,12 @@ export default function BlogPost() {
     };
   }, [tableStructuredData]);
 
-  // Track page view
+  // Track page view (only for API-sourced posts)
   useEffect(() => {
-    if (post && slug) {
+    if (apiPost && slug) {
       incrementViewMutation.mutate({ slug });
     }
-  }, [post?.id]);
+  }, [apiPost?.id]);
 
   // NOW we can have conditional returns after all hooks are called
   if (isLoading) {
@@ -143,7 +156,7 @@ export default function BlogPost() {
         publishedTime={new Date(post.createdAt).toISOString()}
         modifiedTime={post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined}
         authorName="Sonia Lynch"
-        authorTitle="Founder & CEO, All Resume Services"
+        authorTitle="Founder & CEO, All Résumé Services"
         authorImage="/team/sonia-lynch.png"
         category={post.category}
         readTime={post.readTime || '5 min read'}
@@ -253,7 +266,7 @@ export default function BlogPost() {
                 <BlogAuthor
                   name="Sonia Lynch"
                   title="Founder & CEO - 15+ years in industry"
-                  bio="As the Founder and CEO of All Resume Services, Sonia is a dynamic and results-driven professional with expertise in Resume Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths."
+                  bio="As the Founder and CEO of All Résumé Services, Sonia is a dynamic and results-driven professional with expertise in Resume Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths."
                   photo="/team/sonia-lynch.png"
                   expertise={["Resume Writing", "Personal Branding", "Selection Criteria", "Career Coaching"]}
                 />
@@ -279,12 +292,12 @@ export default function BlogPost() {
         </section>
 
         {/* Related Posts Section */}
-        {relatedPosts.length > 0 && (
+        {displayRelatedPosts.length > 0 && (
           <section className="py-16 bg-accent">
             <div className="container">
               <h2 className="text-3xl font-bold mb-8">Related Articles</h2>
               <div className="grid md:grid-cols-3 gap-8">
-                {relatedPosts.map((relatedPost) => (
+                {displayRelatedPosts.map((relatedPost) => (
                   <article
                     key={relatedPost.id}
                     className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow group"

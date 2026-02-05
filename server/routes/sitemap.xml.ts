@@ -35,7 +35,8 @@ export const GET = async (req: RequestLike, res: ResponseLike) => {
     const host = req.get?.('host') || req.headers?.['host'] || "www.allresumeservices.com.au";
     const baseUrl = `${protocol}://${host}`;
 
-    // Define static pages
+    // Define static pages with lastmod for SEO (ISO date when page was last meaningfully updated)
+    const staticPagesLastmod = '2026-02-02'; // Update when static content changes
     const staticPages = [
       { url: '/', priority: '1.0', changefreq: 'weekly' },
       { url: '/about', priority: '0.8', changefreq: 'monthly' },
@@ -48,16 +49,20 @@ export const GET = async (req: RequestLike, res: ResponseLike) => {
       { url: '/blog', priority: '0.9', changefreq: 'daily' },
       { url: '/contact', priority: '0.7', changefreq: 'monthly' },
       { url: '/case-studies', priority: '0.8', changefreq: 'weekly' },
+      { url: '/testimonials', priority: '0.8', changefreq: 'weekly' },
+      { url: '/google-reviews', priority: '0.7', changefreq: 'weekly' },
+      { url: '/industries', priority: '0.7', changefreq: 'monthly' },
     ];
 
     // Build XML sitemap
     let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
-    // Add static pages
+    // Add static pages with lastmod
     for (const page of staticPages) {
       xml += '  <url>\n';
       xml += `    <loc>${baseUrl}${page.url}</loc>\n`;
+      xml += `    <lastmod>${staticPagesLastmod}</lastmod>\n`;
       xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
       xml += `    <priority>${page.priority}</priority>\n`;
       xml += '  </url>\n';

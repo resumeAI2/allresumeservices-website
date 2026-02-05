@@ -98,7 +98,7 @@ export default function FrequentlyBoughtTogether({ currentService }: FrequentlyB
                       <p className="text-sm text-muted-foreground mb-2">
                         {service.description}
                       </p>
-                      <p className="text-xl font-bold text-secondary">
+                      <p className="text-xl font-bold font-gold-brand">
                         {service.price}
                       </p>
                     </div>
@@ -127,7 +127,7 @@ export default function FrequentlyBoughtTogether({ currentService }: FrequentlyB
             <Button
               size="lg"
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
-              onClick={() => window.location.href = "/pricing"}
+              onClick={() => window.location.href = "/pricing#packages"}
             >
               View Package Pricing
             </Button>

@@ -169,7 +169,7 @@ export const appRouter = router({
         const paypalOrder = await createPayPalOrder({
           amount: input.amount,
           currency: "AUD",
-          description: `All Resume Services - ${input.packageName}`,
+          description: `All Résumé Services - ${input.packageName}`,
           returnUrl: `${protocol}://${host}/payment/success?orderId=${order.id}`,
           cancelUrl: `${protocol}://${host}/payment/cancel?orderId=${order.id}`,
         });

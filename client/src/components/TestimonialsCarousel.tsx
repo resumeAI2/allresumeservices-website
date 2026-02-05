@@ -23,6 +23,11 @@ export default function TestimonialsCarousel({
   rotateInterval = 5000 
 }: TestimonialsCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageFailed, setImageFailed] = useState(false);
+
+  useEffect(() => {
+    setImageFailed(false);
+  }, [currentIndex]);
 
   useEffect(() => {
     if (!autoRotate || testimonials.length <= 1) return;
@@ -89,15 +94,16 @@ export default function TestimonialsCarousel({
                 </p>
               </div>
             </div>
-            {currentTestimonial.photo ? (
+            {currentTestimonial.photo && !imageFailed ? (
               <img
                 src={currentTestimonial.photo}
                 alt={currentTestimonial.name}
                 className="w-16 h-16 rounded-full object-cover border-2 border-[#d4af37]/30"
+                onError={() => setImageFailed(true)}
               />
             ) : (
               <div className="w-16 h-16 rounded-full bg-[#d4af37]/20 flex items-center justify-center border-2 border-[#d4af37]/30">
-                <span className="text-[#d4af37] font-bold text-xl">
+                <span className="font-gold-brand font-bold text-xl">
                   {currentTestimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
                 </span>
               </div>

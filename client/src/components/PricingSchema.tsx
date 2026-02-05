@@ -8,7 +8,7 @@ export default function PricingSchema() {
       {
         "@type": "Organization",
         "@id": "https://allresumeservices.com.au/#organization",
-        "name": "All Resume Services",
+        "name": "All Résumé Services",
         "url": "https://allresumeservices.com.au",
         "logo": "https://allresumeservices.com.au/logo.png",
         "description": "Professional resume writing services with 18+ years experience helping Australians land interviews and secure their dream jobs.",
@@ -32,7 +32,7 @@ export default function PricingSchema() {
         "description": "Professional resume writing service for entry-level professionals. Includes professionally written resume and cover letter with ATS-friendly formatting.",
         "brand": {
           "@type": "Brand",
-          "name": "All Resume Services"
+          "name": "All Résumé Services"
         },
         "offers": {
           "@type": "Offer",
@@ -60,7 +60,7 @@ export default function PricingSchema() {
         "description": "Professional resume and cover letter writing service for mid-level professionals. Includes professionally written resume, cover letter, ATS-friendly formatting, and priority support.",
         "brand": {
           "@type": "Brand",
-          "name": "All Resume Services"
+          "name": "All Résumé Services"
         },
         "offers": {
           "@type": "Offer",
@@ -88,7 +88,7 @@ export default function PricingSchema() {
         "description": "Complete professional branding package for executives. Includes executive resume, cover letter, LinkedIn profile optimisation, ATS-friendly formatting, 1-day express turnaround, and priority support.",
         "brand": {
           "@type": "Brand",
-          "name": "All Resume Services"
+          "name": "All Résumé Services"
         },
         "offers": {
           "@type": "Offer",
@@ -119,7 +119,7 @@ export default function PricingSchema() {
         "offers": {
           "@type": "Offer",
           "priceCurrency": "AUD",
-          "price": "99.00",
+          "price": "125.00",
           "url": "https://allresumeservices.com.au/pricing"
         }
       },
@@ -132,7 +132,7 @@ export default function PricingSchema() {
         "offers": {
           "@type": "Offer",
           "priceCurrency": "AUD",
-          "price": "149.00",
+          "price": "185.00",
           "url": "https://allresumeservices.com.au/pricing"
         }
       },
@@ -145,7 +145,7 @@ export default function PricingSchema() {
         "offers": {
           "@type": "Offer",
           "priceCurrency": "AUD",
-          "price": "255.00",
+          "price": "355.00",
           "url": "https://allresumeservices.com.au/pricing"
         }
       },
@@ -171,7 +171,7 @@ export default function PricingSchema() {
         "offers": {
           "@type": "Offer",
           "priceCurrency": "AUD",
-          "price": "49.00",
+          "price": "55.00",
           "url": "https://allresumeservices.com.au/pricing"
         }
       },

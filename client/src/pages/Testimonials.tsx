@@ -6,27 +6,62 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
 
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+import fallbackReviews from "@/data/full_reviews.json";
+
+type TestimonialRow = {
+  id: number;
+  clientName: string;
+  clientTitle?: string | null;
+  clientPhoto?: string | null;
+  rating: number;
+  testimonialText: string;
+  serviceUsed?: string | null;
+  featured: number;
+  approved: number;
+  createdAt: Date;
+};
+
+const FALLBACK_TESTIMONIALS: TestimonialRow[] = (fallbackReviews as { google_reviews: Array<{ name: string; rating: number; review: string; tags?: string[] }> }).google_reviews
+  .slice(0, 50)
+  .map((r, i) => ({
+    id: -(i + 1),
+    clientName: r.name,
+    clientTitle: null,
+    clientPhoto: null,
+    rating: r.rating,
+    testimonialText: r.review,
+    serviceUsed: r.tags?.[0] ?? "Resume",
+    featured: 0,
+    approved: 1,
+    createdAt: new Date(),
+  }));
 
 export default function Testimonials() {
   const [searchQuery, setSearchQuery] = useState("");
   const [serviceFilter, setServiceFilter] = useState("all");
   const [ratingFilter, setRatingFilter] = useState("all");
   const [displayCount, setDisplayCount] = useState(12);
+  const [failedImageIds, setFailedImageIds] = useState<Set<number>>(new Set());
 
-  const { data: testimonials, isLoading } = trpc.testimonials.getAll.useQuery({
-    approvedOnly: true,
-  });
+  const { data: apiTestimonials, isLoading, isError } = trpc.testimonials.getAll.useQuery(
+    { approvedOnly: true },
+    { retry: 1 }
+  );
+
+  const testimonials = (apiTestimonials && apiTestimonials.length > 0) ? apiTestimonials : (!isLoading ? FALLBACK_TESTIMONIALS : []);
 
   // Fallback when DB is empty (e.g. after migration or previous DB issue)
   const fallbackTestimonials = useMemo(
     () =>
       [
-        { id: -1, clientName: "Sarah M.", clientTitle: "Marketing Manager", clientPhoto: null as string | null, rating: 5, testimonialText: "I was struggling to get interviews despite having 10+ years of experience. After working with All Resume Services, I received 3 interview invitations within 2 weeks! The ATS optimisation made all the difference.", serviceUsed: "Resume Writing" },
+        { id: -1, clientName: "Sarah M.", clientTitle: "Marketing Manager", clientPhoto: null as string | null, rating: 5, testimonialText: "I was struggling to get interviews despite having 10+ years of experience. After working with All Résumé Services, I received 3 interview invitations within 2 weeks! The ATS optimisation made all the difference.", serviceUsed: "Resume Writing" },
         { id: -2, clientName: "James T.", clientTitle: "Software Engineer", clientPhoto: null as string | null, rating: 5, testimonialText: "The team understood exactly what tech recruiters look for. My new resume highlights my achievements perfectly, and I landed my dream role at a top tech company. Worth every dollar!", serviceUsed: "Resume Writing" },
-        { id: -3, clientName: "Emily R.", clientTitle: "HR Professional", clientPhoto: null as string | null, rating: 5, testimonialText: "As someone who reviews resumes daily, I can confidently say the quality of work from All Resume Services is exceptional. Professional, polished, and results-driven. Highly recommend!", serviceUsed: "Resume Writing" },
-        { id: -4, clientName: "Michael K.", clientTitle: "Project Manager", clientPhoto: null as string | null, rating: 5, testimonialText: "Working with All Resume Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimisation was a bonus that really boosted my visibility.", serviceUsed: "LinkedIn Profile" },
+        { id: -3, clientName: "Emily R.", clientTitle: "HR Professional", clientPhoto: null as string | null, rating: 5, testimonialText: "As someone who reviews resumes daily, I can confidently say the quality of work from All Résumé Services is exceptional. Professional, polished, and results-driven. Highly recommend!", serviceUsed: "Resume Writing" },
+        { id: -4, clientName: "Michael K.", clientTitle: "Project Manager", clientPhoto: null as string | null, rating: 5, testimonialText: "Working with All Résumé Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimisation was a bonus that really boosted my visibility.", serviceUsed: "LinkedIn Profile" },
         { id: -5, clientName: "Lisa W.", clientTitle: "Career Changer", clientPhoto: null as string | null, rating: 5, testimonialText: "Transitioning careers felt overwhelming, but the team helped me reframe my experience beautifully. I got my first interview in my new field within a month. Thank you!", serviceUsed: "Resume Writing" },
         { id: -6, clientName: "David P.", clientTitle: "Executive Leader", clientPhoto: null as string | null, rating: 5, testimonialText: "After 20 years in leadership, I needed a resume that reflected my strategic impact. The premium package delivered exactly that—sophisticated, compelling, and interview-winning.", serviceUsed: "Resume Writing" },
       ] as const,
@@ -37,7 +72,7 @@ export default function Testimonials() {
 
   // Filter and search testimonials
   const filteredTestimonials = useMemo(() => {
-    let filtered = [...effectiveTestimonials];
+let filtered = [...effectiveTestimonials];
 
     // Search filter
     if (searchQuery.trim()) {
@@ -119,6 +154,12 @@ export default function Testimonials() {
 
   return (
     <>
+      <Helmet>
+        <title>Client Testimonials & Reviews | All Résumé Services</title>
+        <meta name="description" content="Read testimonials from professionals who landed interviews and jobs with our resume writing, cover letters, and LinkedIn services. 96% interview success rate." />
+        <meta name="keywords" content="resume writing testimonials, client reviews, resume service reviews Australia" />
+        <link rel="canonical" href="https://allresumeservices.com.au/testimonials" />
+      </Helmet>
       <Header />
       <div className="min-h-screen">
       {/* Hero Section */}
@@ -126,7 +167,7 @@ export default function Testimonials() {
         <div className="container">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-secondary">Client Testimonials</h1>
           <p className="text-xl text-white max-w-2xl">
-            Read what our satisfied clients have to say about their experience with All Resume Services
+            Read what our satisfied clients have to say about their experience with All Résumé Services
           </p>
         </div>
       </section>
@@ -274,11 +315,12 @@ export default function Testimonials() {
                           )}
                         </div>
                       </div>
-                      {testimonial.clientPhoto ? (
+                      {testimonial.clientPhoto && !failedImageIds.has(testimonial.id) ? (
                         <img
                           src={testimonial.clientPhoto}
                           alt={testimonial.clientName}
                           className="w-12 h-12 rounded-full object-cover border-2 border-primary/20"
+                          onError={() => setFailedImageIds(prev => new Set(prev).add(testimonial.id))}
                         />
                       ) : (
                         <div className={`w-12 h-12 rounded-full flex items-center justify-center border-2 font-bold text-sm text-white ${
