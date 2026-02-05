@@ -101,8 +101,7 @@ export default function Header() {
             <Link href="/blog" className="hover:text-secondary transition-colors whitespace-nowrap hidden xl:inline-block">Career Advice Blog</Link>
             <Link href="/blog" className="hover:text-secondary transition-colors whitespace-nowrap xl:hidden">Blog</Link>
             <div className="relative group">
-              <button className="hover:text-secondary transition-colors whitespace-nowrap hidden xl:inline-block">Success Stories</button>
-              <button className="hover:text-secondary transition-colors whitespace-nowrap xl:hidden">Stories</button>
+              <button className="hover:text-secondary transition-colors whitespace-nowrap">Success Stories</button>
               <div className="absolute left-0 mt-2 w-48 bg-primary border border-secondary/20 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <Link href="/testimonials" className="block px-4 py-2 hover:bg-secondary/10 transition-colors">Client Testimonials</Link>
                 <Link href="/google-reviews" className="block px-4 py-2 hover:bg-secondary/10 transition-colors">Google Reviews</Link>

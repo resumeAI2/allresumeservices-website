@@ -199,8 +199,8 @@ export default function PricingPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/packages" className="block w-full text-center bg-secondary hover:bg-secondary/90 text-white font-semibold px-6 py-3 rounded-lg transition-all">
-                    Choose Package
+                  <Link href="/packages#services" className="block w-full text-center bg-secondary hover:bg-secondary/90 text-white font-semibold px-6 py-3 rounded-lg transition-all">
+                    Select package
                   </Link>
                 </div>
               ))}
@@ -247,8 +247,8 @@ export default function PricingPage() {
               })}
             </div>
             <div className="text-center mt-12">
-              <Link href="/packages" className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
-                View Full Catalog & Add to Cart
+              <Link href="/packages#services" className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
+                View packages & add to cart
               </Link>
             </div>
           </div>

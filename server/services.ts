@@ -3,11 +3,22 @@ import { getDb } from './db';
 import { services, cart_items, testimonials, type Service, type CartItem, type InsertCartItem } from '../drizzle/schema';
 
 /**
- * Get all active services
+ * Get all active services.
+ * Requires DATABASE_URL and a migrated + seeded `services` table.
  */
 export async function getAllServices(): Promise<Service[]> {
   const db = await getDb();
-  return db!.select().from(services).where(eq(services.active, 1)).orderBy(services.sortOrder);
+  if (!db) {
+    throw new Error(
+      'Services catalog is unavailable. Set DATABASE_URL in .env and ensure the database is reachable. Run migrations (e.g. pnpm drizzle-kit push) and seed (node scripts/seed-services-postgres.mjs).'
+    );
+  }
+  try {
+    return await db.select().from(services).where(eq(services.active, 1)).orderBy(services.sortOrder);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    throw new Error(`Services catalog could not be loaded: ${message}. Ensure the "services" table exists (run migrations) and is seeded.`);
+  }
 }
 
 /**

@@ -114,19 +114,6 @@ export default function Checkout() {
         <div className="container max-w-6xl">
           <h1 className="text-4xl font-bold mb-8">Checkout</h1>
           
-          {/* Temporary Payment Notice */}
-          <Alert className="mb-8 border-amber-500 bg-amber-500/10">
-            <AlertTriangle className="h-5 w-5 text-amber-500" />
-            <AlertTitle className="text-amber-500 font-semibold">Online Payments Temporarily Unavailable</AlertTitle>
-            <AlertDescription className="text-muted-foreground">
-              We're currently updating our payment system. To place an order, please contact us directly at{' '}
-              <a href="tel:0410934371" className="text-primary hover:underline font-medium">0410 934 371</a>{' '}
-              or email{' '}
-              <a href="mailto:admin@allresumeservices.com.au" className="text-primary hover:underline font-medium">admin@allresumeservices.com.au</a>.
-              We apologise for any inconvenience.
-            </AlertDescription>
-          </Alert>
-          
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Customer Details Form */}

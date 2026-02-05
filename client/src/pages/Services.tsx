@@ -23,7 +23,7 @@ export default function Services() {
     {
       icon: Mail,
       title: "Cover Letter Writing",
-      description: "Compelling cover letters that complement your resume and demonstrate your enthusiasm and fit for the role. Customized for each application.",
+      description: "Compelling cover letters that complement your resume and demonstrate your enthusiasm and fit for the role. Customised for each application.",
       features: [
         "Tailored to job description",
         "Highlights key qualifications",
@@ -41,7 +41,7 @@ export default function Services() {
         "Keyword-optimised headline",
         "Compelling summary",
         "Achievement-based experience",
-        "Skills optimization",
+        "Skills optimisation",
         "Recruiter-friendly format"
       ],
       link: "/services/linkedin-optimisation"
@@ -96,7 +96,7 @@ export default function Services() {
     <>
       <Helmet>
         <title>Our Services - Professional Resume & Career Services | All Résumé Services</title>
-        <meta name="description" content="Professional resume writing, cover letters, LinkedIn optimization, selection criteria, and career consultation services. 18+ years experience, 96% interview success rate." />
+        <meta name="description" content="Professional resume writing, cover letters, LinkedIn optimisation, selection criteria, and career consultation services. 18+ years experience, 96% interview success rate." />
         <meta name="keywords" content="resume writing services, cover letter writing, LinkedIn profile, selection criteria, career consultation, professional resume" />
         <link rel="canonical" href="https://allresumeservices.com.au/services" />
       </Helmet>
@@ -111,7 +111,7 @@ export default function Services() {
                 Professional Career Services
               </h1>
               <p className="text-xl text-white mb-8">
-                Expert resume writing, cover letters, LinkedIn optimization, and career guidance to help you land your dream job.
+                Expert resume writing, cover letters, LinkedIn optimisation, and career guidance to help you land your dream job.
               </p>
               <Link href="/pricing#packages" className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
                 View Pricing & Packages

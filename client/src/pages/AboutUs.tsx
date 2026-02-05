@@ -361,7 +361,7 @@ export default function AboutUs() {
                 </thead>
                 <tbody>
                   <tr className="border-b border-gray-200">
-                    <td className="p-4 font-medium text-gray-700">ATS Optimization</td>
+                    <td className="p-4 font-medium text-gray-700">ATS Optimisation</td>
                     <td className="p-4 text-center text-gray-500">❌ Limited</td>
                     <td className="p-4 text-center text-gray-500">✓ Basic</td>
                     <td className="p-4 text-center bg-secondary/5"><span className="text-secondary font-semibold">✓✓ Advanced</span></td>
@@ -600,7 +600,7 @@ export default function AboutUs() {
               <Card>
                 <CardContent className="p-6">
                   <div className="text-4xl font-bold text-[#d4af37] mb-3">03</div>
-                  <h3 className="text-xl font-bold mb-3 text-[#1e3a5f]">Optimization & Polish</h3>
+                  <h3 className="text-xl font-bold mb-3 text-[#1e3a5f]">Optimisation & Polish</h3>
                   <p className="text-gray-600 leading-relaxed">
                     We ensure your documents are ATS-compliant, keyword-optimised, and formatted 
                     to professional standards that impress both systems and humans.
