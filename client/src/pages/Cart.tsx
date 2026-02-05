@@ -47,7 +47,7 @@ export default function Cart() {
             <p className="text-muted-foreground mb-8">
               Add some services to your cart to get started with your professional resume journey.
             </p>
-            <Link href="/services">
+            <Link href="/pricing#packages">
               <Button size="lg">
                 Browse Services
               </Button>

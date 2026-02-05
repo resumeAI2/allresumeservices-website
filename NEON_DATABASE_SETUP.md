@@ -52,6 +52,16 @@ This will:
 2. Apply migrations to your Neon database
 3. Create all necessary tables and enums
 
+### Services catalog (Packages page / Add to Cart)
+
+The **Packages** page and **Add to Cart** need the `services` table to be **seeded**. After `pnpm db:push`, run:
+
+```bash
+node scripts/seed-services-postgres.mjs
+```
+
+Requires `DATABASE_URL` in `.env`. If you skip this, the Packages page will show "We couldn't load the full catalog" and only "Contact us to order" will be available.
+
 ## Database Schema
 
 The project uses **Drizzle ORM** with PostgreSQL. Key features:

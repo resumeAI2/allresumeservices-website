@@ -240,7 +240,13 @@ export const appRouter = router({
 
   services: router({ getAllServices: publicProcedure
       .query(async () => {
-        return await servicesService.getAllServices();
+        try {
+          return await servicesService.getAllServices();
+        } catch (err) {
+          console.error('[Catalog] getAllServices failed:', err instanceof Error ? err.message : err);
+          if (err instanceof Error && err.stack) console.error(err.stack);
+          throw err;
+        }
       }),
     getServicesByType: publicProcedure
       .input(z.enum(['individual', 'package', 'addon']))
