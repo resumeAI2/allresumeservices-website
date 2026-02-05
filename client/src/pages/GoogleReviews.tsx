@@ -11,7 +11,7 @@ export default function GoogleReviewsPage() {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "All Resume Services",
+    "name": "All Résumé Services",
     "url": "https://allresumeservices.com.au",
     "logo": "https://allresumeservices.com.au/logo.png",
     "aggregateRating": {
@@ -41,6 +41,9 @@ export default function GoogleReviewsPage() {
   return (
     <>
       <Helmet>
+        <title>Google Reviews - All Résumé Services</title>
+        <meta name="description" content="Read verified Google reviews from clients who used our professional resume writing, cover letter, and LinkedIn services. 5-star rated resume writers in Australia." />
+        <link rel="canonical" href="https://allresumeservices.com.au/google-reviews" />
         <script type="application/ld+json">
           {JSON.stringify(schemaData)}
         </script>

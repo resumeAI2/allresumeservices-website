@@ -259,7 +259,7 @@ export default function BlogEditor() {
         });
 
         // Insert image into editor content
-        const imgTag = `<img src="${result.url}" alt="${imageAltText || ''}" class="max-w-full h-auto rounded-lg" />`;
+        const imgTag = `<img src="${result.url}" alt="${imageAltText || 'Blog post image'}" class="max-w-full h-auto rounded-lg" />`;
         setContent(prev => prev + imgTag);
 
         toast.success('Image inserted successfully!');

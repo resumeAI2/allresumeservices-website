@@ -95,9 +95,10 @@ export default function Services() {
   return (
     <>
       <Helmet>
-        <title>Our Services - Professional Resume & Career Services | All Resume Services</title>
+        <title>Our Services - Professional Resume & Career Services | All Résumé Services</title>
         <meta name="description" content="Professional resume writing, cover letters, LinkedIn optimization, selection criteria, and career consultation services. 18+ years experience, 96% interview success rate." />
         <meta name="keywords" content="resume writing services, cover letter writing, LinkedIn profile, selection criteria, career consultation, professional resume" />
+        <link rel="canonical" href="https://allresumeservices.com.au/services" />
       </Helmet>
       <Header />
       <Breadcrumb items={[{ label: "Services" }]} />
@@ -112,7 +113,7 @@ export default function Services() {
               <p className="text-xl text-white mb-8">
                 Expert resume writing, cover letters, LinkedIn optimization, and career guidance to help you land your dream job.
               </p>
-              <Link href="/pricing" className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
+              <Link href="/pricing#packages" className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
                 View Pricing & Packages
               </Link>
             </div>
@@ -131,7 +132,7 @@ export default function Services() {
                       <Icon className="h-8 w-8 text-secondary" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-2">{benefit.title}</h3>
-                    <p className="text-muted-foreground">{benefit.description}</p>
+                    <p className="text-gray-700">{benefit.description}</p>
                   </div>
                 );
               })}
@@ -139,14 +140,14 @@ export default function Services() {
           </div>
         </section>
 
-        {/* Services Grid */}
-        <section className="py-20">
+        {/* Services Grid - subtle off-white background to reduce glare */}
+        <section className="py-20 bg-[#f8fafc]">
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Our Services
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg text-gray-700 max-w-2xl mx-auto">
                 Choose from our range of professional career services, or combine them in a package for the best value.
               </p>
             </div>
@@ -174,13 +175,13 @@ export default function Services() {
                     <h3 className="text-2xl font-bold text-foreground mb-3">
                       {service.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4">
+                    <p className="text-gray-700 mb-4 leading-relaxed">
                       {service.description}
                     </p>
                     <ul className="space-y-2 mb-6">
                       {service.features.map((feature, fIndex) => (
-                        <li key={fIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <span className="text-secondary mt-0.5">✓</span>
+                        <li key={fIndex} className="flex items-start gap-2 text-sm text-gray-700">
+                          <span className="text-[#1e3a5f] mt-0.5 font-bold" aria-hidden>✓</span>
                           {feature}
                         </li>
                       ))}
@@ -202,11 +203,11 @@ export default function Services() {
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 Ready to Get Started?
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-lg text-gray-700 mb-8">
                 Choose a package that fits your needs or get a free resume review to see how we can help.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/pricing" className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
+                <Link href="/pricing#packages" className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
                   View Pricing & Packages
                 </Link>
                 <Link href="/contact" className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-foreground font-semibold px-8 py-3 rounded-lg border-2 border-border transition-all">

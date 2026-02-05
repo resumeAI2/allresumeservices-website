@@ -53,7 +53,7 @@ export default function Services() {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Why Choose <span className="text-secondary">All Resume Services</span>?
+            Why Choose <span className="font-gold-brand">All Résumé Services</span>?
           </h2>
           <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
             Are you ready to stand out in a crowded job market? With decades of experience crafting professional resumes and application documents, we help Australians land interviews and secure roles across industries. Our tailored approach ensures your strengths are highlighted, your accomplishments shine, and your application aligns with the expectations of recruiters and Applicant Tracking Systems (ATS).
@@ -70,7 +70,7 @@ export default function Services() {
                 className="bg-gradient-to-br from-secondary/20 to-white/10 backdrop-blur-sm border-2 border-secondary/30 rounded-xl p-6 text-center hover:from-secondary/30 hover:to-white/20 transition-all hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 <Icon className="h-8 w-8 text-secondary mx-auto mb-3" />
-                <div className="text-4xl font-bold text-secondary mb-2">{stat.number}</div>
+                <div className="text-4xl font-bold font-gold-brand mb-2">{stat.number}</div>
                 <div className="text-sm text-blue-100 font-medium">{stat.label}</div>
               </div>
             );

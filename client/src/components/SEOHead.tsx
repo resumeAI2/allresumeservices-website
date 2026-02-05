@@ -20,7 +20,7 @@ export default function SEOHead({
   type = 'article',
   publishedTime,
   modifiedTime,
-  author = 'All Resume Services',
+  author = 'All Résumé Services',
   keywords,
 }: SEOHeadProps) {
   const siteUrl = window.location.origin;
@@ -29,7 +29,7 @@ export default function SEOHead({
 
   useEffect(() => {
     // Update document title
-    document.title = `${title} | All Resume Services`;
+    document.title = `${title} | All Résumé Services`;
 
     // Helper function to set or update meta tags
     const setMetaTag = (property: string, content: string, isProperty = true) => {
@@ -51,13 +51,22 @@ export default function SEOHead({
       setMetaTag('keywords', keywords, false);
     }
 
+    // Canonical URL
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', fullUrl);
+
     // Open Graph tags
     setMetaTag('og:title', title);
     setMetaTag('og:description', description);
     setMetaTag('og:image', fullImageUrl);
     setMetaTag('og:url', fullUrl);
     setMetaTag('og:type', type);
-    setMetaTag('og:site_name', 'All Resume Services');
+    setMetaTag('og:site_name', 'All Résumé Services');
 
     // Twitter Card tags
     setMetaTag('twitter:card', 'summary_large_image', false);
@@ -100,7 +109,7 @@ export default function SEOHead({
       },
       "publisher": {
         "@type": "Organization",
-        "name": "All Resume Services",
+        "name": "All Résumé Services",
         "logo": {
           "@type": "ImageObject",
           "url": `${siteUrl}/logo.png`
@@ -120,7 +129,7 @@ export default function SEOHead({
 
     // Cleanup function
     return () => {
-      document.title = 'All Resume Services - Professional Resume Writing';
+      document.title = 'All Résumé Services - Professional Resume Writing';
     };
   }, [title, description, image, fullUrl, fullImageUrl, type, publishedTime, modifiedTime, author, keywords, siteUrl]);
 

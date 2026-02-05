@@ -101,7 +101,7 @@ export async function sendContactFormNotification(data: ContactFormData): Promis
       </div>
       
       <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 12px;">
-        <p>This email was sent from the All Resume Services contact form.</p>
+        <p>This email was sent from the All Résumé Services contact form.</p>
         <p>Submitted at: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney' })}</p>
       </div>
     </div>
@@ -126,7 +126,7 @@ Submitted at: ${new Date().toLocaleString('en-AU', { timeZone: 'Australia/Sydney
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
+      from: `"All Résumé Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
       to: recipientEmail,
       subject,
       text: textContent,
@@ -204,16 +204,16 @@ export async function sendTestEmail(recipientEmail: string): Promise<boolean> {
       </p>
       
       <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 12px;">
-        <p>All Resume Services - Email System</p>
+        <p>All Résumé Services - Email System</p>
       </div>
     </div>
   `;
 
-  const subject = 'Test Email from All Resume Services';
+  const subject = 'Test Email from All Résumé Services';
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
+      from: `"All Résumé Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
       to: recipientEmail,
       subject,
       text: 'This is a test email to verify your email configuration is working correctly.',
@@ -302,7 +302,7 @@ export async function sendLeadMagnetEmail(name: string, email: string, pdfUrl: s
       <p>Best of luck with your job search!</p>
       
       <p>
-        <strong>All Resume Services</strong><br>
+        <strong>All Résumé Services</strong><br>
         Professional Resume Writing | 18+ Years Experience | 96% Interview Success Rate
       </p>
       
@@ -346,7 +346,7 @@ Email: admin@allresumeservices.com.au
 
 Best of luck with your job search!
 
-All Resume Services
+All Résumé Services
 Professional Resume Writing | 18+ Years Experience | 96% Interview Success Rate
   `;
 
@@ -354,7 +354,7 @@ Professional Resume Writing | 18+ Years Experience | 96% Interview Success Rate
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
+      from: `"All Résumé Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
       to: email,
       subject,
       text: textContent,
@@ -463,7 +463,7 @@ export async function sendOrderConfirmationEmail(orderData: OrderData): Promise<
         </p>
         
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
-          <p style="margin: 0; color: #6b7280; font-size: 12px;">All Resume Services</p>
+          <p style="margin: 0; color: #6b7280; font-size: 12px;">All Résumé Services</p>
           <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 12px;">Professional Resume Writing & Career Services</p>
         </div>
       </div>
@@ -492,15 +492,15 @@ What Happens Next?
 If you have any questions, please contact us at admin@allresumeservices.com.au
 
 ---
-All Resume Services
+All Résumé Services
 Professional Resume Writing & Career Services
   `;
 
-  const subject = `Order Confirmation #${orderData.orderId} - All Resume Services`;
+  const subject = `Order Confirmation #${orderData.orderId} - All Résumé Services`;
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
+      from: `"All Résumé Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
       to: orderData.customerEmail,
       subject,
       text: textContent,
@@ -610,7 +610,7 @@ export async function sendRefundNotificationEmail(refundData: RefundData): Promi
         </p>
         
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
-          <p style="margin: 0; color: #6b7280; font-size: 12px;">All Resume Services</p>
+          <p style="margin: 0; color: #6b7280; font-size: 12px;">All Résumé Services</p>
           <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 12px;">Professional Resume Writing & Career Services</p>
         </div>
       </div>
@@ -634,7 +634,7 @@ Note: Refunds typically take 5-10 business days to appear in your account, depen
 If you have any questions about this refund, please contact us at admin@allresumeservices.com.au
 
 ---
-All Resume Services
+All Résumé Services
 Professional Resume Writing & Career Services
   `;
 
@@ -642,7 +642,7 @@ Professional Resume Writing & Career Services
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
+      from: `"All Résumé Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
       to: refundData.customerEmail,
       subject,
       text: textContent,
@@ -715,7 +715,7 @@ export async function sendReviewRequestEmail(
       </p>
       
       <p style="font-size: 16px; line-height: 1.6;">
-        Thank you for choosing All Resume Services! We hope you're thrilled with your new resume and that it's helping you land interviews.
+        Thank you for choosing All Résumé Services! We hope you're thrilled with your new resume and that it's helping you land interviews.
       </p>
       
       <p style="font-size: 16px; line-height: 1.6;">
@@ -734,16 +734,16 @@ export async function sendReviewRequestEmail(
       </p>
       
       <p style="font-size: 16px; line-height: 1.6;">
-        Thank you again for your trust in All Resume Services.
+        Thank you again for your trust in All Résumé Services.
       </p>
       
       <p style="font-size: 16px; line-height: 1.6;">
         Best regards,<br>
-        <strong>The All Resume Services Team</strong>
+        <strong>The All Résumé Services Team</strong>
       </p>
       
       <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 12px;">
-        <p>All Resume Services | Professional Resume Writing</p>
+        <p>All Résumé Services | Professional Resume Writing</p>
         <p>Email: admin@allresumeservices.com.au | Phone: +61 410 934 371</p>
       </div>
     </div>
@@ -754,7 +754,7 @@ We'd Love Your Feedback!
 
 Hi ${clientName},
 
-Thank you for choosing All Resume Services! We hope you're thrilled with your new resume and that it's helping you land interviews.
+Thank you for choosing All Résumé Services! We hope you're thrilled with your new resume and that it's helping you land interviews.
 
 We'd be incredibly grateful if you could take a moment to share your experience by leaving us a Google review. Your feedback helps us improve and helps other job seekers find quality resume services.
 
@@ -762,21 +762,21 @@ Leave a Google Review: ${reviewLink}
 
 It only takes a minute, and your review means the world to us!
 
-Thank you again for your trust in All Resume Services.
+Thank you again for your trust in All Résumé Services.
 
 Best regards,
-The All Resume Services Team
+The All Résumé Services Team
 
 ---
-All Resume Services | Professional Resume Writing
+All Résumé Services | Professional Resume Writing
 Email: admin@allresumeservices.com.au | Phone: +61 410 934 371
   `;
 
-  const subject = "We'd Love Your Feedback - All Resume Services";
+  const subject = "We'd Love Your Feedback - All Résumé Services";
   
   try {
     await transporter.sendMail({
-      from: `"All Resume Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
+      from: `"All Résumé Services" <${process.env.EMAIL_USER || 'admin@allresumeservices.com.au'}>`,
       to: clientEmail,
       subject,
       text: textContent,

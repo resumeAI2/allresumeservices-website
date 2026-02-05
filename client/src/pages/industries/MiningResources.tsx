@@ -83,8 +83,9 @@ export default function MiningResources() {
   return (
     <>
       <Helmet>
-        <title>Mining & Resources Resume Writing | All Resume Services</title>
+        <title>Mining & Resources Resume Writing | All Résumé Services</title>
         <meta name="description" content="Specialist resume writing for mining and resources professionals. FIFO, DIDO, operators, engineers, and supervisors. ATS-optimised for major mining companies." />
+        <link rel="canonical" href="https://allresumeservices.com.au/industries/mining-resources" />
       </Helmet>
       <Header />
       
@@ -373,7 +374,7 @@ export default function MiningResources() {
                   We restructured his resume to target iron ore operations, prominently featured his safety statistics (zero LTIs over 8 years), and optimised it for major mining company ATS systems. Within three weeks, David received interview invitations from three major iron ore operators and accepted a Production Supervisor role with a $180,000 package—a 35% salary increase.
                 </p>
                 <blockquote className="border-l-4 border-secondary pl-4 italic text-lg mb-6">
-                  "The team at All Resume Services completely transformed how I presented my mining experience. Within weeks I had multiple FIFO offers, and I'm now earning significantly more while working fewer days per year."
+                  "The team at All Résumé Services completely transformed how I presented my mining experience. Within weeks I had multiple FIFO offers, and I'm now earning significantly more while working fewer days per year."
                   <footer className="text-sm text-muted-foreground mt-2">— David, Production Supervisor</footer>
                 </blockquote>
                 <Button asChild>

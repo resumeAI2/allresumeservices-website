@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { trpc } from "@/lib/trpc";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -124,53 +125,70 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Contact Us - Free Resume Consultation | All Résumé Services</title>
+        <meta name="description" content="Contact All Résumé Services for a free resume consultation. Phone, email, or upload your resume. 18+ years experience, 96% interview success rate. Australia-wide." />
+        <meta name="keywords" content="contact resume writer, free resume review, resume consultation Australia" />
+        <link rel="canonical" href="https://allresumeservices.com.au/contact" />
+      </Helmet>
       <Header />
       
-      <main className="flex-1 py-16 bg-gradient-to-b from-background to-muted/20">
-        <div className="container max-w-6xl">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Ready to take the next step in your career? Contact us today for a free consultation 
-              and let's discuss how we can help you land your dream job.
-            </p>
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="relative bg-gradient-to-br from-[#1e3a5f] via-[#2d5a8f] to-[#1e3a5f] text-white py-16 md:py-20 overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-1/4 w-64 h-64 bg-[#D4AF37] rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-white rounded-full blur-3xl" />
           </div>
+          <div className="container max-w-6xl relative z-10">
+            <div className="text-center max-w-2xl mx-auto">
+              <p className="inline-block px-4 py-1.5 rounded-full bg-[#D4AF37]/25 text-[#D4AF37] font-semibold tracking-wide uppercase text-base mb-4 border border-[#D4AF37]/40">Free consultation</p>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
+              <p className="text-lg text-blue-100">
+                Ready to take the next step? Contact us for a free consultation and we&apos;ll discuss how we can help you land your dream job.
+              </p>
+            </div>
+          </div>
+        </section>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <Card className="p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
-                <Phone className="w-6 h-6 text-primary" />
+        <div className="container max-w-6xl -mt-6 relative z-20 px-4 pb-16">
+          {/* Contact cards */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <Card className="p-6 text-center border-2 border-transparent hover:border-[#D4AF37]/30 hover:shadow-lg transition-all duration-300 bg-white shadow-md">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[#1e3a5f] text-[#D4AF37] mb-4">
+                <Phone className="w-7 h-7" />
               </div>
-              <h3 className="font-semibold mb-2">Phone</h3>
-              <a href="tel:0410934371" className="text-muted-foreground hover:text-primary">
+              <h3 className="font-bold text-[#1e3a5f] mb-2">Phone</h3>
+              <a href="tel:0410934371" className="text-gray-700 hover:text-[#1e3a5f] font-medium transition-colors">
                 0410 934 371
               </a>
             </Card>
 
-            <Card className="p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
-                <Mail className="w-6 h-6 text-primary" />
+            <Card className="p-6 text-center border-2 border-transparent hover:border-[#D4AF37]/30 hover:shadow-lg transition-all duration-300 bg-white shadow-md">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[#1e3a5f] text-[#D4AF37] mb-4">
+                <Mail className="w-7 h-7" />
               </div>
-              <h3 className="font-semibold mb-2">Email</h3>
-              <a href="mailto:admin@allresumeservices.com.au" className="text-muted-foreground hover:text-primary break-all">
+              <h3 className="font-bold text-[#1e3a5f] mb-2">Email</h3>
+              <a href="mailto:admin@allresumeservices.com.au" className="text-gray-700 hover:text-[#1e3a5f] font-medium break-all transition-colors">
                 admin@allresumeservices.com.au
               </a>
             </Card>
 
-            <Card className="p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
-                <Clock className="w-6 h-6 text-primary" />
+            <Card className="p-6 text-center border-2 border-transparent hover:border-[#D4AF37]/30 hover:shadow-lg transition-all duration-300 bg-white shadow-md">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[#1e3a5f] text-[#D4AF37] mb-4">
+                <Clock className="w-7 h-7" />
               </div>
-              <h3 className="font-semibold mb-2">Business Hours</h3>
-              <p className="text-muted-foreground">
-                Mon-Fri: 9am - 6pm<br />
-                Sat-Sun: By appointment
+              <h3 className="font-bold text-[#1e3a5f] mb-2">Business Hours</h3>
+              <p className="text-gray-700 text-sm">
+                Mon–Fri: 9am – 6pm<br />
+                <span className="text-muted-foreground">Sat–Sun: By appointment</span>
               </p>
             </Card>
           </div>
 
-          <Card className="p-8 md:p-12">
-            <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
+          <Card id="enquiry-form" className="p-8 md:p-12 shadow-lg border-2 border-[#1e3a5f]/10 scroll-mt-24">
+            <h2 className="text-2xl font-bold text-[#1e3a5f] mb-2">Send Us a Message</h2>
+            <p className="text-muted-foreground mb-6">We typically respond within 24 hours.</p>
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Honeypot field - hidden from users, bots will fill it */}
               <input
@@ -300,7 +318,7 @@ export default function Contact() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tell us about your career goals and how we can help..."
-                  className="mt-2 w-full min-h-[150px] px-3 py-2 border border-input rounded-md"
+                  className="mt-2 w-full min-h-[150px] px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]/20 focus:border-[#1e3a5f]"
                   required
                 />
                 <p className="text-sm text-muted-foreground mt-1">
@@ -312,7 +330,7 @@ export default function Contact() {
                 type="submit"
                 size="lg"
                 disabled={isUploading || submitMutation.isPending}
-                className="w-full md:w-auto"
+                className="w-full md:w-auto bg-[#1e3a5f] hover:bg-[#2d5a8f] text-white"
               >
                 {isUploading || submitMutation.isPending ? (
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -324,18 +342,18 @@ export default function Contact() {
             </form>
           </Card>
 
-          <div className="mt-12 text-center">
-            <h3 className="text-xl font-semibold mb-4">Prefer to Call?</h3>
-            <p className="text-muted-foreground mb-6">
-              Speak directly with one of our resume experts for immediate assistance
+          <section className="mt-16 py-12 px-6 rounded-2xl bg-gradient-to-br from-[#1e3a5f]/5 via-[#D4AF37]/5 to-[#1e3a5f]/5 border border-[#1e3a5f]/10 text-center">
+            <h3 className="text-xl font-bold text-[#1e3a5f] mb-2">Prefer to Call?</h3>
+            <p className="text-gray-700 mb-6 max-w-md mx-auto">
+              Speak directly with one of our resume experts for immediate assistance.
             </p>
             <a href="tel:0410934371">
-              <Button size="lg" variant="outline">
+              <Button size="lg" className="bg-[#D4AF37] hover:bg-[#B8860B] text-[#1e3a5f] font-semibold shadow-md">
                 <Phone className="w-4 h-4 mr-2" />
                 Call 0410 934 371
               </Button>
             </a>
-          </div>
+          </section>
         </div>
       </main>
 

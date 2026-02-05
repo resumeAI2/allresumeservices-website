@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'wouter';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Breadcrumb from '../components/Breadcrumb';
@@ -134,7 +136,7 @@ export default function AboutUs() {
     {
       name: "Sonia Lynch",
       title: "Founder & CEO - 15+ years in industry",
-      bio: "As the Founder and CEO of All Resume Services, Sonia is a dynamic and results-driven professional with expertise in Resume Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths. Her holistic approach ensures clients are well-equipped for their job market journey, presenting as standout candidates in their respective fields.",
+      bio: "As the Founder and CEO of All Résumé Services, Sonia is a dynamic and results-driven professional with expertise in Resume Writing, Personal Branding, Curriculum Development, Selection Criteria, Cover Letters, Portfolios, Coaching, and Career Development. Her MBA in Business Administration and Management underpins a commitment to empowering clients, guiding them to excel in their career paths. Her holistic approach ensures clients are well-equipped for their job market journey, presenting as standout candidates in their respective fields.",
       expertise: ["Resume Writing", "Personal Branding", "Selection Criteria", "Career Coaching"],
       photo: "/team/sonia-lynch.png"
     },
@@ -148,7 +150,7 @@ export default function AboutUs() {
     {
       name: "Jenna Atkinson",
       title: "Expert Resume Writer",
-      bio: "Jenna has been a key member of the All Resume Services team for several years, bringing a wealth of experience and a keen eye for detail to her role as a professional resume writer. She excels in creating persuasive cover letters and enhancing LinkedIn profiles. Jenna is particularly adept at responding to selection criteria using the CAR (Context, Action, Result) format, showcasing clients' skills and achievements in a clear and impactful way. Her professionalism, creativity, and thorough approach have earned her a reputation as a trusted member of the team.",
+      bio: "Jenna has been a key member of the All Résumé Services team for several years, bringing a wealth of experience and a keen eye for detail to her role as a professional resume writer. She excels in creating persuasive cover letters and enhancing LinkedIn profiles. Jenna is particularly adept at responding to selection criteria using the CAR (Context, Action, Result) format, showcasing clients' skills and achievements in a clear and impactful way. Her professionalism, creativity, and thorough approach have earned her a reputation as a trusted member of the team.",
       expertise: ["Resume Writing", "Cover Letters", "LinkedIn Profiles", "CAR Method"],
       photo: "/team/jenna-atkinson.png"
     }
@@ -181,7 +183,7 @@ export default function AboutUs() {
     {
       year: "2007",
       title: "Founded in Australia",
-      description: "All Resume Services was established with a vision to help Australian job seekers stand out in an increasingly competitive market. Started as a small operation with a focus on personalised, quality service.",
+      description: "All Résumé Services was established with a vision to help Australian job seekers stand out in an increasingly competitive market. Started as a small operation with a focus on personalised, quality service.",
       side: "left"
     },
     {
@@ -220,6 +222,12 @@ export default function AboutUs() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <Helmet>
+        <title>About Us - Professional Resume Writers | All Résumé Services</title>
+        <meta name="description" content="Meet the team behind All Résumé Services. 18+ years helping Australians land interviews with ATS-optimised resumes, cover letters, and LinkedIn profiles. 96% success rate." />
+        <meta name="keywords" content="about All Résumé Services, resume writers Australia, professional resume team, career experts" />
+        <link rel="canonical" href="https://allresumeservices.com.au/about" />
+      </Helmet>
       <Header />
       <Breadcrumb items={[{ label: "About Us" }]} />
       
@@ -228,9 +236,9 @@ export default function AboutUs() {
         <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-white py-20">
           <div className="container max-w-6xl">
             <div className="max-w-3xl">
-              <h1 className="text-5xl font-bold mb-6 text-secondary">About All Resume Services</h1>
+              <h1 className="text-5xl font-bold mb-6 font-gold-brand">About All Résumé Services</h1>
               <p className="text-xl text-blue-100 leading-relaxed">
-                For over 17 years, we've been helping Australians land their dream jobs through 
+                For over 18 years, we've been helping Australians land their dream jobs through 
                 professionally crafted resumes, cover letters, and career documents. Our mission 
                 is simple: to empower job seekers with the tools they need to stand out in today's 
                 competitive job market.
@@ -276,7 +284,7 @@ export default function AboutUs() {
         </section>
 
         {/* Mission & Vision */}
-        <section className="py-16 bg-white">
+        <section className="pt-12 pb-8 bg-white">
           <div className="container max-w-6xl">
             <div className="grid md:grid-cols-2 gap-12">
               <div>
@@ -296,31 +304,31 @@ export default function AboutUs() {
                 <h2 className="text-3xl font-bold mb-4 text-[#1e3a5f]">Why Choose Us</h2>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-[#d4af37] flex-shrink-0 mt-1" />
+                    <CheckCircle className="h-6 w-6 text-[#B8860B] flex-shrink-0 mt-1" />
                     <span className="text-gray-700">
                       <strong>18+ years of experience</strong> helping Australians secure interviews and job offers
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-[#d4af37] flex-shrink-0 mt-1" />
+                    <CheckCircle className="h-6 w-6 text-[#B8860B] flex-shrink-0 mt-1" />
                     <span className="text-gray-700">
                       <strong>96% interview success rate</strong> from our professionally written resumes
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-[#d4af37] flex-shrink-0 mt-1" />
+                    <CheckCircle className="h-6 w-6 text-[#B8860B] flex-shrink-0 mt-1" />
                     <span className="text-gray-700">
                       <strong>Industry expertise</strong> across all sectors and career levels
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-[#d4af37] flex-shrink-0 mt-1" />
+                    <CheckCircle className="h-6 w-6 text-[#B8860B] flex-shrink-0 mt-1" />
                     <span className="text-gray-700">
                       <strong>ATS-optimised documents</strong> that pass automated screening systems
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-[#d4af37] flex-shrink-0 mt-1" />
+                    <CheckCircle className="h-6 w-6 text-[#B8860B] flex-shrink-0 mt-1" />
                     <span className="text-gray-700">
                       <strong>Fast turnaround</strong> with 2-3 day standard delivery
                     </span>
@@ -332,10 +340,10 @@ export default function AboutUs() {
         </section>
 
         {/* Why Choose Us Comparison */}
-        <section className="py-16 bg-white">
+        <section className="pt-8 pb-16 bg-white">
           <div className="container max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">Why Choose All Resume Services?</h2>
+            <div className="text-center mb-10">
+              <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">Why Choose All Résumé Services?</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Not all resume services are created equal. See how we compare to DIY approaches and generic resume writers.
               </p>
@@ -348,7 +356,7 @@ export default function AboutUs() {
                     <th className="p-4 text-left font-semibold text-gray-700 border-b-2 border-gray-200">Feature</th>
                     <th className="p-4 text-center font-semibold text-gray-700 border-b-2 border-gray-200">DIY Resume</th>
                     <th className="p-4 text-center font-semibold text-gray-700 border-b-2 border-gray-200">Generic Resume Writer</th>
-                    <th className="p-4 text-center font-semibold text-secondary border-b-2 border-secondary bg-secondary/5">All Resume Services</th>
+                    <th className="p-4 text-center font-semibold text-secondary border-b-2 border-secondary bg-secondary/5">All Résumé Services</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -405,9 +413,9 @@ export default function AboutUs() {
             </div>
             
             <div className="mt-8 text-center">
-              <p className="text-gray-600 mb-6">Ready to experience the All Resume Services difference?</p>
+              <p className="text-gray-600 mb-6">Ready to experience the All Résumé Services difference?</p>
               <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90">
-                <a href="#contact">Get Your Free Quote</a>
+                <Link href="/contact#enquiry-form">Get Your Free Quote</Link>
               </Button>
             </div>
           </div>
@@ -610,7 +618,7 @@ export default function AboutUs() {
               <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">What Our Clients Say</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Don't just take our word for it. Here's what our satisfied clients have to say 
-                about their experience with All Resume Services.
+                about their experience with All Résumé Services.
               </p>
             </div>
             <TestimonialsCarousel testimonials={testimonials} />

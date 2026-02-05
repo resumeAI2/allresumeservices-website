@@ -84,8 +84,9 @@ export default function ITTechnology() {
   return (
     <>
       <Helmet>
-        <title>IT & Technology Resume Writing | All Resume Services</title>
+        <title>IT & Technology Resume Writing | All Résumé Services</title>
         <meta name="description" content="Professional resume writing for IT and technology professionals. Software engineers, developers, DevOps, cloud architects, and IT specialists." />
+        <link rel="canonical" href="https://allresumeservices.com.au/industries/it-technology" />
       </Helmet>
       <Header />
       
@@ -374,7 +375,7 @@ export default function ITTechnology() {
                   We restructured James's resume to highlight technical achievements (architected microservices platform reducing deployment time by 70%, optimised queries improving performance 3x). We prominently featured his tech stack, GitHub contributions, and modern development practices. Within three weeks, he received four interview requests and accepted a Senior Software Engineer role with a $160,000 package—a 40% salary increase.
                 </p>
                 <blockquote className="border-l-4 border-secondary pl-4 italic text-lg mb-6">
-                  "I was undervaluing myself and not presenting my technical skills effectively. All Resume Services helped me showcase my achievements in a way that resonated with tech recruiters. The salary increase alone paid for their service 50 times over."
+                  "I was undervaluing myself and not presenting my technical skills effectively. All Résumé Services helped me showcase my achievements in a way that resonated with tech recruiters. The salary increase alone paid for their service 50 times over."
                   <footer className="text-sm text-muted-foreground mt-2">— James, Senior Software Engineer</footer>
                 </blockquote>
                 <Button asChild>

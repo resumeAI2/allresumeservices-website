@@ -34,12 +34,12 @@ export default function PricingPage() {
     {
       name: "Basic Package",
       price: "$125",
-      originalPrice: "$148",
-      savings: "$23",
+      originalPrice: "$180",
+      savings: "$55",
       popular: false,
       features: [
-        "Entry Level Resume ($99)",
-        "Entry Level Cover Letter ($49)",
+        "Entry Level Resume ($125)",
+        "Entry Level Cover Letter ($55)",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
         "2-3 day turnaround"
@@ -48,12 +48,12 @@ export default function PricingPage() {
     {
       name: "Standard Package",
       price: "$185",
-      originalPrice: "$224",
-      savings: "$39",
+      originalPrice: "$270",
+      savings: "$85",
       popular: true,
       features: [
-        "Professional Resume ($149)",
-        "Professional Cover Letter ($75)",
+        "Professional Resume ($185)",
+        "Professional Cover Letter ($85)",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
         "2-3 day turnaround",
@@ -63,12 +63,12 @@ export default function PricingPage() {
     {
       name: "Premium Package",
       price: "$255",
-      originalPrice: "$324",
-      savings: "$69",
+      originalPrice: "$605",
+      savings: "$350",
       popular: false,
       features: [
-        "Executive Resume ($255)",
-        "Executive Cover Letter ($99)",
+        "Executive Resume ($355)",
+        "Executive Cover Letter ($125)",
         "LinkedIn Profile Optimisation ($125)",
         "ATS-friendly formatting",
         "Delivered in Word & PDF",
@@ -83,18 +83,18 @@ export default function PricingPage() {
       category: "Resume Writing",
       icon: FileText,
       services: [
-        { name: "Entry Level Resume", price: "$99", description: "Perfect for recent graduates and early career professionals" },
-        { name: "Professional Resume", price: "$149", description: "For mid-level professionals with 3-10 years experience" },
-        { name: "Executive Resume", price: "$255", description: "For senior leaders and C-suite executives" }
+        { name: "Entry Level Resume", price: "$125", description: "Perfect for recent graduates and early career professionals" },
+        { name: "Professional Resume", price: "$185", description: "For mid-level professionals with 3-10 years experience" },
+        { name: "Executive Resume", price: "$355", description: "For senior leaders and C-suite executives" }
       ]
     },
     {
       category: "Cover Letters",
       icon: Mail,
       services: [
-        { name: "Entry Level Cover Letter", price: "$49", description: "Tailored cover letter for entry-level positions" },
-        { name: "Professional Cover Letter", price: "$75", description: "Strategic cover letter for professional roles" },
-        { name: "Executive Cover Letter", price: "$99", description: "Executive-level cover letter for senior positions" }
+        { name: "Entry Level Cover Letter", price: "$55", description: "Tailored cover letter for entry-level positions" },
+        { name: "Professional Cover Letter", price: "$85", description: "Strategic cover letter for professional roles" },
+        { name: "Executive Cover Letter", price: "$125", description: "Executive-level cover letter for senior positions" }
       ]
     },
     {
@@ -118,9 +118,10 @@ export default function PricingPage() {
   return (
     <>
       <Helmet>
-        <title>Pricing - Professional Resume Writing Services | All Resume Services</title>
-        <meta name="description" content="Transparent pricing for professional resume writing services. Packages from $125 AUD. Individual services from $49. ATS-optimised resumes, cover letters, and LinkedIn profiles." />
+        <title>Pricing - Professional Resume Writing Services | All Résumé Services</title>
+        <meta name="description" content="Transparent pricing for professional resume writing services. Packages from $125 AUD. Individual services from $55. ATS-optimised resumes, cover letters, and LinkedIn profiles." />
         <meta name="keywords" content="resume writing prices, resume service cost, professional resume pricing, cover letter pricing, LinkedIn profile cost" />
+        <link rel="canonical" href="https://allresumeservices.com.au/pricing" />
       </Helmet>
       <PricingSchema />
       <Header />
@@ -161,7 +162,7 @@ export default function PricingPage() {
         </section>
 
         {/* Package Pricing */}
-        <section className="py-16">
+        <section id="packages" className="py-16 scroll-mt-20">
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4">Popular Packages</h2>
@@ -232,7 +233,12 @@ export default function PricingPage() {
                             <h4 className="font-semibold text-foreground">{service.name}</h4>
                             <span className="text-2xl font-bold text-secondary">{service.price}</span>
                           </div>
-                          <p className="text-sm text-muted-foreground">{service.description}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {service.name === "Selection Criteria Response" 
+                              ? <>Expert STAR method responses for government applications <strong>(up to 5 criteria)</strong></>
+                              : service.description
+                            }
+                          </p>
                         </div>
                       ))}
                     </div>

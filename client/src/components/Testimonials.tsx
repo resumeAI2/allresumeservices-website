@@ -13,7 +13,7 @@ export default function Testimonials() {
     {
       name: "Sarah M.",
       role: "Marketing Manager",
-      content: "I was struggling to get interviews despite having 10+ years of experience. After working with All Resume Services, I received 3 interview invitations within 2 weeks! The ATS optimisation made all the difference.",
+      content: "I was struggling to get interviews despite having 10+ years of experience. After working with All Résumé Services, I received 3 interview invitations within 2 weeks! The ATS optimisation made all the difference.",
       rating: 5,
       photo: undefined,
     },
@@ -27,14 +27,14 @@ export default function Testimonials() {
     {
       name: "Emily R.",
       role: "HR Professional",
-      content: "As someone who reviews resumes daily, I can confidently say the quality of work from All Resume Services is exceptional. Professional, polished, and results-driven. Highly recommend!",
+      content: "As someone who reviews resumes daily, I can confidently say the quality of work from All Résumé Services is exceptional. Professional, polished, and results-driven. Highly recommend!",
       rating: 5,
       photo: undefined,
     },
     {
       name: "Michael K.",
       role: "Project Manager",
-      content: "Working with All Resume Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimisation was a bonus that really boosted my visibility.",
+      content: "Working with All Résumé Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimisation was a bonus that really boosted my visibility.",
       rating: 5,
       photo: undefined,
     },
@@ -69,7 +69,7 @@ export default function Testimonials() {
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Success Stories from <span className="text-secondary">Our Clients</span>
+            Success Stories from <span className="font-gold-brand">Our Clients</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Don't just take our word for it—see what our clients have to say about their experience and results.
@@ -107,13 +107,19 @@ export default function Testimonials() {
                     <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                   </div>
                 </div>
-                {testimonial.photo && (
-                  <img
-                    src={testimonial.photo}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                )}
+                <div className="w-12 h-12 rounded-full flex-shrink-0 overflow-hidden border-2 border-primary/20 bg-primary/80 flex items-center justify-center relative">
+                  {testimonial.photo && (
+                    <img
+                      src={testimonial.photo}
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover relative z-10"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                  )}
+                  <div className="absolute inset-0 flex items-center justify-center font-bold text-sm text-white">
+                    {testimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+                  </div>
+                </div>
               </div>
 
               <p className="text-primary leading-relaxed font-medium">

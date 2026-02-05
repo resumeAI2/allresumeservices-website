@@ -34,10 +34,12 @@ export default function Hero() {
               ✨ 18+ Years of Professional Excellence
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="text-white">Get Noticed,<br />
+            <h1 className="text-4xl md:text-5xl lg:text-6xl leading-tight">
+              <span className="text-white font-bold">Get Noticed,<br />
               Get Hired with</span><br />
-              <span className="text-secondary">All Resume Services</span>
+              <span className="font-bold tracking-wide text-4xl md:text-5xl lg:text-6xl" style={{ color: '#D4AF37' }}>
+                All Résumé Services
+              </span>
             </h1>
             
             <p className="text-lg md:text-xl text-primary-foreground/90 max-w-xl">

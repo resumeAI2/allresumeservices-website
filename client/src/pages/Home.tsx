@@ -16,7 +16,6 @@ import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import FAQSchema from "@/components/FAQSchema";
 import ClientLogos from "@/components/ClientLogos";
-import EmailCapturePopup from "@/components/EmailCapturePopup";
 import StickyGetStarted from "@/components/StickyGetStarted";
 import BackToTop from "@/components/BackToTop";
 import StructuredData from "@/components/StructuredData";
@@ -26,9 +25,10 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Professional Resume Writing Services Australia | All Resume Services</title>
+        <title>Professional Resume Writing Services Australia | All Résumé Services</title>
         <meta name="description" content="Expert ATS-optimised resume writing services with 96% interview success rate. Professional resume writers helping Australians land their dream jobs. 18+ years experience. Get your free resume review today!" />
         <meta name="keywords" content="resume writing services, professional resume writer, ATS resume, resume writing Australia, cover letter writing, LinkedIn optimisation, executive resume" />
+        <link rel="canonical" href="https://allresumeservices.com.au/" />
       </Helmet>
       <SchemaMarkup type="homepage" />
       <StructuredData type="homepage" />
@@ -48,7 +48,6 @@ export default function Home() {
       <FreeReview />
       <ClientLogos />
       <Footer />
-      <EmailCapturePopup />
       <StickyGetStarted />
       <BackToTop />
     </div>

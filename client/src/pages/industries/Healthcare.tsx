@@ -84,8 +84,9 @@ export default function Healthcare() {
   return (
     <>
       <Helmet>
-        <title>Healthcare Resume Writing | All Resume Services</title>
+        <title>Healthcare Resume Writing | All Résumé Services</title>
         <meta name="description" content="Professional resume writing for healthcare professionals. Nurses, allied health, and medical staff. AHPRA-registered specialists across Australia." />
+        <link rel="canonical" href="https://allresumeservices.com.au/industries/healthcare" />
       </Helmet>
       <Header />
       
@@ -374,7 +375,7 @@ export default function Healthcare() {
                   We restructured Sarah's resume to emphasise her clinical leadership achievements, including a falls prevention program that reduced patient falls by 40%. We prominently featured her AHPRA registration and specialty certifications. Within five weeks, she received three CNC interview invitations and accepted a role with a $115,000 salaryu2014a $20,000 increase.
                 </p>
                 <blockquote className="border-l-4 border-secondary pl-4 italic text-lg mb-6">
-                  "I'd been applying for CNC roles for over a year with no success. After working with All Resume Services, I had three interviews within a month. They knew exactly how to present my clinical leadership experience."
+                  "I'd been applying for CNC roles for over a year with no success. After working with All Résumé Services, I had three interviews within a month. They knew exactly how to present my clinical leadership experience."
                   <footer className="text-sm text-muted-foreground mt-2">u2014 Sarah, Clinical Nurse Consultant</footer>
                 </blockquote>
                 <Button asChild>

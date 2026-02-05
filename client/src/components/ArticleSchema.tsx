@@ -39,7 +39,7 @@ export function ArticleSchema({
   publishedTime,
   modifiedTime,
   authorName = 'Sonia Lynch',
-  authorTitle = 'Founder & CEO, All Resume Services',
+  authorTitle = 'Founder & CEO, All Résumé Services',
   authorImage = '/team/sonia-lynch.png',
   category,
   tags = [],
@@ -118,7 +118,7 @@ export function ArticleSchema({
         ],
         "worksFor": {
           "@type": "Organization",
-          "name": "All Resume Services",
+          "name": "All Résumé Services",
           "url": siteUrl
         }
       },
@@ -127,7 +127,7 @@ export function ArticleSchema({
       "publisher": {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
-        "name": "All Resume Services",
+        "name": "All Résumé Services",
         "url": siteUrl,
         "logo": {
           "@type": "ImageObject",
@@ -172,7 +172,7 @@ export function ArticleSchema({
       "isPartOf": {
         "@type": "Blog",
         "@id": `${siteUrl}/blog#blog`,
-        "name": "All Resume Services Career Advice Blog",
+        "name": "All Résumé Services Career Advice Blog",
         "url": `${siteUrl}/blog`,
         "description": "Expert career advice, resume writing tips, and job search strategies from Australia's leading resume writing service."
       }

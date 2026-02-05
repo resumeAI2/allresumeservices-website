@@ -29,7 +29,7 @@ export default function IndustryPricingTable({ tiers }: IndustryPricingTableProp
           <div className="mb-6">
             <h3 className="text-2xl font-bold mb-2">{tier.level}</h3>
             <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-4xl font-bold text-secondary">{tier.price}</span>
+              <span className="text-4xl font-bold font-gold-brand">{tier.price}</span>
             </div>
             <p className="text-muted-foreground">Turnaround: {tier.turnaround}</p>
           </div>

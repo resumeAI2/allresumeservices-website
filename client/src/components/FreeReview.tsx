@@ -329,7 +329,7 @@ export default function FreeReview() {
 
         {/* Benefits Section */}
         <div className="bg-primary/90 backdrop-blur-md rounded-2xl p-8 md:p-12 max-w-5xl mx-auto border border-primary/30 shadow-2xl">
-          <h3 className="text-2xl font-bold mb-8 text-center text-[#D4AF37]">
+          <h3 className="text-2xl font-bold mb-8 text-center font-gold-brand">
             What's Included in Your Free Review?
           </h3>
           
@@ -340,7 +340,7 @@ export default function FreeReview() {
                   <CheckCircle2 className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-1 text-[#D4AF37]">{benefit.title}</h4>
+                  <h4 className="font-semibold mb-1 font-gold-brand">{benefit.title}</h4>
                   <p className="text-sm opacity-90">{benefit.description}</p>
                 </div>
               </div>
