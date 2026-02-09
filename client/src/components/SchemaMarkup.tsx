@@ -127,7 +127,7 @@ export default function SchemaMarkup({ type = "homepage" }: SchemaMarkupProps) {
         "jobTitle": "Founder & Senior Resume Writer"
       },
       "foundingDate": "2008",
-      "description": "Professional resume writing service helping Australians land interviews and secure their dream jobs with ATS-optimised resumes, cover letters, and LinkedIn profiles."
+      "description": "Professional resume writing service helping Australians land interviews and secure their dream jobs with ATS-optimised resumes, cover letters, LinkedIn profiles, and selection criteria for government and public sector roles."
     };
 
     // Add schemas to head

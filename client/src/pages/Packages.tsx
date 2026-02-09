@@ -183,25 +183,19 @@ export default function Services() {
         <Header />
         <main className="flex-1">
           {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#1e3a5f] via-[#2d5a8f] to-[#1e3a5f] text-white py-20 overflow-hidden">
-          {/* Decorative Elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-10 left-10 w-72 h-72 bg-secondary rounded-full blur-3xl"></div>
-            <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          </div>
-          
-          <div className="container relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+        <section className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-20">
+          <div className="container">
+            <div className="max-w-3xl mx-auto text-center">
               <div className="inline-block mb-6">
                 <Badge className="bg-secondary/20 text-white border-secondary/30 px-4 py-2 text-sm font-semibold">
                   <Check className="w-4 h-4 mr-2 inline" />
                   96% Interview Success Rate
                 </Badge>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-secondary">
                 Professional Resume Services & Packages
               </h1>
-              <p className="text-xl text-blue-100 leading-relaxed mb-8">
+              <p className="text-xl text-white leading-relaxed mb-8">
                 Choose from individual services or complete packages tailored to your career level. 
                 Every resume is crafted by experienced writers with 18+ years in the industry.
               </p>
