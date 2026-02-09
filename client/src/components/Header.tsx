@@ -96,7 +96,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-3 xl:gap-4 text-sm xl:text-base flex-wrap justify-end">
             <Link href="/services" className="hover:text-secondary transition-colors whitespace-nowrap">Services</Link>
-            <Link href="/pricing" className="hover:text-secondary transition-colors whitespace-nowrap">Pricing</Link>
+            <Link href="/packages" className="hover:text-secondary transition-colors whitespace-nowrap">Pricing</Link>
             <Link href="/process" className="hover:text-secondary transition-colors whitespace-nowrap">Our Process</Link>
             <Link href="/blog" className="hover:text-secondary transition-colors whitespace-nowrap hidden xl:inline-block">Career Advice Blog</Link>
             <Link href="/blog" className="hover:text-secondary transition-colors whitespace-nowrap xl:hidden">Blog</Link>
@@ -145,7 +145,7 @@ export default function Header() {
         {mobileMenuOpen && (
           <nav className="lg:hidden mt-4 flex flex-col gap-3 pb-4 border-t border-secondary/20 pt-4">
             <Link href="/services" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Services</Link>
-            <Link href="/pricing" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
+            <Link href="/packages" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
             <Link href="/process" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Our Process</Link>
             <Link href="/blog" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Career Advice Blog</Link>
             <div className="pl-4 flex flex-col gap-2 border-l-2 border-secondary/30">

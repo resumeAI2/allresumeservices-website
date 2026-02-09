@@ -31,7 +31,7 @@ const faqData: FAQItem[] = [
   {
     category: "Pricing",
     question: "How much do your services cost?",
-    answer: "We offer three packages: Basic Package at $125 (professional resume writing), Standard Package at $185 (resume + cover letter + LinkedIn optimisation), and Premium Package at $255 (everything in Standard plus selection criteria and career consultation). We work with you until you're 100% satisfied."
+    answer: "We offer three packages: Basic Package at $155 (resume + cover letter), Standard Package at $255 (resume + cover letter + LinkedIn optimisation), and Premium Package at $355 (executive resume + cover letter + LinkedIn optimisation with express turnaround). We work with you until you're 100% satisfied."
   },
   {
     category: "Pricing",

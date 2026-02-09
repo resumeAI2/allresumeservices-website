@@ -26,30 +26,70 @@ export default function PricingCTA() {
               Professional Resume Writing Services
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              Transparent pricing with no hidden fees. Packages starting from just $125 AUD.
+              Transparent pricing with no hidden fees. Packages starting from just $155 AUD.
             </p>
           </div>
 
-          {/* Quick Package Overview */}
+          {/* Package Deals */}
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">Package Deals <span className="text-secondary">(Best Value)</span></h3>
+          </div>
           <div className="grid md:grid-cols-3 gap-6 mb-10">
-            <div className="bg-white rounded-lg p-6 border-2 border-border hover:border-primary/50 transition-colors">
-              <h3 className="text-xl font-bold text-foreground mb-2">Basic</h3>
-              <div className="text-3xl font-bold text-primary mb-3">$125</div>
-              <p className="text-sm text-gray-700">Professional Resume</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 border-2 border-primary shadow-lg relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full text-xs font-semibold">
-                Most Popular
+            <a href="/packages#services" className="block">
+              <div className="bg-white rounded-lg p-6 border-2 border-border hover:border-primary/50 transition-colors cursor-pointer h-full">
+                <h3 className="text-xl font-bold text-foreground mb-2">Basic</h3>
+                <div className="text-3xl font-bold text-primary mb-3">$155</div>
+                <p className="text-sm text-gray-700">Resume + Cover Letter</p>
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Standard</h3>
-              <div className="text-3xl font-bold text-primary mb-3">$185</div>
-              <p className="text-sm text-gray-700">Resume + Cover Letter</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 border-2 border-border hover:border-primary/50 transition-colors">
-              <h3 className="text-xl font-bold text-foreground mb-2">Premium</h3>
-              <div className="text-3xl font-bold text-primary mb-3">$255</div>
-              <p className="text-sm text-gray-700">Resume + Cover + LinkedIn</p>
-            </div>
+            </a>
+            <a href="/packages#services" className="block">
+              <div className="bg-white rounded-lg p-6 border-2 border-primary shadow-lg relative cursor-pointer h-full">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full text-xs font-semibold">
+                  Most Popular
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">Standard</h3>
+                <div className="text-3xl font-bold text-primary mb-3">$255</div>
+                <p className="text-sm text-gray-700">Resume + Cover Letter + LinkedIn</p>
+              </div>
+            </a>
+            <a href="/packages#services" className="block">
+              <div className="bg-white rounded-lg p-6 border-2 border-border hover:border-primary/50 transition-colors cursor-pointer h-full">
+                <h3 className="text-xl font-bold text-foreground mb-2">Premium</h3>
+                <div className="text-3xl font-bold text-primary mb-3">$355</div>
+                <p className="text-sm text-gray-700">Executive Resume + Cover + LinkedIn</p>
+              </div>
+            </a>
+          </div>
+
+          {/* Individual Services */}
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold text-foreground mb-4">Or Choose Individual Services</h3>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <a href="/packages#services" className="block">
+              <div className="bg-white rounded-lg p-4 border border-border hover:border-primary/50 transition-colors cursor-pointer text-center">
+                <div className="text-xl font-bold text-primary mb-1">$125</div>
+                <p className="text-xs text-gray-700">Entry Level Resume</p>
+              </div>
+            </a>
+            <a href="/packages#services" className="block">
+              <div className="bg-white rounded-lg p-4 border border-border hover:border-primary/50 transition-colors cursor-pointer text-center">
+                <div className="text-xl font-bold text-primary mb-1">$185</div>
+                <p className="text-xs text-gray-700">Professional Resume</p>
+              </div>
+            </a>
+            <a href="/packages#services" className="block">
+              <div className="bg-white rounded-lg p-4 border border-border hover:border-primary/50 transition-colors cursor-pointer text-center">
+                <div className="text-xl font-bold text-primary mb-1">$55</div>
+                <p className="text-xs text-gray-700">Cover Letter</p>
+              </div>
+            </a>
+            <a href="/packages#services" className="block">
+              <div className="bg-white rounded-lg p-4 border border-border hover:border-primary/50 transition-colors cursor-pointer text-center">
+                <div className="text-xl font-bold text-primary mb-1">$125</div>
+                <p className="text-xs text-gray-700">LinkedIn Profile</p>
+              </div>
+            </a>
           </div>
 
           {/* Benefits */}
@@ -73,12 +113,12 @@ export default function PricingCTA() {
           </div>
 
           {/* CTA Button */}
-          <Link href="/pricing#packages">
+          <a href="/packages#services">
             <button className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-4 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer">
-              View All Packages & Pricing
+              Browse All Services & Add to Cart
               <ArrowRight className="h-5 w-5" />
             </button>
-          </Link>
+          </a>
 
           {/* Custom Quote */}
           <p className="mt-6 text-sm text-gray-700">

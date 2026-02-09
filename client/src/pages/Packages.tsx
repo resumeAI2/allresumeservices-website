@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { trpc } from '../lib/trpc';
 import { useCart } from '../contexts/CartContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import PricingSchema from '../components/PricingSchema';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { Check, ShoppingCart } from 'lucide-react';
+import { Check, ShoppingCart, CheckCircle, Clock, Shield, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
 
 // Fallback items when API is loading, fails, or returns empty (so the page is never blank)
@@ -36,15 +38,38 @@ const FALLBACK_ITEMS = {
     { name: 'Selection Criteria Response', type: 'individual', category: 'Selection Criteria', tier: 'Professional', price: '$100', originalPrice: null, description: 'Professional responses to government selection criteria using STAR method', features: ['STAR/CAR method', 'Up to 5 criteria', 'Evidence-based responses', '2-4 business days delivery'], popular: false },
   ],
   package: [
-    { name: 'Basic Package', type: 'package', category: 'Package', price: '$125', originalPrice: '$180', description: 'Resume + Cover Letter for entry-level professionals', features: ['Entry Level Resume', 'Entry Level Cover Letter', 'ATS-friendly formatting', 'Delivered in Word & PDF', '2-4 business days delivery'], popular: false },
-    { name: 'Standard Package', type: 'package', category: 'Package', price: '$185', originalPrice: '$270', description: 'Resume + Cover Letter + LinkedIn for professionals', features: ['Professional Resume', 'Professional Cover Letter', 'ATS-friendly formatting', 'Delivered in Word & PDF', '2-4 business days delivery', 'Priority support'], popular: true },
-    { name: 'Premium Package', type: 'package', category: 'Package', price: '$255', originalPrice: '$605', description: 'Complete career package for executives', features: ['Executive Resume', 'Executive Cover Letter', 'LinkedIn Profile Optimisation', 'ATS-friendly formatting', 'Delivered in Word & PDF', '1 day express turnaround', 'Priority support'], popular: false },
+    { name: 'Basic Package', type: 'package', category: 'Package', price: '$155', originalPrice: '$180', description: 'Resume + Cover Letter for entry-level professionals', features: ['Entry Level Resume', 'Entry Level Cover Letter', 'ATS-friendly formatting', 'Delivered in Word & PDF', '2-4 business days delivery'], popular: false },
+    { name: 'Standard Package', type: 'package', category: 'Package', price: '$255', originalPrice: '$395', description: 'Resume + Cover Letter + LinkedIn for professionals', features: ['Professional Resume', 'Professional Cover Letter', 'LinkedIn Profile Optimisation', 'ATS-friendly formatting', 'Delivered in Word & PDF', '2-4 business days delivery'], popular: true },
+    { name: 'Premium Package', type: 'package', category: 'Package', price: '$355', originalPrice: '$605', description: 'Complete career package for executives', features: ['Executive Resume', 'Executive Cover Letter', 'LinkedIn Profile Optimisation', 'ATS-friendly formatting', 'Delivered in Word & PDF', '1 day express turnaround'], popular: false },
   ],
   addon: [
     { name: 'Rush Delivery (24-48 hours)', type: 'addon', category: 'Add-on', price: '$50', originalPrice: null, description: 'Expedited delivery within 24-48 hours', features: ['Priority processing', '24-48 hour turnaround', 'Applies to all items in order'], popular: false },
     { name: 'Phone Consultation (30 min)', type: 'addon', category: 'Add-on', price: '$75', originalPrice: null, description: 'One-on-one career consultation with expert', features: ['30-minute phone call', 'Career strategy discussion', 'Interview preparation tips', 'Personalized advice'], popular: false },
   ],
 };
+
+const benefits = [
+  {
+    icon: CheckCircle,
+    title: "ATS-Optimised",
+    description: "Get past applicant tracking systems and into human hands"
+  },
+  {
+    icon: Clock,
+    title: "Fast Turnaround",
+    description: "2-4 business days delivery, rush available"
+  },
+  {
+    icon: Shield,
+    title: "100% Satisfaction",
+    description: "Unlimited revisions until you're completely happy"
+  },
+  {
+    icon: Sparkles,
+    title: "Expert Writers",
+    description: "18+ years experience across all industries"
+  }
+];
 
 export default function Services() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -104,11 +129,24 @@ export default function Services() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      
-      <main className="flex-1">
-        {/* Hero Section */}
+    <>
+      <Helmet>
+        <title>Pricing & Packages - Professional Resume Writing Services | All Résumé Services</title>
+        <meta name="description" content="Transparent pricing for professional resume writing services. Packages from $155 AUD. Individual services from $55. ATS-optimised resumes, cover letters, and LinkedIn profiles." />
+        <meta name="keywords" content="resume writing prices, resume service cost, professional resume pricing, cover letter pricing, LinkedIn profile cost, resume packages Australia" />
+        <link rel="canonical" href="https://allresumeservices.com.au/packages" />
+      </Helmet>
+      <PricingSchema />
+      <div className="min-h-screen flex flex-col bg-background">
+        <Header />
+        {/* Dev-only: proves Cursor preview is loading latest code. Remove or hide in production. */}
+        {import.meta.env.DEV && (
+          <div className="bg-green-600 text-white text-center py-1.5 px-4 text-sm font-bold sticky top-0 z-[100]">
+            ✓ Live dev — scroll down to &quot;Real Results, Real People&quot; or open /packages#testimonials
+          </div>
+        )}
+        <main className="flex-1">
+          {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-[#1e3a5f] via-[#2d5a8f] to-[#1e3a5f] text-white py-20 overflow-hidden">
           {/* Decorative Elements */}
           <div className="absolute inset-0 opacity-10">
@@ -139,6 +177,26 @@ export default function Services() {
                   <a href="/resume-transformation">See Real Results</a>
                 </Button>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Benefits Section */}
+        <section className="py-12 bg-white border-b">
+          <div className="container">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+              {benefits.map((benefit, index) => {
+                const Icon = benefit.icon;
+                return (
+                  <div key={index} className="text-center">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary/10 mb-3">
+                      <Icon className="h-6 w-6 text-secondary" />
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-1">{benefit.title}</h3>
+                    <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -390,108 +448,162 @@ export default function Services() {
         </section>
 
         {/* Client Testimonials Section */}
-        <section className="py-20 bg-white">
+        <section id="testimonials" className="py-20 bg-gradient-to-br from-[#1e3a5f]/5 via-white to-[#d4af37]/5 scroll-mt-24">
           <div className="container max-w-6xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">What Our Clients Say</h2>
+              <div className="inline-flex items-center gap-2 bg-[#d4af37]/10 px-4 py-2 rounded-full mb-4">
+                <span className="text-2xl">⭐</span>
+                <span className="text-sm font-semibold text-[#1e3a5f]">5.0 Rating from 60+ Reviews</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">Real Results, Real People</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Real success stories from professionals who transformed their careers with our services
+                Join thousands of professionals who transformed their careers with our expert resume services
               </p>
             </div>
             
             <div className="grid md:grid-cols-3 gap-8">
               {/* Testimonial 1 */}
-              <Card className="border-2 hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xl font-bold text-secondary">S.M.</span>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1 mb-1">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} className="w-4 h-4 text-[#d4af37] fill-current" viewBox="0 0 20 20">
-                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <p className="text-sm font-semibold text-gray-900">Sarah M.</p>
-                      <p className="text-xs text-gray-600">Marketing Manager</p>
-                    </div>
+              <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
+                {/* Highlight ribbon */}
+                <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  +35% Salary 📈
+                </div>
+                <CardContent className="pt-8 pb-6">
+                  {/* Quote icon */}
+                  <div className="absolute top-4 left-4 text-4xl text-[#d4af37]/20">"</div>
+                  
+                  {/* Stars */}
+                  <div className="flex items-center gap-0.5 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-lg">⭐</span>
+                    ))}
                   </div>
-                  <blockquote className="text-gray-700 leading-relaxed mb-4 italic">
-                    "I was stuck in the same role for 5 years. After using their Executive Package, I received 4 interview requests in 3 weeks and landed a senior position with a 35% salary increase. The investment paid for itself many times over!"
+                  
+                  <blockquote className="text-gray-700 leading-relaxed mb-6 relative z-10">
+                    "I was stuck in the same role for 5 years. After using their Executive Package, I received <span className="font-semibold text-[#1e3a5f]">4 interview requests in 3 weeks</span> and landed a senior position with a <span className="font-semibold text-green-600">35% salary increase</span>. The investment paid for itself many times over! 🎉"
                   </blockquote>
-                  <div className="pt-4 border-t border-gray-100">
-                    <p className="text-xs text-secondary font-semibold">Executive Resume Package</p>
-                    <p className="text-xs text-gray-500 mt-1">Healthcare Industry</p>
+                  
+                  {/* Author */}
+                  <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] flex items-center justify-center flex-shrink-0">
+                      <span className="text-sm font-bold text-white">SM</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-gray-900">Sarah M.</p>
+                      <p className="text-sm text-gray-500">Marketing Manager</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs font-medium text-[#d4af37]">Executive Package</p>
+                      <p className="text-xs text-gray-400">Healthcare</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Testimonial 2 */}
-              <Card className="border-2 hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xl font-bold text-secondary">J.K.</span>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1 mb-1">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} className="w-4 h-4 text-[#d4af37] fill-current" viewBox="0 0 20 20">
-                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <p className="text-sm font-semibold text-gray-900">James K.</p>
-                      <p className="text-xs text-gray-600">IT Project Manager</p>
-                    </div>
+              {/* Testimonial 2 - Featured */}
+              <Card className="relative overflow-hidden border-2 border-[#d4af37] shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
+                {/* Featured badge */}
+                <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 bg-[#d4af37] text-[#1e3a5f] text-xs font-bold px-4 py-1 rounded-b-lg">
+                  🏆 Featured Story
+                </div>
+                {/* Highlight ribbon */}
+                <div className="absolute top-4 right-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  Fortune 500 🚀
+                </div>
+                <CardContent className="pt-10 pb-6">
+                  {/* Quote icon */}
+                  <div className="absolute top-6 left-4 text-4xl text-[#d4af37]/30">"</div>
+                  
+                  {/* Stars */}
+                  <div className="flex items-center gap-0.5 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-lg">⭐</span>
+                    ))}
                   </div>
-                  <blockquote className="text-gray-700 leading-relaxed mb-4 italic">
-                    "As a career changer moving from engineering to IT management, I needed a resume that highlighted transferable skills. The team nailed it! I secured my dream role at a Fortune 500 company within 6 weeks."
+                  
+                  <blockquote className="text-gray-700 leading-relaxed mb-6 relative z-10">
+                    "As a career changer moving from engineering to IT management, I needed a resume that highlighted transferable skills. <span className="font-semibold text-[#1e3a5f]">The team nailed it!</span> I secured my dream role at a <span className="font-semibold text-blue-600">Fortune 500 company</span> within 6 weeks. 💼"
                   </blockquote>
-                  <div className="pt-4 border-t border-gray-100">
-                    <p className="text-xs text-secondary font-semibold">Career Change Package</p>
-                    <p className="text-xs text-gray-500 mt-1">IT & Technology</p>
+                  
+                  {/* Author */}
+                  <div className="flex items-center gap-4 pt-4 border-t border-[#d4af37]/20">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] flex items-center justify-center flex-shrink-0">
+                      <span className="text-sm font-bold text-white">JK</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-gray-900">James K.</p>
+                      <p className="text-sm text-gray-500">IT Project Manager</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs font-medium text-[#d4af37]">Career Change</p>
+                      <p className="text-xs text-gray-400">IT & Technology</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
               {/* Testimonial 3 */}
-              <Card className="border-2 hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xl font-bold text-secondary">L.S.</span>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1 mb-1">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} className="w-4 h-4 text-[#d4af37] fill-current" viewBox="0 0 20 20">
-                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <p className="text-sm font-semibold text-gray-900">Lisa T.</p>
-                      <p className="text-xs text-gray-600">Operations Supervisor</p>
-                    </div>
+              <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
+                {/* Highlight ribbon */}
+                <div className="absolute top-4 right-4 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  3 Interviews ✨
+                </div>
+                <CardContent className="pt-8 pb-6">
+                  {/* Quote icon */}
+                  <div className="absolute top-4 left-4 text-4xl text-[#d4af37]/20">"</div>
+                  
+                  {/* Stars */}
+                  <div className="flex items-center gap-0.5 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-lg">⭐</span>
+                    ))}
                   </div>
-                  <blockquote className="text-gray-700 leading-relaxed mb-4 italic">
-                    "After struggling to get interviews for months with my old resume, I decided to invest in professional help. Within two weeks, I secured three interviews and ultimately landed my dream role in mining technology. Worth every dollar!"
+                  
+                  <blockquote className="text-gray-700 leading-relaxed mb-6 relative z-10">
+                    "After struggling to get interviews for months with my old resume, I decided to invest in professional help. Within <span className="font-semibold text-purple-600">two weeks, I secured three interviews</span> and ultimately landed my dream role in mining technology. <span className="font-semibold text-[#1e3a5f]">Worth every dollar!</span> 💎"
                   </blockquote>
-                  <div className="pt-4 border-t border-gray-100">
-                    <p className="text-xs text-secondary font-semibold">Resume + Cover Letter Package</p>
-                    <p className="text-xs text-gray-500 mt-1">Mining & Resources</p>
+                  
+                  {/* Author */}
+                  <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] flex items-center justify-center flex-shrink-0">
+                      <span className="text-sm font-bold text-white">LT</span>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-gray-900">Lisa T.</p>
+                      <p className="text-sm text-gray-500">Operations Supervisor</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs font-medium text-[#d4af37]">Standard Package</p>
+                      <p className="text-xs text-gray-400">Mining & Resources</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
+            {/* Trust indicators */}
+            <div className="mt-12 flex flex-wrap justify-center items-center gap-6 text-sm text-gray-500">
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">✓</span>
+                <span>Verified Reviews</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">✓</span>
+                <span>Real Client Results</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-500">✓</span>
+                <span>96% Success Rate</span>
+              </div>
+            </div>
+
             {/* View More Link */}
-            <div className="text-center mt-12">
-              <Button asChild variant="outline" size="lg">
-                <a href="/testimonials">View All Success Stories</a>
+            <div className="text-center mt-10">
+              <Button asChild size="lg" className="bg-[#1e3a5f] hover:bg-[#2d5a8f] text-white px-8">
+                <a href="/testimonials">
+                  View All Success Stories
+                  <span className="ml-2">→</span>
+                </a>
               </Button>
             </div>
           </div>
@@ -513,9 +625,53 @@ export default function Services() {
             </div>
           </div>
         </section>
-      </main>
 
-      <Footer />
-    </div>
+        {/* FAQ Section */}
+        <section className="py-16 bg-muted/30">
+          <div className="container">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-6">
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="font-semibold text-foreground mb-2">What's included in each package?</h3>
+                  <p className="text-muted-foreground">
+                    All packages include professionally written documents tailored to your career goals, ATS-friendly formatting, and delivery in both Word and PDF formats. Higher-tier packages include additional documents and faster turnaround times.
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="font-semibold text-foreground mb-2">Can I purchase individual services instead of a package?</h3>
+                  <p className="text-muted-foreground">
+                    Yes! All services are available individually. Use the filter buttons above to view individual services. However, our packages offer better value if you need multiple services.
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="font-semibold text-foreground mb-2">How long does it take?</h3>
+                  <p className="text-muted-foreground">
+                    Most services are delivered within 2-4 business days. Premium packages include express 1-day turnaround. Rush delivery (24-48 hours) is available as an add-on for $50.
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="font-semibold text-foreground mb-2">What payment methods do you accept?</h3>
+                  <p className="text-muted-foreground">
+                    We accept all major credit cards and PayPal for secure online payments. Simply add items to your cart and proceed to checkout.
+                  </p>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="font-semibold text-foreground mb-2">Do you offer refunds?</h3>
+                  <p className="text-muted-foreground">
+                    We offer unlimited revisions to ensure 100% satisfaction. We work with you until you're completely happy with your documents.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        </main>
+
+        <Footer />
+      </div>
+    </>
   );
 }

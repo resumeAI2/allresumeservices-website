@@ -20,6 +20,13 @@ export async function setupVite(app: Express, server: Server) {
     appType: "custom",
   });
 
+  // Prevent any caching in dev so Cursor Simple Browser / preview shows latest changes
+  app.use((_req, res, next) => {
+    res.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    res.set("Pragma", "no-cache");
+    next();
+  });
+
   app.use(vite.middlewares);
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
@@ -39,7 +46,14 @@ export async function setupVite(app: Express, server: Server) {
         `src="/src/main.tsx?v=${nanoid()}"`
       );
       const page = await vite.transformIndexHtml(url, template);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+      // Prevent caching so Cursor preview and browsers always show latest changes
+      const headers: Record<string, string> = {
+        "Content-Type": "text/html",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+        Pragma: "no-cache",
+        Expires: "0",
+      };
+      res.status(200).set(headers).end(page);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
       next(e);
