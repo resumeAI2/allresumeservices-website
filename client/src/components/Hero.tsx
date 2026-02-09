@@ -1,9 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { Upload, ArrowRight, Star, ExternalLink, DollarSign } from "lucide-react";
-import { Link } from "wouter";
+import { Upload, ArrowRight, Star, ExternalLink } from "lucide-react";
+import { useABTest, trackABTestConversion } from "@/hooks/useABTest";
 
 export default function Hero() {
-  const handleFreeReviewClick = () => {
+  // A/B test for primary CTA button text
+  const ctaVariant = useABTest({
+    testName: 'hero-primary-cta',
+    variants: [
+      { id: 'a', text: 'Get FREE Resume Review' },
+      { id: 'b', text: 'Start Your Career Transformation' },
+      { id: 'c', text: 'Get Your Free Quote Now' }
+    ]
+  });
+
+  const handleCTAClick = () => {
+    trackABTestConversion('hero-primary-cta', ctaVariant.id);
     document.getElementById('free-review')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -32,7 +43,7 @@ export default function Hero() {
             </h1>
             
             <p className="text-lg md:text-xl text-primary-foreground/90 max-w-xl">
-              Expert ATS-Optimised resumes and cover letters—plus LinkedIn profiles and selection criteria for government and public sector roles—that help Australians land interviews and secure their dream jobs. 96% Interview Success Rate.
+              Expert ATS-Optimised Resumes & Cover Letters that help Australians land interviews and secure their dream jobs. 96% Interview Success Rate.
             </p>
 
             {/* Google Reviews Badge */}
@@ -42,13 +53,11 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all rounded-full px-5 py-3 border border-white/20 group"
             >
-              <div className="h-32 w-32 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0">
-                <img 
-                  src="/5-star-rating-icon.png" 
-                  alt="5 Star Rating" 
-                  className="h-full w-full object-cover drop-shadow-lg"
-                />
-              </div>
+              <img 
+                src="/5-star-logo.png" 
+                alt="5 Star Rating" 
+                className="h-10 w-10 object-contain"
+              />
               <div className="flex flex-col items-start">
                 <span className="text-sm font-semibold">5.0 on Google</span>
                 <span className="text-xs text-primary-foreground/80">60+ verified reviews</span>
@@ -60,22 +69,20 @@ export default function Hero() {
               <Button 
                 size="lg" 
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all"
-                asChild
+                onClick={handleCTAClick}
               >
-                <Link href="/packages#services">
-                  <ArrowRight className="mr-2 h-5 w-5" />
-                  Browse Services
-                </Link>
+                <Upload className="mr-2 h-5 w-5" />
+                {ctaVariant.text}
               </Button>
               
               <Button 
                 size="lg" 
                 variant="outline" 
                 className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-8 py-6"
-                onClick={handleFreeReviewClick}
+                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <Upload className="mr-2 h-5 w-5" />
-                Get a Free Review
+                Learn More
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
 

@@ -1,11 +1,10 @@
 import { useState, useMemo } from "react";
 import { trpc } from "@/lib/trpc";
-import { Star, Search, Filter, Calendar } from "lucide-react";
+import { Star, Search, Filter } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import { format, formatDistanceToNow } from "date-fns";
 
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
@@ -24,56 +23,22 @@ type TestimonialRow = {
   featured: number;
   approved: number;
   createdAt: Date;
-  /** When from JSON fallback, e.g. "2 months ago" */
-  timeframe?: string | null;
 };
 
-// First 2 = this month; rest spread from 2008 to now (~2–3 per month)
-function getTestimonialDate(index: number, total: number): Date {
-  const now = new Date();
-  const startOfThisMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-  const start2008 = new Date(2008, 0, 1);
-  if (index === 0) return new Date(now.getFullYear(), now.getMonth(), Math.min(now.getDate(), 15));
-  if (index === 1) return new Date(now.getFullYear(), now.getMonth(), Math.max(1, Math.min(now.getDate() - 5, 28)));
-  // Spread remaining (index 2 to total-1) from end of last month back to Jan 2008
-  const remaining = total - 2;
-  const monthsRange = (startOfThisMonth.getFullYear() - 2008) * 12 + startOfThisMonth.getMonth();
-  const monthsPerTestimonial = monthsRange / remaining;
-  const monthIndex = index - 2;
-  const monthsBack = 1 + Math.floor(monthIndex * monthsPerTestimonial);
-  const d = new Date(startOfThisMonth);
-  d.setMonth(d.getMonth() - monthsBack);
-  d.setDate(10 + (index % 3)); // 10, 11, 12 for variety
-  return d;
-}
-
-const tagToServiceLabel: Record<string, string> = {
-  resume: "Resume Writing",
-  "cover letter": "Cover Letter",
-  linkedin: "LinkedIn Profile",
-  "selection criteria": "Selection Criteria",
-  "linkedin profile": "LinkedIn Profile",
-};
-
-const FALLBACK_TESTIMONIALS: TestimonialRow[] = (fallbackReviews as { google_reviews: Array<{ name: string; rating: number; review: string; tags?: string[]; timeframe?: string }> }).google_reviews
+const FALLBACK_TESTIMONIALS: TestimonialRow[] = (fallbackReviews as { google_reviews: Array<{ name: string; rating: number; review: string; tags?: string[] }> }).google_reviews
   .slice(0, 50)
-  .map((r, i) => {
-    const firstTag = (r.tags?.[0] ?? "resume").toLowerCase();
-    const serviceUsed = tagToServiceLabel[firstTag] ?? (firstTag === "resume" ? "Resume Writing" : firstTag.charAt(0).toUpperCase() + firstTag.slice(1));
-    return {
-      id: -(i + 1),
-      clientName: r.name,
-      clientTitle: null,
-      clientPhoto: null,
-      rating: r.rating,
-      testimonialText: r.review,
-      serviceUsed,
-      featured: 0,
-      approved: 1,
-      createdAt: getTestimonialDate(i, 50),
-      timeframe: null,
-    };
-  });
+  .map((r, i) => ({
+    id: -(i + 1),
+    clientName: r.name,
+    clientTitle: null,
+    clientPhoto: null,
+    rating: r.rating,
+    testimonialText: r.review,
+    serviceUsed: r.tags?.[0] ?? "Resume",
+    featured: 0,
+    approved: 1,
+    createdAt: new Date(),
+  }));
 
 export default function Testimonials() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -91,18 +56,15 @@ export default function Testimonials() {
 
   // Fallback when DB is empty (e.g. after migration or previous DB issue)
   const fallbackTestimonials = useMemo(
-    (): TestimonialRow[] =>
+    () =>
       [
-        { id: -1, clientName: "Sarah M.", clientTitle: "Marketing Manager", clientPhoto: null, rating: 5, testimonialText: "I was struggling to get interviews despite having 10+ years of experience. After working with All Résumé Services, I received 3 interview invitations within 2 weeks! The ATS optimisation made all the difference.", serviceUsed: "Resume Writing", featured: 0, approved: 1, createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000) },
-        { id: -2, clientName: "James T.", clientTitle: "Software Engineer", clientPhoto: null, rating: 5, testimonialText: "The team understood exactly what tech recruiters look for. My new resume highlights my achievements perfectly, and I landed my dream role at a top tech company. Worth every dollar!", serviceUsed: "Resume Writing", featured: 0, approved: 1, createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) },
-        { id: -3, clientName: "Emily R.", clientTitle: "HR Professional", clientPhoto: null, rating: 5, testimonialText: "As someone who reviews resumes daily, I can confidently say the quality of work from All Résumé Services is exceptional. Professional, polished, and results-driven. Highly recommend!", serviceUsed: "Resume Writing", featured: 0, approved: 1, createdAt: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000) },
-        { id: -4, clientName: "Michael K.", clientTitle: "Project Manager", clientPhoto: null, rating: 5, testimonialText: "Working with All Résumé Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimisation was a bonus that really boosted my visibility.", serviceUsed: "LinkedIn Profile", featured: 0, approved: 1, createdAt: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000) },
-        { id: -5, clientName: "Lisa W.", clientTitle: "Career Changer", clientPhoto: null, rating: 5, testimonialText: "Transitioning careers felt overwhelming, but the team helped me reframe my experience beautifully. I got my first interview in my new field within a month. Thank you!", serviceUsed: "Resume Writing", featured: 0, approved: 1, createdAt: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000) },
-        { id: -6, clientName: "David P.", clientTitle: "Executive Leader", clientPhoto: null, rating: 5, testimonialText: "After 20 years in leadership, I needed a resume that reflected my strategic impact. The premium package delivered exactly that—sophisticated, compelling, and interview-winning.", serviceUsed: "Resume Writing", featured: 0, approved: 1, createdAt: new Date(Date.now() - 120 * 24 * 60 * 60 * 1000) },
-        { id: -7, clientName: "Priya S.", clientTitle: "Policy Officer", clientPhoto: null, rating: 5, testimonialText: "Applying for a public sector role meant tackling selection criteria for the first time. All Résumé Services helped me structure my responses using the STAR method and I was shortlisted. I'm now in a government role I love!", serviceUsed: "Selection Criteria", featured: 0, approved: 1, createdAt: new Date(Date.now() - 75 * 24 * 60 * 60 * 1000) },
-        { id: -8, clientName: "Rachel T.", clientTitle: "Communications Lead", clientPhoto: null, rating: 5, testimonialText: "I had my resume and cover letter done years ago but my LinkedIn was outdated. The profile rewrite made such a difference—recruiters started reaching out. Combined with my new resume, I had multiple offers within six weeks.", serviceUsed: "LinkedIn Profile", featured: 0, approved: 1, createdAt: new Date(Date.now() - 50 * 24 * 60 * 60 * 1000) },
-        { id: -9, clientName: "Andrew M.", clientTitle: "APS Level 6", clientPhoto: null, rating: 5, testimonialText: "I needed help with selection criteria for a federal government position. The team understood exactly what panels look for and helped me turn my experience into clear, evidence-based responses. Got the job!", serviceUsed: "Selection Criteria", featured: 0, approved: 1, createdAt: new Date(Date.now() - 100 * 24 * 60 * 60 * 1000) },
-      ],
+        { id: -1, clientName: "Sarah M.", clientTitle: "Marketing Manager", clientPhoto: null as string | null, rating: 5, testimonialText: "I was struggling to get interviews despite having 10+ years of experience. After working with All Résumé Services, I received 3 interview invitations within 2 weeks! The ATS optimisation made all the difference.", serviceUsed: "Resume Writing" },
+        { id: -2, clientName: "James T.", clientTitle: "Software Engineer", clientPhoto: null as string | null, rating: 5, testimonialText: "The team understood exactly what tech recruiters look for. My new resume highlights my achievements perfectly, and I landed my dream role at a top tech company. Worth every dollar!", serviceUsed: "Resume Writing" },
+        { id: -3, clientName: "Emily R.", clientTitle: "HR Professional", clientPhoto: null as string | null, rating: 5, testimonialText: "As someone who reviews resumes daily, I can confidently say the quality of work from All Résumé Services is exceptional. Professional, polished, and results-driven. Highly recommend!", serviceUsed: "Resume Writing" },
+        { id: -4, clientName: "Michael K.", clientTitle: "Project Manager", clientPhoto: null as string | null, rating: 5, testimonialText: "Working with All Résumé Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimisation was a bonus that really boosted my visibility.", serviceUsed: "LinkedIn Profile" },
+        { id: -5, clientName: "Lisa W.", clientTitle: "Career Changer", clientPhoto: null as string | null, rating: 5, testimonialText: "Transitioning careers felt overwhelming, but the team helped me reframe my experience beautifully. I got my first interview in my new field within a month. Thank you!", serviceUsed: "Resume Writing" },
+        { id: -6, clientName: "David P.", clientTitle: "Executive Leader", clientPhoto: null as string | null, rating: 5, testimonialText: "After 20 years in leadership, I needed a resume that reflected my strategic impact. The premium package delivered exactly that—sophisticated, compelling, and interview-winning.", serviceUsed: "Resume Writing" },
+      ] as const,
     []
   );
 
@@ -134,14 +96,6 @@ let filtered = [...effectiveTestimonials];
       filtered = filtered.filter((t) => t.rating >= minRating);
     }
 
-    // Sort by date: newest first, 2008 last (secondary sort by id desc when dates equal)
-    filtered.sort((a, b) => {
-      const dateA = a.createdAt instanceof Date ? a.createdAt.getTime() : new Date(a.createdAt).getTime();
-      const dateB = b.createdAt instanceof Date ? b.createdAt.getTime() : new Date(b.createdAt).getTime();
-      if (dateB !== dateA) return dateB - dateA; // newest first
-      return (b.id ?? 0) - (a.id ?? 0); // same date: higher id first
-    });
-
     return filtered;
   }, [effectiveTestimonials, searchQuery, serviceFilter, ratingFilter]);
 
@@ -169,33 +123,34 @@ let filtered = [...effectiveTestimonials];
   const displayedTestimonials = filteredTestimonials.slice(0, displayCount);
   const hasMore = displayCount < filteredTestimonials.length;
 
-  // Display date by position: first 2 = this month, rest spread from 2008 to now (so dates aren't all "5 days ago")
-  const getDisplayDateForPosition = (index: number, total: number): string => {
-    const now = new Date();
-    if (index === 0) return formatDistanceToNow(new Date(now.getFullYear(), now.getMonth(), Math.min(now.getDate(), 5)), { addSuffix: true });
-    if (index === 1) return formatDistanceToNow(new Date(now.getFullYear(), now.getMonth(), Math.max(1, now.getDate() - 3)), { addSuffix: true });
-    const remaining = total - 2;
-    const monthsRange = (now.getFullYear() - 2008) * 12 + now.getMonth();
-    const monthsPer = monthsRange / Math.max(1, remaining);
-    const monthsBack = 1 + Math.floor((index - 2) * monthsPer);
-    const d = new Date(now.getFullYear(), now.getMonth() - monthsBack, 10 + (index % 3));
-    return format(d, "MMM yyyy");
-  };
-
-  const renderStars = () => (
-    <div
-      className="relative inline-flex items-center justify-center"
-      aria-label="5 out of 5 stars"
-    >
-      <div className="h-24 w-24 rounded-full overflow-hidden flex items-center justify-center shadow-md flex-shrink-0">
-        <img 
-          src="/5-star-rating-icon.png" 
-          alt="5 Star Rating" 
-          className="h-full w-full object-cover"
-        />
+  const renderStars = (rating: number) => {
+    // Use custom 5-star logo for 5-star ratings
+    if (rating === 5) {
+      return (
+        <div className="rounded-lg shadow-sm">
+          <img 
+            src="/5-star-logo.png" 
+            alt="5 Star Rating" 
+            className="h-16 w-16 object-contain animate-in fade-in duration-700"
+          />
+        </div>
+      );
+    }
+    
+    // Fallback to individual stars for non-5-star ratings
+    return (
+      <div className="flex gap-1">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <Star
+            key={star}
+            className={`w-5 h-5 ${
+              star <= rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+            }`}
+          />
+        ))}
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <>
@@ -347,17 +302,12 @@ let filtered = [...effectiveTestimonials];
           ) : (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {displayedTestimonials.map((testimonial, index) => (
-                  <Card
-                    key={testimonial.id}
-                    className="relative overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border-l-4 border-l-[#b8860b] bg-gradient-to-br from-white via-[#fafaf9] to-[#f8fafc] shadow-md hover:shadow-[0_12px_40px_-12px_rgba(30,58,95,0.15)] dark:from-[#0f172a]/95 dark:via-[#1e293b]/95 dark:to-[#0f172a]/95 dark:border-[#b8860b]/60"
-                  >
-                    {/* Decorative quote mark */}
-                    <div className="absolute top-3 right-4 text-5xl font-serif text-[#1e3a5f]/10 dark:text-[#d4af37]/10 select-none leading-none">"</div>
+                {displayedTestimonials.map((testimonial) => (
+                  <Card key={testimonial.id} className="p-6 hover:shadow-xl transition-all hover:-translate-y-1 border-2 border-transparent hover:border-primary/20">
                     {/* Header with Rating and Client Info */}
-                    <div className="flex items-center justify-between mb-4 relative z-10">
+                    <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
-                        <div>{renderStars()}</div>
+                        <div>{renderStars(testimonial.rating)}</div>
                         <div>
                           <div className="font-semibold text-foreground">{testimonial.clientName}</div>
                           {testimonial.clientTitle && (
@@ -400,22 +350,18 @@ let filtered = [...effectiveTestimonials];
                     </div>
 
                     {/* Testimonial Text */}
-                    <p className="text-muted-foreground mb-4 line-clamp-6 relative z-10">
+                    <p className="text-muted-foreground mb-4 line-clamp-6">
                       "{testimonial.testimonialText}"
                     </p>
 
-                    {/* Service Tag and Date */}
-                    <div className="mt-2 flex flex-wrap items-center gap-2 relative z-10">
-                      {testimonial.serviceUsed && (
-                        <span className="inline-block px-3 py-1 bg-[#1e3a5f]/10 text-[#1e3a5f] dark:bg-[#d4af37]/15 dark:text-[#d4af37] text-xs font-medium rounded-full">
+                    {/* Service Tag */}
+                    {testimonial.serviceUsed && (
+                      <div className="mt-2">
+                        <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">
                           {testimonial.serviceUsed}
                         </span>
-                      )}
-                      <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {getDisplayDateForPosition(index, filteredTestimonials.length)}
-                      </span>
-                    </div>
+                      </div>
+                    )}
                   </Card>
                 ))}
               </div>
@@ -443,7 +389,7 @@ let filtered = [...effectiveTestimonials];
             Ready to Join Our Success Stories?
           </h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Let our expert team help you create a resume, cover letter, or LinkedIn profile that opens doors to your dream career.
+            Let our expert team help you create a resume that opens doors to your dream career.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>
