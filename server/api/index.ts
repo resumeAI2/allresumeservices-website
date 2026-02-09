@@ -1,10 +1,10 @@
 import "dotenv/config";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
-import { appRouter } from "../server/routers";
-import { createContext } from "../server/_core/context";
-import { registerAuthRoutes } from "../server/_core/authRoutes";
-import { apiLimiter, authLimiter } from "../server/middleware/rateLimit";
+import { appRouter } from "../routers";
+import { createContext } from "../_core/context";
+import { registerAuthRoutes } from "../_core/authRoutes";
+import { apiLimiter, authLimiter } from "../middleware/rateLimit";
 import { parse } from "url";
 import crypto from "node:crypto";
 
@@ -36,7 +36,7 @@ async function getApp() {
   // SEO routes - sitemap and robots.txt
   app.get("/sitemap.xml", async (req: any, res: any) => {
     try {
-      const sitemapRoute = await import("../server/routes/sitemap.xml");
+      const sitemapRoute = await import("../routes/sitemap.xml");
       await sitemapRoute.GET(req, res);
     } catch (error) {
       console.error("[Sitemap] Error:", error);
@@ -46,7 +46,7 @@ async function getApp() {
 
   app.get("/robots.txt", async (req: any, res: any) => {
     try {
-      const robotsRoute = await import("../server/routes/robots.txt");
+      const robotsRoute = await import("../routes/robots.txt");
       await robotsRoute.GET(req, res);
     } catch (error) {
       console.error("[Robots] Error:", error);
