@@ -38,7 +38,7 @@ try {
 // ── 2. Create directory structure ─────────────────────────────────────────────
 const dirs = [
   join(OUTPUT, "static"),
-  join(OUTPUT, "functions/api/index.func"),
+  join(OUTPUT, "functions/api/[[...path]].func"),
   join(OUTPUT, "functions/api/auth/[...nextauth].func"),
 ];
 for (const dir of dirs) {
@@ -55,14 +55,14 @@ if (existsSync("dist/public")) {
 }
 
 // ── 4. Bundle main API function ───────────────────────────────────────────────
-console.log("Bundling api/index serverless function...");
+console.log("Bundling api/[[...path]] serverless function...");
 await build({
   entryPoints: ["server/api/index.ts"],
   bundle: true,
   platform: "node",
   target: "node20",
   format: "cjs",
-  outfile: join(OUTPUT, "functions/api/index.func/index.js"),
+  outfile: join(OUTPUT, "functions/api/[[...path]].func/index.js"),
   // Bundle ALL dependencies into the output since the .func directory
   // doesn't have node_modules. Only exclude packages with native binaries.
   external: ["sharp"],
@@ -70,7 +70,7 @@ await build({
 });
 
 writeFileSync(
-  join(OUTPUT, "functions/api/index.func/.vc-config.json"),
+  join(OUTPUT, "functions/api/[[...path]].func/.vc-config.json"),
   JSON.stringify(
     {
       runtime: "nodejs20.x",
@@ -173,29 +173,16 @@ const config = {
       },
       continue: true,
     },
-    // Auth routes -> auth function
+    // Auth routes -> separate auth function (checked before catch-all)
     {
       src: "/api/auth/(.*)",
       dest: "/api/auth/[...nextauth]",
     },
-    // tRPC routes -> main API function
-    {
-      src: "/api/trpc/(.*)",
-      dest: "/api/index",
-    },
-    // Cron routes -> main API function
-    {
-      src: "/api/cron/(.*)",
-      dest: "/api/index",
-    },
-    // PayPal routes -> main API function
-    {
-      src: "/api/paypal/(.*)",
-      dest: "/api/index",
-    },
-    // Sitemap and robots
-    { src: "/sitemap.xml", dest: "/api/index" },
-    { src: "/robots.txt", dest: "/api/index" },
+    // Sitemap and robots -> API catch-all function
+    { src: "/sitemap.xml", dest: "/api/sitemap.xml" },
+    { src: "/robots.txt", dest: "/api/robots.txt" },
+    // All other /api/* routes are handled by the catch-all function
+    // at api/[[...path]].func - no rewrite needed, the URL is preserved
     // SPA fallback: all non-API routes to index.html
     {
       handle: "filesystem",
@@ -221,6 +208,6 @@ writeFileSync(join(OUTPUT, "config.json"), JSON.stringify(config, null, 2));
 
 console.log("✓ Build Output API structure created successfully");
 console.log(
-  "  Functions: api/index, api/auth/[...nextauth]"
+  "  Functions: api/[[...path]], api/auth/[...nextauth]"
 );
 console.log("  Static: copied from dist/public");
