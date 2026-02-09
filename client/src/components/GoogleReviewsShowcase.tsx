@@ -36,11 +36,11 @@ export default function GoogleReviewsShowcase() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+    <section className="pt-10 pb-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="container">
         <div className="max-w-5xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-secondary/10 px-4 py-2 rounded-full mb-4">
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (

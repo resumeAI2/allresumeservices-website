@@ -3,7 +3,7 @@ import { Link } from "wouter";
 
 export default function PricingCTA() {
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+    <section id="pricing" className="pt-10 pb-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="container">
         <div className="max-w-4xl mx-auto text-center">
           {/* Header */}
