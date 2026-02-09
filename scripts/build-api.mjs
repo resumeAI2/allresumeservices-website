@@ -63,8 +63,9 @@ await build({
   target: "node20",
   format: "cjs",
   outfile: join(OUTPUT, "functions/api/index.func/index.js"),
-  packages: "external",
-  external: ["dotenv", "dotenv/config"],
+  // Bundle ALL dependencies into the output since the .func directory
+  // doesn't have node_modules. Only exclude packages with native binaries.
+  external: ["sharp"],
   tsconfig: "tsconfig.json",
 });
 
@@ -95,8 +96,9 @@ await build({
     OUTPUT,
     "functions/api/auth/[...nextauth].func/index.js"
   ),
-  packages: "external",
-  external: ["dotenv", "dotenv/config"],
+  // Bundle ALL dependencies into the output since the .func directory
+  // doesn't have node_modules. Only exclude packages with native binaries.
+  external: ["sharp"],
   tsconfig: "tsconfig.json",
 });
 
