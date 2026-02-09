@@ -1,22 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Upload, ArrowRight, Star, ExternalLink } from "lucide-react";
-import { useABTest, trackABTestConversion } from "@/hooks/useABTest";
+import { Link } from "wouter";
 
 export default function Hero() {
-  // A/B test for primary CTA button text
-  const ctaVariant = useABTest({
-    testName: 'hero-primary-cta',
-    variants: [
-      { id: 'a', text: 'Get FREE Resume Review' },
-      { id: 'b', text: 'Start Your Career Transformation' },
-      { id: 'c', text: 'Get Your Free Quote Now' }
-    ]
-  });
-
-  const handleCTAClick = () => {
-    trackABTestConversion('hero-primary-cta', ctaVariant.id);
-    document.getElementById('free-review')?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section className="relative min-h-[600px] flex items-center bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-primary-foreground overflow-hidden">
@@ -69,20 +55,22 @@ export default function Hero() {
               <Button 
                 size="lg" 
                 className="bg-secondary text-secondary-foreground hover:bg-secondary/90 text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all"
-                onClick={handleCTAClick}
+                onClick={() => document.getElementById('free-review')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <Upload className="mr-2 h-5 w-5" />
-                {ctaVariant.text}
+                Get a Free Review
               </Button>
               
               <Button 
                 size="lg" 
                 variant="outline" 
                 className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-8 py-6"
-                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                asChild
               >
-                Learn More
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <Link href="/packages#services">
+                  Browse Services
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
             </div>
 

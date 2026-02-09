@@ -11,7 +11,7 @@ export default function PricingSchema() {
         "name": "All Résumé Services",
         "url": "https://allresumeservices.com.au",
         "logo": "https://allresumeservices.com.au/logo.png",
-        "description": "Professional resume writing services with 18+ years experience helping Australians land interviews and secure their dream jobs.",
+        "description": "Professional resume writing, cover letter, and LinkedIn profile services with 18+ years experience helping Australians land interviews and secure their dream jobs.",
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "AU",
