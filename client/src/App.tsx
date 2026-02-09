@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { CartProvider } from "./contexts/CartContext";
+import CartDrawer from "./components/CartDrawer";
 import Home from "./pages/Home";
 import ResumeWriting from "./pages/ResumeWriting";
 import CoverLetters from "./pages/CoverLetters";
@@ -185,6 +186,7 @@ function App() {
           <TooltipProvider>
             <HelmetProvider>
               <Toaster />
+              <CartDrawer />
               <Router />
             </HelmetProvider>
           </TooltipProvider>

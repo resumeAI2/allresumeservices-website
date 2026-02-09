@@ -29,6 +29,9 @@ interface CartContextType {
   clearCart: () => Promise<void>;
   refreshCart: () => Promise<void>;
   getTotal: () => number;
+  isCartDrawerOpen: boolean;
+  setCartDrawerOpen: (open: boolean) => void;
+  openCartDrawer: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -36,7 +39,10 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [sessionId, setSessionId] = useState<string>('');
   const [cartMerged, setCartMerged] = useState<boolean>(false);
+  const [isCartDrawerOpen, setCartDrawerOpen] = useState(false);
   const { user, isAuthenticated } = useAuth();
+
+  const openCartDrawer = () => setCartDrawerOpen(true);
   
   // Generate or retrieve session ID for guest users
   useEffect(() => {
@@ -166,6 +172,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
         clearCart,
         refreshCart,
         getTotal,
+        isCartDrawerOpen,
+        setCartDrawerOpen,
+        openCartDrawer,
       }}
     >
       {children}
