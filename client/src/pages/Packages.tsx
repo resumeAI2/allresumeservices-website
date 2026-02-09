@@ -44,7 +44,7 @@ const FALLBACK_ITEMS = {
   ],
   addon: [
     { name: 'Rush Delivery (24-48 hours)', type: 'addon', category: 'Add-on', price: '$50', originalPrice: null, description: 'Expedited delivery within 24-48 hours', features: ['Priority processing', '24-48 hour turnaround', 'Applies to all items in order'], popular: false },
-    { name: 'Phone Consultation (30 min)', type: 'addon', category: 'Add-on', price: '$75', originalPrice: null, description: 'One-on-one career consultation with expert', features: ['30-minute phone call', 'Career strategy discussion', 'Interview preparation tips', 'Personalized advice'], popular: false },
+    { name: '1ST CONSULTATION FREE', type: 'addon', category: 'Add-on', price: '$55', originalPrice: null, description: 'One-on-one career consultation with expert - $55 for 30 mins', features: ['30-minute phone call', 'Career strategy discussion', 'Interview preparation tips', 'Personalized advice'], popular: false },
   ],
 };
 
@@ -82,11 +82,44 @@ export default function Services() {
   const { addToCart, openCartDrawer } = useCart();
   const [addingToCart, setAddingToCart] = useState<number | null>(null);
 
+  // Helper function to format price - ensures dollar sign is present
+  const formatPrice = (price: string | number | undefined): string => {
+    if (!price) return '';
+    const priceStr = String(price);
+    // If price already starts with $, return as is
+    if (priceStr.startsWith('$')) return priceStr;
+    // If it's a number or numeric string, add $
+    return `$${priceStr}`;
+  };
+
+  // Transform API services - override Phone Consultation data
+  const transformedServices = allServices.map(service => {
+    const serviceName = service.name?.toLowerCase() || '';
+    if (serviceName.includes('phone consultation') || serviceName.includes('consultation') && service.type === 'addon') {
+      return {
+        ...service,
+        name: '1ST CONSULTATION FREE',
+        price: '$55',
+        description: 'One-on-one career consultation with expert - $55 for 30 mins'
+      };
+    }
+    return service;
+  });
+
   // Filter services based on selected category and type
-  const filteredServices = allServices.filter(service => {
+  const filteredServices = transformedServices.filter(service => {
     const matchesType = selectedType === 'all' || service.type === selectedType;
     const matchesCategory = selectedCategory === 'all' || service.category === selectedCategory;
     return matchesType && matchesCategory;
+  }).sort((a, b) => {
+    // Order packages: Basic, Standard, Premium (all on same line)
+    if (a.type === 'package' && b.type === 'package') {
+      if (a.name === 'Basic Package') return -1;
+      if (b.name === 'Basic Package') return 1;
+      if (a.name === 'Standard Package' && b.name === 'Premium Package') return -1;
+      if (b.name === 'Standard Package' && a.name === 'Premium Package') return 1;
+    }
+    return 0;
   });
 
   // Get unique categories
@@ -99,6 +132,15 @@ export default function Services() {
     return typeItems.filter(item => {
       const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
       return matchesCategory;
+    }).sort((a, b) => {
+      // Order packages: Basic, Standard, Premium (all on same line)
+      if (a.type === 'package' && b.type === 'package') {
+        if (a.name === 'Basic Package') return -1;
+        if (b.name === 'Basic Package') return 1;
+        if (a.name === 'Standard Package' && b.name === 'Premium Package') return -1;
+        if (b.name === 'Standard Package' && a.name === 'Premium Package') return 1;
+      }
+      return 0;
     });
   };
 
@@ -139,12 +181,6 @@ export default function Services() {
       <PricingSchema />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        {/* Dev-only: proves Cursor preview is loading latest code. Remove or hide in production. */}
-        {import.meta.env.DEV && (
-          <div className="bg-green-600 text-white text-center py-1.5 px-4 text-sm font-bold sticky top-0 z-[100]">
-            ✓ Live dev — scroll down to &quot;Real Results, Real People&quot; or open /packages#testimonials
-          </div>
-        )}
         <main className="flex-1">
           {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-[#1e3a5f] via-[#2d5a8f] to-[#1e3a5f] text-white py-20 overflow-hidden">
@@ -311,138 +347,255 @@ export default function Services() {
                       <p className="text-center text-muted-foreground mb-6">No items available for the selected filters. Try selecting &quot;All Services&quot; or a different category.</p>
                     );
                   }
+                  const isPackageView = selectedType === 'package';
+                  // Separate packages from other items
+                  const packages = fallbackItems.filter(item => item.type === 'package');
+                  const otherItems = fallbackItems.filter(item => item.type !== 'package');
+                  
                   return (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                      {fallbackItems.map((item, index) => (
-                        <Card key={`${item.name}-${index}`} className={`flex flex-col relative ${item.popular ? 'border-primary shadow-lg' : ''}`}>
-                          {item.popular && (
-                            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                              <Badge variant="default" className="bg-[#d4af37] text-white border-2 border-white shadow-lg px-4 py-1">Most Popular</Badge>
-                            </div>
-                          )}
-                          <CardHeader>
-                            <div className="flex items-start justify-between mb-2">
-                              <div>
-                                {item.type === 'package' && (
-                                  <Badge variant="default" className="mb-2 bg-[#2d5a8f] text-white hover:bg-[#2d5a8f]/90">Package Deal</Badge>
-                                )}
-                                {item.type === 'addon' && (
-                                  <Badge variant="outline" className="mb-2">Add-on</Badge>
-                                )}
-                                {item.tier && (
-                                  <Badge variant="secondary" className="mb-2">{item.tier}</Badge>
-                                )}
-                              </div>
-                              <div className="text-right">
-                                {item.originalPrice && <p className="text-sm text-muted-foreground line-through">{item.originalPrice}</p>}
-                                <p className="text-2xl font-bold">{item.price}</p>
-                              </div>
-                            </div>
-                            <CardTitle className="text-xl">{item.name}</CardTitle>
-                            <CardDescription>{item.description}</CardDescription>
-                          </CardHeader>
-                          <CardContent className="flex-1">
-                            <ul className="space-y-2">
-                              {item.features.map((feature) => (
-                                <li key={feature} className="flex items-start gap-2 text-sm">
-                                  <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                                  <span>{feature}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </CardContent>
-                          <CardFooter>
-                            <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
-                              <a href={`/contact?package=${encodeURIComponent(item.name)}`}>Contact us to order</a>
-                            </Button>
-                          </CardFooter>
-                        </Card>
-                      ))}
-                    </div>
+                    <>
+                      {/* Packages Row - always on same line */}
+                      {packages.length > 0 && (
+                        <div className="flex justify-center gap-6 max-w-5xl mx-auto mb-8">
+                          {packages.map((item, index) => (
+                            <Card key={`${item.name}-${index}`} className={`flex flex-col relative flex-1 max-w-[300px] ${item.popular ? 'border-primary shadow-lg' : ''}`}>
+                              {item.popular && (
+                                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                                  <Badge variant="default" className="bg-[#d4af37] text-white border-2 border-white shadow-lg px-4 py-1">Most Popular</Badge>
+                                </div>
+                              )}
+                              <CardHeader>
+                                <div className="flex items-start justify-between mb-2">
+                                  <div>
+                                    <Badge variant="default" className="mb-2 bg-[#2d5a8f] text-white hover:bg-[#2d5a8f]/90">Package Deal</Badge>
+                                  </div>
+                                  <div className="text-right">
+                                    {item.originalPrice && <p className="text-sm text-muted-foreground line-through">{item.originalPrice}</p>}
+                                    <p className="text-2xl font-bold">{item.price}</p>
+                                  </div>
+                                </div>
+                                <CardTitle className="text-xl">{item.name}</CardTitle>
+                                <CardDescription>{item.description}</CardDescription>
+                              </CardHeader>
+                              <CardContent className="flex-1">
+                                <ul className="space-y-2">
+                                  {item.features.map((feature) => (
+                                    <li key={feature} className="flex items-start gap-2 text-sm">
+                                      <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                                      <span>{feature}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </CardContent>
+                              <CardFooter>
+                                <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
+                                  <a href={`/contact?package=${encodeURIComponent(item.name)}`}>Contact us to order</a>
+                                </Button>
+                              </CardFooter>
+                            </Card>
+                          ))}
+                        </div>
+                      )}
+                      {/* Other Items Grid */}
+                      {otherItems.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                          {otherItems.map((item, index) => (
+                            <Card key={`${item.name}-${index}`} className="flex flex-col relative">
+                              <CardHeader>
+                                <div className="flex items-start justify-between mb-2">
+                                  <div>
+                                    {item.type === 'addon' && (
+                                      <Badge variant="outline" className="mb-2">Add-on</Badge>
+                                    )}
+                                    {item.tier && (
+                                      <Badge variant="secondary" className="mb-2">{item.tier}</Badge>
+                                    )}
+                                  </div>
+                                  <div className="text-right">
+                                    {item.originalPrice && <p className="text-sm text-muted-foreground line-through">{item.originalPrice}</p>}
+                                    <p className="text-2xl font-bold">{item.price}</p>
+                                  </div>
+                                </div>
+                                <CardTitle className="text-xl">{item.name}</CardTitle>
+                                <CardDescription>{item.description}</CardDescription>
+                              </CardHeader>
+                              <CardContent className="flex-1">
+                                <ul className="space-y-2">
+                                  {item.features.map((feature) => (
+                                    <li key={feature} className="flex items-start gap-2 text-sm">
+                                      <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                                      <span>{feature}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </CardContent>
+                              <CardFooter>
+                                <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
+                                  <a href={`/contact?package=${encodeURIComponent(item.name)}`}>Contact us to order</a>
+                                </Button>
+                              </CardFooter>
+                            </Card>
+                          ))}
+                        </div>
+                      )}
+                    </>
                   );
                 })()}
               </>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredServices.map(service => {
-                  const features = parseFeatures(service.features);
-                  const isPackage = service.type === 'package';
-                  const hasDiscount = service.originalPrice && Number.parseFloat(service.originalPrice) > Number.parseFloat(service.price);
-
+              <>
+                {/* Packages Row - always on same line */}
+                {(() => {
+                  const packages = filteredServices.filter(s => s.type === 'package');
+                  const otherServices = filteredServices.filter(s => s.type !== 'package');
+                  
                   return (
-                    <Card key={service.id} className={`flex flex-col relative ${isPackage ? 'border-primary shadow-lg' : ''}`}>
-                      {service.type === 'package' && service.name === 'Standard Package' && (
-                        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                          <Badge variant="default" className="bg-[#d4af37] text-white border-2 border-white shadow-lg px-4 py-1">Most Popular</Badge>
+                    <>
+                      {packages.length > 0 && (
+                        <div className="flex justify-center gap-6 max-w-5xl mx-auto mb-8">
+                          {packages.map(service => {
+                            const features = parseFeatures(service.features);
+                            const hasDiscount = service.originalPrice && Number.parseFloat(service.originalPrice) > Number.parseFloat(service.price);
+
+                            return (
+                              <Card key={service.id} className="flex flex-col relative flex-1 max-w-[300px] border-primary shadow-lg">
+                                {service.name === 'Standard Package' && (
+                                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                                    <Badge variant="default" className="bg-[#d4af37] text-white border-2 border-white shadow-lg px-4 py-1">Most Popular</Badge>
+                                  </div>
+                                )}
+                                <CardHeader>
+                                  <div className="flex items-start justify-between mb-2">
+                                    <div>
+                                      <Badge variant="default" className="mb-2 bg-[#2d5a8f] text-white hover:bg-[#2d5a8f]/90">
+                                        Package Deal
+                                      </Badge>
+                                    </div>
+                                    <div className="text-right">
+                                      {hasDiscount && (
+                                        <p className="text-sm text-muted-foreground line-through">
+                                          ${service.originalPrice}
+                                        </p>
+                                      )}
+                                      <p className="text-2xl font-bold">
+                                        {formatPrice(service.price)}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <CardTitle className="text-xl">{service.name}</CardTitle>
+                                  <CardDescription>{service.description}</CardDescription>
+                                </CardHeader>
+                                
+                                <CardContent className="flex-1">
+                                  {features.length > 0 && (
+                                    <ul className="space-y-2">
+                                      {features.map((feature) => (
+                                        <li key={feature} className="flex items-start gap-2 text-sm">
+                                          <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                                          <span>{feature}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </CardContent>
+                                
+                                <CardFooter>
+                                  <Button
+                                    className="w-full"
+                                    onClick={() => handleAddToCart(service.id)}
+                                    disabled={addingToCart === service.id}
+                                  >
+                                    {addingToCart === service.id ? (
+                                      <>Adding...</>
+                                    ) : (
+                                      <>
+                                        <ShoppingCart className="h-4 w-4 mr-2" />
+                                        Add to Cart
+                                      </>
+                                    )}
+                                  </Button>
+                                </CardFooter>
+                              </Card>
+                            );
+                          })}
                         </div>
                       )}
-                      <CardHeader>
-                        <div className="flex items-start justify-between mb-2">
-                          <div>
-                            {service.type === 'package' && (
-                              <Badge variant="default" className="mb-2 bg-[#2d5a8f] text-white hover:bg-[#2d5a8f]/90">
-                                Package Deal
-                              </Badge>
-                            )}
-                            {service.type === 'addon' && (
-                              <Badge variant="outline" className="mb-2">
-                                Add-on
-                              </Badge>
-                            )}
-                            {service.tier && (
-                              <Badge variant="secondary" className="mb-2">
-                                {service.tier}
-                              </Badge>
-                            )}
-                          </div>
-                          <div className="text-right">
-                            {hasDiscount && (
-                              <p className="text-sm text-muted-foreground line-through">
-                                ${service.originalPrice}
-                              </p>
-                            )}
-                            <p className="text-2xl font-bold">
-                              ${service.price}
-                            </p>
-                          </div>
+                      {/* Other Services Grid */}
+                      {otherServices.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                          {otherServices.map(service => {
+                            const features = parseFeatures(service.features);
+                            const hasDiscount = service.originalPrice && Number.parseFloat(service.originalPrice) > Number.parseFloat(service.price);
+
+                            return (
+                              <Card key={service.id} className="flex flex-col relative">
+                                <CardHeader>
+                                  <div className="flex items-start justify-between mb-2">
+                                    <div>
+                                      {service.type === 'addon' && (
+                                        <Badge variant="outline" className="mb-2">
+                                          Add-on
+                                        </Badge>
+                                      )}
+                                      {service.tier && (
+                                        <Badge variant="secondary" className="mb-2">
+                                          {service.tier}
+                                        </Badge>
+                                      )}
+                                    </div>
+                                    <div className="text-right">
+                                      {hasDiscount && (
+                                        <p className="text-sm text-muted-foreground line-through">
+                                          ${service.originalPrice}
+                                        </p>
+                                      )}
+                                      <p className="text-2xl font-bold">
+                                        {formatPrice(service.price)}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <CardTitle className="text-xl">{service.name}</CardTitle>
+                                  <CardDescription>{service.description}</CardDescription>
+                                </CardHeader>
+                                
+                                <CardContent className="flex-1">
+                                  {features.length > 0 && (
+                                    <ul className="space-y-2">
+                                      {features.map((feature) => (
+                                        <li key={feature} className="flex items-start gap-2 text-sm">
+                                          <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                                          <span>{feature}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </CardContent>
+                                
+                                <CardFooter>
+                                  <Button
+                                    className="w-full"
+                                    onClick={() => handleAddToCart(service.id)}
+                                    disabled={addingToCart === service.id}
+                                  >
+                                    {addingToCart === service.id ? (
+                                      <>Adding...</>
+                                    ) : (
+                                      <>
+                                        <ShoppingCart className="h-4 w-4 mr-2" />
+                                        Add to Cart
+                                      </>
+                                    )}
+                                  </Button>
+                                </CardFooter>
+                              </Card>
+                            );
+                          })}
                         </div>
-                        <CardTitle className="text-xl">{service.name}</CardTitle>
-                        <CardDescription>{service.description}</CardDescription>
-                      </CardHeader>
-                      
-                      <CardContent className="flex-1">
-                        {features.length > 0 && (
-                          <ul className="space-y-2">
-                            {features.map((feature) => (
-                              <li key={feature} className="flex items-start gap-2 text-sm">
-                                <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                                <span>{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </CardContent>
-                      
-                      <CardFooter>
-                        <Button
-                          className="w-full"
-                          onClick={() => handleAddToCart(service.id)}
-                          disabled={addingToCart === service.id}
-                        >
-                          {addingToCart === service.id ? (
-                            <>Adding...</>
-                          ) : (
-                            <>
-                              <ShoppingCart className="h-4 w-4 mr-2" />
-                              Add to Cart
-                            </>
-                          )}
-                        </Button>
-                      </CardFooter>
-                    </Card>
+                      )}
+                    </>
                   );
-                })}
-              </div>
+                })()}
+              </>
             )}
           </div>
         </section>
@@ -549,6 +702,9 @@ export default function Services() {
                   3 Interviews
                 </div>
                 <CardContent className="pt-8 pb-6">
+                  {/* Quote icon */}
+                  <div className="absolute top-4 left-4 text-4xl text-[#d4af37]/20">&ldquo;</div>
+                  
                   {/* Stars */}
                   <div className="flex items-center gap-0.5 mb-4">
                     {Array.from({ length: 5 }, (_, i) => (
@@ -556,8 +712,8 @@ export default function Services() {
                     ))}
                   </div>
                   
-                  <blockquote className="text-gray-700 leading-relaxed mb-6">
-                    &ldquo;After struggling to get interviews for months with my old resume, I decided to invest in professional help. Within <span className="font-semibold text-purple-600">two weeks, I secured three interviews</span> and ultimately landed my dream role in mining technology. <span className="font-semibold text-[#1e3a5f]">Worth every dollar!</span> 💎&rdquo;
+                  <blockquote className="text-gray-700 leading-relaxed mb-6 relative z-10">
+                    "After struggling to get interviews for months with my old resume, I decided to invest in professional help. Within <span className="font-semibold text-purple-600">two weeks, I secured three interviews</span> and ultimately landed my dream role in mining technology. <span className="font-semibold text-[#1e3a5f]">Worth every dollar!</span> 💎"
                   </blockquote>
                   
                   {/* Author */}

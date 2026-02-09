@@ -3,14 +3,10 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import SuccessMetrics from "@/components/SuccessMetrics";
-import Services from "@/components/Services";
-import Process from "@/components/Process";
-import PricingCTA from "@/components/PricingCTA";
 import Testimonials from "@/components/Testimonials";
 
 import GoogleReviewsShowcase from "@/components/GoogleReviewsShowcase";
 import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
-import FAQ from "@/components/FAQ";
 import FreeReview from "@/components/FreeReview";
 import Footer from "@/components/Footer";
 import SchemaMarkup from "@/components/SchemaMarkup";
@@ -38,13 +34,9 @@ export default function Home() {
       <Hero />
       <Stats />
       <SuccessMetrics />
-      <Services />
-      <Process />
-      <PricingCTA />
       <Testimonials />
       <GoogleReviewsShowcase />
       <FeaturedCaseStudies />
-      <FAQ />
       <FreeReview />
       <ClientLogos />
       <Footer />

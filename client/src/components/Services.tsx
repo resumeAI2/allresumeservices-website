@@ -56,7 +56,7 @@ export default function Services() {
             Why Choose <span className="font-gold-brand">All Résumé Services</span>?
           </h2>
           <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-            Are you ready to stand out in a crowded job market? With decades of experience crafting professional resumes and application documents, we help Australians land interviews and secure roles across industries. Our tailored approach ensures your strengths are highlighted, your accomplishments shine, and your application aligns with the expectations of recruiters and Applicant Tracking Systems (ATS).
+            Are you ready to stand out in a crowded job market? With decades of experience crafting professional resume and job application documents, we help Australians land interviews and secure roles across industries. Our tailored approach ensures your strengths are highlighted, your accomplishments shine, and your application aligns with the expectations of recruiters and Applicant Tracking Systems (ATS).
           </p>
         </div>
 
@@ -78,21 +78,21 @@ export default function Services() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <div 
                 key={index}
-                className="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all group hover:scale-105"
+                className="bg-white/95 backdrop-blur-sm rounded-xl p-5 shadow-lg hover:shadow-2xl transition-all group hover:scale-105"
               >
-                <div className="mb-4 inline-block p-4 bg-secondary/10 rounded-lg group-hover:bg-secondary/20 transition-colors">
-                  <Icon className="h-10 w-10 text-secondary" />
+                <div className="mb-3 inline-block p-3 bg-secondary/10 rounded-lg group-hover:bg-secondary/20 transition-colors">
+                  <Icon className="h-8 w-8 text-secondary" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#1e3a5f] mb-4">
+                <h3 className="text-xl font-bold text-[#1e3a5f] mb-3">
                   {service.title}
                 </h3>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-sm text-gray-700 leading-relaxed">
                   {service.description}
                 </p>
               </div>

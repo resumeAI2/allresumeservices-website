@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-br from-[#1e3a5f]/5 via-white to-[#d4af37]/5">
+    <section id="testimonials" className="pt-10 pb-20 bg-gradient-to-br from-[#1e3a5f]/5 via-white to-[#d4af37]/5">
       <div className="container max-w-6xl">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-[#d4af37]/10 px-4 py-2 rounded-full mb-4">
