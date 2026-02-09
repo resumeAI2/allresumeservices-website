@@ -160,17 +160,17 @@ export default function FreeReview() {
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Get a Free Resume Review – Your First Step Toward Your Dream Job
+            Get a Free Resume, Cover Letter or LinkedIn Profile Review – Your First Step Toward Your Dream Job
           </h2>
           <p className="text-lg opacity-90 mb-8">
-            Not sure if your resume is getting the attention it deserves? Send it to us for a free review! Our professional resume writers will assess its effectiveness, ensuring it showcases your career history, relevant skills, and achievements in a way that stands out in today's competitive job market.
+            Not sure if your resume, cover letter, or LinkedIn profile is getting the attention it deserves? Send it to us for a free review! Our professional writers will assess its effectiveness, ensuring it showcases your career history, relevant skills, and achievements in a way that stands out in today's competitive job market.
           </p>
         </div>
 
         {/* Contact Form */}
         <div className="bg-primary/90 backdrop-blur-md rounded-2xl p-8 md:p-12 max-w-3xl mx-auto border border-primary/30 shadow-2xl mb-12">
           <h3 className="text-2xl font-bold mb-6 text-center text-white">
-            Submit Your Resume for Free Review
+            Submit Your Resume, Cover Letter or LinkedIn for Free Review
           </h3>
           
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -352,7 +352,7 @@ export default function FreeReview() {
               Ready to take the next step?
             </p>
             <p className="opacity-90">
-              Our clients have achieved significant success—landing jobs faster, increasing interview rates, and securing industry roles. Send us your resume for a free review and get one step closer to your dream job!
+              Our clients have achieved significant success—landing jobs faster, increasing interview rates, and securing industry roles. Send us your resume, cover letter, or LinkedIn profile for a free review and get one step closer to your dream job!
             </p>
           </div>
         </div>

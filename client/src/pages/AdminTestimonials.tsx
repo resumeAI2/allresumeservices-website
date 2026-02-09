@@ -272,6 +272,7 @@ export default function AdminTestimonials() {
                       <SelectContent>
                         <SelectItem value="Resume Writing">Resume Writing</SelectItem>
                         <SelectItem value="Cover Letter">Cover Letter</SelectItem>
+                        <SelectItem value="LinkedIn Profile">LinkedIn Profile</SelectItem>
                         <SelectItem value="LinkedIn">LinkedIn Optimisation</SelectItem>
                         <SelectItem value="Selection Criteria">Selection Criteria</SelectItem>
                         <SelectItem value="Career Consultation">Career Consultation</SelectItem>

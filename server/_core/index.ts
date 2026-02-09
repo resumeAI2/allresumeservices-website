@@ -76,8 +76,12 @@ async function startServer() {
   }
 
   server.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}/`);
-    
+    const url = `http://localhost:${port}/`;
+    console.log(`Server running on ${url}`);
+    // Open default browser so you can preview in a real tab (not Cursor's embedded preview)
+    if (process.env.NODE_ENV === "development") {
+      import("open").then(({ default: open }) => open(url)).catch(() => {});
+    }
     // Initialize scheduled tasks
     initDatabaseBackupCron();
   });

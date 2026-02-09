@@ -21,7 +21,7 @@ const faqData: FAQItem[] = [
   {
     category: "Services",
     question: "Do you write resumes for all industries and career levels?",
-    answer: "Yes, we have 18+ years of experience writing resumes for professionals across all industries including healthcare, IT, finance, education, engineering, hospitality, and more. We work with entry-level candidates, mid-career professionals, senior executives, and career changers."
+    answer: "Yes, we have 18+ years of experience writing resumes for professionals across all industries including healthcare, IT, finance, education, engineering, hospitality, government and public sector (including selection criteria for these roles), and more. We work with entry-level candidates, mid-career professionals, senior executives, and career changers."
   },
   {
     category: "Services",
