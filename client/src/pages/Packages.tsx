@@ -7,6 +7,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Check, ShoppingCart } from 'lucide-react';
+import { toast } from 'sonner';
 
 // Fallback items when API is loading, fails, or returns empty (so the page is never blank)
 const FALLBACK_ITEMS = {
@@ -53,7 +54,7 @@ export default function Services() {
     undefined,
     { retry: 1, refetchOnWindowFocus: false }
   );
-  const { addToCart } = useCart();
+  const { addToCart, openCartDrawer } = useCart();
   const [addingToCart, setAddingToCart] = useState<number | null>(null);
 
   // Filter services based on selected category and type
@@ -80,10 +81,15 @@ export default function Services() {
     setAddingToCart(serviceId);
     try {
       await addToCart(serviceId, 1);
-      // Show success feedback
-      setTimeout(() => setAddingToCart(null), 1000);
+      // Find service name for the toast
+      const serviceName = allServices.find(s => s.id === serviceId)?.name ?? 'Item';
+      toast.success(`${serviceName} added to cart`);
+      // Open the cart drawer so the user can see their cart
+      openCartDrawer();
+      setAddingToCart(null);
     } catch (error) {
       console.error('Failed to add to cart:', error);
+      toast.error('Failed to add to cart. Please try again.');
       setAddingToCart(null);
     }
   };

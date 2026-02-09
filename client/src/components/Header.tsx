@@ -9,7 +9,7 @@ export default function Header() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { cartCount } = useCart();
+  const { cartCount, openCartDrawer } = useCart();
 
   const isContactPage = location === "/contact";
   const handleFreeReviewClick = () => {
@@ -109,14 +109,18 @@ export default function Header() {
               </div>
             </div>
             <Link href="/about" className="hover:text-secondary transition-colors whitespace-nowrap">About Us</Link>
-            <Link href="/cart" className="relative hover:text-secondary transition-colors">
+            <button
+              onClick={openCartDrawer}
+              className="relative hover:text-secondary transition-colors"
+              aria-label="Open cart"
+            >
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (
                 <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs">
                   {cartCount}
                 </Badge>
               )}
-            </Link>
+            </button>
             <Button 
               variant="default" 
               size="sm"
@@ -151,7 +155,14 @@ export default function Header() {
               <Link href="/case-studies" className="hover:text-secondary transition-colors text-sm" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
             </div>
             <Link href="/about" className="hover:text-secondary transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
-            <Link href="/cart" className="hover:text-secondary transition-colors py-1 flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openCartDrawer();
+              }}
+              className="hover:text-secondary transition-colors py-1 flex items-center gap-2 text-left"
+              aria-label="Open cart"
+            >
               <ShoppingCart className="h-5 w-5" />
               <span>Cart</span>
               {cartCount > 0 && (
@@ -159,7 +170,7 @@ export default function Header() {
                   {cartCount}
                 </Badge>
               )}
-            </Link>
+            </button>
             <Button 
               variant="default" 
               className="bg-secondary text-secondary-foreground hover:bg-secondary/90 w-full mt-2"
