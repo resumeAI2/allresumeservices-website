@@ -1,23 +1,9 @@
 import type { CreateExpressContextOptions } from "@trpc/server/adapters/express";
 import { eq } from "drizzle-orm";
 import type { User } from "../../drizzle/schema";
+import { auth } from "./auth";
 import { getDb } from "../db";
 import { users } from "../../drizzle/schema";
-
-// Lazy-load auth to avoid issues when next-auth fails to bundle in Vercel ncc
-let _auth: (() => Promise<any>) | null = null;
-async function getAuth() {
-  if (_auth === null) {
-    try {
-      const mod = await import("./auth");
-      _auth = mod.auth;
-    } catch {
-      console.warn("[Context] next-auth not available; sessions will be empty");
-      _auth = async () => null;
-    }
-  }
-  return _auth;
-}
 
 // Extended request type for compatibility with both Express and Vercel
 interface ExtendedRequest {
@@ -40,7 +26,7 @@ export type TrpcContext = {
   req: ExtendedRequest;
   res: ExtendedResponse;
   user: User | null;
-  session: any;
+  session: Awaited<ReturnType<typeof auth>> | null;
 };
 
 /**
@@ -58,8 +44,7 @@ export async function createContext(
   let session = null;
 
   try {
-    // Get NextAuth session (lazy-loaded to handle bundler issues)
-    const auth = await getAuth();
+    // Get NextAuth session
     session = await auth();
 
     // If session exists, fetch full user from database
