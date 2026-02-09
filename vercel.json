@@ -7,27 +7,27 @@
   "rewrites": [
     {
       "source": "/api/trpc/:path*",
-      "destination": "/api/index.js"
+      "destination": "/api/index"
     },
     {
       "source": "/api/auth/:path*",
-      "destination": "/api/auth/[...nextauth].ts"
+      "destination": "/api/auth/[...nextauth]"
     },
     {
       "source": "/api/cron/:path*",
-      "destination": "/api/index.js"
+      "destination": "/api/index"
     },
     {
       "source": "/api/paypal/:path*",
-      "destination": "/api/index.js"
+      "destination": "/api/index"
     },
     {
       "source": "/sitemap.xml",
-      "destination": "/api/index.js"
+      "destination": "/api/index"
     },
     {
       "source": "/robots.txt",
-      "destination": "/api/index.js"
+      "destination": "/api/index"
     },
     {
       "source": "/:path((?!api).*)*",
