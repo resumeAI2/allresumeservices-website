@@ -24,6 +24,7 @@ export default function Home() {
         <title>Professional Resume Writing Services Australia | All Résumé Services</title>
         <meta name="description" content="Expert ATS-optimised resume writing services with 96% interview success rate. Professional resume writers helping Australians land their dream jobs. 18+ years experience. Get your free resume review today!" />
         <meta name="keywords" content="resume writing services, professional resume writer, ATS resume, resume writing Australia, cover letter writing, LinkedIn optimisation, LinkedIn profiles, selection criteria, government jobs, executive resume" />
+        <meta name="google-site-verification" content="N74NSKO9izBqhAbFndXvQ05EE6M7k9hNHx4C-lCzaHk" />
         <link rel="canonical" href="https://allresumeservices.com.au/" />
       </Helmet>
       <SchemaMarkup type="homepage" />
