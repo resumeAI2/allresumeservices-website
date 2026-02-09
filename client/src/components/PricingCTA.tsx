@@ -23,10 +23,10 @@ export default function PricingCTA() {
               </div>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Professional Resume Writing Services
+              Professional Resume & Cover Letter Services
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              Transparent pricing with no hidden fees. Packages starting from just $155 AUD.
+              Resumes and cover letters, LinkedIn profiles, and selection criteria for government and public sector roles. Transparent pricing from $155 AUD.
             </p>
           </div>
 

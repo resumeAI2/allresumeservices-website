@@ -549,9 +549,6 @@ export default function Services() {
                   3 Interviews
                 </div>
                 <CardContent className="pt-8 pb-6">
-                  {/* Quote icon */}
-                  <div className="absolute top-4 left-4 text-4xl text-[#d4af37]/20">&ldquo;</div>
-                  
                   {/* Stars */}
                   <div className="flex items-center gap-0.5 mb-4">
                     {Array.from({ length: 5 }, (_, i) => (
@@ -559,8 +556,8 @@ export default function Services() {
                     ))}
                   </div>
                   
-                  <blockquote className="text-gray-700 leading-relaxed mb-6 relative z-10">
-                    "After struggling to get interviews for months with my old resume, I decided to invest in professional help. Within <span className="font-semibold text-purple-600">two weeks, I secured three interviews</span> and ultimately landed my dream role in mining technology. <span className="font-semibold text-[#1e3a5f]">Worth every dollar!</span> 💎"
+                  <blockquote className="text-gray-700 leading-relaxed mb-6">
+                    &ldquo;After struggling to get interviews for months with my old resume, I decided to invest in professional help. Within <span className="font-semibold text-purple-600">two weeks, I secured three interviews</span> and ultimately landed my dream role in mining technology. <span className="font-semibold text-[#1e3a5f]">Worth every dollar!</span> 💎&rdquo;
                   </blockquote>
                   
                   {/* Author */}

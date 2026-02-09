@@ -1,138 +1,147 @@
-import { Star, Quote } from "lucide-react";
-import { trpc } from "@/lib/trpc";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Testimonials() {
-  // Fetch testimonials from database (featured and approved only)
-  const { data: dbTestimonials } = trpc.testimonials.getAll.useQuery({
-    approvedOnly: true,
-    featuredOnly: true,
-  });
-
-  // Fallback testimonials if none in database
-  const fallbackTestimonials = [
-    {
-      name: "Sarah M.",
-      role: "Marketing Manager",
-      content: "I was struggling to get interviews despite having 10+ years of experience. After working with All Résumé Services, I received 3 interview invitations within 2 weeks! The ATS optimisation made all the difference.",
-      rating: 5,
-      photo: undefined,
-    },
-    {
-      name: "James T.",
-      role: "Software Engineer",
-      content: "The team understood exactly what tech recruiters look for. My new resume highlights my achievements perfectly, and I landed my dream role at a top tech company. Worth every dollar!",
-      rating: 5,
-      photo: undefined,
-    },
-    {
-      name: "Emily R.",
-      role: "HR Professional",
-      content: "As someone who reviews resumes daily, I can confidently say the quality of work from All Résumé Services is exceptional. Professional, polished, and results-driven. Highly recommend!",
-      rating: 5,
-      photo: undefined,
-    },
-    {
-      name: "Michael K.",
-      role: "Project Manager",
-      content: "Working with All Résumé Services gave me peace of mind. We collaborated until every detail was perfect. The LinkedIn profile optimisation was a bonus that really boosted my visibility.",
-      rating: 5,
-      photo: undefined,
-    },
-    {
-      name: "Lisa W.",
-      role: "Career Changer",
-      content: "Transitioning careers felt overwhelming, but the team helped me reframe my experience beautifully. I got my first interview in my new field within a month. Thank you!",
-      rating: 5,
-      photo: undefined,
-    },
-    {
-      name: "David P.",
-      role: "Executive Leader",
-      content: "After 20 years in leadership, I needed a resume that reflected my strategic impact. The premium package delivered exactly that—sophisticated, compelling, and interview-winning.",
-      rating: 5
-    }
-  ];
-
-  // Use database testimonials if available, otherwise use fallback
-  const testimonials = dbTestimonials && dbTestimonials.length > 0 
-    ? dbTestimonials.map(t => ({
-        name: t.clientName,
-        role: t.clientTitle || "Satisfied Client",
-        content: t.testimonialText,
-        rating: t.rating,
-        photo: t.clientPhoto,
-      }))
-    : fallbackTestimonials;
-
   return (
-    <section id="testimonials" className="py-20 bg-background">
-      <div className="container">
+    <section id="testimonials" className="py-20 bg-gradient-to-br from-[#1e3a5f]/5 via-white to-[#d4af37]/5">
+      <div className="container max-w-6xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Success Stories from <span className="font-gold-brand">Our Clients</span>
+          <div className="inline-flex items-center gap-2 bg-[#d4af37]/10 px-4 py-2 rounded-full mb-4">
+            <span className="text-2xl">⭐</span>
+            <span className="text-sm font-semibold text-[#1e3a5f]">5.0 Rating from 60+ Reviews</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">
+            Real Results, Real People
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Don't just take our word for it—see what our clients have to say about their experience and results.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <div 
-              key={index}
-              className="bg-card rounded-xl p-6 shadow-md hover:shadow-xl transition-all relative"
-            >
-              <Quote className="absolute top-4 right-4 h-8 w-8 text-secondary/20" />
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Testimonial 1 */}
+          <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
+            {/* Highlight ribbon */}
+            <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+              +35% Salary
+            </div>
+            <CardContent className="pt-8 pb-6">
+              {/* Stars */}
+              <div className="flex items-center gap-0.5 mb-4">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <span key={`star-sarah-${i}`} className="text-lg text-[#d4af37]">&#9733;</span>
+                ))}
+              </div>
               
-              {/* Header with logo and name */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  {testimonial.rating === 5 ? (
-                    <div className="rounded-lg shadow-sm">
-                      <img 
-                        src="/5-star-logo.png" 
-                        alt="5 Star Rating" 
-                        className="h-16 w-16 object-contain animate-in fade-in duration-700"
-                      />
-                    </div>
-                  ) : (
-                    <div className="flex gap-1">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 fill-secondary text-secondary" />
-                      ))}
-                    </div>
-                  )}
-                  <div>
-                    <p className="font-semibold text-card-foreground">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
+              <blockquote className="text-gray-700 leading-relaxed mb-6">
+                &ldquo;I was stuck in the same role for 5 years. After using their Executive Package, I received <span className="font-semibold text-[#1e3a5f]">4 interview requests in 3 weeks</span> and landed a senior position with a <span className="font-semibold text-green-600">35% salary increase</span>. The investment paid for itself many times over! 🎉&rdquo;
+              </blockquote>
+              
+              {/* Author */}
+              <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-white">SM</span>
                 </div>
-                <div className="w-12 h-12 rounded-full flex-shrink-0 overflow-hidden border-2 border-primary/20 bg-primary/80 flex items-center justify-center relative">
-                  {testimonial.photo && (
-                    <img
-                      src={testimonial.photo}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover relative z-10"
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                    />
-                  )}
-                  <div className="absolute inset-0 flex items-center justify-center font-bold text-sm text-white">
-                    {testimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
-                  </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-gray-900">Sarah M.</p>
+                  <p className="text-sm text-gray-500">Marketing Manager</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs font-medium text-[#d4af37]">Executive Package</p>
+                  <p className="text-xs text-gray-400">Healthcare</p>
                 </div>
               </div>
+            </CardContent>
+          </Card>
 
-              <p className="text-primary leading-relaxed font-medium">
-                "{testimonial.content}"
-              </p>
+          {/* Testimonial 2 - Featured */}
+          <Card className="relative overflow-hidden border-2 border-[#d4af37] shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
+            {/* Featured badge */}
+            <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 bg-[#d4af37] text-[#1e3a5f] text-xs font-bold px-4 py-1 rounded-b-lg">
+              Featured Story
             </div>
-          ))}
+            {/* Highlight ribbon */}
+            <div className="absolute top-4 right-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+              Fortune 500
+            </div>
+            <CardContent className="pt-10 pb-6">
+              {/* Stars */}
+              <div className="flex items-center gap-0.5 mb-4">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <span key={`star-james-${i}`} className="text-lg text-[#d4af37]">&#9733;</span>
+                ))}
+              </div>
+              
+              <blockquote className="text-gray-700 leading-relaxed mb-6">
+                &ldquo;As a career changer moving from engineering to IT management, I needed a resume that highlighted transferable skills. <span className="font-semibold text-[#1e3a5f]">The team nailed it!</span> I secured my dream role at a <span className="font-semibold text-blue-600">Fortune 500 company</span> within 6 weeks. 💼&rdquo;
+              </blockquote>
+              
+              {/* Author */}
+              <div className="flex items-center gap-4 pt-4 border-t border-[#d4af37]/20">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-white">JK</span>
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-gray-900">James K.</p>
+                  <p className="text-sm text-gray-500">IT Project Manager</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs font-medium text-[#d4af37]">Career Change</p>
+                  <p className="text-xs text-gray-400">IT & Technology</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Testimonial 3 */}
+          <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
+            {/* Highlight ribbon */}
+            <div className="absolute top-4 right-4 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+              3 Interviews
+            </div>
+            <CardContent className="pt-8 pb-6">
+              {/* Stars */}
+              <div className="flex items-center gap-0.5 mb-4">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <span key={`star-lisa-${i}`} className="text-lg text-[#d4af37]">&#9733;</span>
+                ))}
+              </div>
+              
+              <blockquote className="text-gray-700 leading-relaxed mb-6">
+                &ldquo;After struggling to get interviews for months with my old resume, I decided to invest in professional help. Within <span className="font-semibold text-purple-600">two weeks, I secured three interviews</span> and ultimately landed my dream role in mining technology. <span className="font-semibold text-[#1e3a5f]">Worth every dollar!</span> 💎&rdquo;
+              </blockquote>
+              
+              {/* Author */}
+              <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-white">LT</span>
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-gray-900">Lisa T.</p>
+                  <p className="text-sm text-gray-500">Operations Supervisor</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs font-medium text-[#d4af37]">Standard Package</p>
+                  <p className="text-xs text-gray-400">Mining & Resources</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-primary mb-4 font-medium">
-            Join hundreds of satisfied clients who've transformed their careers
-          </p>
+        {/* Trust indicators */}
+        <div className="mt-12 flex flex-wrap justify-center items-center gap-6 text-sm text-gray-500">
+          <div className="flex items-center gap-2">
+            <span className="text-green-500">✓</span>
+            <span>Verified Reviews</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-green-500">✓</span>
+            <span>Real Client Results</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-green-500">✓</span>
+            <span>96% Success Rate</span>
+          </div>
         </div>
       </div>
     </section>
