@@ -127,8 +127,8 @@ export default function Contact() {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Contact Us - Free Resume Consultation | All Résumé Services</title>
-        <meta name="description" content="Contact All Résumé Services for a free consultation. Resume, cover letter, LinkedIn profile, or selection criteria. Phone, email, or upload your resume. 18+ years experience, 96% interview success rate. Australia-wide." />
-        <meta name="keywords" content="contact resume writer, LinkedIn profile writer, free resume review, resume consultation Australia, cover letter consultation" />
+        <meta name="description" content="Contact All Résumé Services for a free resume consultation. Phone, email, or upload your resume. 18+ years experience, 96% interview success rate. Australia-wide." />
+        <meta name="keywords" content="contact resume writer, free resume review, resume consultation Australia" />
         <link rel="canonical" href="https://allresumeservices.com.au/contact" />
       </Helmet>
       <Header />
@@ -145,7 +145,7 @@ export default function Contact() {
               <p className="inline-block px-4 py-1.5 rounded-full bg-[#D4AF37]/25 text-[#D4AF37] font-semibold tracking-wide uppercase text-base mb-4 border border-[#D4AF37]/40">Free consultation</p>
               <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
               <p className="text-lg text-blue-100">
-                Ready to take the next step? Contact us for a free consultation—whether you need a resume, cover letter, LinkedIn profile, or selection criteria for government and public sector roles—we&apos;ll discuss how we can help you land your dream job.
+                Ready to take the next step? Contact us for a free consultation and we&apos;ll discuss how we can help you land your dream job.
               </p>
             </div>
           </div>
@@ -345,7 +345,7 @@ export default function Contact() {
           <section className="mt-16 py-12 px-6 rounded-2xl bg-gradient-to-br from-[#1e3a5f]/5 via-[#D4AF37]/5 to-[#1e3a5f]/5 border border-[#1e3a5f]/10 text-center">
             <h3 className="text-xl font-bold text-[#1e3a5f] mb-2">Prefer to Call?</h3>
             <p className="text-gray-700 mb-6 max-w-md mx-auto">
-              Speak directly with one of our resume, cover letter, and LinkedIn profile experts for immediate assistance.
+              Speak directly with one of our resume experts for immediate assistance.
             </p>
             <a href="tel:0410934371">
               <Button size="lg" className="bg-[#D4AF37] hover:bg-[#B8860B] text-[#1e3a5f] font-semibold shadow-md">

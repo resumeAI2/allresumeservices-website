@@ -224,7 +224,7 @@ export default function AboutUs() {
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
         <title>About Us - Professional Resume Writers | All Résumé Services</title>
-        <meta name="description" content="Meet the team behind All Résumé Services. 18+ years helping Australians land interviews with ATS-optimised resumes, cover letters, LinkedIn profiles, and selection criteria for government and public sector roles. 96% success rate." />
+        <meta name="description" content="Meet the team behind All Résumé Services. 18+ years helping Australians land interviews with ATS-optimised resumes, cover letters, and LinkedIn profiles. 96% success rate." />
         <meta name="keywords" content="about All Résumé Services, resume writers Australia, professional resume team, career experts" />
         <link rel="canonical" href="https://allresumeservices.com.au/about" />
       </Helmet>
@@ -239,7 +239,7 @@ export default function AboutUs() {
               <h1 className="text-5xl font-bold mb-6 font-gold-brand">About All Résumé Services</h1>
               <p className="text-xl text-blue-100 leading-relaxed">
                 For over 18 years, we've been helping Australians land their dream jobs through 
-                professionally crafted resumes and cover letters, plus LinkedIn profiles and selection criteria for government and public sector roles. Our mission 
+                professionally crafted resumes, cover letters, and career documents. Our mission 
                 is simple: to empower job seekers with the tools they need to stand out in today's 
                 competitive job market.
               </p>
@@ -290,10 +290,10 @@ export default function AboutUs() {
               <div>
                 <h2 className="text-3xl font-bold mb-4 text-[#1e3a5f]">Our Mission</h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  To provide exceptional, personalised resume and cover letter writing—plus LinkedIn profiles and selection criteria for government and public sector roles—that help Australian 
+                  To provide exceptional, personalised resume writing services that help Australian 
                   professionals at every career stage achieve their employment goals. We believe 
-                  everyone deserves documents that showcase their unique 
-                  value and open doors to new opportunities.
+                  everyone deserves a professionally written resume that showcases their unique 
+                  value and opens doors to new opportunities.
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed">
                   We're committed to delivering high-quality, ATS-optimised documents that not only 
@@ -312,7 +312,7 @@ export default function AboutUs() {
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-6 w-6 text-[#B8860B] flex-shrink-0 mt-1" />
                     <span className="text-gray-700">
-                      <strong>96% interview success rate</strong> from our professionally written resumes, cover letters, and LinkedIn profiles
+                      <strong>96% interview success rate</strong> from our professionally written resumes
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
@@ -345,7 +345,7 @@ export default function AboutUs() {
             <div className="text-center mb-10">
               <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">Why Choose All Résumé Services?</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Not all resume and LinkedIn profile services are created equal. See how we compare to DIY approaches and generic resume writers.
+                Not all resume services are created equal. See how we compare to DIY approaches and generic resume writers.
               </p>
             </div>
             
@@ -456,7 +456,7 @@ export default function AboutUs() {
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 text-[#1e3a5f]">Our Journey</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                From humble beginnings to becoming one of Australia's most trusted resume, cover letter, and LinkedIn profile writing 
+                From humble beginnings to becoming one of Australia's most trusted resume writing 
                 services, our journey has been driven by a passion for helping people achieve their career goals.
               </p>
             </div>
@@ -517,7 +517,7 @@ export default function AboutUs() {
                 <h2 className="text-4xl font-bold text-[#1e3a5f]">Meet Our Expert Team</h2>
               </div>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Our team of certified professional resume, cover letter, and LinkedIn profile writers brings decades of combined 
+                Our team of certified professional resume writers brings decades of combined 
                 experience in recruitment, HR, and career development.
               </p>
             </div>
@@ -859,7 +859,7 @@ export default function AboutUs() {
             <div className="mt-12 text-center">
               <h3 className="text-xl font-semibold mb-4 text-[#1e3a5f]">Prefer to Call?</h3>
               <p className="text-gray-600 mb-6">
-                Speak directly with one of our resume, cover letter, and LinkedIn profile experts for immediate assistance
+                Speak directly with one of our resume experts for immediate assistance
               </p>
               <a href="tel:0410934371">
                 <Button size="lg" variant="outline">
@@ -876,7 +876,7 @@ export default function AboutUs() {
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-bold mb-4">Ready to Take the Next Step?</h2>
             <p className="text-xl text-blue-100 mb-8">
-              Let our expert team help you create a resume, cover letter, or LinkedIn profile that opens doors to your dream career.
+              Let our expert team help you create a resume that opens doors to your dream career.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="/services">

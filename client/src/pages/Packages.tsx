@@ -139,6 +139,12 @@ export default function Services() {
       <PricingSchema />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
+        {/* Dev-only: proves Cursor preview is loading latest code. Remove or hide in production. */}
+        {import.meta.env.DEV && (
+          <div className="bg-green-600 text-white text-center py-1.5 px-4 text-sm font-bold sticky top-0 z-[100]">
+            ✓ Live dev — scroll down to &quot;Real Results, Real People&quot; or open /packages#testimonials
+          </div>
+        )}
         <main className="flex-1">
           {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-[#1e3a5f] via-[#2d5a8f] to-[#1e3a5f] text-white py-20 overflow-hidden">
@@ -157,10 +163,11 @@ export default function Services() {
                 </Badge>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
-                Professional Resume & Cover Letter Services & Packages
+                Professional Resume Services & Packages
               </h1>
               <p className="text-xl text-blue-100 leading-relaxed mb-8">
-                Resumes and cover letters are at the heart of what we do; we also offer LinkedIn profiles and selection criteria for government and public sector roles. Choose individual services or complete packages tailored to your career level. Every document is crafted by experienced writers with 18+ years in the industry.
+                Choose from individual services or complete packages tailored to your career level. 
+                Every resume is crafted by experienced writers with 18+ years in the industry.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white">
@@ -200,7 +207,7 @@ export default function Services() {
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">How It Works</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Our proven 5-step process ensures you get a resume, cover letter, or LinkedIn profile that opens doors
+                Our proven 5-step process ensures you get a resume that opens doors
               </p>
             </div>
             
@@ -208,7 +215,7 @@ export default function Services() {
               {[
                 { step: '1', title: 'Choose Service', description: 'Select the package that fits your career goals', icon: '🎯' },
                 { step: '2', title: 'Consultation', description: 'Share your career history and target roles', icon: '💬' },
-                { step: '3', title: 'Expert Writing', description: 'Our writers craft your ATS-optimised resume, cover letter, and LinkedIn profile', icon: '✍️' },
+                { step: '3', title: 'Expert Writing', description: 'Our writers craft your ATS-optimised resume', icon: '✍️' },
                 { step: '4', title: 'Review & Refine', description: 'We refine your documents based on your feedback', icon: '🔄' },
                 { step: '5', title: 'Land Interviews', description: 'Start applying with confidence', icon: '🎉' }
               ].map((item) => (
@@ -444,42 +451,32 @@ export default function Services() {
         <section id="testimonials" className="py-20 bg-gradient-to-br from-[#1e3a5f]/5 via-white to-[#d4af37]/5 scroll-mt-24">
           <div className="container max-w-6xl">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-3 bg-gradient-to-br from-[#0f172a] via-[#1e3a5f] to-[#0f172a] border border-[#b8860b]/50 px-4 py-2.5 rounded-full mb-4 shadow-lg">
-                <div className="h-24 w-24 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0">
-                  <img 
-                    src="/5-star-rating-icon.png" 
-                    alt="5 Star Rating" 
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <span className="text-sm font-semibold text-white">5.0 Rating from 60+ Reviews</span>
+              <div className="inline-flex items-center gap-2 bg-[#d4af37]/10 px-4 py-2 rounded-full mb-4">
+                <span className="text-2xl">⭐</span>
+                <span className="text-sm font-semibold text-[#1e3a5f]">5.0 Rating from 60+ Reviews</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1e3a5f]">Real Results, Real People</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Join thousands of professionals who transformed their careers with our expert resume, cover letter, and LinkedIn profile services
+                Join thousands of professionals who transformed their careers with our expert resume services
               </p>
             </div>
             
             <div className="grid md:grid-cols-3 gap-8">
               {/* Testimonial 1 */}
-              <Card className="relative overflow-hidden border-l-4 border-l-[#b8860b] bg-gradient-to-br from-white via-[#fafaf9] to-[#f8fafc] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
                 {/* Highlight ribbon */}
-                <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                  +35% Salary 📈
+                <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  +35% Salary
                 </div>
                 <CardContent className="pt-8 pb-6">
                   {/* Quote icon */}
-                  <div className="absolute top-4 left-4 text-4xl font-serif text-[#1e3a5f]/10">"</div>
+                  <div className="absolute top-4 left-4 text-4xl text-[#d4af37]/20">&ldquo;</div>
                   
-                  {/* Stars - 5-star rating icon */}
+                  {/* Stars */}
                   <div className="flex items-center gap-0.5 mb-4">
-                    <div className="h-24 w-24 rounded-full overflow-hidden flex items-center justify-center shadow-md flex-shrink-0">
-                      <img 
-                        src="/5-star-rating-icon.png" 
-                        alt="5 Star Rating" 
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span key={`star-sarah-${i}`} className="text-lg text-[#d4af37]">&#9733;</span>
+                    ))}
                   </div>
                   
                   <blockquote className="text-gray-700 leading-relaxed mb-6 relative z-10">
@@ -487,7 +484,7 @@ export default function Services() {
                   </blockquote>
                   
                   {/* Author */}
-                  <div className="flex items-center gap-4 pt-4 border-t border-[#1e3a5f]/10">
+                  <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] flex items-center justify-center flex-shrink-0">
                       <span className="text-sm font-bold text-white">SM</span>
                     </div>
@@ -503,38 +500,34 @@ export default function Services() {
                 </CardContent>
               </Card>
 
-              {/* Testimonial 2 - Featured LinkedIn */}
-              <Card className="relative overflow-hidden border-2 border-[#b8860b] border-l-4 border-l-[#b8860b] bg-gradient-to-br from-[#fefce8] via-white to-[#f8fafc] shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              {/* Testimonial 2 - Featured */}
+              <Card className="relative overflow-hidden border-2 border-[#d4af37] shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
                 {/* Featured badge */}
-                <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 bg-[#b8860b] text-[#0f172a] text-xs font-bold px-4 py-1 rounded-b-lg shadow">
-                  🏆 Featured Story
+                <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 bg-[#d4af37] text-[#1e3a5f] text-xs font-bold px-4 py-1 rounded-b-lg">
+                  Featured Story
                 </div>
                 {/* Highlight ribbon */}
-                <div className="absolute top-4 right-4 bg-[#0a66c2] text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                  LinkedIn ✨
+                <div className="absolute top-4 right-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  Fortune 500
                 </div>
                 <CardContent className="pt-10 pb-6">
                   {/* Quote icon */}
-                  <div className="absolute top-6 left-4 text-4xl font-serif text-[#b8860b]/25">"</div>
+                  <div className="absolute top-6 left-4 text-4xl text-[#d4af37]/30">&ldquo;</div>
                   
-                  {/* Stars - 5-star rating icon */}
+                  {/* Stars */}
                   <div className="flex items-center gap-0.5 mb-4">
-                    <div className="h-24 w-24 rounded-full overflow-hidden flex items-center justify-center shadow-md flex-shrink-0">
-                      <img 
-                        src="/5-star-rating-icon.png" 
-                        alt="5 Star Rating" 
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span key={`star-james-${i}`} className="text-lg text-[#d4af37]">&#9733;</span>
+                    ))}
                   </div>
                   
                   <blockquote className="text-gray-700 leading-relaxed mb-6 relative z-10">
-                    "I had my resume and cover letter done but my <span className="font-semibold text-[#1e3a5f]">LinkedIn profile</span> was letting me down. After the optimisation, recruiters started reaching out. <span className="font-semibold text-blue-600">I had multiple interviews within weeks.</span> The Standard Package was worth every cent. 💼"
+                    "As a career changer moving from engineering to IT management, I needed a resume that highlighted transferable skills. <span className="font-semibold text-[#1e3a5f]">The team nailed it!</span> I secured my dream role at a <span className="font-semibold text-blue-600">Fortune 500 company</span> within 6 weeks. 💼"
                   </blockquote>
                   
                   {/* Author */}
-                  <div className="flex items-center gap-4 pt-4 border-t border-[#b8860b]/30">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#b8860b] to-[#8B6914] flex items-center justify-center flex-shrink-0 shadow-inner">
+                  <div className="flex items-center gap-4 pt-4 border-t border-[#d4af37]/20">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] flex items-center justify-center flex-shrink-0">
                       <span className="text-sm font-bold text-white">JK</span>
                     </div>
                     <div className="flex-1">
@@ -542,50 +535,46 @@ export default function Services() {
                       <p className="text-sm text-gray-500">IT Project Manager</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs font-medium text-[#d4af37]">LinkedIn Profile</p>
-                      <p className="text-xs text-gray-400">Standard Package</p>
+                      <p className="text-xs font-medium text-[#d4af37]">Career Change</p>
+                      <p className="text-xs text-gray-400">IT & Technology</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Testimonial 3 - Government / Selection Criteria */}
-              <Card className="relative overflow-hidden border-l-4 border-l-[#b8860b] bg-gradient-to-br from-white via-[#fafaf9] to-[#f8fafc] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              {/* Testimonial 3 */}
+              <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
                 {/* Highlight ribbon */}
-                <div className="absolute top-4 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                  Public Sector ✓
+                <div className="absolute top-4 right-4 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  3 Interviews
                 </div>
                 <CardContent className="pt-8 pb-6">
                   {/* Quote icon */}
-                  <div className="absolute top-4 left-4 text-4xl font-serif text-[#1e3a5f]/10">"</div>
+                  <div className="absolute top-4 left-4 text-4xl text-[#d4af37]/20">&ldquo;</div>
                   
-                  {/* Stars - 5-star rating icon */}
+                  {/* Stars */}
                   <div className="flex items-center gap-0.5 mb-4">
-                    <div className="h-24 w-24 rounded-full overflow-hidden flex items-center justify-center shadow-md flex-shrink-0">
-                      <img 
-                        src="/5-star-rating-icon.png" 
-                        alt="5 Star Rating" 
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span key={`star-lisa-${i}`} className="text-lg text-[#d4af37]">&#9733;</span>
+                    ))}
                   </div>
                   
                   <blockquote className="text-gray-700 leading-relaxed mb-6 relative z-10">
-                    "I was applying for a <span className="font-semibold text-[#1e3a5f]">government role</span> and needed help with my <span className="font-semibold text-emerald-700">selection criteria</span>. The team helped me structure my responses and I was shortlisted. Within two weeks I had three interviews and landed the public sector role I wanted. 💎"
+                    "After struggling to get interviews for months with my old resume, I decided to invest in professional help. Within <span className="font-semibold text-purple-600">two weeks, I secured three interviews</span> and ultimately landed my dream role in mining technology. <span className="font-semibold text-[#1e3a5f]">Worth every dollar!</span> 💎"
                   </blockquote>
                   
                   {/* Author */}
-                  <div className="flex items-center gap-4 pt-4 border-t border-[#1e3a5f]/10">
+                  <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8f] flex items-center justify-center flex-shrink-0">
                       <span className="text-sm font-bold text-white">LT</span>
                     </div>
                     <div className="flex-1">
                       <p className="font-semibold text-gray-900">Lisa T.</p>
-                      <p className="text-sm text-gray-500">Policy Officer</p>
+                      <p className="text-sm text-gray-500">Operations Supervisor</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs font-medium text-[#d4af37]">Selection Criteria</p>
-                      <p className="text-xs text-gray-400">Government & Public Sector</p>
+                      <p className="text-xs font-medium text-[#d4af37]">Standard Package</p>
+                      <p className="text-xs text-gray-400">Mining & Resources</p>
                     </div>
                   </div>
                 </CardContent>

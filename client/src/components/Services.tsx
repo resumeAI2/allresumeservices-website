@@ -32,7 +32,7 @@ export default function Services() {
     {
       icon: Briefcase,
       title: "Range of Documents",
-      description: "Resumes and cover letters (our core focus), LinkedIn profiles, selection criteria for government and public sector roles, expressions of interest, and professional portfolios—all in one place for a cohesive professional brand."
+      description: "Resumes, cover letters, expressions of interest, professional portfolios and LinkedIn makeovers—all in one place for a cohesive professional brand."
     }
   ];
 
@@ -56,7 +56,7 @@ export default function Services() {
             Why Choose <span className="font-gold-brand">All Résumé Services</span>?
           </h2>
           <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-            Are you ready to stand out in a crowded job market? We specialise in resumes and cover letters—and also offer LinkedIn profile optimisation and selection criteria for government and public sector roles. With decades of experience crafting professional application documents, we help Australians land interviews and secure roles across industries. Our tailored approach ensures your strengths are highlighted and your application aligns with recruiters and Applicant Tracking Systems (ATS).
+            Are you ready to stand out in a crowded job market? With decades of experience crafting professional resumes and application documents, we help Australians land interviews and secure roles across industries. Our tailored approach ensures your strengths are highlighted, your accomplishments shine, and your application aligns with the expectations of recruiters and Applicant Tracking Systems (ATS).
           </p>
         </div>
 

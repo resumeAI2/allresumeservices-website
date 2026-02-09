@@ -88,11 +88,11 @@ export default function Testimonials() {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   {testimonial.rating === 5 ? (
-                    <div className="h-24 w-24 rounded-full overflow-hidden flex items-center justify-center shadow-sm flex-shrink-0">
+                    <div className="rounded-lg shadow-sm">
                       <img 
-                        src="/5-star-rating-icon.png" 
+                        src="/5-star-logo.png" 
                         alt="5 Star Rating" 
-                        className="h-full w-full object-cover animate-in fade-in duration-700"
+                        className="h-16 w-16 object-contain animate-in fade-in duration-700"
                       />
                     </div>
                   ) : (
