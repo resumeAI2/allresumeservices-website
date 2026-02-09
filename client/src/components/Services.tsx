@@ -32,7 +32,7 @@ export default function Services() {
     {
       icon: Briefcase,
       title: "Range of Documents",
-      description: "Resumes, cover letters, expressions of interest, professional portfolios and LinkedIn makeovers—all in one place for a cohesive professional brand."
+      description: "Resumes, cover letters, selection criteria for government and public sector roles, expressions of interest, professional portfolios and LinkedIn makeovers—all in one place for a cohesive professional brand."
     }
   ];
 
