@@ -201,101 +201,31 @@ async function getApp() {
   return app;
 }
 
-// Helper to convert Vercel request to Express-compatible format
-function createExpressRequest(req: VercelRequest): any {
-  // Vercel rewrites change req.url to the dest path (e.g., /api/handler?__original_path=/api/trpc/...)
-  // We need to reconstruct the original URL for Express routing to work correctly.
-  const parsedUrl = parse(req.url || "/", true);
+/**
+ * Reconstruct the original URL from Vercel's rewritten request.
+ * 
+ * Vercel rewrites /api/trpc/services.getAllServices?input=...
+ * to /api/handler?__original_path=/api/trpc/services.getAllServices&input=...
+ * 
+ * We need to restore the original URL for Express routing to work.
+ */
+function getOriginalUrl(req: VercelRequest): string {
+  const rawUrl = req.url || "/";
+  const parsedUrl = parse(rawUrl, true);
   const originalPath = parsedUrl.query.__original_path as string | undefined;
   
-  // Build the actual URL: use __original_path if present, otherwise fall back to req.url
-  let actualUrl: string;
-  if (originalPath) {
-    // Reconstruct the URL with the original path but preserve any other query params
-    const otherParams = { ...parsedUrl.query };
-    delete otherParams.__original_path;
-    const queryString = Object.keys(otherParams).length > 0
-      ? "?" + Object.entries(otherParams).map(([k, v]) => `${k}=${encodeURIComponent(String(v))}`).join("&")
-      : "";
-    actualUrl = originalPath + queryString;
-  } else {
-    actualUrl = req.url || "/";
+  if (!originalPath) {
+    return rawUrl;
   }
   
-  const actualParsed = parse(actualUrl, true);
+  // Remove __original_path from query params and reconstruct
+  const otherParams = { ...parsedUrl.query };
+  delete otherParams.__original_path;
+  const queryParts = Object.entries(otherParams)
+    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+    .join("&");
   
-  return {
-    method: req.method,
-    url: actualUrl,
-    path: actualParsed.pathname || "/",
-    query: actualParsed.query,
-    headers: req.headers,
-    body: req.body,
-    protocol: (req.headers["x-forwarded-proto"] as string) || "https",
-    get: (name: string) => req.headers[name.toLowerCase()] as string | undefined,
-    originalUrl: actualUrl,
-    socket: {
-      remoteAddress: req.headers["x-forwarded-for"] as string || req.headers["x-real-ip"] as string,
-    },
-    ip: req.headers["x-forwarded-for"] as string || req.headers["x-real-ip"] as string,
-  };
-}
-
-// Helper to create Express-compatible response
-function createExpressResponse(res: VercelResponse): any {
-  const expressRes: any = {
-    statusCode: 200,
-    status: function(code: number) {
-      this.statusCode = code;
-      res.status(code);
-      return this;
-    },
-    send: function(body: any) {
-      res.status(this.statusCode).send(body);
-      return this;
-    },
-    json: function(body: any) {
-      res.status(this.statusCode).json(body);
-      return this;
-    },
-    redirect: function(status: number, url: string) {
-      res.redirect(status, url);
-      return this;
-    },
-    cookie: function(name: string, value: string, options: any = {}) {
-      const cookieOptions: string[] = [];
-      if (options.maxAge) cookieOptions.push(`Max-Age=${options.maxAge}`);
-      if (options.path) cookieOptions.push(`Path=${options.path}`);
-      if (options.domain) cookieOptions.push(`Domain=${options.domain}`);
-      if (options.secure) cookieOptions.push("Secure");
-      if (options.httpOnly) cookieOptions.push("HttpOnly");
-      if (options.sameSite) cookieOptions.push(`SameSite=${options.sameSite}`);
-      
-      const cookieString = `${name}=${value}${cookieOptions.length ? "; " + cookieOptions.join("; ") : ""}`;
-      res.setHeader("Set-Cookie", cookieString);
-      return this;
-    },
-    clearCookie: function(name: string, options: any = {}) {
-      const cookieOptions: string[] = ["Max-Age=0"];
-      if (options.path) cookieOptions.push(`Path=${options.path}`);
-      if (options.domain) cookieOptions.push(`Domain=${options.domain}`);
-      
-      const cookieString = `${name}=; ${cookieOptions.join("; ")}`;
-      res.setHeader("Set-Cookie", cookieString);
-      return this;
-    },
-    setHeader: function(name: string, value: string) {
-      res.setHeader(name, value);
-      return this;
-    },
-    sendFile: function(filePath: string) {
-      // Static files should be served by Vercel, not Express
-      res.status(404).send("File not found");
-      return this;
-    },
-  };
-  
-  return expressRes;
+  return queryParts ? `${originalPath}?${queryParts}` : originalPath;
 }
 
 // Vercel serverless function handler
@@ -305,22 +235,32 @@ export default async function handler(
 ) {
   try {
     const expressApp = await getApp();
-    const expressReq = createExpressRequest(req);
-    const expressRes = createExpressResponse(res);
     
-    console.log(`[API] ${req.method} ${expressReq.url} (raw: ${req.url})`);
+    // Restore the original URL (before Vercel's rewrite)
+    const originalUrl = getOriginalUrl(req);
+    console.log(`[API] ${req.method} ${originalUrl} (raw: ${req.url})`);
+    
+    // Patch req.url so Express routing matches the original path.
+    // VercelRequest extends Node's IncomingMessage, so this is safe.
+    (req as any).url = originalUrl;
+    (req as any).originalUrl = originalUrl;
 
-
-    // Handle the request with Express app
+    // Pass the real Node.js req/res to Express.
+    // VercelRequest/VercelResponse ARE Node IncomingMessage/ServerResponse
+    // with added helpers, so Express can handle them natively.
     return new Promise<void>((resolve, reject) => {
-      expressApp(expressReq, expressRes, (err: any) => {
+      expressApp(req, res, (err: any) => {
         if (err) {
-          console.error("[API] Error:", err);
+          console.error("[API] Express error:", err);
           if (!res.headersSent) {
             res.status(500).json({ error: "Internal server error" });
           }
-          reject(err);
+          resolve();
         } else {
+          // No route matched - send 404
+          if (!res.headersSent) {
+            res.status(404).json({ error: "Not found" });
+          }
           resolve();
         }
       });
