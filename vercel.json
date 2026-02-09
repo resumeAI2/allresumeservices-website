@@ -7,7 +7,7 @@
   "rewrites": [
     {
       "source": "/api/trpc/:path*",
-      "destination": "/api/index.mjs"
+      "destination": "/api/index.ts"
     },
     {
       "source": "/api/auth/:path*",
@@ -15,19 +15,19 @@
     },
     {
       "source": "/api/cron/:path*",
-      "destination": "/api/index.mjs"
+      "destination": "/api/index.ts"
     },
     {
       "source": "/api/paypal/:path*",
-      "destination": "/api/index.mjs"
+      "destination": "/api/index.ts"
     },
     {
       "source": "/sitemap.xml",
-      "destination": "/api/index.mjs"
+      "destination": "/api/index.ts"
     },
     {
       "source": "/robots.txt",
-      "destination": "/api/index.mjs"
+      "destination": "/api/index.ts"
     },
     {
       "source": "/:path((?!api).*)*",
@@ -100,7 +100,7 @@
     }
   ],
   "functions": {
-    "api/index.mjs": {
+    "api/index.ts": {
       "maxDuration": 30,
       "memory": 1024
     }
