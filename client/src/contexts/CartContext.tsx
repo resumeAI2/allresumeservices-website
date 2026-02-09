@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, ReactNode } from 'react';
 import { trpc } from '../lib/trpc';
 import { useAuth } from '../_core/hooks/useAuth';
 
@@ -36,7 +36,7 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export function CartProvider({ children }: { children: ReactNode }) {
+export function CartProvider({ children }: Readonly<{ children: ReactNode }>) {
   const [sessionId, setSessionId] = useState<string>('');
   const [cartMerged, setCartMerged] = useState<boolean>(false);
   const [isCartDrawerOpen, setCartDrawerOpen] = useState(false);
@@ -48,7 +48,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let sid = localStorage.getItem('cart_session_id');
     if (!sid) {
-      sid = `guest_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      sid = `guest_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
       localStorage.setItem('cart_session_id', sid);
     }
     setSessionId(sid);
@@ -87,14 +87,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const { data: cartItems = [], refetch, isLoading } = trpc.services.getCartItems.useQuery(
     {
-      sessionId: !isAuthenticated ? sessionId : undefined,
+      sessionId: isAuthenticated ? undefined : sessionId,
     },
     { enabled: !!sessionId || (!!isAuthenticated && !!user) }
   );
 
   const { data: cartCount = 0, refetch: refetchCount } = trpc.services.getCartItemCount.useQuery(
     {
-      sessionId: !isAuthenticated ? sessionId : undefined,
+      sessionId: isAuthenticated ? undefined : sessionId,
     },
     { enabled: !!sessionId || (!!isAuthenticated && !!user) }
   );
@@ -124,7 +124,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     await addToCartMutation.mutateAsync({
       serviceId,
       quantity,
-      sessionId: !isAuthenticated ? sessionId : undefined,
+      sessionId: isAuthenticated ? undefined : sessionId,
     });
   };
 
@@ -153,30 +153,33 @@ export function CartProvider({ children }: { children: ReactNode }) {
     await refetchCount();
   };
 
-  const getTotal = () => {
+  const getTotal = useCallback(() => {
     return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.service.price);
+      const price = Number.parseFloat(item.service.price);
       return total + (price * item.quantity);
     }, 0);
-  };
+  }, [cartItems]);
+
+  const contextValue = useMemo(
+    () => ({
+      cartItems,
+      cartCount,
+      isLoading,
+      addToCart,
+      updateQuantity,
+      removeItem,
+      clearCart,
+      refreshCart,
+      getTotal,
+      isCartDrawerOpen,
+      setCartDrawerOpen,
+      openCartDrawer,
+    }),
+    [cartItems, cartCount, isLoading, isCartDrawerOpen, getTotal]
+  );
 
   return (
-    <CartContext.Provider
-      value={{
-        cartItems,
-        cartCount,
-        isLoading,
-        addToCart,
-        updateQuantity,
-        removeItem,
-        clearCart,
-        refreshCart,
-        getTotal,
-        isCartDrawerOpen,
-        setCartDrawerOpen,
-        openCartDrawer,
-      }}
-    >
+    <CartContext.Provider value={contextValue}>
       {children}
     </CartContext.Provider>
   );

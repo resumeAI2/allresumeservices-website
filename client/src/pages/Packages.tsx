@@ -75,7 +75,7 @@ export default function Services() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedType, setSelectedType] = useState<'all' | 'individual' | 'package' | 'addon'>('all');
   
-  const { data: allServices = [], isLoading, isError, error, refetch } = trpc.services.getAllServices.useQuery(
+  const { data: allServices = [], isLoading, isError } = trpc.services.getAllServices.useQuery(
     undefined,
     { retry: 1, refetchOnWindowFocus: false }
   );
@@ -185,10 +185,10 @@ export default function Services() {
         <section className="py-12 bg-white border-b">
           <div className="container">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-              {benefits.map((benefit, index) => {
+              {benefits.map((benefit) => {
                 const Icon = benefit.icon;
                 return (
-                  <div key={index} className="text-center">
+                  <div key={benefit.title} className="text-center">
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary/10 mb-3">
                       <Icon className="h-6 w-6 text-secondary" />
                     </div>
@@ -218,13 +218,13 @@ export default function Services() {
                 { step: '3', title: 'Expert Writing', description: 'Our writers craft your ATS-optimised resume', icon: '✍️' },
                 { step: '4', title: 'Review & Refine', description: 'We refine your documents based on your feedback', icon: '🔄' },
                 { step: '5', title: 'Land Interviews', description: 'Start applying with confidence', icon: '🎉' }
-              ].map((item, index) => (
-                <div key={index} className="relative">
+              ].map((item) => (
+                <div key={item.step} className="relative">
                   <div className="text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-4 text-3xl">
                       {item.icon}
                     </div>
-                    <div className="absolute top-8 left-1/2 w-full h-0.5 bg-secondary/20 -z-10 hidden md:block" style={{ display: index === 4 ? 'none' : 'block' }}></div>
+                    <div className="absolute top-8 left-1/2 w-full h-0.5 bg-secondary/20 -z-10 hidden md:block" style={{ display: item.step === '5' ? 'none' : 'block' }}></div>
                     <div className="mb-2">
                       <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-white text-sm font-bold">
                         {item.step}
@@ -343,8 +343,8 @@ export default function Services() {
                           </CardHeader>
                           <CardContent className="flex-1">
                             <ul className="space-y-2">
-                              {item.features.map((feature, i) => (
-                                <li key={i} className="flex items-start gap-2 text-sm">
+                              {item.features.map((feature) => (
+                                <li key={feature} className="flex items-start gap-2 text-sm">
                                   <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                                   <span>{feature}</span>
                                 </li>
@@ -367,7 +367,7 @@ export default function Services() {
                 {filteredServices.map(service => {
                   const features = parseFeatures(service.features);
                   const isPackage = service.type === 'package';
-                  const hasDiscount = service.originalPrice && parseFloat(service.originalPrice) > parseFloat(service.price);
+                  const hasDiscount = service.originalPrice && Number.parseFloat(service.originalPrice) > Number.parseFloat(service.price);
 
                   return (
                     <Card key={service.id} className={`flex flex-col relative ${isPackage ? 'border-primary shadow-lg' : ''}`}>
@@ -413,8 +413,8 @@ export default function Services() {
                       <CardContent className="flex-1">
                         {features.length > 0 && (
                           <ul className="space-y-2">
-                            {features.map((feature, index) => (
-                              <li key={index} className="flex items-start gap-2 text-sm">
+                            {features.map((feature) => (
+                              <li key={feature} className="flex items-start gap-2 text-sm">
                                 <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                                 <span>{feature}</span>
                               </li>
@@ -466,16 +466,16 @@ export default function Services() {
               <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
                 {/* Highlight ribbon */}
                 <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                  +35% Salary 📈
+                  +35% Salary
                 </div>
                 <CardContent className="pt-8 pb-6">
                   {/* Quote icon */}
-                  <div className="absolute top-4 left-4 text-4xl text-[#d4af37]/20">"</div>
+                  <div className="absolute top-4 left-4 text-4xl text-[#d4af37]/20">&ldquo;</div>
                   
                   {/* Stars */}
                   <div className="flex items-center gap-0.5 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-lg">⭐</span>
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span key={`star-sarah-${i}`} className="text-lg text-[#d4af37]">&#9733;</span>
                     ))}
                   </div>
                   
@@ -504,20 +504,20 @@ export default function Services() {
               <Card className="relative overflow-hidden border-2 border-[#d4af37] shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
                 {/* Featured badge */}
                 <div className="absolute -top-0.5 left-1/2 -translate-x-1/2 bg-[#d4af37] text-[#1e3a5f] text-xs font-bold px-4 py-1 rounded-b-lg">
-                  🏆 Featured Story
+                  Featured Story
                 </div>
                 {/* Highlight ribbon */}
                 <div className="absolute top-4 right-4 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                  Fortune 500 🚀
+                  Fortune 500
                 </div>
                 <CardContent className="pt-10 pb-6">
                   {/* Quote icon */}
-                  <div className="absolute top-6 left-4 text-4xl text-[#d4af37]/30">"</div>
+                  <div className="absolute top-6 left-4 text-4xl text-[#d4af37]/30">&ldquo;</div>
                   
                   {/* Stars */}
                   <div className="flex items-center gap-0.5 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-lg">⭐</span>
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span key={`star-james-${i}`} className="text-lg text-[#d4af37]">&#9733;</span>
                     ))}
                   </div>
                   
@@ -546,16 +546,16 @@ export default function Services() {
               <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white">
                 {/* Highlight ribbon */}
                 <div className="absolute top-4 right-4 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                  3 Interviews ✨
+                  3 Interviews
                 </div>
                 <CardContent className="pt-8 pb-6">
                   {/* Quote icon */}
-                  <div className="absolute top-4 left-4 text-4xl text-[#d4af37]/20">"</div>
+                  <div className="absolute top-4 left-4 text-4xl text-[#d4af37]/20">&ldquo;</div>
                   
                   {/* Stars */}
                   <div className="flex items-center gap-0.5 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-lg">⭐</span>
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span key={`star-lisa-${i}`} className="text-lg text-[#d4af37]">&#9733;</span>
                     ))}
                   </div>
                   
@@ -601,8 +601,7 @@ export default function Services() {
             <div className="text-center mt-10">
               <Button asChild size="lg" className="bg-[#1e3a5f] hover:bg-[#2d5a8f] text-white px-8">
                 <a href="/testimonials">
-                  View All Success Stories
-                  <span className="ml-2">→</span>
+                  View All Success Stories{' '}<span className="ml-2">&rarr;</span>
                 </a>
               </Button>
             </div>
@@ -619,7 +618,7 @@ export default function Services() {
               <p className="text-lg text-muted-foreground mb-8">
                 Contact us for a free consultation and we'll help you select the perfect package for your career goals.
               </p>
-              <Button size="lg" variant="default" onClick={() => window.location.href = '/contact'}>
+              <Button size="lg" variant="default" onClick={() => { globalThis.location.href = '/contact'; }}>
                 Get Free Consultation
               </Button>
             </div>

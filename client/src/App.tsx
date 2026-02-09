@@ -21,12 +21,10 @@ import BlogPost from "./pages/BlogPost";
 import AdminBlog from "./pages/AdminBlog";
 import BlogEditor from "./pages/BlogEditor";
 import MediaLibrary from "./pages/MediaLibrary";
-import FAQ from "./pages/FAQ";
 import FaqRedirect from "./pages/FaqRedirect";
 import OurProcess from "./pages/OurProcess";
 import FaqAnalytics from "./pages/FaqAnalytics";
 import Contact from "./pages/Contact";
-import ContactRedirect from "./pages/ContactRedirect";
 import AdminTestimonials from "./pages/AdminTestimonials";
 import AdminCategories from "./pages/AdminCategories";
 import AdminTags from "./pages/AdminTags";
@@ -73,7 +71,7 @@ import AdminEmailLogs from './pages/AdminEmailLogs';
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
-    const hash = window.location.hash;
+    const hash = globalThis.location.hash;
     if (hash) {
       const id = hash.slice(1);
       const scrollToEl = () => {
@@ -87,11 +85,11 @@ function ScrollToTop() {
       if (scrollToEl()) return;
       // Defer so the route's DOM has mounted (e.g. preview or slow load)
       const t = setTimeout(() => {
-        if (!scrollToEl()) window.scrollTo(0, 0);
+        if (!scrollToEl()) globalThis.scrollTo(0, 0);
       }, 150);
       return () => clearTimeout(t);
     }
-    window.scrollTo(0, 0);
+    globalThis.scrollTo(0, 0);
   }, [location]);
   return null;
 }
