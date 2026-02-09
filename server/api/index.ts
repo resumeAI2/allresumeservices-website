@@ -203,18 +203,37 @@ async function getApp() {
 
 // Helper to convert Vercel request to Express-compatible format
 function createExpressRequest(req: VercelRequest): any {
+  // Vercel rewrites change req.url to the dest path (e.g., /api/handler?__original_path=/api/trpc/...)
+  // We need to reconstruct the original URL for Express routing to work correctly.
   const parsedUrl = parse(req.url || "/", true);
+  const originalPath = parsedUrl.query.__original_path as string | undefined;
+  
+  // Build the actual URL: use __original_path if present, otherwise fall back to req.url
+  let actualUrl: string;
+  if (originalPath) {
+    // Reconstruct the URL with the original path but preserve any other query params
+    const otherParams = { ...parsedUrl.query };
+    delete otherParams.__original_path;
+    const queryString = Object.keys(otherParams).length > 0
+      ? "?" + Object.entries(otherParams).map(([k, v]) => `${k}=${encodeURIComponent(String(v))}`).join("&")
+      : "";
+    actualUrl = originalPath + queryString;
+  } else {
+    actualUrl = req.url || "/";
+  }
+  
+  const actualParsed = parse(actualUrl, true);
   
   return {
     method: req.method,
-    url: req.url,
-    path: parsedUrl.pathname || "/",
-    query: parsedUrl.query,
+    url: actualUrl,
+    path: actualParsed.pathname || "/",
+    query: actualParsed.query,
     headers: req.headers,
     body: req.body,
     protocol: (req.headers["x-forwarded-proto"] as string) || "https",
     get: (name: string) => req.headers[name.toLowerCase()] as string | undefined,
-    originalUrl: req.url || "/",
+    originalUrl: actualUrl,
     socket: {
       remoteAddress: req.headers["x-forwarded-for"] as string || req.headers["x-real-ip"] as string,
     },
@@ -288,6 +307,9 @@ export default async function handler(
     const expressApp = await getApp();
     const expressReq = createExpressRequest(req);
     const expressRes = createExpressResponse(res);
+    
+    console.log(`[API] ${req.method} ${expressReq.url} (raw: ${req.url})`);
+
 
     // Handle the request with Express app
     return new Promise<void>((resolve, reject) => {

@@ -9,7 +9,7 @@
  *     static/                  -- frontend files (from dist/public)
  *     functions/
  *       api/
- *         index.func/          -- main API serverless function
+ *         handler.func/        -- main API serverless function
  *           index.js
  *           .vc-config.json
  *         auth/
@@ -38,7 +38,7 @@ try {
 // ── 2. Create directory structure ─────────────────────────────────────────────
 const dirs = [
   join(OUTPUT, "static"),
-  join(OUTPUT, "functions/api/[[...path]].func"),
+  join(OUTPUT, "functions/api/handler.func"),
   join(OUTPUT, "functions/api/auth/[...nextauth].func"),
 ];
 for (const dir of dirs) {
@@ -55,14 +55,14 @@ if (existsSync("dist/public")) {
 }
 
 // ── 4. Bundle main API function ───────────────────────────────────────────────
-console.log("Bundling api/[[...path]] serverless function...");
+console.log("Bundling api/handler serverless function...");
 await build({
   entryPoints: ["server/api/index.ts"],
   bundle: true,
   platform: "node",
   target: "node20",
   format: "cjs",
-  outfile: join(OUTPUT, "functions/api/[[...path]].func/index.js"),
+  outfile: join(OUTPUT, "functions/api/handler.func/index.js"),
   // Bundle ALL dependencies into the output since the .func directory
   // doesn't have node_modules. Only exclude packages with native binaries.
   external: ["sharp"],
@@ -70,7 +70,7 @@ await build({
 });
 
 writeFileSync(
-  join(OUTPUT, "functions/api/[[...path]].func/.vc-config.json"),
+  join(OUTPUT, "functions/api/handler.func/.vc-config.json"),
   JSON.stringify(
     {
       runtime: "nodejs20.x",
@@ -178,12 +178,15 @@ const config = {
       src: "/api/auth/(.*)",
       dest: "/api/auth/[...nextauth]",
     },
-    // Sitemap and robots -> API catch-all function
-    { src: "/sitemap.xml", dest: "/api/sitemap.xml" },
-    { src: "/robots.txt", dest: "/api/robots.txt" },
-    // All other /api/* routes are handled by the catch-all function
-    // at api/[[...path]].func - no rewrite needed, the URL is preserved
-    // SPA fallback: all non-API routes to index.html
+    // Sitemap and robots -> API handler function
+    { src: "/sitemap.xml", dest: "/api/handler?__original_path=/sitemap.xml" },
+    { src: "/robots.txt", dest: "/api/handler?__original_path=/robots.txt" },
+    // All /api/* routes -> handler function with original path preserved
+    {
+      src: "/api/(.*)",
+      dest: "/api/handler?__original_path=/api/$1",
+    },
+    // SPA fallback: static files first, then index.html for non-API routes
     {
       handle: "filesystem",
     },
@@ -208,6 +211,6 @@ writeFileSync(join(OUTPUT, "config.json"), JSON.stringify(config, null, 2));
 
 console.log("✓ Build Output API structure created successfully");
 console.log(
-  "  Functions: api/[[...path]], api/auth/[...nextauth]"
+  "  Functions: api/handler, api/auth/[...nextauth]"
 );
 console.log("  Static: copied from dist/public");
