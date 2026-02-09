@@ -160,10 +160,10 @@ export default function FreeReview() {
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Get a Free Resume Review – Your First Step Toward Your Dream Job
+            Get a Free Resume, Cover Letter, or LinkedIn Profile Review – Your First Step Toward Your Dream Job
           </h2>
           <p className="text-lg opacity-90 mb-8">
-            Not sure if your resume is getting the attention it deserves? Send it to us for a free review! Our professional resume writers will assess its effectiveness, ensuring it showcases your career history, relevant skills, and achievements in a way that stands out in today's competitive job market.
+            Not sure if your resume, cover letter, or LinkedIn profile is getting the attention it deserves? Send it to us for a free review! Our professional writers will assess its effectiveness, ensuring it showcases your career history, relevant skills, and achievements in a way that stands out in today's competitive job market.
           </p>
         </div>
 

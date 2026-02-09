@@ -111,7 +111,7 @@ export default function Services() {
                 Professional Career Services
               </h1>
               <p className="text-xl text-white mb-8">
-                Expert resume writing, cover letters, LinkedIn optimisation, and career guidance to help you land your dream job.
+                Expert resume writing, cover letters, LinkedIn profiles, and selection criteria for government and public sector roles—plus career guidance to help you land your dream job.
               </p>
               <Link href="/packages#services" className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
                 View Pricing & Packages

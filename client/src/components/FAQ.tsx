@@ -25,7 +25,7 @@ export default function FAQ() {
     },
     {
       question: "Do you write resumes for all industries and career levels?",
-      answer: "Yes! We have 18+ years of experience writing resumes for professionals across all industries—from entry-level graduates to C-suite executives. Whether you're in healthcare, IT, mining, government, education, or any other sector, we tailor your resume to your specific industry standards and career goals."
+      answer: "Yes! We have 18+ years of experience writing resumes for professionals across all industries—from entry-level graduates to C-suite executives. Whether you're in healthcare, IT, mining, government and public sector (we also write selection criteria for these roles), education, or any other sector, we tailor your resume to your specific industry standards and career goals."
     },
     {
       question: "What information do you need from me?",

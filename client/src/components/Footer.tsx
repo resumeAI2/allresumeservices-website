@@ -21,7 +21,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm opacity-90 mb-4 max-w-md">
-              Professional resume writing services helping Australians land interviews and secure their dream jobs. With 18+ years of experience and a 96% interview success rate, we're your partner in career advancement.
+              Professional resume and cover letter writing, LinkedIn profiles, and selection criteria for government and public sector roles—helping Australians land interviews and secure their dream jobs. 18+ years of experience with a 96% interview success rate.
             </p>
             <div className="space-y-2">
               <a href="tel:0410934371" className="flex items-center gap-2 text-sm hover:text-secondary transition-colors">

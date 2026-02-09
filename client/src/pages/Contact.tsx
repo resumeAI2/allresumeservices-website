@@ -127,8 +127,8 @@ export default function Contact() {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Contact Us - Free Resume Consultation | All Résumé Services</title>
-        <meta name="description" content="Contact All Résumé Services for a free resume consultation. Phone, email, or upload your resume. 18+ years experience, 96% interview success rate. Australia-wide." />
-        <meta name="keywords" content="contact resume writer, free resume review, resume consultation Australia" />
+        <meta name="description" content="Contact All Résumé Services for a free resume, cover letter, or LinkedIn profile consultation. Phone, email, or upload your resume. 18+ years experience, 96% interview success rate. Australia-wide." />
+        <meta name="keywords" content="contact resume writer, free resume review, resume consultation Australia, cover letter, LinkedIn profile" />
         <link rel="canonical" href="https://allresumeservices.com.au/contact" />
       </Helmet>
       <Header />
@@ -145,7 +145,7 @@ export default function Contact() {
               <p className="inline-block px-4 py-1.5 rounded-full bg-[#D4AF37]/25 text-[#D4AF37] font-semibold tracking-wide uppercase text-base mb-4 border border-[#D4AF37]/40">Free consultation</p>
               <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
               <p className="text-lg text-blue-100">
-                Ready to take the next step? Contact us for a free consultation and we&apos;ll discuss how we can help you land your dream job.
+                Ready to take the next step? Contact us for a free consultation about your resume, cover letter, or LinkedIn profile and we&apos;ll discuss how we can help you land your dream job.
               </p>
             </div>
           </div>
