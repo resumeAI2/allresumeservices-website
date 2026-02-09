@@ -36,7 +36,7 @@ async function getApp() {
   // SEO routes - sitemap and robots.txt
   app.get("/sitemap.xml", async (req: any, res: any) => {
     try {
-      const sitemapRoute = await import("../server/routes/sitemap.xml.js");
+      const sitemapRoute = await import("../server/routes/sitemap.xml");
       await sitemapRoute.GET(req, res);
     } catch (error) {
       console.error("[Sitemap] Error:", error);
@@ -46,7 +46,7 @@ async function getApp() {
 
   app.get("/robots.txt", async (req: any, res: any) => {
     try {
-      const robotsRoute = await import("../server/routes/robots.txt.js");
+      const robotsRoute = await import("../server/routes/robots.txt");
       await robotsRoute.GET(req, res);
     } catch (error) {
       console.error("[Robots] Error:", error);
