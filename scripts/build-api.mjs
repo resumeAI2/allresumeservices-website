@@ -1,21 +1,36 @@
 /**
- * Build script that produces Vercel Build Output API v3 format.
+ * Build script for Vercel Build Output API v3.
  *
- * Instead of relying on Vercel's auto-detection (which uses ncc and has
- * module resolution issues), we produce the full .vercel/output/ structure:
+ * Produces the .vercel/output/ directory structure that Vercel deploys directly,
+ * bypassing Vercel's automatic detection and ncc bundling (which has module
+ * resolution issues with this project's ESM/CJS mix).
  *
+ * Architecture:
  *   .vercel/output/
- *     config.json              -- routing, headers, crons
- *     static/                  -- frontend files (from dist/public)
+ *     config.json                        -- routing, headers, crons
+ *     static/                            -- frontend files (from dist/public)
  *     functions/
  *       api/
- *         handler.func/        -- main API serverless function
- *           index.js
- *           .vc-config.json
- *         auth/
- *           [...nextauth].func/  -- auth serverless function
- *             index.js
- *             .vc-config.json
+ *         handler.func/                  -- single API serverless function
+ *           index.js                     -- esbuild-bundled CJS output
+ *           .vc-config.json              -- runtime configuration
+ *
+ * How routing works:
+ *   Vercel's `handle: "filesystem"` does NOT resolve dynamic catch-all
+ *   function patterns (e.g. `[[...path]].func`). Therefore we use an
+ *   explicit rewrite rule to route all /api/* requests to /api/handler.
+ *
+ *   The original path is passed via the `__path` query parameter:
+ *     /api/trpc/services.getAllServices?batch=1&input=...
+ *     → /api/handler?__path=trpc/services.getAllServices&batch=1&input=...
+ *
+ *   Vercel preserves the original query parameters when rewriting, so
+ *   `batch=1&input=...` are automatically appended to the dest URL.
+ *
+ *   Inside the handler, req.url is reconstructed as:
+ *     /api/trpc/services.getAllServices?batch=1&input=...
+ *   by reading __path, prepending /api/, stripping __path from the query,
+ *   and keeping all other query parameters intact.
  */
 import { build } from "esbuild";
 import {
@@ -24,8 +39,8 @@ import {
   cpSync,
   writeFileSync,
   existsSync,
-} from "fs";
-import { join } from "path";
+} from "node:fs";
+import { join } from "node:path";
 
 const OUTPUT = ".vercel/output";
 
@@ -39,7 +54,6 @@ try {
 const dirs = [
   join(OUTPUT, "static"),
   join(OUTPUT, "functions/api/handler.func"),
-  join(OUTPUT, "functions/api/auth/[...nextauth].func"),
 ];
 for (const dir of dirs) {
   mkdirSync(dir, { recursive: true });
@@ -54,7 +68,7 @@ if (existsSync("dist/public")) {
   process.exit(1);
 }
 
-// ── 4. Bundle main API function ───────────────────────────────────────────────
+// ── 4. Bundle the API function ────────────────────────────────────────────────
 console.log("Bundling api/handler serverless function...");
 await build({
   entryPoints: ["server/api/index.ts"],
@@ -63,8 +77,8 @@ await build({
   target: "node20",
   format: "cjs",
   outfile: join(OUTPUT, "functions/api/handler.func/index.js"),
-  // Bundle ALL dependencies into the output since the .func directory
-  // doesn't have node_modules. Only exclude packages with native binaries.
+  // Bundle ALL dependencies since .func directories don't have node_modules.
+  // Only exclude packages with native binaries that can't be bundled.
   external: ["sharp"],
   tsconfig: "tsconfig.json",
 });
@@ -84,49 +98,17 @@ writeFileSync(
   )
 );
 
-// ── 5. Bundle auth function ───────────────────────────────────────────────────
-console.log("Bundling api/auth/[...nextauth] serverless function...");
-await build({
-  entryPoints: ["api/auth/[...nextauth].ts"],
-  bundle: true,
-  platform: "node",
-  target: "node20",
-  format: "cjs",
-  outfile: join(
-    OUTPUT,
-    "functions/api/auth/[...nextauth].func/index.js"
-  ),
-  // Bundle ALL dependencies into the output since the .func directory
-  // doesn't have node_modules. Only exclude packages with native binaries.
-  external: ["sharp"],
-  tsconfig: "tsconfig.json",
-});
-
-writeFileSync(
-  join(
-    OUTPUT,
-    "functions/api/auth/[...nextauth].func/.vc-config.json"
-  ),
-  JSON.stringify(
-    {
-      runtime: "nodejs20.x",
-      handler: "index.js",
-      launcherType: "Nodejs",
-      shouldAddHelpers: true,
-      maxDuration: 30,
-    },
-    null,
-    2
-  )
-);
-
-// ── 6. Generate config.json (routing, headers, crons) ─────────────────────────
+// ── 5. Generate config.json ───────────────────────────────────────────────────
 console.log("Generating config.json...");
 
 const config = {
   version: 3,
   routes: [
-    // CORS preflight
+    // ────────────────────────────────────────────────────────────────────────
+    // Phase 1: Headers (continue: true = add headers and keep processing)
+    // ────────────────────────────────────────────────────────────────────────
+
+    // CORS preflight — terminates immediately with 204
     {
       src: "/api/(.*)",
       methods: ["OPTIONS"],
@@ -139,7 +121,7 @@ const config = {
       status: 204,
       continue: false,
     },
-    // API CORS headers
+    // CORS response headers for API routes
     {
       src: "/api/(.*)",
       headers: {
@@ -150,7 +132,7 @@ const config = {
       },
       continue: true,
     },
-    // Security headers for all paths
+    // Security headers for all routes
     {
       src: "/(.*)",
       headers: {
@@ -165,7 +147,7 @@ const config = {
       },
       continue: true,
     },
-    // Static asset cache headers
+    // Long-lived cache for hashed static assets
     {
       src: "/assets/(.*)",
       headers: {
@@ -173,23 +155,36 @@ const config = {
       },
       continue: true,
     },
-    // Auth routes -> separate auth function (checked before catch-all)
-    {
-      src: "/api/auth/(.*)",
-      dest: "/api/auth/[...nextauth]",
-    },
-    // Sitemap and robots -> API handler function
-    { src: "/sitemap.xml", dest: "/api/handler?__original_path=/sitemap.xml" },
-    { src: "/robots.txt", dest: "/api/handler?__original_path=/robots.txt" },
-    // All /api/* routes -> handler function with original path preserved
-    {
-      src: "/api/(.*)",
-      dest: "/api/handler?__original_path=/api/$1",
-    },
-    // SPA fallback: static files first, then index.html for non-API routes
+
+    // ────────────────────────────────────────────────────────────────────────
+    // Phase 2: Static file resolution
+    // ────────────────────────────────────────────────────────────────────────
+    // Check static files FIRST so that real files in /static are served
+    // directly (e.g. /favicon.ico, /assets/*, etc.)
     {
       handle: "filesystem",
     },
+
+    // ────────────────────────────────────────────────────────────────────────
+    // Phase 3: API rewrites (after filesystem, so static files take priority)
+    // ────────────────────────────────────────────────────────────────────────
+
+    // SEO routes → API handler
+    // Vercel merges original query params with dest query params
+    { src: "/sitemap.xml", dest: "/api/handler?__path=sitemap.xml" },
+    { src: "/robots.txt", dest: "/api/handler?__path=robots.txt" },
+
+    // All /api/* routes → API handler, with path captured in __path
+    // Example: /api/trpc/services.getAllServices?batch=1&input=...
+    //        → /api/handler?__path=trpc/services.getAllServices&batch=1&input=...
+    {
+      src: "/api/(.*)",
+      dest: "/api/handler?__path=$1",
+    },
+
+    // ────────────────────────────────────────────────────────────────────────
+    // Phase 4: SPA fallback for non-API routes
+    // ────────────────────────────────────────────────────────────────────────
     {
       src: "/((?!api).*)",
       dest: "/index.html",
@@ -210,7 +205,5 @@ const config = {
 writeFileSync(join(OUTPUT, "config.json"), JSON.stringify(config, null, 2));
 
 console.log("✓ Build Output API structure created successfully");
-console.log(
-  "  Functions: api/handler, api/auth/[...nextauth]"
-);
+console.log("  Function: api/handler (single serverless function)");
 console.log("  Static: copied from dist/public");
