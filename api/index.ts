@@ -1,12 +1,50 @@
 import "dotenv/config";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createExpressMiddleware } from "@trpc/server/adapters/express";
-import { registerAuthRoutes } from "../server/_core/authRoutes";
-import { appRouter } from "../server/routers";
-import { createContext } from "../server/_core/context";
+
+// Dynamic imports to diagnose ERR_MODULE_NOT_FOUND
+let createExpressMiddleware: any;
+let registerAuthRoutes: any;
+let appRouter: any;
+let createContext: any;
+let apiLimiter: any;
+let authLimiter: any;
+
 import { parse } from "url";
-import { apiLimiter, authLimiter } from "../server/middleware/rateLimit";
 import crypto from "node:crypto";
+
+let _initPromise: Promise<void> | null = null;
+
+async function initModules() {
+  if (_initPromise) return _initPromise;
+  _initPromise = (async () => {
+    try {
+      const trpcMod = await import("@trpc/server/adapters/express");
+      createExpressMiddleware = trpcMod.createExpressMiddleware;
+    } catch (e: any) { console.error("[INIT] Failed to import @trpc/server/adapters/express:", e.message, e.code); throw e; }
+
+    try {
+      const authRoutesMod = await import("../server/_core/authRoutes");
+      registerAuthRoutes = authRoutesMod.registerAuthRoutes;
+    } catch (e: any) { console.error("[INIT] Failed to import authRoutes:", e.message, e.code); throw e; }
+
+    try {
+      const routersMod = await import("../server/routers");
+      appRouter = routersMod.appRouter;
+    } catch (e: any) { console.error("[INIT] Failed to import routers:", e.message, e.code); throw e; }
+
+    try {
+      const contextMod = await import("../server/_core/context");
+      createContext = contextMod.createContext;
+    } catch (e: any) { console.error("[INIT] Failed to import context:", e.message, e.code); throw e; }
+
+    try {
+      const rateLimitMod = await import("../server/middleware/rateLimit");
+      apiLimiter = rateLimitMod.apiLimiter;
+      authLimiter = rateLimitMod.authLimiter;
+    } catch (e: any) { console.error("[INIT] Failed to import rateLimit:", e.message, e.code); throw e; }
+  })();
+  return _initPromise;
+}
 
 /** Constant-time string comparison to prevent timing attacks */
 function safeCompare(a: string, b: string): boolean {
@@ -19,6 +57,9 @@ let app: any = null;
 
 async function getApp() {
   if (app) return app;
+
+  // Initialize all dynamic imports first (for diagnosing ERR_MODULE_NOT_FOUND)
+  await initModules();
 
   const express = (await import("express")).default;
   app = express();
