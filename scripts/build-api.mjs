@@ -9,7 +9,7 @@ import { build } from 'esbuild';
 import { rmSync } from 'fs';
 
 // Clean previous build
-try { rmSync('api/index.mjs'); } catch {}
+try { rmSync('api/index.js'); } catch {}
 
 await build({
   entryPoints: ['api/index.ts'],
@@ -17,7 +17,7 @@ await build({
   platform: 'node',
   target: 'node20',
   format: 'esm',
-  outfile: 'api/index.mjs',
+  outfile: 'api/index.js',
   // Keep node_modules as external (they're available at runtime in Vercel)
   packages: 'external',
   // Also keep dotenv external since it's side-effect-only
@@ -30,4 +30,4 @@ await build({
   },
 });
 
-console.log('✓ api/index.mjs built successfully');
+console.log('✓ api/index.js built successfully');
