@@ -13,7 +13,7 @@ import { rmSync } from 'fs';
 try { rmSync('api/index.js'); } catch {}
 
 await build({
-  entryPoints: ['api/index.ts'],
+  entryPoints: ['server/api/index.ts'],
   bundle: true,
   platform: 'node',
   target: 'node20',
