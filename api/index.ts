@@ -17,16 +17,20 @@ let _initPromise: Promise<void> | null = null;
 async function initModules() {
   if (_initPromise) return _initPromise;
   _initPromise = (async () => {
+    console.log("[INIT] Starting module initialization...");
+    
     try {
       const trpcMod = await import("@trpc/server/adapters/express");
       createExpressMiddleware = trpcMod.createExpressMiddleware;
-    } catch (e: any) { console.error("[INIT] Failed to import @trpc/server/adapters/express:", e.message, e.code); throw e; }
+      console.log("[INIT] @trpc/server/adapters/express OK");
+    } catch (e: any) { console.error("[INIT] FAIL @trpc/server/adapters/express:", e.message, e.code); throw e; }
 
     // authRoutes depends on next-auth which may fail in Vercel ncc bundler.
     // Auth routes are handled separately by api/auth/[...nextauth].ts, so this is non-critical.
     try {
       const authRoutesMod = await import("../server/_core/authRoutes");
       registerAuthRoutes = authRoutesMod.registerAuthRoutes;
+      console.log("[INIT] authRoutes OK");
     } catch (e: any) {
       console.warn("[INIT] authRoutes unavailable (auth handled by separate function):", e.message);
       registerAuthRoutes = () => {}; // no-op fallback
@@ -35,19 +39,28 @@ async function initModules() {
     try {
       const routersMod = await import("../server/routers");
       appRouter = routersMod.appRouter;
-    } catch (e: any) { console.error("[INIT] Failed to import routers:", e.message, e.code); throw e; }
+      console.log("[INIT] routers OK");
+    } catch (e: any) { console.error("[INIT] FAIL routers:", e.message, e.code); throw e; }
 
     try {
       const contextMod = await import("../server/_core/context");
       createContext = contextMod.createContext;
-    } catch (e: any) { console.error("[INIT] Failed to import context:", e.message, e.code); throw e; }
+      console.log("[INIT] context OK");
+    } catch (e: any) { console.error("[INIT] FAIL context:", e.message, e.code); throw e; }
 
     try {
       const rateLimitMod = await import("../server/middleware/rateLimit");
       apiLimiter = rateLimitMod.apiLimiter;
       authLimiter = rateLimitMod.authLimiter;
-    } catch (e: any) { console.error("[INIT] Failed to import rateLimit:", e.message, e.code); throw e; }
-  })();
+      console.log("[INIT] rateLimit OK");
+    } catch (e: any) { console.error("[INIT] FAIL rateLimit:", e.message, e.code); throw e; }
+
+    console.log("[INIT] All modules loaded successfully");
+  })().catch((e) => {
+    // Reset so next cold start retries
+    _initPromise = null;
+    throw e;
+  });
   return _initPromise;
 }
 
@@ -349,11 +362,12 @@ export default async function handler(
         }
       });
     });
-  } catch (error) {
-    console.error("[API] Handler Error:", error);
+  } catch (error: any) {
+    console.error("[API] Handler Error:", error?.message ?? error);
+    if (error?.code) console.error("[API] Error code:", error.code);
+    if (error?.stack) console.error("[API] Stack:", error.stack);
     if (!res.headersSent) {
       res.status(500).json({ error: "Internal server error" });
     }
-    throw error;
   }
 }
