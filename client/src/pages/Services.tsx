@@ -108,10 +108,10 @@ export default function Services() {
           <div className="container">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-secondary">
-                Professional Career Services
+                Professional Resume & Career Services
               </h1>
               <p className="text-xl text-white mb-8">
-                Expert resume writing, cover letters, LinkedIn optimisation, and career guidance to help you land your dream job.
+                We focus on resumes and cover letters, plus LinkedIn profiles and selection criteria for government and public sector roles. Expert career guidance to help you land your dream job.
               </p>
               <Link href="/packages#services" className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all">
                 View Pricing & Packages
@@ -148,7 +148,7 @@ export default function Services() {
                 Our Services
               </h2>
               <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-                Choose from our range of professional career services, or combine them in a package for the best value.
+                Resumes and cover letters are at the heart of what we do; we also offer LinkedIn optimisation and selection criteria for government and public sector roles. Combine services in a package for the best value.
               </p>
             </div>
 

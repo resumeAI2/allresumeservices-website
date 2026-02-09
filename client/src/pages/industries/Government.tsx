@@ -100,7 +100,7 @@ export default function Government() {
               Government & Public Sector Resume Writing
             </h1>
             <p className="text-xl text-emerald-100 mb-8">
-              Specialist resume and selection criteria writing for government roles across federal, state, and local levels
+              Specialist resume, cover letter, LinkedIn profile, and selection criteria writing for government and public sector roles across federal, state, and local levels
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90">
