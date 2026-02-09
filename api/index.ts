@@ -22,10 +22,15 @@ async function initModules() {
       createExpressMiddleware = trpcMod.createExpressMiddleware;
     } catch (e: any) { console.error("[INIT] Failed to import @trpc/server/adapters/express:", e.message, e.code); throw e; }
 
+    // authRoutes depends on next-auth which may fail in Vercel ncc bundler.
+    // Auth routes are handled separately by api/auth/[...nextauth].ts, so this is non-critical.
     try {
       const authRoutesMod = await import("../server/_core/authRoutes");
       registerAuthRoutes = authRoutesMod.registerAuthRoutes;
-    } catch (e: any) { console.error("[INIT] Failed to import authRoutes:", e.message, e.code); throw e; }
+    } catch (e: any) {
+      console.warn("[INIT] authRoutes unavailable (auth handled by separate function):", e.message);
+      registerAuthRoutes = () => {}; // no-op fallback
+    }
 
     try {
       const routersMod = await import("../server/routers");
