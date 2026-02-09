@@ -47,7 +47,7 @@ export default function Cart() {
             <p className="text-muted-foreground mb-8">
               Add some services to your cart to get started with your professional resume journey.
             </p>
-            <Link href="/pricing#packages">
+            <Link href="/packages#services">
               <Button size="lg">
                 Browse Services
               </Button>
@@ -223,7 +223,7 @@ export default function Cart() {
                       Proceed to Checkout
                     </Button>
                   </Link>
-                  <Link href="/services" className="w-full">
+                  <Link href="/packages#services" className="w-full">
                     <Button variant="outline" className="w-full">
                       Continue Shopping
                     </Button>

@@ -44,7 +44,7 @@ export default function Footer() {
             <div className="min-w-0">
               <h3 className="font-semibold mb-3 text-primary-foreground text-xs uppercase tracking-wide">Quick Links</h3>
               <ul className="space-y-1.5 text-xs">
-                <li><a href="/pricing" className="hover:text-secondary transition-colors">Services & Pricing</a></li>
+                <li><a href="/packages" className="hover:text-secondary transition-colors">Services & Pricing</a></li>
                 <li><a href="/process" className="hover:text-secondary transition-colors">Our Process</a></li>
                 <li><a href="/blog" className="hover:text-secondary transition-colors">Career Advice Blog</a></li>
               </ul>
