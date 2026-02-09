@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
 import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { CartProvider } from "./contexts/CartContext";
@@ -186,6 +187,7 @@ function App() {
               <Toaster />
               <CartDrawer />
               <Router />
+              <Analytics />
             </HelmetProvider>
           </TooltipProvider>
         </CartProvider>
