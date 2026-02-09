@@ -50,10 +50,9 @@ const FALLBACK_TESTIMONIALS: TestimonialRow[] = (
     createdAt: new Date(),
     outcomeText: null,
     outcomeEnabled: false,
-  }))
-  // Surface exceptional (longer, more detailed) reviews first;
-  // push short one-liners to the back.
-  .sort((a, b) => b.testimonialText.length - a.testimonialText.length);
+  }));
+// Ordering is handled by the filteredTestimonials memo below,
+// which interleaves long/medium and pushes one-liners to the back.
 
 /* ------------------------------------------------------------------ */
 /*  Page component                                                     */
@@ -205,10 +204,28 @@ export default function Testimonials() {
       filtered = filtered.filter((t) => t.rating >= minRating);
     }
 
-    // Surface detailed, exceptional reviews first; short one-liners last.
-    filtered.sort((a, b) => b.testimonialText.length - a.testimonialText.length);
+    // Interleave long and medium reviews for variety on every page;
+    // push very short one-liners (under ~100 chars) to the back.
+    const SHORT_THRESHOLD = 100;
+    const short = filtered.filter(t => t.testimonialText.length < SHORT_THRESHOLD);
+    const substantive = filtered.filter(t => t.testimonialText.length >= SHORT_THRESHOLD);
 
-    return filtered;
+    // Sort substantive by length descending, then split into halves
+    substantive.sort((a, b) => b.testimonialText.length - a.testimonialText.length);
+    const mid = Math.ceil(substantive.length / 2);
+    const longer = substantive.slice(0, mid);   // top half (longest)
+    const medium = substantive.slice(mid);       // bottom half (medium)
+
+    // Weave: alternate one long, one medium so every page has a mix
+    const interleaved: typeof filtered = [];
+    const maxLen = Math.max(longer.length, medium.length);
+    for (let i = 0; i < maxLen; i++) {
+      if (i < longer.length) interleaved.push(longer[i]);
+      if (i < medium.length) interleaved.push(medium[i]);
+    }
+
+    // Short one-liners go to the very end
+    return [...interleaved, ...short];
   }, [effectiveTestimonials, searchQuery, serviceFilter, ratingFilter]);
 
   /* ---- Stats ---- */
