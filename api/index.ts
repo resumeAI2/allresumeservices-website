@@ -343,6 +343,23 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
+  // Diagnostic endpoint to surface init errors
+  const parsedUrl = parse(req.url || "/", true);
+  if (parsedUrl.pathname === "/api/diag") {
+    try {
+      await initModules();
+      await getApp();
+      return res.status(200).json({ status: "ok", modules: "all loaded" });
+    } catch (e: any) {
+      return res.status(500).json({
+        status: "error",
+        message: e?.message,
+        code: e?.code,
+        stack: e?.stack?.split("\n").slice(0, 10),
+      });
+    }
+  }
+
   try {
     const expressApp = await getApp();
     const expressReq = createExpressRequest(req);

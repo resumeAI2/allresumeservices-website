@@ -6,6 +6,10 @@
   "framework": null,
   "rewrites": [
     {
+      "source": "/api/diag",
+      "destination": "/api/index.ts"
+    },
+    {
       "source": "/api/trpc/:path*",
       "destination": "/api/index.ts"
     },
