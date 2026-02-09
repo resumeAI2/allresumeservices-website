@@ -1,9 +1,10 @@
 /**
  * Pre-bundle the Vercel serverless API function with esbuild.
  * 
- * Vercel's ncc bundler does not properly inline local ESM imports when
- * the project uses "type": "module". By pre-bundling with esbuild, we
- * produce a single self-contained .mjs file that ncc can handle.
+ * Vercel's ncc bundler has issues resolving local imports in certain
+ * configurations. By pre-bundling with esbuild, we produce a single
+ * self-contained .js file that Vercel can serve directly as a
+ * serverless function without needing ncc to bundle it further.
  */
 import { build } from 'esbuild';
 import { rmSync } from 'fs';
@@ -16,7 +17,7 @@ await build({
   bundle: true,
   platform: 'node',
   target: 'node20',
-  format: 'esm',
+  format: 'cjs',
   outfile: 'api/index.js',
   // Keep node_modules as external (they're available at runtime in Vercel)
   packages: 'external',
@@ -24,10 +25,6 @@ await build({
   external: ['dotenv', 'dotenv/config'],
   // Resolve TypeScript path aliases
   tsconfig: 'tsconfig.json',
-  banner: {
-    // Required for CJS modules used via require() in ESM context
-    js: `import { createRequire } from 'module'; const require = createRequire(import.meta.url);`,
-  },
 });
 
 console.log('✓ api/index.js built successfully');
