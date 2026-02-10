@@ -67,6 +67,7 @@ import FreeResumeGuide from './pages/FreeResumeGuide';
 import ThankYouReview from './pages/ThankYouReview';
 import ContentCalendar from './pages/ContentCalendar';
 import AdminEmailLogs from './pages/AdminEmailLogs';
+import Login from './pages/Login';
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -134,6 +135,7 @@ function Router() {
       <Route path="/seo-setup" component={SeoSetup} />
       <Route path="/cart" component={Cart} />
       <Route path="/checkout" component={Checkout} />
+      <Route path="/login" component={Login} />
       <Route path={"/admin"} component={AdminDashboard} />
       <Route path={"/admin/blog"} component={AdminBlog} />
       <Route path={"/admin/blog/new"} component={BlogEditor} />
