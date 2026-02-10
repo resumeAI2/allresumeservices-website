@@ -136,8 +136,8 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title={post.title}
-        description={post.metaDescription || post.excerpt}
+        title={(post as { metaTitle?: string }).metaTitle || post.title}
+        description={(post as { metaDescription?: string }).metaDescription || post.excerpt}
         image={post.image || undefined}
         url={currentUrl}
         type="article"
