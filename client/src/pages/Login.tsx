@@ -43,12 +43,16 @@ async function credentialsLogin(email: string, password: string): Promise<{ ok: 
 
   // 3. Verify the session was actually created. This is the only reliable
   //    way to tell success from failure because NextAuth returns 302 in both cases.
-  const sessionRes = await fetch("/api/auth/session", { credentials: "include" });
-  if (!sessionRes.ok) return { ok: false, error: "Unable to verify session" };
-
-  const session = await sessionRes.json();
-  if (session?.user?.email) {
-    return { ok: true };
+  try {
+    const sessionRes = await fetch("/api/auth/session", { credentials: "include" });
+    if (sessionRes.ok) {
+      const session = await sessionRes.json();
+      if (session?.user?.email) {
+        return { ok: true };
+      }
+    }
+  } catch {
+    // Session check network error — treat as failed login
   }
 
   return { ok: false, error: "Invalid email or password" };
