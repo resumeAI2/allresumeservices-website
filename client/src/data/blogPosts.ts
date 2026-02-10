@@ -8,6 +8,8 @@ export interface BlogPost {
   slug: string;
   image: string;
   content: string;
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -1077,5 +1079,92 @@ Youtube</p>
 <p>4. Get a quote before you commit. Once you’ve found a few promising companies, get quotes from each one so you can compare prices. Keep in mind that you usually get what you pay for when it comes to CV writing services, so don’t go too cheap!</p>
 <h2>Conclusion</h2>
 <p>There are a few key reasons why you may need CV services. If you’re applying for jobs that require a CV, then it’s obvious you’ll need help creating one. But even if you’re not required to submit a CV, there are many benefits to having one on hand. A well-written and designed CV can help you stand out from the competition, make a good impression on potential employers, and land the job you want. So if you’re considering whether or not to use CV services, weigh the pros and cons carefully to decide what’s best for your career goals.</p>`
+  },
+  {
+    id: 10,
+    title: "Complete LinkedIn Profile Optimization Guide for Australian Job Seekers 2026",
+    excerpt: "Step-by-step LinkedIn profile optimization for Australian professionals. Learn how to write a headline, summary, and experience section that attracts recruiters and lands interviews. Includes before/after examples and free checklist.",
+    category: "LinkedIn",
+    date: "February 10, 2026",
+    readTime: "12 min read",
+    slug: "linkedin-profile-optimization-guide-australia",
+    image: "/blog/linkedin-optimization.jpg",
+    metaTitle: "LinkedIn Profile Optimization Guide Australia 2026 | All Résumé Services",
+    metaDescription: "Step-by-step LinkedIn profile optimization for Australian job seekers. Headline, summary & experience tips. Before/after examples. Professional LinkedIn writing services. 12 min read.",
+    content: `<h1>Complete LinkedIn Profile Optimization Guide for Australian Job Seekers 2026</h1>
+<p>Your LinkedIn profile is your digital business card. In Australia, recruiters and hiring managers use LinkedIn daily to find and shortlist candidates. An optimised LinkedIn profile increases your visibility, supports your resume, and can generate interview opportunities before you even apply. This guide walks you through every section—headline, summary, experience, and skills—with Australian job market best practices, before-and-after examples, and actionable steps you can use today.</p>
+
+<img src="/blog/linkedin-optimization.jpg" alt="LinkedIn profile optimization for Australian job seekers - headline, summary and experience tips" />
+
+<h2>Why LinkedIn Profile Optimization Matters for Australian Job Seekers</h2>
+<p>LinkedIn has over 1 billion members globally, and in Australia it is the primary platform for professional networking and recruitment. ATS-optimised resumes get you past the first filter; a strong LinkedIn profile builds trust, shows consistency with your resume, and helps you appear in recruiter searches. Profiles that use clear keywords, a professional headline, and a compelling summary receive significantly more profile views and connection requests. Whether you are actively job hunting or building your long-term brand, investing in LinkedIn profile optimization is one of the highest-return actions you can take.</p>
+
+<h2>How to Write a LinkedIn Headline That Gets You Found</h2>
+<p>Your headline appears under your name in search results and on your profile. You have 220 characters—use them to state your role, industry, and key value, not just your job title. Include keywords recruiters search for (e.g. "Project Manager", "Registered Nurse", "Financial Analyst") and a brief differentiator (e.g. "Driving digital transformation" or "18+ years in mining & resources").</p>
+
+<h3>Before and After: LinkedIn Headline Examples</h3>
+<p><strong>Before:</strong> "Manager at Company" — vague and unsearchable.</p>
+<p><strong>After:</strong> "Senior Project Manager | Mining & Resources | Delivering $50M+ Projects on Time" — clear, keyword-rich, and outcome-focused.</p>
+<p><strong>Before:</strong> "Looking for new opportunities" — focuses on need, not value.</p>
+<p><strong>After:</strong> "Healthcare Operations Leader | Nursing & Allied Health | Improving Patient Outcomes Across NSW" — positions you as a leader with sector and location relevance.</p>
+
+<h2>Writing a LinkedIn Summary (About Section) That Converts</h2>
+<p>The About section is your chance to tell your story in the first person. Use the first 2–3 lines carefully; they appear in search previews. Open with who you are and what you do, then add 2–3 key achievements or strengths, and close with what you are looking for or how you help others. Keep paragraphs short (2–4 sentences), use bullet points for scannability, and weave in industry and role keywords naturally.</p>
+
+<img src="/blog/linkedin-personal-brand.jpg" alt="Building a strong LinkedIn personal brand for Australian professionals" />
+
+<h3>LinkedIn Summary Structure That Works</h3>
+<ul>
+<li><strong>Hook (1–2 sentences):</strong> Role, industry, and years of experience.</li>
+<li><strong>Proof (3–5 bullet points):</strong> Quantified achievements and core skills.</li>
+<li><strong>Close (1–2 sentences):</strong> What you are seeking or how you add value.</li>
+</ul>
+<p>Align the tone and keywords with your <a href="https://allresumeservices.com.au/services">resume and cover letter</a> so recruiters see a consistent story across your application and profile.</p>
+
+<h2>Optimising Your LinkedIn Experience Section</h2>
+<p>List each role with a clear job title, company, and dates. Under each role, write 3–5 achievement-focused bullet points using action verbs and metrics (e.g. "Led", "Delivered", "Reduced", "Increased"). Mirror the language from job descriptions you target so your profile matches both recruiter searches and ATS-style keyword matching. If you have had professional resume or LinkedIn profile writing help, ensure the experience section matches the narrative and keywords in your resume.</p>
+
+<h2>Skills, Endorsements, and Recommendations</h2>
+<p>Add at least 15–20 skills relevant to your target roles. Reorder so your strongest and most sought-after skills appear first. Request recommendations from managers, peers, or clients—2–3 thoughtful recommendations per role carry more weight than many generic ones. Endorsements support your skills list; prioritise quality and relevance over quantity.</p>
+
+<h2>LinkedIn Profile Optimization for Australian Industries</h2>
+<p>Tailor your headline, summary, and experience to your sector. Government and public sector profiles benefit from selection criteria–style language and references to frameworks (e.g. APS, ILS). Mining and resources roles often emphasise safety, stakeholder engagement, and project delivery. Healthcare profiles highlight registration, clinical outcomes, and compliance. IT and tech profiles use current tools, methodologies, and delivery metrics. Using industry-specific keywords improves your chances of appearing in both recruiter searches and AI-driven matching.</p>
+
+<img src="/blog/linkedin-networking-professional.jpg" alt="LinkedIn networking and recruiter visibility for Australian job market" />
+
+<h2>Common LinkedIn Profile Mistakes to Avoid</h2>
+<ul>
+<li><strong>Empty or generic headline:</strong> Wastes 220 characters and hurts search visibility.</li>
+<li><strong>No profile photo or unprofessional image:</strong> Reduces trust and click-through rates.</li>
+<li><strong>Summary missing or too short:</strong> Misses the chance to tell your story and add keywords.</li>
+<li><strong>Experience as a job description:</strong> Focus on achievements and impact, not just duties.</li>
+<li><strong>Outdated or inconsistent details:</strong> Ensure dates and titles match your resume.</li>
+</ul>
+
+<h2>When to Use Professional LinkedIn Profile Writing Services</h2>
+<p>If you lack time, struggle to articulate your value, or want your profile to align perfectly with your resume and cover letter, a professional LinkedIn profile optimisation service can help. At All Résumé Services we craft headline, summary, and experience copy that matches your resume, uses recruiter-friendly keywords, and presents a consistent personal brand. This is especially useful for executives, career changers, and anyone applying for roles where LinkedIn is heavily used. You can <a href="https://allresumeservices.com.au/packages">view our packages</a>—LinkedIn optimisation is included in our Standard and Premium options or available as a standalone service.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>How long should my LinkedIn headline be?</h3>
+<p>Use the full 220 characters if you can, but prioritise clarity and keywords. A strong headline is usually 100–220 characters and includes your role, industry, and one clear differentiator or outcome.</p>
+
+<h3>Should my LinkedIn profile match my resume exactly?</h3>
+<p>Yes in substance—job titles, dates, and employers should align. The wording can be slightly different (e.g. more conversational on LinkedIn), but the narrative and key achievements should be consistent so recruiters see one coherent story.</p>
+
+<h3>How often should I update my LinkedIn profile?</h3>
+<p>Update your profile when you change roles, complete major projects, or shift your job target. A quick refresh every 6–12 months (headline, summary, top skills) keeps your profile relevant for recruiter searches.</p>
+
+<h3>What is the best LinkedIn profile photo?</h3>
+<p>Use a recent, professional headshot with a neutral or professional background. Face should be clearly visible, and attire should match your industry. Avoid group photos, logos, or casual shots.</p>
+
+<h3>Can LinkedIn optimization help with government or public sector jobs?</h3>
+<p>Yes. Many APS and state government roles use LinkedIn to verify candidates and assess professional presence. Aligning your profile with selection criteria language and listing relevant experience supports your written application. We also specialise in <a href="https://allresumeservices.com.au/services/selection-criteria">selection criteria</a> and government resumes.</p>
+
+<h3>How do I get more profile views on LinkedIn?</h3>
+<p>Optimise your headline and summary with keywords, post or engage with content in your field, and connect with recruiters and hiring managers in your industry. A complete, keyword-rich profile is more likely to appear in search results and get clicked.</p>
+
+<h2>Conclusion</h2>
+<p>LinkedIn profile optimization is a high-impact way to support your job search in Australia. A clear headline, compelling summary, and achievement-led experience section improve your visibility to recruiters and align your online presence with your resume and cover letter. Use this guide to update each section, avoid common mistakes, and consider professional LinkedIn profile writing if you want a fully aligned, recruiter-ready profile. For a free review of your resume and LinkedIn strategy, <a href="https://allresumeservices.com.au/contact">contact All Résumé Services</a> today.</p>`
   }
 ];

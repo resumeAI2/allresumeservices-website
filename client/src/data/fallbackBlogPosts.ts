@@ -15,6 +15,8 @@ export interface FallbackBlogPost {
   viewCount: number;
   createdAt: Date;
   updatedAt: Date;
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 function parseDate(dateStr: string): Date {
@@ -36,6 +38,8 @@ export const FALLBACK_BLOG_POSTS: FallbackBlogPost[] = blogPosts.map((p) => ({
   viewCount: 0,
   createdAt: parseDate(p.date),
   updatedAt: parseDate(p.date),
+  metaTitle: p.metaTitle,
+  metaDescription: p.metaDescription,
 }));
 
 export function getFallbackPostBySlug(slug: string): FallbackBlogPost | undefined {
