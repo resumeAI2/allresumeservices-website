@@ -1,7 +1,6 @@
 import { useState, useMemo } from "react";
 import { trpc } from "@/lib/trpc";
-import { Search, Filter, Star } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { Filter, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -58,7 +57,6 @@ const FALLBACK_TESTIMONIALS: TestimonialRow[] = (
 /*  Page component                                                     */
 /* ------------------------------------------------------------------ */
 export default function Testimonials() {
-  const [searchQuery, setSearchQuery] = useState("");
   const [serviceFilter, setServiceFilter] = useState("all");
   const [ratingFilter, setRatingFilter] = useState("all");
   const [displayCount, setDisplayCount] = useState(12);
@@ -185,16 +183,6 @@ export default function Testimonials() {
   const filteredTestimonials = useMemo(() => {
     let filtered = [...effectiveTestimonials];
 
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        (t) =>
-          t.clientName.toLowerCase().includes(query) ||
-          t.testimonialText.toLowerCase().includes(query) ||
-          (t.serviceUsed && t.serviceUsed.toLowerCase().includes(query)),
-      );
-    }
-
     if (serviceFilter !== "all") {
       filtered = filtered.filter((t) => t.serviceUsed === serviceFilter);
     }
@@ -226,7 +214,7 @@ export default function Testimonials() {
 
     // Short one-liners go to the very end
     return [...interleaved, ...short];
-  }, [effectiveTestimonials, searchQuery, serviceFilter, ratingFilter]);
+  }, [effectiveTestimonials, serviceFilter, ratingFilter]);
 
   /* ---- Stats ---- */
   const stats = useMemo(() => {
@@ -290,7 +278,7 @@ export default function Testimonials() {
         </section>
 
         {/* Statistics Section */}
-        <section className="py-16 bg-white">
+        <section className="py-10 bg-white">
           <div className="container">
             <div className="flex flex-wrap justify-center items-center gap-6">
               {/* Total Reviews */}
@@ -335,61 +323,52 @@ export default function Testimonials() {
           </div>
         </section>
 
-        {/* Filters Section */}
-        <section className="py-8">
-          <div className="container">
-            <div className="flex flex-col md:flex-row gap-4">
-              {/* Search */}
-              <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input
-                  type="text"
-                  placeholder="Search testimonials..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
+        {/* Filters + count (compact row) */}
+        <section className="py-4">
+          <div className="container max-w-6xl">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              {/* Results count */}
+              <div className="text-sm text-muted-foreground">
+                Showing {displayedTestimonials.length} of{" "}
+                {filteredTestimonials.length} testimonials
               </div>
 
-              {/* Service Filter */}
-              <div className="w-full md:w-64">
-                <Select value={serviceFilter} onValueChange={setServiceFilter}>
-                  <SelectTrigger>
-                    <Filter className="w-4 h-4 mr-2" />
-                    <SelectValue placeholder="All Services" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Services</SelectItem>
-                    {services.map((service) => (
-                      <SelectItem key={service} value={service}>
-                        {service}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              {/* Filters */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                {/* Service Filter */}
+                <div className="w-full sm:w-64">
+                  <Select value={serviceFilter} onValueChange={setServiceFilter}>
+                    <SelectTrigger>
+                      <Filter className="w-4 h-4 mr-2" />
+                      <SelectValue placeholder="All Services" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Services</SelectItem>
+                      {services.map((service) => (
+                        <SelectItem key={service} value={service}>
+                          {service}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              {/* Rating Filter */}
-              <div className="w-full md:w-48">
-                <Select value={ratingFilter} onValueChange={setRatingFilter}>
-                  <SelectTrigger>
-                    <Star className="w-4 h-4 mr-2" />
-                    <SelectValue placeholder="All Ratings" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Ratings</SelectItem>
-                    <SelectItem value="5">5 Stars</SelectItem>
-                    <SelectItem value="4">4+ Stars</SelectItem>
-                    <SelectItem value="3">3+ Stars</SelectItem>
-                  </SelectContent>
-                </Select>
+                {/* Rating Filter */}
+                <div className="w-full sm:w-48">
+                  <Select value={ratingFilter} onValueChange={setRatingFilter}>
+                    <SelectTrigger>
+                      <Star className="w-4 h-4 mr-2" />
+                      <SelectValue placeholder="All Ratings" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Ratings</SelectItem>
+                      <SelectItem value="5">5 Stars</SelectItem>
+                      <SelectItem value="4">4+ Stars</SelectItem>
+                      <SelectItem value="3">3+ Stars</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-            </div>
-
-            {/* Results count */}
-            <div className="mt-4 text-sm text-muted-foreground">
-              Showing {displayedTestimonials.length} of{" "}
-              {filteredTestimonials.length} testimonials
             </div>
           </div>
         </section>
@@ -425,7 +404,6 @@ export default function Testimonials() {
                   variant="outline"
                   className="mt-4"
                   onClick={() => {
-                    setSearchQuery("");
                     setServiceFilter("all");
                     setRatingFilter("all");
                   }}

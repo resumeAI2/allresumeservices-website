@@ -12,8 +12,14 @@ interface ResponseLike {
 
 export const GET = async (req: RequestLike, res: ResponseLike) => {
   const protocol = req.protocol || "https";
-  const host = req.get?.('host') || req.headers?.['host'] || "www.allresumeservices.com.au";
-  const baseUrl = `${protocol}://${host}`;
+  const hostFromRequest = req.get?.('host') ?? req.headers?.['host'];
+  const hostStr = Array.isArray(hostFromRequest) ? hostFromRequest[0] : hostFromRequest;
+  const canonicalHost =
+    process.env.VITE_APP_URL?.replace(/^https?:\/\//, '').replace(/\/$/, '') ||
+    process.env.SITE_URL?.replace(/^https?:\/\//, '').replace(/\/$/, '') ||
+    hostStr ||
+    "www.allresumeservices.com.au";
+  const baseUrl = `${protocol}://${canonicalHost}`;
 
   const robotsTxt = `# All Résumé Services - Robots.txt
 User-agent: *

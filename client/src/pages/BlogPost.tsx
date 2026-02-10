@@ -230,12 +230,12 @@ export default function BlogPost() {
 
         {/* Featured Image */}
         {post.image && (
-          <section className="py-8">
+          <section className="py-6">
             <div className="container">
-              <div className="max-w-4xl mx-auto">
-                <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
+              <div className="max-w-2xl mx-auto">
+                <div className="aspect-[16/10] max-h-[280px] rounded-lg overflow-hidden shadow-md">
                   <img
-                    src={getImageUrl(post.image, 'large')}
+                    src={getImageUrl(post.image, 'medium')}
                     alt={post.title}
                     className="w-full h-full object-cover"
                     loading="eager"
