@@ -36,6 +36,10 @@ export type TrpcContext = {
  * - The Express request and response objects
  * - The authenticated user from the database (if logged in)
  * - The NextAuth session object
+ *
+ * IMPORTANT: We pass (req, res) to auth() so NextAuth can read session cookies
+ * from the Express request headers. Calling auth() with no arguments only works
+ * inside Next.js Server Components (it reads cookies via next/headers).
  */
 export async function createContext(
   opts: CreateExpressContextOptions
@@ -44,8 +48,10 @@ export async function createContext(
   let session = null;
 
   try {
-    // Get NextAuth session
-    session = await auth();
+    // Get NextAuth session by passing the Express req/res.
+    // NextAuth v5's auth(req, res) overload reads cookies from req.headers
+    // and can set updated session cookies on the response.
+    session = await (auth as any)(opts.req, opts.res);
 
     // If session exists, fetch full user from database
     if (session?.user?.email) {

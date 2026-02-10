@@ -9,6 +9,51 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2 } from "lucide-react";
 
+/**
+ * Helper: perform NextAuth credentials login and verify via session check.
+ *
+ * NextAuth's credentials callback always returns a 302 redirect — both on
+ * success and on failure (it redirects to the error page). With
+ * `redirect: "manual"` we can't distinguish the two from the response alone.
+ *
+ * So after the POST we check `/api/auth/session` to see if a valid session
+ * was actually created. If yes → login succeeded; if no → bad credentials.
+ */
+async function credentialsLogin(email: string, password: string): Promise<{ ok: boolean; error?: string }> {
+  // 1. Get CSRF token
+  const csrfRes = await fetch("/api/auth/csrf", { credentials: "include" });
+  if (!csrfRes.ok) return { ok: false, error: "Unable to reach authentication server" };
+  const { csrfToken } = await csrfRes.json();
+
+  // 2. POST to credentials callback with redirect: "manual" so we don't
+  //    follow the 302 to an HTML page (which breaks JSON parsing).
+  await fetch("/api/auth/callback/credentials", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    credentials: "include",
+    redirect: "manual",
+    body: new URLSearchParams({
+      csrfToken,
+      email,
+      password,
+      callbackUrl: globalThis.location.origin,
+      json: "true",
+    }),
+  });
+
+  // 3. Verify the session was actually created. This is the only reliable
+  //    way to tell success from failure because NextAuth returns 302 in both cases.
+  const sessionRes = await fetch("/api/auth/session", { credentials: "include" });
+  if (!sessionRes.ok) return { ok: false, error: "Unable to verify session" };
+
+  const session = await sessionRes.json();
+  if (session?.user?.email) {
+    return { ok: true };
+  }
+
+  return { ok: false, error: "Invalid email or password" };
+}
+
 export default function Login() {
   const [, setLocation] = useLocation();
   const [isLoading, setIsLoading] = useState(false);
@@ -34,58 +79,16 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      // First get CSRF token
-      const csrfRes = await fetch("/api/auth/csrf", { credentials: "include" });
-      const { csrfToken } = await csrfRes.json();
+      const result = await credentialsLogin(loginEmail, loginPassword);
 
-      // Call NextAuth.js credentials callback.
-      // Use redirect: "manual" to prevent fetch from automatically following
-      // the 302 redirect to an HTML page (which causes JSON parse errors).
-      const response = await fetch("/api/auth/callback/credentials", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        credentials: "include",
-        redirect: "manual",
-        body: new URLSearchParams({
-          csrfToken,
-          email: loginEmail,
-          password: loginPassword,
-          callbackUrl: window.location.origin,
-          json: "true",
-        }),
-      });
-
-      // NextAuth returns a 302 redirect on successful login (session cookie is set).
-      // With redirect: "manual", the browser gives us an opaque redirect response
-      // (type "opaqueredirect", status 0) instead of following the redirect.
-      if (response.type === "opaqueredirect" || response.status === 302 || response.status === 0) {
-        // Successful login - session cookie was set by the response
+      if (result.ok) {
         await utils.auth.me.invalidate();
         setLocation("/");
-      } else if (response.ok) {
-        // 200 response - parse safely to handle potential error payloads
-        const text = await response.text();
-        try {
-          const data = JSON.parse(text);
-          if (data.url) {
-            await utils.auth.me.invalidate();
-            setLocation("/");
-          } else if (data.error) {
-            setError(data.error);
-          } else {
-            await utils.auth.me.invalidate();
-            setLocation("/");
-          }
-        } catch {
-          // Non-JSON response - likely means auth succeeded but response wasn't JSON
-          await utils.auth.me.invalidate();
-          setLocation("/");
-        }
       } else {
-        setError("Invalid email or password");
+        setError(result.error || "Invalid email or password");
       }
     } catch (err: any) {
-      setError(err.message || "Login failed");
+      setError(err.message || "Login failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -107,36 +110,19 @@ export default function Login() {
 
       setSuccess("Account created successfully! Logging you in...");
       
-      // Auto-login after signup using the same credentials flow
-      setTimeout(async () => {
-        try {
-          const csrfRes = await fetch("/api/auth/csrf", { credentials: "include" });
-          const { csrfToken } = await csrfRes.json();
-
-          const response = await fetch("/api/auth/callback/credentials", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            credentials: "include",
-            redirect: "manual",
-            body: new URLSearchParams({
-              csrfToken,
-              email: signupEmail,
-              password: signupPassword,
-              callbackUrl: window.location.origin,
-              json: "true",
-            }),
-          });
-
-          // 302 redirect (opaqueredirect) or 200 both mean success
-          if (response.type === "opaqueredirect" || response.status === 302 || response.status === 0 || response.ok) {
-            await utils.auth.me.invalidate();
-            setLocation("/");
-          }
-        } catch (loginErr) {
-          console.error("Auto-login failed:", loginErr);
+      // Auto-login after signup
+      try {
+        const result = await credentialsLogin(signupEmail, signupPassword);
+        if (result.ok) {
+          await utils.auth.me.invalidate();
+          setLocation("/");
+        } else {
+          // Signup succeeded but auto-login failed — send them to login page
           setLocation("/login");
         }
-      }, 1000);
+      } catch {
+        setLocation("/login");
+      }
     } catch (err: any) {
       setError(err.message || "Signup failed");
     } finally {
@@ -145,22 +131,14 @@ export default function Login() {
   };
 
   // Handle social login (redirect to NextAuth.js OAuth signin)
-  const handleSocialLogin = async (provider: "google" | "github") => {
+  const handleSocialLogin = (provider: "google" | "github") => {
     setError("");
     setIsLoading(true);
 
-    try {
-      // Get CSRF token first
-      const csrfRes = await fetch("/api/auth/csrf", { credentials: "include" });
-      const { csrfToken } = await csrfRes.json();
-
-      // Redirect to NextAuth.js OAuth signin
-      const callbackUrl = encodeURIComponent(window.location.origin);
-      window.location.href = `/api/auth/signin/${provider}?callbackUrl=${callbackUrl}&csrfToken=${csrfToken}`;
-    } catch (err: any) {
-      setError(err.message || `${provider} login failed`);
-      setIsLoading(false);
-    }
+    // Redirect to NextAuth.js OAuth signin page.
+    // NextAuth handles the CSRF token internally on the signin page.
+    const callbackUrl = encodeURIComponent(globalThis.location.origin);
+    globalThis.location.href = `/api/auth/signin/${provider}?callbackUrl=${callbackUrl}`;
   };
 
   return (

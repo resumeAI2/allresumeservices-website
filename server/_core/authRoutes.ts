@@ -22,7 +22,45 @@ interface AppLike {
 }
 
 /**
- * Register NextAuth.js routes for Express (local development)
+ * Serialize an Express-parsed body back to the correct format for the
+ * Web API Request object that NextAuth expects.
+ *
+ * Express body parsers turn the raw body into a JS object. We need to
+ * re-serialize it in the format that matches the original Content-Type:
+ *   - application/x-www-form-urlencoded → URLSearchParams string
+ *   - application/json (or anything else) → JSON string
+ */
+function serializeBody(
+  body: any,
+  contentType: string | undefined
+): { serialized: string; contentType: string } {
+  if (!body || typeof body !== "object") {
+    return { serialized: body ? String(body) : "", contentType: contentType || "text/plain" };
+  }
+
+  // If the original Content-Type is form-urlencoded, serialize as URLSearchParams
+  if (contentType?.includes("application/x-www-form-urlencoded")) {
+    const params = new URLSearchParams();
+    for (const [key, value] of Object.entries(body)) {
+      if (value !== undefined && value !== null && typeof value !== "object") {
+        params.set(key, String(value));
+      }
+    }
+    return {
+      serialized: params.toString(),
+      contentType: "application/x-www-form-urlencoded",
+    };
+  }
+
+  // Default: JSON serialize
+  return {
+    serialized: JSON.stringify(body),
+    contentType: contentType || "application/json",
+  };
+}
+
+/**
+ * Register NextAuth.js routes for Express
  * 
  * This handles all NextAuth.js authentication routes in the Express server:
  * - /api/auth/signin
@@ -54,12 +92,20 @@ export function registerAuthRoutes(app: AppLike) {
         });
       }
 
+      // Build the Request body with correct Content-Type serialization
+      let requestBody: string | undefined;
+      if (req.method !== "GET" && req.method !== "HEAD" && req.body) {
+        const originalContentType = headers.get("content-type") || undefined;
+        const { serialized, contentType } = serializeBody(req.body, originalContentType);
+        requestBody = serialized;
+        // Ensure the Content-Type header matches the serialization format
+        headers.set("content-type", contentType);
+      }
+
       const request = new Request(url, {
         method: req.method,
         headers,
-        body: req.method !== "GET" && req.method !== "HEAD" 
-          ? JSON.stringify(req.body) 
-          : undefined,
+        body: requestBody,
       });
 
       // Route to appropriate handler
@@ -79,7 +125,7 @@ export function registerAuthRoutes(app: AppLike) {
       // Set status code
       res.status(authResponse.status);
 
-      // Copy headers
+      // Copy headers (including Set-Cookie for session tokens)
       authResponse.headers.forEach((value: string, key: string) => {
         res.setHeader(key, value);
       });
