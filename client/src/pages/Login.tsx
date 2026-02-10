@@ -38,11 +38,14 @@ export default function Login() {
       const csrfRes = await fetch("/api/auth/csrf", { credentials: "include" });
       const { csrfToken } = await csrfRes.json();
 
-      // Call NextAuth.js credentials callback
+      // Call NextAuth.js credentials callback.
+      // Use redirect: "manual" to prevent fetch from automatically following
+      // the 302 redirect to an HTML page (which causes JSON parse errors).
       const response = await fetch("/api/auth/callback/credentials", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         credentials: "include",
+        redirect: "manual",
         body: new URLSearchParams({
           csrfToken,
           email: loginEmail,
@@ -52,16 +55,29 @@ export default function Login() {
         }),
       });
 
-      // NextAuth returns a redirect URL on success, or stays on same page with error
-      if (response.ok) {
-        const data = await response.json();
-        if (data.url) {
-          // Refresh auth state and redirect
-          await utils.auth.me.invalidate();
-          setLocation("/");
-        } else if (data.error) {
-          setError(data.error);
-        } else {
+      // NextAuth returns a 302 redirect on successful login (session cookie is set).
+      // With redirect: "manual", the browser gives us an opaque redirect response
+      // (type "opaqueredirect", status 0) instead of following the redirect.
+      if (response.type === "opaqueredirect" || response.status === 302 || response.status === 0) {
+        // Successful login - session cookie was set by the response
+        await utils.auth.me.invalidate();
+        setLocation("/");
+      } else if (response.ok) {
+        // 200 response - parse safely to handle potential error payloads
+        const text = await response.text();
+        try {
+          const data = JSON.parse(text);
+          if (data.url) {
+            await utils.auth.me.invalidate();
+            setLocation("/");
+          } else if (data.error) {
+            setError(data.error);
+          } else {
+            await utils.auth.me.invalidate();
+            setLocation("/");
+          }
+        } catch {
+          // Non-JSON response - likely means auth succeeded but response wasn't JSON
           await utils.auth.me.invalidate();
           setLocation("/");
         }
@@ -101,6 +117,7 @@ export default function Login() {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             credentials: "include",
+            redirect: "manual",
             body: new URLSearchParams({
               csrfToken,
               email: signupEmail,
@@ -110,7 +127,8 @@ export default function Login() {
             }),
           });
 
-          if (response.ok) {
+          // 302 redirect (opaqueredirect) or 200 both mean success
+          if (response.type === "opaqueredirect" || response.status === 302 || response.status === 0 || response.ok) {
             await utils.auth.me.invalidate();
             setLocation("/");
           }
