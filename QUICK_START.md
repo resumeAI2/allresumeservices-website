@@ -40,7 +40,10 @@ pnpm db:push
 pnpm dev
 ```
 
-Visit: http://localhost:3000/login
+- **Home page preview:** http://localhost:3000/  
+- **Admin login:** http://localhost:3000/login  
+
+In Cursor/VS Code: **Terminal → Run Task → Preview Home Page** opens the home page in your browser (with the dev server running).
 
 1. Click "Sign Up" tab
 2. Enter your details

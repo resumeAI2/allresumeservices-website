@@ -1,7 +1,10 @@
 import "dotenv/config";
 import express from "express";
-import { createServer } from "http";
+import { createServer as createHttpServer } from "http";
+import https from "https";
 import net from "net";
+// @ts-expect-error no types; used only when DEV_HTTPS=1 in development
+import selfsigned from "selfsigned";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerAuthRoutes } from "./authRoutes";
 import { appRouter } from "../routers";
@@ -31,27 +34,44 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 
 async function startServer() {
   const app = express();
-  const server = createServer(app);
-  
+
+  const useHttps =
+    process.env.NODE_ENV === "development" &&
+    (process.env.DEV_HTTPS === "1" || process.env.DEV_HTTPS === "true");
+
+  let server: ReturnType<typeof createHttpServer>;
+  if (useHttps) {
+    const pems = selfsigned.generate(
+      [{ name: "commonName", value: "localhost" }],
+      { days: 365, keySize: 2048, notBeforeDate: new Date(), algorithm: "sha256" }
+    );
+    server = https.createServer(
+      { key: pems.private, cert: pems.cert },
+      app
+    ) as unknown as ReturnType<typeof createHttpServer>;
+  } else {
+    server = createHttpServer(app);
+  }
+
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
-  
+
   // Apply rate limiting to auth routes (authentication)
-  app.use('/api/auth', authLimiter);
-  
+  app.use("/api/auth", authLimiter);
+
   // NextAuth.js authentication routes under /api/auth/*
   registerAuthRoutes(app);
-  
+
   // SEO routes - sitemap and robots.txt
-  const sitemapRoute = await import('../routes/sitemap.xml.js');
-  const robotsRoute = await import('../routes/robots.txt.js');
-  app.get('/sitemap.xml', sitemapRoute.GET);
-  app.get('/robots.txt', robotsRoute.GET);
-  
+  const sitemapRoute = await import("../routes/sitemap.xml.js");
+  const robotsRoute = await import("../routes/robots.txt.js");
+  app.get("/sitemap.xml", sitemapRoute.GET);
+  app.get("/robots.txt", robotsRoute.GET);
+
   // Apply general API rate limiting to all tRPC routes
-  app.use('/api/trpc', apiLimiter);
-  
+  app.use("/api/trpc", apiLimiter);
+
   // tRPC API
   app.use(
     "/api/trpc",
@@ -60,7 +80,7 @@ async function startServer() {
       createContext,
     })
   );
-  
+
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);
@@ -75,9 +95,12 @@ async function startServer() {
     console.log(`Port ${preferredPort} is busy, using port ${port} instead`);
   }
 
+  const protocol = useHttps ? "https" : "http";
   server.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}/`);
-    
+    console.log(`Server running on ${protocol}://localhost:${port}/`);
+    if (useHttps) {
+      console.log("(HTTPS for Cursor preview – accept the self-signed cert if prompted)");
+    }
     // Initialize scheduled tasks
     initDatabaseBackupCron();
   });

@@ -30,28 +30,39 @@ export const GET = async (req: RequestLike, res: ResponseLike) => {
       createdAt: blog_posts.createdAt
     }).from(blog_posts).where(eq(blog_posts.published, 1));
 
-    // Get the base URL from the request
-    const protocol = req.protocol || "https";
-    const host = req.get?.('host') || req.headers?.['host'] || "www.allresumeservices.com.au";
-    const baseUrl = `${protocol}://${host}`;
+    // Use canonical base URL so sitemap is consistent (www vs non-www) regardless of request host
+    const hostFromRequest = req.get?.('host') ?? req.headers?.['host'];
+    const hostStr = Array.isArray(hostFromRequest) ? hostFromRequest[0] : hostFromRequest;
+    const canonicalHost =
+      process.env.VITE_APP_URL?.replace(/^https?:\/\//, '').replace(/\/$/, '') ||
+      process.env.SITE_URL?.replace(/^https?:\/\//, '').replace(/\/$/, '') ||
+      hostStr ||
+      'www.allresumeservices.com.au';
+    const protocol = req.protocol || 'https';
+    const baseUrl = `${protocol}://${canonicalHost}`;
 
     // Define static pages with lastmod for SEO (ISO date when page was last meaningfully updated)
-    const staticPagesLastmod = '2026-02-02'; // Update when static content changes
+    // Paths must match App.tsx routes exactly (e.g. cover-letters, linkedin-optimisation)
+    const staticPagesLastmod = '2026-02-10';
     const staticPages = [
       { url: '/', priority: '1.0', changefreq: 'weekly' },
       { url: '/about', priority: '0.8', changefreq: 'monthly' },
       { url: '/services', priority: '0.9', changefreq: 'monthly' },
       { url: '/services/resume-writing', priority: '0.9', changefreq: 'monthly' },
-      { url: '/services/cover-letter', priority: '0.8', changefreq: 'monthly' },
-      { url: '/services/linkedin-profile', priority: '0.8', changefreq: 'monthly' },
+      { url: '/services/cover-letters', priority: '0.8', changefreq: 'monthly' },
+      { url: '/services/linkedin-optimisation', priority: '0.8', changefreq: 'monthly' },
       { url: '/services/selection-criteria', priority: '0.8', changefreq: 'monthly' },
+      { url: '/services/career-consultation', priority: '0.8', changefreq: 'monthly' },
       { url: '/pricing', priority: '0.9', changefreq: 'monthly' },
+      { url: '/packages', priority: '0.9', changefreq: 'monthly' },
+      { url: '/process', priority: '0.8', changefreq: 'monthly' },
       { url: '/blog', priority: '0.9', changefreq: 'daily' },
       { url: '/contact', priority: '0.7', changefreq: 'monthly' },
       { url: '/case-studies', priority: '0.8', changefreq: 'weekly' },
       { url: '/testimonials', priority: '0.8', changefreq: 'weekly' },
       { url: '/google-reviews', priority: '0.7', changefreq: 'weekly' },
       { url: '/industries', priority: '0.7', changefreq: 'monthly' },
+      { url: '/cart', priority: '0.5', changefreq: 'daily' },
     ];
 
     // Build XML sitemap
