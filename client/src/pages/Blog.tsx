@@ -23,17 +23,26 @@ export default function Blog() {
   const { data: tags = [] } = trpc.blog.getAllTags.useQuery();
 
   const allPosts = (apiPosts && apiPosts.length > 0) ? apiPosts : (!isLoading ? FALLBACK_BLOG_POSTS : []);
+
+  // Ensure newest posts are always shown first on the blog page
+  const sortedPosts = useMemo(() => {
+    return [...(allPosts || [])].sort((a, b) => {
+      const aDate = new Date(a.createdAt).getTime();
+      const bDate = new Date(b.createdAt).getTime();
+      return bDate - aDate;
+    });
+  }, [allPosts]);
   
   // Filter posts by category and tag
   const filteredPosts = useMemo(() => {
-    let posts = allPosts || [];
+    let posts = sortedPosts || [];
     
     if (activeCategoryId) {
       posts = posts.filter(post => post.categoryId === activeCategoryId);
     }
     
     return posts;
-  }, [allPosts, activeCategoryId, activeTagId]);
+  }, [sortedPosts, activeCategoryId, activeTagId]);
   
   // Get posts to display based on postsToShow limit
   const displayedPosts = useMemo(() => {
