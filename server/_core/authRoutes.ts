@@ -109,11 +109,14 @@ export function registerAuthRoutes(app: AppLike) {
       });
 
       // Route to appropriate handler
+      // Cast to `any` because NextAuth types expect NextRequest,
+      // but the handlers only need standard Web Request features
+      // which we've constructed above.
       let authResponse: globalThis.Response;
       if (req.method === "GET") {
-        authResponse = await GET(request);
+        authResponse = await GET(request as any);
       } else if (req.method === "POST") {
-        authResponse = await POST(request);
+        authResponse = await POST(request as any);
       } else {
         res.status(405).json({ error: "Method not allowed" });
         return;

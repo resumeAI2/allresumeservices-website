@@ -12,16 +12,17 @@ export interface FallbackBlogPost {
   image: string;
   readTime: string | null;
   published: number;
+  scheduledPublishDate: Date | null;
   viewCount: number;
   createdAt: Date;
   updatedAt: Date;
-  metaTitle?: string;
-  metaDescription?: string;
+  metaTitle: string | null;
+  metaDescription: string | null;
 }
 
 function parseDate(dateStr: string): Date {
   const d = new Date(dateStr);
-  return isNaN(d.getTime()) ? new Date() : d;
+  return Number.isNaN(d.getTime()) ? new Date() : d;
 }
 
 export const FALLBACK_BLOG_POSTS: FallbackBlogPost[] = blogPosts.map((p) => ({
@@ -35,11 +36,12 @@ export const FALLBACK_BLOG_POSTS: FallbackBlogPost[] = blogPosts.map((p) => ({
   image: p.image,
   readTime: p.readTime || null,
   published: 1,
+  scheduledPublishDate: null,
   viewCount: 0,
   createdAt: parseDate(p.date),
   updatedAt: parseDate(p.date),
-  metaTitle: p.metaTitle,
-  metaDescription: p.metaDescription,
+  metaTitle: p.metaTitle ?? null,
+  metaDescription: p.metaDescription ?? null,
 }));
 
 export function getFallbackPostBySlug(slug: string): FallbackBlogPost | undefined {

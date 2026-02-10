@@ -9,6 +9,8 @@ export type CaseStudyRow = {
   result: string;
   testimonialQuote: string | null;
   image: string | null;
+  beforeResumeImage: string | null;
+  afterResumeImage: string | null;
   published: number;
   featured: number;
   viewCount: number;
@@ -28,6 +30,8 @@ export const FALLBACK_CASE_STUDIES: CaseStudyRow[] = [
     result: "Within 3 weeks of receiving her new resume, Michelle secured interviews with three major mining companies including BHP, Rio Tinto, and Fortescue. She accepted a Senior Mining Engineer position at BHP with a 28% salary increase and relocation package to Western Australia.",
     testimonialQuote: "The team at All Résumé Services completely transformed how I presented my experience. The focus on achievements rather than duties made all the difference. I'm now in my dream role at BHP!",
     image: "/case-studies/mining-engineer.jpg",
+    beforeResumeImage: null,
+    afterResumeImage: null,
     published: 1,
     featured: 1,
     viewCount: 0,
@@ -45,6 +49,8 @@ export const FALLBACK_CASE_STUDIES: CaseStudyRow[] = [
     result: "Alexander received a LinkedIn message from a Commonwealth Bank recruiter within 2 weeks. After a successful interview process, he was offered a Team Leader position in their retail banking division with a 35% salary increase and comprehensive benefits package.",
     testimonialQuote: "I was skeptical about professional resume writing, but the results speak for themselves. The LinkedIn optimisation was particularly valuable - that's how Commonwealth Bank found me!",
     image: "/case-studies/banking-professional.jpg",
+    beforeResumeImage: null,
+    afterResumeImage: null,
     published: 1,
     featured: 1,
     viewCount: 0,
@@ -62,6 +68,8 @@ export const FALLBACK_CASE_STUDIES: CaseStudyRow[] = [
     result: "Priya's application was fast-tracked through Telstra's recruitment process. She received an interview within 5 days and was offered a Cloud Solutions Architect position with a competitive salary package, flexible working arrangements, and professional development budget.",
     testimonialQuote: "I had been applying for months with no luck. The ATS optimisation made my resume actually get seen by hiring managers. Within weeks I had my dream job at Telstra!",
     image: "/case-studies/tech-professional.jpg",
+    beforeResumeImage: null,
+    afterResumeImage: null,
     published: 1,
     featured: 1,
     viewCount: 0,
@@ -79,6 +87,8 @@ export const FALLBACK_CASE_STUDIES: CaseStudyRow[] = [
     result: "Rebecca's application stood out among 87 candidates. She was shortlisted and successfully interviewed for an Executive Level 1 position in the Department of Infrastructure. Her new role came with a $35,000 salary increase and expanded responsibilities across multiple divisions.",
     testimonialQuote: "Writing government selection criteria is an art form, and All Résumé Services are masters at it. They helped me showcase my achievements in a way that resonated with the selection panel.",
     image: "/case-studies/public-servant.jpg",
+    beforeResumeImage: null,
+    afterResumeImage: null,
     published: 1,
     featured: 1,
     viewCount: 0,

@@ -60,7 +60,7 @@ function reconstructUrl(rawUrl: string): string {
 
 // ── Express App Singleton ─────────────────────────────────────────────────────
 
-let app: ReturnType<typeof import("express").default> | null = null;
+let app: import("express").Express | null = null;
 let appInitError: Error | null = null;
 
 async function getApp() {
@@ -124,7 +124,7 @@ async function getApp() {
         }
 
         console.log("[Cron Backup] Starting database backup...");
-        const { triggerManualBackup } = await import("../server/cron/databaseBackupCron");
+        const { triggerManualBackup } = await import("../cron/databaseBackupCron");
         const result = await triggerManualBackup();
 
         if (result.success) {
@@ -163,7 +163,7 @@ async function getApp() {
         }
 
         console.log("[Cron Review Requests] Starting review request processing...");
-        const { runReviewRequestCron } = await import("../server/cron/reviewRequestCron");
+        const { runReviewRequestCron } = await import("../cron/reviewRequestCron");
         const result = await runReviewRequestCron();
 
         console.log(`[Cron Review Requests] Completed. Processed ${result?.processed || 0} records.`);
@@ -171,7 +171,6 @@ async function getApp() {
           success: true,
           message: "Review requests processed",
           processed: result?.processed || 0,
-          sent: result?.sent || 0,
           timestamp: new Date().toISOString(),
         });
       } catch (error) {
@@ -184,7 +183,7 @@ async function getApp() {
     expressApp.post("/api/paypal/webhook", async (req: any, res: any) => {
       try {
         console.log("[PayPal Webhook] Received webhook event");
-        const { verifyWebhookSignature, processWebhookEvent } = await import("../server/paypal");
+        const { verifyWebhookSignature, processWebhookEvent } = await import("../paypal");
 
         const headers = {
           "paypal-transmission-id": req.headers["paypal-transmission-id"] as string,
@@ -280,7 +279,7 @@ export default async function handler(
     // VercelRequest/VercelResponse extend IncomingMessage/ServerResponse
     // with added helpers, so Express handles them natively.
     return new Promise<void>((resolve) => {
-      expressApp(req, res, (err: any) => {
+      expressApp(req as any, res as any, (err: any) => {
         if (err) {
           console.error("[API] Express error:", err);
           if (!res.headersSent) {
