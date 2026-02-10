@@ -34,27 +34,45 @@ export function useAuth(options?: UseAuthOptions) {
 
   const logout = useCallback(async () => {
     try {
-      // Clear tRPC session
-      await logoutMutation.mutateAsync();
-      
-      // Clear local storage
-      localStorage.removeItem("user-info");
-    } catch (error: unknown) {
-      if (
-        error instanceof TRPCClientError &&
-        error.data?.code === "UNAUTHORIZED"
-      ) {
-        // Already logged out
-        localStorage.removeItem("user-info");
-        return;
+      // 1. Clear tRPC app session cookie
+      try {
+        await logoutMutation.mutateAsync();
+      } catch (error: unknown) {
+        // Ignore UNAUTHORIZED - means already logged out
+        if (
+          !(error instanceof TRPCClientError &&
+            error.data?.code === "UNAUTHORIZED")
+        ) {
+          console.error("[Auth] tRPC logout error:", error);
+        }
       }
-      throw error;
+
+      // 2. Clear NextAuth session by POSTing to the signout endpoint.
+      //    This is the only reliable way to clear the authjs.session-token cookie.
+      try {
+        const csrfRes = await fetch("/api/auth/csrf", { credentials: "include" });
+        const { csrfToken } = await csrfRes.json();
+
+        await fetch("/api/auth/signout", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          credentials: "include",
+          redirect: "manual",
+          body: new URLSearchParams({ csrfToken }),
+        });
+      } catch {
+        // Best-effort — signout endpoint may fail but we'll still redirect
+        console.error("[Auth] NextAuth signout request failed");
+      }
+
+      // 3. Clean up local state
+      localStorage.removeItem("user-info");
     } finally {
       utils.auth.me.setData(undefined, null);
       await utils.auth.me.invalidate();
       
       // Redirect to login page
-      window.location.href = "/login";
+      globalThis.location.href = "/login";
     }
   }, [logoutMutation, utils]);
 
@@ -82,10 +100,10 @@ export function useAuth(options?: UseAuthOptions) {
     if (!redirectOnUnauthenticated) return;
     if (meQuery.isLoading || logoutMutation.isPending) return;
     if (state.user) return;
-    if (typeof window === "undefined") return;
-    if (window.location.pathname === redirectPath) return;
+    if (typeof globalThis === "undefined") return;
+    if (globalThis.location.pathname === redirectPath) return;
 
-    window.location.href = redirectPath;
+    globalThis.location.href = redirectPath;
   }, [
     redirectOnUnauthenticated,
     redirectPath,
