@@ -54,12 +54,6 @@ export default function CaseStudy() {
   const allOtherStudies = study
     ? allStudies.filter(s => s.id !== study.id)
     : [];
-  
-  const relatedByCategory = study
-    ? allStudies
-        .filter(s => s.category === study.category && s.id !== study.id)
-        .slice(0, 3)
-    : [];
 
   if (isLoading && !fallbackStudy) {
     return (
@@ -264,7 +258,7 @@ export default function CaseStudy() {
                   <p className="text-muted-foreground mt-2">See the dramatic improvement in layout, content, and professional presentation</p>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
-                  {resolveCaseStudyImageUrl((study as { beforeResumeImage?: string | null }).beforeResumeImage) && (
+                  {resolveCaseStudyImageUrl(study.beforeResumeImage) && (
                     <div className="group">
                       <div className="flex items-center gap-2 mb-4">
                         <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
@@ -274,7 +268,7 @@ export default function CaseStudy() {
                       </div>
                       <div className="border-4 border-red-200 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow">
                         <img 
-                          src={resolveCaseStudyImageUrl((study as { beforeResumeImage?: string | null }).beforeResumeImage)!} 
+                          src={resolveCaseStudyImageUrl(study.beforeResumeImage)!} 
                           alt="Before resume" 
                           className="w-full h-auto"
                           loading="lazy"
@@ -282,7 +276,7 @@ export default function CaseStudy() {
                       </div>
                     </div>
                   )}
-                  {resolveCaseStudyImageUrl((study as { afterResumeImage?: string | null }).afterResumeImage) && (
+                  {resolveCaseStudyImageUrl(study.afterResumeImage) && (
                     <div className="group">
                       <div className="flex items-center gap-2 mb-4">
                         <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
@@ -292,7 +286,7 @@ export default function CaseStudy() {
                       </div>
                       <div className="border-4 border-green-200 rounded-2xl overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow">
                         <img 
-                          src={resolveCaseStudyImageUrl((study as { afterResumeImage?: string | null }).afterResumeImage)!} 
+                          src={resolveCaseStudyImageUrl(study.afterResumeImage)!} 
                           alt="After resume" 
                           className="w-full h-auto"
                           loading="lazy"
