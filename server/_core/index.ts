@@ -1,4 +1,7 @@
 import "dotenv/config";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import express from "express";
 import { createServer as createHttpServer } from "http";
 import https from "https";
@@ -69,6 +72,9 @@ async function startServer() {
   app.get("/sitemap.xml", sitemapRoute.GET);
   app.get("/robots.txt", robotsRoute.GET);
 
+  // Permanent redirect so /pricing is not reported as "Page with redirect" in GSC (canonical is /packages)
+  app.get("/pricing", (_req, res) => res.redirect(301, "/packages"));
+
   // Apply general API rate limiting to all tRPC routes
   app.use("/api/trpc", apiLimiter);
 
@@ -96,10 +102,35 @@ async function startServer() {
   }
 
   const protocol = useHttps ? "https" : "http";
+  const url = `${protocol}://localhost:${port}/`;
   server.listen(port, () => {
-    console.log(`Server running on ${protocol}://localhost:${port}/`);
+    console.log(`Server running on ${url}`);
     if (useHttps) {
       console.log("(HTTPS for Cursor preview – accept the self-signed cert if prompted)");
+    }
+    // Write copy-paste file so user can open it and copy the URL
+    const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
+    const copyFile = path.join(projectRoot, "PREVIEW_URL.txt");
+    const copyContent = [
+      "Copy the line below (only the URL) and paste it into Simple Browser.",
+      "",
+      "Steps:",
+      "  1. Press Ctrl+Shift+P",
+      "  2. Type: Simple Browser: Show",
+      "  3. Paste the URL from below into the box and press Enter",
+      "",
+      "-------- COPY FROM BELOW THIS LINE --------",
+      url.trim(),
+      "-------- COPY FROM ABOVE THIS LINE --------",
+    ].join("\n");
+    try {
+      fs.writeFileSync(copyFile, copyContent, "utf8");
+      console.log("");
+      console.log("  Open the file PREVIEW_URL.txt in this project to copy the URL.");
+      console.log("  (It's in the project root — use the file explorer on the left.)");
+      console.log("");
+    } catch {
+      // ignore if we can't write (e.g. read-only)
     }
     // Initialize scheduled tasks
     initDatabaseBackupCron();

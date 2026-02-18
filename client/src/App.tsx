@@ -69,6 +69,15 @@ import ContentCalendar from './pages/ContentCalendar';
 import AdminEmailLogs from './pages/AdminEmailLogs';
 import Login from './pages/Login';
 
+/** Redirects US spelling to canonical AU spelling so old/sitemap links don't 404 (fixes GSC Soft 404). */
+function RedirectToLinkedInOptimisation() {
+  const [, setLocation] = useLocation();
+  useEffect(() => {
+    setLocation("/services/linkedin-optimisation", { replace: true });
+  }, [setLocation]);
+  return null;
+}
+
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
@@ -104,6 +113,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/services/resume-writing"} component={ResumeWriting} />
       <Route path={"/services/cover-letters"} component={CoverLetters} />
+      <Route path={"/services/linkedin-optimization"} component={RedirectToLinkedInOptimisation} />
       <Route path={"/services/linkedin-optimisation"} component={LinkedInOptimization} />
       <Route path={"/services/selection-criteria"} component={SelectionCriteria} />
       <Route path={"/services/career-consultation"} component={CareerConsultation} />

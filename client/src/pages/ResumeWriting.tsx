@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -44,6 +45,12 @@ export default function ResumeWriting() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Professional Resume Writing Services Australia | All Résumé Services</title>
+        <meta name="description" content="ATS-optimised resume writing by expert writers. Tailored to your industry, achievement-focused, and delivered in 2–3 days. 96% interview success rate. Free review available." />
+        <meta name="keywords" content="resume writing Australia, professional resume writer, ATS resume, resume writing service" />
+        <link rel="canonical" href="https://allresumeservices.com.au/services/resume-writing" />
+      </Helmet>
       <Header />
       <div className="container">
         <Breadcrumb items={[

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -42,6 +43,12 @@ export default function CareerConsultation() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Career Consultation &amp; Coaching | Expert Career Advice Australia | All Résumé Services</title>
+        <meta name="description" content="One-on-one career consultation with experienced advisors. Personalised career strategy, job search and interview preparation, salary negotiation. Australia-wide." />
+        <meta name="keywords" content="career consultation, career coaching Australia, job search strategy, interview preparation" />
+        <link rel="canonical" href="https://allresumeservices.com.au/services/career-consultation" />
+      </Helmet>
       <Header />
       <div className="container">
         <Breadcrumb items={[

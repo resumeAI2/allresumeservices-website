@@ -248,10 +248,10 @@ export default function Testimonials() {
   return (
     <>
       <Helmet>
-        <title>Client Testimonials & Reviews | All Résumé Services</title>
+        <title>Client Testimonials &amp; Reviews | All Résumé Services</title>
         <meta
           name="description"
-          content="Read testimonials from professionals who landed interviews and jobs with our resume writing, cover letters, and LinkedIn services. 96% interview success rate."
+          content="Read client testimonials from professionals who landed interviews and jobs with our resume writing, cover letters, and LinkedIn services. 96% interview success rate. Australia-wide."
         />
         <meta
           name="keywords"

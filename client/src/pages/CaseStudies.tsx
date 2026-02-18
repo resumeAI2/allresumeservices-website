@@ -62,8 +62,8 @@ export default function CaseStudies() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
       <Helmet>
-        <title>Client Success Stories & Case Studies | All Résumé Services</title>
-        <meta name="description" content="Real success stories: before and after resumes, interview wins, and career transitions. See how our resume writing helped Australians land their dream jobs." />
+        <title>Client Success Stories &amp; Case Studies | All Résumé Services</title>
+        <meta name="description" content="Real success stories: before and after resumes, interview wins, and career transitions. See how our resume writing helped Australians land their dream jobs. 95% interview rate." />
         <meta name="keywords" content="resume case studies, success stories, before after resume, interview success Australia" />
         <link rel="canonical" href="https://allresumeservices.com.au/case-studies" />
       </Helmet>

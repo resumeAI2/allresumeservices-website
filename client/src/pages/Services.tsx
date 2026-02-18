@@ -95,8 +95,8 @@ export default function Services() {
   return (
     <>
       <Helmet>
-        <title>Our Services - Professional Resume & Career Services | All Résumé Services</title>
-        <meta name="description" content="Professional resume writing, cover letters, LinkedIn optimisation, selection criteria, and career consultation services. 18+ years experience, 96% interview success rate." />
+        <title>Our Services - Professional Resume &amp; Career Services | All Résumé Services</title>
+        <meta name="description" content="Professional resume writing, cover letters, LinkedIn optimisation, selection criteria, and career consultation. 18+ years experience, 96% interview success. View all services and pricing." />
         <meta name="keywords" content="resume writing services, cover letter writing, LinkedIn profile, selection criteria, career consultation, professional resume" />
         <link rel="canonical" href="https://allresumeservices.com.au/services" />
       </Helmet>

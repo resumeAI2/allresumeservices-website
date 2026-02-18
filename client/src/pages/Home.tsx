@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { Link } from "wouter";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
@@ -33,6 +34,18 @@ export default function Home() {
       <OrganizationSchema />
       <Header />
       <Hero />
+      {/* Internal links to key pages for discoverability and indexing (GSC "Discovered - not indexed") */}
+      <section className="py-6 bg-primary/5 border-y border-primary/10">
+        <div className="container">
+          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm" aria-label="Explore our services and success stories">
+            <Link href="/services" className="font-medium text-primary hover:text-secondary transition-colors underline underline-offset-4">Our Services</Link>
+            <span className="text-muted-foreground" aria-hidden="true">·</span>
+            <Link href="/case-studies" className="font-medium text-primary hover:text-secondary transition-colors underline underline-offset-4">Case Studies</Link>
+            <span className="text-muted-foreground" aria-hidden="true">·</span>
+            <Link href="/testimonials" className="font-medium text-primary hover:text-secondary transition-colors underline underline-offset-4">Client Testimonials</Link>
+          </nav>
+        </div>
+      </section>
       <Stats />
       <SuccessMetrics />
       <Testimonials />

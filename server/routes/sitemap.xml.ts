@@ -53,7 +53,6 @@ export const GET = async (req: RequestLike, res: ResponseLike) => {
       { url: '/services/linkedin-optimisation', priority: '0.8', changefreq: 'monthly' },
       { url: '/services/selection-criteria', priority: '0.8', changefreq: 'monthly' },
       { url: '/services/career-consultation', priority: '0.8', changefreq: 'monthly' },
-      { url: '/pricing', priority: '0.9', changefreq: 'monthly' },
       { url: '/packages', priority: '0.9', changefreq: 'monthly' },
       { url: '/process', priority: '0.8', changefreq: 'monthly' },
       { url: '/blog', priority: '0.9', changefreq: 'daily' },

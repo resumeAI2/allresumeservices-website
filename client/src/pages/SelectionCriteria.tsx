@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -42,6 +43,12 @@ export default function SelectionCriteria() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Selection Criteria Writing Services | Government &amp; Corporate | All Résumé Services</title>
+        <meta name="description" content="Professional selection criteria responses for government and public sector jobs. STAR method, evidence-based examples. Expert help for APS, state and local government applications." />
+        <meta name="keywords" content="selection criteria writing, government job application, STAR method, public sector resume" />
+        <link rel="canonical" href="https://allresumeservices.com.au/services/selection-criteria" />
+      </Helmet>
       <Header />
       <div className="container">
         <Breadcrumb items={[
